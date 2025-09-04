@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,14 +43,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compras\Compras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compras\Compras.Designer.cs">
+      <DependentUpon>Compras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Inventario\Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Inventario\Inventario.Designer.cs">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Por_Cobrar\Por_Cobrar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Por_Cobrar\Por_Cobrar.Designer.cs">
+      <DependentUpon>Por_Cobrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Por_Pagar\Por_Pagar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Por_Pagar\Por_Pagar.Designer.cs">
+      <DependentUpon>Por_Pagar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Ventas\Ventas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ventas\Ventas.Designer.cs">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Compras\" />
-    <Folder Include="Inventario\" />
-    <Folder Include="Por_Cobrar\" />
-    <Folder Include="Por_Pagar\" />
-    <Folder Include="Ventas\" />
+    <EmbeddedResource Include="Compras\Compras.resx">
+      <DependentUpon>Compras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Inventario\Inventario.resx">
+      <DependentUpon>Inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Por_Cobrar\Por_Cobrar.resx">
+      <DependentUpon>Por_Cobrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Por_Pagar\Por_Pagar.resx">
+      <DependentUpon>Por_Pagar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventas\Ventas.resx">
+      <DependentUpon>Ventas.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
