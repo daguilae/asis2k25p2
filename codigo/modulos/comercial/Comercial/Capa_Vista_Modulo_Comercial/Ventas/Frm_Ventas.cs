@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Capa_Vista_Modulo_Comercial.Inventario
+namespace Capa_Vista_Modulo_Comercial.Ventas
 {
-    public partial class Inventario : Form
+    public partial class Frm_Ventas : Form
     {
-        public Inventario()
+        public Frm_Ventas()
         {
             InitializeComponent();
         }

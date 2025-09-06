@@ -17,7 +17,7 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Compras());
+            Application.Run(new Frm_Compras());
         }
     }
 }

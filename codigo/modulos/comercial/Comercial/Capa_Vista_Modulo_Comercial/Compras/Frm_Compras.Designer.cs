@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_Modulo_Comercial.Compras
 {
-    partial class Compras
+    partial class Frm_Compras
     {
         /// <summary>
         /// Required designer variable.

@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_Modulo_Comercial.Inventario
 {
-    partial class Inventario
+    partial class Frm_Inventario
     {
         /// <summary>
         /// Required designer variable.

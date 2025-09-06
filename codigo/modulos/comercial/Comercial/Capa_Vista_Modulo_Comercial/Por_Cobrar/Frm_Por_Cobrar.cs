@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Capa_Vista_Modulo_Comercial.Por_Pagar
+namespace Capa_Vista_Modulo_Comercial.Por_Cobrar
 {
-    public partial class Por_Pagar : Form
+    public partial class Frm_Por_Cobrar : Form
     {
-        public Por_Pagar()
+        public Frm_Por_Cobrar()
         {
             InitializeComponent();
         }

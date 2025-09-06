@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Modulo_Comercial.Compras
 {
-    public partial class Compras : Form
+    public partial class Frm_Compras : Form
     {
-        public Compras()
+        public Frm_Compras()
         {
             InitializeComponent();
         }

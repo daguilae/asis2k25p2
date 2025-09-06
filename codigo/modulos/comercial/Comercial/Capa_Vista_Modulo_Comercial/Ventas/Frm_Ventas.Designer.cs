@@ -1,7 +1,7 @@
 ﻿
-namespace Capa_Vista_Modulo_Comercial.Por_Pagar
+namespace Capa_Vista_Modulo_Comercial.Ventas
 {
-    partial class Por_Pagar
+    partial class Frm_Ventas
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace Capa_Vista_Modulo_Comercial.Por_Pagar
         {
             this.SuspendLayout();
             // 
-            // Por_Pagar
+            // Ventas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -42,9 +42,9 @@ namespace Capa_Vista_Modulo_Comercial.Por_Pagar
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Por_Pagar";
+            this.Name = "Ventas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Por_Pagar";
+            this.Text = "Ventas";
             this.ResumeLayout(false);
 
         }
