@@ -56,7 +56,7 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.Cbo_busqueda.FormattingEnabled = true;
             this.Cbo_busqueda.Location = new System.Drawing.Point(152, 19);
-            this.Cbo_busqueda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cbo_busqueda.Margin = new System.Windows.Forms.Padding(2);
             this.Cbo_busqueda.Name = "Cbo_busqueda";
             this.Cbo_busqueda.Size = new System.Drawing.Size(225, 21);
             this.Cbo_busqueda.TabIndex = 0;
@@ -87,48 +87,52 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.Dgv_Tabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Tabla.Location = new System.Drawing.Point(20, 76);
-            this.Dgv_Tabla.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Dgv_Tabla.Margin = new System.Windows.Forms.Padding(2);
             this.Dgv_Tabla.Name = "Dgv_Tabla";
             this.Dgv_Tabla.RowHeadersWidth = 51;
             this.Dgv_Tabla.RowTemplate.Height = 24;
             this.Dgv_Tabla.Size = new System.Drawing.Size(741, 223);
             this.Dgv_Tabla.TabIndex = 7;
+            this.Dgv_Tabla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Tabla_CellContentClick);
             // 
             // btn_editar
             // 
             this.btn_editar.Location = new System.Drawing.Point(814, 332);
-            this.btn_editar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_editar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_editar.Name = "btn_editar";
             this.btn_editar.Size = new System.Drawing.Size(54, 26);
             this.btn_editar.TabIndex = 8;
             this.btn_editar.Text = "Editar";
             this.btn_editar.UseVisualStyleBackColor = true;
+            this.btn_editar.Click += new System.EventHandler(this.btn_editar_Click);
             // 
             // btn_eliminar
             // 
             this.btn_eliminar.Location = new System.Drawing.Point(936, 334);
-            this.btn_eliminar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_eliminar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(68, 24);
             this.btn_eliminar.TabIndex = 9;
             this.btn_eliminar.Text = "Eliminar";
             this.btn_eliminar.UseVisualStyleBackColor = true;
+            this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
             // btn_EjecutarSQL
             // 
             this.btn_EjecutarSQL.Location = new System.Drawing.Point(650, 337);
-            this.btn_EjecutarSQL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_EjecutarSQL.Margin = new System.Windows.Forms.Padding(2);
             this.btn_EjecutarSQL.Name = "btn_EjecutarSQL";
             this.btn_EjecutarSQL.Size = new System.Drawing.Size(111, 57);
             this.btn_EjecutarSQL.TabIndex = 10;
             this.btn_EjecutarSQL.Text = "Ejecutar SQL";
             this.btn_EjecutarSQL.UseVisualStyleBackColor = true;
+            this.btn_EjecutarSQL.Click += new System.EventHandler(this.btn_EjecutarSQL_Click);
             // 
             // rb_asc
             // 
             this.rb_asc.AutoSize = true;
             this.rb_asc.Location = new System.Drawing.Point(14, 18);
-            this.rb_asc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_asc.Margin = new System.Windows.Forms.Padding(2);
             this.rb_asc.Name = "rb_asc";
             this.rb_asc.Size = new System.Drawing.Size(46, 17);
             this.rb_asc.TabIndex = 11;
@@ -140,7 +144,7 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.rb_desc.AutoSize = true;
             this.rb_desc.Location = new System.Drawing.Point(87, 18);
-            this.rb_desc.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rb_desc.Margin = new System.Windows.Forms.Padding(2);
             this.rb_desc.Name = "rb_desc";
             this.rb_desc.Size = new System.Drawing.Size(47, 17);
             this.rb_desc.TabIndex = 12;
@@ -151,7 +155,7 @@ namespace Capa_Vista_Componente_Consultas
             // btn_regresar
             // 
             this.btn_regresar.Location = new System.Drawing.Point(936, 1);
-            this.btn_regresar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_regresar.Margin = new System.Windows.Forms.Padding(2);
             this.btn_regresar.Name = "btn_regresar";
             this.btn_regresar.Size = new System.Drawing.Size(63, 24);
             this.btn_regresar.TabIndex = 14;
@@ -161,7 +165,7 @@ namespace Capa_Vista_Componente_Consultas
             // btn_consimple
             // 
             this.btn_consimple.Location = new System.Drawing.Point(832, 2);
-            this.btn_consimple.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_consimple.Margin = new System.Windows.Forms.Padding(2);
             this.btn_consimple.Name = "btn_consimple";
             this.btn_consimple.Size = new System.Drawing.Size(100, 23);
             this.btn_consimple.TabIndex = 15;
@@ -176,6 +180,7 @@ namespace Capa_Vista_Componente_Consultas
             this.btn_cerrar.TabIndex = 16;
             this.btn_cerrar.Text = "Cerrar";
             this.btn_cerrar.UseVisualStyleBackColor = true;
+            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
             // 
             // Lbl_Tabla
             // 
@@ -258,9 +263,10 @@ namespace Capa_Vista_Componente_Consultas
             this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Cbo_busqueda);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Consulta_Compleja";
             this.Text = "Consulta_Compleja";
+            this.Load += new System.EventHandler(this.Consulta_Compleja_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Tabla)).EndInit();
             this.gpb_Orden.ResumeLayout(false);
             this.gpb_Orden.PerformLayout();
