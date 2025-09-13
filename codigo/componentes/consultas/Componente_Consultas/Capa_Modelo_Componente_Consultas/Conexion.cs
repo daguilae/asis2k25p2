@@ -11,7 +11,7 @@ namespace Capa_Modelo_Componente_Consultas
     {
         public OdbcConnection conexion()
         {
-            //creacion de la conexion via ODBC con xampp
+            //creacion de la conexion via ODBC
             OdbcConnection con = new OdbcConnection("Dsn=Prueba1");
             try
             {
