@@ -16,5 +16,10 @@ namespace Capa_Vista_Componente_Consultas
         {
             InitializeComponent();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
