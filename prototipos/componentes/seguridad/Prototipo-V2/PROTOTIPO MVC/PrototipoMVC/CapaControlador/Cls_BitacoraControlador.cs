@@ -183,5 +183,30 @@ namespace CapaControlador
             return dao.EjecutarConsulta(sql);
         }
 
+        private readonly Cls_SentenciasBitacora sent = new Cls_SentenciasBitacora();
+
+        // Maestro
+        public void RegistrarAccion(int idUsuario, int? idAplicacion, int? idListaTabla,
+                                    string accion, bool estadoLogin = false)
+            => sent.InsertarBitacora(idUsuario, idAplicacion, idListaTabla, accion, estadoLogin);
+
+        // Compatibilidad (3 params)
+        public void RegistrarAccion(int idUsuario, int? idAplicacion,
+                                    string accion, bool estadoLogin = false)
+            => sent.InsertarBitacora(idUsuario, idAplicacion, accion, estadoLogin);
+
+        // Solo usuario
+        public void RegistrarAccion(int idUsuario,
+                                    string accion, bool estadoLogin = false)
+            => sent.InsertarBitacora(idUsuario, accion, estadoLogin);
+
+        // Login / logout
+        public void RegistrarInicioSesion(int idUsuario, int? idAplicacion = null, int? idListaTabla = null)
+            => sent.RegistrarInicioSesion(idUsuario, idAplicacion, idListaTabla);
+
+        public void RegistrarCierreSesion(int idUsuario, int? idAplicacion = null, int? idListaTabla = null)
+            => sent.RegistrarCierreSesion(idUsuario, idAplicacion, idListaTabla);
+
+
     }
 }
