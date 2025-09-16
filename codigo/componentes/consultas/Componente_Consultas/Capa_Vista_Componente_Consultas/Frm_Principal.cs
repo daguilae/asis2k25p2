@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Controlador_Componente_Consultas;
 
 namespace Capa_Vista_Componente_Consultas
 {
-    public partial class Consulta_Compleja : Form
+    public partial class Frm_Principal : Form
     {
-        public Consulta_Compleja()
+        public Frm_Principal()
         {
             InitializeComponent();
         }
