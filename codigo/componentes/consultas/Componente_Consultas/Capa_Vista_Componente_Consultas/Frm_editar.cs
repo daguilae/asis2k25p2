@@ -26,5 +26,19 @@ namespace Capa_Vista_Componente_Consultas
         {
 
         }
+
+        private void creaciònToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Creacion creacion = new Frm_Creacion();
+            creacion.Show();
+            this.Hide();
+        }
+
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Consultas Consultas = new Frm_Consultas();
+            Consultas.Show();
+            this.Hide();
+        }
     }
 }

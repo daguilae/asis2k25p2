@@ -36,5 +36,12 @@ namespace Capa_Vista_Componente_Consultas
         {
             this.Close();
         }
+
+        private void Btn_editar_Click(object sender, EventArgs e)
+        {
+            Frm_editar edicion = new Frm_editar();
+            edicion.Show();
+            this.Hide();
+        }
     }
 }
