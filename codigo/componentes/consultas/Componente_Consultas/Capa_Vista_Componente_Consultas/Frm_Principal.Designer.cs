@@ -47,6 +47,7 @@ namespace Capa_Vista_Componente_Consultas
             this.btn_ConsultaSimple.TabIndex = 0;
             this.btn_ConsultaSimple.Text = "Consultas Simples";
             this.btn_ConsultaSimple.UseVisualStyleBackColor = true;
+            this.btn_ConsultaSimple.Click += new System.EventHandler(this.btn_ConsultaSimple_Click);
             // 
             // btn_ConsultaCompleja
             // 
@@ -56,6 +57,7 @@ namespace Capa_Vista_Componente_Consultas
             this.btn_ConsultaCompleja.TabIndex = 1;
             this.btn_ConsultaCompleja.Text = "Consulta Compleja";
             this.btn_ConsultaCompleja.UseVisualStyleBackColor = true;
+            this.btn_ConsultaCompleja.Click += new System.EventHandler(this.btn_ConsultaCompleja_Click);
             // 
             // btn_Ayuda
             // 
@@ -84,6 +86,7 @@ namespace Capa_Vista_Componente_Consultas
             this.btn_Cerrar.TabIndex = 4;
             this.btn_Cerrar.Text = "Cerrar";
             this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
             // lbl_Instrucciones
             // 

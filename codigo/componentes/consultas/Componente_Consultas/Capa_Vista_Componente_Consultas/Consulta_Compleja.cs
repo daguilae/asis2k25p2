@@ -17,5 +17,12 @@ namespace Capa_Vista_Componente_Consultas
         {
             InitializeComponent();
         }
+
+        private void btn_consimple_Click(object sender, EventArgs e)
+        {
+            Frm_Consultas consultas = new Frm_Consultas();
+            consultas.Show();
+            this.Hide();
+        }
     }
 }

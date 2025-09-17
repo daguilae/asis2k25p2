@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Capa_Controlador_Componente_Consultas">
-      <HintPath>..\Capa_Controlador_Componente_Consultas\bin\Debug\Capa_Controlador_Componente_Consultas.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\UMG\Segundo semestre 2025\Análisis de sistemas 2\Consultas\Componente_consultas\codigo\componentes\consultas\Componente_Consultas\Capa_Controlador_Componente_Consultas\bin\Debug\Capa_Controlador_Componente_Consultas.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
