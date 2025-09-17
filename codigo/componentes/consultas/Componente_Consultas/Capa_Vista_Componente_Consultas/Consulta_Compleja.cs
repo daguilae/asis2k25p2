@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+//Usando capa controlador 
 using Capa_Controlador_Componente_Consultas;
 
 namespace Capa_Vista_Componente_Consultas
