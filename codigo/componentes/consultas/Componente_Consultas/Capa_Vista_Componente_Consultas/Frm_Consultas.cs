@@ -44,10 +44,40 @@ namespace Capa_Vista_Componente_Consultas
 
         private void btn_max_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Volvemos a mostrar Form1
+            Frm_Principal principal = new Frm_Principal();
+            principal.Show();
+            this.Close(); // cerramos Form2
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Volvemos a mostrar Form1
+            Consulta_Compleja compleja = new Consulta_Compleja();
+            compleja.Show();
+            this.Close(); // cerramos Form2
+        }
+
+        private void btn_min_Click_1(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btn_max_Click_1(object sender, EventArgs e)
+        {
             if (this.WindowState == FormWindowState.Normal)
-                this.WindowState = FormWindowState.Maximized;
-            else
-                this.WindowState = FormWindowState.Normal;
+            {
+                this.WindowState = FormWindowState.Maximized; // Si está normal, se maximiza
+            }
+            else if (this.WindowState == FormWindowState.Maximized)
+            {
+                this.WindowState = FormWindowState.Normal; // Si ya está maximizada, se restaura
+            }
         }
     }
 }
