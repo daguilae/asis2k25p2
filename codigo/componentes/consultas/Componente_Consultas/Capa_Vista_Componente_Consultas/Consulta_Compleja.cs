@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //Usando capa controlador 
 using Capa_Controlador_Componente_Consultas;
-
+// COMO ESTAn
 namespace Capa_Vista_Componente_Consultas
 {
     public partial class Consulta_Compleja : Form
