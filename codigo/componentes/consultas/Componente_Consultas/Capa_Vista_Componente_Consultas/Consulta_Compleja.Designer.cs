@@ -154,6 +154,7 @@ namespace Capa_Vista_Componente_Consultas
             this.btn_consimple.TabIndex = 15;
             this.btn_consimple.Text = "Consulta Simple";
             this.btn_consimple.UseVisualStyleBackColor = true;
+            this.btn_consimple.Click += new System.EventHandler(this.btn_consimple_Click);
             // 
             // btn_cerrar
             // 
