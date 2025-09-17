@@ -59,13 +59,13 @@ namespace Capa_Vista_Componente_Consultas
             this.cmbCampoSimple = new System.Windows.Forms.ComboBox();
             this.cmbTablaSimple = new System.Windows.Forms.ComboBox();
             this.Mstp_Consultas = new System.Windows.Forms.MenuStrip();
+            this.menúPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.creaciònToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_min = new System.Windows.Forms.Button();
             this.btn_max = new System.Windows.Forms.Button();
-            this.btn_cerrar = new System.Windows.Forms.Button();
-            this.menúPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbAcciones.SuspendLayout();
             this.gbOrden.SuspendLayout();
             this.gbCompleja.SuspendLayout();
@@ -81,11 +81,9 @@ namespace Capa_Vista_Componente_Consultas
             this.gbAcciones.Controls.Add(this.btnBorrar);
             this.gbAcciones.Controls.Add(this.btnCrear);
             this.gbAcciones.Controls.Add(this.txtSqlPreview);
-            this.gbAcciones.Location = new System.Drawing.Point(13, 598);
-            this.gbAcciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbAcciones.Location = new System.Drawing.Point(10, 486);
             this.gbAcciones.Name = "gbAcciones";
-            this.gbAcciones.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbAcciones.Size = new System.Drawing.Size(1043, 148);
+            this.gbAcciones.Size = new System.Drawing.Size(835, 120);
             this.gbAcciones.TabIndex = 7;
             this.gbAcciones.TabStop = false;
             this.gbAcciones.Text = "Acciones";
@@ -93,10 +91,9 @@ namespace Capa_Vista_Componente_Consultas
             // btnCerrar
             // 
             this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCerrar.Location = new System.Drawing.Point(904, 106);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCerrar.Location = new System.Drawing.Point(731, 86);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(100, 28);
+            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
             this.btnCerrar.TabIndex = 3;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
@@ -104,10 +101,9 @@ namespace Capa_Vista_Componente_Consultas
             // btnBorrar
             // 
             this.btnBorrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBorrar.Location = new System.Drawing.Point(796, 106);
-            this.btnBorrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnBorrar.Location = new System.Drawing.Point(650, 86);
             this.btnBorrar.Name = "btnBorrar";
-            this.btnBorrar.Size = new System.Drawing.Size(100, 28);
+            this.btnBorrar.Size = new System.Drawing.Size(75, 23);
             this.btnBorrar.TabIndex = 2;
             this.btnBorrar.Text = "Borrar";
             this.btnBorrar.UseVisualStyleBackColor = true;
@@ -115,10 +111,9 @@ namespace Capa_Vista_Componente_Consultas
             // btnCrear
             // 
             this.btnCrear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCrear.Location = new System.Drawing.Point(688, 106);
-            this.btnCrear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrear.Location = new System.Drawing.Point(569, 86);
             this.btnCrear.Name = "btnCrear";
-            this.btnCrear.Size = new System.Drawing.Size(100, 28);
+            this.btnCrear.Size = new System.Drawing.Size(75, 23);
             this.btnCrear.TabIndex = 1;
             this.btnCrear.Text = "Crear /";
             this.btnCrear.UseVisualStyleBackColor = true;
@@ -127,12 +122,11 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.txtSqlPreview.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSqlPreview.Location = new System.Drawing.Point(21, 31);
-            this.txtSqlPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSqlPreview.Location = new System.Drawing.Point(16, 25);
             this.txtSqlPreview.Multiline = true;
             this.txtSqlPreview.Name = "txtSqlPreview";
             this.txtSqlPreview.ReadOnly = true;
-            this.txtSqlPreview.Size = new System.Drawing.Size(981, 67);
+            this.txtSqlPreview.Size = new System.Drawing.Size(790, 55);
             this.txtSqlPreview.TabIndex = 0;
             // 
             // gbOrden
@@ -145,11 +139,9 @@ namespace Capa_Vista_Componente_Consultas
             this.gbOrden.Controls.Add(this.rdbDesc);
             this.gbOrden.Controls.Add(this.rdbAsc);
             this.gbOrden.Controls.Add(this.cmbCampoOrden);
-            this.gbOrden.Location = new System.Drawing.Point(13, 442);
-            this.gbOrden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbOrden.Location = new System.Drawing.Point(10, 359);
             this.gbOrden.Name = "gbOrden";
-            this.gbOrden.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbOrden.Size = new System.Drawing.Size(1043, 148);
+            this.gbOrden.Size = new System.Drawing.Size(835, 120);
             this.gbOrden.TabIndex = 6;
             this.gbOrden.TabStop = false;
             this.gbOrden.Text = "Ordenar";
@@ -158,29 +150,25 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.lstOrden.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstOrden.FormattingEnabled = true;
-            this.lstOrden.ItemHeight = 16;
-            this.lstOrden.Location = new System.Drawing.Point(656, 23);
-            this.lstOrden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstOrden.Location = new System.Drawing.Point(545, 19);
             this.lstOrden.Name = "lstOrden";
-            this.lstOrden.Size = new System.Drawing.Size(347, 68);
+            this.lstOrden.Size = new System.Drawing.Size(261, 56);
             this.lstOrden.TabIndex = 5;
             // 
             // btnQuitarOrden
             // 
-            this.btnQuitarOrden.Location = new System.Drawing.Point(767, 100);
-            this.btnQuitarOrden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuitarOrden.Location = new System.Drawing.Point(575, 81);
             this.btnQuitarOrden.Name = "btnQuitarOrden";
-            this.btnQuitarOrden.Size = new System.Drawing.Size(100, 28);
+            this.btnQuitarOrden.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarOrden.TabIndex = 4;
             this.btnQuitarOrden.Text = "Quitar";
             this.btnQuitarOrden.UseVisualStyleBackColor = true;
             // 
             // btnAgregarOrden
             // 
-            this.btnAgregarOrden.Location = new System.Drawing.Point(659, 100);
-            this.btnAgregarOrden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregarOrden.Location = new System.Drawing.Point(494, 81);
             this.btnAgregarOrden.Name = "btnAgregarOrden";
-            this.btnAgregarOrden.Size = new System.Drawing.Size(100, 28);
+            this.btnAgregarOrden.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarOrden.TabIndex = 3;
             this.btnAgregarOrden.Text = "Agregar";
             this.btnAgregarOrden.UseVisualStyleBackColor = true;
@@ -188,10 +176,9 @@ namespace Capa_Vista_Componente_Consultas
             // rdbDesc
             // 
             this.rdbDesc.AutoSize = true;
-            this.rdbDesc.Location = new System.Drawing.Point(324, 103);
-            this.rdbDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbDesc.Location = new System.Drawing.Point(243, 84);
             this.rdbDesc.Name = "rdbDesc";
-            this.rdbDesc.Size = new System.Drawing.Size(57, 21);
+            this.rdbDesc.Size = new System.Drawing.Size(47, 17);
             this.rdbDesc.TabIndex = 2;
             this.rdbDesc.Text = "DES";
             this.rdbDesc.UseVisualStyleBackColor = true;
@@ -200,10 +187,9 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.rdbAsc.AutoSize = true;
             this.rdbAsc.Checked = true;
-            this.rdbAsc.Location = new System.Drawing.Point(257, 103);
-            this.rdbAsc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rdbAsc.Location = new System.Drawing.Point(193, 84);
             this.rdbAsc.Name = "rdbAsc";
-            this.rdbAsc.Size = new System.Drawing.Size(56, 21);
+            this.rdbAsc.Size = new System.Drawing.Size(46, 17);
             this.rdbAsc.TabIndex = 1;
             this.rdbAsc.TabStop = true;
             this.rdbAsc.Text = "ASC";
@@ -213,10 +199,9 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.cmbCampoOrden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCampoOrden.FormattingEnabled = true;
-            this.cmbCampoOrden.Location = new System.Drawing.Point(21, 101);
-            this.cmbCampoOrden.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCampoOrden.Location = new System.Drawing.Point(16, 82);
             this.cmbCampoOrden.Name = "cmbCampoOrden";
-            this.cmbCampoOrden.Size = new System.Drawing.Size(227, 24);
+            this.cmbCampoOrden.Size = new System.Drawing.Size(171, 21);
             this.cmbCampoOrden.TabIndex = 0;
             // 
             // gbCompleja
@@ -231,41 +216,36 @@ namespace Capa_Vista_Componente_Consultas
             this.gbCompleja.Controls.Add(this.cmbCampoCond);
             this.gbCompleja.Controls.Add(this.lstCondiciones);
             this.gbCompleja.Controls.Add(this.chkAgregarCondiciones);
-            this.gbCompleja.Location = new System.Drawing.Point(13, 238);
-            this.gbCompleja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbCompleja.Location = new System.Drawing.Point(10, 193);
             this.gbCompleja.Name = "gbCompleja";
-            this.gbCompleja.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbCompleja.Size = new System.Drawing.Size(1043, 197);
+            this.gbCompleja.Size = new System.Drawing.Size(835, 160);
             this.gbCompleja.TabIndex = 5;
             this.gbCompleja.TabStop = false;
             this.gbCompleja.Text = "Consulta Compleja";
             // 
             // btnQuitarCond
             // 
-            this.btnQuitarCond.Location = new System.Drawing.Point(767, 151);
-            this.btnQuitarCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuitarCond.Location = new System.Drawing.Point(575, 123);
             this.btnQuitarCond.Name = "btnQuitarCond";
-            this.btnQuitarCond.Size = new System.Drawing.Size(100, 28);
+            this.btnQuitarCond.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarCond.TabIndex = 8;
             this.btnQuitarCond.Text = "Quitar";
             this.btnQuitarCond.UseVisualStyleBackColor = true;
             // 
             // btnAgregarCond
             // 
-            this.btnAgregarCond.Location = new System.Drawing.Point(659, 151);
-            this.btnAgregarCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregarCond.Location = new System.Drawing.Point(494, 123);
             this.btnAgregarCond.Name = "btnAgregarCond";
-            this.btnAgregarCond.Size = new System.Drawing.Size(100, 28);
+            this.btnAgregarCond.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCond.TabIndex = 7;
             this.btnAgregarCond.Text = "Agregar";
             this.btnAgregarCond.UseVisualStyleBackColor = true;
             // 
             // txtValorCond
             // 
-            this.txtValorCond.Location = new System.Drawing.Point(405, 151);
-            this.txtValorCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtValorCond.Location = new System.Drawing.Point(304, 123);
             this.txtValorCond.Name = "txtValorCond";
-            this.txtValorCond.Size = new System.Drawing.Size(244, 22);
+            this.txtValorCond.Size = new System.Drawing.Size(184, 20);
             this.txtValorCond.TabIndex = 6;
             // 
             // cmbConectorCond
@@ -275,10 +255,9 @@ namespace Capa_Vista_Componente_Consultas
             this.cmbConectorCond.Items.AddRange(new object[] {
             "AND",
             "OR"});
-            this.cmbConectorCond.Location = new System.Drawing.Point(21, 150);
-            this.cmbConectorCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbConectorCond.Location = new System.Drawing.Point(16, 122);
             this.cmbConectorCond.Name = "cmbConectorCond";
-            this.cmbConectorCond.Size = new System.Drawing.Size(121, 24);
+            this.cmbConectorCond.Size = new System.Drawing.Size(92, 21);
             this.cmbConectorCond.TabIndex = 5;
             // 
             // cmbOperadorCond
@@ -292,40 +271,35 @@ namespace Capa_Vista_Componente_Consultas
             "<",
             ">=",
             "<="});
-            this.cmbOperadorCond.Location = new System.Drawing.Point(152, 150);
-            this.cmbOperadorCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbOperadorCond.Location = new System.Drawing.Point(114, 122);
             this.cmbOperadorCond.Name = "cmbOperadorCond";
-            this.cmbOperadorCond.Size = new System.Drawing.Size(111, 24);
+            this.cmbOperadorCond.Size = new System.Drawing.Size(84, 21);
             this.cmbOperadorCond.TabIndex = 4;
             // 
             // cmbCampoCond
             // 
             this.cmbCampoCond.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCampoCond.FormattingEnabled = true;
-            this.cmbCampoCond.Location = new System.Drawing.Point(272, 150);
-            this.cmbCampoCond.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCampoCond.Location = new System.Drawing.Point(204, 122);
             this.cmbCampoCond.Name = "cmbCampoCond";
-            this.cmbCampoCond.Size = new System.Drawing.Size(124, 24);
+            this.cmbCampoCond.Size = new System.Drawing.Size(94, 21);
             this.cmbCampoCond.TabIndex = 3;
             // 
             // lstCondiciones
             // 
             this.lstCondiciones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstCondiciones.FormattingEnabled = true;
-            this.lstCondiciones.ItemHeight = 16;
-            this.lstCondiciones.Location = new System.Drawing.Point(656, 23);
-            this.lstCondiciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstCondiciones.Location = new System.Drawing.Point(545, 19);
             this.lstCondiciones.Name = "lstCondiciones";
-            this.lstCondiciones.Size = new System.Drawing.Size(347, 116);
+            this.lstCondiciones.Size = new System.Drawing.Size(261, 95);
             this.lstCondiciones.TabIndex = 2;
             // 
             // chkAgregarCondiciones
             // 
             this.chkAgregarCondiciones.AutoSize = true;
-            this.chkAgregarCondiciones.Location = new System.Drawing.Point(21, 31);
-            this.chkAgregarCondiciones.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAgregarCondiciones.Location = new System.Drawing.Point(16, 25);
             this.chkAgregarCondiciones.Name = "chkAgregarCondiciones";
-            this.chkAgregarCondiciones.Size = new System.Drawing.Size(81, 21);
+            this.chkAgregarCondiciones.Size = new System.Drawing.Size(63, 17);
             this.chkAgregarCondiciones.TabIndex = 0;
             this.chkAgregarCondiciones.Text = "Agregar";
             this.chkAgregarCondiciones.UseVisualStyleBackColor = true;
@@ -341,31 +315,27 @@ namespace Capa_Vista_Componente_Consultas
             this.gbSimple.Controls.Add(this.cmbOperacionSimple);
             this.gbSimple.Controls.Add(this.cmbCampoSimple);
             this.gbSimple.Controls.Add(this.cmbTablaSimple);
-            this.gbSimple.Location = new System.Drawing.Point(13, 44);
-            this.gbSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbSimple.Location = new System.Drawing.Point(10, 36);
             this.gbSimple.Name = "gbSimple";
-            this.gbSimple.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.gbSimple.Size = new System.Drawing.Size(1043, 185);
+            this.gbSimple.Size = new System.Drawing.Size(835, 150);
             this.gbSimple.TabIndex = 4;
             this.gbSimple.TabStop = false;
             this.gbSimple.Text = "Consulta simple";
             // 
             // btnLimpiarCampos
             // 
-            this.btnLimpiarCampos.Location = new System.Drawing.Point(875, 130);
-            this.btnLimpiarCampos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiarCampos.Location = new System.Drawing.Point(656, 106);
             this.btnLimpiarCampos.Name = "btnLimpiarCampos";
-            this.btnLimpiarCampos.Size = new System.Drawing.Size(100, 28);
+            this.btnLimpiarCampos.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiarCampos.TabIndex = 6;
             this.btnLimpiarCampos.Text = "Limpiar";
             this.btnLimpiarCampos.UseVisualStyleBackColor = true;
             // 
             // btnQuitarCampo
             // 
-            this.btnQuitarCampo.Location = new System.Drawing.Point(767, 130);
-            this.btnQuitarCampo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnQuitarCampo.Location = new System.Drawing.Point(575, 106);
             this.btnQuitarCampo.Name = "btnQuitarCampo";
-            this.btnQuitarCampo.Size = new System.Drawing.Size(100, 28);
+            this.btnQuitarCampo.Size = new System.Drawing.Size(75, 23);
             this.btnQuitarCampo.TabIndex = 5;
             this.btnQuitarCampo.Text = "Quitar";
             this.btnQuitarCampo.UseVisualStyleBackColor = true;
@@ -374,19 +344,16 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.lstCampos.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lstCampos.FormattingEnabled = true;
-            this.lstCampos.ItemHeight = 16;
-            this.lstCampos.Location = new System.Drawing.Point(656, 23);
-            this.lstCampos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstCampos.Location = new System.Drawing.Point(545, 19);
             this.lstCampos.Name = "lstCampos";
-            this.lstCampos.Size = new System.Drawing.Size(347, 100);
+            this.lstCampos.Size = new System.Drawing.Size(261, 82);
             this.lstCampos.TabIndex = 4;
             // 
             // btnAgregarCampo
             // 
-            this.btnAgregarCampo.Location = new System.Drawing.Point(499, 95);
-            this.btnAgregarCampo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAgregarCampo.Location = new System.Drawing.Point(374, 77);
             this.btnAgregarCampo.Name = "btnAgregarCampo";
-            this.btnAgregarCampo.Size = new System.Drawing.Size(100, 28);
+            this.btnAgregarCampo.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCampo.TabIndex = 3;
             this.btnAgregarCampo.Text = "Agregar";
             this.btnAgregarCampo.UseVisualStyleBackColor = true;
@@ -402,30 +369,27 @@ namespace Capa_Vista_Componente_Consultas
             "<",
             ">=",
             "<="});
-            this.cmbOperacionSimple.Location = new System.Drawing.Point(21, 127);
-            this.cmbOperacionSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbOperacionSimple.Location = new System.Drawing.Point(16, 103);
             this.cmbOperacionSimple.Name = "cmbOperacionSimple";
-            this.cmbOperacionSimple.Size = new System.Drawing.Size(213, 24);
+            this.cmbOperacionSimple.Size = new System.Drawing.Size(161, 21);
             this.cmbOperacionSimple.TabIndex = 2;
             // 
             // cmbCampoSimple
             // 
             this.cmbCampoSimple.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCampoSimple.FormattingEnabled = true;
-            this.cmbCampoSimple.Location = new System.Drawing.Point(21, 78);
-            this.cmbCampoSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbCampoSimple.Location = new System.Drawing.Point(16, 63);
             this.cmbCampoSimple.Name = "cmbCampoSimple";
-            this.cmbCampoSimple.Size = new System.Drawing.Size(468, 24);
+            this.cmbCampoSimple.Size = new System.Drawing.Size(352, 21);
             this.cmbCampoSimple.TabIndex = 1;
             // 
             // cmbTablaSimple
             // 
             this.cmbTablaSimple.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbTablaSimple.FormattingEnabled = true;
-            this.cmbTablaSimple.Location = new System.Drawing.Point(21, 31);
-            this.cmbTablaSimple.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbTablaSimple.Location = new System.Drawing.Point(16, 25);
             this.cmbTablaSimple.Name = "cmbTablaSimple";
-            this.cmbTablaSimple.Size = new System.Drawing.Size(468, 24);
+            this.cmbTablaSimple.Size = new System.Drawing.Size(352, 21);
             this.cmbTablaSimple.TabIndex = 0;
             // 
             // Mstp_Consultas
@@ -438,23 +402,29 @@ namespace Capa_Vista_Componente_Consultas
             this.editarToolStripMenuItem});
             this.Mstp_Consultas.Location = new System.Drawing.Point(0, 0);
             this.Mstp_Consultas.Name = "Mstp_Consultas";
-            this.Mstp_Consultas.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.Mstp_Consultas.Size = new System.Drawing.Size(1075, 28);
+            this.Mstp_Consultas.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.Mstp_Consultas.Size = new System.Drawing.Size(859, 25);
             this.Mstp_Consultas.TabIndex = 8;
             this.Mstp_Consultas.Text = "menuStrip1";
+            // 
+            // menúPrincipalToolStripMenuItem
+            // 
+            this.menúPrincipalToolStripMenuItem.Name = "menúPrincipalToolStripMenuItem";
+            this.menúPrincipalToolStripMenuItem.Size = new System.Drawing.Size(99, 21);
+            this.menúPrincipalToolStripMenuItem.Text = "Menú Principal";
             // 
             // creaciònToolStripMenuItem
             // 
             this.creaciònToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creaciònToolStripMenuItem.Name = "creaciònToolStripMenuItem";
-            this.creaciònToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.creaciònToolStripMenuItem.Size = new System.Drawing.Size(79, 21);
             this.creaciònToolStripMenuItem.Text = "Creación";
             // 
             // consultasToolStripMenuItem
             // 
             this.consultasToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(82, 21);
             this.consultasToolStripMenuItem.Text = "Consultas";
             this.consultasToolStripMenuItem.Click += new System.EventHandler(this.consultasToolStripMenuItem_Click);
             // 
@@ -462,16 +432,15 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.editarToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(119, 21);
             this.editarToolStripMenuItem.Text = "Editar/Eliminar";
             this.editarToolStripMenuItem.Click += new System.EventHandler(this.editarToolStripMenuItem_Click);
             // 
             // btn_min
             // 
-            this.btn_min.Location = new System.Drawing.Point(881, 0);
-            this.btn_min.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_min.Location = new System.Drawing.Point(795, 0);
             this.btn_min.Name = "btn_min";
-            this.btn_min.Size = new System.Drawing.Size(85, 28);
+            this.btn_min.Size = new System.Drawing.Size(64, 23);
             this.btn_min.TabIndex = 10;
             this.btn_min.Text = "Minimizar";
             this.btn_min.UseVisualStyleBackColor = true;
@@ -479,39 +448,31 @@ namespace Capa_Vista_Componente_Consultas
             // 
             // btn_max
             // 
-            this.btn_max.Location = new System.Drawing.Point(975, 0);
-            this.btn_max.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_max.Location = new System.Drawing.Point(726, 0);
             this.btn_max.Name = "btn_max";
-            this.btn_max.Size = new System.Drawing.Size(84, 28);
+            this.btn_max.Size = new System.Drawing.Size(63, 23);
             this.btn_max.TabIndex = 11;
             this.btn_max.Text = "Maximizar";
             this.btn_max.UseVisualStyleBackColor = true;
             this.btn_max.Click += new System.EventHandler(this.btn_max_Click);
             // 
-            // btn_cerrar
+            // button1
             // 
-            this.btn_cerrar.Location = new System.Drawing.Point(809, 0);
-            this.btn_cerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.btn_cerrar.Name = "btn_cerrar";
-            this.btn_cerrar.Size = new System.Drawing.Size(64, 28);
-            this.btn_cerrar.TabIndex = 12;
-            this.btn_cerrar.Text = "Cerrar";
-            this.btn_cerrar.UseVisualStyleBackColor = true;
-            this.btn_cerrar.Click += new System.EventHandler(this.btn_cerrar_Click);
-            // 
-            // menúPrincipalToolStripMenuItem
-            // 
-            this.menúPrincipalToolStripMenuItem.Name = "menúPrincipalToolStripMenuItem";
-            this.menúPrincipalToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
-            this.menúPrincipalToolStripMenuItem.Text = "Menú Principal";
+            this.button1.Location = new System.Drawing.Point(645, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Regresar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // Frm_Creacion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1075, 750);
+            this.ClientSize = new System.Drawing.Size(859, 609);
             this.ControlBox = false;
-            this.Controls.Add(this.btn_cerrar);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_max);
             this.Controls.Add(this.btn_min);
             this.Controls.Add(this.gbAcciones);
@@ -520,8 +481,8 @@ namespace Capa_Vista_Componente_Consultas
             this.Controls.Add(this.gbSimple);
             this.Controls.Add(this.Mstp_Consultas);
             this.MainMenuStrip = this.Mstp_Consultas;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.MinimumSize = new System.Drawing.Size(1061, 717);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.MinimumSize = new System.Drawing.Size(800, 590);
             this.Name = "Frm_Creacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmConsultas";
@@ -577,7 +538,7 @@ namespace Capa_Vista_Componente_Consultas
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.Button btn_min;
         private System.Windows.Forms.Button btn_max;
-        private System.Windows.Forms.Button btn_cerrar;
         private System.Windows.Forms.ToolStripMenuItem menúPrincipalToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
