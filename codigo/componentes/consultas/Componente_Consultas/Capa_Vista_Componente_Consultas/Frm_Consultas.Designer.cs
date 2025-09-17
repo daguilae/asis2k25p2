@@ -42,7 +42,7 @@ namespace Capa_Vista_Componente_Consultas
             this.editarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btn_cerrar = new System.Windows.Forms.Button();
             this.btn_min = new System.Windows.Forms.Button();
-            this.btn_max = new System.Windows.Forms.Button();
+            this.menúPrincipalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gpb_Listado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.Mstp_Consultas.SuspendLayout();
@@ -58,9 +58,11 @@ namespace Capa_Vista_Componente_Consultas
             this.gpb_Listado.Controls.Add(this.btnQuitarCampo);
             this.gpb_Listado.Controls.Add(this.cbo_Query);
             this.gpb_Listado.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gpb_Listado.Location = new System.Drawing.Point(0, 26);
+            this.gpb_Listado.Location = new System.Drawing.Point(0, 32);
+            this.gpb_Listado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gpb_Listado.Name = "gpb_Listado";
-            this.gpb_Listado.Size = new System.Drawing.Size(752, 115);
+            this.gpb_Listado.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gpb_Listado.Size = new System.Drawing.Size(1003, 142);
             this.gpb_Listado.TabIndex = 5;
             this.gpb_Listado.TabStop = false;
             this.gpb_Listado.Text = "m";
@@ -69,21 +71,20 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.txt_Consulta.BackColor = System.Drawing.SystemColors.ControlLight;
             this.txt_Consulta.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_Consulta.Location = new System.Drawing.Point(250, 66);
-            this.txt_Consulta.Margin = new System.Windows.Forms.Padding(2);
+            this.txt_Consulta.Location = new System.Drawing.Point(333, 81);
+            this.txt_Consulta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Consulta.Name = "txt_Consulta";
             this.txt_Consulta.ReadOnly = true;
-            this.txt_Consulta.Size = new System.Drawing.Size(330, 23);
+            this.txt_Consulta.Size = new System.Drawing.Size(439, 27);
             this.txt_Consulta.TabIndex = 8;
             // 
             // lbl_Cadena_Generada
             // 
             this.lbl_Cadena_Generada.AutoSize = true;
             this.lbl_Cadena_Generada.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Cadena_Generada.Location = new System.Drawing.Point(248, 45);
-            this.lbl_Cadena_Generada.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_Cadena_Generada.Location = new System.Drawing.Point(331, 55);
             this.lbl_Cadena_Generada.Name = "lbl_Cadena_Generada";
-            this.lbl_Cadena_Generada.Size = new System.Drawing.Size(136, 17);
+            this.lbl_Cadena_Generada.Size = new System.Drawing.Size(171, 21);
             this.lbl_Cadena_Generada.TabIndex = 7;
             this.lbl_Cadena_Generada.Text = "Cadena Generada";
             // 
@@ -91,10 +92,9 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.lbl_Query.AutoSize = true;
             this.lbl_Query.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Query.Location = new System.Drawing.Point(37, 45);
-            this.lbl_Query.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbl_Query.Location = new System.Drawing.Point(49, 55);
             this.lbl_Query.Name = "lbl_Query";
-            this.lbl_Query.Size = new System.Drawing.Size(52, 17);
+            this.lbl_Query.Size = new System.Drawing.Size(66, 21);
             this.lbl_Query.TabIndex = 6;
             this.lbl_Query.Text = "Query";
             // 
@@ -102,9 +102,10 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.btnQuitarCampo.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQuitarCampo.Image = global::Capa_Vista_Componente_Consultas.Properties.Resources.android_search_icon_icons_com_50501;
-            this.btnQuitarCampo.Location = new System.Drawing.Point(628, 36);
+            this.btnQuitarCampo.Location = new System.Drawing.Point(837, 44);
+            this.btnQuitarCampo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnQuitarCampo.Name = "btnQuitarCampo";
-            this.btnQuitarCampo.Size = new System.Drawing.Size(70, 60);
+            this.btnQuitarCampo.Size = new System.Drawing.Size(93, 74);
             this.btnQuitarCampo.TabIndex = 5;
             this.btnQuitarCampo.Text = "Buscar";
             this.btnQuitarCampo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -117,33 +118,35 @@ namespace Capa_Vista_Componente_Consultas
             this.cbo_Query.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_Query.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbo_Query.FormattingEnabled = true;
-            this.cbo_Query.Location = new System.Drawing.Point(40, 65);
+            this.cbo_Query.Location = new System.Drawing.Point(53, 80);
+            this.cbo_Query.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbo_Query.Name = "cbo_Query";
-            this.cbo_Query.Size = new System.Drawing.Size(158, 25);
+            this.cbo_Query.Size = new System.Drawing.Size(209, 28);
             this.cbo_Query.TabIndex = 0;
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(40, 147);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(53, 181);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(671, 315);
+            this.dataGridView1.Size = new System.Drawing.Size(895, 388);
             this.dataGridView1.TabIndex = 6;
             // 
             // Mstp_Consultas
             // 
             this.Mstp_Consultas.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.Mstp_Consultas.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menúPrincipalToolStripMenuItem,
             this.creaciònToolStripMenuItem,
             this.consultasToolStripMenuItem,
             this.editarToolStripMenuItem});
             this.Mstp_Consultas.Location = new System.Drawing.Point(0, 0);
             this.Mstp_Consultas.Name = "Mstp_Consultas";
-            this.Mstp_Consultas.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.Mstp_Consultas.Size = new System.Drawing.Size(757, 25);
+            this.Mstp_Consultas.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.Mstp_Consultas.Size = new System.Drawing.Size(1009, 28);
             this.Mstp_Consultas.TabIndex = 9;
             this.Mstp_Consultas.Text = "menuStrip1";
             // 
@@ -151,7 +154,7 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.creaciònToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.creaciònToolStripMenuItem.Name = "creaciònToolStripMenuItem";
-            this.creaciònToolStripMenuItem.Size = new System.Drawing.Size(79, 21);
+            this.creaciònToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.creaciònToolStripMenuItem.Text = "Creación";
             this.creaciònToolStripMenuItem.Click += new System.EventHandler(this.creaciònToolStripMenuItem_Click);
             // 
@@ -159,21 +162,22 @@ namespace Capa_Vista_Componente_Consultas
             // 
             this.consultasToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
-            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(82, 21);
+            this.consultasToolStripMenuItem.Size = new System.Drawing.Size(101, 24);
             this.consultasToolStripMenuItem.Text = "Consultas";
             // 
             // editarToolStripMenuItem
             // 
             this.editarToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.editarToolStripMenuItem.Name = "editarToolStripMenuItem";
-            this.editarToolStripMenuItem.Size = new System.Drawing.Size(119, 21);
+            this.editarToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.editarToolStripMenuItem.Text = "Editar/Eliminar";
             // 
             // btn_cerrar
             // 
-            this.btn_cerrar.Location = new System.Drawing.Point(555, 0);
+            this.btn_cerrar.Location = new System.Drawing.Point(852, 0);
+            this.btn_cerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_cerrar.Name = "btn_cerrar";
-            this.btn_cerrar.Size = new System.Drawing.Size(50, 23);
+            this.btn_cerrar.Size = new System.Drawing.Size(67, 28);
             this.btn_cerrar.TabIndex = 13;
             this.btn_cerrar.Text = "Cerrar";
             this.btn_cerrar.UseVisualStyleBackColor = true;
@@ -181,34 +185,32 @@ namespace Capa_Vista_Componente_Consultas
             // 
             // btn_min
             // 
-            this.btn_min.Location = new System.Drawing.Point(611, 0);
+            this.btn_min.Location = new System.Drawing.Point(918, 0);
+            this.btn_min.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btn_min.Name = "btn_min";
-            this.btn_min.Size = new System.Drawing.Size(64, 23);
+            this.btn_min.Size = new System.Drawing.Size(85, 28);
             this.btn_min.TabIndex = 14;
             this.btn_min.Text = "Minimizar";
             this.btn_min.UseVisualStyleBackColor = true;
             // 
-            // btn_max
+            // menúPrincipalToolStripMenuItem
             // 
-            this.btn_max.Location = new System.Drawing.Point(681, 0);
-            this.btn_max.Name = "btn_max";
-            this.btn_max.Size = new System.Drawing.Size(63, 23);
-            this.btn_max.TabIndex = 15;
-            this.btn_max.Text = "Maximizar";
-            this.btn_max.UseVisualStyleBackColor = true;
+            this.menúPrincipalToolStripMenuItem.Name = "menúPrincipalToolStripMenuItem";
+            this.menúPrincipalToolStripMenuItem.Size = new System.Drawing.Size(121, 24);
+            this.menúPrincipalToolStripMenuItem.Text = "Menú Principal";
             // 
             // Frm_Consultas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(757, 472);
-            this.Controls.Add(this.btn_max);
+            this.ClientSize = new System.Drawing.Size(1009, 581);
+            this.ControlBox = false;
             this.Controls.Add(this.btn_min);
             this.Controls.Add(this.btn_cerrar);
             this.Controls.Add(this.Mstp_Consultas);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.gpb_Listado);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Frm_Consultas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Consultas";
@@ -238,6 +240,6 @@ namespace Capa_Vista_Componente_Consultas
         private System.Windows.Forms.ToolStripMenuItem editarToolStripMenuItem;
         private System.Windows.Forms.Button btn_cerrar;
         private System.Windows.Forms.Button btn_min;
-        private System.Windows.Forms.Button btn_max;
+        private System.Windows.Forms.ToolStripMenuItem menúPrincipalToolStripMenuItem;
     }
 }
