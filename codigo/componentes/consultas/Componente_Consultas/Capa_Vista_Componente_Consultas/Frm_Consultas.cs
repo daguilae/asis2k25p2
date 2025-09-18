@@ -44,7 +44,10 @@ namespace Capa_Vista_Componente_Consultas
 
         private void btn_max_Click(object sender, EventArgs e)
         {
-
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,6 +81,51 @@ namespace Capa_Vista_Componente_Consultas
             {
                 this.WindowState = FormWindowState.Normal; // Si ya está maximizada, se restaura
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void gpb_Listado_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_Query_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbo_Query_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_buscar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
