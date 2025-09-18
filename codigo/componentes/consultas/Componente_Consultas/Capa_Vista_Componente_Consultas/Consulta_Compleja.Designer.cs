@@ -87,7 +87,7 @@ namespace Capa_Vista_Componente_Consultas
             // Btn_editar
             // 
             this.Btn_editar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_editar.Location = new System.Drawing.Point(828, 332);
+            this.Btn_editar.Location = new System.Drawing.Point(826, 337);
             this.Btn_editar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_editar.Name = "Btn_editar";
             this.Btn_editar.Size = new System.Drawing.Size(67, 26);
@@ -99,7 +99,7 @@ namespace Capa_Vista_Componente_Consultas
             // Btn_eliminar
             // 
             this.Btn_eliminar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_eliminar.Location = new System.Drawing.Point(916, 334);
+            this.Btn_eliminar.Location = new System.Drawing.Point(922, 339);
             this.Btn_eliminar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_eliminar.Name = "Btn_eliminar";
             this.Btn_eliminar.Size = new System.Drawing.Size(79, 24);
@@ -186,10 +186,12 @@ namespace Capa_Vista_Componente_Consultas
             // Lst_Querys
             // 
             this.Lst_Querys.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lst_Querys.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lst_Querys.FormattingEnabled = true;
+            this.Lst_Querys.ItemHeight = 16;
             this.Lst_Querys.Location = new System.Drawing.Point(781, 76);
             this.Lst_Querys.Name = "Lst_Querys";
-            this.Lst_Querys.Size = new System.Drawing.Size(220, 251);
+            this.Lst_Querys.Size = new System.Drawing.Size(220, 244);
             this.Lst_Querys.TabIndex = 18;
             this.Lst_Querys.SelectedIndexChanged += new System.EventHandler(this.Lst_Querys_SelectedIndexChanged);
             // 
