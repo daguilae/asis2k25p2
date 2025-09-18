@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//COmentario push PM 
+
 namespace Capa_Vista_Componente_Consultas
 {
     public partial class Frm_editar : Form
@@ -59,6 +61,11 @@ namespace Capa_Vista_Componente_Consultas
             {
                 this.WindowState = FormWindowState.Normal; // Si ya está maximizada, se restaura
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
