@@ -142,8 +142,7 @@ namespace CapaVista
 
         private void modulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmModulo formModulo = new frmModulo();
-            formModulo.Show();
+            
 
         }
 
@@ -182,6 +181,12 @@ namespace CapaVista
         {
             frm_cambiar_contrasena ventana = new frm_cambiar_contrasena(Cls_sesion.iUsuarioId);
             ventana.Show();
+        }
+
+        private void Btn_Modulo_Click(object sender, EventArgs e)
+        {
+            frmModulo formModulo = new frmModulo();
+            formModulo.Show();
         }
     }
 }

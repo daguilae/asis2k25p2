@@ -56,19 +56,30 @@ namespace CapaVista
             string nombre = Txt_nombre.Text;
             string descripcion = Txt_descripcion.Text;
 
-            // Validar los RadioButtons -> ahora solo 1 columna estado_modulo
             byte estado = (Rdb_habilitado.Checked) ? (byte)1 : (byte)0;
 
             DataRow dr = cm.BuscarModulo(id);
             bool resultado = false;
             if (dr == null)
             {
+                //  Validar que no exista otro módulo con el mismo id
+                if (cm.BuscarModulo(id) != null)
+                {
+                    MessageBox.Show("El Id ya está en uso. Por favor cambie el Id.");
+                    return;
+                }
+
                 // Insertar
                 resultado = cm.InsertarModulo(id, nombre, descripcion, estado);
             }
             else
             {
-                // Modificar
+                //  En modo modificar: no se puede cambiar el Id
+                if (Txt_id.ReadOnly == false)
+                {
+                    Txt_id.ReadOnly = true; // Bloquear si alguien lo desbloqueó
+                }
+
                 resultado = cm.ModificarModulo(id, nombre, descripcion, estado);
             }
 
@@ -76,6 +87,7 @@ namespace CapaVista
             {
                 MessageBox.Show("Guardado correctamente!");
                 CargarComboBox();
+                LimpiarCampos();
             }
             else
             {
@@ -85,11 +97,8 @@ namespace CapaVista
 
         private void Btn_nuevo_Click(object sender, EventArgs e)
         {
-            Txt_id.Clear();
-            Txt_nombre.Clear();
-            Txt_descripcion.Clear();
-            Rdb_habilitado.Checked = false;
-            Rdb_inabilitado.Checked = false;
+            LimpiarCampos();
+            Txt_id.ReadOnly = false;
             MessageBox.Show("Campos listos para nuevo registro");
         }
 
@@ -107,18 +116,18 @@ namespace CapaVista
                 return;
             }
 
-            // ✅ Nuevo: Verificar si el módulo está en uso
             if (cm.ModuloEnUso(id))
             {
                 MessageBox.Show("No se puede eliminar el módulo porque está siendo utilizado en una aplicación.");
                 return;
             }
 
-            bool resultado = cm.EliminarModulo(id); // Elimina físicamente
+            bool resultado = cm.EliminarModulo(id);
             if (resultado)
             {
                 MessageBox.Show("Módulo eliminado correctamente.");
                 CargarComboBox();
+                LimpiarCampos();
             }
             else
             {
@@ -140,21 +149,32 @@ namespace CapaVista
             DataRow dr = cm.BuscarModulo(id);
             if (dr != null)
             {
-                Txt_id.Text = dr["pk_id_modulo"].ToString();
-                Txt_nombre.Text = dr["nombre_modulo"].ToString();
-                Txt_descripcion.Text = dr["descripcion_modulo"].ToString();
+                // 🔹 Cambié los nombres de columnas para que coincidan con la nueva BD
+                Txt_id.Text = dr["Pk_Id_Modulo"].ToString();
+                Txt_id.ReadOnly = true; //bloquear edición de ID al modificar
+                Txt_nombre.Text = dr["Cmp_Nombre_Modulo"].ToString();
+                Txt_descripcion.Text = dr["Cmp_Descripcion_Modulo"].ToString();
 
-                bool estado = Convert.ToBoolean(dr["estado_modulo"]);
+                bool estado = Convert.ToBoolean(dr["Cmp_Estado_Modulo"]);
                 Rdb_habilitado.Checked = estado;
                 Rdb_inabilitado.Checked = !estado;
 
-                // ✅ Nuevo: limpiar el ComboBox después de buscar
                 Cbo_busqueda.SelectedIndex = -1;
             }
             else
             {
                 MessageBox.Show("Módulo no encontrado.");
             }
+        }
+
+        private void LimpiarCampos()
+        {
+            Txt_id.Clear();
+            Txt_nombre.Clear();
+            Txt_descripcion.Clear();
+            Rdb_habilitado.Checked = false;
+            Rdb_inabilitado.Checked = false;
+            Txt_id.ReadOnly = false;
         }
 
         // Panel superior
@@ -181,6 +201,16 @@ namespace CapaVista
                 ReleaseCapture(); // Libera el mouse
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); // Simula arrastre
             }
+        }
+
+        private void Pnl_Superior_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Txt_nombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
