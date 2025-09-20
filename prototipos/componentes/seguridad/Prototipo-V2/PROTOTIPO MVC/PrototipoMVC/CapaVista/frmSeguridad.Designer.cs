@@ -261,7 +261,8 @@ namespace CapaVista
             // 
             this.asignacionesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.asignacionDeAplicacionAUsuarioToolStripMenuItem,
-            this.asignacionPerfilesToolStripMenuItem});
+            this.asignacionPerfilesToolStripMenuItem,
+            this.asignacionPermisoPerfilesToolStripMenuItem});
             this.asignacionesToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.asignacionesToolStripMenuItem.Name = "asignacionesToolStripMenuItem";
             this.asignacionesToolStripMenuItem.Size = new System.Drawing.Size(105, 21);
@@ -329,6 +330,7 @@ namespace CapaVista
         private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem asignacionPermisoPerfilesToolStripMenuItem;
     }
 }
 

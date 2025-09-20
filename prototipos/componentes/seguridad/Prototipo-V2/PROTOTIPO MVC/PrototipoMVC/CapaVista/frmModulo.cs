@@ -58,8 +58,11 @@ namespace CapaVista
 
             byte estado = (Rdb_habilitado.Checked) ? (byte)1 : (byte)0;
 
+
             DataRow dr = cm.BuscarModulo(id);
             bool resultado = false;
+
+
             if (dr == null)
             {
                 //  Validar que no exista otro módulo con el mismo id
@@ -160,6 +163,10 @@ namespace CapaVista
                 Rdb_inabilitado.Checked = !estado;
 
                 Cbo_busqueda.SelectedIndex = -1;
+
+                // Registrar en Bitácora - Arón Ricardo Esquit Silva 0901-22-13036
+                Cls_BitacoraControlador bit = new Cls_BitacoraControlador();
+                bit.RegistrarAccion(Cls_sesion.iUsuarioId, 1, "Buscar módulo", true);
             }
             else
             {

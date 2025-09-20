@@ -26,7 +26,15 @@ namespace CapaVista
             ConfigurarComboBox();
             CargarComboModulos();
         }
-
+        private void RecargarTodo()
+        {
+            LimpiarCampos();
+            Cbo_buscar.Items.Clear();
+            Cbo_id_modulo.Items.Clear();
+            CargarAplicaciones();
+            ConfigurarComboBox();
+            CargarComboModulos();
+        }
         private void CargarAplicaciones()
         {
             listaAplicaciones = controlador.ObtenerTodasLasAplicaciones();
@@ -151,8 +159,9 @@ namespace CapaVista
             if (exito)
             {
                 Cls_BitacoraControlador bit = new Cls_BitacoraControlador();
-                bit.RegistrarAccion(Cls_sesion.iUsuarioId, "Eliminar aplicación", true);
+                bit.RegistrarAccion(Cls_sesion.iUsuarioId,1, "Eliminar aplicación", true);
             }
+            RecargarTodo();
         }
 
         private void Btn_modificar_Click(object sender, EventArgs e)
@@ -177,8 +186,9 @@ namespace CapaVista
             if (exito)
             {
                 Cls_BitacoraControlador bit = new Cls_BitacoraControlador();
-                bit.RegistrarAccion(Cls_sesion.iUsuarioId, "Modificar aplicación", true);
+                bit.RegistrarAccion(Cls_sesion.iUsuarioId,1, "Modificar aplicación", true);
             }
+            RecargarTodo();
         }
 
         private void Btn_nuevo_Click(object sender, EventArgs e)
@@ -202,6 +212,13 @@ namespace CapaVista
             string nombre = Txt_Nombre_aplicacion.Text.Trim();
             string descripcion = Txt_descripcion.Text.Trim();
             bool estado = Rdb_estado_activo.Checked;
+
+            if (controlador.BuscarAplicacionPorId(idAplicacion) != null)
+            {
+                MessageBox.Show("El ID ya existe, por favor ingrese otro.");
+                return;
+            }
+
 
             // Guardar aplicación 
             int resultadoApp = controlador.InsertarAplicacion(idAplicacion, nombre, descripcion, estado, null);
@@ -236,7 +253,8 @@ namespace CapaVista
 
             // Registrar en Bitácora Arón Ricardo Esquit Silva   0901-22-13036
             Cls_BitacoraControlador bit = new Cls_BitacoraControlador();
-            bit.RegistrarAccion(Cls_sesion.iUsuarioId, "Guardar aplicación", true);
+            bit.RegistrarAccion(Cls_sesion.iUsuarioId,1, "Guardar aplicación", true);
+            RecargarTodo();
         }
 
         private void LimpiarCampos()
@@ -261,7 +279,6 @@ namespace CapaVista
 
         private void CargarComboModulos()
         {
-            // Suponiendo que tienes un controlador de módulos
             ControladorModulos controladorModulos = new ControladorModulos();
 
             DataTable dtModulos = controladorModulos.ObtenerModulos(); // Devuelve pk_id_modulo y nombre_modulo

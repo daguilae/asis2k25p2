@@ -1,4 +1,4 @@
-
+CREATE DATABASE IF NOT EXISTS hoteleria;
 USE hoteleria;
 
 create table tbl_USUARIO
@@ -47,6 +47,30 @@ CREATE TABLE tbl_PERMISO_PERFIL_APLICACION (
    imprimir_permiso_aplicacion_perfil BIT,
    PRIMARY KEY (fk_id_perfil, fk_id_aplicacion, fk_id_modulo) -- clave compuesta
 );
+
+CREATE TABLE tbl_BITACORA (
+  pk_id_bitacora        INT NOT NULL AUTO_INCREMENT,
+  fk_id_usuario         INT DEFAULT NULL,
+  fk_id_aplicacion      INT DEFAULT NULL,
+  fecha_bitacora        DATETIME DEFAULT NULL,
+  accion_bitacora       VARCHAR(50) DEFAULT NULL,
+  ip_bitacora           VARCHAR(50) DEFAULT NULL,
+  nombre_pc_bitacora    VARCHAR(50) DEFAULT NULL,
+  login_estado_bitacora BIT(1) DEFAULT NULL,
+  PRIMARY KEY (pk_id_bitacora),
+  KEY fk_reference_1 (fk_id_usuario),
+  KEY fk_reference_13 (fk_id_aplicacion),
+  CONSTRAINT fk_reference_1 FOREIGN KEY (fk_id_usuario) 
+      REFERENCES tbl_USUARIO (pk_id_usuario) 
+      ON DELETE RESTRICT 
+      ON UPDATE RESTRICT,
+  CONSTRAINT fk_reference_13 FOREIGN KEY (fk_id_aplicacion) 
+      REFERENCES tbl_APLICACION (pk_id_aplicacion) 
+      ON DELETE RESTRICT 
+      ON UPDATE RESTRICT
+) ENGINE=InnoDB 
+  DEFAULT CHARSET=utf8mb4 
+  COLLATE=utf8mb4_0900_ai_ci;
 
 
 create table tbl_BLOQUEO_USUARIO
@@ -126,20 +150,6 @@ CREATE TABLE tbl_APLICACION
    descripcion_aplicacion  varchar(50),
    estado_aplicacion       bit NOT NULL, -- 1 = habilitado, 0 = deshabilitado
    PRIMARY KEY (pk_id_aplicacion)
-);
-
-
-create table tbl_BITACORA
-(
-   pk_id_bitacora          int not null auto_increment,
-   fk_id_usuario           int,
-   fk_id_aplicacion        int,
-   fecha_bitacora       datetime,
-   accion_bitacora      varchar(50),
-   ip_bitacora          varchar(50),
-   nombre_pc_bitacora   varchar(50),
-   login_estado_bitacora bit,
-   primary key (pk_id_bitacora)
 );
 
 
@@ -271,14 +281,6 @@ ALTER TABLE tbl_USUARIO_PERFIL
 ALTER TABLE tbl_APLICACION 
    ADD CONSTRAINT fk_aplicacion_reporte FOREIGN KEY (fk_id_reporte)
    REFERENCES tbl_REPORTES (pk_id_reportes) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tbl_BITACORA 
-   ADD CONSTRAINT fk_bitacora_usuario FOREIGN KEY (fk_id_usuario)
-   REFERENCES tbl_USUARIO (pk_id_usuario) ON DELETE RESTRICT ON UPDATE RESTRICT;
-
-ALTER TABLE tbl_BITACORA 
-   ADD CONSTRAINT fk_bitacora_aplicacion FOREIGN KEY (fk_id_aplicacion)
-   REFERENCES tbl_APLICACION (pk_id_aplicacion) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 ALTER TABLE tbl_ASIGNAR_PERFIL_CLIENTE 
    ADD CONSTRAINT fk_asignar_perfil FOREIGN KEY (fk_id_perfil)
