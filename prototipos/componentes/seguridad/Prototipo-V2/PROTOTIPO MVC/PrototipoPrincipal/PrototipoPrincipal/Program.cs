@@ -23,7 +23,7 @@ namespace PrototipoPrincipal
 
             // esto muestra el Login despues
 
-            Application.Run(new CapaVista.frmModulo());
+            Application.Run(new CapaVista.frmLogin());
         }
     }
 }
