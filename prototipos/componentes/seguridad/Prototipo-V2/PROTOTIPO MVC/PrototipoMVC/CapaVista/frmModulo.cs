@@ -217,6 +217,8 @@ namespace CapaVista
 
         private void Txt_nombre_TextChanged(object sender, EventArgs e)
         {
+            // Aquí puedes agregar lógica si necesitas reaccionar cuando cambia el texto
+        }
 
         private void Btn_reporte_Click(object sender, EventArgs e)
         {
