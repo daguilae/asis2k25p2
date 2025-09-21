@@ -218,6 +218,10 @@ namespace CapaVista
         private void Txt_nombre_TextChanged(object sender, EventArgs e)
         {
 
+        private void Btn_reporte_Click(object sender, EventArgs e)
+        {
+            frmReporte_modulo frm = new frmReporte_modulo();
+            frm.Show();
         }
     }
 }
