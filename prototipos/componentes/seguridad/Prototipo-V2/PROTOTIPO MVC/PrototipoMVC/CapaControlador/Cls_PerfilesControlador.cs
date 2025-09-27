@@ -44,9 +44,9 @@ namespace Capa_Controlador_Seguridad
         }
 
         // Eliminar perfil por ID
-        public bool bBorrarPerfil(int idPerfil)
+        public bool bBorrarPerfil(int idPerfil, out string mensajeError)
         {
-            return daoPerfil.bEliminarPerfil(idPerfil);
+            return daoPerfil.bEliminarPerfil(idPerfil, out mensajeError);
         }
 
         // Buscar perfil por ID
