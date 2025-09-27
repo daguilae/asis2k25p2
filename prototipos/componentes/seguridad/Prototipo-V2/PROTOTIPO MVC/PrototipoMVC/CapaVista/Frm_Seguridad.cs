@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using Capa_Modelo_Seguridad;
 using Capa_Controlador_Seguridad;
 
-
 namespace Capa_Vista_Seguridad
 {
     public partial class Frm_Seguridad : Form
@@ -18,8 +17,8 @@ namespace Capa_Vista_Seguridad
         Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
         private int iIChildFormNumber = 0;
 
-        //Ruben Armando Lopez Luch
-        //0901-20-4620
+        private Frm_Modulo frmModulo = null;
+
         public enum MenuOpciones
         {
             Archivo,
@@ -33,7 +32,6 @@ namespace Capa_Vista_Seguridad
         }
 
         private Dictionary<MenuOpciones, ToolStripMenuItem> menuItems;
-        // fin -> Ruben Armando Lopez Luch
 
         public Frm_Seguridad()
         {
@@ -41,11 +39,8 @@ namespace Capa_Vista_Seguridad
             InicializarMenuItems();
             fun_inicializar_botones_por_defecto();
             fun_habilitar_botones_por_permisos(Cls_UsuarioConectado.iIdUsuario);
-            
         }
-       
-        //Ruben Armando Lopez Luch
-        //0901-20-4620
+
         private void InicializarMenuItems()
         {
             menuItems = new Dictionary<MenuOpciones, ToolStripMenuItem>
@@ -57,11 +52,10 @@ namespace Capa_Vista_Seguridad
                 { MenuOpciones.Herramientas, herramientasToolStripMenuItem },
                 { MenuOpciones.Ayuda, ayudaToolStripMenuItem },
                 { MenuOpciones.Asignaciones, asignacionesToolStripMenuItem },
-                
             };
         }
-        public void fun_inicializar_botones_por_defecto()
 
+        public void fun_inicializar_botones_por_defecto()
         {
             foreach (var opcion in menuItems.Keys)
             {
@@ -111,7 +105,6 @@ namespace Capa_Vista_Seguridad
             }
         }
 
-        // fin -> Ruben Armando Lopez Luch
         private void ShowNewForm(object sender, EventArgs e)
         {
             Form childForm = new Form();
@@ -197,7 +190,6 @@ namespace Capa_Vista_Seguridad
 
         private void btn_aplicacion_Click(object sender, EventArgs e)
         {
-
         }
 
         private void empleadosToolStripMenuItem_Click(object sender, EventArgs e)
@@ -208,7 +200,6 @@ namespace Capa_Vista_Seguridad
 
         private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
 
         private void asignacionDeAplicacionAUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -231,9 +222,17 @@ namespace Capa_Vista_Seguridad
 
         private void modulosDeCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Modulo formModulo = new Frm_Modulo();
-            formModulo.MdiParent = this;
-            formModulo.Show();
+            if (frmModulo == null || frmModulo.IsDisposed)
+            {
+                frmModulo = new Frm_Modulo();
+                frmModulo.MdiParent = this;
+                frmModulo.FormClosed += (s, args) => frmModulo = null;
+                frmModulo.Show();
+            }
+            else
+            {
+                frmModulo.BringToFront();
+            }
         }
 
         private void Btn_Aplicacion_Click_1(object sender, EventArgs e)
@@ -275,8 +274,17 @@ namespace Capa_Vista_Seguridad
 
         private void modulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           Frm_Modulo modulo = new Frm_Modulo();
-            modulo.Show();
+            if (frmModulo == null || frmModulo.IsDisposed)
+            {
+                frmModulo = new Frm_Modulo();
+                frmModulo.MdiParent = this;
+                frmModulo.FormClosed += (s, args) => frmModulo = null;
+                frmModulo.Show();
+            }
+            else
+            {
+                frmModulo.BringToFront();
+            }
         }
     }
 }

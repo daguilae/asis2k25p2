@@ -17,10 +17,9 @@ namespace Capa_Vista_Seguridad
     {
         Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador(); //Bitacora
 
-     
-
-        // Instancia del controlador
         Cls_ModulosControlador cm = new Cls_ModulosControlador();
+
+        private Frm_Reporte_modulos frmReporte = null;
 
         public Frm_Modulo()
         {
@@ -30,7 +29,6 @@ namespace Capa_Vista_Seguridad
 
         private void frmModulo_Load(object sender, EventArgs e)
         {
-            // Cargar ComboBox con los módulos
             CargarComboBox();
         }
 
@@ -46,57 +44,48 @@ namespace Capa_Vista_Seguridad
 
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
-            // Validaciones
             if (string.IsNullOrEmpty(Txt_id.Text) || string.IsNullOrEmpty(Txt_nombre.Text))
             {
                 MessageBox.Show("Debe ingresar Id y Nombre.");
                 return;
             }
 
-            if (!int.TryParse(Txt_id.Text, out int id))
+            if (!int.TryParse(Txt_id.Text, out int Pk_Id_Modulo))
             {
                 MessageBox.Show("Id debe ser un número.");
                 return;
             }
 
-            string nombre = Txt_nombre.Text;
-            string descripcion = Txt_descripcion.Text;
+            string Cmp_Nombre_Modulo = Txt_nombre.Text;
+            string Cmp_Descripcion_Modulo = Txt_descripcion.Text;
 
-            
-            byte estado = (Rdb_habilitado.Checked) ? (byte)1 : (byte)0;
+            byte Cmp_Estado_Modulo = (Rdb_habilitado.Checked) ? (byte)1 : (byte)0;
 
-            DataRow dr = cm.BuscarModulo(id);
+            DataRow dr = cm.BuscarModulo(Pk_Id_Modulo);
             bool resultado = false;
 
             if (dr == null)
             {
-                // Valida  que no existe un Id repetido
-                if (cm.BuscarModulo(id) != null)
+                if (cm.BuscarModulo(Pk_Id_Modulo) != null)
                 {
                     MessageBox.Show("El Id ingresado ya existe. Use otro.");
                     return;
                 }
 
-                // Insertar
-                resultado = cm.InsertarModulo(id, nombre, descripcion, estado);
+                resultado = cm.InsertarModulo(Pk_Id_Modulo, Cmp_Nombre_Modulo, Cmp_Descripcion_Modulo, Cmp_Estado_Modulo);
             }
             else
             {
-                // Modificar 
-                resultado = cm.ModificarModulo(id, nombre, descripcion, estado);
+                resultado = cm.ModificarModulo(Pk_Id_Modulo, Cmp_Nombre_Modulo, Cmp_Descripcion_Modulo, Cmp_Estado_Modulo);
             }
 
             if (resultado)
             {
                 MessageBox.Show("Guardado correctamente!");
                 CargarComboBox();
-
-                // Registrar en Bitácora - Arón Ricardo Esquit Silva - 0901-22-13036
                 ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Guardar módulo", true);
-
-                //Limpiar campos después de guardar
                 LimpiarCampos();
-                Txt_id.Enabled = true; // Reactivar para nuevos registros
+                Txt_id.Enabled = true;
             }
             else
             {
@@ -111,12 +100,10 @@ namespace Capa_Vista_Seguridad
             Txt_descripcion.Clear();
             Rdb_habilitado.Checked = false;
             Rdb_inabilitado.Checked = false;
-
-            Txt_id.Enabled = true; 
-
+            Txt_id.Enabled = true;
             MessageBox.Show("Campos listos para nuevo registro");
         }
-         // elimina un dato
+
         private void Btn_eliminar_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Txt_id.Text))
@@ -125,31 +112,26 @@ namespace Capa_Vista_Seguridad
                 return;
             }
 
-            if (!int.TryParse(Txt_id.Text, out int id))
+            if (!int.TryParse(Txt_id.Text, out int Pk_Id_Modulo))
             {
                 MessageBox.Show("Id debe ser un número.");
                 return;
             }
 
-            // Verificar si el módulo está en uso
-            if (cm.ModuloEnUso(id))
+            if (cm.ModuloEnUso(Pk_Id_Modulo))
             {
                 MessageBox.Show("No se puede eliminar el módulo porque está siendo utilizado en una aplicación.");
                 return;
             }
 
-            bool resultado = cm.EliminarModulo(id); // Elimina físicamente
+            bool resultado = cm.EliminarModulo(Pk_Id_Modulo);
             if (resultado)
             {
                 MessageBox.Show("Módulo eliminado correctamente.");
                 CargarComboBox();
-
-                // Registrar en Bitácora - Arón Ricardo Esquit Silva 0901-22-13036
                 ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Eliminar módulo", true);
-
-                // Limpiar campos después de eliminar
                 LimpiarCampos();
-                Txt_id.Enabled = true; // Rehabilitar el Id después de eliminar
+                Txt_id.Enabled = true;
             }
             else
             {
@@ -166,12 +148,11 @@ namespace Capa_Vista_Seguridad
             }
 
             string seleccionado = Cbo_busqueda.SelectedItem.ToString();
-            int id = int.Parse(seleccionado.Split('-')[0].Trim());
+            int Pk_Id_Modulo = int.Parse(seleccionado.Split('-')[0].Trim());
 
-            DataRow dr = cm.BuscarModulo(id);
+            DataRow dr = cm.BuscarModulo(Pk_Id_Modulo);
             if (dr != null)
             {
-             
                 Txt_id.Text = dr["Pk_Id_Modulo"].ToString();
                 Txt_nombre.Text = dr["Cmp_Nombre_Modulo"].ToString();
                 Txt_descripcion.Text = dr["Cmp_Descripcion_Modulo"].ToString();
@@ -180,10 +161,7 @@ namespace Capa_Vista_Seguridad
                 Rdb_habilitado.Checked = estado;
                 Rdb_inabilitado.Checked = !estado;
 
-                //  Bloquear el Id para que no pueda ser modificado si esta en uso
                 Txt_id.Enabled = false;
-
-                // Limpiar el ComboBox después de buscar
                 Cbo_busqueda.SelectedIndex = -1;
             }
             else
@@ -192,7 +170,6 @@ namespace Capa_Vista_Seguridad
             }
         }
 
-        // limpia TextBox, RadioButtons y ComboBox
         private void LimpiarCampos()
         {
             Txt_id.Clear();
@@ -202,9 +179,6 @@ namespace Capa_Vista_Seguridad
             Rdb_inabilitado.Checked = false;
             Cbo_busqueda.SelectedIndex = -1;
         }
-
-        // Panel superior
-        //0901-20-4620 Ruben Armando Lopez Luch
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HTCAPTION = 0x2;
@@ -224,20 +198,24 @@ namespace Capa_Vista_Seguridad
         {
             if (e.Button == MouseButtons.Left)
             {
-                ReleaseCapture(); // Libera el mouse
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0); // Simula arrastre
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
 
         private void Btn_reporte_Click(object sender, EventArgs e)
         {
-            Frm_Reporte_modulos frm = new Frm_Reporte_modulos();
-            frm.Show();
+            if (frmReporte == null || frmReporte.IsDisposed)
+            {
+                frmReporte = new Frm_Reporte_modulos();
+                frmReporte.FormClosed += (s, args) => frmReporte = null;
+                frmReporte.Show();
+            }
+            else
+            {
+                frmReporte.BringToFront();
+            }
         }
-
-
-        //Marcos Andres Velásquez Alcántara
-        //Carnet: 0901-21-1115
 
         private Cls_PermisoUsuario gPermisoUsuario = new Cls_PermisoUsuario();
 
@@ -246,18 +224,16 @@ namespace Capa_Vista_Seguridad
         private Dictionary<(int moduloId, int aplicacionId), (bool bIngresar, bool bConsultar, bool bModificar, bool bEliminar, bool bImprimir)> gPermisosPorModuloApp
             = new Dictionary<(int, int), (bool, bool, bool, bool, bool)>();
 
-
         private void ConfigurarIdsDinamicamenteYAplicarPermisos()
         {
             int usuarioId = Cls_sesion.iUsuarioId;
 
             var sParesNombres = new List<(string sModulo, string sAplicacion)>
-    {
-        
-        ("Seguridad", "Empleados"),
-         ("Seguridad", "Gestion de empleado"),
-        ("Seguridad", "Administracion"),
-    };
+            {
+                ("Seguridad", "Empleados"),
+                ("Seguridad", "Gestion de empleado"),
+                ("Seguridad", "Administracion"),
+            };
 
             foreach (var (sNombreModulo, sNombreAplicacion) in sParesNombres)
             {
@@ -303,19 +279,11 @@ namespace Capa_Vista_Seguridad
                 bEliminar |= bPermiso.bEliminar;
             }
 
-            
-
-
             Btn_buscar.Enabled = bConsultar;
             Btn_reporte.Enabled = bConsultar;
             Btn_guardar.Enabled = bIngresar;
             Btn_eliminar.Enabled = bEliminar;
             Btn_nuevo.Enabled = bIngresar;
         }
-
-
-
-       
-        
     }
 }
