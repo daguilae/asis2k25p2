@@ -24,7 +24,7 @@ namespace Capa_Vista_Seguridad
         public Frm_Modulo()
         {
             InitializeComponent();
-            ConfigurarIdsDinamicamenteYAplicarPermisos();
+            fun_ConfigurarIdsDinamicamenteYAplicarPermisos();
         }
 
         private void frmModulo_Load(object sender, EventArgs e)
@@ -219,12 +219,17 @@ namespace Capa_Vista_Seguridad
 
         private Cls_PermisoUsuario gPermisoUsuario = new Cls_PermisoUsuario();
 
-        private List<(int moduloId, int aplicacionId)> gParesModuloAplicacion = new List<(int, int)>();
+        private List<(int iModuloId, int iAplicacionId)> gParesModuloAplicacion = new List<(int, int)>();
 
         private Dictionary<(int moduloId, int aplicacionId), (bool bIngresar, bool bConsultar, bool bModificar, bool bEliminar, bool bImprimir)> gPermisosPorModuloApp
             = new Dictionary<(int, int), (bool, bool, bool, bool, bool)>();
 
+<<<<<<< HEAD
         private void ConfigurarIdsDinamicamenteYAplicarPermisos()
+=======
+
+        private void fun_ConfigurarIdsDinamicamenteYAplicarPermisos()
+>>>>>>> main
         {
             int usuarioId = Cls_sesion.iUsuarioId;
 
@@ -246,10 +251,10 @@ namespace Capa_Vista_Seguridad
                 }
             }
 
-            AplicarPermisosUsuario(usuarioId);
+            fun_AplicarPermisosUsuario(usuarioId);
         }
 
-        private void AplicarPermisosUsuario(int usuarioId)
+        private void fun_AplicarPermisosUsuario(int usuarioId)
         {
             foreach (var (moduloId, aplicacionId) in gParesModuloAplicacion)
             {
@@ -261,10 +266,10 @@ namespace Capa_Vista_Seguridad
                 }
             }
 
-            CombinarPermisosYActualizarBotones();
+            fun_CombinarPermisosYActualizarBotones();
         }
 
-        private void CombinarPermisosYActualizarBotones()
+        private void fun_CombinarPermisosYActualizarBotones()
         {
             bool bIngresar = false;
             bool bConsultar = false;

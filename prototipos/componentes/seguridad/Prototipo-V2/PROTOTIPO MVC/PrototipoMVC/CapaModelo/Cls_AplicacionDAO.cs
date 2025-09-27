@@ -1,4 +1,4 @@
-﻿//Cesar Armando Estrada Elias 0901-22-10153
+﻿// Cesar Armando Estrada Elias 0901-22-10153
 using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
@@ -26,8 +26,6 @@ namespace Capa_Modelo_Seguridad
                 Cmp_Descripcion_Aplicacion = ?, 
                 Cmp_Estado_Aplicacion = ?
             WHERE Pk_Id_Aplicacion = ?";
-
-        private static readonly string SQL_DELETE = "DELETE FROM Tbl_Aplicacion WHERE Pk_Id_Aplicacion = ?";
 
         private static readonly string SQL_QUERY = @"
             SELECT Pk_Id_Aplicacion, Fk_Id_Reporte_Aplicacion, Cmp_Nombre_Aplicacion, 
@@ -94,7 +92,7 @@ namespace Capa_Modelo_Seguridad
             }
         }
 
-        // Borrar aplicación y sus dependencias
+        // Eliminar aplicación y dependencias (físicamente)
         public int BorrarAplicacion(int idAplicacion)
         {
             using (OdbcConnection conn = conexion.conexion())
@@ -103,28 +101,28 @@ namespace Capa_Modelo_Seguridad
                 {
                     try
                     {
-                        // 1. Eliminar registros dependientes en tbl_ASIGNACION_MODULO_APLICACION
-                        string sqlDeleteDependientes = "DELETE FROM tbl_ASIGNACION_MODULO_APLICACION WHERE fk_id_aplicacion = ?";
+                        // 1. Eliminar dependencias en Tbl_Asignacion_Modulo_Aplicacion
+                        string sqlDeleteDependientes = "DELETE FROM Tbl_Asignacion_Modulo_Aplicacion WHERE Fk_Id_Aplicacion = ?";
                         using (OdbcCommand cmdDependientes = new OdbcCommand(sqlDeleteDependientes, conn, transaction))
                         {
-                            cmdDependientes.Parameters.AddWithValue("@fk_id_aplicacion", idAplicacion);
+                            cmdDependientes.Parameters.AddWithValue("?", idAplicacion);
                             cmdDependientes.ExecuteNonQuery();
                         }
 
                         // 2. Eliminar registro en Tbl_Aplicacion
-                        using (OdbcCommand cmd = new OdbcCommand(SQL_DELETE, conn, transaction))
+                        string sqlDeleteAplicacion = "DELETE FROM Tbl_Aplicacion WHERE Pk_Id_Aplicacion = ?";
+                        int result;
+                        using (OdbcCommand cmd = new OdbcCommand(sqlDeleteAplicacion, conn, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@Pk_Id_Aplicacion", idAplicacion);
-                            int result = cmd.ExecuteNonQuery();
-
-                            // 3. Confirmar cambios
-                            transaction.Commit();
-                            return result;
+                            cmd.Parameters.AddWithValue("?", idAplicacion);
+                            result = cmd.ExecuteNonQuery();
                         }
+
+                        transaction.Commit();
+                        return result;
                     }
                     catch
                     {
-                        // Si algo falla, revertimos todo
                         transaction.Rollback();
                         throw;
                     }
@@ -132,8 +130,8 @@ namespace Capa_Modelo_Seguridad
             }
         }
 
-        // Buscar una aplicación por ID
-        public Cls_Aplicacion Query(int idAplicacion)
+        // Buscar por ID
+        public Cls_Aplicacion BuscarPorId(int idAplicacion)
         {
             Cls_Aplicacion app = null;
             using (OdbcConnection conn = conexion.conexion())

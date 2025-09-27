@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Capa_Modelo_Seguridad;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Capa_Controlador_Seguridad;
-using Capa_Modelo_Seguridad;
+
 
 namespace Capa_Vista_Seguridad
 {
@@ -30,7 +31,7 @@ namespace Capa_Vista_Seguridad
             ConfigurarComboBox();
             CargarComboModulos();
 
-            ConfigurarIdsDinamicamenteYAplicarPermisos();
+            fun_ConfigurarIdsDinamicamenteYAplicarPermisos();
         }
 
         private void RecargarTodo()
@@ -166,51 +167,34 @@ namespace Capa_Vista_Seguridad
 
         private void Btn_eliminar_Click(object sender, EventArgs e)
         {
-            int id;
-            if (!int.TryParse(Txt_id_aplicacion.Text, out id))
-            {
-                MessageBox.Show("Ingrese un ID válido para eliminar.");
-                return;
-            }
+            int.TryParse(Txt_id_aplicacion.Text, out int idAplicacion);
 
-            bool exito = controlador.BorrarAplicacion(id);
-            MessageBox.Show(exito ? "Aplicación eliminada" : "Error al eliminar");
-            LimpiarCampos();
+            var resultado = controlador.BorrarAplicacion(idAplicacion);
+            MessageBox.Show(resultado.mensaje);
 
-            // Registrar en Bitácora Arón Ricardo Esquit Silva   0901-22-13036
-            if (exito)
+            if (resultado.exito)
             {
-                //Registrar en Bitácora - Arón Ricardo Esquit Silva 0901-22-13036
                 ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Eliminar aplicación", true);
-
+                RecargarTodo();
             }
-            RecargarTodo();
         }
 
         private void Btn_modificar_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(Txt_id_aplicacion.Text, out int id))
-            {
-                MessageBox.Show("Ingrese un ID válido para modificar.");
-                return;
-            }
+            int.TryParse(Txt_id_aplicacion.Text, out int idAplicacion);
+            string nombre = Txt_Nombre_aplicacion.Text.Trim();
+            string descripcion = Txt_descripcion.Text.Trim();
+            bool estado = Rdb_estado_activo.Checked;
 
-            bool exito = controlador.ActualizarAplicacion(
-                id,
-                Txt_Nombre_aplicacion.Text,
-                Txt_descripcion.Text,
-                Rdb_estado_activo.Checked,
-                null
-            );
+            var resultado = controlador.ActualizarAplicacion(idAplicacion, nombre, descripcion, estado);
 
-            MessageBox.Show(exito ? "Aplicación modificada" : "Error al modificar");
+            MessageBox.Show(resultado.mensaje);
 
-            // Registrar en Bitácora Arón Ricardo Esquit Silva   0901-22-13036
-            if (exito)
+            if (resultado.exito)
             {
                 ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Modificar aplicación", true);
+                RecargarTodo();
             }
-            RecargarTodo();
         }
 
         private void Btn_nuevo_Click(object sender, EventArgs e)
@@ -224,72 +208,23 @@ namespace Capa_Vista_Seguridad
 
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
-            // Validar ID de aplicación
-            if (!int.TryParse(Txt_id_aplicacion.Text, out int idAplicacion))
-            {
-                MessageBox.Show("Ingrese un ID válido.");
-                return;
-            }
-
+            int.TryParse(Txt_id_aplicacion.Text, out int idAplicacion);
             string nombre = Txt_Nombre_aplicacion.Text.Trim();
             string descripcion = Txt_descripcion.Text.Trim();
             bool estado = Rdb_estado_activo.Checked;
+            int? idModulo = Cbo_id_modulo.SelectedItem != null ? (int?)Convert.ToInt32(((dynamic)Cbo_id_modulo.SelectedItem).Id) : null;
 
-            // Validar que los TextBox obligatorios no estén vacíos
-            if (string.IsNullOrWhiteSpace(Txt_Nombre_aplicacion.Text))
+            // Llamar al controlador
+            var resultado = controlador.InsertarAplicacion(idAplicacion, nombre, descripcion, estado, idModulo);
+
+            MessageBox.Show(resultado.mensaje);
+
+            if (resultado.exito)
             {
-                MessageBox.Show("Debe ingresar el nombre de la aplicación.");
-                return;
+                // Registrar en bitácora
+                ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Guardar aplicación", true);
+                RecargarTodo();
             }
-
-            if (string.IsNullOrWhiteSpace(Txt_descripcion.Text))
-            {
-                MessageBox.Show("Debe ingresar la descripción de la aplicación.");
-                return;
-            }
-
-            // Validar que los ComboBox no estén vacíos
-            if (Cbo_id_modulo.SelectedItem == null || string.IsNullOrWhiteSpace(Cbo_id_modulo.Text))
-            {
-                MessageBox.Show("Debe seleccionar un módulo en el ComboBox de módulos.");
-                return;
-            }
-
-            // Validar si el ID ya existe
-            if (controlador.BuscarAplicacionPorId(idAplicacion) != null)
-            {
-                MessageBox.Show("El ID ya existe, por favor ingrese otro.");
-                return;
-            }
-
-            // Guardar aplicación 
-            int resultadoApp = controlador.InsertarAplicacion(idAplicacion, nombre, descripcion, estado, null);
-
-            if (resultadoApp <= 0)
-            {
-                MessageBox.Show("Error al guardar la aplicación. Verifique que el ID no exista.");
-                return;
-            }
-
-            // Obtener ID de módulo
-            int idModulo = Convert.ToInt32(((dynamic)Cbo_id_modulo.SelectedItem).Id);
-
-            // Guardar asignación 
-            Cls_AsignacionModuloAplicacionControlador asignacionCtrl = new Cls_AsignacionModuloAplicacionControlador();
-            bool asignacionGuardada = asignacionCtrl.GuardarAsignacion(idModulo, idAplicacion);
-
-            if (!asignacionGuardada)
-            {
-                MessageBox.Show("La asignación ya existe o hubo un error al guardar.");
-                return;
-            }
-
-            MessageBox.Show("Aplicación y asignación guardadas correctamente.");
-            LimpiarCampos();
-
-            // Registrar en Bitácora
-            ctrlBitacora.RegistrarAccion(Cls_UsuarioConectado.iIdUsuario, 1, "Guardar aplicación", true);
-            RecargarTodo();
         }
 
 
@@ -370,13 +305,13 @@ namespace Capa_Vista_Seguridad
 
         private Cls_PermisoUsuario gPermisoUsuario = new Cls_PermisoUsuario();
 
-        private List<(int moduloId, int aplicacionId)> gParesModuloAplicacion = new List<(int, int)>();
+        private List<(int iModuloId, int iAplicacionId)> gParesModuloAplicacion = new List<(int, int)>();
 
-        private Dictionary<(int moduloId, int aplicacionId), (bool bIngresar, bool bConsultar, bool bModificar, bool bEliminar, bool bImprimir)> gPermisosPorModuloApp
+        private Dictionary<(int iModuloId, int iAplicacionId), (bool bIngresar, bool bConsultar, bool bModificar, bool bEliminar, bool bImprimir)> gPermisosPorModuloApp
             = new Dictionary<(int, int), (bool, bool, bool, bool, bool)>();
 
 
-        private void ConfigurarIdsDinamicamenteYAplicarPermisos()
+        private void fun_ConfigurarIdsDinamicamenteYAplicarPermisos()
         {
             int usuarioId = Cls_sesion.iUsuarioId;
 
@@ -399,10 +334,10 @@ namespace Capa_Vista_Seguridad
                 }
             }
 
-            AplicarPermisosUsuario(usuarioId);
+            fun_AplicarPermisosUsuario(usuarioId);
         }
 
-        private void AplicarPermisosUsuario(int usuarioId)
+        private void fun_AplicarPermisosUsuario(int usuarioId)
         {
             foreach (var (moduloId, aplicacionId) in gParesModuloAplicacion)
             {
@@ -414,10 +349,10 @@ namespace Capa_Vista_Seguridad
                 }
             }
 
-            CombinarPermisosYActualizarBotones();
+            fun_CombinarPermisosYActualizarBotones();
         }
 
-        private void CombinarPermisosYActualizarBotones()
+        private void fun_CombinarPermisosYActualizarBotones()
         {
             bool bIngresar = false, bConsultar = false, bModificar = false, bEliminar = false;
 
