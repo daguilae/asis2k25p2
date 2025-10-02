@@ -64,11 +64,11 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.label1.TabIndex = 3;
             this.label1.Text = "PARA TITULOS";
             // 
-            // Inventario
+            // Frm_Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(223)))), ((int)(((byte)(10)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(933, 554);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -78,7 +78,7 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Inventario";
+            this.Name = "Frm_Inventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";
             this.ResumeLayout(false);

@@ -64,11 +64,11 @@ namespace Capa_Vista_Modulo_Comercial.Compras
             this.label6.TabIndex = 3;
             this.label6.Text = "PARA TITULOS";
             // 
-            // Compras
+            // Frm_Compras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(223)))), ((int)(((byte)(10)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(933, 554);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
@@ -78,7 +78,7 @@ namespace Capa_Vista_Modulo_Comercial.Compras
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Compras";
+            this.Name = "Frm_Compras";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compras";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
