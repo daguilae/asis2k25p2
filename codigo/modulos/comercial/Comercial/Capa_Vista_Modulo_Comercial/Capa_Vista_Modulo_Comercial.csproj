@@ -43,54 +43,45 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compras\Frm_Compras.cs">
+    <Compile Include="Frm_Compras_Proveedores.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compras\Frm_Compras.Designer.cs">
-      <DependentUpon>Frm_Compras.cs</DependentUpon>
+    <Compile Include="Frm_Compras_Proveedores.Designer.cs">
+      <DependentUpon>Frm_Compras_Proveedores.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventario\Frm_Inventario.cs">
+    <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Inventario\Frm_Inventario.Designer.cs">
+    <Compile Include="Frm_Inventario.Designer.cs">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Por_Cobrar\Frm_Por_Cobrar.cs">
+    <Compile Include="Frm_Operaciones_Logisticas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Por_Cobrar\Frm_Por_Cobrar.Designer.cs">
-      <DependentUpon>Frm_Por_Cobrar.cs</DependentUpon>
+    <Compile Include="Frm_Operaciones_Logisticas.Designer.cs">
+      <DependentUpon>Frm_Operaciones_Logisticas.cs</DependentUpon>
     </Compile>
-    <Compile Include="Por_Pagar\Frm_Por_Pagar.cs">
+    <Compile Include="Frm_Ventas_Comercializacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Por_Pagar\Frm_Por_Pagar.Designer.cs">
-      <DependentUpon>Frm_Por_Pagar.cs</DependentUpon>
+    <Compile Include="Frm_Ventas_Comercializacion.Designer.cs">
+      <DependentUpon>Frm_Ventas_Comercializacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Ventas\Frm_Ventas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ventas\Frm_Ventas.Designer.cs">
-      <DependentUpon>Frm_Ventas.cs</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Compras\Frm_Compras.resx">
-      <DependentUpon>Frm_Compras.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Compras_Proveedores.resx">
+      <DependentUpon>Frm_Compras_Proveedores.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Inventario\Frm_Inventario.resx">
+    <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Por_Cobrar\Frm_Por_Cobrar.resx">
-      <DependentUpon>Frm_Por_Cobrar.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Operaciones_Logisticas.resx">
+      <DependentUpon>Frm_Operaciones_Logisticas.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Por_Pagar\Frm_Por_Pagar.resx">
-      <DependentUpon>Frm_Por_Pagar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ventas\Frm_Ventas.resx">
-      <DependentUpon>Frm_Ventas.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Ventas_Comercializacion.resx">
+      <DependentUpon>Frm_Ventas_Comercializacion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
