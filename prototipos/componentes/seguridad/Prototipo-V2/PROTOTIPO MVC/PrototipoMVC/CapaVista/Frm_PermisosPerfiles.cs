@@ -302,5 +302,10 @@ namespace Capa_Vista_Seguridad
                 MessageBox.Show($"Error al cargar permisos: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Pic_Cerrar_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
