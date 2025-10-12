@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Odbc;
-// Carlo Andree Barquero Boche 0901-22-601
+
 namespace Capa_Modelo_Componente_Consultas
 {
     class Conexion

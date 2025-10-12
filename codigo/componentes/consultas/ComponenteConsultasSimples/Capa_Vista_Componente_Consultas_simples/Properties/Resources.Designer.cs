@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Capa_Vista_Componente_Consultas.Properties {
+namespace Capa_Vista_Componente_Consultas_simples.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Capa_Vista_Componente_Consultas.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Componente_Consultas.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Componente_Consultas_simples.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -73,59 +73,9 @@ namespace Capa_Vista_Componente_Consultas.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Captura_de_pantalla_2025_09_17_215653 {
+        internal static System.Drawing.Bitmap android_search_icon_icons1 {
             get {
-                object obj = ResourceManager.GetObject("Captura de pantalla 2025-09-17 215653", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Captura_de_pantalla_2025_09_17_2156531 {
-            get {
-                object obj = ResourceManager.GetObject("Captura de pantalla 2025-09-17 2156531", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_add_50 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-add-50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap icons8_cancel_50 {
-            get {
-                object obj = ResourceManager.GetObject("icons8-cancel-50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap logoquantum {
-            get {
-                object obj = ResourceManager.GetObject("logoquantum", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap savetheapplication_guardar_2958 {
-            get {
-                object obj = ResourceManager.GetObject("savetheapplication_guardar_2958", resourceCulture);
+                object obj = ResourceManager.GetObject("android-search_icon-icons1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

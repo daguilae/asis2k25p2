@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//COmentario push PM 
+
 namespace Capa_Vista_Componente_Consultas
 {
     public partial class Frm_editar : Form
@@ -17,14 +19,27 @@ namespace Capa_Vista_Componente_Consultas
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void creaciònToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Frm_Creacion creacion = new Frm_Creacion();
+            creacion.Show();
+            this.Hide();
         }
 
-        private void label5_Click(object sender, EventArgs e)
+        private void consultasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Frm_Consultas Consultas = new Frm_Consultas();
+            Consultas.Show();
+            this.Hide();
         }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            // Volvemos a mostrar Form1
+            Frm_Principal principal = new Frm_Principal();
+            principal.Show();
+            this.Close(); // cerramos Form2
+        }
+
     }
 }
