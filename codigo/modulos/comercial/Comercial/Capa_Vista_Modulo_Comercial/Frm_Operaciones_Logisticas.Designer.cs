@@ -75,9 +75,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Controls.Add(this.Lbl_Subtitulo);
             this.Controls.Add(this.Lbl_Titulos);
             this.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "Frm_Operaciones_Logisticas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
