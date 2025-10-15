@@ -1,184 +1,230 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Capa_Controlador_Componente_Consultas;
+using System.ComponentModel;
+
+
+
+
+// Samuel Estuardo Gómez Lec 0901-21-10616 (estandarizacion y reorganizacion del diseño)
 namespace Capa_Vista_Componente_Consultas_simples
-
-    // CARLO ANDREE BARQUERO BOCHE 0901-22-601
-
 {
     public partial class Consulta_simple : UserControl
     {
-        Controlador controlador = new Controlador();
+        private readonly Controlador controlador = new Controlador();
+        private string snombreTablaExterna;
+        private readonly Dictionary<string, string> mapNombreAmigableAReal = new Dictionary<string, string>();
+
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        //  Constructor vacío (usado por el diseñador)
 
         public Consulta_simple()
         {
             InitializeComponent();
-            fun_CargarTablas();
             Rdb_asc.CheckedChanged += Orden_CheckedChanged;
             Rdb_desc.CheckedChanged += Orden_CheckedChanged;
+            this.Load += Consulta_simple_Load;
         }
 
-        // Funcion para la carga de Tablas
-        private void fun_CargarTablas()
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        // Constructor que recibe el nombre de la tabla desde otro módulo
+  
+        public Consulta_simple(string nombreTabla)
         {
-            try
+            InitializeComponent();
+            snombreTablaExterna = nombreTabla;
+            Rdb_asc.CheckedChanged += Orden_CheckedChanged;
+            Rdb_desc.CheckedChanged += Orden_CheckedChanged;
+
+ 
+            this.Load += Consulta_simple_Load;
+
+            if (!string.IsNullOrWhiteSpace(snombreTablaExterna))
+                CargarDatosTabla(snombreTablaExterna);
+        }
+
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        // Propiedad pública visible desde el diseñador
+        [Browsable(true)]
+        [Category("Datos")]
+        [Description("Nombre de la tabla que el control debe consultar al cargarse.")]
+        public string NombreTablaExterna
+        {
+            get => snombreTablaExterna;
+            set
             {
-                DataTable tablas = controlador.fun_ObtenerTablas();
-                if (tablas != null && tablas.Rows.Count > 0)
-                {
-                    string col = tablas.Columns[0].ColumnName; // nombre real de tabla (con prefijo)
+                snombreTablaExterna = value;
 
-                    DataTable vista = new DataTable();
-                    vista.Columns.Add("Nombre"); // display sin prefijos
-                    vista.Columns.Add("Tabla");  // value real con prefijo
-
-                    foreach (DataRow r in tablas.Rows)
-                    {
-                        string real = r[col]?.ToString() ?? "";
-                        string nombre = Regex.Replace(real, @"^tbl_?", "", RegexOptions.IgnoreCase);
-                        // Si también quieres ocultar "vw_" al inicio, descomenta:
-                        // nombre = Regex.Replace(nombre, @"^vw_?", "", RegexOptions.IgnoreCase);
-
-                        vista.Rows.Add(nombre, real);
-                    }
-
-                    var dv = vista.DefaultView;
-                    dv.Sort = "Nombre ASC";
-
-                    cbo_Query.DisplayMember = "Nombre";
-                    cbo_Query.ValueMember = "Tabla";
-                    cbo_Query.DataSource = dv;
-
-                    // ❌ No cargamos datos aquí. Solo al presionar Buscar.
-                }
-                else
-                {
-                    MessageBox.Show("No se encontraron tablas en la base de datos.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al cargar tablas: " + ex.Message);
+                // Verifica que el control esté listo antes de cargar
+                if (this.IsHandleCreated && !string.IsNullOrWhiteSpace(value))
+                    CargarDatosTabla(value);
             }
         }
 
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        // Método público para cambiar tabla en tiempo de ejecución
+        public void CambiarTabla(string nuevaTabla)
+        {
+            snombreTablaExterna = nuevaTabla;
+            CargarDatosTabla(snombreTablaExterna);
+        }
 
-        // Funcion para la busqueda
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        // Evento Load del control
+        private void Consulta_simple_Load(object sender, EventArgs e)
+        {
+            // Si ya hay tabla asignada antes de que el control cargue, aquí se cargan los datos
+            if (!string.IsNullOrWhiteSpace(snombreTablaExterna))
+                CargarDatosTabla(snombreTablaExterna);
+        }
 
-        private void Btn_buscar_Click(object sender, EventArgs e)
+        // Diego André Monterroso Rabarique 0901-22-1369
+        // Carga los datos de la tabla en el grid y llena combos
+
+        private void CargarDatosTabla(string tabla)
         {
             try
             {
-                if (cbo_Query.SelectedValue == null)
+                if (string.IsNullOrWhiteSpace(tabla))
                 {
-                    MessageBox.Show("Seleccione una tabla primero.");
+                    MessageBox.Show("No se ha recibido el nombre de la tabla.", "Advertencia",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                string stabla = cbo_Query.SelectedValue.ToString();
-                string sorden = "";
+                DataTable datos = controlador.fun_EjecutarConsulta(tabla, "");
+                Dgv_consultas_simples.DataSource = datos;
+                Dgv_consultas_simples.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 
-                if (Rdb_asc.Checked)
-                    sorden = "ORDER BY 1 ASC";
-                else if (Rdb_desc.Checked)
-                    sorden = "ORDER BY 1 DESC";
-                DataTable resultado = controlador.fun_EjecutarConsulta(stabla, sorden);
-
-                Dgv_consultas_simples.DataSource = resultado;
+                LlenarComboCamposConFriendlyNames(datos);
+                LlenarComboOperadores();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al ejecutar consulta: " + ex.Message);
+                MessageBox.Show("Error al cargar datos: " + ex.Message);
             }
         }
 
-      
-        private void Btn_aceptar_Click(object sender, EventArgs e)
+        // CARLO ANDREE BARQUERO BOCHE 0901-22-601
+        // Llena los operadores del ComboBox
+        private void LlenarComboOperadores()
         {
-            MessageBox.Show("Consulta generada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            cbo_Operador.Items.Clear();
+            cbo_Operador.Items.AddRange(new string[]
+            {
+                "=",
+                "!=",
+                ">",
+                "<",
+                ">=",
+                "<=",
+                "Contiene",
+                "Comienza con",
+                "Termina con"
+            });
+            cbo_Operador.SelectedIndex = 0;
         }
-
-
-        // RICHARD ANTHONY DE LEÓN MILIAN 0901 - 22 - 10265
-        // Reutiliza el controlador para re-listar con el orden actual
-        private void ListarTablaConOrdenActual()
+        // Diego André Monterroso Rabarique 0901-22-1369
+        // Llena los campos del ComboBox con nombres amigables
+        private void LlenarComboCamposConFriendlyNames(DataTable resultado)
         {
-            try
-            {
-                if (cbo_Query.SelectedValue == null) return;
+            cbo_Campos.Items.Clear();
+            mapNombreAmigableAReal.Clear();
 
-                string stabla = cbo_Query.SelectedValue.ToString();
-                string sorden = (Rdb_asc != null && Rdb_asc.Checked) ? "ORDER BY 1 ASC"
-                             : (Rdb_desc != null && Rdb_desc.Checked) ? "ORDER BY 1 DESC"
-                             : string.Empty;
-
-                DataTable dt = controlador.fun_EjecutarConsulta(stabla, sorden);
-                Dgv_consultas_simples.DataSource = dt;
-
-                if (Dgv_consultas_simples != null)
-                    Dgv_consultas_simples.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-            }
-            catch (Exception ex)
+            foreach (DataColumn col in resultado.Columns)
             {
-                MessageBox.Show("Error al listar: " + ex.Message);
-            }
-        }
-        // RICHARD ANTHONY DE LEÓN MILIAN 0901 - 22 - 10265
-        // Solo reordena si ya hay datos en la grilla
-        private void Orden_CheckedChanged(object sender, EventArgs e)
-        {
-            if (sender is RadioButton rb && rb.Checked)
-            {
-                if (Dgv_consultas_simples?.DataSource != null)
+                string friendly = col.ColumnName;
+                friendly = Regex.Replace(friendly, @"^(cmp_|tbl_|cmp|pk_|pkid_)?", "", RegexOptions.IgnoreCase);
+                friendly = friendly.Replace("_", " ");
+                friendly = System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(friendly.ToLower());
+
+                string key = friendly;
+                int i = 1;
+                while (mapNombreAmigableAReal.ContainsKey(key))
                 {
-                    ListarTablaConOrdenActual();
+                    key = friendly + " (" + i + ")";
+                    i++;
                 }
-            }
-        }
 
+                mapNombreAmigableAReal[key] = col.ColumnName;
+                cbo_Campos.Items.Add(key);
+            }
+
+            if (cbo_Campos.Items.Count > 0)
+                cbo_Campos.SelectedIndex = 0;
+        }
+        // Diego André Monterroso Rabarique 0901-22-1369
+        // Botón Buscar: carga toda la tabla
+        private void Btn_buscar_Click(object sender, EventArgs e)
+        {
+            CargarDatosTabla(snombreTablaExterna);
+        }
         // Jose Pablo Medina 0901-22-22592
-        // BLOQUE 8: BOTÓN FILTRAR (busca en todas las columnas)
+        // Botón Filtrar: genera una consulta simple
         private void Btn_filtrar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (cbo_Query.SelectedValue == null)
+                if (string.IsNullOrWhiteSpace(snombreTablaExterna))
                 {
-                    MessageBox.Show("Selecciona una tabla del listado.", "Consulta",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No se ha recibido el nombre de la tabla.", "Consulta",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                string stabla = cbo_Query.SelectedValue.ToString();
-                string sfiltro = Txt_Filtro.Text.Trim();  // texto del usuario
-                string sorden = string.Empty;
+                if (cbo_Campos.SelectedItem == null || cbo_Operador.SelectedItem == null)
+                {
+                    MessageBox.Show("Selecciona un campo y un operador.", "Filtro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                // Ejecutar consulta con filtro global
-                DataTable resultado = controlador.fun_EjecutarConsultaConFiltro(stabla, sfiltro, sorden);
+                string friendly = cbo_Campos.SelectedItem.ToString();
+                string operador = cbo_Operador.SelectedItem.ToString();
+                string valorRaw = Txt_Filtro.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(valorRaw))
+                {
+                    MessageBox.Show("Ingresa un valor para filtrar.", "Filtro",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string campoReal = mapNombreAmigableAReal[friendly];
+                string sorden = (Rdb_asc.Checked ? "ORDER BY 1 ASC" :
+                                (Rdb_desc.Checked ? "ORDER BY 1 DESC" : ""));
+
+                DataTable resultado = controlador.fun_ConsultaFiltrada(
+                    snombreTablaExterna,
+                    campoReal,
+                    operador,
+                    valorRaw,
+                    sorden
+                );
+
                 Dgv_consultas_simples.DataSource = resultado;
-
-                if (Dgv_consultas_simples != null)
-                    Dgv_consultas_simples.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
-                // Mostrar SQL simulado
-                string whereClause = string.IsNullOrWhiteSpace(sfiltro) ? "" : $" (Filtro: '{sfiltro}')";
+                Dgv_consultas_simples.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al aplicar filtro: " + ex.Message);
             }
         }
+        // RICHARD ANTONY DE LEON 0901 - 22 - 10265
+        // Ordenamiento ASC / DESC
+        private void Orden_CheckedChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(snombreTablaExterna))
+                return;
 
+            bool asc = Rdb_asc.Checked;
 
+            DataTable resultado = controlador.fun_ConsultaOrdenada(snombreTablaExterna, asc);
+            Dgv_consultas_simples.DataSource = resultado;
+            Dgv_consultas_simples.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        }
     }
-
 }
-

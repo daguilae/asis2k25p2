@@ -16,8 +16,8 @@ namespace Capa_Controlador_Componente_Consultas
             return sentencias.fun_ObtenerTablas();
         }
 
-        // Jose Pablo Medina 0901-22-22592
 
+        // Carlo Andree Barquero Boche 0901-22-601
         // Ejecuta consulta sin filtro
         public DataTable fun_EjecutarConsulta(string stabla, string sorden)
         {
@@ -25,10 +25,26 @@ namespace Capa_Controlador_Componente_Consultas
         }
 
         // Jose Pablo Medina 0901-22-22592
-        // ✅ Ejecuta consulta con filtro (busca en todas las columnas)
+        // Ejecuta consulta con filtro (busca en todas las columnas)
         public DataTable fun_EjecutarConsultaConFiltro(string stabla, string sfiltro, string sorden)
         {
             return sentencias.fun_EjecutarConsultaConFiltro(stabla, sfiltro, sorden);
         }
+        // Jose Pablo Medina 0901-22-22592
+        // Ejecuta la funcion del filtro construyendo el WHERE
+        public DataTable fun_ConsultaFiltrada(string tabla, string campo, string operador, string valor, string sorden)
+        {
+            return sentencias.fun_EjecutarConsultaCondicional(tabla, campo, operador, valor, sorden);
+        }
+
+
+        // RICHARD ANTONY DE LEON 0901 - 22 - 10265
+        public DataTable fun_ConsultaOrdenada(string tabla, bool asc)
+        {
+            return sentencias.fun_ConsultaOrdenada(tabla, asc);
+        }
+
+
+
     }
 }
