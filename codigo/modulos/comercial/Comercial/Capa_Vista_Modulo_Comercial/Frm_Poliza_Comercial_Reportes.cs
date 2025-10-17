@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Modulo_Comercial
 {
-    public partial class Frm_Operaciones_Logisticas : Form
+    public partial class Frm_Poliza_Comercial_Reportes : Form
     {
-        public Frm_Operaciones_Logisticas()
+        public Frm_Poliza_Comercial_Reportes()
         {
             InitializeComponent();
         }

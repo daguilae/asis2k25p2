@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_Modulo_Comercial">
+      <HintPath>..\Capa_Controlador_Modulo_Comercial\bin\Debug\Capa_Controlador_Modulo_Comercial.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -43,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Compras_Proveedores.cs">
+    <Compile Include="Frm_Cobros_Depositos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Compras_Proveedores.Designer.cs">
-      <DependentUpon>Frm_Compras_Proveedores.cs</DependentUpon>
+    <Compile Include="Frm_Cobros_Depositos.Designer.cs">
+      <DependentUpon>Frm_Cobros_Depositos.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
@@ -55,33 +58,42 @@
     <Compile Include="Frm_Inventario.Designer.cs">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Operaciones_Logisticas.cs">
+    <Compile Include="Frm_Notas_Debito_Credito.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Operaciones_Logisticas.Designer.cs">
-      <DependentUpon>Frm_Operaciones_Logisticas.cs</DependentUpon>
+    <Compile Include="Frm_Notas_Debito_Credito.Designer.cs">
+      <DependentUpon>Frm_Notas_Debito_Credito.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Ventas_Comercializacion.cs">
+    <Compile Include="Frm_Poliza_Comercial_Reportes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Ventas_Comercializacion.Designer.cs">
-      <DependentUpon>Frm_Ventas_Comercializacion.cs</DependentUpon>
+    <Compile Include="Frm_Poliza_Comercial_Reportes.Designer.cs">
+      <DependentUpon>Frm_Poliza_Comercial_Reportes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Recibos_Huespedes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Recibos_Huespedes.Designer.cs">
+      <DependentUpon>Frm_Recibos_Huespedes.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Compras_Proveedores.resx">
-      <DependentUpon>Frm_Compras_Proveedores.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Cobros_Depositos.resx">
+      <DependentUpon>Frm_Cobros_Depositos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Operaciones_Logisticas.resx">
-      <DependentUpon>Frm_Operaciones_Logisticas.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Notas_Debito_Credito.resx">
+      <DependentUpon>Frm_Notas_Debito_Credito.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_Ventas_Comercializacion.resx">
-      <DependentUpon>Frm_Ventas_Comercializacion.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Poliza_Comercial_Reportes.resx">
+      <DependentUpon>Frm_Poliza_Comercial_Reportes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Recibos_Huespedes.resx">
+      <DependentUpon>Frm_Recibos_Huespedes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

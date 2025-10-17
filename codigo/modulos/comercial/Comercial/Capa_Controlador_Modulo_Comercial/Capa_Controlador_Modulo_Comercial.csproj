@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Modelo_Modulo_Comercial">
+      <HintPath>..\Capa_Modelo_Modulo_Comercial\bin\Debug\Capa_Modelo_Modulo_Comercial.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
