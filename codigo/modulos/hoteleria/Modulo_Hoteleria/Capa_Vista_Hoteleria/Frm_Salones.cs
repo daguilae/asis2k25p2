@@ -15,20 +15,20 @@ namespace Capa_Vista_Hoteleria
         public Frm_Salones()
         {
             InitializeComponent();
-            ConfigurarPaneles(); //Inicio codigo Cesar Santizo 0901-22-5215
+         //   ConfigurarPaneles(); //Inicio codigo Cesar Santizo 0901-22-5215
         }
 
 
-        private void ConfigurarPaneles()
-        {
+       //// private void ConfigurarPaneles()
+     ///   {
 
-            Pnl_Contenedor.Dock = DockStyle.Left;
+           /// Pnl_Contenedor.Dock = DockStyle.Left;
 
            
-            Pnl_Contenedor.Width = 230;
+        ///    Pnl_Contenedor.Width = 230;
             //fin  codigo Cesar Santizo 0901-22-5215
 
-        }
+    ////    }
 
         private void Pic_Produccion_Click(object sender, EventArgs e)
         {
@@ -45,9 +45,19 @@ namespace Capa_Vista_Hoteleria
 
         }
 
-        private void Btn_Inicio_Click(object sender, EventArgs e)
+     
+
+
+        private void menuToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             Frm_Hoteleria nuevoFormulario = new Frm_Hoteleria();
+            nuevoFormulario.Show();
+            this.Hide();
+        }
+
+        private void reservacionesDeSalonesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Reservaciones nuevoFormulario = new Frm_Reservaciones();
             nuevoFormulario.Show();
             this.Hide();
         }
