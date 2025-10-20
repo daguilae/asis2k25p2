@@ -52,6 +52,12 @@
     <Compile Include="Frm_Hoteleria.Designer.cs">
       <DependentUpon>Frm_Hoteleria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Reservaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Reservaciones.Designer.cs">
+      <DependentUpon>Frm_Reservaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Salones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Hoteleria.resx">
       <DependentUpon>Frm_Hoteleria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Reservaciones.resx">
+      <DependentUpon>Frm_Reservaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Salones.resx">
       <DependentUpon>Frm_Salones.cs</DependentUpon>
