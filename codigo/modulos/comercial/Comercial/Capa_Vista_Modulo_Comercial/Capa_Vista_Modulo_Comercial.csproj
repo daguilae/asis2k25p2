@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Cobros_Depositos.cs">
+    <Compile Include="Frm_Cuentas_Por_Cobrar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Cobros_Depositos.Designer.cs">
-      <DependentUpon>Frm_Cobros_Depositos.cs</DependentUpon>
+    <Compile Include="Frm_Cuentas_Por_Cobrar.Designer.cs">
+      <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
@@ -80,8 +80,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Cobros_Depositos.resx">
-      <DependentUpon>Frm_Cobros_Depositos.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Cuentas_Por_Cobrar.resx">
+      <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
