@@ -14,7 +14,7 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Inventario());
+            Application.Run(new Frm_Cuentas_Por_Cobrar());
         }
     }
 }
