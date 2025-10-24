@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Vista_Modulo_Comercial.Inventario;
 
+
+
 namespace Exe_Comercial
 {
     static class Program
@@ -14,7 +16,8 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Cuentas_Por_Cobrar());
+            Application.Run(new Capa_Vista_Modulo_Comercial.Frm_Factura());
+
         }
     }
 }

@@ -52,6 +52,12 @@
     <Compile Include="Frm_Cuentas_Por_Cobrar.Designer.cs">
       <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Factura.Designer.cs">
+      <DependentUpon>Frm_Factura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,11 +83,19 @@
       <DependentUpon>Frm_Recibos_Huespedes.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Frm_Cuentas_Por_Cobrar.resx">
       <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Factura.resx">
+      <DependentUpon>Frm_Factura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
@@ -94,6 +108,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Recibos_Huespedes.resx">
       <DependentUpon>Frm_Recibos_Huespedes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
