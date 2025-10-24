@@ -140,10 +140,10 @@ namespace Capa_Vista_Modulo_Comercial
             // tabRecibos
             // 
             this.tabRecibos.Controls.Add(this.splitRecibos);
-            this.tabRecibos.Location = new System.Drawing.Point(4, 29);
+            this.tabRecibos.Location = new System.Drawing.Point(4, 26);
             this.tabRecibos.Name = "tabRecibos";
             this.tabRecibos.Padding = new System.Windows.Forms.Padding(8);
-            this.tabRecibos.Size = new System.Drawing.Size(1367, 727);
+            this.tabRecibos.Size = new System.Drawing.Size(1367, 730);
             this.tabRecibos.TabIndex = 0;
             this.tabRecibos.Text = "Recibos";
             // 
@@ -162,7 +162,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.splitRecibos.Panel2.Controls.Add(this.gridRecibos);
             this.splitRecibos.Panel2.Controls.Add(this.grpRecibo);
-            this.splitRecibos.Size = new System.Drawing.Size(1351, 711);
+            this.splitRecibos.Size = new System.Drawing.Size(1351, 714);
             this.splitRecibos.SplitterDistance = 1089;
             this.splitRecibos.TabIndex = 0;
             // 
@@ -171,6 +171,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridFacturas.AllowUserToAddRows = false;
             this.gridFacturas.AllowUserToDeleteRows = false;
             this.gridFacturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridFacturas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.gridFacturas.ColumnHeadersHeight = 29;
             this.gridFacturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSel,
@@ -184,7 +185,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridFacturas.Name = "gridFacturas";
             this.gridFacturas.ReadOnly = true;
             this.gridFacturas.RowHeadersWidth = 51;
-            this.gridFacturas.Size = new System.Drawing.Size(1089, 611);
+            this.gridFacturas.Size = new System.Drawing.Size(1089, 614);
             this.gridFacturas.TabIndex = 0;
             // 
             // colSel
@@ -231,6 +232,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // grpBuscar
             // 
+            this.grpBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpBuscar.Controls.Add(this.lblBuscarCliente);
             this.grpBuscar.Controls.Add(this.txtBuscarCliente);
             this.grpBuscar.Controls.Add(this.lblDesde);
@@ -252,15 +254,15 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblBuscarCliente.AutoSize = true;
             this.lblBuscarCliente.Location = new System.Drawing.Point(16, 28);
             this.lblBuscarCliente.Name = "lblBuscarCliente";
-            this.lblBuscarCliente.Size = new System.Drawing.Size(58, 20);
+            this.lblBuscarCliente.Size = new System.Drawing.Size(65, 17);
             this.lblBuscarCliente.TabIndex = 0;
             this.lblBuscarCliente.Text = "Cliente:";
             // 
             // txtBuscarCliente
             // 
-            this.txtBuscarCliente.Location = new System.Drawing.Point(70, 24);
+            this.txtBuscarCliente.Location = new System.Drawing.Point(84, 25);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(220, 27);
+            this.txtBuscarCliente.Size = new System.Drawing.Size(220, 25);
             this.txtBuscarCliente.TabIndex = 1;
             // 
             // lblDesde
@@ -268,37 +270,37 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblDesde.AutoSize = true;
             this.lblDesde.Location = new System.Drawing.Point(310, 28);
             this.lblDesde.Name = "lblDesde";
-            this.lblDesde.Size = new System.Drawing.Size(54, 20);
+            this.lblDesde.Size = new System.Drawing.Size(57, 17);
             this.lblDesde.TabIndex = 2;
             this.lblDesde.Text = "Desde:";
             // 
             // dtpDesde
             // 
-            this.dtpDesde.Location = new System.Drawing.Point(360, 24);
+            this.dtpDesde.Location = new System.Drawing.Point(373, 24);
             this.dtpDesde.Name = "dtpDesde";
-            this.dtpDesde.Size = new System.Drawing.Size(180, 27);
+            this.dtpDesde.Size = new System.Drawing.Size(180, 25);
             this.dtpDesde.TabIndex = 3;
             // 
             // lblHasta
             // 
             this.lblHasta.AutoSize = true;
-            this.lblHasta.Location = new System.Drawing.Point(560, 28);
+            this.lblHasta.Location = new System.Drawing.Point(570, 28);
             this.lblHasta.Name = "lblHasta";
-            this.lblHasta.Size = new System.Drawing.Size(50, 20);
+            this.lblHasta.Size = new System.Drawing.Size(51, 17);
             this.lblHasta.TabIndex = 4;
             this.lblHasta.Text = "Hasta:";
             // 
             // dtpHasta
             // 
-            this.dtpHasta.Location = new System.Drawing.Point(610, 24);
+            this.dtpHasta.Location = new System.Drawing.Point(637, 22);
             this.dtpHasta.Name = "dtpHasta";
-            this.dtpHasta.Size = new System.Drawing.Size(180, 27);
+            this.dtpHasta.Size = new System.Drawing.Size(180, 25);
             this.dtpHasta.TabIndex = 5;
             // 
             // btnFiltrar
             // 
             this.btnFiltrar.Enabled = false;
-            this.btnFiltrar.Location = new System.Drawing.Point(810, 23);
+            this.btnFiltrar.Location = new System.Drawing.Point(839, 24);
             this.btnFiltrar.Name = "btnFiltrar";
             this.btnFiltrar.Size = new System.Drawing.Size(75, 28);
             this.btnFiltrar.TabIndex = 6;
@@ -307,7 +309,7 @@ namespace Capa_Vista_Modulo_Comercial
             // btnLimpiar
             // 
             this.btnLimpiar.Enabled = false;
-            this.btnLimpiar.Location = new System.Drawing.Point(890, 23);
+            this.btnLimpiar.Location = new System.Drawing.Point(920, 24);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 28);
             this.btnLimpiar.TabIndex = 7;
@@ -318,6 +320,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridRecibos.AllowUserToAddRows = false;
             this.gridRecibos.AllowUserToDeleteRows = false;
             this.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridRecibos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.gridRecibos.ColumnHeadersHeight = 29;
             this.gridRecibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecibo,
@@ -329,7 +332,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridRecibos.Name = "gridRecibos";
             this.gridRecibos.ReadOnly = true;
             this.gridRecibos.RowHeadersWidth = 51;
-            this.gridRecibos.Size = new System.Drawing.Size(258, 581);
+            this.gridRecibos.Size = new System.Drawing.Size(258, 584);
             this.gridRecibos.TabIndex = 0;
             // 
             // colRecibo
@@ -362,6 +365,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // grpRecibo
             // 
+            this.grpRecibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpRecibo.Controls.Add(this.lblNumeroRecibo);
             this.grpRecibo.Controls.Add(this.txtNumeroRecibo);
             this.grpRecibo.Controls.Add(this.lblFechaRecibo);
@@ -384,7 +388,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblNumeroRecibo.AutoSize = true;
             this.lblNumeroRecibo.Location = new System.Drawing.Point(6, 28);
             this.lblNumeroRecibo.Name = "lblNumeroRecibo";
-            this.lblNumeroRecibo.Size = new System.Drawing.Size(85, 20);
+            this.lblNumeroRecibo.Size = new System.Drawing.Size(90, 17);
             this.lblNumeroRecibo.TabIndex = 0;
             this.lblNumeroRecibo.Text = "No. Recibo:";
             // 
@@ -392,7 +396,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.txtNumeroRecibo.Location = new System.Drawing.Point(100, 24);
             this.txtNumeroRecibo.Name = "txtNumeroRecibo";
-            this.txtNumeroRecibo.Size = new System.Drawing.Size(150, 27);
+            this.txtNumeroRecibo.Size = new System.Drawing.Size(150, 25);
             this.txtNumeroRecibo.TabIndex = 1;
             // 
             // lblFechaRecibo
@@ -400,7 +404,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblFechaRecibo.AutoSize = true;
             this.lblFechaRecibo.Location = new System.Drawing.Point(270, 28);
             this.lblFechaRecibo.Name = "lblFechaRecibo";
-            this.lblFechaRecibo.Size = new System.Drawing.Size(50, 20);
+            this.lblFechaRecibo.Size = new System.Drawing.Size(54, 17);
             this.lblFechaRecibo.TabIndex = 2;
             this.lblFechaRecibo.Text = "Fecha:";
             // 
@@ -408,7 +412,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.dtpFechaRecibo.Location = new System.Drawing.Point(320, 24);
             this.dtpFechaRecibo.Name = "dtpFechaRecibo";
-            this.dtpFechaRecibo.Size = new System.Drawing.Size(180, 27);
+            this.dtpFechaRecibo.Size = new System.Drawing.Size(180, 25);
             this.dtpFechaRecibo.TabIndex = 3;
             // 
             // lblObs
@@ -416,7 +420,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblObs.AutoSize = true;
             this.lblObs.Location = new System.Drawing.Point(3, 65);
             this.lblObs.Name = "lblObs";
-            this.lblObs.Size = new System.Drawing.Size(108, 20);
+            this.lblObs.Size = new System.Drawing.Size(119, 17);
             this.lblObs.TabIndex = 4;
             this.lblObs.Text = "Observaciones:";
             // 
@@ -463,10 +467,10 @@ namespace Capa_Vista_Modulo_Comercial
             this.tabPago.Controls.Add(this.txtTotalPago);
             this.tabPago.Controls.Add(this.btnGuardarPago);
             this.tabPago.Controls.Add(this.btnCancelarPago);
-            this.tabPago.Location = new System.Drawing.Point(4, 29);
+            this.tabPago.Location = new System.Drawing.Point(4, 26);
             this.tabPago.Name = "tabPago";
             this.tabPago.Padding = new System.Windows.Forms.Padding(8);
-            this.tabPago.Size = new System.Drawing.Size(192, 67);
+            this.tabPago.Size = new System.Drawing.Size(1367, 730);
             this.tabPago.TabIndex = 1;
             this.tabPago.Text = "Aplicar Pago";
             // 
@@ -475,6 +479,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridLineasPago.AllowUserToAddRows = false;
             this.gridLineasPago.AllowUserToDeleteRows = false;
             this.gridLineasPago.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridLineasPago.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.gridLineasPago.ColumnHeadersHeight = 29;
             this.gridLineasPago.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colLPFactura,
@@ -488,7 +493,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridLineasPago.Name = "gridLineasPago";
             this.gridLineasPago.ReadOnly = true;
             this.gridLineasPago.RowHeadersWidth = 51;
-            this.gridLineasPago.Size = new System.Drawing.Size(176, 0);
+            this.gridLineasPago.Size = new System.Drawing.Size(1351, 574);
             this.gridLineasPago.TabIndex = 0;
             // 
             // colLPFactura
@@ -535,6 +540,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // grpPago
             // 
+            this.grpPago.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpPago.Controls.Add(this.lblMetodo);
             this.grpPago.Controls.Add(this.cmbMetodo);
             this.grpPago.Controls.Add(this.lblMonto);
@@ -547,7 +553,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.grpPago.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpPago.Location = new System.Drawing.Point(8, 8);
             this.grpPago.Name = "grpPago";
-            this.grpPago.Size = new System.Drawing.Size(176, 140);
+            this.grpPago.Size = new System.Drawing.Size(1351, 140);
             this.grpPago.TabIndex = 1;
             this.grpPago.TabStop = false;
             this.grpPago.Text = "Detalle de pago";
@@ -557,7 +563,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblMetodo.AutoSize = true;
             this.lblMetodo.Location = new System.Drawing.Point(16, 32);
             this.lblMetodo.Name = "lblMetodo";
-            this.lblMetodo.Size = new System.Drawing.Size(65, 20);
+            this.lblMetodo.Size = new System.Drawing.Size(66, 17);
             this.lblMetodo.TabIndex = 0;
             this.lblMetodo.Text = "Método:";
             // 
@@ -569,9 +575,9 @@ namespace Capa_Vista_Modulo_Comercial
             "Tarjeta",
             "Transferencia",
             "Criptomoneda"});
-            this.cmbMetodo.Location = new System.Drawing.Point(76, 28);
+            this.cmbMetodo.Location = new System.Drawing.Point(88, 28);
             this.cmbMetodo.Name = "cmbMetodo";
-            this.cmbMetodo.Size = new System.Drawing.Size(180, 28);
+            this.cmbMetodo.Size = new System.Drawing.Size(180, 25);
             this.cmbMetodo.TabIndex = 1;
             // 
             // lblMonto
@@ -579,15 +585,15 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblMonto.AutoSize = true;
             this.lblMonto.Location = new System.Drawing.Point(280, 32);
             this.lblMonto.Name = "lblMonto";
-            this.lblMonto.Size = new System.Drawing.Size(56, 20);
+            this.lblMonto.Size = new System.Drawing.Size(57, 17);
             this.lblMonto.TabIndex = 2;
             this.lblMonto.Text = "Monto:";
             // 
             // txtMonto
             // 
-            this.txtMonto.Location = new System.Drawing.Point(332, 28);
+            this.txtMonto.Location = new System.Drawing.Point(343, 28);
             this.txtMonto.Name = "txtMonto";
-            this.txtMonto.Size = new System.Drawing.Size(120, 27);
+            this.txtMonto.Size = new System.Drawing.Size(120, 25);
             this.txtMonto.TabIndex = 3;
             // 
             // lblReferencia
@@ -595,15 +601,15 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblReferencia.AutoSize = true;
             this.lblReferencia.Location = new System.Drawing.Point(470, 32);
             this.lblReferencia.Name = "lblReferencia";
-            this.lblReferencia.Size = new System.Drawing.Size(82, 20);
+            this.lblReferencia.Size = new System.Drawing.Size(88, 17);
             this.lblReferencia.TabIndex = 4;
             this.lblReferencia.Text = "Referencia:";
             // 
             // txtReferencia
             // 
-            this.txtReferencia.Location = new System.Drawing.Point(540, 28);
+            this.txtReferencia.Location = new System.Drawing.Point(554, 28);
             this.txtReferencia.Name = "txtReferencia";
-            this.txtReferencia.Size = new System.Drawing.Size(220, 27);
+            this.txtReferencia.Size = new System.Drawing.Size(220, 25);
             this.txtReferencia.TabIndex = 5;
             // 
             // lblFechaPago
@@ -611,15 +617,15 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblFechaPago.AutoSize = true;
             this.lblFechaPago.Location = new System.Drawing.Point(780, 32);
             this.lblFechaPago.Name = "lblFechaPago";
-            this.lblFechaPago.Size = new System.Drawing.Size(50, 20);
+            this.lblFechaPago.Size = new System.Drawing.Size(54, 17);
             this.lblFechaPago.TabIndex = 6;
             this.lblFechaPago.Text = "Fecha:";
             // 
             // dtpFechaPago
             // 
-            this.dtpFechaPago.Location = new System.Drawing.Point(830, 28);
+            this.dtpFechaPago.Location = new System.Drawing.Point(840, 28);
             this.dtpFechaPago.Name = "dtpFechaPago";
-            this.dtpFechaPago.Size = new System.Drawing.Size(180, 27);
+            this.dtpFechaPago.Size = new System.Drawing.Size(180, 25);
             this.dtpFechaPago.TabIndex = 7;
             // 
             // btnAgregarLineaPago
@@ -634,7 +640,7 @@ namespace Capa_Vista_Modulo_Comercial
             // lblTotalPago
             // 
             this.lblTotalPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTotalPago.Location = new System.Drawing.Point(852, 497);
+            this.lblTotalPago.Location = new System.Drawing.Point(852, 496);
             this.lblTotalPago.Name = "lblTotalPago";
             this.lblTotalPago.Size = new System.Drawing.Size(100, 23);
             this.lblTotalPago.TabIndex = 2;
@@ -643,17 +649,17 @@ namespace Capa_Vista_Modulo_Comercial
             // txtTotalPago
             // 
             this.txtTotalPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTotalPago.Location = new System.Drawing.Point(952, 493);
+            this.txtTotalPago.Location = new System.Drawing.Point(952, 492);
             this.txtTotalPago.Name = "txtTotalPago";
             this.txtTotalPago.ReadOnly = true;
-            this.txtTotalPago.Size = new System.Drawing.Size(120, 27);
+            this.txtTotalPago.Size = new System.Drawing.Size(120, 25);
             this.txtTotalPago.TabIndex = 3;
             // 
             // btnGuardarPago
             // 
             this.btnGuardarPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardarPago.Enabled = false;
-            this.btnGuardarPago.Location = new System.Drawing.Point(1082, 491);
+            this.btnGuardarPago.Location = new System.Drawing.Point(1082, 490);
             this.btnGuardarPago.Name = "btnGuardarPago";
             this.btnGuardarPago.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarPago.TabIndex = 4;
@@ -663,7 +669,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.btnCancelarPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelarPago.Enabled = false;
-            this.btnCancelarPago.Location = new System.Drawing.Point(992, 491);
+            this.btnCancelarPago.Location = new System.Drawing.Point(992, 490);
             this.btnCancelarPago.Name = "btnCancelarPago";
             this.btnCancelarPago.Size = new System.Drawing.Size(75, 23);
             this.btnCancelarPago.TabIndex = 5;
@@ -673,10 +679,10 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.tabAntiguedad.Controls.Add(this.gridAntiguedad);
             this.tabAntiguedad.Controls.Add(this.grpAntiguedadFiltros);
-            this.tabAntiguedad.Location = new System.Drawing.Point(4, 29);
+            this.tabAntiguedad.Location = new System.Drawing.Point(4, 26);
             this.tabAntiguedad.Name = "tabAntiguedad";
             this.tabAntiguedad.Padding = new System.Windows.Forms.Padding(8);
-            this.tabAntiguedad.Size = new System.Drawing.Size(192, 67);
+            this.tabAntiguedad.Size = new System.Drawing.Size(1367, 730);
             this.tabAntiguedad.TabIndex = 2;
             this.tabAntiguedad.Text = "Antigüedad";
             // 
@@ -685,6 +691,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridAntiguedad.AllowUserToAddRows = false;
             this.gridAntiguedad.AllowUserToDeleteRows = false;
             this.gridAntiguedad.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridAntiguedad.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.gridAntiguedad.ColumnHeadersHeight = 29;
             this.gridAntiguedad.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colACliente,
@@ -698,7 +705,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.gridAntiguedad.Name = "gridAntiguedad";
             this.gridAntiguedad.ReadOnly = true;
             this.gridAntiguedad.RowHeadersWidth = 51;
-            this.gridAntiguedad.Size = new System.Drawing.Size(176, 0);
+            this.gridAntiguedad.Size = new System.Drawing.Size(1351, 634);
             this.gridAntiguedad.TabIndex = 0;
             // 
             // colACliente
@@ -745,13 +752,14 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // grpAntiguedadFiltros
             // 
+            this.grpAntiguedadFiltros.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpAntiguedadFiltros.Controls.Add(this.lblCliente);
             this.grpAntiguedadFiltros.Controls.Add(this.cmbCliente);
             this.grpAntiguedadFiltros.Controls.Add(this.btnGenerarAntig);
             this.grpAntiguedadFiltros.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpAntiguedadFiltros.Location = new System.Drawing.Point(8, 8);
             this.grpAntiguedadFiltros.Name = "grpAntiguedadFiltros";
-            this.grpAntiguedadFiltros.Size = new System.Drawing.Size(176, 80);
+            this.grpAntiguedadFiltros.Size = new System.Drawing.Size(1351, 80);
             this.grpAntiguedadFiltros.TabIndex = 1;
             this.grpAntiguedadFiltros.TabStop = false;
             this.grpAntiguedadFiltros.Text = "Filtros";
@@ -761,22 +769,22 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblCliente.AutoSize = true;
             this.lblCliente.Location = new System.Drawing.Point(16, 34);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(58, 20);
+            this.lblCliente.Size = new System.Drawing.Size(65, 17);
             this.lblCliente.TabIndex = 0;
             this.lblCliente.Text = "Cliente:";
             // 
             // cmbCliente
             // 
             this.cmbCliente.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCliente.Location = new System.Drawing.Point(70, 30);
+            this.cmbCliente.Location = new System.Drawing.Point(87, 30);
             this.cmbCliente.Name = "cmbCliente";
-            this.cmbCliente.Size = new System.Drawing.Size(240, 28);
+            this.cmbCliente.Size = new System.Drawing.Size(240, 25);
             this.cmbCliente.TabIndex = 1;
             // 
             // btnGenerarAntig
             // 
             this.btnGenerarAntig.Enabled = false;
-            this.btnGenerarAntig.Location = new System.Drawing.Point(330, 29);
+            this.btnGenerarAntig.Location = new System.Drawing.Point(342, 30);
             this.btnGenerarAntig.Name = "btnGenerarAntig";
             this.btnGenerarAntig.Size = new System.Drawing.Size(75, 23);
             this.btnGenerarAntig.TabIndex = 2;
@@ -786,24 +794,26 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.tabReportes.Controls.Add(this.viewerReporte);
             this.tabReportes.Controls.Add(this.grpReportes);
-            this.tabReportes.Location = new System.Drawing.Point(4, 29);
+            this.tabReportes.Location = new System.Drawing.Point(4, 26);
             this.tabReportes.Name = "tabReportes";
             this.tabReportes.Padding = new System.Windows.Forms.Padding(8);
-            this.tabReportes.Size = new System.Drawing.Size(192, 67);
+            this.tabReportes.Size = new System.Drawing.Size(1367, 730);
             this.tabReportes.TabIndex = 3;
             this.tabReportes.Text = "Reportes";
             // 
             // viewerReporte
             // 
+            this.viewerReporte.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.viewerReporte.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.viewerReporte.Dock = System.Windows.Forms.DockStyle.Fill;
             this.viewerReporte.Location = new System.Drawing.Point(8, 118);
             this.viewerReporte.Name = "viewerReporte";
-            this.viewerReporte.Size = new System.Drawing.Size(176, 0);
+            this.viewerReporte.Size = new System.Drawing.Size(1351, 604);
             this.viewerReporte.TabIndex = 0;
             // 
             // grpReportes
             // 
+            this.grpReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpReportes.Controls.Add(this.lblTipoReporte);
             this.grpReportes.Controls.Add(this.cmbTipoReporte);
             this.grpReportes.Controls.Add(this.lblRepDesde);
@@ -814,7 +824,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.grpReportes.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpReportes.Location = new System.Drawing.Point(8, 8);
             this.grpReportes.Name = "grpReportes";
-            this.grpReportes.Size = new System.Drawing.Size(176, 110);
+            this.grpReportes.Size = new System.Drawing.Size(1351, 110);
             this.grpReportes.TabIndex = 1;
             this.grpReportes.TabStop = false;
             this.grpReportes.Text = "Parámetros";
@@ -824,7 +834,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblTipoReporte.AutoSize = true;
             this.lblTipoReporte.Location = new System.Drawing.Point(16, 34);
             this.lblTipoReporte.Name = "lblTipoReporte";
-            this.lblTipoReporte.Size = new System.Drawing.Size(42, 20);
+            this.lblTipoReporte.Size = new System.Drawing.Size(44, 17);
             this.lblTipoReporte.TabIndex = 0;
             this.lblTipoReporte.Text = "Tipo:";
             // 
@@ -836,9 +846,9 @@ namespace Capa_Vista_Modulo_Comercial
             "Recibos cancelados",
             "Antigüedad por cliente",
             "Caja diaria"});
-            this.cmbTipoReporte.Location = new System.Drawing.Point(56, 30);
+            this.cmbTipoReporte.Location = new System.Drawing.Point(66, 30);
             this.cmbTipoReporte.Name = "cmbTipoReporte";
-            this.cmbTipoReporte.Size = new System.Drawing.Size(260, 28);
+            this.cmbTipoReporte.Size = new System.Drawing.Size(260, 25);
             this.cmbTipoReporte.TabIndex = 1;
             // 
             // lblRepDesde
@@ -846,37 +856,37 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblRepDesde.AutoSize = true;
             this.lblRepDesde.Location = new System.Drawing.Point(340, 34);
             this.lblRepDesde.Name = "lblRepDesde";
-            this.lblRepDesde.Size = new System.Drawing.Size(54, 20);
+            this.lblRepDesde.Size = new System.Drawing.Size(57, 17);
             this.lblRepDesde.TabIndex = 2;
             this.lblRepDesde.Text = "Desde:";
             // 
             // dtpRepDesde
             // 
-            this.dtpRepDesde.Location = new System.Drawing.Point(390, 30);
+            this.dtpRepDesde.Location = new System.Drawing.Point(403, 30);
             this.dtpRepDesde.Name = "dtpRepDesde";
-            this.dtpRepDesde.Size = new System.Drawing.Size(180, 27);
+            this.dtpRepDesde.Size = new System.Drawing.Size(180, 25);
             this.dtpRepDesde.TabIndex = 3;
             // 
             // lblRepHasta
             // 
             this.lblRepHasta.AutoSize = true;
-            this.lblRepHasta.Location = new System.Drawing.Point(590, 34);
+            this.lblRepHasta.Location = new System.Drawing.Point(600, 34);
             this.lblRepHasta.Name = "lblRepHasta";
-            this.lblRepHasta.Size = new System.Drawing.Size(50, 20);
+            this.lblRepHasta.Size = new System.Drawing.Size(51, 17);
             this.lblRepHasta.TabIndex = 4;
             this.lblRepHasta.Text = "Hasta:";
             // 
             // dtpRepHasta
             // 
-            this.dtpRepHasta.Location = new System.Drawing.Point(640, 30);
+            this.dtpRepHasta.Location = new System.Drawing.Point(657, 28);
             this.dtpRepHasta.Name = "dtpRepHasta";
-            this.dtpRepHasta.Size = new System.Drawing.Size(180, 27);
+            this.dtpRepHasta.Size = new System.Drawing.Size(180, 25);
             this.dtpRepHasta.TabIndex = 5;
             // 
             // btnVerReporte
             // 
             this.btnVerReporte.Enabled = false;
-            this.btnVerReporte.Location = new System.Drawing.Point(840, 29);
+            this.btnVerReporte.Location = new System.Drawing.Point(858, 31);
             this.btnVerReporte.Name = "btnVerReporte";
             this.btnVerReporte.Size = new System.Drawing.Size(75, 23);
             this.btnVerReporte.TabIndex = 6;
@@ -884,16 +894,18 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // tabCierre
             // 
+            this.tabCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.tabCierre.Controls.Add(this.grpCierre);
-            this.tabCierre.Location = new System.Drawing.Point(4, 29);
+            this.tabCierre.Location = new System.Drawing.Point(4, 26);
             this.tabCierre.Name = "tabCierre";
             this.tabCierre.Padding = new System.Windows.Forms.Padding(8);
-            this.tabCierre.Size = new System.Drawing.Size(192, 67);
+            this.tabCierre.Size = new System.Drawing.Size(1367, 730);
             this.tabCierre.TabIndex = 4;
             this.tabCierre.Text = "Cierre de Caja";
             // 
             // grpCierre
             // 
+            this.grpCierre.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.grpCierre.Controls.Add(this.lblFechaCierre);
             this.grpCierre.Controls.Add(this.dtpFechaCierre);
             this.grpCierre.Controls.Add(this.lblTotalCobrado);
@@ -903,7 +915,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.grpCierre.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpCierre.Location = new System.Drawing.Point(8, 8);
             this.grpCierre.Name = "grpCierre";
-            this.grpCierre.Size = new System.Drawing.Size(176, 130);
+            this.grpCierre.Size = new System.Drawing.Size(1351, 130);
             this.grpCierre.TabIndex = 0;
             this.grpCierre.TabStop = false;
             this.grpCierre.Text = "Cierre diario";
@@ -913,7 +925,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblFechaCierre.AutoSize = true;
             this.lblFechaCierre.Location = new System.Drawing.Point(16, 34);
             this.lblFechaCierre.Name = "lblFechaCierre";
-            this.lblFechaCierre.Size = new System.Drawing.Size(50, 20);
+            this.lblFechaCierre.Size = new System.Drawing.Size(54, 17);
             this.lblFechaCierre.TabIndex = 0;
             this.lblFechaCierre.Text = "Fecha:";
             // 
@@ -921,7 +933,7 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             this.dtpFechaCierre.Location = new System.Drawing.Point(66, 30);
             this.dtpFechaCierre.Name = "dtpFechaCierre";
-            this.dtpFechaCierre.Size = new System.Drawing.Size(200, 27);
+            this.dtpFechaCierre.Size = new System.Drawing.Size(200, 25);
             this.dtpFechaCierre.TabIndex = 1;
             // 
             // lblTotalCobrado
@@ -929,31 +941,31 @@ namespace Capa_Vista_Modulo_Comercial
             this.lblTotalCobrado.AutoSize = true;
             this.lblTotalCobrado.Location = new System.Drawing.Point(290, 34);
             this.lblTotalCobrado.Name = "lblTotalCobrado";
-            this.lblTotalCobrado.Size = new System.Drawing.Size(105, 20);
+            this.lblTotalCobrado.Size = new System.Drawing.Size(111, 17);
             this.lblTotalCobrado.TabIndex = 2;
             this.lblTotalCobrado.Text = "Total cobrado:";
             // 
             // txtTotalCobrado
             // 
-            this.txtTotalCobrado.Location = new System.Drawing.Point(380, 30);
+            this.txtTotalCobrado.Location = new System.Drawing.Point(407, 30);
             this.txtTotalCobrado.Name = "txtTotalCobrado";
             this.txtTotalCobrado.ReadOnly = true;
-            this.txtTotalCobrado.Size = new System.Drawing.Size(140, 27);
+            this.txtTotalCobrado.Size = new System.Drawing.Size(140, 25);
             this.txtTotalCobrado.TabIndex = 3;
             // 
             // btnPrevisualizarCierre
             // 
             this.btnPrevisualizarCierre.Enabled = false;
-            this.btnPrevisualizarCierre.Location = new System.Drawing.Point(540, 29);
+            this.btnPrevisualizarCierre.Location = new System.Drawing.Point(559, 30);
             this.btnPrevisualizarCierre.Name = "btnPrevisualizarCierre";
-            this.btnPrevisualizarCierre.Size = new System.Drawing.Size(75, 23);
+            this.btnPrevisualizarCierre.Size = new System.Drawing.Size(114, 23);
             this.btnPrevisualizarCierre.TabIndex = 4;
             this.btnPrevisualizarCierre.Text = "Previsualizar";
             // 
             // btnCerrarCaja
             // 
             this.btnCerrarCaja.Enabled = false;
-            this.btnCerrarCaja.Location = new System.Drawing.Point(640, 29);
+            this.btnCerrarCaja.Location = new System.Drawing.Point(679, 31);
             this.btnCerrarCaja.Name = "btnCerrarCaja";
             this.btnCerrarCaja.Size = new System.Drawing.Size(75, 23);
             this.btnCerrarCaja.TabIndex = 5;
@@ -961,9 +973,10 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // Frm_Cuentas_Por_Cobrar
             // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1375, 760);
             this.Controls.Add(this.tabMain);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MinimumSize = new System.Drawing.Size(1100, 700);
             this.Name = "Frm_Cuentas_Por_Cobrar";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
