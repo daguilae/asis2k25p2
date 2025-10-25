@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54A49188-AF2C-4B92-B164-BB316F75217E}</ProjectGuid>
+    <ProjectGuid>{2BC0366E-8B5A-4059-9CE1-6270BC30F24C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Exe_Bancos</RootNamespace>
-    <AssemblyName>Exe_Bancos</AssemblyName>
+    <RootNamespace>PrototipoPrincipal</RootNamespace>
+    <AssemblyName>PrototipoPrincipal</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,13 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Capa_Controlador_Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
+      <HintPath>..\..\SeguridadMVC\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Capa_Modelo_Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
+      <HintPath>..\..\SeguridadMVC\CapaModelo\bin\Debug\Capa_Modelo_Seguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Seguridad">
+      <HintPath>..\..\SeguridadMVC\CapaVista\bin\Debug\Capa_Vista_Seguridad.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
