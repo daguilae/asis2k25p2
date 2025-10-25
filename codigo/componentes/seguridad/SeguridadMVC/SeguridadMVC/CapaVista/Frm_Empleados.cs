@@ -370,6 +370,14 @@ namespace Capa_Vista_Seguridad
 
             if (resultado.Exito)
             {
+                // Registrar en bitácoraAron Esquit 0901 - 22 - 13036
+                ctrlBitacora.RegistrarAccion(
+                    controlador.ObtenerIdUsuarioConectado(),
+                    1,
+                    $"Eliminó al empleado/a: {Txt_nombre_empleado.Text}",
+                    true
+                );
+
                 // Opcional: acciones posteriores a la eliminación (limpiar campos, refrescar lista, etc.)
                 fun_LimpiarCampos();
                 fun_CargarEmpleados();
