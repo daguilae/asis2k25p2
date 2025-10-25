@@ -34,6 +34,9 @@
     <Reference Include="Capa_Controldor_MB">
       <HintPath>..\Capa_Controldor_MB\bin\Debug\Capa_Controldor_MB.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Modelo_MB">
+      <HintPath>..\Capa_Modelo_MB\bin\Debug\Capa_Modelo_MB.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
