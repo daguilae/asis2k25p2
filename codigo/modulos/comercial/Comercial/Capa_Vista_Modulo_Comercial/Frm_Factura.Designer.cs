@@ -56,13 +56,13 @@ namespace Capa_Vista_Modulo_Comercial
             this.Txt_Costo = new System.Windows.Forms.TextBox();
             this.Txt_Cantidad = new System.Windows.Forms.TextBox();
             this.Txt_Medida = new System.Windows.Forms.TextBox();
-            this.Txt_Almacen = new System.Windows.Forms.TextBox();
+            this.Txt_Producto = new System.Windows.Forms.TextBox();
             this.Txt_Codigo = new System.Windows.Forms.TextBox();
             this.Lbl_PrecioU = new System.Windows.Forms.Label();
             this.Lbl_Costo = new System.Windows.Forms.Label();
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Lbl_Medida = new System.Windows.Forms.Label();
-            this.Lbl_Almacen = new System.Windows.Forms.Label();
+            this.Lbl_Producto = new System.Windows.Forms.Label();
             this.Lbl_Codigo = new System.Windows.Forms.Label();
             this.Dgv_Detalle = new System.Windows.Forms.DataGridView();
             this.Clm_Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -263,13 +263,13 @@ namespace Capa_Vista_Modulo_Comercial
             this.Gpb_Producto.Controls.Add(this.Txt_Costo);
             this.Gpb_Producto.Controls.Add(this.Txt_Cantidad);
             this.Gpb_Producto.Controls.Add(this.Txt_Medida);
-            this.Gpb_Producto.Controls.Add(this.Txt_Almacen);
+            this.Gpb_Producto.Controls.Add(this.Txt_Producto);
             this.Gpb_Producto.Controls.Add(this.Txt_Codigo);
             this.Gpb_Producto.Controls.Add(this.Lbl_PrecioU);
             this.Gpb_Producto.Controls.Add(this.Lbl_Costo);
             this.Gpb_Producto.Controls.Add(this.Lbl_Cantidad);
             this.Gpb_Producto.Controls.Add(this.Lbl_Medida);
-            this.Gpb_Producto.Controls.Add(this.Lbl_Almacen);
+            this.Gpb_Producto.Controls.Add(this.Lbl_Producto);
             this.Gpb_Producto.Controls.Add(this.Lbl_Codigo);
             this.Gpb_Producto.Location = new System.Drawing.Point(12, 299);
             this.Gpb_Producto.Name = "Gpb_Producto";
@@ -324,12 +324,12 @@ namespace Capa_Vista_Modulo_Comercial
             this.Txt_Medida.Size = new System.Drawing.Size(100, 22);
             this.Txt_Medida.TabIndex = 9;
             // 
-            // Txt_Almacen
+            // Txt_Producto
             // 
-            this.Txt_Almacen.Location = new System.Drawing.Point(141, 109);
-            this.Txt_Almacen.Name = "Txt_Almacen";
-            this.Txt_Almacen.Size = new System.Drawing.Size(100, 22);
-            this.Txt_Almacen.TabIndex = 8;
+            this.Txt_Producto.Location = new System.Drawing.Point(141, 109);
+            this.Txt_Producto.Name = "Txt_Producto";
+            this.Txt_Producto.Size = new System.Drawing.Size(100, 22);
+            this.Txt_Producto.TabIndex = 8;
             // 
             // Txt_Codigo
             // 
@@ -374,14 +374,14 @@ namespace Capa_Vista_Modulo_Comercial
             this.Lbl_Medida.TabIndex = 3;
             this.Lbl_Medida.Text = "Medida Producto";
             // 
-            // Lbl_Almacen
+            // Lbl_Producto
             // 
-            this.Lbl_Almacen.AutoSize = true;
-            this.Lbl_Almacen.Location = new System.Drawing.Point(167, 56);
-            this.Lbl_Almacen.Name = "Lbl_Almacen";
-            this.Lbl_Almacen.Size = new System.Drawing.Size(62, 17);
-            this.Lbl_Almacen.TabIndex = 2;
-            this.Lbl_Almacen.Text = "Almacen";
+            this.Lbl_Producto.AutoSize = true;
+            this.Lbl_Producto.Location = new System.Drawing.Point(167, 56);
+            this.Lbl_Producto.Name = "Lbl_Producto";
+            this.Lbl_Producto.Size = new System.Drawing.Size(65, 17);
+            this.Lbl_Producto.TabIndex = 2;
+            this.Lbl_Producto.Text = "Producto";
             // 
             // Lbl_Codigo
             // 
@@ -394,6 +394,8 @@ namespace Capa_Vista_Modulo_Comercial
             // 
             // Dgv_Detalle
             // 
+            this.Dgv_Detalle.AllowUserToAddRows = false;
+            this.Dgv_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Detalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Clm_Codigo,
@@ -403,9 +405,10 @@ namespace Capa_Vista_Modulo_Comercial
             this.Clm_Precio_Total});
             this.Dgv_Detalle.Location = new System.Drawing.Point(13, 655);
             this.Dgv_Detalle.Name = "Dgv_Detalle";
+            this.Dgv_Detalle.ReadOnly = true;
             this.Dgv_Detalle.RowHeadersWidth = 51;
             this.Dgv_Detalle.RowTemplate.Height = 24;
-            this.Dgv_Detalle.Size = new System.Drawing.Size(697, 195);
+            this.Dgv_Detalle.Size = new System.Drawing.Size(903, 195);
             this.Dgv_Detalle.TabIndex = 3;
             // 
             // Clm_Codigo
@@ -413,35 +416,35 @@ namespace Capa_Vista_Modulo_Comercial
             this.Clm_Codigo.HeaderText = "Codigo";
             this.Clm_Codigo.MinimumWidth = 6;
             this.Clm_Codigo.Name = "Clm_Codigo";
-            this.Clm_Codigo.Width = 125;
+            this.Clm_Codigo.ReadOnly = true;
             // 
             // Clm_Producto
             // 
             this.Clm_Producto.HeaderText = "Producto";
             this.Clm_Producto.MinimumWidth = 6;
             this.Clm_Producto.Name = "Clm_Producto";
-            this.Clm_Producto.Width = 125;
+            this.Clm_Producto.ReadOnly = true;
             // 
             // Clm_Cantidad
             // 
             this.Clm_Cantidad.HeaderText = "Cantidad";
             this.Clm_Cantidad.MinimumWidth = 6;
             this.Clm_Cantidad.Name = "Clm_Cantidad";
-            this.Clm_Cantidad.Width = 125;
+            this.Clm_Cantidad.ReadOnly = true;
             // 
             // Clm_Costo_Total
             // 
             this.Clm_Costo_Total.HeaderText = "Costo Total";
             this.Clm_Costo_Total.MinimumWidth = 6;
             this.Clm_Costo_Total.Name = "Clm_Costo_Total";
-            this.Clm_Costo_Total.Width = 125;
+            this.Clm_Costo_Total.ReadOnly = true;
             // 
             // Clm_Precio_Total
             // 
             this.Clm_Precio_Total.HeaderText = "Precio Total";
             this.Clm_Precio_Total.MinimumWidth = 6;
             this.Clm_Precio_Total.Name = "Clm_Precio_Total";
-            this.Clm_Precio_Total.Width = 125;
+            this.Clm_Precio_Total.ReadOnly = true;
             // 
             // Lbl_Detalle
             // 
@@ -506,13 +509,13 @@ namespace Capa_Vista_Modulo_Comercial
         private System.Windows.Forms.TextBox Txt_Costo;
         private System.Windows.Forms.TextBox Txt_Cantidad;
         private System.Windows.Forms.TextBox Txt_Medida;
-        private System.Windows.Forms.TextBox Txt_Almacen;
+        private System.Windows.Forms.TextBox Txt_Producto;
         private System.Windows.Forms.TextBox Txt_Codigo;
         private System.Windows.Forms.Label Lbl_PrecioU;
         private System.Windows.Forms.Label Lbl_Costo;
         private System.Windows.Forms.Label Lbl_Cantidad;
         private System.Windows.Forms.Label Lbl_Medida;
-        private System.Windows.Forms.Label Lbl_Almacen;
+        private System.Windows.Forms.Label Lbl_Producto;
         private System.Windows.Forms.Label Lbl_Codigo;
         private System.Windows.Forms.DataGridView Dgv_Detalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Clm_Codigo;
