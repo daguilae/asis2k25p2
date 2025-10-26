@@ -4,12 +4,12 @@ using System.Data.Odbc;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-// Trabajado por Fernando Jose Cahuex Gonzalez 0901-22-14979
-namespace Capa_Modelo_Navegador
+
+namespace Capa_Modelo_Poliza
 {
-    public class Cls_ConexionMYSQL
+    class Cls_Conexion
     {
-        private readonly string ConexionODBC = "Dsn=bd_hoteleria"; // DSN de odbc
+        private readonly string ConexionODBC = "Dsn=Bd_Hoteleria"; // DSN de odbc
 
         //retorna conexion cerrada para que el DAO la abra y cierre cuando sea necesario
         public OdbcConnection conexion()
@@ -25,10 +25,5 @@ namespace Capa_Modelo_Navegador
                 conn.Close();
             }
         }
-
-
     }
-
-
 }
-//======================================================================================
