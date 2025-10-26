@@ -71,5 +71,41 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_agregar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_anterior1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_atras1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_ayuda1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_buscar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_cancelar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_eliminar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_guardar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_imprimir1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_limpiar %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_modificar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_refrescar1.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
