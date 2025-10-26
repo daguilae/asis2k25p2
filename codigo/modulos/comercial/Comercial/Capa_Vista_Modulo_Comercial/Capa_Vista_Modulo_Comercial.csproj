@@ -46,17 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Compras_Periodo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Compras_Periodo.Designer.cs">
+      <DependentUpon>Frm_Compras_Periodo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Cuentas_Por_Cobrar.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Cuentas_Por_Cobrar.Designer.cs">
       <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Envio_Contabilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Envio_Contabilidad.Designer.cs">
+      <DependentUpon>Frm_Envio_Contabilidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Factura.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Factura.Designer.cs">
       <DependentUpon>Frm_Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Factura_Proveedor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Factura_Proveedor.Designer.cs">
+      <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
@@ -69,6 +87,24 @@
     </Compile>
     <Compile Include="Frm_Notas_Debito_Credito.Designer.cs">
       <DependentUpon>Frm_Notas_Debito_Credito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Compras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Compras.Designer.cs">
+      <DependentUpon>Frm_Compras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Nota_CreditoDebito.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Nota_CreditoDebito.Designer.cs">
+      <DependentUpon>Frm_Nota_CreditoDebito.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Orden_Compra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Orden_Compra.Designer.cs">
+      <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Poliza_Comercial_Reportes.cs">
       <SubType>Form</SubType>
@@ -91,17 +127,35 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Compras_Periodo.resx">
+      <DependentUpon>Frm_Compras_Periodo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Cuentas_Por_Cobrar.resx">
       <DependentUpon>Frm_Cuentas_Por_Cobrar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Envio_Contabilidad.resx">
+      <DependentUpon>Frm_Envio_Contabilidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Factura.resx">
       <DependentUpon>Frm_Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Factura_Proveedor.resx">
+      <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Notas_Debito_Credito.resx">
       <DependentUpon>Frm_Notas_Debito_Credito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Compras.resx">
+      <DependentUpon>Frm_Compras.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Nota_CreditoDebito.resx">
+      <DependentUpon>Frm_Nota_CreditoDebito.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Orden_Compra.resx">
+      <DependentUpon>Frm_Orden_Compra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Poliza_Comercial_Reportes.resx">
       <DependentUpon>Frm_Poliza_Comercial_Reportes.cs</DependentUpon>
