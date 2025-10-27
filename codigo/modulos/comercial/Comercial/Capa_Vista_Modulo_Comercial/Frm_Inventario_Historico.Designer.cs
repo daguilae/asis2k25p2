@@ -47,6 +47,7 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.Cbo_Filtrar_Anios = new System.Windows.Forms.ComboBox();
             this.Pnl_Vista_Inventarios_Pasados = new System.Windows.Forms.Panel();
             this.Dgv_Vista_Inventarios_Pasados = new System.Windows.Forms.DataGridView();
+            this.Btn_Imprimir_PDF = new System.Windows.Forms.Button();
             this.Pnl_Herramientas.SuspendLayout();
             this.Gpb_Buscar_Inventario_Pasado.SuspendLayout();
             this.Gpb_Gestion_Inventario.SuspendLayout();
@@ -113,6 +114,7 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             // 
             // Gpb_Gestion_Inventario
             // 
+            this.Gpb_Gestion_Inventario.Controls.Add(this.Btn_Imprimir_PDF);
             this.Gpb_Gestion_Inventario.Controls.Add(this.Btn_Modificar_Inventario);
             this.Gpb_Gestion_Inventario.Controls.Add(this.Btn_Nuevo_Inventario);
             this.Gpb_Gestion_Inventario.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -270,6 +272,16 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.Dgv_Vista_Inventarios_Pasados.Size = new System.Drawing.Size(809, 377);
             this.Dgv_Vista_Inventarios_Pasados.TabIndex = 0;
             // 
+            // Btn_Imprimir_PDF
+            // 
+            this.Btn_Imprimir_PDF.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Imprimir_PDF.Location = new System.Drawing.Point(6, 86);
+            this.Btn_Imprimir_PDF.Name = "Btn_Imprimir_PDF";
+            this.Btn_Imprimir_PDF.Size = new System.Drawing.Size(139, 25);
+            this.Btn_Imprimir_PDF.TabIndex = 9;
+            this.Btn_Imprimir_PDF.Text = "Imprimir en PDF";
+            this.Btn_Imprimir_PDF.UseVisualStyleBackColor = true;
+            // 
             // Frm_Inventario_Historico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -316,5 +328,6 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
         private System.Windows.Forms.GroupBox Gpb_Buscar_Inventario_Pasado;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button Btn_Imprimir_PDF;
     }
 }
