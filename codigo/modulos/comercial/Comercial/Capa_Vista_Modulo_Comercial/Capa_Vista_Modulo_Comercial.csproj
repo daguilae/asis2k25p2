@@ -70,11 +70,19 @@
     <Compile Include="Frm_Factura.Designer.cs">
       <DependentUpon>Frm_Factura.cs</DependentUpon>
     </Compile>
+<<<<<<< Updated upstream
     <Compile Include="Frm_Factura_Proveedor.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_Factura_Proveedor.Designer.cs">
       <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
+=======
+    <Compile Include="Frm_Factura_Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Factura_Principal.Designer.cs">
+      <DependentUpon>Frm_Factura_Principal.cs</DependentUpon>
+>>>>>>> Stashed changes
     </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
@@ -145,8 +153,13 @@
     <EmbeddedResource Include="Frm_Factura.resx">
       <DependentUpon>Frm_Factura.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< Updated upstream
     <EmbeddedResource Include="Frm_Factura_Proveedor.resx">
       <DependentUpon>Frm_Factura_Proveedor.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="Frm_Factura_Principal.resx">
+      <DependentUpon>Frm_Factura_Principal.cs</DependentUpon>
+>>>>>>> Stashed changes
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>

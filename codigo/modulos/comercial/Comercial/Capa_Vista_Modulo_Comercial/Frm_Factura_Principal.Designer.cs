@@ -31,8 +31,8 @@ namespace Capa_Vista_Modulo_Comercial
         {
             this.Lbl_Principal = new System.Windows.Forms.Label();
             this.Btn_Detalle = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Dgv_Detalle = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).BeginInit();
             this.SuspendLayout();
             // 
             // Lbl_Principal
@@ -55,15 +55,15 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_Detalle.Text = "Ver detalle";
             this.Btn_Detalle.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // Dgv_Detalle
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(37, 168);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(724, 253);
-            this.dataGridView1.TabIndex = 2;
+            this.Dgv_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Detalle.Location = new System.Drawing.Point(37, 168);
+            this.Dgv_Detalle.Name = "Dgv_Detalle";
+            this.Dgv_Detalle.RowHeadersWidth = 51;
+            this.Dgv_Detalle.RowTemplate.Height = 24;
+            this.Dgv_Detalle.Size = new System.Drawing.Size(724, 253);
+            this.Dgv_Detalle.TabIndex = 2;
             // 
             // Frm_Factura_Principal
             // 
@@ -71,12 +71,12 @@ namespace Capa_Vista_Modulo_Comercial
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Dgv_Detalle);
             this.Controls.Add(this.Btn_Detalle);
             this.Controls.Add(this.Lbl_Principal);
             this.Name = "Frm_Factura_Principal";
             this.Text = "Frm_Factura_Principal";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -86,6 +86,6 @@ namespace Capa_Vista_Modulo_Comercial
 
         private System.Windows.Forms.Label Lbl_Principal;
         private System.Windows.Forms.Button Btn_Detalle;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Dgv_Detalle;
     }
 }
