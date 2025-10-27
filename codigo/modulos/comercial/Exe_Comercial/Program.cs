@@ -16,7 +16,7 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_Vista_Modulo_Comercial.Frm_Factura());
+            Application.Run(new Frm_Inventario_Historico());
 
         }
     }

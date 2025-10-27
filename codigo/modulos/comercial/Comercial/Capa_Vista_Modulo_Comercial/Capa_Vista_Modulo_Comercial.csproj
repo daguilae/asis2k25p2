@@ -82,6 +82,12 @@
     <Compile Include="Frm_Inventario.Designer.cs">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Inventario_Historico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Inventario_Historico.Designer.cs">
+      <DependentUpon>Frm_Inventario_Historico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Notas_Debito_Credito.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Inventario_Historico.resx">
+      <DependentUpon>Frm_Inventario_Historico.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Notas_Debito_Credito.resx">
       <DependentUpon>Frm_Notas_Debito_Credito.cs</DependentUpon>
