@@ -66,6 +66,10 @@ namespace Capa_Vista_MB
             this.Cbo_Signo = new System.Windows.Forms.ComboBox();
             this.Cbo_NoCuenta_Envia = new System.Windows.Forms.ComboBox();
             this.Cbo_NoCuenta_Recibe = new System.Windows.Forms.ComboBox();
+            this.Txt_NumeroDocumento = new System.Windows.Forms.TextBox();
+            this.Lbl_Documento = new System.Windows.Forms.Label();
+            this.Txt_Conciliado = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Movimiento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,7 +77,7 @@ namespace Capa_Vista_MB
             // 
             this.Lbl_Tipo.AutoSize = true;
             this.Lbl_Tipo.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Tipo.Location = new System.Drawing.Point(697, 312);
+            this.Lbl_Tipo.Location = new System.Drawing.Point(696, 312);
             this.Lbl_Tipo.Name = "Lbl_Tipo";
             this.Lbl_Tipo.Size = new System.Drawing.Size(0, 24);
             this.Lbl_Tipo.TabIndex = 9;
@@ -81,7 +85,7 @@ namespace Capa_Vista_MB
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(362, 482);
+            this.label9.Location = new System.Drawing.Point(361, 482);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(0, 25);
             this.label9.TabIndex = 15;
@@ -89,7 +93,7 @@ namespace Capa_Vista_MB
             // Dgv_Detalle_Movimiento
             // 
             this.Dgv_Detalle_Movimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Detalle_Movimiento.Location = new System.Drawing.Point(30, 356);
+            this.Dgv_Detalle_Movimiento.Location = new System.Drawing.Point(29, 356);
             this.Dgv_Detalle_Movimiento.Name = "Dgv_Detalle_Movimiento";
             this.Dgv_Detalle_Movimiento.RowHeadersWidth = 51;
             this.Dgv_Detalle_Movimiento.RowTemplate.Height = 24;
@@ -100,7 +104,7 @@ namespace Capa_Vista_MB
             // 
             this.Lbl_Detalle_Movimiento.AutoSize = true;
             this.Lbl_Detalle_Movimiento.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Detalle_Movimiento.Location = new System.Drawing.Point(27, 331);
+            this.Lbl_Detalle_Movimiento.Location = new System.Drawing.Point(26, 331);
             this.Lbl_Detalle_Movimiento.Name = "Lbl_Detalle_Movimiento";
             this.Lbl_Detalle_Movimiento.Size = new System.Drawing.Size(211, 22);
             this.Lbl_Detalle_Movimiento.TabIndex = 17;
@@ -120,7 +124,7 @@ namespace Capa_Vista_MB
             // 
             this.Lbl_Fecha.AutoSize = true;
             this.Lbl_Fecha.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(27, 71);
+            this.Lbl_Fecha.Location = new System.Drawing.Point(24, 73);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
             this.Lbl_Fecha.Size = new System.Drawing.Size(66, 24);
             this.Lbl_Fecha.TabIndex = 37;
@@ -128,9 +132,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_NombreCuenta_Envia
             // 
+            this.Lbl_NombreCuenta_Envia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_NombreCuenta_Envia.AutoSize = true;
             this.Lbl_NombreCuenta_Envia.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NombreCuenta_Envia.Location = new System.Drawing.Point(27, 181);
+            this.Lbl_NombreCuenta_Envia.Location = new System.Drawing.Point(26, 181);
             this.Lbl_NombreCuenta_Envia.Name = "Lbl_NombreCuenta_Envia";
             this.Lbl_NombreCuenta_Envia.Size = new System.Drawing.Size(159, 24);
             this.Lbl_NombreCuenta_Envia.TabIndex = 38;
@@ -138,9 +145,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_Operacion
             // 
+            this.Lbl_Operacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Operacion.AutoSize = true;
             this.Lbl_Operacion.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Operacion.Location = new System.Drawing.Point(504, 144);
+            this.Lbl_Operacion.Location = new System.Drawing.Point(503, 144);
             this.Lbl_Operacion.Name = "Lbl_Operacion";
             this.Lbl_Operacion.Size = new System.Drawing.Size(180, 24);
             this.Lbl_Operacion.TabIndex = 39;
@@ -148,9 +158,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_NombreCuenta_Recibe
             // 
+            this.Lbl_NombreCuenta_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_NombreCuenta_Recibe.AutoSize = true;
             this.Lbl_NombreCuenta_Recibe.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NombreCuenta_Recibe.Location = new System.Drawing.Point(26, 293);
+            this.Lbl_NombreCuenta_Recibe.Location = new System.Drawing.Point(25, 293);
             this.Lbl_NombreCuenta_Recibe.Name = "Lbl_NombreCuenta_Recibe";
             this.Lbl_NombreCuenta_Recibe.Size = new System.Drawing.Size(159, 24);
             this.Lbl_NombreCuenta_Recibe.TabIndex = 40;
@@ -158,17 +171,20 @@ namespace Capa_Vista_MB
             // 
             // Lbl_Concepto
             // 
+            this.Lbl_Concepto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Concepto.AutoSize = true;
             this.Lbl_Concepto.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Concepto.Location = new System.Drawing.Point(504, 181);
+            this.Lbl_Concepto.Location = new System.Drawing.Point(503, 224);
             this.Lbl_Concepto.Name = "Lbl_Concepto";
-            this.Lbl_Concepto.Size = new System.Drawing.Size(146, 24);
+            this.Lbl_Concepto.Size = new System.Drawing.Size(102, 24);
             this.Lbl_Concepto.TabIndex = 41;
-            this.Lbl_Concepto.Text = "Observaciones:";
+            this.Lbl_Concepto.Text = "Concepto:";
             // 
             // Txt_Fecha
             // 
-            this.Txt_Fecha.Location = new System.Drawing.Point(99, 61);
+            this.Txt_Fecha.Location = new System.Drawing.Point(96, 63);
             this.Txt_Fecha.Name = "Txt_Fecha";
             this.Txt_Fecha.Size = new System.Drawing.Size(143, 31);
             this.Txt_Fecha.TabIndex = 44;
@@ -176,16 +192,19 @@ namespace Capa_Vista_MB
             // Cbo_Operacion
             // 
             this.Cbo_Operacion.FormattingEnabled = true;
-            this.Cbo_Operacion.Location = new System.Drawing.Point(690, 139);
+            this.Cbo_Operacion.Location = new System.Drawing.Point(689, 139);
             this.Cbo_Operacion.Name = "Cbo_Operacion";
             this.Cbo_Operacion.Size = new System.Drawing.Size(301, 32);
             this.Cbo_Operacion.TabIndex = 46;
             // 
             // Lbl_Estado
             // 
+            this.Lbl_Estado.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Estado.AutoSize = true;
             this.Lbl_Estado.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado.Location = new System.Drawing.Point(504, 68);
+            this.Lbl_Estado.Location = new System.Drawing.Point(503, 68);
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(74, 24);
             this.Lbl_Estado.TabIndex = 49;
@@ -193,9 +212,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_Moneda
             // 
+            this.Lbl_Moneda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Moneda.AutoSize = true;
             this.Lbl_Moneda.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Moneda.Location = new System.Drawing.Point(504, 106);
+            this.Lbl_Moneda.Location = new System.Drawing.Point(503, 106);
             this.Lbl_Moneda.Name = "Lbl_Moneda";
             this.Lbl_Moneda.Size = new System.Drawing.Size(89, 24);
             this.Lbl_Moneda.TabIndex = 50;
@@ -203,23 +225,26 @@ namespace Capa_Vista_MB
             // 
             // Txt_Moneda
             // 
-            this.Txt_Moneda.Location = new System.Drawing.Point(603, 102);
+            this.Txt_Moneda.Location = new System.Drawing.Point(602, 102);
             this.Txt_Moneda.Name = "Txt_Moneda";
             this.Txt_Moneda.Size = new System.Drawing.Size(143, 31);
             this.Txt_Moneda.TabIndex = 52;
             // 
             // Txt_Monto
             // 
-            this.Txt_Monto.Location = new System.Drawing.Point(848, 101);
+            this.Txt_Monto.Location = new System.Drawing.Point(847, 101);
             this.Txt_Monto.Name = "Txt_Monto";
             this.Txt_Monto.Size = new System.Drawing.Size(143, 31);
             this.Txt_Monto.TabIndex = 61;
             // 
             // Lbl_Monto
             // 
+            this.Lbl_Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Monto.AutoSize = true;
             this.Lbl_Monto.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.Location = new System.Drawing.Point(767, 109);
+            this.Lbl_Monto.Location = new System.Drawing.Point(766, 109);
             this.Lbl_Monto.Name = "Lbl_Monto";
             this.Lbl_Monto.Size = new System.Drawing.Size(75, 24);
             this.Lbl_Monto.TabIndex = 60;
@@ -227,9 +252,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_Signo
             // 
+            this.Lbl_Signo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Signo.AutoSize = true;
             this.Lbl_Signo.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Signo.Location = new System.Drawing.Point(767, 68);
+            this.Lbl_Signo.Location = new System.Drawing.Point(766, 68);
             this.Lbl_Signo.Name = "Lbl_Signo";
             this.Lbl_Signo.Size = new System.Drawing.Size(66, 24);
             this.Lbl_Signo.TabIndex = 62;
@@ -237,9 +265,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_NoCuenta_Envia
             // 
+            this.Lbl_NoCuenta_Envia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_NoCuenta_Envia.AutoSize = true;
             this.Lbl_NoCuenta_Envia.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NoCuenta_Envia.Location = new System.Drawing.Point(26, 146);
+            this.Lbl_NoCuenta_Envia.Location = new System.Drawing.Point(25, 146);
             this.Lbl_NoCuenta_Envia.Name = "Lbl_NoCuenta_Envia";
             this.Lbl_NoCuenta_Envia.Size = new System.Drawing.Size(111, 24);
             this.Lbl_NoCuenta_Envia.TabIndex = 64;
@@ -247,23 +278,26 @@ namespace Capa_Vista_MB
             // 
             // Txt_NombreCuenta_Envia
             // 
-            this.Txt_NombreCuenta_Envia.Location = new System.Drawing.Point(184, 177);
+            this.Txt_NombreCuenta_Envia.Location = new System.Drawing.Point(183, 177);
             this.Txt_NombreCuenta_Envia.Name = "Txt_NombreCuenta_Envia";
             this.Txt_NombreCuenta_Envia.Size = new System.Drawing.Size(303, 31);
             this.Txt_NombreCuenta_Envia.TabIndex = 65;
             // 
             // Txt_NombreCuenta_Recibe
             // 
-            this.Txt_NombreCuenta_Recibe.Location = new System.Drawing.Point(183, 289);
+            this.Txt_NombreCuenta_Recibe.Location = new System.Drawing.Point(182, 289);
             this.Txt_NombreCuenta_Recibe.Name = "Txt_NombreCuenta_Recibe";
             this.Txt_NombreCuenta_Recibe.Size = new System.Drawing.Size(303, 31);
             this.Txt_NombreCuenta_Recibe.TabIndex = 67;
             // 
             // Lbl_NoCuenta_Recibe
             // 
+            this.Lbl_NoCuenta_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_NoCuenta_Recibe.AutoSize = true;
             this.Lbl_NoCuenta_Recibe.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NoCuenta_Recibe.Location = new System.Drawing.Point(27, 260);
+            this.Lbl_NoCuenta_Recibe.Location = new System.Drawing.Point(26, 260);
             this.Lbl_NoCuenta_Recibe.Name = "Lbl_NoCuenta_Recibe";
             this.Lbl_NoCuenta_Recibe.Size = new System.Drawing.Size(115, 24);
             this.Lbl_NoCuenta_Recibe.TabIndex = 66;
@@ -271,17 +305,20 @@ namespace Capa_Vista_MB
             // 
             // Txt_Concepto
             // 
-            this.Txt_Concepto.Location = new System.Drawing.Point(690, 181);
+            this.Txt_Concepto.Location = new System.Drawing.Point(689, 224);
             this.Txt_Concepto.Name = "Txt_Concepto";
-            this.Txt_Concepto.Size = new System.Drawing.Size(301, 139);
+            this.Txt_Concepto.Size = new System.Drawing.Size(301, 60);
             this.Txt_Concepto.TabIndex = 68;
             this.Txt_Concepto.Text = "";
             // 
             // Lbl_Titulo_Envia
             // 
+            this.Lbl_Titulo_Envia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Titulo_Envia.AutoSize = true;
             this.Lbl_Titulo_Envia.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo_Envia.Location = new System.Drawing.Point(26, 109);
+            this.Lbl_Titulo_Envia.Location = new System.Drawing.Point(25, 109);
             this.Lbl_Titulo_Envia.Name = "Lbl_Titulo_Envia";
             this.Lbl_Titulo_Envia.Size = new System.Drawing.Size(59, 24);
             this.Lbl_Titulo_Envia.TabIndex = 69;
@@ -289,9 +326,12 @@ namespace Capa_Vista_MB
             // 
             // Lbl_Titulo_Recibe
             // 
+            this.Lbl_Titulo_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Titulo_Recibe.AutoSize = true;
             this.Lbl_Titulo_Recibe.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo_Recibe.Location = new System.Drawing.Point(26, 224);
+            this.Lbl_Titulo_Recibe.Location = new System.Drawing.Point(25, 224);
             this.Lbl_Titulo_Recibe.Name = "Lbl_Titulo_Recibe";
             this.Lbl_Titulo_Recibe.Size = new System.Drawing.Size(72, 24);
             this.Lbl_Titulo_Recibe.TabIndex = 70;
@@ -299,7 +339,7 @@ namespace Capa_Vista_MB
             // 
             // Txt_Hora
             // 
-            this.Txt_Hora.Location = new System.Drawing.Point(344, 61);
+            this.Txt_Hora.Location = new System.Drawing.Point(341, 63);
             this.Txt_Hora.Name = "Txt_Hora";
             this.Txt_Hora.Size = new System.Drawing.Size(143, 31);
             this.Txt_Hora.TabIndex = 72;
@@ -308,7 +348,7 @@ namespace Capa_Vista_MB
             // 
             this.Lbl_Hora.AutoSize = true;
             this.Lbl_Hora.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Hora.Location = new System.Drawing.Point(281, 68);
+            this.Lbl_Hora.Location = new System.Drawing.Point(278, 70);
             this.Lbl_Hora.Name = "Lbl_Hora";
             this.Lbl_Hora.Size = new System.Drawing.Size(57, 24);
             this.Lbl_Hora.TabIndex = 71;
@@ -320,14 +360,14 @@ namespace Capa_Vista_MB
             this.Btn_Ayuda.Image = global::Capa_Vista_MB.Properties.Resources.icono_ayuda;
             this.Btn_Ayuda.Location = new System.Drawing.Point(942, 6);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
-            this.Btn_Ayuda.Size = new System.Drawing.Size(64, 38);
+            this.Btn_Ayuda.Size = new System.Drawing.Size(64, 51);
             this.Btn_Ayuda.TabIndex = 73;
             this.Btn_Ayuda.UseVisualStyleBackColor = true;
             // 
             // Cbo_Estado
             // 
             this.Cbo_Estado.FormattingEnabled = true;
-            this.Cbo_Estado.Location = new System.Drawing.Point(603, 60);
+            this.Cbo_Estado.Location = new System.Drawing.Point(602, 60);
             this.Cbo_Estado.Name = "Cbo_Estado";
             this.Cbo_Estado.Size = new System.Drawing.Size(143, 32);
             this.Cbo_Estado.TabIndex = 76;
@@ -338,7 +378,7 @@ namespace Capa_Vista_MB
             this.Btn_Reporte.Image = global::Capa_Vista_MB.Properties.Resources.icono_imprimir;
             this.Btn_Reporte.Location = new System.Drawing.Point(868, 6);
             this.Btn_Reporte.Name = "Btn_Reporte";
-            this.Btn_Reporte.Size = new System.Drawing.Size(68, 38);
+            this.Btn_Reporte.Size = new System.Drawing.Size(68, 51);
             this.Btn_Reporte.TabIndex = 83;
             this.Btn_Reporte.UseVisualStyleBackColor = true;
             // 
@@ -348,7 +388,7 @@ namespace Capa_Vista_MB
             this.Btn_Eliminar.Image = global::Capa_Vista_MB.Properties.Resources.icono_eliminar;
             this.Btn_Eliminar.Location = new System.Drawing.Point(800, 6);
             this.Btn_Eliminar.Name = "Btn_Eliminar";
-            this.Btn_Eliminar.Size = new System.Drawing.Size(62, 38);
+            this.Btn_Eliminar.Size = new System.Drawing.Size(62, 51);
             this.Btn_Eliminar.TabIndex = 82;
             this.Btn_Eliminar.UseVisualStyleBackColor = true;
             // 
@@ -358,7 +398,7 @@ namespace Capa_Vista_MB
             this.Btn_Editar.Image = global::Capa_Vista_MB.Properties.Resources.icono_modificar;
             this.Btn_Editar.Location = new System.Drawing.Point(729, 6);
             this.Btn_Editar.Name = "Btn_Editar";
-            this.Btn_Editar.Size = new System.Drawing.Size(65, 38);
+            this.Btn_Editar.Size = new System.Drawing.Size(65, 51);
             this.Btn_Editar.TabIndex = 81;
             this.Btn_Editar.UseVisualStyleBackColor = true;
             // 
@@ -368,9 +408,10 @@ namespace Capa_Vista_MB
             this.Btn_Guardar.Image = global::Capa_Vista_MB.Properties.Resources.icono_guardar;
             this.Btn_Guardar.Location = new System.Drawing.Point(657, 6);
             this.Btn_Guardar.Name = "Btn_Guardar";
-            this.Btn_Guardar.Size = new System.Drawing.Size(66, 38);
+            this.Btn_Guardar.Size = new System.Drawing.Size(66, 51);
             this.Btn_Guardar.TabIndex = 80;
             this.Btn_Guardar.UseVisualStyleBackColor = true;
+            this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
             // Btn_Agregar
             // 
@@ -378,14 +419,14 @@ namespace Capa_Vista_MB
             this.Btn_Agregar.Image = global::Capa_Vista_MB.Properties.Resources.icono_agregar;
             this.Btn_Agregar.Location = new System.Drawing.Point(592, 6);
             this.Btn_Agregar.Name = "Btn_Agregar";
-            this.Btn_Agregar.Size = new System.Drawing.Size(56, 38);
+            this.Btn_Agregar.Size = new System.Drawing.Size(56, 51);
             this.Btn_Agregar.TabIndex = 79;
             this.Btn_Agregar.UseVisualStyleBackColor = true;
             // 
             // Cbo_Signo
             // 
             this.Cbo_Signo.FormattingEnabled = true;
-            this.Cbo_Signo.Location = new System.Drawing.Point(848, 63);
+            this.Cbo_Signo.Location = new System.Drawing.Point(847, 63);
             this.Cbo_Signo.Name = "Cbo_Signo";
             this.Cbo_Signo.Size = new System.Drawing.Size(143, 32);
             this.Cbo_Signo.TabIndex = 84;
@@ -393,7 +434,7 @@ namespace Capa_Vista_MB
             // Cbo_NoCuenta_Envia
             // 
             this.Cbo_NoCuenta_Envia.FormattingEnabled = true;
-            this.Cbo_NoCuenta_Envia.Location = new System.Drawing.Point(184, 140);
+            this.Cbo_NoCuenta_Envia.Location = new System.Drawing.Point(183, 140);
             this.Cbo_NoCuenta_Envia.Name = "Cbo_NoCuenta_Envia";
             this.Cbo_NoCuenta_Envia.Size = new System.Drawing.Size(302, 32);
             this.Cbo_NoCuenta_Envia.TabIndex = 85;
@@ -401,16 +442,61 @@ namespace Capa_Vista_MB
             // Cbo_NoCuenta_Recibe
             // 
             this.Cbo_NoCuenta_Recibe.FormattingEnabled = true;
-            this.Cbo_NoCuenta_Recibe.Location = new System.Drawing.Point(183, 251);
+            this.Cbo_NoCuenta_Recibe.Location = new System.Drawing.Point(182, 251);
             this.Cbo_NoCuenta_Recibe.Name = "Cbo_NoCuenta_Recibe";
             this.Cbo_NoCuenta_Recibe.Size = new System.Drawing.Size(302, 32);
             this.Cbo_NoCuenta_Recibe.TabIndex = 86;
+            // 
+            // Txt_NumeroDocumento
+            // 
+            this.Txt_NumeroDocumento.Location = new System.Drawing.Point(689, 177);
+            this.Txt_NumeroDocumento.Name = "Txt_NumeroDocumento";
+            this.Txt_NumeroDocumento.Size = new System.Drawing.Size(301, 31);
+            this.Txt_NumeroDocumento.TabIndex = 88;
+            // 
+            // Lbl_Documento
+            // 
+            this.Lbl_Documento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_Documento.AutoSize = true;
+            this.Lbl_Documento.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Documento.Location = new System.Drawing.Point(503, 184);
+            this.Lbl_Documento.Name = "Lbl_Documento";
+            this.Lbl_Documento.Size = new System.Drawing.Size(121, 24);
+            this.Lbl_Documento.TabIndex = 87;
+            this.Lbl_Documento.Text = "Documento:";
+            // 
+            // Txt_Conciliado
+            // 
+            this.Txt_Conciliado.Location = new System.Drawing.Point(689, 293);
+            this.Txt_Conciliado.Name = "Txt_Conciliado";
+            this.Txt_Conciliado.Size = new System.Drawing.Size(301, 31);
+            this.Txt_Conciliado.TabIndex = 90;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(503, 297);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(109, 24);
+            this.label2.TabIndex = 89;
+            this.label2.Text = "Conciliado:";
             // 
             // Forms_MB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1018, 676);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1018, 686);
+            this.Controls.Add(this.Txt_Conciliado);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Txt_NumeroDocumento);
+            this.Controls.Add(this.Lbl_Documento);
             this.Controls.Add(this.Cbo_NoCuenta_Recibe);
             this.Controls.Add(this.Cbo_NoCuenta_Envia);
             this.Controls.Add(this.Cbo_Signo);
@@ -500,5 +586,9 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.ComboBox Cbo_Signo;
         private System.Windows.Forms.ComboBox Cbo_NoCuenta_Envia;
         private System.Windows.Forms.ComboBox Cbo_NoCuenta_Recibe;
+        private System.Windows.Forms.TextBox Txt_NumeroDocumento;
+        private System.Windows.Forms.Label Lbl_Documento;
+        private System.Windows.Forms.TextBox Txt_Conciliado;
+        private System.Windows.Forms.Label label2;
     }
 }
