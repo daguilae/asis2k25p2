@@ -16,7 +16,7 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Resumen_Inventario());
+            Application.Run(new Frm_Inventario_Historico());
 
         }
     }

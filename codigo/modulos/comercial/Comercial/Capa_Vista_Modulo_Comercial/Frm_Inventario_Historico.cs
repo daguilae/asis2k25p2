@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Modulo_Comercial.Inventario
 {
-    public partial class Frm_Resumen_Inventario : Form
+    public partial class Frm_Inventario_Historico : Form
     {
-        public Frm_Resumen_Inventario()
+        public Frm_Inventario_Historico()
         {
             InitializeComponent();
         }
