@@ -67,6 +67,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_Orden.Name = "Btn_Orden";
             this.Btn_Orden.Size = new System.Drawing.Size(163, 24);
             this.Btn_Orden.Text = "Orrden de Compra";
+            this.Btn_Orden.Click += new System.EventHandler(this.Btn_Orden_Click);
             // 
             // Btn_FacturaProveedor
             // 
@@ -76,6 +77,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_FacturaProveedor.Name = "Btn_FacturaProveedor";
             this.Btn_FacturaProveedor.Size = new System.Drawing.Size(166, 24);
             this.Btn_FacturaProveedor.Text = "Facturas Proveedor";
+            this.Btn_FacturaProveedor.Click += new System.EventHandler(this.Btn_FacturaProveedor_Click);
             // 
             // Btn_Notas
             // 
@@ -85,6 +87,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_Notas.Name = "Btn_Notas";
             this.Btn_Notas.Size = new System.Drawing.Size(180, 24);
             this.Btn_Notas.Text = "Notas Credito/Debito";
+            this.Btn_Notas.Click += new System.EventHandler(this.Btn_Notas_Click);
             // 
             // Btn_Reporte
             // 
@@ -94,6 +97,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_Reporte.Name = "Btn_Reporte";
             this.Btn_Reporte.Size = new System.Drawing.Size(151, 24);
             this.Btn_Reporte.Text = "Reporte Compras";
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Btn_Contabilidad
             // 
@@ -103,6 +107,7 @@ namespace Capa_Vista_Modulo_Comercial
             this.Btn_Contabilidad.Name = "Btn_Contabilidad";
             this.Btn_Contabilidad.Size = new System.Drawing.Size(163, 24);
             this.Btn_Contabilidad.Text = "Envio Contabilidad";
+            this.Btn_Contabilidad.Click += new System.EventHandler(this.Btn_Contabilidad_Click);
             // 
             // Btn_Salir
             // 
@@ -131,7 +136,9 @@ namespace Capa_Vista_Modulo_Comercial
             this.Controls.Add(this.Pnl_Contenido);
             this.Controls.Add(this.toolStrip1);
             this.Name = "Frm_Compras";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Orden_Compra";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);

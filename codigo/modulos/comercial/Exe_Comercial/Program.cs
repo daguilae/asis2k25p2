@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Vista_Modulo_Comercial.Inventario;
+using Capa_Vista_Modulo_Comercial;
 
 
 
@@ -16,7 +16,7 @@ namespace Exe_Comercial
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Inventario_Historico());
+            Application.Run(new Frm_Compras());
 
         }
     }
