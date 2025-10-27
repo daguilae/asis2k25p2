@@ -17,11 +17,22 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             InitializeComponent();
         }
 
+        // ==================== Stevens Cambranes 26/10/25 ====================
         private void Btn_Nuevo_Inventario_Click(object sender, EventArgs e)
         {
-            // Ir a Frm_Inventario
+            // Ir a Frm_Inventario y que aparezca campos vacios para agregar productos
             Frm_Inventario NuevoInventario = new Frm_Inventario();
             NuevoInventario.Show();
+            this.Hide();
+        }
+
+        // ==================== Stevens Cambranes 26/10/25 ====================
+        private void Btn_Modificar_Inventario_Click(object sender, EventArgs e)
+        {
+            // Ir a Frm_Inventario y que aparezca los campos seleccionados del Dgv
+            Frm_Inventario NuevoInventario = new Frm_Inventario();
+            NuevoInventario.Show();
+            this.Hide();
         }
     }
 }

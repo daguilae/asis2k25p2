@@ -29,7 +29,7 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Pnl_Herramientas = new System.Windows.Forms.Panel();
             this.Lbl_Inventarios_Pasados = new System.Windows.Forms.Label();
             this.Gpb_Buscar_Inventario_Pasado = new System.Windows.Forms.GroupBox();
@@ -132,6 +132,7 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.Btn_Modificar_Inventario.TabIndex = 7;
             this.Btn_Modificar_Inventario.Text = "Modificar Inventario";
             this.Btn_Modificar_Inventario.UseVisualStyleBackColor = true;
+            this.Btn_Modificar_Inventario.Click += new System.EventHandler(this.Btn_Modificar_Inventario_Click);
             // 
             // Btn_Nuevo_Inventario
             // 
@@ -250,14 +251,14 @@ namespace Capa_Vista_Modulo_Comercial.Inventario
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Dgv_Vista_Inventarios_Pasados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle4;
             this.Dgv_Vista_Inventarios_Pasados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_Vista_Inventarios_Pasados.Location = new System.Drawing.Point(0, 0);
             this.Dgv_Vista_Inventarios_Pasados.MultiSelect = false;
