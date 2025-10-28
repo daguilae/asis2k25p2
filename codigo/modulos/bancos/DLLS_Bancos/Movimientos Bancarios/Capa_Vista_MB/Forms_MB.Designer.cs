@@ -68,8 +68,8 @@ namespace Capa_Vista_MB
             this.Cbo_NoCuenta_Recibe = new System.Windows.Forms.ComboBox();
             this.Txt_NumeroDocumento = new System.Windows.Forms.TextBox();
             this.Lbl_Documento = new System.Windows.Forms.Label();
-            this.Txt_Conciliado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.Cbo_Conciliado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Movimiento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -467,13 +467,6 @@ namespace Capa_Vista_MB
             this.Lbl_Documento.TabIndex = 87;
             this.Lbl_Documento.Text = "Documento:";
             // 
-            // Txt_Conciliado
-            // 
-            this.Txt_Conciliado.Location = new System.Drawing.Point(689, 293);
-            this.Txt_Conciliado.Name = "Txt_Conciliado";
-            this.Txt_Conciliado.Size = new System.Drawing.Size(301, 31);
-            this.Txt_Conciliado.TabIndex = 90;
-            // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -487,13 +480,21 @@ namespace Capa_Vista_MB
             this.label2.TabIndex = 89;
             this.label2.Text = "Conciliado:";
             // 
+            // Cbo_Conciliado
+            // 
+            this.Cbo_Conciliado.FormattingEnabled = true;
+            this.Cbo_Conciliado.Location = new System.Drawing.Point(689, 293);
+            this.Cbo_Conciliado.Name = "Cbo_Conciliado";
+            this.Cbo_Conciliado.Size = new System.Drawing.Size(301, 32);
+            this.Cbo_Conciliado.TabIndex = 90;
+            // 
             // Forms_MB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1018, 686);
-            this.Controls.Add(this.Txt_Conciliado);
+            this.Controls.Add(this.Cbo_Conciliado);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Txt_NumeroDocumento);
             this.Controls.Add(this.Lbl_Documento);
@@ -588,7 +589,7 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.ComboBox Cbo_NoCuenta_Recibe;
         private System.Windows.Forms.TextBox Txt_NumeroDocumento;
         private System.Windows.Forms.Label Lbl_Documento;
-        private System.Windows.Forms.TextBox Txt_Conciliado;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox Cbo_Conciliado;
     }
 }
