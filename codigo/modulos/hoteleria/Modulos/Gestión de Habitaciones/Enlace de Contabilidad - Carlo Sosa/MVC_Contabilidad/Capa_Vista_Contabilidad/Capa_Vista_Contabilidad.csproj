@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2865DB45-D10B-41AD-879E-9627008B8967}</ProjectGuid>
+    <ProjectGuid>{60E1015F-38AB-43FE-AC68-40062F69F527}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CapaVista</RootNamespace>
-    <AssemblyName>CapaVista</AssemblyName>
+    <RootNamespace>Capa_Vista_Contabilidad</RootNamespace>
+    <AssemblyName>Capa_Vista_Contabilidad</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,13 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CapaControlador">
-      <HintPath>..\CapaControlador\bin\Debug\CapaControlador.dll</HintPath>
+    <Reference Include="Capa_Controlador_Contabilidad">
+      <HintPath>..\Capa_Controlador_Contabilidad\bin\Debug\Capa_Controlador_Contabilidad.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Messaging" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,17 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmDetalle_Poliza.cs">
+    <Compile Include="Frm_Poliza_Turismo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetalle_Poliza.Designer.cs">
-      <DependentUpon>frmDetalle_Poliza.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmEncabezado_Poliza.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmEncabezado_Poliza.Designer.cs">
-      <DependentUpon>frmEncabezado_Poliza.cs</DependentUpon>
+    <Compile Include="Frm_Poliza_Turismo.Designer.cs">
+      <DependentUpon>Frm_Poliza_Turismo.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -67,11 +60,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmDetalle_Poliza.resx">
-      <DependentUpon>frmDetalle_Poliza.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmEncabezado_Poliza.resx">
-      <DependentUpon>frmEncabezado_Poliza.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Poliza_Turismo.resx">
+      <DependentUpon>Frm_Poliza_Turismo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
