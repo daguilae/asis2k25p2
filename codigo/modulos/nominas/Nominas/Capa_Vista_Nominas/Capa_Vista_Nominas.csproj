@@ -36,6 +36,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +46,126 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrearDepartamento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearDepartamento.Designer.cs">
+      <DependentUpon>CrearDepartamento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CrearPuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearPuesto.Designer.cs">
+      <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Departamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Departamentos.Designer.cs">
+      <DependentUpon>Departamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarDepartamentos.Designer.cs">
+      <DependentUpon>EditarDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarHorasExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarHorasExtra.Designer.cs">
+      <DependentUpon>EditarHorasExtra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPuesto.Designer.cs">
+      <DependentUpon>EditarPuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarVacaciones.Designer.cs">
+      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HorasExtraNominas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HorasExtraNominas.Designer.cs">
+      <DependentUpon>HorasExtraNominas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Puestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Puestos.Designer.cs">
+      <DependentUpon>Puestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SolicitarHorasExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolicitarHorasExtra.Designer.cs">
+      <DependentUpon>SolicitarHorasExtra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SolicitarVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolicitarVacaciones.Designer.cs">
+      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacaciones.Designer.cs">
+      <DependentUpon>Vacaciones.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrearDepartamento.resx">
+      <DependentUpon>CrearDepartamento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearPuesto.resx">
+      <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Departamentos.resx">
+      <DependentUpon>Departamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarDepartamentos.resx">
+      <DependentUpon>EditarDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarHorasExtra.resx">
+      <DependentUpon>EditarHorasExtra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPuesto.resx">
+      <DependentUpon>EditarPuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarVacaciones.resx">
+      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HorasExtraNominas.resx">
+      <DependentUpon>HorasExtraNominas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Puestos.resx">
+      <DependentUpon>Puestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolicitarHorasExtra.resx">
+      <DependentUpon>SolicitarHorasExtra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolicitarVacaciones.resx">
+      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacaciones.resx">
+      <DependentUpon>Vacaciones.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
