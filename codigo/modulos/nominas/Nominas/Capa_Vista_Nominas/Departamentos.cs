@@ -16,5 +16,19 @@ namespace Capa_Vista_Nominas
         {
             InitializeComponent();
         }
+
+        private void Btn_Crear_Click(object sender, EventArgs e)
+        {
+            CrearDepartamentos frmcrear = new CrearDepartamentos();
+            frmcrear.Show();
+            this.Hide();
+        }
+
+        private void Btn_Modificar_Click(object sender, EventArgs e)
+        {
+            EditarDepartamentos frmeditar = new EditarDepartamentos();
+            frmeditar.Show();
+            this.Hide();
+        }
     }
 }

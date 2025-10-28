@@ -16,5 +16,12 @@ namespace Capa_Vista_Nominas
         {
             InitializeComponent();
         }
+
+        private void Btn_Regresar_Click(object sender, EventArgs e)
+        {
+            Vacaciones frm = new Vacaciones();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

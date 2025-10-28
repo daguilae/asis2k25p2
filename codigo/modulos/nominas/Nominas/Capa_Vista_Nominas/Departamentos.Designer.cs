@@ -31,11 +31,11 @@ namespace Capa_Vista_Nominas
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Departamentos));
             this.Gpb_Departamentos = new System.Windows.Forms.GroupBox();
-            this.Dvg_HoraE = new System.Windows.Forms.DataGridView();
             this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Modificar = new System.Windows.Forms.Button();
             this.Btn_Crear = new System.Windows.Forms.Button();
             this.Btn_buscar = new System.Windows.Forms.Button();
+            this.Dvg_HoraE = new System.Windows.Forms.DataGridView();
             this.Gpb_Departamentos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_HoraE)).BeginInit();
             this.SuspendLayout();
@@ -54,15 +54,6 @@ namespace Capa_Vista_Nominas
             this.Gpb_Departamentos.TabIndex = 3;
             this.Gpb_Departamentos.TabStop = false;
             this.Gpb_Departamentos.Text = "Departamentos";
-            // 
-            // Dvg_HoraE
-            // 
-            this.Dvg_HoraE.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.Dvg_HoraE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dvg_HoraE.Location = new System.Drawing.Point(16, 92);
-            this.Dvg_HoraE.Name = "Dvg_HoraE";
-            this.Dvg_HoraE.Size = new System.Drawing.Size(776, 245);
-            this.Dvg_HoraE.TabIndex = 7;
             // 
             // Btn_Eliminar
             // 
@@ -89,6 +80,7 @@ namespace Capa_Vista_Nominas
             this.Btn_Modificar.Text = "Modificar";
             this.Btn_Modificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Modificar.UseVisualStyleBackColor = true;
+            this.Btn_Modificar.Click += new System.EventHandler(this.Btn_Modificar_Click);
             // 
             // Btn_Crear
             // 
@@ -102,6 +94,7 @@ namespace Capa_Vista_Nominas
             this.Btn_Crear.Text = "Crear";
             this.Btn_Crear.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Crear.UseVisualStyleBackColor = true;
+            this.Btn_Crear.Click += new System.EventHandler(this.Btn_Crear_Click);
             // 
             // Btn_buscar
             // 
@@ -115,6 +108,15 @@ namespace Capa_Vista_Nominas
             this.Btn_buscar.Text = "Buscar";
             this.Btn_buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_buscar.UseVisualStyleBackColor = true;
+            // 
+            // Dvg_HoraE
+            // 
+            this.Dvg_HoraE.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.Dvg_HoraE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dvg_HoraE.Location = new System.Drawing.Point(16, 92);
+            this.Dvg_HoraE.Name = "Dvg_HoraE";
+            this.Dvg_HoraE.Size = new System.Drawing.Size(776, 245);
+            this.Dvg_HoraE.TabIndex = 7;
             // 
             // Departamentos
             // 

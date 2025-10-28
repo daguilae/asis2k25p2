@@ -16,5 +16,12 @@ namespace Capa_Vista_Nominas
         {
             InitializeComponent();
         }
+
+        private void Btn_Regresar_Click(object sender, EventArgs e)
+        {
+            Puestos frm = new Puestos();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

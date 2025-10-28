@@ -28,5 +28,17 @@ namespace Prototipo_Nominas
             Anticipos frmAnticipo = new Anticipos();
             frmAnticipo.Show();
         }
+
+        private void Btn_Departamentos_Click(object sender, EventArgs e)
+        {
+            Departamentos frmdepa = new Departamentos();
+            frmdepa.Show();
+        }
+
+        private void Btn_Vacaciones_Click(object sender, EventArgs e)
+        {
+            Vacaciones frmvaca = new Vacaciones();
+            frmvaca.Show();
+        }
     }
 }
