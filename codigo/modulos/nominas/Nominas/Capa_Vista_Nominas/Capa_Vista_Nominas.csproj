@@ -36,6 +36,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +46,69 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Anticipos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Anticipos.Designer.cs">
+      <DependentUpon>Anticipos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarAnticipo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarAnticipo.Designer.cs">
+      <DependentUpon>EditarAnticipo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Solicitar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Solicitar.Designer.cs">
+      <DependentUpon>Solicitar.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Anticipos.resx">
+      <DependentUpon>Anticipos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarAnticipo.resx">
+      <DependentUpon>EditarAnticipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Solicitar.resx">
+      <DependentUpon>Solicitar.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\android-search_icon-icons.com_50501.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add_insert_new_plus_button_icon_142943.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\compose_edit_modify_icon_177770.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_remove_trash_icon_177304.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\savetheapplication_guardar_2958.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_remove_trash_icon_1773041.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel_icon-icons.com_73703.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel_icon-icons.com_737031.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
