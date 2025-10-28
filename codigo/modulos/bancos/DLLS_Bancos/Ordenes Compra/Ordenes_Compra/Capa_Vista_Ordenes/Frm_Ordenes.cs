@@ -22,20 +22,20 @@ namespace Capa_Vista_Ordenes
             InitializeComponent();
         }
 
-        // Método para actualizar el DataGridView
+ 
         public void actualizardatagriew()
         {
             DataTable dt = cn.llenarTbl(sAuto);
             Dgv_Auto_Ordenes.DataSource = dt;
         }
 
-        // Botón para consultar todas las autorizaciones
+  
         private void Btn_Consultar_Autorizaciones_Click(object sender, EventArgs e)
         {
             actualizardatagriew();
         }
 
-        // Botón para agregar una nueva autorización
+   
         private void Btn_Agregar_Autorizacion_Click(object sender, EventArgs e)
         {
             try
@@ -49,10 +49,10 @@ namespace Capa_Vista_Ordenes
 
                 cn.AgregarAutorizacion(idOrden, idBanco, fecha, autorizadoPor, monto, idEstado);
 
-                MessageBox.Show("✅ Autorización agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(" Autorización agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 actualizardatagriew();
 
-                // Limpiar campos
+                
                 Txt_Id_Orden.Clear();
                 Txt_Id_Banco.Clear();
                 Txt_Fecha_Autorizacion.Clear();
@@ -62,7 +62,7 @@ namespace Capa_Vista_Ordenes
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al agregar la autorización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" Error al agregar la autorización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

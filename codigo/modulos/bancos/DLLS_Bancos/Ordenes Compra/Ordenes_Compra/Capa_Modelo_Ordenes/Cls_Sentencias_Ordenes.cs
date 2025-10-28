@@ -8,7 +8,7 @@ namespace Capa_Modelo_Ordenes
     {
         Cls_Conexion_Ordenes con = new Cls_Conexion_Ordenes();
 
-        // Método para obtener los datos de una tabla
+  
         public OdbcDataAdapter llenarTbl(string tabla)
         {
             string sql = "SELECT * FROM " + tabla + ";";
@@ -16,7 +16,7 @@ namespace Capa_Modelo_Ordenes
             return dataTable;
         }
 
-        // ✅ Insertar autorización (sin incluir el campo AUTO_INCREMENT)
+  
         public void InsertarAutorizacion(int idOrden, int idBanco, DateTime fecha, string autorizadoPor, decimal monto, int idEstado)
         {
             try
@@ -42,7 +42,7 @@ namespace Capa_Modelo_Ordenes
             }
             catch (OdbcException ex)
             {
-                Console.WriteLine("❌ Error al insertar la autorización: " + ex.Message);
+                Console.WriteLine(" Error al insertar la autorización: " + ex.Message);
                 throw;
             }
         }

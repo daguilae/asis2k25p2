@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Capa_Controlador_Bancos;
 using Capa_Vista;
+using Capa_Vista_Ordenes;
 //;
 
 namespace Capa_Vista_Bancos
@@ -301,6 +302,12 @@ namespace Capa_Vista_Bancos
         private void generaciónDePólizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_Poliza frm = new Frm_Poliza();
+            frm.ShowDialog();
+        }
+
+        private void autorizaciónOrdenesDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Ordenes frm = new Frm_Ordenes();
             frm.ShowDialog();
         }
         //============================ KEVIN NATARENO 0901-21-635: LLAMADA A VISTA DE POLIZA, 26/10/2025===============================
