@@ -66,6 +66,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_BuscarConciliacion.resx">
+      <DependentUpon>Frm_BuscarConciliacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_ConciliacionBancaria.resx">
       <DependentUpon>Frm_ConciliacionBancaria.cs</DependentUpon>
     </EmbeddedResource>
