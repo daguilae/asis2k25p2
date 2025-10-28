@@ -34,12 +34,9 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Id_Autorizacion = new System.Windows.Forms.Label();
             this.Txt_Id_Autorizacion = new System.Windows.Forms.TextBox();
             this.Lbl_Orden_Compra = new System.Windows.Forms.Label();
-            this.Cbo_Orden_Compra = new System.Windows.Forms.ComboBox();
-            this.Cbo_Id_Banco = new System.Windows.Forms.ComboBox();
             this.Lbl_Id_Banco = new System.Windows.Forms.Label();
             this.Txt_Fecha_Autorizacion = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha_Autorizacion = new System.Windows.Forms.Label();
-            this.Cbo_Estado_Autorizacion = new System.Windows.Forms.ComboBox();
             this.Lbl_Estado_Autorizacion = new System.Windows.Forms.Label();
             this.Lbl_Monto_Autorizado = new System.Windows.Forms.Label();
             this.Txt_Autorizado_Por = new System.Windows.Forms.TextBox();
@@ -54,6 +51,9 @@ namespace Capa_Vista_Ordenes
             this.Btn_Ayuda_Autorizacion = new System.Windows.Forms.Button();
             this.Btn_Imprimir_Autorizacion = new System.Windows.Forms.Button();
             this.Btn_Consultar_Autorizaciones = new System.Windows.Forms.Button();
+            this.Txt_Id_Orden = new System.Windows.Forms.TextBox();
+            this.Txt_Id_Banco = new System.Windows.Forms.TextBox();
+            this.Txt_Estado_Autorizacion = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,24 +96,6 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Orden_Compra.TabIndex = 3;
             this.Lbl_Orden_Compra.Text = "ID Orden de Compra:";
             // 
-            // Cbo_Orden_Compra
-            // 
-            this.Cbo_Orden_Compra.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Orden_Compra.FormattingEnabled = true;
-            this.Cbo_Orden_Compra.Location = new System.Drawing.Point(241, 138);
-            this.Cbo_Orden_Compra.Name = "Cbo_Orden_Compra";
-            this.Cbo_Orden_Compra.Size = new System.Drawing.Size(218, 28);
-            this.Cbo_Orden_Compra.TabIndex = 4;
-            // 
-            // Cbo_Id_Banco
-            // 
-            this.Cbo_Id_Banco.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Id_Banco.FormattingEnabled = true;
-            this.Cbo_Id_Banco.Location = new System.Drawing.Point(241, 192);
-            this.Cbo_Id_Banco.Name = "Cbo_Id_Banco";
-            this.Cbo_Id_Banco.Size = new System.Drawing.Size(218, 28);
-            this.Cbo_Id_Banco.TabIndex = 6;
-            // 
             // Lbl_Id_Banco
             // 
             this.Lbl_Id_Banco.AutoSize = true;
@@ -142,15 +124,6 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Fecha_Autorizacion.Size = new System.Drawing.Size(213, 21);
             this.Lbl_Fecha_Autorizacion.TabIndex = 7;
             this.Lbl_Fecha_Autorizacion.Text = "Fecha de Autorización:";
-            // 
-            // Cbo_Estado_Autorizacion
-            // 
-            this.Cbo_Estado_Autorizacion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Estado_Autorizacion.FormattingEnabled = true;
-            this.Cbo_Estado_Autorizacion.Location = new System.Drawing.Point(718, 192);
-            this.Cbo_Estado_Autorizacion.Name = "Cbo_Estado_Autorizacion";
-            this.Cbo_Estado_Autorizacion.Size = new System.Drawing.Size(218, 28);
-            this.Cbo_Estado_Autorizacion.TabIndex = 14;
             // 
             // Lbl_Estado_Autorizacion
             // 
@@ -218,6 +191,7 @@ namespace Capa_Vista_Ordenes
             this.Btn_Agregar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Agregar_Autorizacion.TabIndex = 17;
             this.Btn_Agregar_Autorizacion.UseVisualStyleBackColor = true;
+            this.Btn_Agregar_Autorizacion.Click += new System.EventHandler(this.Btn_Agregar_Autorizacion_Click);
             // 
             // Lbl_Detalle_Autorizaciones
             // 
@@ -285,11 +259,41 @@ namespace Capa_Vista_Ordenes
             this.Btn_Consultar_Autorizaciones.UseVisualStyleBackColor = true;
             this.Btn_Consultar_Autorizaciones.Click += new System.EventHandler(this.Btn_Consultar_Autorizaciones_Click);
             // 
+            // Txt_Id_Orden
+            // 
+            this.Txt_Id_Orden.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_Id_Orden.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Txt_Id_Orden.Location = new System.Drawing.Point(241, 140);
+            this.Txt_Id_Orden.Name = "Txt_Id_Orden";
+            this.Txt_Id_Orden.Size = new System.Drawing.Size(218, 29);
+            this.Txt_Id_Orden.TabIndex = 25;
+            // 
+            // Txt_Id_Banco
+            // 
+            this.Txt_Id_Banco.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_Id_Banco.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Txt_Id_Banco.Location = new System.Drawing.Point(241, 195);
+            this.Txt_Id_Banco.Name = "Txt_Id_Banco";
+            this.Txt_Id_Banco.Size = new System.Drawing.Size(218, 29);
+            this.Txt_Id_Banco.TabIndex = 26;
+            // 
+            // Txt_Estado_Autorizacion
+            // 
+            this.Txt_Estado_Autorizacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_Estado_Autorizacion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Txt_Estado_Autorizacion.Location = new System.Drawing.Point(718, 195);
+            this.Txt_Estado_Autorizacion.Name = "Txt_Estado_Autorizacion";
+            this.Txt_Estado_Autorizacion.Size = new System.Drawing.Size(218, 29);
+            this.Txt_Estado_Autorizacion.TabIndex = 27;
+            // 
             // Frm_Ordenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 548);
+            this.Controls.Add(this.Txt_Estado_Autorizacion);
+            this.Controls.Add(this.Txt_Id_Banco);
+            this.Controls.Add(this.Txt_Id_Orden);
             this.Controls.Add(this.Btn_Consultar_Autorizaciones);
             this.Controls.Add(this.Btn_Ayuda_Autorizacion);
             this.Controls.Add(this.Btn_Imprimir_Autorizacion);
@@ -300,16 +304,13 @@ namespace Capa_Vista_Ordenes
             this.Controls.Add(this.Btn_Agregar_Autorizacion);
             this.Controls.Add(this.Dgv_Auto_Ordenes);
             this.Controls.Add(this.Txt_Monto_Autorizado);
-            this.Controls.Add(this.Cbo_Estado_Autorizacion);
             this.Controls.Add(this.Lbl_Estado_Autorizacion);
             this.Controls.Add(this.Lbl_Monto_Autorizado);
             this.Controls.Add(this.Txt_Autorizado_Por);
             this.Controls.Add(this.Lbl_Autorizado_Por);
             this.Controls.Add(this.Txt_Fecha_Autorizacion);
             this.Controls.Add(this.Lbl_Fecha_Autorizacion);
-            this.Controls.Add(this.Cbo_Id_Banco);
             this.Controls.Add(this.Lbl_Id_Banco);
-            this.Controls.Add(this.Cbo_Orden_Compra);
             this.Controls.Add(this.Lbl_Orden_Compra);
             this.Controls.Add(this.Txt_Id_Autorizacion);
             this.Controls.Add(this.Lbl_Id_Autorizacion);
@@ -329,12 +330,9 @@ namespace Capa_Vista_Ordenes
         private System.Windows.Forms.Label Lbl_Id_Autorizacion;
         private System.Windows.Forms.TextBox Txt_Id_Autorizacion;
         private System.Windows.Forms.Label Lbl_Orden_Compra;
-        private System.Windows.Forms.ComboBox Cbo_Orden_Compra;
-        private System.Windows.Forms.ComboBox Cbo_Id_Banco;
         private System.Windows.Forms.Label Lbl_Id_Banco;
         private System.Windows.Forms.TextBox Txt_Fecha_Autorizacion;
         private System.Windows.Forms.Label Lbl_Fecha_Autorizacion;
-        private System.Windows.Forms.ComboBox Cbo_Estado_Autorizacion;
         private System.Windows.Forms.Label Lbl_Estado_Autorizacion;
         private System.Windows.Forms.Label Lbl_Monto_Autorizado;
         private System.Windows.Forms.TextBox Txt_Autorizado_Por;
@@ -349,5 +347,8 @@ namespace Capa_Vista_Ordenes
         private System.Windows.Forms.Button Btn_Ayuda_Autorizacion;
         private System.Windows.Forms.Button Btn_Imprimir_Autorizacion;
         private System.Windows.Forms.Button Btn_Consultar_Autorizaciones;
+        private System.Windows.Forms.TextBox Txt_Id_Orden;
+        private System.Windows.Forms.TextBox Txt_Id_Banco;
+        private System.Windows.Forms.TextBox Txt_Estado_Autorizacion;
     }
 }

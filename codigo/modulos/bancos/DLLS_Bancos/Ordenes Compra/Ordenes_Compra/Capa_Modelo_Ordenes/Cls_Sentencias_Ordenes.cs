@@ -8,13 +8,43 @@ namespace Capa_Modelo_Ordenes
     {
         Cls_Conexion_Ordenes con = new Cls_Conexion_Ordenes();
 
-        // Método para obtener todas las órdenes autorizadas con información completa
-        public OdbcDataAdapter llenarTbl(string tabla)// metodo  que obtinene el contenio de una tabla
+        // Método para obtener los datos de una tabla
+        public OdbcDataAdapter llenarTbl(string tabla)
         {
-            //string para almacenar los campos de OBTENERCAMPOS y utilizar el 1ro
-            string sql = "SELECT * FROM " + tabla + "  ;";
+            string sql = "SELECT * FROM " + tabla + ";";
             OdbcDataAdapter dataTable = new OdbcDataAdapter(sql, con.conexion());
             return dataTable;
+        }
+
+        // ✅ Insertar autorización (sin incluir el campo AUTO_INCREMENT)
+        public void InsertarAutorizacion(int idOrden, int idBanco, DateTime fecha, string autorizadoPor, decimal monto, int idEstado)
+        {
+            try
+            {
+                using (OdbcConnection conn = con.conexion())
+                {
+                    string sql = @"INSERT INTO Tbl_Orden_Compra_Autorizada
+                                   (Fk_Id_Orden_Compra, Fk_Id_Banco, Cmp_Fecha_Autorizacion, Cmp_Autorizado_Por, Cmp_Monto_Autorizado, Fk_Id_Estado_Autorizacion)
+                                   VALUES (?, ?, ?, ?, ?, ?)";
+
+                    using (OdbcCommand cmd = new OdbcCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("Fk_Id_Orden_Compra", OdbcType.Int).Value = idOrden;
+                        cmd.Parameters.Add("Fk_Id_Banco", OdbcType.Int).Value = idBanco;
+                        cmd.Parameters.Add("Cmp_Fecha_Autorizacion", OdbcType.Date).Value = fecha;
+                        cmd.Parameters.Add("Cmp_Autorizado_Por", OdbcType.VarChar).Value = autorizadoPor;
+                        cmd.Parameters.Add("Cmp_Monto_Autorizado", OdbcType.Decimal).Value = monto;
+                        cmd.Parameters.Add("Fk_Id_Estado_Autorizacion", OdbcType.Int).Value = idEstado;
+
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (OdbcException ex)
+            {
+                Console.WriteLine("❌ Error al insertar la autorización: " + ex.Message);
+                throw;
+            }
         }
     }
 }
