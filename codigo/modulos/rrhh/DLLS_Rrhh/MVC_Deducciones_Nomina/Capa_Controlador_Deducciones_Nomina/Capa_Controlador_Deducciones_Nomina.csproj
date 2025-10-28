@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>db610b6d-49bc-4038-9eee-c692b657cef6</ProjectGuid>
+    <ProjectGuid>61f850f0-0970-4998-ab63-df999848ce9e</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Controlador_rrhh</RootNamespace>
-    <AssemblyName>Capa_Controlador_rrhh</AssemblyName>
+    <RootNamespace>Capa_Controlador_Deducciones_Nomina</RootNamespace>
+    <AssemblyName>Capa_Controlador_Deducciones_Nomina</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

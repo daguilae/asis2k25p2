@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Capa_Modelo_rrhh
+namespace Capa_Modelo_Deducciones_Nomina
 {
     public class Class1
     {
