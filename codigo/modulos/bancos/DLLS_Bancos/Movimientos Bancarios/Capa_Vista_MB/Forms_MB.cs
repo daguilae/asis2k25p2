@@ -17,7 +17,6 @@ namespace Capa_Vista_MB
     {
         Conexion cn = new Conexion();
         CRUD crud = new CRUD();
-        Controlador controlador = new Controlador();
 
         // Agrega esta clase en tu archivo Forms_MB.cs
         public class OpcionCombo
@@ -30,7 +29,6 @@ namespace Capa_Vista_MB
         {
             InitializeComponent();
             this.Load += Forms_MB_Load;
-
             // Btn_Guardar.Click += Btn_Guardar_Click; 
             Cbo_Signo.Items.Clear();
             Cbo_Signo.Items.Add("+");
@@ -43,8 +41,17 @@ namespace Capa_Vista_MB
             Cbo_NoCuenta_Envia.SelectionChangeCommitted += Cbo_NoCuenta_Envia_SelectionChangeCommitted;
             Cbo_Operacion.SelectionChangeCommitted += Cbo_Operacion_SelectionChangeCommitted;
 
-            Cbo_Signo.Enabled = false;
             Cbo_Signo.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            Lbl_division.AutoSize = false;
+            Lbl_division.Height = 2;
+            Lbl_division.BorderStyle = BorderStyle.Fixed3D;
+            Lbl_division.BackColor = Color.Green;
+
+            Lbl_division2.AutoSize = false;
+            Lbl_division2.Height = 2;
+            Lbl_division2.BorderStyle = BorderStyle.Fixed3D;
+            Lbl_division2.BackColor = Color.Green;
         }
 
         private void Forms_MB_Load(object sender, EventArgs e)
@@ -66,7 +73,6 @@ namespace Capa_Vista_MB
             Txt_NombreCuenta_Recibe.Enabled = false;
         }
 
-
         private void CargarDatosEnEstructuraCaptura()
         {
             try
@@ -76,10 +82,8 @@ namespace Capa_Vista_MB
                 {
                     PrepararGridDetalleParaCaptura();
                 }
-
                 // Obtener datos del CRUD
                 DataTable dt = crud.ObtenerDetallesContablesParaCaptura();
-
                 if (dt.Rows.Count == 0)
                 {
                     // Mostrar grid vacío pero con estructura lista para captura
@@ -87,25 +91,34 @@ namespace Capa_Vista_MB
                     MessageBox.Show("No hay datos existentes. El grid está listo para capturar nuevos movimientos.", "Información");
                     return;
                 }
-
-                // Método simplificado - asignar directamente pero mantener estructura
+                // VERIFICAR QUE LAS COLUMNAS EXISTEN ANTES DE ACCEDER
+                DataTable dtSafe = new DataTable();
+                foreach (DataColumn col in dt.Columns)
+                {
+                    dtSafe.Columns.Add(col.ColumnName, col.DataType);
+                }
+                // asignar directamente pero mantener estructura
                 Dgv_Detalle_Movimiento.AutoGenerateColumns = false;
-
                 // Limpiar filas existentes
                 Dgv_Detalle_Movimiento.Rows.Clear();
-
-                // Agregar filas manualmente
                 foreach (DataRow row in dt.Rows)
                 {
                     int index = Dgv_Detalle_Movimiento.Rows.Add();
-                    Dgv_Detalle_Movimiento.Rows[index].Cells["Fk_Id_tipo_pago"].Value = row["Fk_Id_tipo_pago"];
-                    Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Num_Documento"].Value = row["Cmp_Num_Documento"];
-                    Dgv_Detalle_Movimiento.Rows[index].Cells["Debe"].Value = row["Debe"];
-                    Dgv_Detalle_Movimiento.Rows[index].Cells["Haber"].Value = row["Haber"];
-                    Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Concepto"].Value = row["Cmp_Concepto"];
-                }
+                    if (dt.Columns.Contains("Fk_Id_tipo_pago"))
+                        Dgv_Detalle_Movimiento.Rows[index].Cells["Fk_Id_tipo_pago"].Value = row["Fk_Id_tipo_pago"];
 
-                MessageBox.Show($"Se cargaron {dt.Rows.Count} registros.", "Éxito");
+                    if (dt.Columns.Contains("Cmp_Num_Documento"))
+                        Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Num_Documento"].Value = row["Cmp_Num_Documento"];
+
+                    if (dt.Columns.Contains("Debe"))
+                        Dgv_Detalle_Movimiento.Rows[index].Cells["Debe"].Value = row["Debe"];
+
+                    if (dt.Columns.Contains("Haber"))
+                        Dgv_Detalle_Movimiento.Rows[index].Cells["Haber"].Value = row["Haber"];
+
+                    if (dt.Columns.Contains("Cmp_Concepto"))
+                        Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Concepto"].Value = row["Cmp_Concepto"];
+                }
             }
             catch (Exception ex)
             {
@@ -113,44 +126,41 @@ namespace Capa_Vista_MB
             }
         }
 
-
         private void PrepararGridDetalleParaCaptura()
         {
             try
             {
-                MessageBox.Show("Iniciando PrepararGridDetalleParaCaptura", "Debug"); // ← Agrega esto
-
                 var g = Dgv_Detalle_Movimiento;
                 g.AutoGenerateColumns = false;
                 g.Columns.Clear();
-
                 // Columna para Tipo de Pago
                 g.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "Fk_Id_tipo_pago",
                     HeaderText = "Tipo de Pago (ID)",
-                    Width = 120
+                    Width = 120,
+                    ReadOnly = true 
                 });
-
                 // Columna para Número de Documento
                 g.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "Cmp_Num_Documento",
                     HeaderText = "Número Documento",
-                    Width = 150
+                    Width = 150,
+                    ReadOnly = true 
                 });
-
                 // Columna para DEBE
                 g.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "Debe",
                     HeaderText = "Debe",
                     Width = 100,
+                    ReadOnly = true,
                     DefaultCellStyle = new DataGridViewCellStyle
                     {
                         Format = "N2",
                         Alignment = DataGridViewContentAlignment.MiddleRight,
-                        BackColor = Color.LightCoral
+                        BackColor = Color.LightCoral //rojito
                     }
                 });
 
@@ -160,29 +170,26 @@ namespace Capa_Vista_MB
                     Name = "Haber",
                     HeaderText = "Haber",
                     Width = 100,
+                    ReadOnly = true,
                     DefaultCellStyle = new DataGridViewCellStyle
                     {
                         Format = "N2",
                         Alignment = DataGridViewContentAlignment.MiddleRight,
-                        BackColor = Color.LightGreen
+                        BackColor = Color.LightGreen //verde
                     }
                 });
-
                 // Columna para Descripción
                 g.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     Name = "Cmp_Concepto",
                     HeaderText = "Concepto",
-                    Width = 200
+                    Width = 200,
+                    ReadOnly = true,
                 });
-
                 g.AllowUserToAddRows = true;
                 g.AllowUserToDeleteRows = true;
-
-                // Evento para validar que solo se ingrese en Debe o Haber, no en ambos
+                // Evento para validar que solo se ingrese en Debe o Haber
                 g.CellEndEdit += Dgv_Detalle_Movimiento_CellEndEdit;
-
-                MessageBox.Show($"Columnas creadas: {g.Columns.Count}", "Debug"); // ← Y esto
             }
             catch (Exception ex)
             {
@@ -214,7 +221,6 @@ namespace Capa_Vista_MB
                 }
             }
         }
-
         private void ConfigurarComboConciliado()
         {
             if (Cbo_Conciliado == null)
@@ -230,76 +236,18 @@ namespace Capa_Vista_MB
             Cbo_Conciliado.Items.Clear();
             Cbo_Conciliado.Items.Add(new { Text = "No", Value = 0 });
             Cbo_Conciliado.Items.Add(new { Text = "Sí", Value = 1 });
-
             Cbo_Conciliado.DisplayMember = "Text";
             Cbo_Conciliado.ValueMember = "Value";
             Cbo_Conciliado.SelectedIndex = -1;
         }
 
         // ========== MÉTODOS DE CARGA DE DATOS ==========
-        private void CargarMovimientos()
-        {
-            OdbcConnection conn = null;
-            try
-            {
-                Console.WriteLine("=== INICIANDO CARGA DE MOVIMIENTOS ===");
-
-                // USA tu método ConexionBD() que devuelve la conexión YA ABIERTA
-                conn = cn.ConexionBD();
-
-                string query = "SELECT * FROM Tbl_Movimientos_Bancarios";
-
-                using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                {
-                    OdbcDataAdapter da = new OdbcDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-
-                    Console.WriteLine($"Registros encontrados: {dt.Rows.Count}");
-
-                    // VERIFICACIÓN
-                    if (dt.Rows.Count > 0)
-                    {
-                        string info = $"Se cargaron {dt.Rows.Count} registros.\n";
-                        info += $"Columnas: {dt.Columns.Count}\n";
-                        foreach (DataColumn col in dt.Columns)
-                        {
-                            info += $"{col.ColumnName}, ";
-                        }
-                        MessageBox.Show(info, "DATOS CARGADOS");
-
-                        // Asignar al DataGridView
-                        Dgv_Detalle_Movimiento.DataSource = dt;
-                        Dgv_Detalle_Movimiento.Refresh();
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontraron registros en la tabla.", "INFORMACIÓN");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error de conexión: {ex.Message}", "ERROR");
-            }
-            finally
-            {
-                // Cerrar la conexión si está abierta
-                if (conn != null && conn.State == System.Data.ConnectionState.Open)
-                {
-                    cn.Desconexion(conn);
-                }
-            }
-        }
-
-
         private void CargarCuentasRecibe()
         {
             CRUD crud = new CRUD();
             try
             {
                 DataTable dt = crud.ObtenerCuentas();
-
                 if (dt.Rows.Count > 0)
                 {
                     Cbo_NoCuenta_Recibe.DataSource = dt;
@@ -325,14 +273,12 @@ namespace Capa_Vista_MB
             try
             {
                 DataTable dt = crud.ObtenerCuentas();
-
                 if (dt.Rows.Count > 0)
                 {
                     Cbo_NoCuenta_Envia.DataSource = dt;
                     Cbo_NoCuenta_Envia.DisplayMember = "Cmp_Numero_Cuenta"; // lo que se muestra
                     Cbo_NoCuenta_Envia.ValueMember = "Pk_Id_Cuenta"; // valor interno
                     Cbo_NoCuenta_Envia.SelectedIndex = -1; // empieza vacío
-
                 }
                 else
                 {
@@ -356,6 +302,7 @@ namespace Capa_Vista_MB
 
             }
         }
+
         private void Cbo_NoCuenta_Envia_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (Cbo_NoCuenta_Envia.SelectedValue != null)
@@ -365,7 +312,6 @@ namespace Capa_Vista_MB
                 Txt_NombreCuenta_Envia.Text = nombreCuenta;
             }
         }
-
         private void CargarEstadosMovimiento()
         {
             try
@@ -400,17 +346,35 @@ namespace Capa_Vista_MB
             try
             {
                 var dt = crud.ObtenerOperaciones();
+                Cbo_Operacion.DataSource = null;
+                Cbo_Operacion.Items.Clear();
+
+                if (dt == null || dt.Rows.Count == 0)
+                {
+                    MessageBox.Show("No hay operaciones disponibles en la base de datos.");
+                    Cbo_Operacion.Enabled = false;
+                    return;
+                }
+
                 Cbo_Operacion.DataSource = dt;
                 Cbo_Operacion.DisplayMember = "Cmp_nombre";
                 Cbo_Operacion.ValueMember = "Pk_Id_operacion";
-                Cbo_Operacion.SelectedIndex = -1; // empieza vacío
+                Cbo_Operacion.SelectedIndex = -1;
+
+                Console.WriteLine($"Operaciones cargadas: {dt.Rows.Count}");
+                foreach (DataRow row in dt.Rows)
+                {
+                    Console.WriteLine($"ID: {row["Pk_Id_operacion"]}, Nombre: {row["Cmp_nombre"]}");
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar operaciones: " + ex.Message);
+                Cbo_Operacion.DataSource = null;
+                Cbo_Operacion.Items.Clear();
+                Cbo_Operacion.Enabled = false;
             }
         }
-
         private void Cbo_Operacion_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (Cbo_Operacion.SelectedValue == null) return;
@@ -517,7 +481,7 @@ namespace Capa_Vista_MB
                     if (int.TryParse(row.Cells["Fk_Id_tipo_pago"].Value?.ToString(), out int tp))
                         tipoPago = tp;
                     string doc = row.Cells["Cmp_Num_Documento"].Value?.ToString();
-                    string desc = row.Cells["Cmp_Descripcion"].Value?.ToString();
+                    string desc = row.Cells["Cmp_Concepto"].Value?.ToString();
                     // Crear detalle con la información de Debe/Haber
                     detalles.Add(new Sentencias.MovimientoDetalle
                     {
@@ -546,6 +510,8 @@ namespace Capa_Vista_MB
 
                 // ========== LIMPIAR FORMULARIO ==========
                 LimpiarFormulario();
+                // ========== RECARGAR DATOS EN EL DATAGRIDVIEW ==========
+                CargarDatosEnEstructuraCaptura(); 
 
             }
             catch (Exception ex)
@@ -559,7 +525,7 @@ namespace Capa_Vista_MB
             }
         }
 
-        private void LimpiarFormulario()
+    private void LimpiarFormulario()
         {
             try
             {
@@ -569,18 +535,15 @@ namespace Capa_Vista_MB
                 Txt_Concepto.Clear();
                 Txt_NombreCuenta_Envia.Clear();
                 Txt_NombreCuenta_Recibe.Clear();
-
                 Txt_Fecha.Clear();
                 Txt_Hora.Clear();
                 Txt_Moneda.Clear();
-
                 // Limpiar combos
                 Cbo_NoCuenta_Envia.SelectedIndex = -1;
                 Cbo_NoCuenta_Recibe.SelectedIndex = -1;
                 Cbo_Operacion.SelectedIndex = -1;
                 Cbo_Signo.SelectedIndex = -1;
-
-                // Limpiar DataGridView de forma segura
+                // Limpiar DataGridView
                 if (Dgv_Detalle_Movimiento.Rows.Count > 0)
                 {
                     // Remover filas existentes excepto la nueva
@@ -591,9 +554,6 @@ namespace Capa_Vista_MB
                             Dgv_Detalle_Movimiento.Rows.RemoveAt(i);
                         }
                     }
-
-                    // Método alternativo: Limpiar datos sin remover estructura
-                    // Dgv_Detalle_Movimiento.Rows.Clear();
                 }
             }
             catch (Exception ex)
