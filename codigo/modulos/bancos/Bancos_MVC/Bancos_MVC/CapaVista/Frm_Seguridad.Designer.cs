@@ -205,6 +205,7 @@
             this.autorizaciónOrdenesDeComprasToolStripMenuItem.Name = "autorizaciónOrdenesDeComprasToolStripMenuItem";
             this.autorizaciónOrdenesDeComprasToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
             this.autorizaciónOrdenesDeComprasToolStripMenuItem.Text = "Autorización Ordenes de Compras";
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Click += new System.EventHandler(this.autorizaciónOrdenesDeComprasToolStripMenuItem_Click);
             // 
             // generaciónChequesDePlanillaToolStripMenuItem
             // 
