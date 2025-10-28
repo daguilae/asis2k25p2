@@ -84,6 +84,7 @@ namespace Capa_Vista_Nominas
             this.Btn_Modificar.Text = "Modificar";
             this.Btn_Modificar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Modificar.UseVisualStyleBackColor = true;
+            this.Btn_Modificar.Click += new System.EventHandler(this.Btn_Modificar_Click);
             // 
             // Btn_Soli
             // 
@@ -97,6 +98,7 @@ namespace Capa_Vista_Nominas
             this.Btn_Soli.Text = "Solicitar";
             this.Btn_Soli.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Soli.UseVisualStyleBackColor = true;
+            this.Btn_Soli.Click += new System.EventHandler(this.Btn_Soli_Click);
             // 
             // Btn_buscar
             // 

@@ -30,14 +30,14 @@ namespace Prototipo_Nominas
         private void InitializeComponent()
         {
             this.Pnl_Menu = new System.Windows.Forms.Panel();
-            this.Btn_Departamentos = new System.Windows.Forms.Button();
-            this.Btn_Puesto = new System.Windows.Forms.Button();
-            this.Btn_asistencia = new System.Windows.Forms.Button();
-            this.Btn_Vacaciones = new System.Windows.Forms.Button();
-            this.Btn_Horas_Extra = new System.Windows.Forms.Button();
-            this.Btn_Anticipos = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.Btn_Ayuda = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.Btn_Anticipos = new System.Windows.Forms.Button();
+            this.Btn_Horas_Extra = new System.Windows.Forms.Button();
+            this.Btn_Vacaciones = new System.Windows.Forms.Button();
+            this.Btn_asistencia = new System.Windows.Forms.Button();
+            this.Btn_Puesto = new System.Windows.Forms.Button();
+            this.Btn_Departamentos = new System.Windows.Forms.Button();
             this.Lbl_nomina = new System.Windows.Forms.Label();
             this.Pnl_Menu.SuspendLayout();
             this.SuspendLayout();
@@ -57,55 +57,25 @@ namespace Prototipo_Nominas
             this.Pnl_Menu.Size = new System.Drawing.Size(200, 471);
             this.Pnl_Menu.TabIndex = 0;
             // 
-            // Btn_Departamentos
+            // Btn_Ayuda
             // 
-            this.Btn_Departamentos.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Departamentos.Location = new System.Drawing.Point(14, 26);
-            this.Btn_Departamentos.Name = "Btn_Departamentos";
-            this.Btn_Departamentos.Size = new System.Drawing.Size(174, 27);
-            this.Btn_Departamentos.TabIndex = 1;
-            this.Btn_Departamentos.Text = "Departamento";
-            this.Btn_Departamentos.UseVisualStyleBackColor = true;
+            this.Btn_Ayuda.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(14, 408);
+            this.Btn_Ayuda.Name = "Btn_Ayuda";
+            this.Btn_Ayuda.Size = new System.Drawing.Size(174, 27);
+            this.Btn_Ayuda.TabIndex = 8;
+            this.Btn_Ayuda.Text = "Ayuda";
+            this.Btn_Ayuda.UseVisualStyleBackColor = true;
             // 
-            // Btn_Puesto
+            // button6
             // 
-            this.Btn_Puesto.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Puesto.Location = new System.Drawing.Point(14, 83);
-            this.Btn_Puesto.Name = "Btn_Puesto";
-            this.Btn_Puesto.Size = new System.Drawing.Size(174, 27);
-            this.Btn_Puesto.TabIndex = 2;
-            this.Btn_Puesto.Text = "Puestos";
-            this.Btn_Puesto.UseVisualStyleBackColor = true;
-            // 
-            // Btn_asistencia
-            // 
-            this.Btn_asistencia.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_asistencia.Location = new System.Drawing.Point(14, 138);
-            this.Btn_asistencia.Name = "Btn_asistencia";
-            this.Btn_asistencia.Size = new System.Drawing.Size(174, 27);
-            this.Btn_asistencia.TabIndex = 3;
-            this.Btn_asistencia.Text = "Asistencia";
-            this.Btn_asistencia.UseVisualStyleBackColor = true;
-            // 
-            // Btn_Vacaciones
-            // 
-            this.Btn_Vacaciones.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Vacaciones.Location = new System.Drawing.Point(14, 195);
-            this.Btn_Vacaciones.Name = "Btn_Vacaciones";
-            this.Btn_Vacaciones.Size = new System.Drawing.Size(174, 27);
-            this.Btn_Vacaciones.TabIndex = 4;
-            this.Btn_Vacaciones.Text = "Vacaciones";
-            this.Btn_Vacaciones.UseVisualStyleBackColor = true;
-            // 
-            // Btn_Horas_Extra
-            // 
-            this.Btn_Horas_Extra.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Horas_Extra.Location = new System.Drawing.Point(14, 248);
-            this.Btn_Horas_Extra.Name = "Btn_Horas_Extra";
-            this.Btn_Horas_Extra.Size = new System.Drawing.Size(174, 27);
-            this.Btn_Horas_Extra.TabIndex = 5;
-            this.Btn_Horas_Extra.Text = "Horas Extra";
-            this.Btn_Horas_Extra.UseVisualStyleBackColor = true;
+            this.button6.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.button6.Location = new System.Drawing.Point(15, 354);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(174, 27);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "Nomina";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // Btn_Anticipos
             // 
@@ -118,25 +88,57 @@ namespace Prototipo_Nominas
             this.Btn_Anticipos.UseVisualStyleBackColor = true;
             this.Btn_Anticipos.Click += new System.EventHandler(this.Btn_Anticipos_Click);
             // 
-            // button6
+            // Btn_Horas_Extra
             // 
-            this.button6.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.button6.Location = new System.Drawing.Point(15, 354);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(174, 27);
-            this.button6.TabIndex = 7;
-            this.button6.Text = "Nomina";
-            this.button6.UseVisualStyleBackColor = true;
+            this.Btn_Horas_Extra.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Horas_Extra.Location = new System.Drawing.Point(14, 248);
+            this.Btn_Horas_Extra.Name = "Btn_Horas_Extra";
+            this.Btn_Horas_Extra.Size = new System.Drawing.Size(174, 27);
+            this.Btn_Horas_Extra.TabIndex = 5;
+            this.Btn_Horas_Extra.Text = "Horas Extra";
+            this.Btn_Horas_Extra.UseVisualStyleBackColor = true;
             // 
-            // Btn_Ayuda
+            // Btn_Vacaciones
             // 
-            this.Btn_Ayuda.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Ayuda.Location = new System.Drawing.Point(14, 408);
-            this.Btn_Ayuda.Name = "Btn_Ayuda";
-            this.Btn_Ayuda.Size = new System.Drawing.Size(174, 27);
-            this.Btn_Ayuda.TabIndex = 8;
-            this.Btn_Ayuda.Text = "Ayuda";
-            this.Btn_Ayuda.UseVisualStyleBackColor = true;
+            this.Btn_Vacaciones.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Vacaciones.Location = new System.Drawing.Point(14, 195);
+            this.Btn_Vacaciones.Name = "Btn_Vacaciones";
+            this.Btn_Vacaciones.Size = new System.Drawing.Size(174, 27);
+            this.Btn_Vacaciones.TabIndex = 4;
+            this.Btn_Vacaciones.Text = "Vacaciones";
+            this.Btn_Vacaciones.UseVisualStyleBackColor = true;
+            this.Btn_Vacaciones.Click += new System.EventHandler(this.Btn_Vacaciones_Click);
+            // 
+            // Btn_asistencia
+            // 
+            this.Btn_asistencia.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_asistencia.Location = new System.Drawing.Point(14, 138);
+            this.Btn_asistencia.Name = "Btn_asistencia";
+            this.Btn_asistencia.Size = new System.Drawing.Size(174, 27);
+            this.Btn_asistencia.TabIndex = 3;
+            this.Btn_asistencia.Text = "Asistencia";
+            this.Btn_asistencia.UseVisualStyleBackColor = true;
+            // 
+            // Btn_Puesto
+            // 
+            this.Btn_Puesto.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Puesto.Location = new System.Drawing.Point(14, 83);
+            this.Btn_Puesto.Name = "Btn_Puesto";
+            this.Btn_Puesto.Size = new System.Drawing.Size(174, 27);
+            this.Btn_Puesto.TabIndex = 2;
+            this.Btn_Puesto.Text = "Puestos";
+            this.Btn_Puesto.UseVisualStyleBackColor = true;
+            // 
+            // Btn_Departamentos
+            // 
+            this.Btn_Departamentos.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Departamentos.Location = new System.Drawing.Point(14, 26);
+            this.Btn_Departamentos.Name = "Btn_Departamentos";
+            this.Btn_Departamentos.Size = new System.Drawing.Size(174, 27);
+            this.Btn_Departamentos.TabIndex = 1;
+            this.Btn_Departamentos.Text = "Departamento";
+            this.Btn_Departamentos.UseVisualStyleBackColor = true;
+            this.Btn_Departamentos.Click += new System.EventHandler(this.Btn_Departamentos_Click);
             // 
             // Lbl_nomina
             // 

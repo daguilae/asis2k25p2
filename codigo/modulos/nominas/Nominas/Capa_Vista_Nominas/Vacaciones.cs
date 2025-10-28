@@ -16,5 +16,19 @@ namespace Capa_Vista_Nominas
         {
             InitializeComponent();
         }
+
+        private void Btn_Soli_Click(object sender, EventArgs e)
+        {
+            SolicitarVacaciones frmsoli = new SolicitarVacaciones();
+            frmsoli.Show();
+            this.Hide();
+        }
+
+        private void Btn_Modificar_Click(object sender, EventArgs e)
+        {
+            EditarVacaciones frmeditar = new EditarVacaciones();
+            frmeditar.Show();
+            this.Hide();
+        }
     }
 }

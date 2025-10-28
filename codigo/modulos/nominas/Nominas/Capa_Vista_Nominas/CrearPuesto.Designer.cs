@@ -132,6 +132,7 @@ namespace Capa_Vista_Nominas
             this.Btn_Regresar.Text = "Regresar";
             this.Btn_Regresar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Btn_Regresar.UseVisualStyleBackColor = true;
+            this.Btn_Regresar.Click += new System.EventHandler(this.Btn_Regresar_Click);
             // 
             // Btn_Guardar
             // 

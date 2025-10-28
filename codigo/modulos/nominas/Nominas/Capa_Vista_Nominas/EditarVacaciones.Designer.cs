@@ -36,11 +36,11 @@ namespace Capa_Vista_Nominas
             this.Cbo_Empleado = new System.Windows.Forms.ComboBox();
             this.Nud_Dias = new System.Windows.Forms.NumericUpDown();
             this.Dtp_FechaI = new System.Windows.Forms.DateTimePicker();
+            this.Btn_Regresar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Lbl_Dias = new System.Windows.Forms.Label();
             this.Lbl_FechaInicio = new System.Windows.Forms.Label();
             this.Lbl_Empleado = new System.Windows.Forms.Label();
-            this.Btn_Regresar = new System.Windows.Forms.Button();
-            this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Gpb_EditarV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Dias)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +108,33 @@ namespace Capa_Vista_Nominas
             this.Dtp_FechaI.Size = new System.Drawing.Size(200, 25);
             this.Dtp_FechaI.TabIndex = 16;
             // 
+            // Btn_Regresar
+            // 
+            this.Btn_Regresar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Regresar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Regresar.Image")));
+            this.Btn_Regresar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btn_Regresar.Location = new System.Drawing.Point(455, 271);
+            this.Btn_Regresar.Name = "Btn_Regresar";
+            this.Btn_Regresar.Size = new System.Drawing.Size(89, 60);
+            this.Btn_Regresar.TabIndex = 13;
+            this.Btn_Regresar.Text = "Regresar";
+            this.Btn_Regresar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_Regresar.UseVisualStyleBackColor = true;
+            this.Btn_Regresar.Click += new System.EventHandler(this.Btn_Regresar_Click);
+            // 
+            // Btn_Guardar
+            // 
+            this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.Btn_Guardar.Location = new System.Drawing.Point(360, 271);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(89, 60);
+            this.Btn_Guardar.TabIndex = 12;
+            this.Btn_Guardar.Text = "Guardar";
+            this.Btn_Guardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.Btn_Guardar.UseVisualStyleBackColor = true;
+            // 
             // Lbl_Dias
             // 
             this.Lbl_Dias.AutoSize = true;
@@ -137,32 +164,6 @@ namespace Capa_Vista_Nominas
             this.Lbl_Empleado.Size = new System.Drawing.Size(79, 17);
             this.Lbl_Empleado.TabIndex = 7;
             this.Lbl_Empleado.Text = "Empleado";
-            // 
-            // Btn_Regresar
-            // 
-            this.Btn_Regresar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Regresar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Regresar.Image")));
-            this.Btn_Regresar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Btn_Regresar.Location = new System.Drawing.Point(455, 271);
-            this.Btn_Regresar.Name = "Btn_Regresar";
-            this.Btn_Regresar.Size = new System.Drawing.Size(89, 60);
-            this.Btn_Regresar.TabIndex = 13;
-            this.Btn_Regresar.Text = "Regresar";
-            this.Btn_Regresar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Regresar.UseVisualStyleBackColor = true;
-            // 
-            // Btn_Guardar
-            // 
-            this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
-            this.Btn_Guardar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Btn_Guardar.Location = new System.Drawing.Point(360, 271);
-            this.Btn_Guardar.Name = "Btn_Guardar";
-            this.Btn_Guardar.Size = new System.Drawing.Size(89, 60);
-            this.Btn_Guardar.TabIndex = 12;
-            this.Btn_Guardar.Text = "Guardar";
-            this.Btn_Guardar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.Btn_Guardar.UseVisualStyleBackColor = true;
             // 
             // EditarVacaciones
             // 
