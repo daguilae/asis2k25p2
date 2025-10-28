@@ -186,6 +186,7 @@
             this.conciliaciónBancariaToolStripMenuItem.Name = "conciliaciónBancariaToolStripMenuItem";
             this.conciliaciónBancariaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
             this.conciliaciónBancariaToolStripMenuItem.Text = "Conciliación Bancaria";
+            this.conciliaciónBancariaToolStripMenuItem.Click += new System.EventHandler(this.conciliaciónBancariaToolStripMenuItem_Click);
             // 
             // generaciónDePólizaToolStripMenuItem
             // 

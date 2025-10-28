@@ -35,11 +35,17 @@
     <Reference Include="Capa_Controlador_Bancos">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Controlador_CB">
+      <HintPath>..\..\..\DLLS_Bancos\MVC_ConciliacionBancaria\DLL_ConciliacionBancaria\Capa_Vista_CB\bin\Debug\Capa_Controlador_CB.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Controlador_Ordenes">
       <HintPath>..\..\..\DLLS_Bancos\Ordenes Compra\Ordenes_Compra\Capa_Controlador_Ordenes\bin\Debug\Capa_Controlador_Ordenes.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Controlador_Poliza">
       <HintPath>..\..\..\DLLS_Bancos\MVC_Poliza\DLL_Poliza\Capa_Controlador_Poliza\bin\Debug\Capa_Controlador_Poliza.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CB">
+      <HintPath>..\..\..\DLLS_Bancos\MVC_ConciliacionBancaria\DLL_ConciliacionBancaria\Capa_Vista_CB\bin\Debug\Capa_Vista_CB.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Ordenes">
       <HintPath>..\..\..\DLLS_Bancos\Ordenes Compra\Ordenes_Compra\Capa_Vista_Ordenes\bin\Debug\Capa_Vista_Ordenes.dll</HintPath>
