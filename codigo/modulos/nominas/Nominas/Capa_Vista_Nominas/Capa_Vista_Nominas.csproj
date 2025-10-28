@@ -52,17 +52,41 @@
     <Compile Include="Anticipos.Designer.cs">
       <DependentUpon>Anticipos.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrearPuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearPuesto.Designer.cs">
+      <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditarAnticipo.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="EditarAnticipo.Designer.cs">
       <DependentUpon>EditarAnticipo.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarDepartamentos.Designer.cs">
+      <DependentUpon>EditarDepartamentos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditarPuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarPuesto.Designer.cs">
+      <DependentUpon>EditarPuesto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Puestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Puestos.Designer.cs">
+      <DependentUpon>Puestos.cs</DependentUpon>
     </Compile>
     <Compile Include="Solicitar.cs">
       <SubType>Form</SubType>
@@ -75,12 +99,24 @@
     <EmbeddedResource Include="Anticipos.resx">
       <DependentUpon>Anticipos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrearPuesto.resx">
+      <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditarAnticipo.resx">
       <DependentUpon>EditarAnticipo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarDepartamentos.resx">
+      <DependentUpon>EditarDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditarPuesto.resx">
+      <DependentUpon>EditarPuesto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Puestos.resx">
+      <DependentUpon>Puestos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Solicitar.resx">
       <DependentUpon>Solicitar.cs</DependentUpon>
