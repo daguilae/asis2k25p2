@@ -52,11 +52,23 @@
     <Compile Include="Anticipos.Designer.cs">
       <DependentUpon>Anticipos.cs</DependentUpon>
     </Compile>
+    <Compile Include="CrearDepartamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CrearDepartamentos.Designer.cs">
+      <DependentUpon>CrearDepartamentos.cs</DependentUpon>
+    </Compile>
     <Compile Include="CrearPuesto.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="CrearPuesto.Designer.cs">
       <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Departamentos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Departamentos.Designer.cs">
+      <DependentUpon>Departamentos.cs</DependentUpon>
     </Compile>
     <Compile Include="EditarAnticipo.cs">
       <SubType>Form</SubType>
@@ -76,6 +88,12 @@
     <Compile Include="EditarPuesto.Designer.cs">
       <DependentUpon>EditarPuesto.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditarVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditarVacaciones.Designer.cs">
+      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -94,13 +112,31 @@
     <Compile Include="Solicitar.Designer.cs">
       <DependentUpon>Solicitar.cs</DependentUpon>
     </Compile>
+    <Compile Include="SolicitarVacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SolicitarVacaciones.Designer.cs">
+      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacaciones.Designer.cs">
+      <DependentUpon>Vacaciones.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Anticipos.resx">
       <DependentUpon>Anticipos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrearDepartamentos.resx">
+      <DependentUpon>CrearDepartamentos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrearPuesto.resx">
       <DependentUpon>CrearPuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Departamentos.resx">
+      <DependentUpon>Departamentos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EditarAnticipo.resx">
       <DependentUpon>EditarAnticipo.cs</DependentUpon>
@@ -111,6 +147,9 @@
     <EmbeddedResource Include="EditarPuesto.resx">
       <DependentUpon>EditarPuesto.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditarVacaciones.resx">
+      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -120,6 +159,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Solicitar.resx">
       <DependentUpon>Solicitar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SolicitarVacaciones.resx">
+      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacaciones.resx">
+      <DependentUpon>Vacaciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
