@@ -31,18 +31,18 @@ namespace Capa_Vista_CB
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_BuscarConciliacion));
             this.Lbl_TituloBuscarCB = new System.Windows.Forms.Label();
-            this.Cbo_Mes = new System.Windows.Forms.ComboBox();
-            this.Lbl_Mes = new System.Windows.Forms.Label();
-            this.Cbo_Bancos = new System.Windows.Forms.ComboBox();
-            this.Lbl_Banco = new System.Windows.Forms.Label();
-            this.Txt_Anio = new System.Windows.Forms.TextBox();
-            this.Lbl_anio = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
+            this.Cbo_MesBuscarCB = new System.Windows.Forms.ComboBox();
+            this.Lbl_MesBuscarCB = new System.Windows.Forms.Label();
+            this.Cbo_BancosBuscarCB = new System.Windows.Forms.ComboBox();
+            this.Lbl_BuscarCB = new System.Windows.Forms.Label();
+            this.Lbl_anioBuscarCB = new System.Windows.Forms.Label();
+            this.Dgv_Conciliaciones = new System.Windows.Forms.DataGridView();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
+            this.Btn_SalirBuscarCB = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Btn_Buscar = new System.Windows.Forms.Button();
+            this.Cbo_AnioBuscarCB = new System.Windows.Forms.ComboBox();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Conciliaciones)).BeginInit();
             this.SuspendLayout();
             // 
             // Lbl_TituloBuscarCB
@@ -58,95 +58,85 @@ namespace Capa_Vista_CB
             this.Lbl_TituloBuscarCB.Text = "Buscar Conciliación Bancaria";
             this.Lbl_TituloBuscarCB.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // Cbo_Mes
+            // Cbo_MesBuscarCB
             // 
-            this.Cbo_Mes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cbo_Mes.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Mes.FormattingEnabled = true;
-            this.Cbo_Mes.Location = new System.Drawing.Point(85, 124);
-            this.Cbo_Mes.Name = "Cbo_Mes";
-            this.Cbo_Mes.Size = new System.Drawing.Size(316, 28);
-            this.Cbo_Mes.TabIndex = 10;
+            this.Cbo_MesBuscarCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cbo_MesBuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_MesBuscarCB.FormattingEnabled = true;
+            this.Cbo_MesBuscarCB.Location = new System.Drawing.Point(85, 124);
+            this.Cbo_MesBuscarCB.Name = "Cbo_MesBuscarCB";
+            this.Cbo_MesBuscarCB.Size = new System.Drawing.Size(316, 28);
+            this.Cbo_MesBuscarCB.TabIndex = 10;
             // 
-            // Lbl_Mes
+            // Lbl_MesBuscarCB
             // 
-            this.Lbl_Mes.AutoSize = true;
-            this.Lbl_Mes.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Mes.Location = new System.Drawing.Point(11, 127);
-            this.Lbl_Mes.Name = "Lbl_Mes";
-            this.Lbl_Mes.Size = new System.Drawing.Size(52, 20);
-            this.Lbl_Mes.TabIndex = 9;
-            this.Lbl_Mes.Text = "Mes:";
+            this.Lbl_MesBuscarCB.AutoSize = true;
+            this.Lbl_MesBuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_MesBuscarCB.Location = new System.Drawing.Point(11, 127);
+            this.Lbl_MesBuscarCB.Name = "Lbl_MesBuscarCB";
+            this.Lbl_MesBuscarCB.Size = new System.Drawing.Size(52, 20);
+            this.Lbl_MesBuscarCB.TabIndex = 9;
+            this.Lbl_MesBuscarCB.Text = "Mes:";
             // 
-            // Cbo_Bancos
+            // Cbo_BancosBuscarCB
             // 
-            this.Cbo_Bancos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cbo_Bancos.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Bancos.FormattingEnabled = true;
-            this.Cbo_Bancos.Location = new System.Drawing.Point(85, 80);
-            this.Cbo_Bancos.Name = "Cbo_Bancos";
-            this.Cbo_Bancos.Size = new System.Drawing.Size(316, 28);
-            this.Cbo_Bancos.TabIndex = 8;
+            this.Cbo_BancosBuscarCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cbo_BancosBuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_BancosBuscarCB.FormattingEnabled = true;
+            this.Cbo_BancosBuscarCB.Location = new System.Drawing.Point(85, 80);
+            this.Cbo_BancosBuscarCB.Name = "Cbo_BancosBuscarCB";
+            this.Cbo_BancosBuscarCB.Size = new System.Drawing.Size(316, 28);
+            this.Cbo_BancosBuscarCB.TabIndex = 8;
             // 
-            // Lbl_Banco
+            // Lbl_BuscarCB
             // 
-            this.Lbl_Banco.AutoSize = true;
-            this.Lbl_Banco.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Banco.Location = new System.Drawing.Point(11, 83);
-            this.Lbl_Banco.Name = "Lbl_Banco";
-            this.Lbl_Banco.Size = new System.Drawing.Size(68, 20);
-            this.Lbl_Banco.TabIndex = 7;
-            this.Lbl_Banco.Text = "Banco:";
+            this.Lbl_BuscarCB.AutoSize = true;
+            this.Lbl_BuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_BuscarCB.Location = new System.Drawing.Point(11, 83);
+            this.Lbl_BuscarCB.Name = "Lbl_BuscarCB";
+            this.Lbl_BuscarCB.Size = new System.Drawing.Size(68, 20);
+            this.Lbl_BuscarCB.TabIndex = 7;
+            this.Lbl_BuscarCB.Text = "Banco:";
             // 
-            // Txt_Anio
+            // Lbl_anioBuscarCB
             // 
-            this.Txt_Anio.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Txt_Anio.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Anio.Location = new System.Drawing.Point(654, 124);
-            this.Txt_Anio.Name = "Txt_Anio";
-            this.Txt_Anio.Size = new System.Drawing.Size(316, 20);
-            this.Txt_Anio.TabIndex = 43;
-            this.Txt_Anio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Lbl_anioBuscarCB.AutoSize = true;
+            this.Lbl_anioBuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_anioBuscarCB.Location = new System.Drawing.Point(581, 124);
+            this.Lbl_anioBuscarCB.Name = "Lbl_anioBuscarCB";
+            this.Lbl_anioBuscarCB.Size = new System.Drawing.Size(48, 20);
+            this.Lbl_anioBuscarCB.TabIndex = 42;
+            this.Lbl_anioBuscarCB.Text = "Año:";
             // 
-            // Lbl_anio
+            // Dgv_Conciliaciones
             // 
-            this.Lbl_anio.AutoSize = true;
-            this.Lbl_anio.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_anio.Location = new System.Drawing.Point(581, 124);
-            this.Lbl_anio.Name = "Lbl_anio";
-            this.Lbl_anio.Size = new System.Drawing.Size(48, 20);
-            this.Lbl_anio.TabIndex = 42;
-            this.Lbl_anio.Text = "Año:";
+            this.Dgv_Conciliaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Conciliaciones.Location = new System.Drawing.Point(16, 225);
+            this.Dgv_Conciliaciones.Name = "Dgv_Conciliaciones";
+            this.Dgv_Conciliaciones.RowHeadersWidth = 51;
+            this.Dgv_Conciliaciones.RowTemplate.Height = 24;
+            this.Dgv_Conciliaciones.Size = new System.Drawing.Size(954, 457);
+            this.Dgv_Conciliaciones.TabIndex = 44;
             // 
-            // dataGridView1
+            // Btn_Reporte
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 225);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(954, 457);
-            this.dataGridView1.TabIndex = 44;
+            this.Btn_Reporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(16, 688);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(75, 53);
+            this.Btn_Reporte.TabIndex = 45;
+            this.Btn_Reporte.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // Btn_SalirBuscarCB
             // 
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(16, 688);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 53);
-            this.button8.TabIndex = 45;
-            this.button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Image = ((System.Drawing.Image)(resources.GetObject("button9.Image")));
-            this.button9.Location = new System.Drawing.Point(97, 688);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 53);
-            this.button9.TabIndex = 46;
-            this.button9.UseVisualStyleBackColor = true;
+            this.Btn_SalirBuscarCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_SalirBuscarCB.Image = ((System.Drawing.Image)(resources.GetObject("Btn_SalirBuscarCB.Image")));
+            this.Btn_SalirBuscarCB.Location = new System.Drawing.Point(97, 688);
+            this.Btn_SalirBuscarCB.Name = "Btn_SalirBuscarCB";
+            this.Btn_SalirBuscarCB.Size = new System.Drawing.Size(75, 53);
+            this.Btn_SalirBuscarCB.TabIndex = 46;
+            this.Btn_SalirBuscarCB.UseVisualStyleBackColor = true;
             // 
             // button10
             // 
@@ -158,37 +148,47 @@ namespace Capa_Vista_CB
             this.button10.TabIndex = 47;
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // Btn_Buscar
             // 
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(16, 166);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 53);
-            this.button7.TabIndex = 48;
-            this.button7.UseVisualStyleBackColor = true;
+            this.Btn_Buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Buscar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Buscar.Image")));
+            this.Btn_Buscar.Location = new System.Drawing.Point(16, 166);
+            this.Btn_Buscar.Name = "Btn_Buscar";
+            this.Btn_Buscar.Size = new System.Drawing.Size(50, 50);
+            this.Btn_Buscar.TabIndex = 48;
+            this.Btn_Buscar.UseVisualStyleBackColor = true;
+            // 
+            // Cbo_AnioBuscarCB
+            // 
+            this.Cbo_AnioBuscarCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cbo_AnioBuscarCB.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_AnioBuscarCB.FormattingEnabled = true;
+            this.Cbo_AnioBuscarCB.Location = new System.Drawing.Point(635, 119);
+            this.Cbo_AnioBuscarCB.Name = "Cbo_AnioBuscarCB";
+            this.Cbo_AnioBuscarCB.Size = new System.Drawing.Size(316, 28);
+            this.Cbo_AnioBuscarCB.TabIndex = 49;
             // 
             // Frm_BuscarConciliacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(982, 753);
-            this.Controls.Add(this.button7);
+            this.Controls.Add(this.Cbo_AnioBuscarCB);
+            this.Controls.Add(this.Btn_Buscar);
             this.Controls.Add(this.button10);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Txt_Anio);
-            this.Controls.Add(this.Lbl_anio);
-            this.Controls.Add(this.Cbo_Mes);
-            this.Controls.Add(this.Lbl_Mes);
-            this.Controls.Add(this.Cbo_Bancos);
-            this.Controls.Add(this.Lbl_Banco);
+            this.Controls.Add(this.Btn_SalirBuscarCB);
+            this.Controls.Add(this.Btn_Reporte);
+            this.Controls.Add(this.Dgv_Conciliaciones);
+            this.Controls.Add(this.Lbl_anioBuscarCB);
+            this.Controls.Add(this.Cbo_MesBuscarCB);
+            this.Controls.Add(this.Lbl_MesBuscarCB);
+            this.Controls.Add(this.Cbo_BancosBuscarCB);
+            this.Controls.Add(this.Lbl_BuscarCB);
             this.Controls.Add(this.Lbl_TituloBuscarCB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Frm_BuscarConciliacion";
             this.Text = "Frm_BuscarConciliacion";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Conciliaciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -197,16 +197,16 @@ namespace Capa_Vista_CB
         #endregion
 
         private System.Windows.Forms.Label Lbl_TituloBuscarCB;
-        private System.Windows.Forms.ComboBox Cbo_Mes;
-        private System.Windows.Forms.Label Lbl_Mes;
-        private System.Windows.Forms.ComboBox Cbo_Bancos;
-        private System.Windows.Forms.Label Lbl_Banco;
-        private System.Windows.Forms.TextBox Txt_Anio;
-        private System.Windows.Forms.Label Lbl_anio;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.ComboBox Cbo_MesBuscarCB;
+        private System.Windows.Forms.Label Lbl_MesBuscarCB;
+        private System.Windows.Forms.ComboBox Cbo_BancosBuscarCB;
+        private System.Windows.Forms.Label Lbl_BuscarCB;
+        private System.Windows.Forms.Label Lbl_anioBuscarCB;
+        private System.Windows.Forms.DataGridView Dgv_Conciliaciones;
+        private System.Windows.Forms.Button Btn_Reporte;
+        private System.Windows.Forms.Button Btn_SalirBuscarCB;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button Btn_Buscar;
+        private System.Windows.Forms.ComboBox Cbo_AnioBuscarCB;
     }
 }
