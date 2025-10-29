@@ -73,6 +73,7 @@ namespace Capa_Vista_MB
             this.panel1 = new System.Windows.Forms.Panel();
             this.Lbl_division = new System.Windows.Forms.Label();
             this.Lbl_division2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Movimiento)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -522,12 +523,22 @@ namespace Capa_Vista_MB
             this.Lbl_division2.Size = new System.Drawing.Size(473, 10);
             this.Lbl_division2.TabIndex = 93;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(600, 19);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 25);
+            this.label3.TabIndex = 94;
+            this.label3.Text = "HOLA PRUEBA 1";
+            // 
             // Forms_MB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1311, 654);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.Lbl_division2);
             this.Controls.Add(this.Lbl_division);
             this.Controls.Add(this.panel1);
@@ -631,5 +642,6 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label Lbl_division;
         private System.Windows.Forms.Label Lbl_division2;
+        private System.Windows.Forms.Label label3;
     }
 }
