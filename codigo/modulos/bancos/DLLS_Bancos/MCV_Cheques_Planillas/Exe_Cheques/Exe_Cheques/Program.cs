@@ -16,7 +16,7 @@ namespace Exe_Cheques
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_Vista_Cheques.Frm_Cheques());
+            Application.Run(new Capa_Vista_Cheques.Frm_Tipo_Cheques());
         }
     }
 }

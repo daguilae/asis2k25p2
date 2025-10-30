@@ -52,11 +52,29 @@
     <Compile Include="Frm_Cheques.Designer.cs">
       <DependentUpon>Frm_Cheques.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Tipo_Cheques.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Tipo_Cheques.Designer.cs">
+      <DependentUpon>Frm_Tipo_Cheques.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Frm_Cheques.resx">
       <DependentUpon>Frm_Cheques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Tipo_Cheques.resx">
+      <DependentUpon>Frm_Tipo_Cheques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
