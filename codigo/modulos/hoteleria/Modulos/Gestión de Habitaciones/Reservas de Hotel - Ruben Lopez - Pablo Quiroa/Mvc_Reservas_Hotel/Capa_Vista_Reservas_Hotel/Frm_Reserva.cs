@@ -16,5 +16,7 @@ namespace Capa_Vista_Reservas_Hotel
         {
             InitializeComponent();
         }
+
+
     }
 }
