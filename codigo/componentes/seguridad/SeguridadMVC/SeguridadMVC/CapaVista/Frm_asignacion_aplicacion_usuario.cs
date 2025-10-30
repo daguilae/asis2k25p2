@@ -227,8 +227,6 @@ namespace Capa_Vista_Seguridad
 
             if (resultado == DialogResult.Yes)
             {
-                // Delegar lógica al Controlador
-                controlador.QuitarPermiso(Dgv_Permisos, ctrlBitacora);
                 MessageBox.Show("Se ha quitado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
