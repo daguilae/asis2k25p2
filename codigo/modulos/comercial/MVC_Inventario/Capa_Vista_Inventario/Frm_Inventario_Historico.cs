@@ -25,5 +25,13 @@ namespace Capa_Vista_Inventario
             NuevoInventario.Show();
             this.Hide();
         }
+
+        private void Btn_Imprimir_PDF_Click(object sender, EventArgs e)
+        {
+            // Llamar la funcion Convertir el DGV a PDF
+
+            // Mensaje para el usuario
+            MessageBox.Show("Quiere generar el PDF de este Historico?");
+        }
     }
 }
