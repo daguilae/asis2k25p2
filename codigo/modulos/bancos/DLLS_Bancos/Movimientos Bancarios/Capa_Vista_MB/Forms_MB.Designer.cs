@@ -71,9 +71,11 @@ namespace Capa_Vista_MB
             this.label2 = new System.Windows.Forms.Label();
             this.Cbo_Conciliado = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Lbl_division = new System.Windows.Forms.Label();
-            this.Lbl_division2 = new System.Windows.Forms.Label();
+            this.Lbl_Division = new System.Windows.Forms.Label();
+            this.Lbl_Division2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Movimiento)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -82,7 +84,7 @@ namespace Capa_Vista_MB
             // 
             this.Lbl_Tipo.AutoSize = true;
             this.Lbl_Tipo.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Tipo.Location = new System.Drawing.Point(696, 330);
+            this.Lbl_Tipo.Location = new System.Drawing.Point(712, 69);
             this.Lbl_Tipo.Name = "Lbl_Tipo";
             this.Lbl_Tipo.Size = new System.Drawing.Size(0, 24);
             this.Lbl_Tipo.TabIndex = 9;
@@ -103,7 +105,7 @@ namespace Capa_Vista_MB
             this.Dgv_Detalle_Movimiento.Name = "Dgv_Detalle_Movimiento";
             this.Dgv_Detalle_Movimiento.RowHeadersWidth = 51;
             this.Dgv_Detalle_Movimiento.RowTemplate.Height = 24;
-            this.Dgv_Detalle_Movimiento.Size = new System.Drawing.Size(1265, 276);
+            this.Dgv_Detalle_Movimiento.Size = new System.Drawing.Size(1265, 213);
             this.Dgv_Detalle_Movimiento.TabIndex = 16;
             // 
             // Lbl_Detalle_Movimiento
@@ -154,7 +156,7 @@ namespace Capa_Vista_MB
             this.Lbl_Operacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Operacion.AutoSize = true;
             this.Lbl_Operacion.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Operacion.Location = new System.Drawing.Point(699, 166);
+            this.Lbl_Operacion.Location = new System.Drawing.Point(699, 85);
             this.Lbl_Operacion.Name = "Lbl_Operacion";
             this.Lbl_Operacion.Size = new System.Drawing.Size(180, 24);
             this.Lbl_Operacion.TabIndex = 39;
@@ -180,9 +182,9 @@ namespace Capa_Vista_MB
             this.Lbl_Concepto.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Concepto.Location = new System.Drawing.Point(699, 246);
             this.Lbl_Concepto.Name = "Lbl_Concepto";
-            this.Lbl_Concepto.Size = new System.Drawing.Size(102, 24);
+            this.Lbl_Concepto.Size = new System.Drawing.Size(146, 24);
             this.Lbl_Concepto.TabIndex = 41;
-            this.Lbl_Concepto.Text = "Concepto:";
+            this.Lbl_Concepto.Text = "Observaciones:";
             // 
             // Txt_Fecha
             // 
@@ -195,7 +197,7 @@ namespace Capa_Vista_MB
             // 
             this.Cbo_Operacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Cbo_Operacion.FormattingEnabled = true;
-            this.Cbo_Operacion.Location = new System.Drawing.Point(885, 161);
+            this.Cbo_Operacion.Location = new System.Drawing.Point(885, 80);
             this.Cbo_Operacion.Name = "Cbo_Operacion";
             this.Cbo_Operacion.Size = new System.Drawing.Size(398, 32);
             this.Cbo_Operacion.TabIndex = 46;
@@ -205,7 +207,7 @@ namespace Capa_Vista_MB
             this.Lbl_Estado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Estado.AutoSize = true;
             this.Lbl_Estado.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado.Location = new System.Drawing.Point(699, 90);
+            this.Lbl_Estado.Location = new System.Drawing.Point(699, 131);
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(74, 24);
             this.Lbl_Estado.TabIndex = 49;
@@ -216,7 +218,7 @@ namespace Capa_Vista_MB
             this.Lbl_Moneda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Moneda.AutoSize = true;
             this.Lbl_Moneda.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Moneda.Location = new System.Drawing.Point(699, 128);
+            this.Lbl_Moneda.Location = new System.Drawing.Point(699, 169);
             this.Lbl_Moneda.Name = "Lbl_Moneda";
             this.Lbl_Moneda.Size = new System.Drawing.Size(89, 24);
             this.Lbl_Moneda.TabIndex = 50;
@@ -225,7 +227,7 @@ namespace Capa_Vista_MB
             // Txt_Moneda
             // 
             this.Txt_Moneda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Moneda.Location = new System.Drawing.Point(798, 124);
+            this.Txt_Moneda.Location = new System.Drawing.Point(798, 160);
             this.Txt_Moneda.Name = "Txt_Moneda";
             this.Txt_Moneda.Size = new System.Drawing.Size(192, 31);
             this.Txt_Moneda.TabIndex = 52;
@@ -233,7 +235,7 @@ namespace Capa_Vista_MB
             // Txt_Monto
             // 
             this.Txt_Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Monto.Location = new System.Drawing.Point(1093, 123);
+            this.Txt_Monto.Location = new System.Drawing.Point(1093, 159);
             this.Txt_Monto.Name = "Txt_Monto";
             this.Txt_Monto.Size = new System.Drawing.Size(190, 31);
             this.Txt_Monto.TabIndex = 61;
@@ -243,7 +245,7 @@ namespace Capa_Vista_MB
             this.Lbl_Monto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Monto.AutoSize = true;
             this.Lbl_Monto.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.Location = new System.Drawing.Point(1012, 127);
+            this.Lbl_Monto.Location = new System.Drawing.Point(1012, 163);
             this.Lbl_Monto.Name = "Lbl_Monto";
             this.Lbl_Monto.Size = new System.Drawing.Size(75, 24);
             this.Lbl_Monto.TabIndex = 60;
@@ -254,7 +256,7 @@ namespace Capa_Vista_MB
             this.Lbl_Signo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Signo.AutoSize = true;
             this.Lbl_Signo.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Signo.Location = new System.Drawing.Point(1012, 86);
+            this.Lbl_Signo.Location = new System.Drawing.Point(1012, 122);
             this.Lbl_Signo.Name = "Lbl_Signo";
             this.Lbl_Signo.Size = new System.Drawing.Size(66, 24);
             this.Lbl_Signo.TabIndex = 62;
@@ -367,7 +369,7 @@ namespace Capa_Vista_MB
             // 
             this.Cbo_Estado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Cbo_Estado.FormattingEnabled = true;
-            this.Cbo_Estado.Location = new System.Drawing.Point(798, 82);
+            this.Cbo_Estado.Location = new System.Drawing.Point(798, 118);
             this.Cbo_Estado.Name = "Cbo_Estado";
             this.Cbo_Estado.Size = new System.Drawing.Size(192, 32);
             this.Cbo_Estado.TabIndex = 76;
@@ -432,7 +434,7 @@ namespace Capa_Vista_MB
             // 
             this.Cbo_Signo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Cbo_Signo.FormattingEnabled = true;
-            this.Cbo_Signo.Location = new System.Drawing.Point(1093, 85);
+            this.Cbo_Signo.Location = new System.Drawing.Point(1093, 121);
             this.Cbo_Signo.Name = "Cbo_Signo";
             this.Cbo_Signo.Size = new System.Drawing.Size(190, 32);
             this.Cbo_Signo.TabIndex = 84;
@@ -498,39 +500,60 @@ namespace Capa_Vista_MB
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.Dgv_Detalle_Movimiento);
-            this.panel1.Location = new System.Drawing.Point(18, 375);
+            this.panel1.Location = new System.Drawing.Point(29, 374);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1265, 276);
+            this.panel1.Size = new System.Drawing.Size(1265, 213);
             this.panel1.TabIndex = 91;
             // 
-            // Lbl_division
+            // Lbl_Division
             // 
-            this.Lbl_division.BackColor = System.Drawing.Color.Green;
-            this.Lbl_division.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Lbl_division.ForeColor = System.Drawing.Color.Green;
-            this.Lbl_division.Location = new System.Drawing.Point(83, 141);
-            this.Lbl_division.Name = "Lbl_division";
-            this.Lbl_division.Size = new System.Drawing.Size(486, 10);
-            this.Lbl_division.TabIndex = 92;
+            this.Lbl_Division.BackColor = System.Drawing.Color.Transparent;
+            this.Lbl_Division.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Lbl_Division.ForeColor = System.Drawing.Color.Green;
+            this.Lbl_Division.Location = new System.Drawing.Point(83, 141);
+            this.Lbl_Division.Name = "Lbl_Division";
+            this.Lbl_Division.Size = new System.Drawing.Size(486, 10);
+            this.Lbl_Division.TabIndex = 92;
             // 
-            // Lbl_division2
+            // Lbl_Division2
             // 
-            this.Lbl_division2.BackColor = System.Drawing.Color.Green;
-            this.Lbl_division2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Lbl_division2.ForeColor = System.Drawing.Color.Green;
-            this.Lbl_division2.Location = new System.Drawing.Point(96, 256);
-            this.Lbl_division2.Name = "Lbl_division2";
-            this.Lbl_division2.Size = new System.Drawing.Size(473, 10);
-            this.Lbl_division2.TabIndex = 93;
+            this.Lbl_Division2.BackColor = System.Drawing.Color.Transparent;
+            this.Lbl_Division2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Lbl_Division2.ForeColor = System.Drawing.Color.Green;
+            this.Lbl_Division2.Location = new System.Drawing.Point(96, 256);
+            this.Lbl_Division2.Name = "Lbl_Division2";
+            this.Lbl_Division2.Size = new System.Drawing.Size(473, 10);
+            this.Lbl_Division2.TabIndex = 93;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(600, 19);
+            this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(31, 590);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 25);
+            this.label3.Size = new System.Drawing.Size(66, 24);
             this.label3.TabIndex = 94;
-            this.label3.Text = "HOLA PRUEBA 1";
+            this.label3.Text = "Fecha:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(144, 590);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 24);
+            this.label4.TabIndex = 95;
+            this.label4.Text = "Fecha:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(254, 590);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(66, 24);
+            this.label5.TabIndex = 96;
+            this.label5.Text = "Fecha:";
             // 
             // Forms_MB
             // 
@@ -538,9 +561,11 @@ namespace Capa_Vista_MB
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1311, 654);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.Lbl_division2);
-            this.Controls.Add(this.Lbl_division);
+            this.Controls.Add(this.Lbl_Division2);
+            this.Controls.Add(this.Lbl_Division);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.Cbo_Conciliado);
             this.Controls.Add(this.label2);
@@ -640,8 +665,10 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox Cbo_Conciliado;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label Lbl_division;
-        private System.Windows.Forms.Label Lbl_division2;
+        private System.Windows.Forms.Label Lbl_Division;
+        private System.Windows.Forms.Label Lbl_Division2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }

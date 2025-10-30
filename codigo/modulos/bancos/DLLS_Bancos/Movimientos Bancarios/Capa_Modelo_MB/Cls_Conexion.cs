@@ -3,28 +3,28 @@ using System.Data.Odbc;
 
 namespace Capa_Modelo_MB
 {
-    public class Conexion
+    public class Cls_Conexion
     {
-        public OdbcConnection ConexionBD()
+        public OdbcConnection fun_ConexionBD()
         {
-            OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
+            OdbcConnection odcn_Conn = new OdbcConnection("Dsn=bd_hoteleria");
             try
             {
-                conn.Open();
+                odcn_Conn.Open();
                 Console.WriteLine("Conexión exitosa.");
             }
             catch (OdbcException ex)
             {
                 Console.WriteLine("Error al conectar: " + ex.Message);
             }
-            return conn;
+            return odcn_Conn;
         }
 
-        public void Desconexion(OdbcConnection conn)
+        public void pro_Desconexion(OdbcConnection odcn_Conn)
         {
             try
             {
-                conn.Close();
+                odcn_Conn.Close();
                 Console.WriteLine("Conexión cerrada.");
             }
             catch (OdbcException ex)

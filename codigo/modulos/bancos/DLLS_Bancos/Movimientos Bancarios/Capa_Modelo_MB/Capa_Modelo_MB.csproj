@@ -41,8 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.cs" />
-    <Compile Include="CRUD.cs" />
+    <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_CRUD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sentencias.cs" />
   </ItemGroup>
