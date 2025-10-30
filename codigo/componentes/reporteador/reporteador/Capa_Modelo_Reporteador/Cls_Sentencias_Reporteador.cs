@@ -94,10 +94,22 @@ namespace Capa_Modelo_Reporteador
             Cls_Conexion_Reporteador cn = new Cls_Conexion_Reporteador();
             using (OdbcConnection con = cn.conexion())
             {
-                string sql = "DELETE FROM Tbl_Reportes WHERE Pk_Id_Reporte=?";
-                OdbcCommand cmd = new OdbcCommand(sql, con);
-                cmd.Parameters.AddWithValue("id", id);
-                cmd.ExecuteNonQuery();
+
+                string actualizarAplicacion = @"UPDATE Tbl_Aplicacion
+                                               SET Fk_Id_Reporte_Aplicacion = NULL
+                                               WHERE Fk_Id_Reporte_Aplicacion = ?";
+                using (OdbcCommand cmd = new OdbcCommand(actualizarAplicacion, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
+                string eliminarReporte = "DELETE FROM Tbl_Reportes WHERE Pk_Id_Reporte = ?";
+
+                using (OdbcCommand cmd = new OdbcCommand(eliminarReporte, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.ExecuteNonQuery();
+                }
             }
         }
         // Fin de código de: Leticia Sontay con carné: 9959-21-9664 en la fecha de: 12/09/2025
