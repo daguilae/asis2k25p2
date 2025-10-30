@@ -544,5 +544,10 @@ namespace Capa_Vista_MB
         {
 
         }
+
+        private void Dgv_Detalle_Movimiento_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

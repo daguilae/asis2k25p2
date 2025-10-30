@@ -92,27 +92,30 @@ namespace Capa_Vista_MB
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(361, 500);
+            this.label9.Location = new System.Drawing.Point(360, 543);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(0, 25);
             this.label9.TabIndex = 15;
             // 
             // Dgv_Detalle_Movimiento
             // 
+            this.Dgv_Detalle_Movimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Detalle_Movimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Detalle_Movimiento.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_Detalle_Movimiento.Location = new System.Drawing.Point(0, 0);
+            this.Dgv_Detalle_Movimiento.Location = new System.Drawing.Point(3, 3);
             this.Dgv_Detalle_Movimiento.Name = "Dgv_Detalle_Movimiento";
             this.Dgv_Detalle_Movimiento.RowHeadersWidth = 51;
             this.Dgv_Detalle_Movimiento.RowTemplate.Height = 24;
-            this.Dgv_Detalle_Movimiento.Size = new System.Drawing.Size(1265, 213);
+            this.Dgv_Detalle_Movimiento.Size = new System.Drawing.Size(1265, 230);
             this.Dgv_Detalle_Movimiento.TabIndex = 16;
+            this.Dgv_Detalle_Movimiento.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Detalle_Movimiento_CellContentClick);
             // 
             // Lbl_Detalle_Movimiento
             // 
             this.Lbl_Detalle_Movimiento.AutoSize = true;
             this.Lbl_Detalle_Movimiento.Font = new System.Drawing.Font("Microsoft JhengHei", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Detalle_Movimiento.Location = new System.Drawing.Point(26, 349);
+            this.Lbl_Detalle_Movimiento.Location = new System.Drawing.Point(25, 392);
             this.Lbl_Detalle_Movimiento.Name = "Lbl_Detalle_Movimiento";
             this.Lbl_Detalle_Movimiento.Size = new System.Drawing.Size(211, 22);
             this.Lbl_Detalle_Movimiento.TabIndex = 17;
@@ -500,9 +503,9 @@ namespace Capa_Vista_MB
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.Dgv_Detalle_Movimiento);
-            this.panel1.Location = new System.Drawing.Point(29, 374);
+            this.panel1.Location = new System.Drawing.Point(28, 417);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1265, 213);
+            this.panel1.Size = new System.Drawing.Size(1265, 233);
             this.panel1.TabIndex = 91;
             // 
             // Lbl_Division
@@ -527,9 +530,10 @@ namespace Capa_Vista_MB
             // 
             // label3
             // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(31, 590);
+            this.label3.Location = new System.Drawing.Point(31, 653);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 24);
             this.label3.TabIndex = 94;
@@ -537,9 +541,10 @@ namespace Capa_Vista_MB
             // 
             // label4
             // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(144, 590);
+            this.label4.Location = new System.Drawing.Point(188, 653);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(66, 24);
             this.label4.TabIndex = 95;
@@ -547,9 +552,10 @@ namespace Capa_Vista_MB
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(254, 590);
+            this.label5.Location = new System.Drawing.Point(362, 653);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(66, 24);
             this.label5.TabIndex = 96;
@@ -560,7 +566,7 @@ namespace Capa_Vista_MB
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1311, 654);
+            this.ClientSize = new System.Drawing.Size(1311, 677);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
