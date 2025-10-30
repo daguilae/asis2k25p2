@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54C324EB-DDCB-4E73-96CD-C2172862CE0D}</ProjectGuid>
+    <ProjectGuid>{D991A2DB-0358-49D5-9354-CA9AFCDBC6C6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Capa_Vista_Cheques</RootNamespace>
@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Cheques_Planilla">
-      <HintPath>..\Capa_Controlador_Cheques_Planilla\bin\Debug\Capa_Controlador_Cheques_Planilla.dll</HintPath>
+    <Reference Include="Capa_Controlador_Cheques">
+      <HintPath>..\Capa_Controlador_Cheques\bin\Debug\Capa_Controlador_Cheques.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
