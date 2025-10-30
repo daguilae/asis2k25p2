@@ -8,43 +8,49 @@ namespace Capa_Modelo_Ordenes
     {
         Cls_Conexion_Ordenes con = new Cls_Conexion_Ordenes();
 
-  
-        public OdbcDataAdapter llenarTbl(string tabla)
+
+        public OdbcDataAdapter LlenarTbl(string tabla)
         {
             string sql = "SELECT * FROM " + tabla + ";";
             OdbcDataAdapter dataTable = new OdbcDataAdapter(sql, con.conexion());
             return dataTable;
         }
 
-  
-        public void InsertarAutorizacion(int idOrden, int idBanco, DateTime fecha, string autorizadoPor, decimal monto, int idEstado)
+
+        public bool AgregarAutorizacion(
+    int idAutorizacion, int idOrden, int idBanco, string fecha, string autorizadoPor, decimal monto, int estado)
         {
             try
             {
-                using (OdbcConnection conn = con.conexion())
-                {
-                    string sql = @"INSERT INTO Tbl_Orden_Compra_Autorizada
-                                   (Fk_Id_Orden_Compra, Fk_Id_Banco, Cmp_Fecha_Autorizacion, Cmp_Autorizado_Por, Cmp_Monto_Autorizado, Fk_Id_Estado_Autorizacion)
-                                   VALUES (?, ?, ?, ?, ?, ?)";
+                OdbcConnection conn = con.conexion();
 
-                    using (OdbcCommand cmd = new OdbcCommand(sql, conn))
-                    {
-                        cmd.Parameters.Add("Fk_Id_Orden_Compra", OdbcType.Int).Value = idOrden;
-                        cmd.Parameters.Add("Fk_Id_Banco", OdbcType.Int).Value = idBanco;
-                        cmd.Parameters.Add("Cmp_Fecha_Autorizacion", OdbcType.Date).Value = fecha;
-                        cmd.Parameters.Add("Cmp_Autorizado_Por", OdbcType.VarChar).Value = autorizadoPor;
-                        cmd.Parameters.Add("Cmp_Monto_Autorizado", OdbcType.Decimal).Value = monto;
-                        cmd.Parameters.Add("Fk_Id_Estado_Autorizacion", OdbcType.Int).Value = idEstado;
+                string sql = "INSERT INTO Tbl_Orden_Compra_Autorizada " +
+                             "(Pk_Id_Autorizacion, Fk_Id_Orden_Compra, Fk_Id_Banco, Cmp_Fecha_Autorizacion, Cmp_Autorizado_Por, Cmp_Monto_Autorizado, Fk_Id_Estado_Autorizacion) " +
+                             "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                OdbcCommand cmd = new OdbcCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Pk_Id_Autorizacion", idAutorizacion);
+                cmd.Parameters.AddWithValue("@Fk_Id_Orden_Compra", idOrden);
+                cmd.Parameters.AddWithValue("@Fk_Id_Banco", idBanco);
+                cmd.Parameters.AddWithValue("@Cmp_Fecha_Autorizacion", fecha);
+                cmd.Parameters.AddWithValue("@Cmp_Autorizado_Por", autorizadoPor);
+                cmd.Parameters.AddWithValue("@Cmp_Monto_Autorizado", monto);
+                cmd.Parameters.AddWithValue("@Fk_Id_Estado_Autorizacion", estado);
+
+                int filas = cmd.ExecuteNonQuery(); 
+
+                con.desconexion(conn);
+
+                return filas > 0; 
             }
-            catch (OdbcException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine(" Error al insertar la autorización: " + ex.Message);
-                throw;
+                Console.WriteLine("Error al agregar autorización: " + ex.Message);
+                return false;
             }
         }
+
+
+
     }
 }

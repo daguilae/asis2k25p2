@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Capa_Modelo_Ordenes;
-using System.Data.Odbc;
 using System.Data;
-
-
+using System.Data.Odbc;
+using Capa_Modelo_Ordenes;
 
 namespace Capa_Controlador_Ordenes
 {
@@ -15,20 +9,34 @@ namespace Capa_Controlador_Ordenes
     {
         Cls_Sentencias_Ordenes sn = new Cls_Sentencias_Ordenes();
 
-        // Cargar una tabla en DataTable
-        public DataTable llenarTbl(string tabla)
+
+        public DataTable LlenarTabla(string tabla)
         {
-            OdbcDataAdapter dt = sn.llenarTbl(tabla);
+            OdbcDataAdapter dt = sn.LlenarTbl(tabla);
             DataTable table = new DataTable();
             dt.Fill(table);
             return table;
         }
 
-        // Insertar una autorización nueva
-        public void AgregarAutorizacion(int idOrden, int idBanco, DateTime fecha, string autorizadoPor, decimal monto, int idEstado)
-        {
-            sn.InsertarAutorizacion(idOrden, idBanco, fecha, autorizadoPor, monto, idEstado);
-        }
+        public bool AgregarAutorizacion(
+     string idAutorizacion, string idOrden, string idBanco, string fecha, string autorizadoPor, string monto, string estado)
+{
+    try
+    {
+        int pk = int.Parse(idAutorizacion);
+        int fkOrden = int.Parse(idOrden);
+        int fkBanco = int.Parse(idBanco);
+        decimal montoDec = decimal.Parse(monto);
+        int fkEstado = int.Parse(estado);
+
+        return sn.AgregarAutorizacion(pk, fkOrden, fkBanco, fecha, autorizadoPor, montoDec, fkEstado);
+    }
+    catch (Exception ex)
+    {
+                Console.WriteLine("Error en el controlador: " + ex.Message);
+        return false;
     }
 }
 
+    }
+}

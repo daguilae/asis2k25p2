@@ -14,45 +14,61 @@ namespace Capa_Vista_Ordenes
 {
     public partial class Frm_Ordenes : Form
     {
-        string sAuto = "Tbl_Orden_Compra_Autorizada";
         Cls_Controlador_Ordenes cn = new Cls_Controlador_Ordenes();
+        string tabla = "Tbl_Orden_Compra_Autorizada";
 
         public Frm_Ordenes()
         {
             InitializeComponent();
+            Btn_Agregar_Autorizacion.Click += Btn_Agregar_Autorizacion_Click;
+            Btn_Consultar_Autorizaciones.Click += Btn_Consultar_Autorizaciones_Click;
         }
 
- 
-        public void actualizardatagriew()
+
+        private void ActualizarGrid()
         {
-            DataTable dt = cn.llenarTbl(sAuto);
+            DataTable dt = cn.LlenarTabla(tabla);
             Dgv_Auto_Ordenes.DataSource = dt;
         }
 
-  
         private void Btn_Consultar_Autorizaciones_Click(object sender, EventArgs e)
         {
-            actualizardatagriew();
+            ActualizarGrid();
         }
 
-   
+
         private void Btn_Agregar_Autorizacion_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(Txt_Id_Autorizacion.Text) ||
+                string.IsNullOrEmpty(Txt_Id_Orden.Text) ||
+                string.IsNullOrEmpty(Txt_Id_Banco.Text) ||
+                string.IsNullOrEmpty(Txt_Fecha_Autorizacion.Text) ||
+                string.IsNullOrEmpty(Txt_Autorizado_Por.Text) ||
+                string.IsNullOrEmpty(Txt_Monto_Autorizado.Text) ||
+                string.IsNullOrEmpty(Txt_Estado_Autorizacion.Text))
             {
-                int idOrden = int.Parse(Txt_Id_Orden.Text);
-                int idBanco = int.Parse(Txt_Id_Banco.Text);
-                DateTime fecha = Convert.ToDateTime(Txt_Fecha_Autorizacion.Text);
-                string autorizadoPor = Txt_Autorizado_Por.Text;
-                decimal monto = decimal.Parse(Txt_Monto_Autorizado.Text);
-                int idEstado = int.Parse(Txt_Estado_Autorizacion.Text);
+                MessageBox.Show("Por favor complete todos los campos.");
+                return;
+            }
 
-                cn.AgregarAutorizacion(idOrden, idBanco, fecha, autorizadoPor, monto, idEstado);
+            Cls_Controlador_Ordenes controlador = new Cls_Controlador_Ordenes();
 
-                MessageBox.Show(" Autorización agregada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                actualizardatagriew();
+            bool resultado = controlador.AgregarAutorizacion(
+                Txt_Id_Autorizacion.Text,
+                Txt_Id_Orden.Text,
+                Txt_Id_Banco.Text,
+                Txt_Fecha_Autorizacion.Text,
+                Txt_Autorizado_Por.Text,
+                Txt_Monto_Autorizado.Text,
+                Txt_Estado_Autorizacion.Text
+            );
 
-                
+            if (resultado)
+            {
+                MessageBox.Show("Autorización agregada correctamente.");
+                ActualizarGrid(); 
+                             
+                Txt_Id_Autorizacion.Clear();
                 Txt_Id_Orden.Clear();
                 Txt_Id_Banco.Clear();
                 Txt_Fecha_Autorizacion.Clear();
@@ -60,10 +76,17 @@ namespace Capa_Vista_Ordenes
                 Txt_Monto_Autorizado.Clear();
                 Txt_Estado_Autorizacion.Clear();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(" Error al agregar la autorización: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("No se pudo agregar la autorización. Revise los datos ingresados.");
             }
         }
+
+        private void Btn_Eliminar_Autorizacion_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        
     }
 }
