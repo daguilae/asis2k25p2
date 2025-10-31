@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Modelo_Bancos">
+    <Reference Include="Capa_Modelo_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\CapaModelo\bin\Debug\Capa_Modelo_Bancos.dll</HintPath>
     </Reference>
     <Reference Include="System" />

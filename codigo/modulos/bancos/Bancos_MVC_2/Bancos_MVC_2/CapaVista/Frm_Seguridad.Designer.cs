@@ -32,6 +32,13 @@
             this.Btn_Aplicacion = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Bitacora = new System.Windows.Forms.ToolStripMenuItem();
+            this.movimientosBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conciliaciónBancariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.generaciónDePólizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disponibilidadDiariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chequesDePlanillaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportesBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,15 +47,8 @@
             this.asignacionPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionDeAplicacionAPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
-            this.movimientosBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conciliaciónBancariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.generaciónDePólizaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disponibilidadDiariaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autorizaciónOrdenesDeComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chequesDePlanillaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportesBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
+            this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -73,9 +73,13 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel.Text = "Estado";
             // 
+            // toolTip
+            // 
+            this.toolTip.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(175)))), ((int)(((byte)(187)))));
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -105,7 +109,7 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Salir";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -180,6 +184,52 @@
             this.Btn_Bitacora.Text = "Bitacora";
             this.Btn_Bitacora.Click += new System.EventHandler(this.Btn_Bitacora_Click);
             // 
+            // movimientosBancariosToolStripMenuItem
+            // 
+            this.movimientosBancariosToolStripMenuItem.Name = "movimientosBancariosToolStripMenuItem";
+            this.movimientosBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.movimientosBancariosToolStripMenuItem.Text = "Movimientos Bancarios";
+            // 
+            // conciliaciónBancariaToolStripMenuItem
+            // 
+            this.conciliaciónBancariaToolStripMenuItem.Name = "conciliaciónBancariaToolStripMenuItem";
+            this.conciliaciónBancariaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.conciliaciónBancariaToolStripMenuItem.Text = "Conciliación Bancaria";
+            this.conciliaciónBancariaToolStripMenuItem.Click += new System.EventHandler(this.conciliaciónBancariaToolStripMenuItem_Click);
+            // 
+            // generaciónDePólizaToolStripMenuItem
+            // 
+            this.generaciónDePólizaToolStripMenuItem.Name = "generaciónDePólizaToolStripMenuItem";
+            this.generaciónDePólizaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.generaciónDePólizaToolStripMenuItem.Text = "Generación de Póliza";
+            this.generaciónDePólizaToolStripMenuItem.Click += new System.EventHandler(this.generaciónDePólizaToolStripMenuItem_Click);
+            // 
+            // disponibilidadDiariaToolStripMenuItem
+            // 
+            this.disponibilidadDiariaToolStripMenuItem.Name = "disponibilidadDiariaToolStripMenuItem";
+            this.disponibilidadDiariaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.disponibilidadDiariaToolStripMenuItem.Text = "Disponibilidad Diaria";
+            // 
+            // autorizaciónOrdenesDeComprasToolStripMenuItem
+            // 
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Name = "autorizaciónOrdenesDeComprasToolStripMenuItem";
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Text = "Autorización Ordenes de Compras";
+            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Click += new System.EventHandler(this.autorizaciónOrdenesDeComprasToolStripMenuItem_Click);
+            // 
+            // chequesDePlanillaToolStripMenuItem
+            // 
+            this.chequesDePlanillaToolStripMenuItem.Name = "chequesDePlanillaToolStripMenuItem";
+            this.chequesDePlanillaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.chequesDePlanillaToolStripMenuItem.Text = "Cheques de Planilla";
+            this.chequesDePlanillaToolStripMenuItem.Click += new System.EventHandler(this.chequesDePlanillaToolStripMenuItem_Click);
+            // 
+            // reportesBancariosToolStripMenuItem
+            // 
+            this.reportesBancariosToolStripMenuItem.Name = "reportesBancariosToolStripMenuItem";
+            this.reportesBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.reportesBancariosToolStripMenuItem.Text = "Reportes Bancarios";
+            // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -247,6 +297,17 @@
             this.Pnl_Superior.Size = new System.Drawing.Size(1069, 44);
             this.Pnl_Superior.TabIndex = 96;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(4, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 35);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Bancos";
+            // 
             // Pic_Cerrar
             // 
             this.Pic_Cerrar.BackColor = System.Drawing.Color.Transparent;
@@ -261,59 +322,6 @@
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
-            // movimientosBancariosToolStripMenuItem
-            // 
-            this.movimientosBancariosToolStripMenuItem.Name = "movimientosBancariosToolStripMenuItem";
-            this.movimientosBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.movimientosBancariosToolStripMenuItem.Text = "Movimientos Bancarios";
-            // 
-            // conciliaciónBancariaToolStripMenuItem
-            // 
-            this.conciliaciónBancariaToolStripMenuItem.Name = "conciliaciónBancariaToolStripMenuItem";
-            this.conciliaciónBancariaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.conciliaciónBancariaToolStripMenuItem.Text = "Conciliación Bancaria";
-            // 
-            // generaciónDePólizaToolStripMenuItem
-            // 
-            this.generaciónDePólizaToolStripMenuItem.Name = "generaciónDePólizaToolStripMenuItem";
-            this.generaciónDePólizaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.generaciónDePólizaToolStripMenuItem.Text = "Generación de Póliza";
-            // 
-            // disponibilidadDiariaToolStripMenuItem
-            // 
-            this.disponibilidadDiariaToolStripMenuItem.Name = "disponibilidadDiariaToolStripMenuItem";
-            this.disponibilidadDiariaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.disponibilidadDiariaToolStripMenuItem.Text = "Disponibilidad Diaria";
-            // 
-            // autorizaciónOrdenesDeComprasToolStripMenuItem
-            // 
-            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Name = "autorizaciónOrdenesDeComprasToolStripMenuItem";
-            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.autorizaciónOrdenesDeComprasToolStripMenuItem.Text = "Autorización Ordenes de Compras";
-            // 
-            // chequesDePlanillaToolStripMenuItem
-            // 
-            this.chequesDePlanillaToolStripMenuItem.Name = "chequesDePlanillaToolStripMenuItem";
-            this.chequesDePlanillaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.chequesDePlanillaToolStripMenuItem.Text = "Cheques de Planilla";
-            // 
-            // reportesBancariosToolStripMenuItem
-            // 
-            this.reportesBancariosToolStripMenuItem.Name = "reportesBancariosToolStripMenuItem";
-            this.reportesBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.reportesBancariosToolStripMenuItem.Text = "Reportes Bancarios";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 35);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Bancos";
-            // 
             // Frm_Seguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -325,7 +333,7 @@
             this.Controls.Add(this.statusStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Frm_Seguridad";
             this.Text = "frmSeguridad";

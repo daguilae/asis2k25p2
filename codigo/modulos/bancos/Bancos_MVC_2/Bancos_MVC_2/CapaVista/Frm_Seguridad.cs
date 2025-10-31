@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Bancos;
+using Capa_Vista_CB;
+using Capa_Vista;
+using Capa_Vista_Ordenes;
+using Capa_Vista_Cheques;
 
 namespace Capa_Vista_Bancos
 {
@@ -344,6 +348,30 @@ namespace Capa_Vista_Bancos
         {
             Frm_PruebaNavegador nav = new Frm_PruebaNavegador();
             nav.ShowDialog();
+        }
+
+        private void conciliaciónBancariaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ConciliacionBancaria CB = new Frm_ConciliacionBancaria();
+            CB.ShowDialog();
+        }
+
+        private void generaciónDePólizaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Poliza PL = new Frm_Poliza();
+            PL.ShowDialog();
+        }
+
+        private void autorizaciónOrdenesDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Ordenes Ord = new Frm_Ordenes();
+            Ord.ShowDialog();
+        }
+
+        private void chequesDePlanillaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Cheques ch = new Frm_Cheques();
+            ch.ShowDialog();
         }
     }
 }
