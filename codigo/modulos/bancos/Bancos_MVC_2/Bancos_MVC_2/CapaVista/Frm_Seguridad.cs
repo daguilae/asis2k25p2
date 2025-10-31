@@ -12,6 +12,7 @@ using Capa_Vista_CB;
 using Capa_Vista;
 using Capa_Vista_Ordenes;
 using Capa_Vista_Cheques;
+using Capa_Vista_MB;
 
 namespace Capa_Vista_Bancos
 {
@@ -372,6 +373,12 @@ namespace Capa_Vista_Bancos
         {
             Frm_Cheques ch = new Frm_Cheques();
             ch.ShowDialog();
+        }
+
+        private void movimientosBancariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms_MB MB = new Forms_MB();
+            MB.ShowDialog();
         }
     }
 }

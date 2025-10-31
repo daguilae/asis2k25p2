@@ -93,7 +93,7 @@
             this.menuStrip1.MaximumSize = new System.Drawing.Size(0, 503);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 1069, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1620, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1770, 28);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "MenuStrip";
             // 
@@ -189,6 +189,7 @@
             this.movimientosBancariosToolStripMenuItem.Name = "movimientosBancariosToolStripMenuItem";
             this.movimientosBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
             this.movimientosBancariosToolStripMenuItem.Text = "Movimientos Bancarios";
+            this.movimientosBancariosToolStripMenuItem.Click += new System.EventHandler(this.movimientosBancariosToolStripMenuItem_Click);
             // 
             // conciliaciónBancariaToolStripMenuItem
             // 

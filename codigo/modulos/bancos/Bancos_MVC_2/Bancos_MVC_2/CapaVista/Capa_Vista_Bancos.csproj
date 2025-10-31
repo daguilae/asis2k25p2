@@ -38,11 +38,17 @@
     <Reference Include="Capa_Controlador_Navegador">
       <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\componentes\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Controldor_MB">
+      <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Controldor_MB\bin\Debug\Capa_Controldor_MB.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_CB">
       <HintPath>..\..\..\DLLS_Bancos\MVC_ConciliacionBancaria\DLL_ConciliacionBancaria\Capa_Vista_CB\bin\Debug\Capa_Vista_CB.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Cheques">
       <HintPath>..\..\..\DLLS_Bancos\Cheques\Capa_Vista_Cheques\bin\Debug\Capa_Vista_Cheques.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_MB">
+      <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Vista_MB\bin\Debug\Capa_Vista_MB.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
       <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
