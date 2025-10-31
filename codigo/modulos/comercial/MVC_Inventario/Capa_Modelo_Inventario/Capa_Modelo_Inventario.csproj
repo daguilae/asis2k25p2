@@ -42,7 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Conexion.cs" />
-    <Compile Include="Cls_Sentencias_SQL.cs" />
+    <Compile Include="Cls_Modelo_Inventario.cs" />
+    <Compile Include="Cls_Sentencias_Inventario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
