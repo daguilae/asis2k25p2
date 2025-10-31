@@ -29,31 +29,31 @@ namespace Capa_Vista_Inventario
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Pnl_Herramientas = new System.Windows.Forms.Panel();
+            this.Btn_Buscar_Inventario = new System.Windows.Forms.Button();
             this.Lbl_Inventarios_Pasados = new System.Windows.Forms.Label();
             this.Gpb_Buscar_Inventario_Pasado = new System.Windows.Forms.GroupBox();
-            this.Btn_Buscar_Inventario = new System.Windows.Forms.Button();
+            this.Cbo_Tipo_Operacion = new System.Windows.Forms.ComboBox();
             this.Gpb_Gestion_Inventario = new System.Windows.Forms.GroupBox();
             this.Btn_Nuevo_Inventario = new System.Windows.Forms.Button();
             this.Btn_Imprimir_PDF = new System.Windows.Forms.Button();
             this.Gpb_Filtros = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.Rdb_Filtro_Rango_Fecha = new System.Windows.Forms.RadioButton();
+            this.Lbl_Rango_Fecha_Fin = new System.Windows.Forms.Label();
+            this.Lbl_Rango_Fecha_Inicio = new System.Windows.Forms.Label();
+            this.Dtp_Filtro_Rango_Fecha_Fin = new System.Windows.Forms.DateTimePicker();
+            this.Dtp_Filtro_Rango_Fecha_Inicio = new System.Windows.Forms.DateTimePicker();
+            this.Rdb_Filtro_Valor_Mas_Alto = new System.Windows.Forms.RadioButton();
+            this.Rdb_Filtro_Valor_Mas_Bajo = new System.Windows.Forms.RadioButton();
+            this.Cbo_Filtro_Almacen = new System.Windows.Forms.ComboBox();
+            this.Rdb_Filtro_Almacen = new System.Windows.Forms.RadioButton();
+            this.Cbo_Filtro_Estado = new System.Windows.Forms.ComboBox();
+            this.Rdb_Filtro_Estado = new System.Windows.Forms.RadioButton();
             this.Rdb_Filtro_Mas_Recientes = new System.Windows.Forms.RadioButton();
             this.Rdb_Filtro_Menos_Recientes = new System.Windows.Forms.RadioButton();
             this.Pnl_Vista_Inventarios_Pasados = new System.Windows.Forms.Panel();
             this.Dgv_Vista_Inventarios_Pasados = new System.Windows.Forms.DataGridView();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.Cbo_Tipo_Operacion = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.Pnl_Herramientas.SuspendLayout();
             this.Gpb_Buscar_Inventario_Pasado.SuspendLayout();
             this.Gpb_Gestion_Inventario.SuspendLayout();
@@ -77,6 +77,16 @@ namespace Capa_Vista_Inventario
             this.Pnl_Herramientas.Size = new System.Drawing.Size(1113, 154);
             this.Pnl_Herramientas.TabIndex = 0;
             // 
+            // Btn_Buscar_Inventario
+            // 
+            this.Btn_Buscar_Inventario.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Buscar_Inventario.Location = new System.Drawing.Point(303, 111);
+            this.Btn_Buscar_Inventario.Name = "Btn_Buscar_Inventario";
+            this.Btn_Buscar_Inventario.Size = new System.Drawing.Size(228, 40);
+            this.Btn_Buscar_Inventario.TabIndex = 5;
+            this.Btn_Buscar_Inventario.Text = "Buscar";
+            this.Btn_Buscar_Inventario.UseVisualStyleBackColor = true;
+            // 
             // Lbl_Inventarios_Pasados
             // 
             this.Lbl_Inventarios_Pasados.AutoSize = true;
@@ -98,15 +108,19 @@ namespace Capa_Vista_Inventario
             this.Gpb_Buscar_Inventario_Pasado.TabStop = false;
             this.Gpb_Buscar_Inventario_Pasado.Text = "Buscar por Tipo de Movimiento";
             // 
-            // Btn_Buscar_Inventario
+            // Cbo_Tipo_Operacion
             // 
-            this.Btn_Buscar_Inventario.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Buscar_Inventario.Location = new System.Drawing.Point(303, 111);
-            this.Btn_Buscar_Inventario.Name = "Btn_Buscar_Inventario";
-            this.Btn_Buscar_Inventario.Size = new System.Drawing.Size(228, 40);
-            this.Btn_Buscar_Inventario.TabIndex = 5;
-            this.Btn_Buscar_Inventario.Text = "Buscar";
-            this.Btn_Buscar_Inventario.UseVisualStyleBackColor = true;
+            this.Cbo_Tipo_Operacion.FormattingEnabled = true;
+            this.Cbo_Tipo_Operacion.Items.AddRange(new object[] {
+            "Ventas (-)",
+            "Compras (+)",
+            "Envios (-)",
+            "Devol. Prod. Dañado (+)",
+            "Devol. A Huespedes (-)"});
+            this.Cbo_Tipo_Operacion.Location = new System.Drawing.Point(6, 26);
+            this.Cbo_Tipo_Operacion.Name = "Cbo_Tipo_Operacion";
+            this.Cbo_Tipo_Operacion.Size = new System.Drawing.Size(280, 26);
+            this.Cbo_Tipo_Operacion.TabIndex = 0;
             // 
             // Gpb_Gestion_Inventario
             // 
@@ -144,17 +158,17 @@ namespace Capa_Vista_Inventario
             // 
             // Gpb_Filtros
             // 
-            this.Gpb_Filtros.Controls.Add(this.radioButton3);
-            this.Gpb_Filtros.Controls.Add(this.label2);
-            this.Gpb_Filtros.Controls.Add(this.label1);
-            this.Gpb_Filtros.Controls.Add(this.dateTimePicker2);
-            this.Gpb_Filtros.Controls.Add(this.dateTimePicker1);
-            this.Gpb_Filtros.Controls.Add(this.radioButton4);
-            this.Gpb_Filtros.Controls.Add(this.radioButton5);
-            this.Gpb_Filtros.Controls.Add(this.comboBox2);
-            this.Gpb_Filtros.Controls.Add(this.radioButton2);
-            this.Gpb_Filtros.Controls.Add(this.comboBox1);
-            this.Gpb_Filtros.Controls.Add(this.radioButton1);
+            this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Rango_Fecha);
+            this.Gpb_Filtros.Controls.Add(this.Lbl_Rango_Fecha_Fin);
+            this.Gpb_Filtros.Controls.Add(this.Lbl_Rango_Fecha_Inicio);
+            this.Gpb_Filtros.Controls.Add(this.Dtp_Filtro_Rango_Fecha_Fin);
+            this.Gpb_Filtros.Controls.Add(this.Dtp_Filtro_Rango_Fecha_Inicio);
+            this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Valor_Mas_Alto);
+            this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Valor_Mas_Bajo);
+            this.Gpb_Filtros.Controls.Add(this.Cbo_Filtro_Almacen);
+            this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Almacen);
+            this.Gpb_Filtros.Controls.Add(this.Cbo_Filtro_Estado);
+            this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Estado);
             this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Mas_Recientes);
             this.Gpb_Filtros.Controls.Add(this.Rdb_Filtro_Menos_Recientes);
             this.Gpb_Filtros.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,29 +179,127 @@ namespace Capa_Vista_Inventario
             this.Gpb_Filtros.TabStop = false;
             this.Gpb_Filtros.Text = "Filtros y Orden";
             // 
-            // comboBox1
+            // Rdb_Filtro_Rango_Fecha
             // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.Rdb_Filtro_Rango_Fecha.AutoSize = true;
+            this.Rdb_Filtro_Rango_Fecha.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Filtro_Rango_Fecha.Location = new System.Drawing.Point(245, 87);
+            this.Rdb_Filtro_Rango_Fecha.Name = "Rdb_Filtro_Rango_Fecha";
+            this.Rdb_Filtro_Rango_Fecha.Size = new System.Drawing.Size(73, 22);
+            this.Rdb_Filtro_Rango_Fecha.TabIndex = 16;
+            this.Rdb_Filtro_Rango_Fecha.TabStop = true;
+            this.Rdb_Filtro_Rango_Fecha.Text = "Rango";
+            this.Rdb_Filtro_Rango_Fecha.UseVisualStyleBackColor = true;
+            // 
+            // Lbl_Rango_Fecha_Fin
+            // 
+            this.Lbl_Rango_Fecha_Fin.AutoSize = true;
+            this.Lbl_Rango_Fecha_Fin.Location = new System.Drawing.Point(339, 123);
+            this.Lbl_Rango_Fecha_Fin.Name = "Lbl_Rango_Fecha_Fin";
+            this.Lbl_Rango_Fecha_Fin.Size = new System.Drawing.Size(23, 18);
+            this.Lbl_Rango_Fecha_Fin.TabIndex = 15;
+            this.Lbl_Rango_Fecha_Fin.Text = "Al";
+            // 
+            // Lbl_Rango_Fecha_Inicio
+            // 
+            this.Lbl_Rango_Fecha_Inicio.AutoSize = true;
+            this.Lbl_Rango_Fecha_Inicio.Location = new System.Drawing.Point(339, 92);
+            this.Lbl_Rango_Fecha_Inicio.Name = "Lbl_Rango_Fecha_Inicio";
+            this.Lbl_Rango_Fecha_Inicio.Size = new System.Drawing.Size(34, 18);
+            this.Lbl_Rango_Fecha_Inicio.TabIndex = 14;
+            this.Lbl_Rango_Fecha_Inicio.Text = "Del";
+            // 
+            // Dtp_Filtro_Rango_Fecha_Fin
+            // 
+            this.Dtp_Filtro_Rango_Fecha_Fin.Enabled = false;
+            this.Dtp_Filtro_Rango_Fecha_Fin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Dtp_Filtro_Rango_Fecha_Fin.Location = new System.Drawing.Point(379, 118);
+            this.Dtp_Filtro_Rango_Fecha_Fin.Name = "Dtp_Filtro_Rango_Fecha_Fin";
+            this.Dtp_Filtro_Rango_Fecha_Fin.Size = new System.Drawing.Size(125, 25);
+            this.Dtp_Filtro_Rango_Fecha_Fin.TabIndex = 13;
+            this.Dtp_Filtro_Rango_Fecha_Fin.Value = new System.DateTime(2025, 10, 29, 0, 0, 0, 0);
+            // 
+            // Dtp_Filtro_Rango_Fecha_Inicio
+            // 
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Enabled = false;
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Location = new System.Drawing.Point(379, 87);
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Name = "Dtp_Filtro_Rango_Fecha_Inicio";
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Size = new System.Drawing.Size(125, 25);
+            this.Dtp_Filtro_Rango_Fecha_Inicio.TabIndex = 12;
+            this.Dtp_Filtro_Rango_Fecha_Inicio.Value = new System.DateTime(2025, 10, 29, 0, 0, 0, 0);
+            // 
+            // Rdb_Filtro_Valor_Mas_Alto
+            // 
+            this.Rdb_Filtro_Valor_Mas_Alto.AutoSize = true;
+            this.Rdb_Filtro_Valor_Mas_Alto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Filtro_Valor_Mas_Alto.Location = new System.Drawing.Point(6, 80);
+            this.Rdb_Filtro_Valor_Mas_Alto.Name = "Rdb_Filtro_Valor_Mas_Alto";
+            this.Rdb_Filtro_Valor_Mas_Alto.Size = new System.Drawing.Size(239, 22);
+            this.Rdb_Filtro_Valor_Mas_Alto.TabIndex = 10;
+            this.Rdb_Filtro_Valor_Mas_Alto.TabStop = true;
+            this.Rdb_Filtro_Valor_Mas_Alto.Text = "Valor Mas Alto en Inventario";
+            this.Rdb_Filtro_Valor_Mas_Alto.UseVisualStyleBackColor = true;
+            // 
+            // Rdb_Filtro_Valor_Mas_Bajo
+            // 
+            this.Rdb_Filtro_Valor_Mas_Bajo.AutoSize = true;
+            this.Rdb_Filtro_Valor_Mas_Bajo.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Filtro_Valor_Mas_Bajo.Location = new System.Drawing.Point(6, 108);
+            this.Rdb_Filtro_Valor_Mas_Bajo.Name = "Rdb_Filtro_Valor_Mas_Bajo";
+            this.Rdb_Filtro_Valor_Mas_Bajo.Size = new System.Drawing.Size(243, 22);
+            this.Rdb_Filtro_Valor_Mas_Bajo.TabIndex = 11;
+            this.Rdb_Filtro_Valor_Mas_Bajo.TabStop = true;
+            this.Rdb_Filtro_Valor_Mas_Bajo.Text = "Valor Mas Bajo en Inventario";
+            this.Rdb_Filtro_Valor_Mas_Bajo.UseVisualStyleBackColor = true;
+            // 
+            // Cbo_Filtro_Almacen
+            // 
+            this.Cbo_Filtro_Almacen.Enabled = false;
+            this.Cbo_Filtro_Almacen.FormattingEnabled = true;
+            this.Cbo_Filtro_Almacen.Items.AddRange(new object[] {
             "Cerrado",
             "Abierto"});
-            this.comboBox1.Location = new System.Drawing.Point(342, 55);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(125, 26);
-            this.comboBox1.TabIndex = 5;
+            this.Cbo_Filtro_Almacen.Location = new System.Drawing.Point(342, 23);
+            this.Cbo_Filtro_Almacen.Name = "Cbo_Filtro_Almacen";
+            this.Cbo_Filtro_Almacen.Size = new System.Drawing.Size(225, 26);
+            this.Cbo_Filtro_Almacen.TabIndex = 7;
             // 
-            // radioButton1
+            // Rdb_Filtro_Almacen
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(245, 55);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(76, 22);
-            this.radioButton1.TabIndex = 4;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Estado";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.Rdb_Filtro_Almacen.AutoSize = true;
+            this.Rdb_Filtro_Almacen.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Filtro_Almacen.Location = new System.Drawing.Point(245, 24);
+            this.Rdb_Filtro_Almacen.Name = "Rdb_Filtro_Almacen";
+            this.Rdb_Filtro_Almacen.Size = new System.Drawing.Size(91, 22);
+            this.Rdb_Filtro_Almacen.TabIndex = 6;
+            this.Rdb_Filtro_Almacen.TabStop = true;
+            this.Rdb_Filtro_Almacen.Text = "Almacen";
+            this.Rdb_Filtro_Almacen.UseVisualStyleBackColor = true;
+            // 
+            // Cbo_Filtro_Estado
+            // 
+            this.Cbo_Filtro_Estado.Enabled = false;
+            this.Cbo_Filtro_Estado.FormattingEnabled = true;
+            this.Cbo_Filtro_Estado.Items.AddRange(new object[] {
+            "Cerrado",
+            "Abierto (OBSERVAR)"});
+            this.Cbo_Filtro_Estado.Location = new System.Drawing.Point(342, 55);
+            this.Cbo_Filtro_Estado.Name = "Cbo_Filtro_Estado";
+            this.Cbo_Filtro_Estado.Size = new System.Drawing.Size(162, 26);
+            this.Cbo_Filtro_Estado.TabIndex = 5;
+            // 
+            // Rdb_Filtro_Estado
+            // 
+            this.Rdb_Filtro_Estado.AutoSize = true;
+            this.Rdb_Filtro_Estado.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Filtro_Estado.Location = new System.Drawing.Point(245, 55);
+            this.Rdb_Filtro_Estado.Name = "Rdb_Filtro_Estado";
+            this.Rdb_Filtro_Estado.Size = new System.Drawing.Size(76, 22);
+            this.Rdb_Filtro_Estado.TabIndex = 4;
+            this.Rdb_Filtro_Estado.TabStop = true;
+            this.Rdb_Filtro_Estado.Text = "Estado";
+            this.Rdb_Filtro_Estado.UseVisualStyleBackColor = true;
             // 
             // Rdb_Filtro_Mas_Recientes
             // 
@@ -232,14 +344,14 @@ namespace Capa_Vista_Inventario
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Dgv_Vista_Inventarios_Pasados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle3;
             this.Dgv_Vista_Inventarios_Pasados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_Vista_Inventarios_Pasados.Location = new System.Drawing.Point(0, 0);
             this.Dgv_Vista_Inventarios_Pasados.MultiSelect = false;
@@ -251,123 +363,11 @@ namespace Capa_Vista_Inventario
             this.Dgv_Vista_Inventarios_Pasados.Size = new System.Drawing.Size(1113, 377);
             this.Dgv_Vista_Inventarios_Pasados.TabIndex = 0;
             // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton2.Location = new System.Drawing.Point(245, 24);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(91, 22);
-            this.radioButton2.TabIndex = 6;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Almacen";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // Cbo_Tipo_Operacion
-            // 
-            this.Cbo_Tipo_Operacion.FormattingEnabled = true;
-            this.Cbo_Tipo_Operacion.Items.AddRange(new object[] {
-            "Ventas (-)",
-            "Compras (+)",
-            "Envios (-)",
-            "Devol. Prod. Dañado (+)",
-            "Devol. A Huespedes (-)"});
-            this.Cbo_Tipo_Operacion.Location = new System.Drawing.Point(6, 26);
-            this.Cbo_Tipo_Operacion.Name = "Cbo_Tipo_Operacion";
-            this.Cbo_Tipo_Operacion.Size = new System.Drawing.Size(280, 26);
-            this.Cbo_Tipo_Operacion.TabIndex = 0;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Cerrado",
-            "Abierto"});
-            this.comboBox2.Location = new System.Drawing.Point(342, 23);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(225, 26);
-            this.comboBox2.TabIndex = 7;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton4.Location = new System.Drawing.Point(6, 80);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(239, 22);
-            this.radioButton4.TabIndex = 10;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Valor Mas Alto en Inventario";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton5.Location = new System.Drawing.Point(6, 108);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(243, 22);
-            this.radioButton5.TabIndex = 11;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "Valor Mas Bajo en Inventario";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Enabled = false;
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(379, 87);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(125, 25);
-            this.dateTimePicker1.TabIndex = 12;
-            this.dateTimePicker1.Value = new System.DateTime(2025, 10, 29, 0, 0, 0, 0);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Enabled = false;
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(379, 118);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(125, 25);
-            this.dateTimePicker2.TabIndex = 13;
-            this.dateTimePicker2.Value = new System.DateTime(2025, 10, 29, 0, 0, 0, 0);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(339, 92);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 18);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Del";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(339, 123);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 18);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Al";
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton3.Location = new System.Drawing.Point(245, 87);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(73, 22);
-            this.radioButton3.TabIndex = 16;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Rango";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
             // Frm_Inventario_Historico
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1138, 561);
             this.Controls.Add(this.Pnl_Vista_Inventarios_Pasados);
             this.Controls.Add(this.Pnl_Herramientas);
@@ -402,19 +402,19 @@ namespace Capa_Vista_Inventario
         private System.Windows.Forms.Button Btn_Buscar_Inventario;
         private System.Windows.Forms.GroupBox Gpb_Gestion_Inventario;
         private System.Windows.Forms.GroupBox Gpb_Buscar_Inventario_Pasado;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.ComboBox Cbo_Filtro_Estado;
+        private System.Windows.Forms.RadioButton Rdb_Filtro_Estado;
         private System.Windows.Forms.Button Btn_Imprimir_PDF;
         private System.Windows.Forms.Button Btn_Nuevo_Inventario;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton Rdb_Filtro_Almacen;
         private System.Windows.Forms.ComboBox Cbo_Tipo_Operacion;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.ComboBox Cbo_Filtro_Almacen;
+        private System.Windows.Forms.RadioButton Rdb_Filtro_Valor_Mas_Alto;
+        private System.Windows.Forms.RadioButton Rdb_Filtro_Valor_Mas_Bajo;
+        private System.Windows.Forms.RadioButton Rdb_Filtro_Rango_Fecha;
+        private System.Windows.Forms.Label Lbl_Rango_Fecha_Fin;
+        private System.Windows.Forms.Label Lbl_Rango_Fecha_Inicio;
+        private System.Windows.Forms.DateTimePicker Dtp_Filtro_Rango_Fecha_Fin;
+        private System.Windows.Forms.DateTimePicker Dtp_Filtro_Rango_Fecha_Inicio;
     }
 }
