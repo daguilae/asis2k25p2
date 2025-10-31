@@ -16,7 +16,7 @@ namespace Exe_Bancos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_Vista_Bancos.Frm_Seguridad());
+           Application.Run(new Capa_Vista_Bancos.Frm_Login());
         }
     }
 }

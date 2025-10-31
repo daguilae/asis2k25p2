@@ -33,13 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
+    <Reference Include="Capa_Controlador_Bancos">
+      <HintPath>..\..\..\Bancos_MVC_2\Bancos_MVC_2\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
+    <Reference Include="Capa_Vista_Bancos">
+      <HintPath>..\..\..\Bancos_MVC_2\Bancos_MVC_2\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
