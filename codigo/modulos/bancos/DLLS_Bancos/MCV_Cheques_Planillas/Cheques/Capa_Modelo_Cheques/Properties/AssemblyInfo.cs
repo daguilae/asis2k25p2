@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("Capa_Controlador_Cheques_Planilla")]
+[assembly: AssemblyTitle("Capa_Modelo_Cheques")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Capa_Controlador_Cheques_Planilla")]
+[assembly: AssemblyProduct("Capa_Modelo_Cheques")]
 [assembly: AssemblyCopyright("Copyright ©  2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("f8db8958-9448-45f7-acf0-4a1f1393aa2f")]
+[assembly: Guid("51950dd7-f6b9-4524-b584-f616d34a264c")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //
