@@ -118,6 +118,7 @@
             // 
             // splitRecibos
             // 
+            this.splitRecibos.BackColor = System.Drawing.SystemColors.Control;
             this.splitRecibos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitRecibos.Location = new System.Drawing.Point(0, 24);
             this.splitRecibos.Name = "splitRecibos";
@@ -289,7 +290,6 @@
             this.gridRecibos.AllowUserToAddRows = false;
             this.gridRecibos.AllowUserToDeleteRows = false;
             this.gridRecibos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gridRecibos.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.gridRecibos.ColumnHeadersHeight = 29;
             this.gridRecibos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colRecibo,
@@ -334,7 +334,7 @@
             // 
             // Gpb_Recibo
             // 
-            this.Gpb_Recibo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.Gpb_Recibo.BackColor = System.Drawing.SystemColors.Control;
             this.Gpb_Recibo.Controls.Add(this.Lbl_NumeroRecibo);
             this.Gpb_Recibo.Controls.Add(this.Txt_NumeroRecibo);
             this.Gpb_Recibo.Controls.Add(this.Lbl_FechaRecibo);
