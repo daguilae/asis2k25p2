@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54C324EB-DDCB-4E73-96CD-C2172862CE0D}</ProjectGuid>
+    <ProjectGuid>{51950DD7-F6B9-4524-B584-F616D34A264C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Vista_Cheques</RootNamespace>
-    <AssemblyName>Capa_Vista_Cheques</AssemblyName>
+    <RootNamespace>Capa_Modelo_Cheques</RootNamespace>
+    <AssemblyName>Capa_Modelo_Cheques</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,13 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Cheques_Planilla">
-      <HintPath>..\Capa_Controlador_Cheques_Planilla\bin\Debug\Capa_Controlador_Cheques_Planilla.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,18 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Cheques.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Cheques.Designer.cs">
-      <DependentUpon>Frm_Cheques.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Cls_Conexion_Cheque.cs" />
+    <Compile Include="Cls_Sentencia_Cheque.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Frm_Cheques.resx">
-      <DependentUpon>Frm_Cheques.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
