@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_vista_Check_In_Check_out
 {
-    public partial class Check_Out : Form
+    public partial class Frm_Check_Out : Form
     {
-        public Check_Out()
+        public Frm_Check_Out()
         {
             InitializeComponent();
         }
