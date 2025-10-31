@@ -75,7 +75,6 @@ namespace Capa_Vista_Seguridad
                 { MenuOpciones.Procesos, procesosToolStripMenuItem },
                 { MenuOpciones.Herramientas, herramientasToolStripMenuItem },
                 { MenuOpciones.Asignaciones, asignacionesToolStripMenuItem },
-                { MenuOpciones.Modulos, modulosToolStripMenuItem }
             };
         }
 
