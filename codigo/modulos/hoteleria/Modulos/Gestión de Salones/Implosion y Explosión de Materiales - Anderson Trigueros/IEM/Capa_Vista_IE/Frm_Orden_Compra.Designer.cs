@@ -32,7 +32,9 @@ namespace Capa_Vista_IE
             this.Pnl_Encabezado = new System.Windows.Forms.Panel();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Lbl_Orden_Compra = new System.Windows.Forms.Label();
+            this.Dgv_Ordenes = new System.Windows.Forms.DataGridView();
             this.Pnl_Encabezado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ordenes)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Encabezado
@@ -65,11 +67,22 @@ namespace Capa_Vista_IE
             this.Lbl_Orden_Compra.TabIndex = 2;
             this.Lbl_Orden_Compra.Text = "Orden de Compra";
             // 
+            // Dgv_Ordenes
+            // 
+            this.Dgv_Ordenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Ordenes.Location = new System.Drawing.Point(19, 147);
+            this.Dgv_Ordenes.Name = "Dgv_Ordenes";
+            this.Dgv_Ordenes.RowHeadersWidth = 51;
+            this.Dgv_Ordenes.RowTemplate.Height = 24;
+            this.Dgv_Ordenes.Size = new System.Drawing.Size(1011, 403);
+            this.Dgv_Ordenes.TabIndex = 3;
+            // 
             // Frm_Orden_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 601);
+            this.Controls.Add(this.Dgv_Ordenes);
             this.Controls.Add(this.Lbl_Orden_Compra);
             this.Controls.Add(this.Pnl_Encabezado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -77,6 +90,7 @@ namespace Capa_Vista_IE
             this.Text = "Frm_Orden_Compra";
             this.Pnl_Encabezado.ResumeLayout(false);
             this.Pnl_Encabezado.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ordenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,5 +101,6 @@ namespace Capa_Vista_IE
         private System.Windows.Forms.Panel Pnl_Encabezado;
         private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.Label Lbl_Orden_Compra;
+        private System.Windows.Forms.DataGridView Dgv_Ordenes;
     }
 }
