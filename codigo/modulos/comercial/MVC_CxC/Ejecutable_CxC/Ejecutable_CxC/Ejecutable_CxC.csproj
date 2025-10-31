@@ -33,8 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Vista_CxC">
-      <HintPath>..\..\MVC_CxC\Capa_Vista_CxC\bin\Debug\Capa_Vista_CxC.dll</HintPath>
+    <Reference Include="Capa_Vista_CxC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Capa_Vista_CxC\bin\Debug\Capa_Vista_CxC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
