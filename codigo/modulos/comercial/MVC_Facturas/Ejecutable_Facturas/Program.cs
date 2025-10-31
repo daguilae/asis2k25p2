@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Capa_Vista_Facturas;
 
 namespace Ejecutable_Facturas
 {
@@ -16,7 +17,7 @@ namespace Ejecutable_Facturas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Frm_Venta());
         }
     }
 }

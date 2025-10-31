@@ -36,6 +36,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,7 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Detalle_Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Detalle_Factura.Designer.cs">
+      <DependentUpon>Frm_Detalle_Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Listado_Facturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Listado_Facturas.Designer.cs">
+      <DependentUpon>Frm_Listado_Facturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Venta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Venta.Designer.cs">
+      <DependentUpon>Frm_Venta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Frm_Detalle_Factura.resx">
+      <DependentUpon>Frm_Detalle_Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Listado_Facturas.resx">
+      <DependentUpon>Frm_Listado_Facturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Venta.resx">
+      <DependentUpon>Frm_Venta.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
