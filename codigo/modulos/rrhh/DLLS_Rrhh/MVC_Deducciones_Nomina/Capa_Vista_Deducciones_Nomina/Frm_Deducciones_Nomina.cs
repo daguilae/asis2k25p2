@@ -31,5 +31,15 @@ namespace Capa_Vista_Deducciones_Nomina
         {
 
         }
+
+        private void Frm_Deducciones_Nomina_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
