@@ -65,7 +65,7 @@
             // 
             // menu
             // 
-            this.menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.menu.BackColor = System.Drawing.SystemColors.Control;
             this.menu.Font = new System.Drawing.Font("Rockwell", 9.75F);
             this.menu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -77,49 +77,49 @@
             this.mnuSalir});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(1924, 28);
+            this.menu.Size = new System.Drawing.Size(1924, 24);
             this.menu.TabIndex = 0;
             // 
             // mnuRecibos
             // 
             this.mnuRecibos.Name = "mnuRecibos";
-            this.mnuRecibos.Size = new System.Drawing.Size(85, 24);
+            this.mnuRecibos.Size = new System.Drawing.Size(66, 20);
             this.mnuRecibos.Text = "Recibos";
             // 
             // mnuAplicarPago
             // 
             this.mnuAplicarPago.Name = "mnuAplicarPago";
-            this.mnuAplicarPago.Size = new System.Drawing.Size(123, 24);
+            this.mnuAplicarPago.Size = new System.Drawing.Size(94, 20);
             this.mnuAplicarPago.Text = "Aplicar Pago";
             // 
             // mnuAntiguedad
             // 
             this.mnuAntiguedad.Name = "mnuAntiguedad";
-            this.mnuAntiguedad.Size = new System.Drawing.Size(114, 24);
+            this.mnuAntiguedad.Size = new System.Drawing.Size(88, 20);
             this.mnuAntiguedad.Text = "Antigüedad";
             // 
             // mnuReportes
             // 
             this.mnuReportes.Name = "mnuReportes";
-            this.mnuReportes.Size = new System.Drawing.Size(93, 24);
+            this.mnuReportes.Size = new System.Drawing.Size(72, 20);
             this.mnuReportes.Text = "Reportes";
             // 
             // mnuCierre
             // 
             this.mnuCierre.Name = "mnuCierre";
-            this.mnuCierre.Size = new System.Drawing.Size(139, 24);
+            this.mnuCierre.Size = new System.Drawing.Size(105, 20);
             this.mnuCierre.Text = "Cierre de Caja";
             // 
             // mnuSalir
             // 
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(58, 24);
+            this.mnuSalir.Size = new System.Drawing.Size(45, 20);
             this.mnuSalir.Text = "Salir";
             // 
             // splitRecibos
             // 
             this.splitRecibos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitRecibos.Location = new System.Drawing.Point(0, 28);
+            this.splitRecibos.Location = new System.Drawing.Point(0, 24);
             this.splitRecibos.Name = "splitRecibos";
             // 
             // splitRecibos.Panel1
@@ -131,7 +131,7 @@
             // 
             this.splitRecibos.Panel2.Controls.Add(this.gridRecibos);
             this.splitRecibos.Panel2.Controls.Add(this.Gpb_Recibo);
-            this.splitRecibos.Size = new System.Drawing.Size(1924, 692);
+            this.splitRecibos.Size = new System.Drawing.Size(1924, 696);
             this.splitRecibos.SplitterDistance = 1549;
             this.splitRecibos.TabIndex = 1;
             // 
@@ -140,7 +140,6 @@
             this.Dgv_Facturas.AllowUserToAddRows = false;
             this.Dgv_Facturas.AllowUserToDeleteRows = false;
             this.Dgv_Facturas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.Dgv_Facturas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.Dgv_Facturas.ColumnHeadersHeight = 29;
             this.Dgv_Facturas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSel,
@@ -154,7 +153,7 @@
             this.Dgv_Facturas.Name = "Dgv_Facturas";
             this.Dgv_Facturas.ReadOnly = true;
             this.Dgv_Facturas.RowHeadersWidth = 51;
-            this.Dgv_Facturas.Size = new System.Drawing.Size(1549, 607);
+            this.Dgv_Facturas.Size = new System.Drawing.Size(1549, 611);
             this.Dgv_Facturas.TabIndex = 0;
             // 
             // colSel
@@ -201,7 +200,7 @@
             // 
             // Gpb_Buscar
             // 
-            this.Gpb_Buscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.Gpb_Buscar.BackColor = System.Drawing.SystemColors.Control;
             this.Gpb_Buscar.Controls.Add(this.Lbl_BuscarCliente);
             this.Gpb_Buscar.Controls.Add(this.Txt_BuscarCliente);
             this.Gpb_Buscar.Controls.Add(this.Lbl_Desde);
@@ -224,7 +223,7 @@
             this.Lbl_BuscarCliente.AutoSize = true;
             this.Lbl_BuscarCliente.Location = new System.Drawing.Point(-4, 27);
             this.Lbl_BuscarCliente.Name = "Lbl_BuscarCliente";
-            this.Lbl_BuscarCliente.Size = new System.Drawing.Size(72, 20);
+            this.Lbl_BuscarCliente.Size = new System.Drawing.Size(53, 16);
             this.Lbl_BuscarCliente.TabIndex = 0;
             this.Lbl_BuscarCliente.Text = "Cliente:";
             // 
@@ -232,7 +231,7 @@
             // 
             this.Txt_BuscarCliente.Location = new System.Drawing.Point(63, 25);
             this.Txt_BuscarCliente.Name = "Txt_BuscarCliente";
-            this.Txt_BuscarCliente.Size = new System.Drawing.Size(220, 27);
+            this.Txt_BuscarCliente.Size = new System.Drawing.Size(220, 23);
             this.Txt_BuscarCliente.TabIndex = 1;
             // 
             // Lbl_Desde
@@ -240,7 +239,7 @@
             this.Lbl_Desde.AutoSize = true;
             this.Lbl_Desde.Location = new System.Drawing.Point(289, 29);
             this.Lbl_Desde.Name = "Lbl_Desde";
-            this.Lbl_Desde.Size = new System.Drawing.Size(64, 20);
+            this.Lbl_Desde.Size = new System.Drawing.Size(49, 16);
             this.Lbl_Desde.TabIndex = 2;
             this.Lbl_Desde.Text = "Desde:";
             // 
@@ -248,7 +247,7 @@
             // 
             this.Dtp_Desde.Location = new System.Drawing.Point(355, 24);
             this.Dtp_Desde.Name = "Dtp_Desde";
-            this.Dtp_Desde.Size = new System.Drawing.Size(170, 27);
+            this.Dtp_Desde.Size = new System.Drawing.Size(170, 23);
             this.Dtp_Desde.TabIndex = 3;
             // 
             // Lbl_Hasta
@@ -256,7 +255,7 @@
             this.Lbl_Hasta.AutoSize = true;
             this.Lbl_Hasta.Location = new System.Drawing.Point(531, 27);
             this.Lbl_Hasta.Name = "Lbl_Hasta";
-            this.Lbl_Hasta.Size = new System.Drawing.Size(57, 20);
+            this.Lbl_Hasta.Size = new System.Drawing.Size(45, 16);
             this.Lbl_Hasta.TabIndex = 4;
             this.Lbl_Hasta.Text = "Hasta:";
             // 
@@ -264,7 +263,7 @@
             // 
             this.Dtp_Hasta.Location = new System.Drawing.Point(594, 23);
             this.Dtp_Hasta.Name = "Dtp_Hasta";
-            this.Dtp_Hasta.Size = new System.Drawing.Size(170, 27);
+            this.Dtp_Hasta.Size = new System.Drawing.Size(170, 23);
             this.Dtp_Hasta.TabIndex = 5;
             // 
             // Btn_Filtrar
@@ -302,7 +301,7 @@
             this.gridRecibos.Name = "gridRecibos";
             this.gridRecibos.ReadOnly = true;
             this.gridRecibos.RowHeadersWidth = 51;
-            this.gridRecibos.Size = new System.Drawing.Size(371, 552);
+            this.gridRecibos.Size = new System.Drawing.Size(371, 556);
             this.gridRecibos.TabIndex = 0;
             // 
             // colRecibo
@@ -359,7 +358,7 @@
             this.Lbl_NumeroRecibo.AutoSize = true;
             this.Lbl_NumeroRecibo.Location = new System.Drawing.Point(10, 28);
             this.Lbl_NumeroRecibo.Name = "Lbl_NumeroRecibo";
-            this.Lbl_NumeroRecibo.Size = new System.Drawing.Size(99, 20);
+            this.Lbl_NumeroRecibo.Size = new System.Drawing.Size(75, 16);
             this.Lbl_NumeroRecibo.TabIndex = 0;
             this.Lbl_NumeroRecibo.Text = "No. Recibo:";
             // 
@@ -367,7 +366,7 @@
             // 
             this.Txt_NumeroRecibo.Location = new System.Drawing.Point(135, 26);
             this.Txt_NumeroRecibo.Name = "Txt_NumeroRecibo";
-            this.Txt_NumeroRecibo.Size = new System.Drawing.Size(236, 27);
+            this.Txt_NumeroRecibo.Size = new System.Drawing.Size(236, 23);
             this.Txt_NumeroRecibo.TabIndex = 1;
             // 
             // Lbl_FechaRecibo
@@ -375,7 +374,7 @@
             this.Lbl_FechaRecibo.AutoSize = true;
             this.Lbl_FechaRecibo.Location = new System.Drawing.Point(10, 60);
             this.Lbl_FechaRecibo.Name = "Lbl_FechaRecibo";
-            this.Lbl_FechaRecibo.Size = new System.Drawing.Size(61, 20);
+            this.Lbl_FechaRecibo.Size = new System.Drawing.Size(47, 16);
             this.Lbl_FechaRecibo.TabIndex = 2;
             this.Lbl_FechaRecibo.Text = "Fecha:";
             // 
@@ -383,7 +382,7 @@
             // 
             this.Dtp_FechaRecibo.Location = new System.Drawing.Point(135, 56);
             this.Dtp_FechaRecibo.Name = "Dtp_FechaRecibo";
-            this.Dtp_FechaRecibo.Size = new System.Drawing.Size(236, 27);
+            this.Dtp_FechaRecibo.Size = new System.Drawing.Size(236, 23);
             this.Dtp_FechaRecibo.TabIndex = 3;
             // 
             // Lbl_Obs
@@ -391,7 +390,7 @@
             this.Lbl_Obs.AutoSize = true;
             this.Lbl_Obs.Location = new System.Drawing.Point(-4, 91);
             this.Lbl_Obs.Name = "Lbl_Obs";
-            this.Lbl_Obs.Size = new System.Drawing.Size(133, 20);
+            this.Lbl_Obs.Size = new System.Drawing.Size(99, 16);
             this.Lbl_Obs.TabIndex = 4;
             this.Lbl_Obs.Text = "Observaciones:";
             // 
@@ -432,7 +431,7 @@
             // 
             // Frm_Recibos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1924, 720);
