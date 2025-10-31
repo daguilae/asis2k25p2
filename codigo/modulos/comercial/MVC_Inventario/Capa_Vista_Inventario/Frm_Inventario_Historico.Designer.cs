@@ -34,6 +34,8 @@ namespace Capa_Vista_Inventario
             this.Btn_Buscar_Inventario = new System.Windows.Forms.Button();
             this.Lbl_Inventarios_Pasados = new System.Windows.Forms.Label();
             this.Gpb_Buscar_Inventario_Pasado = new System.Windows.Forms.GroupBox();
+            this.Rdb_Usar_Filtros_Busqueda = new System.Windows.Forms.RadioButton();
+            this.Rdb_Ver_Historicos = new System.Windows.Forms.RadioButton();
             this.Cbo_Tipo_Operacion = new System.Windows.Forms.ComboBox();
             this.Gpb_Gestion_Inventario = new System.Windows.Forms.GroupBox();
             this.Btn_Nuevo_Inventario = new System.Windows.Forms.Button();
@@ -86,6 +88,7 @@ namespace Capa_Vista_Inventario
             this.Btn_Buscar_Inventario.TabIndex = 5;
             this.Btn_Buscar_Inventario.Text = "Buscar";
             this.Btn_Buscar_Inventario.UseVisualStyleBackColor = true;
+            this.Btn_Buscar_Inventario.Click += new System.EventHandler(this.Btn_Buscar_Inventario_Click);
             // 
             // Lbl_Inventarios_Pasados
             // 
@@ -99,24 +102,47 @@ namespace Capa_Vista_Inventario
             // 
             // Gpb_Buscar_Inventario_Pasado
             // 
+            this.Gpb_Buscar_Inventario_Pasado.Controls.Add(this.Rdb_Usar_Filtros_Busqueda);
+            this.Gpb_Buscar_Inventario_Pasado.Controls.Add(this.Rdb_Ver_Historicos);
             this.Gpb_Buscar_Inventario_Pasado.Controls.Add(this.Cbo_Tipo_Operacion);
             this.Gpb_Buscar_Inventario_Pasado.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Buscar_Inventario_Pasado.Location = new System.Drawing.Point(5, 35);
+            this.Gpb_Buscar_Inventario_Pasado.Location = new System.Drawing.Point(5, 27);
             this.Gpb_Buscar_Inventario_Pasado.Name = "Gpb_Buscar_Inventario_Pasado";
-            this.Gpb_Buscar_Inventario_Pasado.Size = new System.Drawing.Size(292, 70);
+            this.Gpb_Buscar_Inventario_Pasado.Size = new System.Drawing.Size(292, 124);
             this.Gpb_Buscar_Inventario_Pasado.TabIndex = 9;
             this.Gpb_Buscar_Inventario_Pasado.TabStop = false;
             this.Gpb_Buscar_Inventario_Pasado.Text = "Buscar por Tipo de Movimiento";
             // 
+            // Rdb_Usar_Filtros_Busqueda
+            // 
+            this.Rdb_Usar_Filtros_Busqueda.AutoSize = true;
+            this.Rdb_Usar_Filtros_Busqueda.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Usar_Filtros_Busqueda.Location = new System.Drawing.Point(50, 58);
+            this.Rdb_Usar_Filtros_Busqueda.Name = "Rdb_Usar_Filtros_Busqueda";
+            this.Rdb_Usar_Filtros_Busqueda.Size = new System.Drawing.Size(202, 22);
+            this.Rdb_Usar_Filtros_Busqueda.TabIndex = 17;
+            this.Rdb_Usar_Filtros_Busqueda.TabStop = true;
+            this.Rdb_Usar_Filtros_Busqueda.Text = "Usar Filtros y Busqueda";
+            this.Rdb_Usar_Filtros_Busqueda.UseVisualStyleBackColor = true;
+            this.Rdb_Usar_Filtros_Busqueda.CheckedChanged += new System.EventHandler(this.ModoDeBusqueda_CheckedChanged);
+            // 
+            // Rdb_Ver_Historicos
+            // 
+            this.Rdb_Ver_Historicos.AutoSize = true;
+            this.Rdb_Ver_Historicos.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rdb_Ver_Historicos.ForeColor = System.Drawing.Color.DarkRed;
+            this.Rdb_Ver_Historicos.Location = new System.Drawing.Point(50, 86);
+            this.Rdb_Ver_Historicos.Name = "Rdb_Ver_Historicos";
+            this.Rdb_Ver_Historicos.Size = new System.Drawing.Size(198, 22);
+            this.Rdb_Ver_Historicos.TabIndex = 1;
+            this.Rdb_Ver_Historicos.TabStop = true;
+            this.Rdb_Ver_Historicos.Text = "Ver Todo los Historicos";
+            this.Rdb_Ver_Historicos.UseVisualStyleBackColor = true;
+            this.Rdb_Ver_Historicos.CheckedChanged += new System.EventHandler(this.ModoDeBusqueda_CheckedChanged);
+            // 
             // Cbo_Tipo_Operacion
             // 
             this.Cbo_Tipo_Operacion.FormattingEnabled = true;
-            this.Cbo_Tipo_Operacion.Items.AddRange(new object[] {
-            "Ventas (-)",
-            "Compras (+)",
-            "Envios (-)",
-            "Devol. Prod. Dañado (+)",
-            "Devol. A Huespedes (-)"});
             this.Cbo_Tipo_Operacion.Location = new System.Drawing.Point(6, 26);
             this.Cbo_Tipo_Operacion.Name = "Cbo_Tipo_Operacion";
             this.Cbo_Tipo_Operacion.Size = new System.Drawing.Size(280, 26);
@@ -190,6 +216,7 @@ namespace Capa_Vista_Inventario
             this.Rdb_Filtro_Rango_Fecha.TabStop = true;
             this.Rdb_Filtro_Rango_Fecha.Text = "Rango";
             this.Rdb_Filtro_Rango_Fecha.UseVisualStyleBackColor = true;
+            this.Rdb_Filtro_Rango_Fecha.CheckedChanged += new System.EventHandler(this.Rdb_Filtro_Rango_Fecha_CheckedChanged);
             // 
             // Lbl_Rango_Fecha_Fin
             // 
@@ -257,9 +284,6 @@ namespace Capa_Vista_Inventario
             // 
             this.Cbo_Filtro_Almacen.Enabled = false;
             this.Cbo_Filtro_Almacen.FormattingEnabled = true;
-            this.Cbo_Filtro_Almacen.Items.AddRange(new object[] {
-            "Cerrado",
-            "Abierto"});
             this.Cbo_Filtro_Almacen.Location = new System.Drawing.Point(342, 23);
             this.Cbo_Filtro_Almacen.Name = "Cbo_Filtro_Almacen";
             this.Cbo_Filtro_Almacen.Size = new System.Drawing.Size(225, 26);
@@ -276,14 +300,12 @@ namespace Capa_Vista_Inventario
             this.Rdb_Filtro_Almacen.TabStop = true;
             this.Rdb_Filtro_Almacen.Text = "Almacen";
             this.Rdb_Filtro_Almacen.UseVisualStyleBackColor = true;
+            this.Rdb_Filtro_Almacen.CheckedChanged += new System.EventHandler(this.Rdb_Filtro_Almacen_CheckedChanged);
             // 
             // Cbo_Filtro_Estado
             // 
             this.Cbo_Filtro_Estado.Enabled = false;
             this.Cbo_Filtro_Estado.FormattingEnabled = true;
-            this.Cbo_Filtro_Estado.Items.AddRange(new object[] {
-            "Cerrado",
-            "Abierto (OBSERVAR)"});
             this.Cbo_Filtro_Estado.Location = new System.Drawing.Point(342, 55);
             this.Cbo_Filtro_Estado.Name = "Cbo_Filtro_Estado";
             this.Cbo_Filtro_Estado.Size = new System.Drawing.Size(162, 26);
@@ -300,6 +322,7 @@ namespace Capa_Vista_Inventario
             this.Rdb_Filtro_Estado.TabStop = true;
             this.Rdb_Filtro_Estado.Text = "Estado";
             this.Rdb_Filtro_Estado.UseVisualStyleBackColor = true;
+            this.Rdb_Filtro_Estado.CheckedChanged += new System.EventHandler(this.Rdb_Filtro_Estado_CheckedChanged);
             // 
             // Rdb_Filtro_Mas_Recientes
             // 
@@ -381,6 +404,7 @@ namespace Capa_Vista_Inventario
             this.Pnl_Herramientas.ResumeLayout(false);
             this.Pnl_Herramientas.PerformLayout();
             this.Gpb_Buscar_Inventario_Pasado.ResumeLayout(false);
+            this.Gpb_Buscar_Inventario_Pasado.PerformLayout();
             this.Gpb_Gestion_Inventario.ResumeLayout(false);
             this.Gpb_Filtros.ResumeLayout(false);
             this.Gpb_Filtros.PerformLayout();
@@ -416,5 +440,7 @@ namespace Capa_Vista_Inventario
         private System.Windows.Forms.Label Lbl_Rango_Fecha_Inicio;
         private System.Windows.Forms.DateTimePicker Dtp_Filtro_Rango_Fecha_Fin;
         private System.Windows.Forms.DateTimePicker Dtp_Filtro_Rango_Fecha_Inicio;
+        private System.Windows.Forms.RadioButton Rdb_Ver_Historicos;
+        private System.Windows.Forms.RadioButton Rdb_Usar_Filtros_Busqueda;
     }
 }
