@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Data;
-using System.Data.Odbc;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-
-
-namespace Capa_Modelo_Seguridad
+namespace Capa_Modelo_Check_In_Check_Out
 {
-    /* Brandon Alexander Hernandez Salguero
-     * 0901-22-9663
-     * Adaptado a los campos de la nueva tabla (ver imagen1)
-     */
     public class Cls_CheckIn
     {
         public int iPk_Id_CheckIn { get; set; }
@@ -19,10 +14,10 @@ namespace Capa_Modelo_Seguridad
         public DateTime dCmp_Fecha_CheckIn { get; set; }
         public string sCmp_Estado { get; set; }
 
-        // Constructor vacío
+     
         public Cls_CheckIn() { }
 
-        // Constructor con parámetros
+  
         public Cls_CheckIn(int iPkIdCheckIn, int iFkIdHuesped, int iFkIdReserva, DateTime dCmpFechaCheckIn, string sCmpEstado)
         {
             this.iPk_Id_CheckIn = iPkIdCheckIn;
