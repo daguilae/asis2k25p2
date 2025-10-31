@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_Check_In_Check_Out">
+      <HintPath>..\Capa_Controlador_Check_In_Check_Out\bin\Debug\Capa_Controlador_Check_In_Check_Out.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Controlador_Navegador">
       <HintPath>..\..\..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
@@ -76,6 +79,11 @@
       <DependentUpon>Frm_Check_In.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Check_Out.resx">
@@ -86,6 +94,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Check_In.resx">
       <DependentUpon>Frm_Check_In.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

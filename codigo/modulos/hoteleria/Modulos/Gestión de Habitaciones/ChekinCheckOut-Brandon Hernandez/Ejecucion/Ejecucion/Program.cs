@@ -18,7 +18,7 @@ namespace Ejecucion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_vista_Check_In_Check_out.Frm_Areas());
+            Application.Run(new Capa_vista_Check_In_Check_out.Check_Out());
         }
     }
 }
