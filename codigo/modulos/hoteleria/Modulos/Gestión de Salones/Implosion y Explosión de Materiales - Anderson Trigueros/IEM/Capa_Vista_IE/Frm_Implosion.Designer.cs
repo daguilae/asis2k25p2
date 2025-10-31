@@ -31,13 +31,13 @@ namespace Capa_Vista_IE
         {
             this.Pnl_Encabezado = new System.Windows.Forms.Panel();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_Platillo = new System.Windows.Forms.Label();
             this.Cbo_Platillos = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Gpb_Receta = new System.Windows.Forms.GroupBox();
             this.Lbl_IngresoCantidad = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Txt_Cantidad = new System.Windows.Forms.TextBox();
             this.Btn_Consulta = new System.Windows.Forms.Button();
+            this.Lstv_Receta = new System.Windows.Forms.ListView();
             this.Pnl_Encabezado.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,15 +61,15 @@ namespace Capa_Vista_IE
             this.Lbl_Titulo.TabIndex = 1;
             this.Lbl_Titulo.Text = "Implosión y Explosión de Materiales";
             // 
-            // label1
+            // Lbl_Platillo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(268, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Seleccione el platillo a consultar:";
+            this.Lbl_Platillo.AutoSize = true;
+            this.Lbl_Platillo.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Platillo.Location = new System.Drawing.Point(22, 101);
+            this.Lbl_Platillo.Name = "Lbl_Platillo";
+            this.Lbl_Platillo.Size = new System.Drawing.Size(268, 20);
+            this.Lbl_Platillo.TabIndex = 1;
+            this.Lbl_Platillo.Text = "Seleccione el platillo a consultar:";
             // 
             // Cbo_Platillos
             // 
@@ -79,6 +79,7 @@ namespace Capa_Vista_IE
             this.Cbo_Platillos.Name = "Cbo_Platillos";
             this.Cbo_Platillos.Size = new System.Drawing.Size(359, 28);
             this.Cbo_Platillos.TabIndex = 2;
+            this.Cbo_Platillos.SelectedIndexChanged += new System.EventHandler(this.Cbo_Platillos_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -88,16 +89,6 @@ namespace Capa_Vista_IE
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 3;
-            // 
-            // Gpb_Receta
-            // 
-            this.Gpb_Receta.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Receta.Location = new System.Drawing.Point(29, 208);
-            this.Gpb_Receta.Name = "Gpb_Receta";
-            this.Gpb_Receta.Size = new System.Drawing.Size(352, 311);
-            this.Gpb_Receta.TabIndex = 4;
-            this.Gpb_Receta.TabStop = false;
-            this.Gpb_Receta.Text = "Receta";
             // 
             // Lbl_IngresoCantidad
             // 
@@ -109,43 +100,52 @@ namespace Capa_Vista_IE
             this.Lbl_IngresoCantidad.TabIndex = 5;
             this.Lbl_IngresoCantidad.Text = "Cantidad de platillos a producir";
             // 
-            // textBox1
+            // Txt_Cantidad
             // 
-            this.textBox1.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(428, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(347, 27);
-            this.textBox1.TabIndex = 6;
+            this.Txt_Cantidad.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Txt_Cantidad.Location = new System.Drawing.Point(428, 124);
+            this.Txt_Cantidad.Name = "Txt_Cantidad";
+            this.Txt_Cantidad.Size = new System.Drawing.Size(347, 27);
+            this.Txt_Cantidad.TabIndex = 6;
             // 
             // Btn_Consulta
             // 
             this.Btn_Consulta.BackColor = System.Drawing.Color.AliceBlue;
             this.Btn_Consulta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_Consulta.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Consulta.Location = new System.Drawing.Point(803, 111);
+            this.Btn_Consulta.Location = new System.Drawing.Point(805, 117);
             this.Btn_Consulta.Name = "Btn_Consulta";
-            this.Btn_Consulta.Size = new System.Drawing.Size(183, 40);
+            this.Btn_Consulta.Size = new System.Drawing.Size(181, 35);
             this.Btn_Consulta.TabIndex = 7;
             this.Btn_Consulta.Text = "Consultar Inventario";
             this.Btn_Consulta.UseVisualStyleBackColor = false;
             this.Btn_Consulta.Click += new System.EventHandler(this.Btn_Consulta_Click);
+            // 
+            // Lstv_Receta
+            // 
+            this.Lstv_Receta.HideSelection = false;
+            this.Lstv_Receta.Location = new System.Drawing.Point(26, 181);
+            this.Lstv_Receta.Name = "Lstv_Receta";
+            this.Lstv_Receta.Size = new System.Drawing.Size(960, 350);
+            this.Lstv_Receta.TabIndex = 8;
+            this.Lstv_Receta.UseCompatibleStateImageBehavior = false;
             // 
             // Frm_Implosion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1054, 601);
+            this.Controls.Add(this.Lstv_Receta);
             this.Controls.Add(this.Btn_Consulta);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Txt_Cantidad);
             this.Controls.Add(this.Lbl_IngresoCantidad);
-            this.Controls.Add(this.Gpb_Receta);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Cbo_Platillos);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Lbl_Platillo);
             this.Controls.Add(this.Pnl_Encabezado);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Implosion";
             this.Text = "Frm_Implosion";
+            this.Load += new System.EventHandler(this.Frm_Implosion_Load);
             this.Pnl_Encabezado.ResumeLayout(false);
             this.Pnl_Encabezado.PerformLayout();
             this.ResumeLayout(false);
@@ -157,12 +157,12 @@ namespace Capa_Vista_IE
 
         private System.Windows.Forms.Panel Pnl_Encabezado;
         private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Platillo;
         private System.Windows.Forms.ComboBox Cbo_Platillos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.GroupBox Gpb_Receta;
         private System.Windows.Forms.Label Lbl_IngresoCantidad;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Txt_Cantidad;
         private System.Windows.Forms.Button Btn_Consulta;
+        private System.Windows.Forms.ListView Lstv_Receta;
     }
 }
