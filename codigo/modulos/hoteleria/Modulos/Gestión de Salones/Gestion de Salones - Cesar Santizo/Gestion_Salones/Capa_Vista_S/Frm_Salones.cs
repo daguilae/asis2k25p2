@@ -45,7 +45,7 @@ namespace Capa_Vista_S
             if (Dvg_Salones.Columns.Count > 0)
             {
                 Dvg_Salones.Columns["Pk_Id_Salon"].HeaderText = "ID";
-                Dvg_Salones.Columns["Cmp_Nombre_Salon"].HeaderText = "Nombre";
+                Dvg_Salones.Columns["Cmp_Nombre_Salon"].HeaderText = "Nombre Del Salon";
                 Dvg_Salones.Columns["Cmp_Ubicacion"].HeaderText = "Ubicación";
                 Dvg_Salones.Columns["Cmp_Capacidad"].HeaderText = "Capacidad";
                 Dvg_Salones.Columns["Cmp_Disponibilidad"].HeaderText = "Disponible";
