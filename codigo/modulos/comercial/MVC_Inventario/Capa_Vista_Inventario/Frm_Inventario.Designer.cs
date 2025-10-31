@@ -31,7 +31,14 @@ namespace Capa_Vista_Inventario
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Pnl_Principal = new System.Windows.Forms.Panel();
+            this.Lbl_Productos_Hotel = new System.Windows.Forms.Label();
             this.Gpb_Descripcion_Producto = new System.Windows.Forms.GroupBox();
+            this.Txt_Existencias_Globales_Producto = new System.Windows.Forms.TextBox();
+            this.Lbl_Existencias_Globales_Producto = new System.Windows.Forms.Label();
+            this.Lbl_Precio_Venta_Producto = new System.Windows.Forms.Label();
+            this.Txt_Precio_Venta_Producto = new System.Windows.Forms.TextBox();
+            this.Lbl_Marca_Producto = new System.Windows.Forms.Label();
+            this.Txt_Marca_Producto = new System.Windows.Forms.TextBox();
             this.Dtp_Fecha_Vencimiento_Producto = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Fecha_Vencimiento = new System.Windows.Forms.Label();
             this.Lbl_Fecha_Ingreso = new System.Windows.Forms.Label();
@@ -45,7 +52,7 @@ namespace Capa_Vista_Inventario
             this.Lbl_Cantidad_Producto = new System.Windows.Forms.Label();
             this.Txt_Cantidad_Producto = new System.Windows.Forms.TextBox();
             this.Lbl_Precio_Unitario_Producto = new System.Windows.Forms.Label();
-            this.Txt_Precio_Producto = new System.Windows.Forms.TextBox();
+            this.Txt_Costo_Unitario_Producto = new System.Windows.Forms.TextBox();
             this.Lbl_Nombre_Producto = new System.Windows.Forms.Label();
             this.Txt_Nombre_Producto = new System.Windows.Forms.TextBox();
             this.Gpb_Gestion_Inventario = new System.Windows.Forms.GroupBox();
@@ -77,18 +84,35 @@ namespace Capa_Vista_Inventario
             this.Pnl_Principal.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Pnl_Principal.Controls.Add(this.Lbl_Productos_Hotel);
             this.Pnl_Principal.Controls.Add(this.Gpb_Descripcion_Producto);
             this.Pnl_Principal.Controls.Add(this.Gpb_Gestion_Inventario);
             this.Pnl_Principal.Controls.Add(this.Gpb_Tipo_Producto);
             this.Pnl_Principal.Location = new System.Drawing.Point(12, 12);
             this.Pnl_Principal.Name = "Pnl_Principal";
-            this.Pnl_Principal.Size = new System.Drawing.Size(1325, 269);
+            this.Pnl_Principal.Size = new System.Drawing.Size(960, 350);
             this.Pnl_Principal.TabIndex = 0;
+            // 
+            // Lbl_Productos_Hotel
+            // 
+            this.Lbl_Productos_Hotel.AutoSize = true;
+            this.Lbl_Productos_Hotel.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Productos_Hotel.Location = new System.Drawing.Point(3, 3);
+            this.Lbl_Productos_Hotel.Name = "Lbl_Productos_Hotel";
+            this.Lbl_Productos_Hotel.Size = new System.Drawing.Size(235, 29);
+            this.Lbl_Productos_Hotel.TabIndex = 5;
+            this.Lbl_Productos_Hotel.Text = "Productos de Hotel";
             // 
             // Gpb_Descripcion_Producto
             // 
             this.Gpb_Descripcion_Producto.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Existencias_Globales_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Existencias_Globales_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Precio_Venta_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Precio_Venta_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Marca_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Marca_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Dtp_Fecha_Vencimiento_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Fecha_Vencimiento);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Fecha_Ingreso);
@@ -102,21 +126,75 @@ namespace Capa_Vista_Inventario
             this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Cantidad_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Cantidad_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Precio_Unitario_Producto);
-            this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Precio_Producto);
+            this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Costo_Unitario_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Lbl_Nombre_Producto);
             this.Gpb_Descripcion_Producto.Controls.Add(this.Txt_Nombre_Producto);
             this.Gpb_Descripcion_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gpb_Descripcion_Producto.Location = new System.Drawing.Point(3, 134);
             this.Gpb_Descripcion_Producto.Name = "Gpb_Descripcion_Producto";
-            this.Gpb_Descripcion_Producto.Size = new System.Drawing.Size(1319, 132);
+            this.Gpb_Descripcion_Producto.Size = new System.Drawing.Size(954, 213);
             this.Gpb_Descripcion_Producto.TabIndex = 4;
             this.Gpb_Descripcion_Producto.TabStop = false;
             this.Gpb_Descripcion_Producto.Text = "Descripcion de Producto";
             // 
+            // Txt_Existencias_Globales_Producto
+            // 
+            this.Txt_Existencias_Globales_Producto.Location = new System.Drawing.Point(613, 81);
+            this.Txt_Existencias_Globales_Producto.MaxLength = 10;
+            this.Txt_Existencias_Globales_Producto.Name = "Txt_Existencias_Globales_Producto";
+            this.Txt_Existencias_Globales_Producto.Size = new System.Drawing.Size(120, 25);
+            this.Txt_Existencias_Globales_Producto.TabIndex = 27;
+            // 
+            // Lbl_Existencias_Globales_Producto
+            // 
+            this.Lbl_Existencias_Globales_Producto.AutoSize = true;
+            this.Lbl_Existencias_Globales_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Existencias_Globales_Producto.Location = new System.Drawing.Point(443, 84);
+            this.Lbl_Existencias_Globales_Producto.Name = "Lbl_Existencias_Globales_Producto";
+            this.Lbl_Existencias_Globales_Producto.Size = new System.Drawing.Size(157, 17);
+            this.Lbl_Existencias_Globales_Producto.TabIndex = 26;
+            this.Lbl_Existencias_Globales_Producto.Text = "Existencias Globales";
+            // 
+            // Lbl_Precio_Venta_Producto
+            // 
+            this.Lbl_Precio_Venta_Producto.AutoSize = true;
+            this.Lbl_Precio_Venta_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Precio_Venta_Producto.Location = new System.Drawing.Point(6, 178);
+            this.Lbl_Precio_Venta_Producto.Name = "Lbl_Precio_Venta_Producto";
+            this.Lbl_Precio_Venta_Producto.Size = new System.Drawing.Size(100, 17);
+            this.Lbl_Precio_Venta_Producto.TabIndex = 23;
+            this.Lbl_Precio_Venta_Producto.Text = "Precio Venta";
+            // 
+            // Txt_Precio_Venta_Producto
+            // 
+            this.Txt_Precio_Venta_Producto.Location = new System.Drawing.Point(140, 175);
+            this.Txt_Precio_Venta_Producto.MaxLength = 10;
+            this.Txt_Precio_Venta_Producto.Name = "Txt_Precio_Venta_Producto";
+            this.Txt_Precio_Venta_Producto.Size = new System.Drawing.Size(121, 25);
+            this.Txt_Precio_Venta_Producto.TabIndex = 22;
+            // 
+            // Lbl_Marca_Producto
+            // 
+            this.Lbl_Marca_Producto.AutoSize = true;
+            this.Lbl_Marca_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Marca_Producto.Location = new System.Drawing.Point(6, 84);
+            this.Lbl_Marca_Producto.Name = "Lbl_Marca_Producto";
+            this.Lbl_Marca_Producto.Size = new System.Drawing.Size(51, 17);
+            this.Lbl_Marca_Producto.TabIndex = 21;
+            this.Lbl_Marca_Producto.Text = "Marca";
+            // 
+            // Txt_Marca_Producto
+            // 
+            this.Txt_Marca_Producto.Location = new System.Drawing.Point(140, 81);
+            this.Txt_Marca_Producto.MaxLength = 20;
+            this.Txt_Marca_Producto.Name = "Txt_Marca_Producto";
+            this.Txt_Marca_Producto.Size = new System.Drawing.Size(247, 25);
+            this.Txt_Marca_Producto.TabIndex = 20;
+            // 
             // Dtp_Fecha_Vencimiento_Producto
             // 
             this.Dtp_Fecha_Vencimiento_Producto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Dtp_Fecha_Vencimiento_Producto.Location = new System.Drawing.Point(1188, 72);
+            this.Dtp_Fecha_Vencimiento_Producto.Location = new System.Drawing.Point(612, 112);
             this.Dtp_Fecha_Vencimiento_Producto.Name = "Dtp_Fecha_Vencimiento_Producto";
             this.Dtp_Fecha_Vencimiento_Producto.Size = new System.Drawing.Size(123, 25);
             this.Dtp_Fecha_Vencimiento_Producto.TabIndex = 19;
@@ -126,7 +204,7 @@ namespace Capa_Vista_Inventario
             // 
             this.Lbl_Fecha_Vencimiento.AutoSize = true;
             this.Lbl_Fecha_Vencimiento.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha_Vencimiento.Location = new System.Drawing.Point(1036, 77);
+            this.Lbl_Fecha_Vencimiento.Location = new System.Drawing.Point(443, 115);
             this.Lbl_Fecha_Vencimiento.Name = "Lbl_Fecha_Vencimiento";
             this.Lbl_Fecha_Vencimiento.Size = new System.Drawing.Size(146, 17);
             this.Lbl_Fecha_Vencimiento.TabIndex = 18;
@@ -136,7 +214,7 @@ namespace Capa_Vista_Inventario
             // 
             this.Lbl_Fecha_Ingreso.AutoSize = true;
             this.Lbl_Fecha_Ingreso.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha_Ingreso.Location = new System.Drawing.Point(1044, 46);
+            this.Lbl_Fecha_Ingreso.Location = new System.Drawing.Point(443, 147);
             this.Lbl_Fecha_Ingreso.Name = "Lbl_Fecha_Ingreso";
             this.Lbl_Fecha_Ingreso.Size = new System.Drawing.Size(108, 17);
             this.Lbl_Fecha_Ingreso.TabIndex = 17;
@@ -145,7 +223,7 @@ namespace Capa_Vista_Inventario
             // Dtp_Fecha_Ingreso_Producto
             // 
             this.Dtp_Fecha_Ingreso_Producto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Dtp_Fecha_Ingreso_Producto.Location = new System.Drawing.Point(1158, 41);
+            this.Dtp_Fecha_Ingreso_Producto.Location = new System.Drawing.Point(612, 143);
             this.Dtp_Fecha_Ingreso_Producto.Name = "Dtp_Fecha_Ingreso_Producto";
             this.Dtp_Fecha_Ingreso_Producto.Size = new System.Drawing.Size(123, 25);
             this.Dtp_Fecha_Ingreso_Producto.TabIndex = 16;
@@ -183,55 +261,23 @@ namespace Capa_Vista_Inventario
             this.Cbo_Unidad_Medida_Producto.FormattingEnabled = true;
             this.Cbo_Unidad_Medida_Producto.Items.AddRange(new object[] {
             "Unidad (und)",
-            "",
-            "",
             "Libra (lb)",
-            "",
-            "",
             "Kilogramo (kg)",
-            "",
-            "",
             "Litro (L)",
-            "",
-            "",
             "Mililitro (ml)",
-            "",
-            "",
             "Caja (caja)",
-            "",
-            "",
             "Paquete (paq)",
-            "",
-            "",
             "Bolsa (bolsa)",
-            "",
-            "",
             "Docena (doc)",
-            "",
-            "",
             "Rollo (rollo)",
-            "",
-            "",
             "Botella (bot)",
-            "",
-            "",
             "Bandeja (band)",
-            "",
-            "",
             "Porción (porc)",
-            "",
-            "",
             "Juego (jgo)",
-            "",
-            "",
             "Set (set)",
-            "",
-            "",
             "Metro (m)",
-            "",
-            "",
             "Galón (gal)"});
-            this.Cbo_Unidad_Medida_Producto.Location = new System.Drawing.Point(917, 43);
+            this.Cbo_Unidad_Medida_Producto.Location = new System.Drawing.Point(140, 112);
             this.Cbo_Unidad_Medida_Producto.Name = "Cbo_Unidad_Medida_Producto";
             this.Cbo_Unidad_Medida_Producto.Size = new System.Drawing.Size(121, 26);
             this.Cbo_Unidad_Medida_Producto.TabIndex = 13;
@@ -240,10 +286,9 @@ namespace Capa_Vista_Inventario
             // 
             this.Cbo_Estado_Producto.FormattingEnabled = true;
             this.Cbo_Estado_Producto.Items.AddRange(new object[] {
-            "Activo",
-            "Inactivo",
+            "Buen Estado",
             "Obsoleto"});
-            this.Cbo_Estado_Producto.Location = new System.Drawing.Point(909, 74);
+            this.Cbo_Estado_Producto.Location = new System.Drawing.Point(612, 49);
             this.Cbo_Estado_Producto.Name = "Cbo_Estado_Producto";
             this.Cbo_Estado_Producto.Size = new System.Drawing.Size(121, 26);
             this.Cbo_Estado_Producto.TabIndex = 12;
@@ -252,7 +297,7 @@ namespace Capa_Vista_Inventario
             // 
             this.Lbl_Estado_Producto.AutoSize = true;
             this.Lbl_Estado_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado_Producto.Location = new System.Drawing.Point(753, 77);
+            this.Lbl_Estado_Producto.Location = new System.Drawing.Point(443, 53);
             this.Lbl_Estado_Producto.Name = "Lbl_Estado_Producto";
             this.Lbl_Estado_Producto.Size = new System.Drawing.Size(150, 17);
             this.Lbl_Estado_Producto.TabIndex = 11;
@@ -262,7 +307,7 @@ namespace Capa_Vista_Inventario
             // 
             this.Lbl_Unidad_Medida_Producto.AutoSize = true;
             this.Lbl_Unidad_Medida_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Unidad_Medida_Producto.Location = new System.Drawing.Point(796, 46);
+            this.Lbl_Unidad_Medida_Producto.Location = new System.Drawing.Point(6, 115);
             this.Lbl_Unidad_Medida_Producto.Name = "Lbl_Unidad_Medida_Producto";
             this.Lbl_Unidad_Medida_Producto.Size = new System.Drawing.Size(115, 17);
             this.Lbl_Unidad_Medida_Producto.TabIndex = 9;
@@ -272,7 +317,7 @@ namespace Capa_Vista_Inventario
             // 
             this.Lbl_Cantidad_Producto.AutoSize = true;
             this.Lbl_Cantidad_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Cantidad_Producto.Location = new System.Drawing.Point(569, 77);
+            this.Lbl_Cantidad_Producto.Location = new System.Drawing.Point(443, 21);
             this.Lbl_Cantidad_Producto.Name = "Lbl_Cantidad_Producto";
             this.Lbl_Cantidad_Producto.Size = new System.Drawing.Size(72, 17);
             this.Lbl_Cantidad_Producto.TabIndex = 7;
@@ -280,35 +325,35 @@ namespace Capa_Vista_Inventario
             // 
             // Txt_Cantidad_Producto
             // 
-            this.Txt_Cantidad_Producto.Location = new System.Drawing.Point(647, 74);
+            this.Txt_Cantidad_Producto.Location = new System.Drawing.Point(612, 18);
             this.Txt_Cantidad_Producto.MaxLength = 5;
             this.Txt_Cantidad_Producto.Name = "Txt_Cantidad_Producto";
-            this.Txt_Cantidad_Producto.Size = new System.Drawing.Size(100, 25);
+            this.Txt_Cantidad_Producto.Size = new System.Drawing.Size(121, 25);
             this.Txt_Cantidad_Producto.TabIndex = 6;
             // 
             // Lbl_Precio_Unitario_Producto
             // 
             this.Lbl_Precio_Unitario_Producto.AutoSize = true;
             this.Lbl_Precio_Unitario_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Precio_Unitario_Producto.Location = new System.Drawing.Point(569, 46);
+            this.Lbl_Precio_Unitario_Producto.Location = new System.Drawing.Point(6, 147);
             this.Lbl_Precio_Unitario_Producto.Name = "Lbl_Precio_Unitario_Producto";
-            this.Lbl_Precio_Unitario_Producto.Size = new System.Drawing.Size(115, 17);
+            this.Lbl_Precio_Unitario_Producto.Size = new System.Drawing.Size(110, 17);
             this.Lbl_Precio_Unitario_Producto.TabIndex = 5;
-            this.Lbl_Precio_Unitario_Producto.Text = "Precio Unitario";
+            this.Lbl_Precio_Unitario_Producto.Text = "Costo Unitario";
             // 
-            // Txt_Precio_Producto
+            // Txt_Costo_Unitario_Producto
             // 
-            this.Txt_Precio_Producto.Location = new System.Drawing.Point(690, 43);
-            this.Txt_Precio_Producto.MaxLength = 5;
-            this.Txt_Precio_Producto.Name = "Txt_Precio_Producto";
-            this.Txt_Precio_Producto.Size = new System.Drawing.Size(100, 25);
-            this.Txt_Precio_Producto.TabIndex = 4;
+            this.Txt_Costo_Unitario_Producto.Location = new System.Drawing.Point(140, 144);
+            this.Txt_Costo_Unitario_Producto.MaxLength = 10;
+            this.Txt_Costo_Unitario_Producto.Name = "Txt_Costo_Unitario_Producto";
+            this.Txt_Costo_Unitario_Producto.Size = new System.Drawing.Size(121, 25);
+            this.Txt_Costo_Unitario_Producto.TabIndex = 4;
             // 
             // Lbl_Nombre_Producto
             // 
             this.Lbl_Nombre_Producto.AutoSize = true;
             this.Lbl_Nombre_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Producto.Location = new System.Drawing.Point(8, 49);
+            this.Lbl_Nombre_Producto.Location = new System.Drawing.Point(6, 52);
             this.Lbl_Nombre_Producto.Name = "Lbl_Nombre_Producto";
             this.Lbl_Nombre_Producto.Size = new System.Drawing.Size(66, 17);
             this.Lbl_Nombre_Producto.TabIndex = 2;
@@ -316,10 +361,10 @@ namespace Capa_Vista_Inventario
             // 
             // Txt_Nombre_Producto
             // 
-            this.Txt_Nombre_Producto.Location = new System.Drawing.Point(140, 46);
+            this.Txt_Nombre_Producto.Location = new System.Drawing.Point(140, 50);
             this.Txt_Nombre_Producto.MaxLength = 30;
             this.Txt_Nombre_Producto.Name = "Txt_Nombre_Producto";
-            this.Txt_Nombre_Producto.Size = new System.Drawing.Size(381, 25);
+            this.Txt_Nombre_Producto.Size = new System.Drawing.Size(297, 25);
             this.Txt_Nombre_Producto.TabIndex = 3;
             // 
             // Gpb_Gestion_Inventario
@@ -329,7 +374,7 @@ namespace Capa_Vista_Inventario
             this.Gpb_Gestion_Inventario.Controls.Add(this.Btn_Modificar_Producto);
             this.Gpb_Gestion_Inventario.Controls.Add(this.Btn_Eliminar_Producto);
             this.Gpb_Gestion_Inventario.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Gestion_Inventario.Location = new System.Drawing.Point(3, 74);
+            this.Gpb_Gestion_Inventario.Location = new System.Drawing.Point(3, 35);
             this.Gpb_Gestion_Inventario.Name = "Gpb_Gestion_Inventario";
             this.Gpb_Gestion_Inventario.Size = new System.Drawing.Size(398, 54);
             this.Gpb_Gestion_Inventario.TabIndex = 2;
@@ -338,12 +383,13 @@ namespace Capa_Vista_Inventario
             // 
             // Btn_Cierre_Inventario
             // 
+            this.Btn_Cierre_Inventario.BackColor = System.Drawing.Color.IndianRed;
             this.Btn_Cierre_Inventario.Location = new System.Drawing.Point(6, 18);
             this.Btn_Cierre_Inventario.Name = "Btn_Cierre_Inventario";
             this.Btn_Cierre_Inventario.Size = new System.Drawing.Size(81, 30);
             this.Btn_Cierre_Inventario.TabIndex = 4;
             this.Btn_Cierre_Inventario.Text = "Cierre";
-            this.Btn_Cierre_Inventario.UseVisualStyleBackColor = true;
+            this.Btn_Cierre_Inventario.UseVisualStyleBackColor = false;
             this.Btn_Cierre_Inventario.Click += new System.EventHandler(this.Btn_Cierre_Inventario_Click);
             // 
             // Btn_Agregar_Producto
@@ -387,7 +433,7 @@ namespace Capa_Vista_Inventario
             this.Gpb_Tipo_Producto.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gpb_Tipo_Producto.Location = new System.Drawing.Point(407, 3);
             this.Gpb_Tipo_Producto.Name = "Gpb_Tipo_Producto";
-            this.Gpb_Tipo_Producto.Size = new System.Drawing.Size(915, 132);
+            this.Gpb_Tipo_Producto.Size = new System.Drawing.Size(544, 132);
             this.Gpb_Tipo_Producto.TabIndex = 1;
             this.Gpb_Tipo_Producto.TabStop = false;
             this.Gpb_Tipo_Producto.Text = "Tipo de Producto";
@@ -486,9 +532,9 @@ namespace Capa_Vista_Inventario
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Pnl_Vista_Producto.Controls.Add(this.Dgv_Vista_Producto);
-            this.Pnl_Vista_Producto.Location = new System.Drawing.Point(12, 287);
+            this.Pnl_Vista_Producto.Location = new System.Drawing.Point(12, 368);
             this.Pnl_Vista_Producto.Name = "Pnl_Vista_Producto";
-            this.Pnl_Vista_Producto.Size = new System.Drawing.Size(1325, 262);
+            this.Pnl_Vista_Producto.Size = new System.Drawing.Size(960, 381);
             this.Pnl_Vista_Producto.TabIndex = 1;
             // 
             // Dgv_Vista_Producto
@@ -514,25 +560,26 @@ namespace Capa_Vista_Inventario
             this.Dgv_Vista_Producto.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.Dgv_Vista_Producto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.Dgv_Vista_Producto.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_Vista_Producto.Size = new System.Drawing.Size(1325, 262);
+            this.Dgv_Vista_Producto.Size = new System.Drawing.Size(960, 381);
             this.Dgv_Vista_Producto.TabIndex = 0;
             // 
             // Frm_Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1349, 561);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(984, 761);
             this.Controls.Add(this.Pnl_Vista_Producto);
             this.Controls.Add(this.Pnl_Principal);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.MinimumSize = new System.Drawing.Size(850, 600);
+            this.MinimumSize = new System.Drawing.Size(1000, 800);
             this.Name = "Frm_Inventario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventario";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Pnl_Principal.ResumeLayout(false);
+            this.Pnl_Principal.PerformLayout();
             this.Gpb_Descripcion_Producto.ResumeLayout(false);
             this.Gpb_Descripcion_Producto.PerformLayout();
             this.Gpb_Gestion_Inventario.ResumeLayout(false);
@@ -555,7 +602,7 @@ namespace Capa_Vista_Inventario
         private System.Windows.Forms.RadioButton Rdb_Producto_Limpieza_Mantenimiento;
         private System.Windows.Forms.GroupBox Gpb_Descripcion_Producto;
         private System.Windows.Forms.Label Lbl_Precio_Unitario_Producto;
-        private System.Windows.Forms.TextBox Txt_Precio_Producto;
+        private System.Windows.Forms.TextBox Txt_Costo_Unitario_Producto;
         private System.Windows.Forms.TextBox Txt_Nombre_Producto;
         private System.Windows.Forms.Label Lbl_Nombre_Producto;
         private System.Windows.Forms.RadioButton Rdb_Producto_Mobiliario_Equipo;
@@ -580,5 +627,12 @@ namespace Capa_Vista_Inventario
         private System.Windows.Forms.ComboBox Cbo_Cod_Producto;
         private System.Windows.Forms.Label Lbl_Cod_Producto;
         private System.Windows.Forms.Button Btn_Cierre_Inventario;
+        private System.Windows.Forms.Label Lbl_Marca_Producto;
+        private System.Windows.Forms.TextBox Txt_Marca_Producto;
+        private System.Windows.Forms.Label Lbl_Precio_Venta_Producto;
+        private System.Windows.Forms.TextBox Txt_Precio_Venta_Producto;
+        private System.Windows.Forms.TextBox Txt_Existencias_Globales_Producto;
+        private System.Windows.Forms.Label Lbl_Existencias_Globales_Producto;
+        private System.Windows.Forms.Label Lbl_Productos_Hotel;
     }
 }

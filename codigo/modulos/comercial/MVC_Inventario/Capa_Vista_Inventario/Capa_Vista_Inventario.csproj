@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Cierre_Inventario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Cierre_Inventario.Designer.cs">
+      <DependentUpon>Frm_Cierre_Inventario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Inventario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Cierre_Inventario.resx">
+      <DependentUpon>Frm_Cierre_Inventario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inventario.resx">
       <DependentUpon>Frm_Inventario.cs</DependentUpon>
     </EmbeddedResource>
