@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FBC358BC-F0CA-41F4-8E94-A1AB8C8BAE1D}</ProjectGuid>
+    <ProjectGuid>{A4F0883A-EADF-4AF6-A04B-4BCDE7BB6B32}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Modelo_Reservas_Hotel</RootNamespace>
-    <AssemblyName>Capa_Modelo_Reservas_Hotel</AssemblyName>
+    <RootNamespace>Capa_Controlador_MH</RootNamespace>
+    <AssemblyName>Capa_Controlador_MH</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Modelo_MH">
+      <HintPath>..\Capa_Modelo_MH\bin\Debug\Capa_Modelo_MH.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_Controlador_MH.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

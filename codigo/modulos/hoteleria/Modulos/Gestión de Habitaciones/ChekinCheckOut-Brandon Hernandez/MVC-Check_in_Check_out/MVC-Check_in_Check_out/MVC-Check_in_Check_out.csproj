@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FBC358BC-F0CA-41F4-8E94-A1AB8C8BAE1D}</ProjectGuid>
+    <ProjectGuid>{2E90DC6C-4375-469C-84D5-39C0C40E875E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Modelo_Reservas_Hotel</RootNamespace>
-    <AssemblyName>Capa_Modelo_Reservas_Hotel</AssemblyName>
+    <RootNamespace>MVC_Check_in_Check_out</RootNamespace>
+    <AssemblyName>MVC-Check_in_Check_out</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cls_Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,74 +1,85 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Capa_Controlador_Seguridad;
-using Capa_Modelo_Seguridad;
+using System.Drawing;
+using System.Windows.Forms;
 
-
-namespace Capa_Controlador_Navegador
+namespace Capa_vista_Check_In_Check_out
 {
-    public class Cls_Privilegios_Seguridad
+    public partial class Frm_Areas : Form
     {
-        /// <summary>
-        /// Obtiene permisos combinados (usuario + perfil) usando NOMBRES.
-        /// Úsalo si desde el form conoces los nombres "Módulo" y "Aplicación".
-        /// </summary>
-        public Cls_Permiso_Aplicacion_Usuario VerificarPermisos(string nombreModulo, string nombreAplicacion)
+        // 🔹 Variables para almacenar el usuario actual
+        private int idUsuarioActual;
+        private string nombreUsuarioActual;
+
+        public Frm_Areas()
         {
-            var pu = new Cls_Permiso_Usuario();
-            int idModulo = pu.ObtenerIdModuloPorNombre(nombreModulo);
-            int idAplicacion = pu.ObtenerIdAplicacionPorNombre(nombreAplicacion);
+            InitializeComponent();
 
-            if (idModulo <= 0 || idAplicacion <= 0)
-                return GetAllFalse();
+            // =====================================
+            // ✅ Obtener datos del usuario conectado
+            // =====================================
+            idUsuarioActual = Capa_Modelo_Seguridad.Cls_Usuario_Conectado.iIdUsuario;
+            nombreUsuarioActual = Capa_Modelo_Seguridad.Cls_Usuario_Conectado.sNombreUsuario;
 
-            return VerificarPermisos(idAplicacion, idModulo);
+            // ✅ Mostrar usuario conectado en el label
+            lblUsuario.Text = $"Usuario conectado: {nombreUsuarioActual} (ID: {idUsuarioActual})";
+
+            // =====================================
+            // ⚙️ Configurar el Navegador
+            // =====================================
+            ConfigurarNavegador();
         }
 
-        /// <summary>
-        /// Obtiene permisos combinados (usuario + perfil) usando IDs.
-        /// Este es el que usa el navegador internamente.
-        /// </summary>
-        public Cls_Permiso_Aplicacion_Usuario VerificarPermisos(int idAplicacion, int idModulo)
+        private void ConfigurarNavegador()
         {
-            int idUsuario = Capa_Modelo_Seguridad.Cls_Usuario_Conectado.iIdUsuario;
+            Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config =
+                new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
+                {
+                    Ancho = 1100,
+                    Alto = 200,
+                    PosX = 10,
+                    PosY = 300,
+                    ColorFondo = Color.AliceBlue,
+                    TipoScrollBars = ScrollBars.Both,
+                    Nombre = "dgv_empleados"
+                };
 
-            // 2) Perfil del usuario (0 si no tiene)
-            var ctrlUsuario = new Cls_Usuario_Controlador();
-            int idPerfil = 0;
-            try { idPerfil = ctrlUsuario.ObtenerIdPerfilDeUsuario(idUsuario); }
-            catch { idPerfil = 0; }
-
-            // 3) Combinar permisos (usuario OR perfil)
-            var flags = Cls_Aplicacion_Permisos.ObtenerPermisosCombinados(idUsuario, idAplicacion, idModulo, idPerfil);
-
-            // 4) Devolver en el DTO que usa todo el proyecto
-            return new Cls_Permiso_Aplicacion_Usuario
+            string[] columnas =
             {
-                Fk_Id_Usuario = idUsuario,
-                FK_Id_Aplicacion = idAplicacion,
-                Cmp_Ingresar_Permiso_Aplicacion_Usuario = flags.ingresar,
-                Cmp_Consultar_Permiso_Aplicacion_Usuario = flags.consultar,
-                Cmp_Modificar_Permiso_Aplicacion_Usuario = flags.modificar,
-                Cmp_Eliminar_Permiso_Aplicacion_Usuario = flags.eliminar,
-                Cmp_Imprimir_Permiso_Aplicacion_Usuario = flags.imprimir
+                "Tbl_Perfil",
+                "Pk_Id_Perfil",
+                "Cmp_Puesto_Perfil",
+                "Cmp_Descripcion_Perfil",
+                "Cmp_Estado_Perfil",
+                "Cmp_Tipo_Perfil"
             };
-        }
 
-        private Cls_Permiso_Aplicacion_Usuario GetAllFalse()
-        {
-            return new Cls_Permiso_Aplicacion_Usuario
+            string[] sEtiquetas =
             {
-                Cmp_Ingresar_Permiso_Aplicacion_Usuario = false,
-                Cmp_Consultar_Permiso_Aplicacion_Usuario = false,
-                Cmp_Modificar_Permiso_Aplicacion_Usuario = false,
-                Cmp_Eliminar_Permiso_Aplicacion_Usuario = false,
-                Cmp_Imprimir_Permiso_Aplicacion_Usuario = false
+                "Código Perfil",
+                "Puesto del Perfil",
+                "Descripción del Perfil",
+                "Estado del Perfil",
+                "Tipo de Perfil"
             };
+
+            // ✅ IDs asociados al módulo
+            int id_aplicacion = 303;
+            int id_modulo = 4;
+
+            navegador1.IPkId_Aplicacion = id_aplicacion;
+            navegador1.IPkId_Modulo = id_modulo;
+            navegador1.configurarDataGridView(config);
+            navegador1.SNombreTabla = columnas[0];
+            navegador1.SAlias = columnas;
+            navegador1.SEtiquetas = sEtiquetas;
+
+            // ✅ Cargar datos y permisos según Seguridad
+            navegador1.ObtenerIdAplicacion(id_aplicacion.ToString());
+            navegador1.ObtenerIdModulo(id_modulo.ToString());
+            navegador1.ObtenerPermisos();
+            navegador1.ObtenerBitacora();
+
+            navegador1.mostrarDatos();
         }
-
-
     }
 }

@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Capa_Vista_Reservas_Hotel
+namespace Capa_vista_Check_In_Check_out
 {
-    public partial class Frm_Huesped : Form
+    public partial class Frm_Check_In : Form
     {
-        public Frm_Huesped()
+        public Frm_Check_In()
         {
             InitializeComponent();
         }
+
     }
 }
