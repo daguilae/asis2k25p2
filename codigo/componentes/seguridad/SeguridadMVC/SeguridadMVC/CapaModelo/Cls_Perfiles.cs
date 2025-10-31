@@ -11,25 +11,23 @@ namespace Capa_Modelo_Seguridad
      * 0901-22-9663
      * Adaptado a los campos de la nueva tabla (ver imagen1)
      */
-    public class Cls_CheckIn
+    public class Cls_Perfiles
     {
-        public int iPk_Id_CheckIn { get; set; }
-        public int iFk_Id_Huesped { get; set; }
-        public int iFk_Id_Reserva { get; set; }
-        public DateTime dCmp_Fecha_CheckIn { get; set; }
-        public string sCmp_Estado { get; set; }
+        public int iPk_Id_Perfil { get; set; }
+        public string sCmp_Puesto_Perfil { get; set; }
+        public string sCmp_Descripcion_Perfil { get; set; }
+        public bool bCmp_Estado_Perfil { get; set; }
+        public int iCmp_Tipo_Perfil { get; set; }
 
-        // Constructor vacío
-        public Cls_CheckIn() { }
+        public Cls_Perfiles() { }
 
-        // Constructor con parámetros
-        public Cls_CheckIn(int iPkIdCheckIn, int iFkIdHuesped, int iFkIdReserva, DateTime dCmpFechaCheckIn, string sCmpEstado)
+        public Cls_Perfiles(int iPkIdPerfil, string sCmpPuestoPerfil, string sCmpDescripcionPerfil, bool bCmpEstadoPerfil, int iCmpTipoPerfil)
         {
-            this.iPk_Id_CheckIn = iPkIdCheckIn;
-            this.iFk_Id_Huesped = iFkIdHuesped;
-            this.iFk_Id_Reserva = iFkIdReserva;
-            this.dCmp_Fecha_CheckIn = dCmpFechaCheckIn;
-            this.sCmp_Estado = sCmpEstado;
+            this.iPk_Id_Perfil = iPkIdPerfil;
+            this.sCmp_Puesto_Perfil = sCmpPuestoPerfil;
+            this.sCmp_Descripcion_Perfil = sCmpDescripcionPerfil;
+            this.bCmp_Estado_Perfil = bCmpEstadoPerfil;
+            this.iCmp_Tipo_Perfil = iCmpTipoPerfil;
         }
     }
 }
