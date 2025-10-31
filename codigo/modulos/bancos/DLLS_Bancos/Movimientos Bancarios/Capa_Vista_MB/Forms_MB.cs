@@ -538,6 +538,9 @@ namespace Capa_Vista_MB
         {
             try
             {
+                // VARIABLE ESTANDARIZADA
+                bool bGuardando = false; 
+
                 if (bGuardando) return;
                 bGuardando = true;
                 Btn_Guardar.Enabled = false;
@@ -558,18 +561,19 @@ namespace Capa_Vista_MB
                     return;
                 }
 
-                // VALIDAR MONTO - MÁS FLEXIBLE
-                string montoTexto = Txt_Monto.Text.Trim();
-                if (string.IsNullOrEmpty(montoTexto))
+                // VALIDAR MONTO
+                string sMontoTexto = Txt_Monto.Text.Trim(); 
+                if (string.IsNullOrEmpty(sMontoTexto))
                 {
                     MessageBox.Show("Ingrese un monto.");
                     Txt_Monto.Focus();
                     return;
                 }
 
-                // PERMITIR DIFERENTES FORMATOS NUMÉRICOS
-                montoTexto = montoTexto.Replace(",", "").Replace(" ", "");
-                if (!decimal.TryParse(montoTexto, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal deMontoPrincipal) || deMontoPrincipal <= 0)
+                // CONVERSIÓN DE MONTO
+                sMontoTexto = sMontoTexto.Replace(",", "").Replace(" ", "");
+                if (!decimal.TryParse(sMontoTexto, System.Globalization.NumberStyles.Any,
+                    System.Globalization.CultureInfo.InvariantCulture, out decimal deMontoPrincipal) || deMontoPrincipal <= 0)
                 {
                     MessageBox.Show("Ingrese un monto válido mayor a cero.\nEjemplos: 4, 4.00, 4,000.00", "Validación");
                     Txt_Monto.Focus();
@@ -577,49 +581,46 @@ namespace Capa_Vista_MB
                     return;
                 }
 
-                // VERIFICAR DETALLES EN EL GRID - CON MÁS INFORMACIÓN DE DEPURACIÓN
-                bool tieneDetalles = false;
+                // VERIFICAR DETALLES EN EL GRID
+                bool bTieneDetalles = false;
                 var lst_Detalles = new List<Cls_Sentencias.Cls_MovimientoDetalle>();
-
-                MessageBox.Show($"Verificando {Dgv_Detalle_Movimiento.Rows.Count} filas en el grid...", "Depuración");
 
                 for (int i = 0; i < Dgv_Detalle_Movimiento.Rows.Count; i++)
                 {
-                    var row = Dgv_Detalle_Movimiento.Rows[i];
-                    if (row.IsNewRow) continue;
+                    var dgv_Row = Dgv_Detalle_Movimiento.Rows[i]; 
+                    if (dgv_Row.IsNewRow) continue;
 
-                    // Mostrar qué contiene cada celda
-                    string debeVal = row.Cells["Debe"]?.Value?.ToString() ?? "null";
-                    string haberVal = row.Cells["Haber"]?.Value?.ToString() ?? "null";
-
-                    MessageBox.Show($"Fila {i}: Debe='{debeVal}', Haber='{haberVal}'", "Depuración");
+                    // Usar los nombres correctos de columnas
+                    string sDebeVal = dgv_Row.Cells["Debe"]?.Value?.ToString() ?? "null";
+                    string sHaberVal = dgv_Row.Cells["Haber"]?.Value?.ToString() ?? "null";
 
                     decimal deMonto = 0;
                     string sTipoLinea = "";
 
                     // VERIFICAR DEBE
-                    if (!string.IsNullOrEmpty(debeVal) && decimal.TryParse(debeVal, out decimal deDebe) && deDebe > 0)
+                    if (!string.IsNullOrEmpty(sDebeVal) && decimal.TryParse(sDebeVal, out decimal deDebe) && deDebe > 0)
                     {
                         deMonto = deDebe;
                         sTipoLinea = "D";
-                        tieneDetalles = true;
+                        bTieneDetalles = true;
                     }
                     // VERIFICAR HABER
-                    else if (!string.IsNullOrEmpty(haberVal) && decimal.TryParse(haberVal, out decimal deHaber) && deHaber > 0)
+                    else if (!string.IsNullOrEmpty(sHaberVal) && decimal.TryParse(sHaberVal, out decimal deHaber) && deHaber > 0)
                     {
                         deMonto = deHaber;
                         sTipoLinea = "C";
-                        tieneDetalles = true;
+                        bTieneDetalles = true;
                     }
 
-                    if (tieneDetalles)
+                    if (bTieneDetalles)
                     {
-                        string sDocumento = row.Cells["Cmp_Concepto"]?.Value?.ToString() ?? Txt_NumeroDocumento.Text.Trim();
-                        string sDescripcion = row.Cells["Cmp_Concepto"]?.Value?.ToString() ?? Txt_Concepto.Text.Trim();
+                        // Usar Cmp_Num_Documento para documento y Cmp_Concepto para concepto
+                        string sDocumento = dgv_Row.Cells["Cmp_Concepto"]?.Value?.ToString() ?? Txt_NumeroDocumento.Text.Trim();
+                        string sDescripcion = dgv_Row.Cells["Cmp_Concepto"]?.Value?.ToString() ?? Txt_Concepto.Text.Trim();
 
                         int? iTipoPago = null;
-                        if (row.Cells["Fk_Id_tipo_pago"]?.Value != null &&
-                            int.TryParse(row.Cells["Fk_Id_tipo_pago"].Value.ToString(), out int iTp))
+                        if (dgv_Row.Cells["Fk_Id_tipo_pago"]?.Value != null &&
+                            int.TryParse(dgv_Row.Cells["Fk_Id_tipo_pago"].Value.ToString(), out int iTp))
                         {
                             iTipoPago = iTp;
                         }
@@ -635,14 +636,12 @@ namespace Capa_Vista_MB
                             sFk_Id_cuenta_contable = "1110",
                             sCmp_tipo_operacion = sTipoLinea
                         });
-
-                        MessageBox.Show($"Detalle agregado: {sTipoLinea} {deMonto:C}", "Depuración");
                     }
                 }
 
-                if (!tieneDetalles || lst_Detalles.Count == 0)
+                if (!bTieneDetalles || lst_Detalles.Count == 0)
                 {
-                    MessageBox.Show("No se encontraron detalles válidos.\n\nAsegúrese de:\n1. Ingresar un valor en Débito O Crédito\n2. El valor debe ser mayor a cero\n3. Presionar ENTER después de ingresar el valor", "Validación");
+                    MessageBox.Show("No se encontraron detalles válidos.\n\nAsegúrese de:\n1. Ingresar un valor en Débito O Crédito\n2. El valor debe ser mayor a cero", "Validación");
                     return;
                 }
 
@@ -672,7 +671,7 @@ namespace Capa_Vista_MB
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error: {ex.Message}\n\n{ex.StackTrace}", "Error");
+                MessageBox.Show($"Error: {ex.Message}", "Error");
             }
             finally
             {
