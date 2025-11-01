@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.Odbc;
 
 namespace Capa_Modelo_Deducciones_Nomina{
-    public class Cls_Conexion{
+    public class Cls_Conexion_Deducciones_Nomina{
         private readonly string ConexionODBC = "Dsn=bd_hoteleria"; // DSN de odbc
 
         //retorna conexion cerrada para que el DAO la abra y cierre cuando sea necesario

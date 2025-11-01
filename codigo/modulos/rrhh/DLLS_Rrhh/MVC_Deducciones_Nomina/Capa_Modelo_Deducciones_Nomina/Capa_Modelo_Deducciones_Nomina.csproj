@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_Conexion_Deducciones_Nomina.cs" />
+    <Compile Include="Cls_Dao_Deducciones_Nomina.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -52,9 +52,7 @@
     <Compile Include="Frm_Creacion_Nomina.Designer.cs">
       <DependentUpon>Frm_Creacion_Nomina.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_Principal_Nomina.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Frm_Principal_Nomina.cs" />
     <Compile Include="Frm_Principal_Nomina.Designer.cs">
       <DependentUpon>Frm_Principal_Nomina.cs</DependentUpon>
     </Compile>
