@@ -60,11 +60,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Check_Out.cs">
+    <Compile Include="Frm_Check_Out.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Check_Out.Designer.cs">
-      <DependentUpon>Check_Out.cs</DependentUpon>
+    <Compile Include="Frm_Check_Out.Designer.cs">
+      <DependentUpon>Frm_Check_Out.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Areas.cs">
       <SubType>Form</SubType>
@@ -86,8 +86,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Check_Out.resx">
-      <DependentUpon>Check_Out.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Check_Out.resx">
+      <DependentUpon>Frm_Check_Out.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Areas.resx">
       <DependentUpon>Frm_Areas.cs</DependentUpon>

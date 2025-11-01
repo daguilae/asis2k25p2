@@ -38,7 +38,7 @@ namespace Capa_vista_Check_In_Check_out
             string[] etiquetas =
             {
                 "Código Area",
-                "Nombre del Aea",
+                "Nombre del Aera",
                 "Descripción del Area",
                 "Tipo de Moimiento",
                 "Monto",

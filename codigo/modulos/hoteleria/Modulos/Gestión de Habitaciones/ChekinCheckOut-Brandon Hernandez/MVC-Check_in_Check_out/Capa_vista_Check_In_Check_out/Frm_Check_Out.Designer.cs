@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_vista_Check_In_Check_out
 {
-    partial class Check_Out
+    partial class Frm_Check_Out
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace Capa_vista_Check_In_Check_out
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Check_Out));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Check_Out));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Gbp_Titulo = new System.Windows.Forms.GroupBox();
             this.Lbl_titulo = new System.Windows.Forms.Label();
