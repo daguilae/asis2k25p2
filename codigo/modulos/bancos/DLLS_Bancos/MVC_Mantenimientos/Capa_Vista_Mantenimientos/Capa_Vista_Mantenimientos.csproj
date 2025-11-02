@@ -58,11 +58,29 @@
     <Compile Include="Frm_M_Bancos.Designer.cs">
       <DependentUpon>Frm_M_Bancos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_M_CuentasBancarias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_CuentasBancarias.Designer.cs">
+      <DependentUpon>Frm_M_CuentasBancarias.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_M_Monedas.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Frm_M_Monedas.Designer.cs">
       <DependentUpon>Frm_M_Monedas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_TipoPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_TipoPagos.Designer.cs">
+      <DependentUpon>Frm_M_TipoPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_Transacciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_Transacciones.Designer.cs">
+      <DependentUpon>Frm_M_Transacciones.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,8 +88,17 @@
     <EmbeddedResource Include="Frm_M_Bancos.resx">
       <DependentUpon>Frm_M_Bancos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_CuentasBancarias.resx">
+      <DependentUpon>Frm_M_CuentasBancarias.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_M_Monedas.resx">
       <DependentUpon>Frm_M_Monedas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_TipoPagos.resx">
+      <DependentUpon>Frm_M_TipoPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_Transacciones.resx">
+      <DependentUpon>Frm_M_Transacciones.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

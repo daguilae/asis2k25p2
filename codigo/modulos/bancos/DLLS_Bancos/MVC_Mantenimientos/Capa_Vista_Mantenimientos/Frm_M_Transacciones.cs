@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Mantenimientos
 {
-    public partial class Frm_M_CuentasBancarias : Form
+    public partial class Frm_M_Transacciones : Form
     {
-        public Frm_M_CuentasBancarias()
+        public Frm_M_Transacciones()
         {
             InitializeComponent();
             Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config = new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
@@ -23,29 +23,21 @@ namespace Capa_Vista_Mantenimientos
                 PosY = 300,
                 ColorFondo = Color.AliceBlue,
                 TipoScrollBars = ScrollBars.Both,
-                Nombre = "dgv_Monedas"
+                Nombre = "dgv_Transacciones"
             };
 
             string[] columnas = {
-                "Tbl_CuentasBancarias",
-                "Pk_Id_CuentaBancaria",
-                "Fk_Id_Banco",
-                "Cmp_NumeroCuenta",
-                "Cmp_TipoCuenta",
-                "Cmp_Moneda",
-                "Cmp_SaldoDisponible",
-                "Cmp_SaldoContable",
+                "Tbl_TransaccionesBancarias",
+                "Pk_Id_Transaccion",
+                "Cmp_NombreTransaccion",
+                "Cmp_Efecto",
                 "Cmp_Estado"
             };
 
             string[] sEtiquetas = {
-               "ID Cuenta Bancaria",
-                "ID Banco",
-                "Número de Cuenta",
-                "Tipo de Cuenta",
-                "Moneda",
-                "Saldo Disponible",
-                "Saldo Contable",
+                "ID",
+                "Nombre de Transacción",
+                "Efecto",
                 "Estado"
             };
 

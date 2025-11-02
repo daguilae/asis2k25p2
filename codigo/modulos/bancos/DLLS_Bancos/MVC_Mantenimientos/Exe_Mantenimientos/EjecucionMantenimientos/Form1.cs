@@ -29,5 +29,23 @@ namespace EjecucionMantenimientos
             Frm_M_Monedas M = new Frm_M_Monedas();
             M.ShowDialog();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Frm_M_CuentasBancarias M = new Frm_M_CuentasBancarias();
+            M.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Frm_M_TipoPagos M = new Frm_M_TipoPagos();
+            M.ShowDialog();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Frm_M_Transacciones M = new Frm_M_Transacciones();
+            M.ShowDialog();
+        }
     }
 }
