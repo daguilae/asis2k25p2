@@ -33,13 +33,13 @@ namespace Capa_Vista_Creacion_Nomina
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.periodo_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.periodo_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_generacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@ namespace Capa_Vista_Creacion_Nomina
             this.button1.TabIndex = 0;
             this.button1.Text = "Crear Nomina";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button2_Click);
             // 
             // button2
             // 
@@ -69,6 +70,7 @@ namespace Capa_Vista_Creacion_Nomina
             this.button3.TabIndex = 2;
             this.button3.Text = "Ver Movimientos";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // dataGridView1
             // 
@@ -84,16 +86,6 @@ namespace Capa_Vista_Creacion_Nomina
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(770, 256);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(39, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 24);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Nominas";
             // 
             // Codigo
             // 
@@ -125,7 +117,17 @@ namespace Capa_Vista_Creacion_Nomina
             this.estado.HeaderText = "Estado";
             this.estado.Name = "estado";
             // 
-            // Frm_Principal_Nomina1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(39, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(85, 24);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Nominas";
+            // 
+            // Frm_Principal_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,8 +136,9 @@ namespace Capa_Vista_Creacion_Nomina
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Name = "Frm_Principal_Nomina1";
+            this.Name = "Frm_Principal_Nomina";
             this.Size = new System.Drawing.Size(848, 399);
+            this.Click += new System.EventHandler(this.button1_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
