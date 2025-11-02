@@ -230,5 +230,13 @@ namespace Capa_Vista_CxC
 
             return form.ShowDialog(this) == DialogResult.OK ? tb.Text : (valorPorDefecto ?? "");
         }
+
+        private void mnuAplicarPago_Click(object sender, EventArgs e)
+        {
+            Frm_AplicarPago frm = new Frm_AplicarPago();
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
     }
 }

@@ -67,6 +67,7 @@
             this.mnuRecibos.Name = "mnuRecibos";
             this.mnuRecibos.Size = new System.Drawing.Size(66, 20);
             this.mnuRecibos.Text = "Recibos";
+            this.mnuRecibos.Click += new System.EventHandler(this.mnuRecibos_Click);
             // 
             // mnuAplicarPago
             // 
@@ -310,6 +311,7 @@
             this.Name = "Frm_AplicarPago";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cuentas por Cobrar — Aplicar Pago (Prototipo)";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.Gpb_Pago.ResumeLayout(false);

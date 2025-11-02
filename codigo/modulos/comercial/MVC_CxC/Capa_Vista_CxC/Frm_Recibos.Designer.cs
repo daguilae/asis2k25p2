@@ -91,6 +91,7 @@
             this.mnuAplicarPago.Name = "mnuAplicarPago";
             this.mnuAplicarPago.Size = new System.Drawing.Size(94, 20);
             this.mnuAplicarPago.Text = "Aplicar Pago";
+            this.mnuAplicarPago.Click += new System.EventHandler(this.mnuAplicarPago_Click);
             // 
             // mnuAntiguedad
             // 
