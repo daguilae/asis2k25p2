@@ -30,10 +30,6 @@ namespace Capa_Vista_Inventario
         private void InitializeComponent()
         {
             this.Pnl_Principal_Cierre = new System.Windows.Forms.Panel();
-            this.Btn_Cancelar_Cierre = new System.Windows.Forms.Button();
-            this.Lbl_Nuevo_Saldo_Inicial = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.Lbl_Saldo_Final_Producto = new System.Windows.Forms.Label();
             this.Lbl_Abono_Mes_Producto = new System.Windows.Forms.Label();
             this.Lbl_Cargos_Acumulados = new System.Windows.Forms.Label();
@@ -47,6 +43,10 @@ namespace Capa_Vista_Inventario
             this.Txt_Cargos_Acumulados = new System.Windows.Forms.TextBox();
             this.Txt_Cargos_Mes = new System.Windows.Forms.TextBox();
             this.Btn_Cierre_Inventario = new System.Windows.Forms.Button();
+            this.Btn_Cancelar_Cierre = new System.Windows.Forms.Button();
+            this.Lbl_Nuevo_Saldo_Inicial = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.Pnl_Principal_Cierre.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -73,49 +73,8 @@ namespace Capa_Vista_Inventario
             this.Pnl_Principal_Cierre.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Principal_Cierre.Margin = new System.Windows.Forms.Padding(4);
             this.Pnl_Principal_Cierre.Name = "Pnl_Principal_Cierre";
-            this.Pnl_Principal_Cierre.Size = new System.Drawing.Size(634, 294);
+            this.Pnl_Principal_Cierre.Size = new System.Drawing.Size(634, 317);
             this.Pnl_Principal_Cierre.TabIndex = 0;
-            // 
-            // Btn_Cancelar_Cierre
-            // 
-            this.Btn_Cancelar_Cierre.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Cancelar_Cierre.Location = new System.Drawing.Point(238, 254);
-            this.Btn_Cancelar_Cierre.Name = "Btn_Cancelar_Cierre";
-            this.Btn_Cancelar_Cierre.Size = new System.Drawing.Size(162, 28);
-            this.Btn_Cancelar_Cierre.TabIndex = 46;
-            this.Btn_Cancelar_Cierre.Text = "Cancelar Cierre";
-            this.Btn_Cancelar_Cierre.UseVisualStyleBackColor = true;
-            this.Btn_Cancelar_Cierre.Click += new System.EventHandler(this.Btn_Cancelar_Cierre_Click);
-            // 
-            // Lbl_Nuevo_Saldo_Inicial
-            // 
-            this.Lbl_Nuevo_Saldo_Inicial.AutoSize = true;
-            this.Lbl_Nuevo_Saldo_Inicial.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nuevo_Saldo_Inicial.Location = new System.Drawing.Point(328, 34);
-            this.Lbl_Nuevo_Saldo_Inicial.Name = "Lbl_Nuevo_Saldo_Inicial";
-            this.Lbl_Nuevo_Saldo_Inicial.Size = new System.Drawing.Size(173, 18);
-            this.Lbl_Nuevo_Saldo_Inicial.TabIndex = 47;
-            this.Lbl_Nuevo_Saldo_Inicial.Text = "Nuevo Saldo Inicial: Q";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(328, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 18);
-            this.label1.TabIndex = 48;
-            this.label1.Text = "Cargos Acumulados: Q";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(328, 156);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(179, 18);
-            this.label2.TabIndex = 49;
-            this.label2.Text = "Abonos Acumulados: Q";
             // 
             // Lbl_Saldo_Final_Producto
             // 
@@ -249,11 +208,52 @@ namespace Capa_Vista_Inventario
             this.Btn_Cierre_Inventario.UseVisualStyleBackColor = false;
             this.Btn_Cierre_Inventario.Click += new System.EventHandler(this.Btn_Cierre_Inventario_Click);
             // 
+            // Btn_Cancelar_Cierre
+            // 
+            this.Btn_Cancelar_Cierre.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Cancelar_Cierre.Location = new System.Drawing.Point(238, 254);
+            this.Btn_Cancelar_Cierre.Name = "Btn_Cancelar_Cierre";
+            this.Btn_Cancelar_Cierre.Size = new System.Drawing.Size(162, 28);
+            this.Btn_Cancelar_Cierre.TabIndex = 46;
+            this.Btn_Cancelar_Cierre.Text = "Cancelar Cierre";
+            this.Btn_Cancelar_Cierre.UseVisualStyleBackColor = true;
+            this.Btn_Cancelar_Cierre.Click += new System.EventHandler(this.Btn_Cancelar_Cierre_Click);
+            // 
+            // Lbl_Nuevo_Saldo_Inicial
+            // 
+            this.Lbl_Nuevo_Saldo_Inicial.AutoSize = true;
+            this.Lbl_Nuevo_Saldo_Inicial.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Nuevo_Saldo_Inicial.Location = new System.Drawing.Point(328, 34);
+            this.Lbl_Nuevo_Saldo_Inicial.Name = "Lbl_Nuevo_Saldo_Inicial";
+            this.Lbl_Nuevo_Saldo_Inicial.Size = new System.Drawing.Size(173, 18);
+            this.Lbl_Nuevo_Saldo_Inicial.TabIndex = 47;
+            this.Lbl_Nuevo_Saldo_Inicial.Text = "Nuevo Saldo Inicial: Q";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(328, 156);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(179, 18);
+            this.label2.TabIndex = 49;
+            this.label2.Text = "Abonos Acumulados: Q";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(328, 93);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 18);
+            this.label1.TabIndex = 48;
+            this.label1.Text = "Cargos Acumulados: Q";
+            // 
             // Frm_Cierre_Inventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 294);
+            this.ClientSize = new System.Drawing.Size(634, 317);
             this.ControlBox = false;
             this.Controls.Add(this.Pnl_Principal_Cierre);
             this.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

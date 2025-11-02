@@ -29,7 +29,7 @@ namespace Capa_Vista_Inventario
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Pnl_Herramientas = new System.Windows.Forms.Panel();
             this.Btn_Buscar_Inventario = new System.Windows.Forms.Button();
             this.Lbl_Inventarios_Pasados = new System.Windows.Forms.Label();
@@ -119,10 +119,10 @@ namespace Capa_Vista_Inventario
             this.Rdb_Usar_Filtros_Busqueda.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Rdb_Usar_Filtros_Busqueda.Location = new System.Drawing.Point(50, 58);
             this.Rdb_Usar_Filtros_Busqueda.Name = "Rdb_Usar_Filtros_Busqueda";
-            this.Rdb_Usar_Filtros_Busqueda.Size = new System.Drawing.Size(202, 22);
+            this.Rdb_Usar_Filtros_Busqueda.Size = new System.Drawing.Size(180, 22);
             this.Rdb_Usar_Filtros_Busqueda.TabIndex = 17;
             this.Rdb_Usar_Filtros_Busqueda.TabStop = true;
-            this.Rdb_Usar_Filtros_Busqueda.Text = "Usar Filtros y Busqueda";
+            this.Rdb_Usar_Filtros_Busqueda.Text = "Buscar Movimientos";
             this.Rdb_Usar_Filtros_Busqueda.UseVisualStyleBackColor = true;
             this.Rdb_Usar_Filtros_Busqueda.CheckedChanged += new System.EventHandler(this.ModoDeBusqueda_CheckedChanged);
             // 
@@ -131,12 +131,12 @@ namespace Capa_Vista_Inventario
             this.Rdb_Ver_Historicos.AutoSize = true;
             this.Rdb_Ver_Historicos.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Rdb_Ver_Historicos.ForeColor = System.Drawing.Color.DarkRed;
-            this.Rdb_Ver_Historicos.Location = new System.Drawing.Point(50, 86);
+            this.Rdb_Ver_Historicos.Location = new System.Drawing.Point(36, 86);
             this.Rdb_Ver_Historicos.Name = "Rdb_Ver_Historicos";
-            this.Rdb_Ver_Historicos.Size = new System.Drawing.Size(198, 22);
+            this.Rdb_Ver_Historicos.Size = new System.Drawing.Size(216, 22);
             this.Rdb_Ver_Historicos.TabIndex = 1;
             this.Rdb_Ver_Historicos.TabStop = true;
-            this.Rdb_Ver_Historicos.Text = "Ver Todo los Historicos";
+            this.Rdb_Ver_Historicos.Text = "Ver Cierres de Inventario";
             this.Rdb_Ver_Historicos.UseVisualStyleBackColor = true;
             this.Rdb_Ver_Historicos.CheckedChanged += new System.EventHandler(this.ModoDeBusqueda_CheckedChanged);
             // 
@@ -367,14 +367,14 @@ namespace Capa_Vista_Inventario
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv_Vista_Inventarios_Pasados.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.Dgv_Vista_Inventarios_Pasados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_Vista_Inventarios_Pasados.DefaultCellStyle = dataGridViewCellStyle1;
             this.Dgv_Vista_Inventarios_Pasados.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Dgv_Vista_Inventarios_Pasados.Location = new System.Drawing.Point(0, 0);
             this.Dgv_Vista_Inventarios_Pasados.MultiSelect = false;
@@ -388,6 +388,7 @@ namespace Capa_Vista_Inventario
             // 
             // Frm_Inventario_Historico
             // 
+            this.AcceptButton = this.Btn_Buscar_Inventario;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
@@ -399,7 +400,7 @@ namespace Capa_Vista_Inventario
             this.MinimumSize = new System.Drawing.Size(1154, 600);
             this.Name = "Frm_Inventario_Historico";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Historico Inventario";
+            this.Text = "Historicos de Inventarios";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Pnl_Herramientas.ResumeLayout(false);
             this.Pnl_Herramientas.PerformLayout();

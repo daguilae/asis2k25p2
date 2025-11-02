@@ -14,7 +14,7 @@ namespace Ejecutable_Inventario
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_Inventario_Historico());
+            Application.Run(new Frm_Menu_General());
         }
     }
 }
