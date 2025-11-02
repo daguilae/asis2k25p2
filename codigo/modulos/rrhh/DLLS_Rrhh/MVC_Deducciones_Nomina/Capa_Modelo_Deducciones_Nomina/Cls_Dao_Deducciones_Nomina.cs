@@ -2,7 +2,7 @@
 // Capa_Modelo_Creacion_Nomina
 // Clase: Cls_Dao_Movimientos_Nomina
 // Autor: Fredy Reyes Sabán
-// Carné: 20250000
+// Carné: 0901-22-9800
 // Fecha: 31/10/2025
 // =============================================================
 
@@ -36,7 +36,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al insertar movimiento de nómina: " + ex.Message);
+                    Console.WriteLine("Error al insertar movimiento de nómina: " + ex.Message);
                 }
                 finally
                 {
@@ -68,7 +68,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al actualizar movimiento de nómina: " + ex.Message);
+                    Console.WriteLine("Error al actualizar movimiento de nómina: " + ex.Message);
                 }
                 finally
                 {
@@ -97,7 +97,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al eliminar movimiento de nómina: " + ex.Message);
+                    Console.WriteLine("Error al eliminar movimiento de nómina: " + ex.Message);
                 }
                 finally
                 {
@@ -129,7 +129,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al obtener movimiento por ID: " + ex.Message);
+                    Console.WriteLine("Error al obtener movimiento por ID: " + ex.Message);
                 }
                 finally
                 {
@@ -159,7 +159,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al obtener todos los movimientos: " + ex.Message);
+                    Console.WriteLine("Error al obtener todos los movimientos: " + ex.Message);
                 }
                 finally
                 {
@@ -197,7 +197,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al obtener movimientos por nómina ID: " + ex.Message);
+                    Console.WriteLine("Error al obtener movimientos por nómina ID: " + ex.Message);
                 }
                 finally
                 {
@@ -237,7 +237,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al sumar movimientos por tipo: " + ex.Message);
+                    Console.WriteLine("Error al sumar movimientos por tipo: " + ex.Message);
                 }
                 finally
                 {
@@ -272,7 +272,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al verificar existencia del movimiento: " + ex.Message);
+                    Console.WriteLine("Error al verificar existencia del movimiento: " + ex.Message);
                 }
                 finally
                 {
@@ -319,7 +319,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al obtener movimientos por nómina y empleado: " + ex.Message);
+                    Console.WriteLine("Error al obtener movimientos por nómina y empleado: " + ex.Message);
                 }
                 finally
                 {
