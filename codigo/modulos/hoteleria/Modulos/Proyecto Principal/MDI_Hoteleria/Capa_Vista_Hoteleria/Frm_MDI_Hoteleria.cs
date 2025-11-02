@@ -74,7 +74,7 @@ namespace Capa_Vista_Hoteleria
 
         private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Reserva Reserva = new Frm_Reserva();
+            Frm_Reservas Reserva = new Frm_Reservas();
             Reserva.Show();
         }
 
