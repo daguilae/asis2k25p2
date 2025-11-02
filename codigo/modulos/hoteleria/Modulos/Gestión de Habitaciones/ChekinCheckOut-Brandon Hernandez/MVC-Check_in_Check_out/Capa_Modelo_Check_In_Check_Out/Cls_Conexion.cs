@@ -9,13 +9,12 @@ namespace Capa_Modelo_Check_In_Check_Out
 {
     public class Cls_Conexion
     {
-        // Devuelve la cadena de conexión ODBC
+
         public string ObtenerCadenaConexion()
         {
             return "Dsn=bd_hoteleria";
         }
 
-        // Abre y retorna una nueva conexión ODBC
         public OdbcConnection conexion()
         {
             OdbcConnection conn = new OdbcConnection(ObtenerCadenaConexion());
@@ -30,7 +29,7 @@ namespace Capa_Modelo_Check_In_Check_Out
             return conn;
         }
 
-        // Alternativo: método estándar para abrir conexión (sin try/catch interno)
+      
         public OdbcConnection AbrirConexion()
         {
             OdbcConnection conn = new OdbcConnection(ObtenerCadenaConexion());
@@ -38,7 +37,7 @@ namespace Capa_Modelo_Check_In_Check_Out
             return conn;
         }
 
-        // Cierra la conexión recibida
+
         public void desconexion(OdbcConnection conn)
         {
             try

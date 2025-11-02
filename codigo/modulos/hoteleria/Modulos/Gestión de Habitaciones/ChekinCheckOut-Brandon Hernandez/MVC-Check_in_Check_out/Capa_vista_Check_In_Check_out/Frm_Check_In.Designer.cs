@@ -30,15 +30,14 @@ namespace Capa_vista_Check_In_Check_out
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Check_In));
-            this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Salir = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
-            this.Btn_Limpiar = new System.Windows.Forms.Button();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Btn_Modificar = new System.Windows.Forms.Button();
             this.Btn_guardar = new System.Windows.Forms.Button();
             this.Dgv_Check_In = new System.Windows.Forms.DataGridView();
             this.Gbp_Titulo = new System.Windows.Forms.GroupBox();
-            this.Lbl_titulo = new System.Windows.Forms.Label();
+            this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Gbp_Campos = new System.Windows.Forms.GroupBox();
             this.Cbo_Estado = new System.Windows.Forms.ComboBox();
             this.Cbo_Reservas = new System.Windows.Forms.ComboBox();
@@ -57,21 +56,6 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbp_Campos.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Btn_Eliminar
-            // 
-            this.Btn_Eliminar.BackColor = System.Drawing.Color.White;
-            this.Btn_Eliminar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Btn_Eliminar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Eliminar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.Image")));
-            this.Btn_Eliminar.Location = new System.Drawing.Point(1064, 18);
-            this.Btn_Eliminar.Name = "Btn_Eliminar";
-            this.Btn_Eliminar.Size = new System.Drawing.Size(65, 54);
-            this.Btn_Eliminar.TabIndex = 5;
-            this.Btn_Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Eliminar.UseVisualStyleBackColor = false;
-            this.Btn_Eliminar.Click += new System.EventHandler(this.Btn_Eliminar_Click);
-            // 
             // Btn_Salir
             // 
             this.Btn_Salir.BackColor = System.Drawing.Color.White;
@@ -79,7 +63,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Salir.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Salir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Salir.Image")));
-            this.Btn_Salir.Location = new System.Drawing.Point(1340, 18);
+            this.Btn_Salir.Location = new System.Drawing.Point(1271, 20);
             this.Btn_Salir.Name = "Btn_Salir";
             this.Btn_Salir.Size = new System.Drawing.Size(53, 50);
             this.Btn_Salir.TabIndex = 4;
@@ -102,20 +86,20 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Nuevo.UseVisualStyleBackColor = false;
             this.Btn_Nuevo.Click += new System.EventHandler(this.Btn_nuevo_Click);
             // 
-            // Btn_Limpiar
+            // Btn_Cancelar
             // 
-            this.Btn_Limpiar.BackColor = System.Drawing.Color.White;
-            this.Btn_Limpiar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Btn_Limpiar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Limpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
-            this.Btn_Limpiar.Location = new System.Drawing.Point(1135, 18);
-            this.Btn_Limpiar.Name = "Btn_Limpiar";
-            this.Btn_Limpiar.Size = new System.Drawing.Size(71, 54);
-            this.Btn_Limpiar.TabIndex = 3;
-            this.Btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Limpiar.UseVisualStyleBackColor = false;
-            this.Btn_Limpiar.Click += new System.EventHandler(this.Btn_cancelar_Click);
+            this.Btn_Cancelar.BackColor = System.Drawing.Color.White;
+            this.Btn_Cancelar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
+            this.Btn_Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar.Image")));
+            this.Btn_Cancelar.Location = new System.Drawing.Point(1066, 12);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(71, 54);
+            this.Btn_Cancelar.TabIndex = 3;
+            this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Cancelar.UseVisualStyleBackColor = false;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_cancelar_Click);
             // 
             // Btn_Modificar
             // 
@@ -160,23 +144,23 @@ namespace Capa_vista_Check_In_Check_out
             // 
             // Gbp_Titulo
             // 
-            this.Gbp_Titulo.Controls.Add(this.Lbl_titulo);
+            this.Gbp_Titulo.Controls.Add(this.Lbl_Titulo);
             this.Gbp_Titulo.Location = new System.Drawing.Point(22, 12);
             this.Gbp_Titulo.Name = "Gbp_Titulo";
             this.Gbp_Titulo.Size = new System.Drawing.Size(366, 80);
             this.Gbp_Titulo.TabIndex = 14;
             this.Gbp_Titulo.TabStop = false;
             // 
-            // Lbl_titulo
+            // Lbl_Titulo
             // 
-            this.Lbl_titulo.AutoSize = true;
-            this.Lbl_titulo.BackColor = System.Drawing.SystemColors.Control;
-            this.Lbl_titulo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_titulo.Location = new System.Drawing.Point(81, 33);
-            this.Lbl_titulo.Name = "Lbl_titulo";
-            this.Lbl_titulo.Size = new System.Drawing.Size(94, 21);
-            this.Lbl_titulo.TabIndex = 0;
-            this.Lbl_titulo.Text = "Check In ";
+            this.Lbl_Titulo.AutoSize = true;
+            this.Lbl_Titulo.BackColor = System.Drawing.SystemColors.Control;
+            this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Titulo.Location = new System.Drawing.Point(81, 33);
+            this.Lbl_Titulo.Name = "Lbl_Titulo";
+            this.Lbl_Titulo.Size = new System.Drawing.Size(94, 21);
+            this.Lbl_Titulo.TabIndex = 0;
+            this.Lbl_Titulo.Text = "Check In ";
             // 
             // Gbp_Campos
             // 
@@ -211,6 +195,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Cbo_Reservas.Name = "Cbo_Reservas";
             this.Cbo_Reservas.Size = new System.Drawing.Size(280, 24);
             this.Cbo_Reservas.TabIndex = 9;
+            this.Cbo_Reservas.SelectedIndexChanged += new System.EventHandler(this.Cbo_Reservas_SelectedIndexChanged);
             // 
             // Cbo_Huesped
             // 
@@ -292,7 +277,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Ayuda.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Ayuda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Ayuda.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda.Image")));
-            this.Btn_Ayuda.Location = new System.Drawing.Point(1279, 18);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(1210, 16);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
             this.Btn_Ayuda.Size = new System.Drawing.Size(55, 54);
             this.Btn_Ayuda.TabIndex = 17;
@@ -306,7 +291,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Reporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
-            this.Btn_Reporte.Location = new System.Drawing.Point(1212, 18);
+            this.Btn_Reporte.Location = new System.Drawing.Point(1143, 16);
             this.Btn_Reporte.Name = "Btn_Reporte";
             this.Btn_Reporte.Size = new System.Drawing.Size(61, 54);
             this.Btn_Reporte.TabIndex = 18;
@@ -320,9 +305,8 @@ namespace Capa_vista_Check_In_Check_out
             this.ClientSize = new System.Drawing.Size(1418, 820);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
-            this.Controls.Add(this.Btn_Limpiar);
+            this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Ayuda);
-            this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.Dgv_Check_In);
             this.Controls.Add(this.Btn_Nuevo);
             this.Controls.Add(this.Btn_Modificar);
@@ -341,15 +325,14 @@ namespace Capa_vista_Check_In_Check_out
         }
 
         #endregion
-        private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.Button Btn_Salir;
         private System.Windows.Forms.Button Btn_Nuevo;
-        private System.Windows.Forms.Button Btn_Limpiar;
+        private System.Windows.Forms.Button Btn_Cancelar;
         private System.Windows.Forms.Button Btn_Modificar;
         private System.Windows.Forms.Button Btn_guardar;
         private System.Windows.Forms.DataGridView Dgv_Check_In;
         private System.Windows.Forms.GroupBox Gbp_Titulo;
-        private System.Windows.Forms.Label Lbl_titulo;
+        private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.GroupBox Gbp_Campos;
         private System.Windows.Forms.ComboBox Cbo_Estado;
         private System.Windows.Forms.ComboBox Cbo_Reservas;
