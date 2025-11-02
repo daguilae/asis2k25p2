@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_TipoDeCambio">
+      <HintPath>..\Capa_Controlador_TipoDeCambio\bin\Debug\Capa_Controlador_TipoDeCambio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +46,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_IngresoTipoDeCambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_IngresoTipoDeCambio.Designer.cs">
+      <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_TipoDeCambio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_TipoDeCambio.Designer.cs">
+      <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Frm_IngresoTipoDeCambio.resx">
+      <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_TipoDeCambio.resx">
+      <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
