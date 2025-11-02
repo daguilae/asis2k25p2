@@ -24,32 +24,22 @@ namespace PruebaEjecucionNavegador
                 PosY = 300,
                 ColorFondo = Color.AliceBlue,
                 TipoScrollBars = ScrollBars.Both,
-                Nombre = "dgv_empleados"
+                Nombre = "dgv_puestos"
             };
 
-                        string[] columnas = {
-                "tbl_usuario",
-                "Pk_Id_Usuario",
-                "Fk_Id_Empleado",
-                "Cmp_Nombre_Usuario",
-                "Cmp_Contrasena_Usuario",
-                "Cmp_Intentos_Fallidos_Usuario",
-                "Cmp_Estado_Usuario",
-                "Cmp_FechaCreacion_Usuario",
-                "Cmp_Ultimo_Cambio_Contrasenea",
-                "Cmp_Pidio_Cambio_Contrasenea"
+            string[] columnas = {
+                "tbl_puestos",
+                "Cmp_iId_Puesto",
+                "Cmp_sNombre_Puesto",
+                "Cmp_sDescripcion_Puesto",
+                "Cmp_iId_Departamento"
             };
 
-                        string[] sEtiquetas = {
-                "Código Usuario",
-                "Código Empleado",
-                "Nombre de Usuario",
-                "Contraseña",
-                "Intentos Fallidos",
-                "Estado del Usuario",
-                "Fecha de Creación",
-                "Último Cambio de Contraseña",
-                "Solicitó Cambio de Contraseña"
+            string[] sEtiquetas = {
+                "Código Puesto",
+                "Nombre ",
+                "Descripcion",
+                "Id departamento"
             };
 
 

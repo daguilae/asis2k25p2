@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Mantenimiento_Puestos
 {
-    public partial class Form1 : Form
+    public partial class Frm_Mantenimiento_Puestos : UserControl
     {
-        public Form1()
+        public Frm_Mantenimiento_Puestos()
         {
             InitializeComponent();
             Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config = new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
@@ -28,17 +28,17 @@ namespace Mantenimiento_Puestos
 
             string[] columnas = {
                 "tbl_puestos",
-                "Cmp_iPuesto",
-                "Cmp_vNombrePuesto",
-                "Cmp_vDescripcionPuesto",
-                "Cmp_iDepartamento",
+                "Cmp_iId_Puesto",
+                "Cmp_sNombre_Puesto",
+                "Cmp_sDescripcion_Puesto",
+                "Cmp_iId_Departamento"
             };
 
             string[] sEtiquetas = {
                 "Código Puesto",
-                "Código Nombre",
+                "Nombre ",
                 "Descripcion",
-                "Departamento"
+                "Id departamento"
             };
 
 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FB661EEE-E41F-4D99-8D12-225224872A7C}</ProjectGuid>
+    <ProjectGuid>{B0EA49CC-2B1D-4E1C-933C-8E71D158A9B8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Mantenimiento_Puestos</RootNamespace>
     <AssemblyName>Mantenimiento_Puestos</AssemblyName>
@@ -33,7 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Navegador">
+    <Reference Include="Capa_Controlador_Navegador, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
@@ -58,10 +59,16 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Mantenimiento_Puestos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Frm_Mantenimiento_Puestos.Designer.cs">
+      <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Mantenimiento_Puestos.resx">
+      <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
