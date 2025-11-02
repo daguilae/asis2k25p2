@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Capa_Modelo_Inventario
 {
+    // ==================== Stevens Cambranes 01/11/2025 ====================
+    // ==================== Clase Sentencias Inventario ====================
+    // (Esta clase almacena y construye todas las cadenas de texto SQL)
     public class Cls_Sentencias_Inventario
     {
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Construir SQL Histórico (Movimientos) ====================
+        // (Construye la consulta SQL dinámica para buscar Movimientos con filtros)
         public string Snt_ConstruirSqlHistorico(
             string tipoMovimiento,
             int? idAlmacen,
@@ -18,9 +24,10 @@ namespace Capa_Modelo_Inventario
             string ordenarPor,
             out List<object> parametros)
         {
+            // Inicializa la lista de parámetros para la consulta ODBC
             parametros = new List<object>();
 
-            // Consulta Principal
+            // Consulta Principal (JOIN de 5 tablas)
             var sqlBuilder = new System.Text.StringBuilder(
                 @"SELECT 
                     mov.Pk_ID_Movimiento, mov.Cmp_Fecha, prod.Cmp_Nombre AS Producto, 
@@ -35,13 +42,13 @@ namespace Capa_Modelo_Inventario
                   JOIN Tbl_EstadoProducto AS est ON prod.Fk_ID_EstadoProducto = est.Pk_ID_EstadoProducto "
             );
 
-            // 2. Cláusulas WHERE dinámicas
+            // 2. Cláusulas WHERE dinámicas (se añaden solo si el filtro existe)
             var whereClauses = new List<string>();
 
             if (!string.IsNullOrEmpty(tipoMovimiento))
             {
                 whereClauses.Add("tm.Cmp_Nombre = ?"); // '?' es el parámetro para ODBC
-                parametros.Add(tipoMovimiento);
+                parametros.Add(tipoMovimiento); // Añade el valor a la lista de parámetros
             }
 
             if (idAlmacen.HasValue && idAlmacen.Value > 0)
@@ -76,23 +83,30 @@ namespace Capa_Modelo_Inventario
             }
             sqlBuilder.Append(" ORDER BY " + ordenarPor);
 
-            return sqlBuilder.ToString();
+            return sqlBuilder.ToString(); // Devuelve el string SQL final
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Almacenes ====================
+        // (Devuelve el SQL para obtener todos los almacenes)
         public string Snt_CargarAlmacenes()
         {
             return "SELECT Pk_ID_Almacen, Cmp_Nombre FROM Tbl_Almacenes ORDER BY Cmp_Nombre;";
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Estados ====================
+        // (Devuelve el SQL para obtener todos los estados de producto)
         public string Snt_CargarEstadosProducto()
         {
-            // Usamos Tbl_EstadoProducto (Bueno, Dañado)
             return "SELECT Pk_ID_EstadoProducto, Cmp_Nombre FROM Tbl_EstadoProducto ORDER BY Cmp_Nombre;";
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar Todos los Cierres ====================
+        // (Devuelve el SQL para obtener TODOS los cierres (resúmenes))
         public string Snt_CargarTodosLosCierres()
         {
-            // Esta consulta trae todos los cierres, uniéndolos con productos y almacenes
             return @"SELECT 
             c.Pk_ID_Cierre, c.Cmp_FechaCierre, p.Cmp_Nombre AS Producto, 
             a.Cmp_Nombre AS Almacen, c.Cmp_SaldoInicial, c.Cmp_SaldoFinal, 
@@ -100,18 +114,20 @@ namespace Capa_Modelo_Inventario
           FROM Tbl_CierresInventario AS c
           JOIN Tbl_Productos AS p ON c.Fk_ID_Producto = p.Pk_ID_Producto
           JOIN Tbl_Almacenes AS a ON c.Fk_ID_Almacen = a.Pk_ID_Almacen
-          ORDER BY c.Cmp_FechaCierre DESC;"; // Ordenados por fecha
+          ORDER BY c.Cmp_FechaCierre DESC;";
         }
 
-        // (Agrega estos métodos DENTRO de tu clase Cls_Sentencias_Inventario)
-
-        // Para el ComboBox (Error 1)
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Tipo Movimiento ====================
+        // (Devuelve el SQL para obtener todos los tipos de movimiento)
         public string Snt_CargarTiposMovimiento()
         {
             return "SELECT Pk_ID_TipoMovimiento, Cmp_Nombre FROM Tbl_TipoMovimiento ORDER BY Cmp_Nombre;";
         }
 
-        // Para el DGV al inicio (Error 2)
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar DGV por Defecto ====================
+        // (Devuelve el SQL para obtener los 100 movimientos más recientes)
         public string Snt_CargarHistoricoDefault()
         {
             return @"SELECT 
@@ -126,8 +142,7 @@ namespace Capa_Modelo_Inventario
               JOIN Tbl_TipoMovimiento AS tm ON mov.Fk_ID_TipoMovimiento = tm.Pk_ID_TipoMovimiento
               JOIN Tbl_EstadoProducto AS est ON prod.Fk_ID_EstadoProducto = est.Pk_ID_EstadoProducto
               ORDER BY mov.Cmp_Fecha DESC 
-              LIMIT 100;";
+              LIMIT 100;"; // Limita a 100 resultados
         }
-
     }
 }

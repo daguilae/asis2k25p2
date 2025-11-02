@@ -1,20 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data; // Necesitas este 'using' para manejar el DataTable
-using Capa_Modelo_Inventario; // ¡La referencia a tu capa Modelo!
+using System.Data;
+using Capa_Modelo_Inventario;
 
 namespace Capa_Controlador_Inventario
 {
+    // ==================== Stevens Cambranes 01/11/2025 ====================
+    // ==================== Clase Controlador Inventario ====================
+    // (Esta clase actúa como intermediario entre la Vista y el Modelo)
     public class Cls_Controlador_Inventario
     {
+        // (Instancia global de la capa Modelo para acceder a la BD)
         private Cls_Modelo_Inventario modelo;
 
-        // Constructor: Inicializa el modelo
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Constructor ====================
+        // (Inicializa el objeto 'modelo' al crear el controlador)
         public Cls_Controlador_Inventario()
         {
             modelo = new Cls_Modelo_Inventario();
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Obtener Histórico (Movimientos) ====================
+        // (Pasa la solicitud de la Vista al Modelo para buscar Movimientos filtrados)
         public DataTable Ctr_ObtenerHistorico(
             string tipoMovimiento,
             int? idAlmacen,
@@ -26,7 +35,7 @@ namespace Capa_Controlador_Inventario
         {
             try
             {
-                // Simplemente llama al método del modelo y retorna los datos
+                // Llama al método correspondiente en el Modelo
                 return modelo.Mdl_ObtenerHistorico(
                     tipoMovimiento, idAlmacen, idEstado,
                     usarRangoFechas, fechaInicio, fechaFin,
@@ -35,12 +44,14 @@ namespace Capa_Controlador_Inventario
             }
             catch (Exception ex)
             {
-                // Si el modelo lanzó un error, el controlador lo atrapa y lo vuelve a lanzar para que la VISTA lo maneje.
+                // Captura y relanza el error para que la Vista lo muestre
                 throw new Exception("Error en Capa Controlador: " + ex.Message);
             }
         }
 
-        // --- MÉTODOS PARA CARGAR COMBOS ---
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Almacenes ====================
+        // (Pide al Modelo los datos de Tbl_Almacenes para llenar el ComboBox)
         public DataTable Ctr_CargarAlmacenes()
         {
             try
@@ -54,6 +65,9 @@ namespace Capa_Controlador_Inventario
             }
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Estados ====================
+        // (Pide al Modelo los datos de Tbl_EstadoProducto para llenar el ComboBox)
         public DataTable Ctr_CargarEstadosProducto()
         {
             try
@@ -67,6 +81,9 @@ namespace Capa_Controlador_Inventario
             }
         }
 
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar Todos los Cierres ====================
+        // (Pide al Modelo todos los registros de Tbl_CierresInventario)
         public DataTable Ctr_CargarTodosLosCierres()
         {
             try
@@ -79,9 +96,9 @@ namespace Capa_Controlador_Inventario
             }
         }
 
-        // (Agrega estos métodos DENTRO de tu clase Cls_Controlador_Inventario)
-
-        // Para el ComboBox (Error 1)
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar ComboBox Tipo Movimiento ====================
+        // (Pide al Modelo los datos de Tbl_TipoMovimiento para llenar el ComboBox)
         public DataTable Ctr_CargarTiposMovimiento()
         {
             try
@@ -94,7 +111,9 @@ namespace Capa_Controlador_Inventario
             }
         }
 
-        // Para el DGV al inicio (Error 2)
+        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Cargar DGV por Defecto ====================
+        // (Pide al Modelo los 100 movimientos más recientes para el DGV)
         public DataTable Ctr_CargarHistoricoDefault()
         {
             try
@@ -106,6 +125,5 @@ namespace Capa_Controlador_Inventario
                 throw new Exception("Error en Controlador al cargar histórico default: " + ex.Message);
             }
         }
-
     }
 }
