@@ -2,11 +2,8 @@
 // Capa_Vista_Creacion_Nomina
 // Clase: Frm_Principal_Nomina
 // Autor: Fredy Reyes Sabán
-// Carné: 20250000
+// Carné: 0901-22-9800
 // Fecha: 29/10/2025
-// Descripción: Formulario principal para visualizar, crear y generar
-//              nóminas. Muestra los registros de Tbl_Nomina en un DataGridView
-//              y se conecta al controlador Cls_Controlador_Creacion_Nomina.
 // =============================================================
 
 using System;
@@ -16,7 +13,7 @@ using Capa_Controlador_Creacion_Nomina; // Importar el controlador
 
 namespace Capa_Vista_Creacion_Nomina
 {
-    public partial class Frm_Principal_Nomina : Form
+    public partial class Frm_Principal_Nomina : UserControl
     {
         // Instancia del controlador
         private Cls_Controlador_Creacion_Nomina clsControlador = new Cls_Controlador_Creacion_Nomina();
@@ -65,7 +62,7 @@ namespace Capa_Vista_Creacion_Nomina
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al cargar las nóminas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar las nóminas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         // Fin de código de: Fredy Reyes Sabán en la fecha de: 29/10/2025
