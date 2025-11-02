@@ -30,12 +30,12 @@ namespace Capa_vista_Check_In_Check_out
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Check_Out));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Dgv_Check_Out = new System.Windows.Forms.DataGridView();
             this.Gbp_Titulo = new System.Windows.Forms.GroupBox();
-            this.Lbl_titulo = new System.Windows.Forms.Label();
+            this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Gbp_Campos = new System.Windows.Forms.GroupBox();
             this.Cbo_Huesped = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Txt_Check_out = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.Lbl_idreserva = new System.Windows.Forms.Label();
@@ -43,52 +43,53 @@ namespace Capa_vista_Check_In_Check_out
             this.Lbl_Icheck_in = new System.Windows.Forms.Label();
             this.Btn_Salir = new System.Windows.Forms.Button();
             this.Btn_Reporte = new System.Windows.Forms.Button();
-            this.Btn_Limpiar = new System.Windows.Forms.Button();
             this.Btn_Ayuda = new System.Windows.Forms.Button();
             this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Nuevo = new System.Windows.Forms.Button();
             this.Btn_Modificar = new System.Windows.Forms.Button();
             this.Btn_guardar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Check_Out)).BeginInit();
             this.Gbp_Titulo.SuspendLayout();
             this.Gbp_Campos.SuspendLayout();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // Dgv_Check_Out
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(27, 285);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1309, 476);
-            this.dataGridView1.TabIndex = 15;
+            this.Dgv_Check_Out.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Check_Out.Location = new System.Drawing.Point(27, 285);
+            this.Dgv_Check_Out.Name = "Dgv_Check_Out";
+            this.Dgv_Check_Out.RowHeadersWidth = 51;
+            this.Dgv_Check_Out.RowTemplate.Height = 24;
+            this.Dgv_Check_Out.Size = new System.Drawing.Size(1309, 476);
+            this.Dgv_Check_Out.TabIndex = 15;
+            this.Dgv_Check_Out.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Check_Out_CellClick);
             // 
             // Gbp_Titulo
             // 
             this.Gbp_Titulo.AccessibleRole = System.Windows.Forms.AccessibleRole.TitleBar;
-            this.Gbp_Titulo.Controls.Add(this.Lbl_titulo);
+            this.Gbp_Titulo.Controls.Add(this.Lbl_Titulo);
             this.Gbp_Titulo.Location = new System.Drawing.Point(27, 12);
             this.Gbp_Titulo.Name = "Gbp_Titulo";
             this.Gbp_Titulo.Size = new System.Drawing.Size(366, 80);
             this.Gbp_Titulo.TabIndex = 14;
             this.Gbp_Titulo.TabStop = false;
             // 
-            // Lbl_titulo
+            // Lbl_Titulo
             // 
-            this.Lbl_titulo.AutoSize = true;
-            this.Lbl_titulo.BackColor = System.Drawing.SystemColors.Control;
-            this.Lbl_titulo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_titulo.Location = new System.Drawing.Point(138, 41);
-            this.Lbl_titulo.Name = "Lbl_titulo";
-            this.Lbl_titulo.Size = new System.Drawing.Size(104, 21);
-            this.Lbl_titulo.TabIndex = 0;
-            this.Lbl_titulo.Text = "Check Out";
+            this.Lbl_Titulo.AutoSize = true;
+            this.Lbl_Titulo.BackColor = System.Drawing.SystemColors.Control;
+            this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Titulo.Location = new System.Drawing.Point(138, 41);
+            this.Lbl_Titulo.Name = "Lbl_Titulo";
+            this.Lbl_Titulo.Size = new System.Drawing.Size(104, 21);
+            this.Lbl_Titulo.TabIndex = 0;
+            this.Lbl_Titulo.Text = "Check Out";
             // 
             // Gbp_Campos
             // 
             this.Gbp_Campos.Controls.Add(this.Cbo_Huesped);
-            this.Gbp_Campos.Controls.Add(this.textBox1);
+            this.Gbp_Campos.Controls.Add(this.Txt_Check_out);
             this.Gbp_Campos.Controls.Add(this.Lbl_Fecha);
             this.Gbp_Campos.Controls.Add(this.dateTimePicker1);
             this.Gbp_Campos.Controls.Add(this.Lbl_idreserva);
@@ -108,12 +109,12 @@ namespace Capa_vista_Check_In_Check_out
             this.Cbo_Huesped.Size = new System.Drawing.Size(695, 24);
             this.Cbo_Huesped.TabIndex = 8;
             // 
-            // textBox1
+            // Txt_Check_out
             // 
-            this.textBox1.Location = new System.Drawing.Point(37, 80);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(162, 22);
-            this.textBox1.TabIndex = 7;
+            this.Txt_Check_out.Location = new System.Drawing.Point(37, 80);
+            this.Txt_Check_out.Name = "Txt_Check_out";
+            this.Txt_Check_out.Size = new System.Drawing.Size(162, 22);
+            this.Txt_Check_out.TabIndex = 7;
             // 
             // Lbl_Fecha
             // 
@@ -174,6 +175,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Salir.TabIndex = 23;
             this.Btn_Salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Salir.UseVisualStyleBackColor = false;
+            this.Btn_Salir.Click += new System.EventHandler(this.Btn_Salir_Click);
             // 
             // Btn_Reporte
             // 
@@ -188,20 +190,6 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.TabIndex = 26;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
-            // 
-            // Btn_Limpiar
-            // 
-            this.Btn_Limpiar.BackColor = System.Drawing.Color.White;
-            this.Btn_Limpiar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Btn_Limpiar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Limpiar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
-            this.Btn_Limpiar.Location = new System.Drawing.Point(1029, 29);
-            this.Btn_Limpiar.Name = "Btn_Limpiar";
-            this.Btn_Limpiar.Size = new System.Drawing.Size(89, 68);
-            this.Btn_Limpiar.TabIndex = 22;
-            this.Btn_Limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Limpiar.UseVisualStyleBackColor = false;
             // 
             // Btn_Ayuda
             // 
@@ -230,6 +218,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Eliminar.TabIndex = 24;
             this.Btn_Eliminar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Eliminar.UseVisualStyleBackColor = false;
+            this.Btn_Eliminar.Click += new System.EventHandler(this.Btn_Eliminar_Click);
             // 
             // Btn_Nuevo
             // 
@@ -244,6 +233,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Nuevo.TabIndex = 20;
             this.Btn_Nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Nuevo.UseVisualStyleBackColor = false;
+            this.Btn_Nuevo.Click += new System.EventHandler(this.Btn_Nuevo_Click);
             // 
             // Btn_Modificar
             // 
@@ -258,6 +248,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Modificar.TabIndex = 21;
             this.Btn_Modificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Modificar.UseVisualStyleBackColor = false;
+            this.Btn_Modificar.Click += new System.EventHandler(this.Btn_Modificar_Click);
             // 
             // Btn_guardar
             // 
@@ -272,26 +263,41 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_guardar.TabIndex = 19;
             this.Btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_guardar.UseVisualStyleBackColor = false;
+            this.Btn_guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
-            // Check_Out
+            // Btn_Cancelar
+            // 
+            this.Btn_Cancelar.BackColor = System.Drawing.Color.White;
+            this.Btn_Cancelar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
+            this.Btn_Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar.Image")));
+            this.Btn_Cancelar.Location = new System.Drawing.Point(1038, 36);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(71, 54);
+            this.Btn_Cancelar.TabIndex = 27;
+            this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Cancelar.UseVisualStyleBackColor = false;
+            // 
+            // Frm_Check_Out
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1372, 788);
+            this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
-            this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Btn_Ayuda);
             this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.Btn_Nuevo);
             this.Controls.Add(this.Btn_Modificar);
             this.Controls.Add(this.Btn_guardar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Dgv_Check_Out);
             this.Controls.Add(this.Gbp_Titulo);
             this.Controls.Add(this.Gbp_Campos);
-            this.Name = "Check_Out";
+            this.Name = "Frm_Check_Out";
             this.Text = "Check_Out";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Check_Out)).EndInit();
             this.Gbp_Titulo.ResumeLayout(false);
             this.Gbp_Titulo.PerformLayout();
             this.Gbp_Campos.ResumeLayout(false);
@@ -301,12 +307,12 @@ namespace Capa_vista_Check_In_Check_out
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Dgv_Check_Out;
         private System.Windows.Forms.GroupBox Gbp_Titulo;
-        private System.Windows.Forms.Label Lbl_titulo;
+        private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.GroupBox Gbp_Campos;
         private System.Windows.Forms.ComboBox Cbo_Huesped;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Txt_Check_out;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label Lbl_idreserva;
@@ -314,11 +320,11 @@ namespace Capa_vista_Check_In_Check_out
         private System.Windows.Forms.Label Lbl_Icheck_in;
         private System.Windows.Forms.Button Btn_Salir;
         private System.Windows.Forms.Button Btn_Reporte;
-        private System.Windows.Forms.Button Btn_Limpiar;
         private System.Windows.Forms.Button Btn_Ayuda;
         private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.Button Btn_Nuevo;
         private System.Windows.Forms.Button Btn_Modificar;
         private System.Windows.Forms.Button Btn_guardar;
+        private System.Windows.Forms.Button Btn_Cancelar;
     }
 }
