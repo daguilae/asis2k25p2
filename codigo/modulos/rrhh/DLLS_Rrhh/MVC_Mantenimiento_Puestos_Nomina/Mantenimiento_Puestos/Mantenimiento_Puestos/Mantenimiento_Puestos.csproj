@@ -53,19 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Frm_Mantenimiento_Puestos.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Frm_Mantenimiento_Puestos.Designer.cs">
       <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Frm_Mantenimiento_Puestos.resx">
       <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
