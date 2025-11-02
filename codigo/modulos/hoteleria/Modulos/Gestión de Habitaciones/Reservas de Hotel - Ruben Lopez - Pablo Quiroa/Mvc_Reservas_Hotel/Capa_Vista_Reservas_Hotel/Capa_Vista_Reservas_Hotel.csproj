@@ -64,6 +64,12 @@
     <Compile Include="Frm_Modificar_Reserva.Designer.cs">
       <DependentUpon>Frm_Modificar_Reserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Pago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago.Designer.cs">
+      <DependentUpon>Frm_Pago.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Reservas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Modificar_Reserva.resx">
       <DependentUpon>Frm_Modificar_Reserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago.resx">
+      <DependentUpon>Frm_Pago.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Reservas.resx">
       <DependentUpon>Frm_Reservas.cs</DependentUpon>
