@@ -371,7 +371,7 @@ namespace Capa_Vista_Bancos
 
         private void chequesDePlanillaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Cheques ch = new Frm_Cheques();
+            Frm_Tipo_Cheques ch = new Frm_Tipo_Cheques();
             ch.ShowDialog();
         }
 

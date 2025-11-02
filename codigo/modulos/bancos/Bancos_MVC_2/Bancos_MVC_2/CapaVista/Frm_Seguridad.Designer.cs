@@ -49,6 +49,7 @@
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
+            this.cierreBancarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -171,7 +172,8 @@
             this.disponibilidadDiariaToolStripMenuItem,
             this.autorizaciónOrdenesDeComprasToolStripMenuItem,
             this.chequesDePlanillaToolStripMenuItem,
-            this.reportesBancariosToolStripMenuItem});
+            this.reportesBancariosToolStripMenuItem,
+            this.cierreBancarioToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
@@ -323,6 +325,12 @@
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
+            // cierreBancarioToolStripMenuItem
+            // 
+            this.cierreBancarioToolStripMenuItem.Name = "cierreBancarioToolStripMenuItem";
+            this.cierreBancarioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.cierreBancarioToolStripMenuItem.Text = "Cierre Bancario";
+            // 
             // Frm_Seguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -382,5 +390,6 @@
         private System.Windows.Forms.ToolStripMenuItem chequesDePlanillaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesBancariosToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem cierreBancarioToolStripMenuItem;
     }
 }

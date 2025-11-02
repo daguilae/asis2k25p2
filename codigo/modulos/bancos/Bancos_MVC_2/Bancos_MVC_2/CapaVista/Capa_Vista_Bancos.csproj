@@ -44,8 +44,9 @@
     <Reference Include="Capa_Vista_CB">
       <HintPath>..\..\..\DLLS_Bancos\MVC_ConciliacionBancaria\DLL_ConciliacionBancaria\Capa_Vista_CB\bin\Debug\Capa_Vista_CB.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Cheques">
-      <HintPath>..\..\..\DLLS_Bancos\Cheques\Capa_Vista_Cheques\bin\Debug\Capa_Vista_Cheques.dll</HintPath>
+    <Reference Include="Capa_Vista_Cheques, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DLLS_Bancos\MCV_Cheques_Planillas\Cheques\Capa_Vista_Cheques\bin\Debug\Capa_Vista_Cheques.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_MB">
       <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Vista_MB\bin\Debug\Capa_Vista_MB.dll</HintPath>
