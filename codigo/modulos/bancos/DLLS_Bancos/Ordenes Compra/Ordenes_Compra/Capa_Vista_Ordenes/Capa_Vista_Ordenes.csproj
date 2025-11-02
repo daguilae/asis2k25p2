@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Ordenes">
+    <Reference Include="Capa_Controlador_Ordenes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Capa_Controlador_Ordenes\bin\Debug\Capa_Controlador_Ordenes.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Modelo_Ordenes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Capa_Modelo_Ordenes\bin\Debug\Capa_Modelo_Ordenes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

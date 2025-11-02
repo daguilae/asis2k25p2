@@ -1,92 +1,144 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Ordenes;
-
 
 namespace Capa_Vista_Ordenes
 {
     public partial class Frm_Ordenes : Form
     {
-        Cls_Controlador_Ordenes cn = new Cls_Controlador_Ordenes();
-        string tabla = "Tbl_Orden_Compra_Autorizada";
+        Cls_Controlador_Ordenes controlador = new Cls_Controlador_Ordenes();
+        string idSeleccionado = "";
+
 
         public Frm_Ordenes()
         {
             InitializeComponent();
-            Btn_Agregar_Autorizacion.Click += Btn_Agregar_Autorizacion_Click;
-            Btn_Consultar_Autorizaciones.Click += Btn_Consultar_Autorizaciones_Click;
+            CargarTabla();
+
+
+          
+            Dgv_Auto_Ordenes.CellClick += Dgv_Auto_Ordenes_CellClick;
+
         }
 
-
-        private void ActualizarGrid()
+ 
+        private void CargarTabla()
         {
-            DataTable dt = cn.LlenarTabla(tabla);
-            Dgv_Auto_Ordenes.DataSource = dt;
+            Dgv_Auto_Ordenes.DataSource = controlador.Mostrar();
         }
 
-        private void Btn_Consultar_Autorizaciones_Click(object sender, EventArgs e)
-        {
-            ActualizarGrid();
-        }
+  
 
 
-        private void Btn_Agregar_Autorizacion_Click(object sender, EventArgs e)
+
+        private void Btn_Guardar_Autorizacion_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(Txt_Id_Autorizacion.Text) ||
-                string.IsNullOrEmpty(Txt_Id_Orden.Text) ||
-                string.IsNullOrEmpty(Txt_Id_Banco.Text) ||
-                string.IsNullOrEmpty(Txt_Fecha_Autorizacion.Text) ||
-                string.IsNullOrEmpty(Txt_Autorizado_Por.Text) ||
-                string.IsNullOrEmpty(Txt_Monto_Autorizado.Text) ||
-                string.IsNullOrEmpty(Txt_Estado_Autorizacion.Text))
+            if (txtOrden.Text == "" || txtBanco.Text == "" || txtFecha.Text == "" || txtAutorizadoPor.Text == "" || txtMonto.Text == "" || txtEstado.Text == "")
             {
                 MessageBox.Show("Por favor complete todos los campos.");
                 return;
             }
 
-            Cls_Controlador_Ordenes controlador = new Cls_Controlador_Ordenes();
-
-            bool resultado = controlador.AgregarAutorizacion(
-                Txt_Id_Autorizacion.Text,
-                Txt_Id_Orden.Text,
-                Txt_Id_Banco.Text,
-                Txt_Fecha_Autorizacion.Text,
-                Txt_Autorizado_Por.Text,
-                Txt_Monto_Autorizado.Text,
-                Txt_Estado_Autorizacion.Text
+            controlador.Agregar(
+                txtOrden.Text,
+                txtBanco.Text,
+                txtFecha.Text,
+                txtAutorizadoPor.Text,
+                txtMonto.Text,
+                txtEstado.Text
             );
 
-            if (resultado)
-            {
-                MessageBox.Show("Autorización agregada correctamente.");
-                ActualizarGrid(); 
-                             
-                Txt_Id_Autorizacion.Clear();
-                Txt_Id_Orden.Clear();
-                Txt_Id_Banco.Clear();
-                Txt_Fecha_Autorizacion.Clear();
-                Txt_Autorizado_Por.Clear();
-                Txt_Monto_Autorizado.Clear();
-                Txt_Estado_Autorizacion.Clear();
-            }
-            else
-            {
-                MessageBox.Show("No se pudo agregar la autorización. Revise los datos ingresados.");
-            }
+            MessageBox.Show("Autorización registrada correctamente.");
+            CargarTabla();
+            LimpiarCampos();
+        }
+
+        private void LimpiarCampos()
+        {
+            txtOrden.Clear();
+            txtBanco.Clear();
+            txtAutorizadoPor.Clear();
+            txtMonto.Clear();
+            txtEstado.Clear();
+            txtFecha.Clear();
         }
 
         private void Btn_Eliminar_Autorizacion_Click(object sender, EventArgs e)
         {
-           
+            if (Dgv_Auto_Ordenes.SelectedRows.Count > 0)
+            {
+                // obtener el valor de la primera columna (ID)
+                string idAutorizacion = Dgv_Auto_Ordenes.SelectedRows[0].Cells["Pk_Id_Autorizacion"].Value.ToString();
+
+                DialogResult confirm = MessageBox.Show(
+                    $"¿Seguro que deseas eliminar la autorización con ID {idAutorizacion}?",
+                    "Confirmar eliminación",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (confirm == DialogResult.Yes)
+                {
+                    controlador.Eliminar(idAutorizacion);
+                    MessageBox.Show("Registro eliminado correctamente.");
+                    CargarTabla();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor selecciona una fila para eliminar.");
+            }
         }
 
-        
+        private void Btn_Modificar_Autorizacion_Click(object sender, EventArgs e)
+        {
+
+            if (idSeleccionado == "")
+            {
+                MessageBox.Show("Selecciona una fila para editar.");
+                return;
+            }
+
+            controlador.Editar(
+                idSeleccionado,
+                txtOrden.Text,
+                txtBanco.Text,
+                txtFecha.Text,
+                txtAutorizadoPor.Text,
+                txtMonto.Text,
+                txtEstado.Text
+            );
+
+            MessageBox.Show("Registro actualizado correctamente.");
+            CargarTabla();
+            LimpiarCampos();
+
+
+
+        }
+
+
+      // fila seleccionada
+        private void Dgv_Auto_Ordenes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow fila = Dgv_Auto_Ordenes.Rows[e.RowIndex];
+
+                idSeleccionado = fila.Cells["Pk_Id_Autorizacion"].Value.ToString();
+                txtOrden.Text = fila.Cells["Fk_Id_Orden_Compra"].Value.ToString();
+                txtBanco.Text = fila.Cells["Fk_Id_Banco"].Value.ToString();
+                txtFecha.Text = fila.Cells["Cmp_Fecha_Autorizacion"].Value.ToString();
+                txtAutorizadoPor.Text = fila.Cells["Cmp_Autorizado_Por"].Value.ToString();
+                txtMonto.Text = fila.Cells["Cmp_Monto_Autorizado"].Value.ToString();
+                txtEstado.Text = fila.Cells["Fk_Id_Estado_Autorizacion"].Value.ToString();
+            }
+        }
+
+
+
+
+
+
     }
 }
