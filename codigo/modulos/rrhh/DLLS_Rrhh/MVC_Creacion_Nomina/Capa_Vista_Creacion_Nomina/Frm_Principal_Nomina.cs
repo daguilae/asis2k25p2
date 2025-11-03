@@ -33,38 +33,34 @@ namespace Capa_Vista_Creacion_Nomina
         {
             try
             {
-                // Obtener los datos desde el controlador
                 DataTable dtsNominas = clsControlador.funObtenerTodasLasNominas();
-
-                // Limpiar las filas actuales
                 dataGridView1.Rows.Clear();
 
-                // Validar si hay datos
                 if (dtsNominas != null && dtsNominas.Rows.Count > 0)
                 {
                     foreach (DataRow fila in dtsNominas.Rows)
                     {
-                        // Agregar una nueva fila al DataGridView
                         dataGridView1.Rows.Add(
-                            fila["Cmp_iNomina"].ToString(),
-                            Convert.ToDateTime(fila["Cmp_dPeriodoInicioNomina"]).ToString("dd/MM/yyyy"),
-                            Convert.ToDateTime(fila["Cmp_dPeriodoFinNomina"]).ToString("dd/MM/yyyy"),
-                            Convert.ToDateTime(fila["Cmp_dFechaGeneracionNomina"]).ToString("dd/MM/yyyy"),
-                            fila["Cmp_vTipoNomina"].ToString(),
-                            fila["Cmp_vEstadoNomina"].ToString()
+                            fila["Cmp_iId_Nomina"].ToString(),
+                            Convert.ToDateTime(fila["Cmp_dPeriodoInicio_Nomina"]).ToString("dd/MM/yyyy"),
+                            Convert.ToDateTime(fila["Cmp_dPeriodoFin_Nomina"]).ToString("dd/MM/yyyy"),
+                            Convert.ToDateTime(fila["Cmp_dFechaGeneracion_Nomina"]).ToString("dd/MM/yyyy"),
+                            fila["Cmp_sTipo_Nomina"].ToString(),
+                            fila["Cmp_sEstado_Nomina"].ToString()
                         );
                     }
                 }
                 else
                 {
-                    MessageBox.Show("No hay nóminas registradas.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Console.WriteLine("No hay nóminas registradas.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las nóminas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine($"Error al cargar las nóminas: {ex.Message}");
             }
         }
+
         // Fin de código de: Fredy Reyes Sabán en la fecha de: 29/10/2025
 
 

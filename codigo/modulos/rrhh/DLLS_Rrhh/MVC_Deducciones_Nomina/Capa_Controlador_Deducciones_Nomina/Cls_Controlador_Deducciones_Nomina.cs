@@ -8,15 +8,58 @@
 
 using System;
 using System.Data;
-using Capa_Controlador_Movimientos_Nomina;
 using Capa_Modelo_Deducciones_Nomina;
 
 namespace Capa_Controlador_Movimientos_Nomina
 {
     public class Cls_Controlador_Movimientos_Nomina
     {
+        // ==========================================================
         // Instancia del DAO
-        private Cls_Dao_Deducciones_Nomina daoMovimientos = new Cls_Dao_Deducciones_Nomina();
+        // ==========================================================
+        private readonly Cls_Dao_Deducciones_Nomina daoMovimientos = new Cls_Dao_Deducciones_Nomina();
+
+        // ==========================================================
+        // MÉTODOS DE CONSULTA PARA COMBOS
+        // ==========================================================
+        public DataTable funObtenerNominas()
+        {
+            try
+            {
+                return daoMovimientos.funObtenerNominas();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en controlador al obtener nóminas: " + ex.Message);
+                return null;
+            }
+        }
+
+        public DataTable funObtenerEmpleados()
+        {
+            try
+            {
+                return daoMovimientos.funObtenerEmpleados();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en controlador al obtener empleados: " + ex.Message);
+                return null;
+            }
+        }
+
+        public DataTable funObtenerConceptos()
+        {
+            try
+            {
+                return daoMovimientos.funObtenerConceptos();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error en controlador al obtener conceptos: " + ex.Message);
+                return null;
+            }
+        }
 
         // ==========================================================
         // MÉTODOS DE CREACIÓN
@@ -26,11 +69,11 @@ namespace Capa_Controlador_Movimientos_Nomina
             try
             {
                 daoMovimientos.proInsertarMovimientoNomina(iIdNomina, iIdConceptoNomina, dMontoMovimiento);
-                Console.WriteLine("Movimiento insertado correctamente.");
+                Console.WriteLine("✅ Movimiento insertado correctamente.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al insertar movimiento: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al insertar movimiento: " + ex.Message);
             }
         }
 
@@ -42,11 +85,11 @@ namespace Capa_Controlador_Movimientos_Nomina
             try
             {
                 daoMovimientos.proActualizarMovimientoNomina(iIdMovimiento, iIdNomina, iIdConceptoNomina, dMontoMovimiento);
-                Console.WriteLine("Movimiento actualizado correctamente.");
+                Console.WriteLine("✅ Movimiento actualizado correctamente.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al actualizar movimiento: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al actualizar movimiento: " + ex.Message);
             }
         }
 
@@ -58,11 +101,11 @@ namespace Capa_Controlador_Movimientos_Nomina
             try
             {
                 daoMovimientos.proEliminarMovimientoNomina(iIdMovimiento);
-                Console.WriteLine("Movimiento eliminado correctamente.");
+                Console.WriteLine("🗑️ Movimiento eliminado correctamente.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al eliminar movimiento: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al eliminar movimiento: " + ex.Message);
             }
         }
 
@@ -77,7 +120,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al obtener movimiento por ID: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al obtener movimiento por ID: " + ex.Message);
                 return null;
             }
         }
@@ -90,7 +133,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al obtener todos los movimientos: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al obtener todos los movimientos: " + ex.Message);
                 return null;
             }
         }
@@ -103,7 +146,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al obtener movimientos por nómina: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al obtener movimientos por nómina: " + ex.Message);
                 return null;
             }
         }
@@ -116,7 +159,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al obtener movimientos por nómina y empleado: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al obtener movimientos por nómina y empleado: " + ex.Message);
                 return null;
             }
         }
@@ -132,7 +175,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al sumar movimientos por tipo: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al sumar movimientos por tipo: " + ex.Message);
                 return 0;
             }
         }
@@ -145,7 +188,7 @@ namespace Capa_Controlador_Movimientos_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error en controlador al verificar existencia: " + ex.Message);
+                Console.WriteLine("❌ Error en controlador al verificar existencia: " + ex.Message);
                 return false;
             }
         }

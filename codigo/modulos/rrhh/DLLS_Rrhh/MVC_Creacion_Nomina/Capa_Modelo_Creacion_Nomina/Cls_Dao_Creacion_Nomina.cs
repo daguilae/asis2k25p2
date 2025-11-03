@@ -4,6 +4,7 @@
 // Autor: Fredy Reyes Sabán
 // Carné: 20250000
 // Fecha: 29/10/2025
+// Descripción: Acceso a datos para la tabla Tbl_Nomina
 // =============================================================
 
 using System;
@@ -15,31 +16,37 @@ namespace Capa_Modelo_Creacion_Nomina
     public class Cls_Dao_Creacion_Nomina
     {
         // ==========================================================
-        // MÉTODOS DE CREACIÓN
+        // MÉTODO: INSERTAR NÓMINA
         // ==========================================================
         public void proInsertarNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin, DateTime dFechaGeneracion, string sTipo, string sEstado)
         {
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
+                    string sSql = @"
+                        INSERT INTO Tbl_Nomina
+                        (Cmp_dPeriodoInicio_Nomina, Cmp_dPeriodoFin_Nomina, Cmp_dFechaGeneracion_Nomina, Cmp_sTipo_Nomina, Cmp_sEstado_Nomina)
+                        VALUES (?, ?, ?, ?, ?)";
 
-                    string sSql = "INSERT INTO Tbl_Nomina (Cmp_dPeriodoInicioNomina, Cmp_dPeriodoFinNomina, Cmp_dFechaGeneracionNomina, Cmp_vTipoNomina, Cmp_vEstadoNomina) VALUES (?, ?, ?, ?, ?)";
-                    using (OdbcCommand cmdComando = new OdbcCommand(sSql, cnConexion))
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
-                        cmdComando.Parameters.AddWithValue("", dPeriodoInicio);
-                        cmdComando.Parameters.AddWithValue("", dPeriodoFin);
-                        cmdComando.Parameters.AddWithValue("", dFechaGeneracion);
-                        cmdComando.Parameters.AddWithValue("", sTipo);
-                        cmdComando.Parameters.AddWithValue("", sEstado);
-                        cmdComando.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("", dPeriodoInicio);
+                        cmd.Parameters.AddWithValue("", dPeriodoFin);
+                        cmd.Parameters.AddWithValue("", dFechaGeneracion);
+                        cmd.Parameters.AddWithValue("", sTipo);
+                        cmd.Parameters.AddWithValue("", sEstado);
+                        cmd.ExecuteNonQuery();
                     }
+
+                    Console.WriteLine($"[OK] Nómina insertada correctamente: {dPeriodoInicio:yyyy-MM-dd} - {dPeriodoFin:yyyy-MM-dd}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al insertar la nómina: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al insertar nómina: {ex.Message}");
                 }
                 finally
                 {
@@ -49,32 +56,43 @@ namespace Capa_Modelo_Creacion_Nomina
         }
 
         // ==========================================================
-        // MÉTODOS DE MODIFICACIÓN
+        // MÉTODO: ACTUALIZAR NÓMINA
         // ==========================================================
         public void proActualizarNomina(int iIdNomina, DateTime dPeriodoInicio, DateTime dPeriodoFin, DateTime dFechaGeneracion, string sTipo, string sEstado)
         {
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
+                    string sSql = @"
+                        UPDATE Tbl_Nomina
+                        SET 
+                            Cmp_dPeriodoInicio_Nomina = ?, 
+                            Cmp_dPeriodoFin_Nomina = ?, 
+                            Cmp_dFechaGeneracion_Nomina = ?, 
+                            Cmp_sTipo_Nomina = ?, 
+                            Cmp_sEstado_Nomina = ?
+                        WHERE Cmp_iId_Nomina = ?";
 
-                    string sSql = "UPDATE Tbl_Nomina SET Cmp_dPeriodoInicioNomina=?, Cmp_dPeriodoFinNomina=?, Cmp_dFechaGeneracionNomina=?, Cmp_vTipoNomina=?, Cmp_vEstadoNomina=? WHERE Cmp_iNomina=?";
-                    using (OdbcCommand cmdComando = new OdbcCommand(sSql, cnConexion))
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
-                        cmdComando.Parameters.AddWithValue("", dPeriodoInicio);
-                        cmdComando.Parameters.AddWithValue("", dPeriodoFin);
-                        cmdComando.Parameters.AddWithValue("", dFechaGeneracion);
-                        cmdComando.Parameters.AddWithValue("", sTipo);
-                        cmdComando.Parameters.AddWithValue("", sEstado);
-                        cmdComando.Parameters.AddWithValue("", iIdNomina);
-                        cmdComando.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("", dPeriodoInicio);
+                        cmd.Parameters.AddWithValue("", dPeriodoFin);
+                        cmd.Parameters.AddWithValue("", dFechaGeneracion);
+                        cmd.Parameters.AddWithValue("", sTipo);
+                        cmd.Parameters.AddWithValue("", sEstado);
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        cmd.ExecuteNonQuery();
                     }
+
+                    Console.WriteLine($"[OK] Nómina actualizada (ID: {iIdNomina})");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al actualizar la nómina: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al actualizar nómina (ID: {iIdNomina}): {ex.Message}");
                 }
                 finally
                 {
@@ -84,27 +102,30 @@ namespace Capa_Modelo_Creacion_Nomina
         }
 
         // ==========================================================
-        // MÉTODOS DE ELIMINACIÓN
+        // MÉTODO: ELIMINAR NÓMINA
         // ==========================================================
         public void proEliminarNomina(int iIdNomina)
         {
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
-                    cnConexion.Open(); // ✅ Abrir conexión
+                    cnConexion.Open();
+                    string sSql = "DELETE FROM Tbl_Nomina WHERE Cmp_iId_Nomina = ?";
 
-                    string sSql = "DELETE FROM Tbl_Nomina WHERE Cmp_iNomina = ?";
-                    using (OdbcCommand cmdComando = new OdbcCommand(sSql, cnConexion))
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
-                        cmdComando.Parameters.AddWithValue("", iIdNomina);
-                        cmdComando.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        cmd.ExecuteNonQuery();
                     }
+
+                    Console.WriteLine($"[OK] Nómina eliminada (ID: {iIdNomina})");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al eliminar la nómina: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al eliminar nómina (ID: {iIdNomina}): {ex.Message}");
                 }
                 finally
                 {
@@ -114,117 +135,133 @@ namespace Capa_Modelo_Creacion_Nomina
         }
 
         // ==========================================================
-        // MÉTODOS DE CONSULTA
+        // MÉTODO: OBTENER NÓMINA POR ID
         // ==========================================================
         public DataTable funObtenerNominaPorId(int iIdNomina)
         {
             DataTable dtsNomina = new DataTable();
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
+                    string sSql = "SELECT * FROM Tbl_Nomina WHERE Cmp_iId_Nomina = ?";
 
-                    string sSql = "SELECT * FROM Tbl_Nomina WHERE Cmp_iNomina = ?";
-                    using (OdbcCommand cmdComando = new OdbcCommand(sSql, cnConexion))
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
-                        cmdComando.Parameters.AddWithValue("", iIdNomina);
-                        OdbcDataAdapter daAdaptador = new OdbcDataAdapter(cmdComando);
-                        daAdaptador.Fill(dtsNomina);
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                        da.Fill(dtsNomina);
                     }
+
+                    Console.WriteLine($"[OK] Nómina obtenida por ID: {iIdNomina}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al obtener la nómina: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al obtener nómina por ID: {ex.Message}");
                 }
                 finally
                 {
                     clsConexion.desconexion(cnConexion);
                 }
             }
+
             return dtsNomina;
         }
 
+        // ==========================================================
+        // MÉTODO: OBTENER TODAS LAS NÓMINAS
+        // ==========================================================
         public DataTable funObtenerTodasLasNominas()
         {
             DataTable dtsNominas = new DataTable();
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
-                    cnConexion.Open(); // ✅ Abrir conexión
+                    cnConexion.Open();
+                    string sSql = "SELECT * FROM Tbl_Nomina ORDER BY Cmp_dFechaGeneracion_Nomina DESC";
 
-                    string sSql = "SELECT * FROM Tbl_Nomina ORDER BY Cmp_dFechaGeneracionNomina DESC";
-                    OdbcDataAdapter daAdaptador = new OdbcDataAdapter(sSql, cnConexion);
-                    daAdaptador.Fill(dtsNominas);
+                    OdbcDataAdapter da = new OdbcDataAdapter(sSql, cnConexion);
+                    da.Fill(dtsNominas);
+
+                    Console.WriteLine($"[OK] Se obtuvieron {dtsNominas.Rows.Count} nóminas.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("❌ Error al obtener todas las nóminas: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al obtener todas las nóminas: {ex.Message}");
                 }
                 finally
                 {
                     clsConexion.desconexion(cnConexion);
                 }
             }
+
             return dtsNominas;
         }
 
         // ==========================================================
-        // MÉTODOS DE VERIFICACIÓN
+        // MÉTODO: VERIFICAR EXISTENCIA POR ID
         // ==========================================================
         public int funVerificarExistenciaNomina(int iIdNomina)
         {
             int iExiste = 0;
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
+                    string sSql = "SELECT 1 FROM Tbl_Nomina WHERE Cmp_iId_Nomina = ? LIMIT 1";
 
-                    string sSql = "SELECT 1 FROM Tbl_Nomina WHERE Cmp_iNomina = ? LIMIT 1";
-                    using (OdbcCommand cmdComando = new OdbcCommand(sSql, cnConexion))
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
-                        cmdComando.Parameters.AddWithValue("", iIdNomina);
-                        object oResultado = cmdComando.ExecuteScalar();
-                        if (oResultado != null)
-                            iExiste = 1;
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null) iExiste = 1;
                     }
+
+                    Console.WriteLine($"[OK] Verificación de existencia completada (ID: {iIdNomina}, Existe: {iExiste == 1})");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al verificar existencia: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al verificar existencia de nómina: {ex.Message}");
                 }
                 finally
                 {
                     clsConexion.desconexion(cnConexion);
                 }
             }
+
             return iExiste;
         }
 
         // ==========================================================
-        // MÉTODO DE VERIFICACIÓN DE PERIODO DUPLICADO
+        // MÉTODO: VERIFICAR DUPLICIDAD DE PERIODO
         // ==========================================================
         public bool funExistePeriodoNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin)
         {
             bool bExiste = false;
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
-                    // Se verifica si el nuevo rango se solapa con un rango existente
+
                     string sSql = @"
-                SELECT COUNT(*) FROM Tbl_Nomina
-                WHERE 
-                    (Cmp_dPeriodoInicioNomina <= ? AND Cmp_dPeriodoFinNomina >= ?)
-                    OR
-                    (Cmp_dPeriodoInicioNomina <= ? AND Cmp_dPeriodoFinNomina >= ?)";
+                        SELECT COUNT(*) FROM Tbl_Nomina
+                        WHERE 
+                            (Cmp_dPeriodoInicio_Nomina <= ? AND Cmp_dPeriodoFin_Nomina >= ?)
+                            OR
+                            (Cmp_dPeriodoInicio_Nomina <= ? AND Cmp_dPeriodoFin_Nomina >= ?)";
+
                     using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
                         cmd.Parameters.AddWithValue("", dPeriodoFin);
@@ -233,22 +270,22 @@ namespace Capa_Modelo_Creacion_Nomina
                         cmd.Parameters.AddWithValue("", dPeriodoFin);
 
                         int iCantidad = Convert.ToInt32(cmd.ExecuteScalar());
-                        if (iCantidad > 0)
-                            bExiste = true;
+                        bExiste = iCantidad > 0;
                     }
+
+                    Console.WriteLine($"[OK] Verificación de duplicidad de periodo ({dPeriodoInicio:yyyy-MM-dd} - {dPeriodoFin:yyyy-MM-dd}): {(bExiste ? "Duplicado" : "Libre")}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al verificar duplicidad de periodo: " + ex.Message);
+                    Console.WriteLine($"[ERROR] al verificar duplicidad de periodo: {ex.Message}");
                 }
                 finally
                 {
                     clsConexion.desconexion(cnConexion);
                 }
             }
+
             return bExiste;
         }
-
-
     }
 }

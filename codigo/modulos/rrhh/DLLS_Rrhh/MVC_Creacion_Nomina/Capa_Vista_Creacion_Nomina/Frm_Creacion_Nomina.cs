@@ -2,11 +2,8 @@
 // Capa_Vista_Creacion_Nomina
 // Clase: Frm_Creacion_Nomina
 // Autor: Fredy Reyes Sabán
-// Carné: 20250000
+// Carné: 0901-22-9800
 // Fecha: 29/10/2025
-// Descripción: Formulario encargado de la creación de nuevas nóminas,
-//              conectado con el controlador Cls_Controlador_Creacion_Nomina
-//              y adaptado a la estructura actual de Tbl_Nomina.
 // =============================================================
 
 using System;

@@ -18,10 +18,5 @@ namespace Ejec_Creacion_Nomina
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Frm_Principal_Nomina frm_Principal_Nomina = new Frm_Principal_Nomina();
-            frm_Principal_Nomina.ShowDialog();
-        }
     }
 }

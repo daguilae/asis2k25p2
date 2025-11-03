@@ -1,6 +1,6 @@
 ﻿// =============================================================
-// Capa_Modelo_Creacion_Nomina
-// Clase: Cls_Dao_Movimientos_Nomina
+// Capa_Modelo_Deducciones_Nomina
+// Clase: Cls_Dao_Deducciones_Nomina
 // Autor: Fredy Reyes Sabán
 // Carné: 0901-22-9800
 // Fecha: 31/10/2025
@@ -14,12 +14,88 @@ namespace Capa_Modelo_Deducciones_Nomina
 {
     public class Cls_Dao_Deducciones_Nomina
     {
+        private Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
+
+        // ==========================================================
+        // MÉTODOS DE CONSULTA PARA COMBOS
+        // ==========================================================
+        public DataTable funObtenerNominas()
+        {
+            DataTable dtsNominas = new DataTable();
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = "SELECT Cmp_iId_Nomina, CONCAT('Nómina #', Cmp_iId_Nomina) AS Nombre FROM Tbl_Nomina ORDER BY Cmp_iId_Nomina DESC";
+                    OdbcDataAdapter da = new OdbcDataAdapter(sSql, cnConexion);
+                    da.Fill(dtsNominas);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener nóminas: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return dtsNominas;
+        }
+
+        public DataTable funObtenerEmpleados()
+        {
+            DataTable dtsEmpleados = new DataTable();
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = "SELECT Cmp_iId_Empleado, CONCAT(Cmp_sNombre_Empleado, ' ', Cmp_sApellido_Empleado) AS Nombre FROM Tbl_Empleados ORDER BY Nombre ASC";
+                    OdbcDataAdapter da = new OdbcDataAdapter(sSql, cnConexion);
+                    da.Fill(dtsEmpleados);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener empleados: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return dtsEmpleados;
+        }
+
+        public DataTable funObtenerConceptos()
+        {
+            DataTable dtsConceptos = new DataTable();
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = "SELECT Cmp_iId_ConceptoNomina, Cmp_sNombre_ConceptoNomina FROM Tbl_ConceptosNomina WHERE Cmp_sTipo_ConceptoNomina = ´DEDUCCION´ ORDER BY Cmp_sNombre_ConceptoNomina ASC";
+                    OdbcDataAdapter da = new OdbcDataAdapter(sSql, cnConexion);
+                    da.Fill(dtsConceptos);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener conceptos: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return dtsConceptos;
+        }
+
         // ==========================================================
         // MÉTODO: INSERTAR
         // ==========================================================
         public void proInsertarMovimientoNomina(int iIdNomina, int iIdConceptoNomina, decimal dMontoMovimiento)
         {
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -50,7 +126,6 @@ namespace Capa_Modelo_Deducciones_Nomina
         // ==========================================================
         public void proActualizarMovimientoNomina(int iIdMovimiento, int iIdNomina, int iIdConceptoNomina, decimal dMontoMovimiento)
         {
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -82,7 +157,6 @@ namespace Capa_Modelo_Deducciones_Nomina
         // ==========================================================
         public void proEliminarMovimientoNomina(int iIdMovimiento)
         {
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -107,13 +181,11 @@ namespace Capa_Modelo_Deducciones_Nomina
         }
 
         // ==========================================================
-        // MÉTODO: OBTENER POR ID
+        // MÉTODOS DE CONSULTA
         // ==========================================================
         public DataTable funObtenerMovimientoPorId(int iIdMovimiento)
         {
             DataTable dtsMovimiento = new DataTable();
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -136,18 +208,12 @@ namespace Capa_Modelo_Deducciones_Nomina
                     clsConexion.desconexion(cnConexion);
                 }
             }
-
             return dtsMovimiento;
         }
 
-        // ==========================================================
-        // MÉTODO: OBTENER TODOS
-        // ==========================================================
         public DataTable funObtenerTodosMovimientos()
         {
             DataTable dtsMovimientos = new DataTable();
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -166,18 +232,12 @@ namespace Capa_Modelo_Deducciones_Nomina
                     clsConexion.desconexion(cnConexion);
                 }
             }
-
             return dtsMovimientos;
         }
 
-        // ==========================================================
-        // MÉTODO: OBTENER POR NÓMINA ID
-        // ==========================================================
         public DataTable funObtenerMovimientosPorNomina(int iIdNomina)
         {
             DataTable dtsMovimientos = new DataTable();
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -197,100 +257,19 @@ namespace Capa_Modelo_Deducciones_Nomina
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Error al obtener movimientos por nómina ID: " + ex.Message);
+                    Console.WriteLine("Error al obtener movimientos por nómina: " + ex.Message);
                 }
                 finally
                 {
                     clsConexion.desconexion(cnConexion);
                 }
             }
-
             return dtsMovimientos;
         }
 
-        // ==========================================================
-        // MÉTODO: SUMAR MOVIMIENTOS POR TIPO DE CONCEPTO
-        // ==========================================================
-        public decimal funSumarMovimientosPorTipo(int iIdNomina, string sTipoConcepto)
-        {
-            decimal dTotal = 0;
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
-            using (OdbcConnection cnConexion = clsConexion.conexion())
-            {
-                try
-                {
-                    cnConexion.Open();
-                    string sSql = @"
-                        SELECT COALESCE(SUM(mn.Cmp_deMonto_MovimientoNomina), 0) AS Total
-                        FROM Tbl_MovimientosNomina mn
-                        INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
-                        WHERE mn.Cmp_iId_Nomina = ? AND c.Cmp_sTipo_ConceptoNomina = ?";
-                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
-                    {
-                        cmd.Parameters.AddWithValue("", iIdNomina);
-                        cmd.Parameters.AddWithValue("", sTipoConcepto);
-                        object result = cmd.ExecuteScalar();
-                        if (result != DBNull.Value)
-                            dTotal = Convert.ToDecimal(result);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al sumar movimientos por tipo: " + ex.Message);
-                }
-                finally
-                {
-                    clsConexion.desconexion(cnConexion);
-                }
-            }
-
-            return dTotal;
-        }
-
-        // ==========================================================
-        // MÉTODO: VERIFICAR EXISTENCIA
-        // ==========================================================
-        public int funVerificarExistenciaMovimiento(int iIdMovimiento)
-        {
-            int iExiste = 0;
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
-            using (OdbcConnection cnConexion = clsConexion.conexion())
-            {
-                try
-                {
-                    cnConexion.Open();
-                    string sSql = "SELECT 1 FROM Tbl_MovimientosNomina WHERE Cmp_iId_MovimientoNomina=? LIMIT 1";
-                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
-                    {
-                        cmd.Parameters.AddWithValue("", iIdMovimiento);
-                        object result = cmd.ExecuteScalar();
-                        if (result != null)
-                            iExiste = 1;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error al verificar existencia del movimiento: " + ex.Message);
-                }
-                finally
-                {
-                    clsConexion.desconexion(cnConexion);
-                }
-            }
-
-            return iExiste;
-        }
-
-        // ==========================================================
-        // MÉTODO: OBTENER MOVIMIENTOS POR NÓMINA Y EMPLEADO
-        // ==========================================================
         public DataTable funObtenerMovimientosPorNominaYEmpleado(int iIdNomina, int iIdEmpleado)
         {
             DataTable dtsMovimientos = new DataTable();
-            Cls_Conexion_Deducciones_Nomina clsConexion = new Cls_Conexion_Deducciones_Nomina();
-
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
@@ -326,10 +305,76 @@ namespace Capa_Modelo_Deducciones_Nomina
                     clsConexion.desconexion(cnConexion);
                 }
             }
-
             return dtsMovimientos;
         }
 
+        // ==========================================================
+        // MÉTODO: SUMAR MOVIMIENTOS POR TIPO DE CONCEPTO
+        // ==========================================================
+        public decimal funSumarMovimientosPorTipo(int iIdNomina, string sTipoConcepto)
+        {
+            decimal dTotal = 0;
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = @"
+                        SELECT COALESCE(SUM(mn.Cmp_deMonto_MovimientoNomina), 0) AS Total
+                        FROM Tbl_MovimientosNomina mn
+                        INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                        WHERE mn.Cmp_iId_Nomina = ? AND c.Cmp_sTipo_ConceptoNomina = ?";
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        cmd.Parameters.AddWithValue("", sTipoConcepto);
+                        object result = cmd.ExecuteScalar();
+                        if (result != DBNull.Value)
+                            dTotal = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al sumar movimientos por tipo: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return dTotal;
+        }
 
+        // ==========================================================
+        // MÉTODO: VERIFICAR EXISTENCIA DE MOVIMIENTO
+        // ==========================================================
+        public int funVerificarExistenciaMovimiento(int iIdMovimiento)
+        {
+            int iExiste = 0;
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = "SELECT 1 FROM Tbl_MovimientosNomina WHERE Cmp_iId_MovimientoNomina=? LIMIT 1";
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdMovimiento);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                            iExiste = 1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al verificar existencia del movimiento: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return iExiste;
+        }
     }
 }

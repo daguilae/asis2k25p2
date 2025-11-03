@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_Deducciones_Nomina
 {
-    partial class Frm_Deducciones_Nomina1
+    partial class Frm_Deducciones_Nomina
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
@@ -29,7 +29,7 @@ namespace Capa_Vista_Deducciones_Nomina
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
+            this.btn_guardar_datos = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,18 +39,23 @@ namespace Capa_Vista_Deducciones_Nomina
             this.cboConcepto = new System.Windows.Forms.ComboBox();
             this.txtValor = new System.Windows.Forms.TextBox();
             this.dgvDatos = new System.Windows.Forms.DataGridView();
+            this.no_movimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_nomina = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_guardar_datos
             // 
-            this.button1.BackgroundImage = global::Capa_Vista_Deducciones_Nomina.Properties.Resources.icono_guardar;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(722, 37);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(37, 36);
-            this.button1.TabIndex = 0;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_guardar_datos.BackgroundImage = global::Capa_Vista_Deducciones_Nomina.Properties.Resources.icono_guardar;
+            this.btn_guardar_datos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_guardar_datos.Location = new System.Drawing.Point(722, 37);
+            this.btn_guardar_datos.Name = "btn_guardar_datos";
+            this.btn_guardar_datos.Size = new System.Drawing.Size(37, 36);
+            this.btn_guardar_datos.TabIndex = 0;
+            this.btn_guardar_datos.UseVisualStyleBackColor = true;
+            this.btn_guardar_datos.Click += new System.EventHandler(this.btn_guardar_datos_Click);
             // 
             // label1
             // 
@@ -100,6 +105,7 @@ namespace Capa_Vista_Deducciones_Nomina
             this.cboNoNomina.Name = "cboNoNomina";
             this.cboNoNomina.Size = new System.Drawing.Size(145, 21);
             this.cboNoNomina.TabIndex = 5;
+            this.cboNoNomina.SelectedIndexChanged += new System.EventHandler(this.cboNoNomina_SelectedIndexChanged);
             // 
             // cboEmpleado
             // 
@@ -117,6 +123,7 @@ namespace Capa_Vista_Deducciones_Nomina
             this.cboConcepto.Name = "cboConcepto";
             this.cboConcepto.Size = new System.Drawing.Size(145, 21);
             this.cboConcepto.TabIndex = 7;
+            this.cboConcepto.SelectedIndexChanged += new System.EventHandler(this.cboConcepto_SelectedIndexChanged);
             // 
             // txtValor
             // 
@@ -124,16 +131,43 @@ namespace Capa_Vista_Deducciones_Nomina
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(145, 20);
             this.txtValor.TabIndex = 8;
+            this.txtValor.TextChanged += new System.EventHandler(this.txtValor_TextChanged);
             // 
             // dgvDatos
             // 
             this.dgvDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvDatos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.no_movimiento,
+            this.id_nomina,
+            this.concepto,
+            this.monto});
             this.dgvDatos.Location = new System.Drawing.Point(33, 211);
             this.dgvDatos.Name = "dgvDatos";
             this.dgvDatos.Size = new System.Drawing.Size(726, 194);
             this.dgvDatos.TabIndex = 9;
+            this.dgvDatos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDatos_CellContentClick);
             // 
-            // Frm_Deducciones_Nomina1
+            // no_movimiento
+            // 
+            this.no_movimiento.HeaderText = "No. Movimiento";
+            this.no_movimiento.Name = "no_movimiento";
+            // 
+            // id_nomina
+            // 
+            this.id_nomina.HeaderText = "Codigo Nomina";
+            this.id_nomina.Name = "id_nomina";
+            // 
+            // concepto
+            // 
+            this.concepto.HeaderText = "Concepto";
+            this.concepto.Name = "concepto";
+            // 
+            // monto
+            // 
+            this.monto.HeaderText = "Monto";
+            this.monto.Name = "monto";
+            // 
+            // Frm_Deducciones_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,8 +180,8 @@ namespace Capa_Vista_Deducciones_Nomina
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Name = "Frm_Deducciones_Nomina1";
+            this.Controls.Add(this.btn_guardar_datos);
+            this.Name = "Frm_Deducciones_Nomina";
             this.Size = new System.Drawing.Size(813, 451);
             this.Load += new System.EventHandler(this.Frm_Deducciones_Nomina1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).EndInit();
@@ -158,7 +192,7 @@ namespace Capa_Vista_Deducciones_Nomina
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btn_guardar_datos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -168,5 +202,9 @@ namespace Capa_Vista_Deducciones_Nomina
         private System.Windows.Forms.ComboBox cboConcepto;
         private System.Windows.Forms.TextBox txtValor;
         private System.Windows.Forms.DataGridView dgvDatos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn no_movimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_nomina;
+        private System.Windows.Forms.DataGridViewTextBoxColumn concepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
     }
 }
