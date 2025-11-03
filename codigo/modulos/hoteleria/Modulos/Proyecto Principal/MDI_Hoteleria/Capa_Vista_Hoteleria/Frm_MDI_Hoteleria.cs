@@ -29,8 +29,8 @@ namespace Capa_Vista_Hoteleria
 
         private void areaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Areas areas = new Frm_Areas();
-            areas.Show();
+            Frm_Area area = new Frm_Area();
+            area.Show();
         }
 
 
@@ -68,8 +68,8 @@ namespace Capa_Vista_Hoteleria
 
         private void huespedesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Huespedes huespedes = new Frm_Huespedes();
-            huespedes.Show();
+            Frm_Huespedes _Huespedes = new Frm_Huespedes();
+            _Huespedes.Show();
         }
 
         private void reservaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -118,5 +118,18 @@ namespace Capa_Vista_Hoteleria
             Frm_Produccion_Hoteleria produccion_Hoteleria = new Frm_Produccion_Hoteleria();
 
         }
+
+        private void cuentaTurismoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Cuenta_Turismo cuenta_Turismo = new Frm_Cuenta_Turismo();
+            cuenta_Turismo.Show();
+        }
+
+        private void pagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Pago Pago = new Frm_Pago();
+            Pago.Show();
+        }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_vista_Check_In_Check_out;
+using Capa_Vista_Hoteleria;
 
 
 namespace Ejecucion
@@ -18,7 +19,7 @@ namespace Ejecucion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_vista_Check_In_Check_out.Frm_Check_In());
+            Application.Run(new Capa_Vista_Hoteleria.Frm_MDI_Hoteleria());
         }
     }
 }
