@@ -22,6 +22,12 @@ namespace Capa_Modelo_MB
         public int iCmp_conciliado { get; set; }
         public string sCmp_estado { get; set; }
         public string sCmp_usuario_registro { get; set; }
+        private bool bEditando { get; set; }
+        private int iMovimientoEditandoId { get; set; }
+        private int iCuentaOrigenEditando { get; set; }
+        private int iOperacionEditando { get; set; }
+
+
 
         // Clase para el detalle del movimiento (detalle contable)
         public class Cls_MovimientoDetalle
