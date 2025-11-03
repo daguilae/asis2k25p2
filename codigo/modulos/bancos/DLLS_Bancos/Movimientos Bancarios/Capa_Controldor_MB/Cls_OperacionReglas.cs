@@ -8,14 +8,24 @@ namespace Capa_Controldor_MB
 {
     public static class Cls_OperacionReglas
     {
-        public static bool RequiereCuentaDestino(string nombreOperacion)
+        public static bool fun_requiere_cuenta_destino(string sNombre_Operacion)
         {
-            if (string.IsNullOrWhiteSpace(nombreOperacion)) return false;
-            var n = nombreOperacion.Trim().ToUpperInvariant().Replace("_", " ").Replace("-", " ");
-            return n.Contains("TRANSFERENCIA ENVIADA") || n.Contains("TRANSFERENCIA RECIBIDA");
+            if (string.IsNullOrWhiteSpace(sNombre_Operacion))
+                return false;
+
+            string sNombre_Normalizado = sNombre_Operacion
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("_", " ")
+                .Replace("-", " ");
+
+            return sNombre_Normalizado.Contains("TRANSFERENCIA ENVIADA") ||
+                   sNombre_Normalizado.Contains("TRANSFERENCIA RECIBIDA");
         }
 
-        public static string NormalizarSigno(string s) => (s == "+" || s == "-") ? s : null;
+        public static string fun_normalizar_signo(string sSigno)
+        {
+            return (sSigno == "+" || sSigno == "-") ? sSigno : null;
+        }
     }
-
 }
