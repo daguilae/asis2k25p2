@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Reportes_RoomService.cs">
+    <Compile Include="Frm_Produccion_Alacarta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Reportes_RoomService.Designer.cs">
-      <DependentUpon>Frm_Reportes_RoomService.cs</DependentUpon>
+    <Compile Include="Frm_Produccion_Alacarta.Designer.cs">
+      <DependentUpon>Frm_Produccion_Alacarta.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_Producion_Hoteleria.cs">
       <SubType>Form</SubType>
@@ -66,8 +66,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Reportes_RoomService.resx">
-      <DependentUpon>Frm_Reportes_RoomService.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Produccion_Alacarta.resx">
+      <DependentUpon>Frm_Produccion_Alacarta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Producion_Hoteleria.resx">
       <DependentUpon>Frm_Producion_Hoteleria.cs</DependentUpon>
