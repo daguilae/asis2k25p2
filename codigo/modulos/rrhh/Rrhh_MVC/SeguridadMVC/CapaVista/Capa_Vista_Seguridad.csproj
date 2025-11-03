@@ -32,14 +32,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="Capa_Controlador_Creacion_Nomina, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Creacion_Nomina\Ejec_Creacion_Nomina\Ejec_Creacion_Nomina\bin\Debug\Capa_Controlador_Creacion_Nomina.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Controlador_Navegador">
       <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Controlador_Seguridad">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Creacion_Nomina">
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Creacion_Nomina\Capa_Vista_Creacion_Nomina\bin\Debug\Capa_Vista_Creacion_Nomina.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Deducciones_Nomina">
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Deducciones_Nomina\Capa_Vista_Deducciones_Nomina\bin\Debug\Capa_Vista_Deducciones_Nomina.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Navegador">
       <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Percepciones_Nomina">
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Percepciones_Nominas\Capa_Vista_Percepciones_Nomina\bin\Debug\Capa_Vista_Percepciones_Nomina.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -59,6 +72,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Deducciones_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Deducciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Deducciones_Nomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Mantenimiento_Puestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Mantenimiento_Puestos.Designer.cs">
+      <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Nomina.Designer.cs">
+      <DependentUpon>Frm_Nomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Percepciones_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Percepciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Percepciones_Nomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Permisos_Perfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +272,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Deducciones_Nomina.resx">
+      <DependentUpon>Frm_Deducciones_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Mantenimiento_Puestos.resx">
+      <DependentUpon>Frm_Mantenimiento_Puestos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Nomina.resx">
+      <DependentUpon>Frm_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Percepciones_Nomina.resx">
+      <DependentUpon>Frm_Percepciones_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Permisos_Perfiles.resx">
       <DependentUpon>Frm_Permisos_Perfiles.cs</DependentUpon>
     </EmbeddedResource>

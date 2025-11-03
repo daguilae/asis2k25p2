@@ -350,5 +350,29 @@ namespace Capa_Vista_Seguridad
         {
 
         }
+
+        private void ingresoPercepcionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Percepciones_Nomina frm_Percepciones_Nomina = new Frm_Percepciones_Nomina();
+            frm_Percepciones_Nomina.ShowDialog();
+        }
+
+        private void ingresoDeduccionesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Deducciones_Nomina frm_Deducciones_Nomina = new Frm_Deducciones_Nomina();
+            frm_Deducciones_Nomina.ShowDialog();
+        }
+
+        private void puestosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Mantenimiento_Puestos frm_Mantenimiento_Puestos = new Frm_Mantenimiento_Puestos();
+            frm_Mantenimiento_Puestos.ShowDialog();
+        }
+
+        private void generacionDeNominaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Nomina frm_Nomina = new Frm_Nomina();
+            frm_Nomina.ShowDialog();
+        }
     }
 }
