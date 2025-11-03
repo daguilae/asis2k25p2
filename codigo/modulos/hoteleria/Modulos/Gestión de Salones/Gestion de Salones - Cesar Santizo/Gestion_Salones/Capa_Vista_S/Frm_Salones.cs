@@ -173,7 +173,22 @@ namespace Capa_Vista_S
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Frm_Reservaciones formSalones = new Frm_Reservaciones();
+            formSalones.Show();
+        }
 
-      
+        private void Pnl_Superior_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void salonesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            Frm_Reservaciones nuevoFormulario = new Frm_Reservaciones();
+            nuevoFormulario.Show();
+        }
     }
 }

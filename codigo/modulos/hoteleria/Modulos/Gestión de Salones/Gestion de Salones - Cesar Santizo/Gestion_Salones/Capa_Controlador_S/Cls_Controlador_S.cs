@@ -17,6 +17,8 @@ namespace Capa_Controlador_S
         // Variables globales
         // ==========================
         Cls_Sentencias_Salones sentencias = new Cls_Sentencias_Salones();
+        Cls_Sentencias_Reservacion sentenciasReservas = new Cls_Sentencias_Reservacion();
+
 
         // ==========================
         // MÉTODOS PARA TBL_SALONES
@@ -54,12 +56,34 @@ namespace Capa_Controlador_S
         // ==========================
         // MÉTODOS PARA TBL_RESERVAS_SALONES
         // ==========================
+        public void GuardarReservaSalon(int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+        {
+            sentenciasReservas.InsertarReservaSalon(idHuesped, idSalon, fecha, horaInicio, horaFin, cantidadPersonas, montoTotal);
+        }
 
-        // Aquí puedes agregar los métodos para manejar las reservas de salones
-        // Ejemplo futuro:
-        // public void GuardarReservaSalon(int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
-        // { ... }
+        public void ModificarReservaSalon(int idReserva, int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+        {
+            sentenciasReservas.ModificarReservaSalon(idReserva, idHuesped, idSalon, fecha, horaInicio, horaFin, cantidadPersonas, montoTotal);
+        }
+
+        public void EliminarReservaSalon(int idReserva)
+        {
+            sentenciasReservas.EliminarReservaSalon(idReserva);
+        }
+
+        public DataTable ObtenerReservasSalones()
+        {
+            return sentenciasReservas.ObtenerReservasSalones();
+        }
+
+        public DataTable ObtenerHuespedes()
+        {
+            return sentenciasReservas.ObtenerHuespedes();
+        }
+
+        public DataTable ObtenerSalonesDisponibles()
+        {
+            return sentenciasReservas.ObtenerSalonesDisponibles();
+        }
     }
-
-
 }

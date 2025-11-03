@@ -30,6 +30,7 @@ namespace Capa_Vista_MH
         private void InitializeComponent()
         {
             this.Pnl_Superior = new System.Windows.Forms.Panel();
+            this.Pic_Salir = new System.Windows.Forms.PictureBox();
             this.Lbl_Titulo_Hoteleria = new System.Windows.Forms.Label();
             this.Lbl_Mantenimiento = new System.Windows.Forms.Label();
             this.Dgv_Mantenimiento_hoteleria = new System.Windows.Forms.DataGridView();
@@ -49,22 +50,21 @@ namespace Capa_Vista_MH
             this.Txt_Tipo_Mantenimiento = new System.Windows.Forms.TextBox();
             this.Txt_Descripcion_Mantenimiento = new System.Windows.Forms.TextBox();
             this.Txt_Estado = new System.Windows.Forms.TextBox();
-            this.Txt_Fecha_inicio = new System.Windows.Forms.TextBox();
-            this.Txt_Fecha_Fin = new System.Windows.Forms.TextBox();
+            this.Dtp_Fecha_Inicio = new System.Windows.Forms.DateTimePicker();
+            this.Dtp_Fecha_Fin = new System.Windows.Forms.DateTimePicker();
             this.Pic_Buscar = new System.Windows.Forms.PictureBox();
             this.Pic_Eliminar = new System.Windows.Forms.PictureBox();
             this.Pic_Guardar = new System.Windows.Forms.PictureBox();
             this.Pic_Editar = new System.Windows.Forms.PictureBox();
             this.Pic_Cancelar = new System.Windows.Forms.PictureBox();
-            this.Pic_Salir = new System.Windows.Forms.PictureBox();
             this.Pnl_Superior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mantenimiento_hoteleria)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Buscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Eliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Guardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Editar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Cancelar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
@@ -78,6 +78,18 @@ namespace Capa_Vista_MH
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(1320, 64);
             this.Pnl_Superior.TabIndex = 98;
+            // 
+            // Pic_Salir
+            // 
+            this.Pic_Salir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Pic_Salir.Image = global::Capa_Vista_MH.Properties.Resources.icono_cancelar;
+            this.Pic_Salir.Location = new System.Drawing.Point(1266, 12);
+            this.Pic_Salir.Name = "Pic_Salir";
+            this.Pic_Salir.Size = new System.Drawing.Size(42, 42);
+            this.Pic_Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Pic_Salir.TabIndex = 122;
+            this.Pic_Salir.TabStop = false;
+            this.Pic_Salir.Click += new System.EventHandler(this.Pic_Salir_Click_1);
             // 
             // Lbl_Titulo_Hoteleria
             // 
@@ -109,6 +121,7 @@ namespace Capa_Vista_MH
             this.Dgv_Mantenimiento_hoteleria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Mantenimiento_hoteleria.Location = new System.Drawing.Point(63, 420);
             this.Dgv_Mantenimiento_hoteleria.Name = "Dgv_Mantenimiento_hoteleria";
+            this.Dgv_Mantenimiento_hoteleria.ReadOnly = true;
             this.Dgv_Mantenimiento_hoteleria.RowHeadersWidth = 51;
             this.Dgv_Mantenimiento_hoteleria.RowTemplate.Height = 24;
             this.Dgv_Mantenimiento_hoteleria.Size = new System.Drawing.Size(1216, 279);
@@ -211,7 +224,6 @@ namespace Capa_Vista_MH
             this.Cbo_Id_Mantenimiento.Name = "Cbo_Id_Mantenimiento";
             this.Cbo_Id_Mantenimiento.Size = new System.Drawing.Size(210, 24);
             this.Cbo_Id_Mantenimiento.TabIndex = 112;
-            this.Cbo_Id_Mantenimiento.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Mantenimiento_SelectedIndexChanged);
             // 
             // Cbo_Id_Salon
             // 
@@ -220,7 +232,8 @@ namespace Capa_Vista_MH
             this.Cbo_Id_Salon.Name = "Cbo_Id_Salon";
             this.Cbo_Id_Salon.Size = new System.Drawing.Size(210, 24);
             this.Cbo_Id_Salon.TabIndex = 113;
-            this.Cbo_Id_Salon.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Salon_SelectedIndexChanged);
+            this.Cbo_Id_Salon.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Salon_TextChanged);
+            this.Cbo_Id_Salon.TextChanged += new System.EventHandler(this.Cbo_Id_Salon_TextChanged);
             // 
             // Cbo_Id_Habitacion
             // 
@@ -229,7 +242,8 @@ namespace Capa_Vista_MH
             this.Cbo_Id_Habitacion.Name = "Cbo_Id_Habitacion";
             this.Cbo_Id_Habitacion.Size = new System.Drawing.Size(210, 24);
             this.Cbo_Id_Habitacion.TabIndex = 114;
-            this.Cbo_Id_Habitacion.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Habitacion_SelectedIndexChanged);
+            this.Cbo_Id_Habitacion.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Habitacion_TextChanged);
+            this.Cbo_Id_Habitacion.TextChanged += new System.EventHandler(this.Cbo_Id_Habitacion_TextChanged);
             // 
             // Cbo_Id_Empleado
             // 
@@ -238,7 +252,6 @@ namespace Capa_Vista_MH
             this.Cbo_Id_Empleado.Name = "Cbo_Id_Empleado";
             this.Cbo_Id_Empleado.Size = new System.Drawing.Size(210, 24);
             this.Cbo_Id_Empleado.TabIndex = 115;
-            this.Cbo_Id_Empleado.SelectedIndexChanged += new System.EventHandler(this.Cbo_Id_Empleado_SelectedIndexChanged);
             // 
             // Txt_Tipo_Mantenimiento
             // 
@@ -246,7 +259,6 @@ namespace Capa_Vista_MH
             this.Txt_Tipo_Mantenimiento.Name = "Txt_Tipo_Mantenimiento";
             this.Txt_Tipo_Mantenimiento.Size = new System.Drawing.Size(210, 22);
             this.Txt_Tipo_Mantenimiento.TabIndex = 116;
-            this.Txt_Tipo_Mantenimiento.TextChanged += new System.EventHandler(this.Txt_Tipo_Mantenimiento_TextChanged);
             // 
             // Txt_Descripcion_Mantenimiento
             // 
@@ -254,7 +266,6 @@ namespace Capa_Vista_MH
             this.Txt_Descripcion_Mantenimiento.Name = "Txt_Descripcion_Mantenimiento";
             this.Txt_Descripcion_Mantenimiento.Size = new System.Drawing.Size(210, 22);
             this.Txt_Descripcion_Mantenimiento.TabIndex = 117;
-            this.Txt_Descripcion_Mantenimiento.TextChanged += new System.EventHandler(this.Txt_Descripcion_Mantenimiento_TextChanged);
             // 
             // Txt_Estado
             // 
@@ -262,23 +273,20 @@ namespace Capa_Vista_MH
             this.Txt_Estado.Name = "Txt_Estado";
             this.Txt_Estado.Size = new System.Drawing.Size(210, 22);
             this.Txt_Estado.TabIndex = 118;
-            this.Txt_Estado.TextChanged += new System.EventHandler(this.Txt_Estado_TextChanged);
             // 
-            // Txt_Fecha_inicio
+            // Dtp_Fecha_Inicio
             // 
-            this.Txt_Fecha_inicio.Location = new System.Drawing.Point(975, 293);
-            this.Txt_Fecha_inicio.Name = "Txt_Fecha_inicio";
-            this.Txt_Fecha_inicio.Size = new System.Drawing.Size(210, 22);
-            this.Txt_Fecha_inicio.TabIndex = 119;
-            this.Txt_Fecha_inicio.TextChanged += new System.EventHandler(this.Txt_Fecha_inicio_TextChanged);
+            this.Dtp_Fecha_Inicio.Location = new System.Drawing.Point(975, 293);
+            this.Dtp_Fecha_Inicio.Name = "Dtp_Fecha_Inicio";
+            this.Dtp_Fecha_Inicio.Size = new System.Drawing.Size(210, 22);
+            this.Dtp_Fecha_Inicio.TabIndex = 119;
             // 
-            // Txt_Fecha_Fin
+            // Dtp_Fecha_Fin
             // 
-            this.Txt_Fecha_Fin.Location = new System.Drawing.Point(975, 374);
-            this.Txt_Fecha_Fin.Name = "Txt_Fecha_Fin";
-            this.Txt_Fecha_Fin.Size = new System.Drawing.Size(210, 22);
-            this.Txt_Fecha_Fin.TabIndex = 120;
-            this.Txt_Fecha_Fin.TextChanged += new System.EventHandler(this.Txt_Fecha_Fin_TextChanged);
+            this.Dtp_Fecha_Fin.Location = new System.Drawing.Point(975, 374);
+            this.Dtp_Fecha_Fin.Name = "Dtp_Fecha_Fin";
+            this.Dtp_Fecha_Fin.Size = new System.Drawing.Size(210, 22);
+            this.Dtp_Fecha_Fin.TabIndex = 120;
             // 
             // Pic_Buscar
             // 
@@ -295,7 +303,7 @@ namespace Capa_Vista_MH
             // Pic_Eliminar
             // 
             this.Pic_Eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Pic_Eliminar.Image = global::Capa_Vista_MH.Properties.Resources.icono_eliminar;
+            this.Pic_Eliminar.Image = global::Capa_Vista_MH.Properties.Resources.icono_limpiar__1_;
             this.Pic_Eliminar.Location = new System.Drawing.Point(1168, 102);
             this.Pic_Eliminar.Name = "Pic_Eliminar";
             this.Pic_Eliminar.Size = new System.Drawing.Size(42, 42);
@@ -340,18 +348,6 @@ namespace Capa_Vista_MH
             this.Pic_Cancelar.TabStop = false;
             this.Pic_Cancelar.Click += new System.EventHandler(this.Pic_Cancelar_Click);
             // 
-            // Pic_Salir
-            // 
-            this.Pic_Salir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Pic_Salir.Image = global::Capa_Vista_MH.Properties.Resources.icono_cancelar;
-            this.Pic_Salir.Location = new System.Drawing.Point(1266, 12);
-            this.Pic_Salir.Name = "Pic_Salir";
-            this.Pic_Salir.Size = new System.Drawing.Size(42, 42);
-            this.Pic_Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Pic_Salir.TabIndex = 122;
-            this.Pic_Salir.TabStop = false;
-            this.Pic_Salir.Click += new System.EventHandler(this.Pic_Salir_Click_1);
-            // 
             // Frm_Mantenimiento_hoteleria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -360,8 +356,8 @@ namespace Capa_Vista_MH
             this.ClientSize = new System.Drawing.Size(1320, 711);
             this.Controls.Add(this.Pic_Buscar);
             this.Controls.Add(this.Pic_Eliminar);
-            this.Controls.Add(this.Txt_Fecha_Fin);
-            this.Controls.Add(this.Txt_Fecha_inicio);
+            this.Controls.Add(this.Dtp_Fecha_Fin);
+            this.Controls.Add(this.Dtp_Fecha_Inicio);
             this.Controls.Add(this.Txt_Estado);
             this.Controls.Add(this.Txt_Descripcion_Mantenimiento);
             this.Controls.Add(this.Txt_Tipo_Mantenimiento);
@@ -386,17 +382,18 @@ namespace Capa_Vista_MH
             this.Controls.Add(this.Pnl_Superior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Mantenimiento_hoteleria";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Frm_Mantenimiento_hoteleria_Load);
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mantenimiento_hoteleria)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Buscar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Eliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Guardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Editar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Cancelar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -427,8 +424,8 @@ namespace Capa_Vista_MH
         private System.Windows.Forms.TextBox Txt_Tipo_Mantenimiento;
         private System.Windows.Forms.TextBox Txt_Descripcion_Mantenimiento;
         private System.Windows.Forms.TextBox Txt_Estado;
-        private System.Windows.Forms.TextBox Txt_Fecha_inicio;
-        private System.Windows.Forms.TextBox Txt_Fecha_Fin;
+        private System.Windows.Forms.DateTimePicker Dtp_Fecha_Inicio;
+        private System.Windows.Forms.DateTimePicker Dtp_Fecha_Fin;
         private System.Windows.Forms.PictureBox Pic_Eliminar;
         private System.Windows.Forms.PictureBox Pic_Salir;
         private System.Windows.Forms.PictureBox Pic_Buscar;

@@ -31,6 +31,7 @@ namespace CapaVistaOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_de_Produccion));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdOP = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@ namespace CapaVistaOP
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOP)).BeginInit();
             this.SuspendLayout();
@@ -56,8 +56,20 @@ namespace CapaVistaOP
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(854, 50);
+            this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
             this.Pnl_Superior.TabIndex = 99;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.Location = new System.Drawing.Point(790, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(81, 37);
+            this.button1.TabIndex = 105;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -112,7 +124,7 @@ namespace CapaVistaOP
             this.dgvOP.ReadOnly = true;
             this.dgvOP.RowHeadersWidth = 51;
             this.dgvOP.RowTemplate.Height = 24;
-            this.dgvOP.Size = new System.Drawing.Size(782, 283);
+            this.dgvOP.Size = new System.Drawing.Size(823, 295);
             this.dgvOP.TabIndex = 119;
             this.dgvOP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOP_CellContentClick);
             // 
@@ -155,7 +167,7 @@ namespace CapaVistaOP
             this.btnEditar.BackColor = System.Drawing.Color.White;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(777, 69);
+            this.btnEditar.Location = new System.Drawing.Point(815, 69);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(53, 46);
@@ -168,7 +180,7 @@ namespace CapaVistaOP
             this.btnEliminar.BackColor = System.Drawing.Color.White;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(718, 69);
+            this.btnEliminar.Location = new System.Drawing.Point(756, 69);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(53, 46);
@@ -182,7 +194,7 @@ namespace CapaVistaOP
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(659, 69);
+            this.btnGuardar.Location = new System.Drawing.Point(697, 69);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(53, 46);
@@ -190,22 +202,11 @@ namespace CapaVistaOP
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.Btn_guardar_Click);
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(790, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 37);
-            this.button1.TabIndex = 105;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // Frm_Ordenes_de_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(854, 585);
+            this.ClientSize = new System.Drawing.Size(895, 597);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
@@ -218,7 +219,6 @@ namespace CapaVistaOP
             this.Controls.Add(this.Lbl_Nombre_Huesped);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Pnl_Superior);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Ordenes_de_Produccion";
             this.Text = "Frm_Ordenes_de_Produccion";
             this.Pnl_Superior.ResumeLayout(false);

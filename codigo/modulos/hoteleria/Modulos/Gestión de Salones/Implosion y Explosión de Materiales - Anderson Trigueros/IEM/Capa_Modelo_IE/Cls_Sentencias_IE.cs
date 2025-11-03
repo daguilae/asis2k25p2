@@ -57,5 +57,46 @@ namespace Capa_Modelo_IE
             return tabla;
         }
 
+        public List<(string sIngrediente, double doStock)> ConsultarInventario(List<string> Ingredientes)
+        {
+            Cls_Conexion_IE conexion = new Cls_Conexion_IE();
+            List<(string sIngrediente, double doStock)> Inventario = new List<(string sIngrediente, double doStock)>();
+            try
+            {
+                using (OdbcConnection con = conexion.conexion())
+                {
+                    foreach (string sIngrediente in Ingredientes)
+                    {
+                        string sConsultaInventario = @"SELECT p.Cmp_Nombre_Producto AS Producto,
+                                                      e.Cmp_Cantidad as Cantidad
+                                                      FROM Tbl_Existencia e
+                                                      JOIN Tbl_Producto p ON e.Cmp_Id_Producto = p.Cmp_Id_Producto
+                                                      WHERE p.Cmp_Nombre_Producto = ?";
+                        OdbcCommand cmd = new OdbcCommand(sConsultaInventario, con);
+                        cmd.Parameters.AddWithValue("", sIngrediente);
+                        using (OdbcDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    double doCantidad = Convert.ToDouble(reader["Cantidad"]);
+                                    Inventario.Add((sIngrediente, doCantidad));
+                                }
+                            }
+                            else
+                            {
+                                Inventario.Add((sIngrediente, 0));
+                            }
+                        }
+                    }
+                    return Inventario;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar inventario: " + ex.Message, ex);
+            }
+        }
     }
 }

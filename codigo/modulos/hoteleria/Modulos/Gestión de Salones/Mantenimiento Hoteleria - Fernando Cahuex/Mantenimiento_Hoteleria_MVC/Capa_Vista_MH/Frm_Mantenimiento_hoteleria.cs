@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_MH;
 
@@ -13,7 +8,7 @@ namespace Capa_Vista_MH
 {
     public partial class Frm_Mantenimiento_hoteleria : Form
     {
-        Cls_Controlador_MH controlador = new Cls_Controlador_MH();
+        private readonly Cls_Controlador_MH controlador = new Cls_Controlador_MH();
 
         public Frm_Mantenimiento_hoteleria()
         {
@@ -22,79 +17,166 @@ namespace Capa_Vista_MH
 
         private void Frm_Mantenimiento_hoteleria_Load(object sender, EventArgs e)
         {
+            CargarCombos();
+            CargarComboMantenimientos();
             MostrarMantenimientos();
 
+            // Bloqueo dinámico de combos
+            Cbo_Id_Salon.SelectedIndexChanged += Cbo_Id_Salon_TextChanged;
+            Cbo_Id_Habitacion.SelectedIndexChanged += Cbo_Id_Habitacion_TextChanged;
         }
 
-
-        private void Pic_Guardar_Click(object sender, EventArgs e)
+        // ============================================================
+        // CARGA DE COMBOS
+        // ============================================================
+        private void CargarCombos()
         {
-
             try
             {
-                // Inserta un nuevo registro en la BD
-                controlador.GuardarMantenimiento(
-                    Cbo_Id_Salon.Text,
-                    Cbo_Id_Habitacion.Text,
-                    Cbo_Id_Empleado.Text,
-                    Txt_Tipo_Mantenimiento.Text,
-                    Txt_Descripcion_Mantenimiento.Text,
-                    Txt_Estado.Text,
-                    Txt_Fecha_inicio.Text,
-                    Txt_Fecha_Fin.Text
-                );
+                Cbo_Id_Salon.DataSource = controlador.ObtenerSalones();
+                Cbo_Id_Salon.DisplayMember = "Nombre_Salon";
+                Cbo_Id_Salon.ValueMember = "Pk_Id_Salon";
+                Cbo_Id_Salon.SelectedIndex = -1;
 
-                MessageBox.Show("Registro guardado correctamente.", "Mantenimiento", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarMantenimientos();
-                LimpiarCampos();
+                Cbo_Id_Habitacion.DataSource = controlador.ObtenerHabitaciones();
+                Cbo_Id_Habitacion.DisplayMember = "Nombre_Habitacion";
+                Cbo_Id_Habitacion.ValueMember = "Pk_Id_Habitacion";
+                Cbo_Id_Habitacion.SelectedIndex = -1;
+
+                Cbo_Id_Empleado.DataSource = controlador.ObtenerEmpleados();
+                Cbo_Id_Empleado.DisplayMember = "Nombre_Empleado";
+                Cbo_Id_Empleado.ValueMember = "Pk_Id_Empleado";
+                Cbo_Id_Empleado.SelectedIndex = -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar: " + ex.Message);
+                MessageBox.Show($"Error al cargar los combos: {ex.Message}");
             }
+        }
+
+        private void CargarComboMantenimientos()
+        {
+            try
+            {
+                Cbo_Id_Mantenimiento.DataSource = controlador.MostrarMantenimientos();
+                Cbo_Id_Mantenimiento.DisplayMember = "Pk_Id_Mantenimiento";
+                Cbo_Id_Mantenimiento.ValueMember = "Pk_Id_Mantenimiento";
+                Cbo_Id_Mantenimiento.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al cargar mantenimientos: {ex.Message}");
+            }
+        }
+
+        // ============================================================
+        // BOTONES CRUD
+        // ============================================================
+        private void Pic_Guardar_Click(object sender, EventArgs e)
+        {
+            string mensaje = controlador.GuardarMantenimiento(
+                Cbo_Id_Salon.SelectedValue?.ToString(),
+                Cbo_Id_Habitacion.SelectedValue?.ToString(),
+                Cbo_Id_Empleado.SelectedValue?.ToString(),
+                Txt_Tipo_Mantenimiento.Text,
+                Txt_Descripcion_Mantenimiento.Text,
+                Txt_Estado.Text,
+                Dtp_Fecha_Inicio.Value.ToString("yyyy-MM-dd"),
+                Dtp_Fecha_Fin.Value.ToString("yyyy-MM-dd")
+            );
+
+            MessageBox.Show(mensaje);
+            MostrarMantenimientos();
+            CargarComboMantenimientos();
+            LimpiarCampos();
         }
 
         private void Pic_Editar_Click(object sender, EventArgs e)
         {
-            try
+            string mensaje = controlador.ActualizarMantenimiento(
+                Cbo_Id_Mantenimiento.SelectedValue?.ToString(),
+                Cbo_Id_Salon.SelectedValue?.ToString(),
+                Cbo_Id_Habitacion.SelectedValue?.ToString(),
+                Cbo_Id_Empleado.SelectedValue?.ToString(),
+                Txt_Tipo_Mantenimiento.Text,
+                Txt_Descripcion_Mantenimiento.Text,
+                Txt_Estado.Text,
+                Dtp_Fecha_Inicio.Value.ToString("yyyy-MM-dd"),
+                Dtp_Fecha_Fin.Value.ToString("yyyy-MM-dd")
+            );
+
+            MessageBox.Show(mensaje);
+            MostrarMantenimientos();
+            CargarComboMantenimientos();
+            LimpiarCampos();
+        }
+
+        private void Pic_Eliminar_Click(object sender, EventArgs e)
+        {
+            string mensaje = controlador.EliminarMantenimiento(Cbo_Id_Mantenimiento.SelectedValue?.ToString());
+            MessageBox.Show(mensaje);
+            MostrarMantenimientos();
+            CargarComboMantenimientos();
+            LimpiarCampos();
+        }
+
+        private void Pic_Buscar_Click(object sender, EventArgs e)
+        {
+            string id = Cbo_Id_Mantenimiento.SelectedValue?.ToString() ?? Cbo_Id_Mantenimiento.Text.Trim();
+            DataTable resultado = controlador.BuscarMantenimientoPorId(id);
+
+            if (resultado.Rows.Count > 0)
             {
-                if (string.IsNullOrWhiteSpace(Cbo_Id_Mantenimiento.Text))
-                {
-                    MessageBox.Show("Por favor selecciona un ID de mantenimiento para modificar.",
-                                    "Modificar Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                DataRow fila = resultado.Rows[0];
+                Cbo_Id_Salon.SelectedValue = fila["Fk_Id_Salon"];
+                Cbo_Id_Habitacion.SelectedValue = fila["Fk_Id_Habitacion"];
+                Cbo_Id_Empleado.SelectedValue = fila["Fk_Id_Empleado"];
+                Txt_Tipo_Mantenimiento.Text = fila["Cmp_Tipo_Mantenimiento"].ToString();
+                Txt_Descripcion_Mantenimiento.Text = fila["Cmp_Descripcion_Mantenimiento"].ToString();
+                Txt_Estado.Text = fila["Cmp_Estado"].ToString();
 
-                DialogResult result = MessageBox.Show(
-                    "¿Deseas actualizar el mantenimiento con ID " + Cbo_Id_Mantenimiento.Text + "?",
-                    "Confirmar modificación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (result == DialogResult.Yes)
-                {
-                    controlador.ActualizarMantenimiento(
-                        Cbo_Id_Mantenimiento.Text,
-                        Cbo_Id_Salon.Text,
-                        Cbo_Id_Habitacion.Text,
-                        Cbo_Id_Empleado.Text,
-                        Txt_Tipo_Mantenimiento.Text,
-                        Txt_Descripcion_Mantenimiento.Text,
-                        Txt_Estado.Text,
-                        Txt_Fecha_inicio.Text,
-                        Txt_Fecha_Fin.Text
-                    );
-
-                    MessageBox.Show("Registro actualizado correctamente.", "Modificar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MostrarMantenimientos();
-                    LimpiarCampos();
-                }
+                if (DateTime.TryParse(fila["Cmp_Fecha_Inicio"].ToString(), out DateTime f1))
+                    Dtp_Fecha_Inicio.Value = f1;
+                if (DateTime.TryParse(fila["Cmp_Fecha_Fin"].ToString(), out DateTime f2))
+                    Dtp_Fecha_Fin.Value = f2;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Error al modificar: " + ex.Message);
+                MessageBox.Show("No se encontró el mantenimiento.");
             }
+        }
+
+        // ============================================================
+        // FUNCIONES DE APOYO
+        // ============================================================
+        private void MostrarMantenimientos()
+        {
+            Dgv_Mantenimiento_hoteleria.DataSource = controlador.MostrarMantenimientos();
+        }
+
+        private void LimpiarCampos()
+        {
+            Cbo_Id_Mantenimiento.SelectedIndex = -1;
+            Cbo_Id_Salon.SelectedIndex = -1;
+            Cbo_Id_Habitacion.SelectedIndex = -1;
+            Cbo_Id_Empleado.SelectedIndex = -1;
+            Txt_Tipo_Mantenimiento.Clear();
+            Txt_Descripcion_Mantenimiento.Clear();
+            Txt_Estado.Clear();
+            Dtp_Fecha_Inicio.Value = DateTime.Now;
+            Dtp_Fecha_Fin.Value = DateTime.Now;
+            Cbo_Id_Salon.Enabled = true;
+            Cbo_Id_Habitacion.Enabled = true;
+        }
+
+        private void Cbo_Id_Salon_TextChanged(object sender, EventArgs e)
+        {
+            Cbo_Id_Habitacion.Enabled = string.IsNullOrWhiteSpace(Cbo_Id_Salon.Text);
+        }
+
+        private void Cbo_Id_Habitacion_TextChanged(object sender, EventArgs e)
+        {
+            Cbo_Id_Salon.Enabled = string.IsNullOrWhiteSpace(Cbo_Id_Habitacion.Text);
         }
 
         private void Pic_Cancelar_Click(object sender, EventArgs e)
@@ -102,151 +184,9 @@ namespace Capa_Vista_MH
             LimpiarCampos();
         }
 
-        private void Cbo_Id_Mantenimiento_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cbo_Id_Salon_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cbo_Id_Habitacion_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cbo_Id_Empleado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Tipo_Mantenimiento_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Descripcion_Mantenimiento_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Estado_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Fecha_inicio_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Fecha_Fin_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        void MostrarMantenimientos()
-        {
-            try
-            {
-                DataTable tabla = controlador.MostrarMantenimientos();
-
-                Dgv_Mantenimiento_hoteleria.DataSource = tabla;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al mostrar datos: " + ex.Message);
-            }
-        }
-
-        void LimpiarCampos()
-        {
-            Cbo_Id_Mantenimiento.Text = "";
-            Cbo_Id_Salon.Text = "";
-            Cbo_Id_Habitacion.Text = "";
-            Cbo_Id_Empleado.Text = "";
-            Txt_Tipo_Mantenimiento.Clear();
-            Txt_Descripcion_Mantenimiento.Clear();
-            Txt_Estado.Clear();
-            Txt_Fecha_inicio.Clear();
-            Txt_Fecha_Fin.Clear();
-        }
-
-        private void Pic_Eliminar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(Cbo_Id_Mantenimiento.Text))
-                {
-                    MessageBox.Show("Por favor selecciona o ingresa un ID de mantenimiento para eliminar.",
-                                    "Eliminar Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                DialogResult result = MessageBox.Show(
-                    "¿Estás seguro de eliminar el mantenimiento con ID " + Cbo_Id_Mantenimiento.Text + "?",
-                    "Confirmar eliminación",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question
-                );
-
-                if (result == DialogResult.Yes)
-                {
-                    controlador.EliminarMantenimiento(Cbo_Id_Mantenimiento.Text);
-                    MessageBox.Show("Registro eliminado correctamente.", "Eliminar", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MostrarMantenimientos();
-                    LimpiarCampos();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al eliminar: " + ex.Message);
-            }
-        }
-
         private void Pic_Salir_Click_1(object sender, EventArgs e)
         {
-            this.Close();
-        }
-
-        private void Pic_Buscar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrWhiteSpace(Cbo_Id_Mantenimiento.Text))
-                {
-                    MessageBox.Show("Por favor ingresa o selecciona un ID de mantenimiento para buscar.",
-                                    "Buscar Registro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                DataTable resultado = controlador.BuscarMantenimientoPorId(Cbo_Id_Mantenimiento.Text);
-
-                if (resultado.Rows.Count > 0)
-                {
-                    DataRow fila = resultado.Rows[0];
-
-                    Cbo_Id_Salon.Text = fila["Fk_Id_Salon"].ToString();
-                    Cbo_Id_Habitacion.Text = fila["Fk_Id_Habitacion"].ToString();
-                    Cbo_Id_Empleado.Text = fila["Fk_Id_Empleado"].ToString();
-                    Txt_Tipo_Mantenimiento.Text = fila["Cmp_Tipo_Mantenimiento"].ToString();
-                    Txt_Descripcion_Mantenimiento.Text = fila["Cmp_Descripcion_Mantenimiento"].ToString();
-                    Txt_Estado.Text = fila["Cmp_Estado"].ToString();
-                    Txt_Fecha_inicio.Text = fila["Cmp_Fecha_Inicio"].ToString();
-                    Txt_Fecha_Fin.Text = fila["Cmp_Fecha_Fin"].ToString();
-                }
-                else
-                {
-                    MessageBox.Show("No se encontró ningún registro con ese ID.", "Sin resultados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar: " + ex.Message);
-            }
+            Close();
         }
     }
 }
