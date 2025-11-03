@@ -31,6 +31,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CapaVistaOP">
+      <HintPath>..\..\..\Gestión de Salones\Ordenes de Producción - Gerber Asturias\MVC_Ordenes_de_Produccion\CapaVistaOP\bin\Debug\CapaVistaOP.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_vista_Check_In_Check_out">
+      <HintPath>..\..\..\Gestión de Habitaciones\ChekinCheckOut-Brandon Hernandez\MVC-Check_in_Check_out\Capa_vista_Check_In_Check_out\bin\Debug\Capa_vista_Check_In_Check_out.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Contabilidad">
+      <HintPath>..\..\..\Gestión de Habitaciones\Enlace de Contabilidad - Carlo Sosa\MVC_Contabilidad\Capa_Vista_Contabilidad\bin\Debug\Capa_Vista_Contabilidad.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Gestion_Habitacion">
+      <HintPath>..\..\..\Gestión de Habitaciones\Gestiones de Habitaciones - Pedro Ibañez\MVC_Gestion_Habitacion\Capa_Vista_Gestion_Habitacion\bin\Debug\Capa_Vista_Gestion_Habitacion.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_IE">
+      <HintPath>..\..\..\Gestión de Salones\Implosion y Explosión de Materiales - Anderson Trigueros\IEM\Capa_Vista_IE\bin\Debug\Capa_Vista_IE.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_MH">
+      <HintPath>..\..\..\Gestión de Salones\Mantenimiento Hoteleria - Fernando Cahuex\Mantenimiento_Hoteleria_MVC\Capa_Vista_MH\bin\Debug\Capa_Vista_MH.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Produccion">
+      <HintPath>..\..\..\Gestión de Salones\Proceso de Produccion - Sergio Izeppi\Produccion\Capa_Vista_Produccion\bin\Debug\Capa_Vista_Produccion.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Reservas_Hotel">
+      <HintPath>..\..\..\Gestión de Habitaciones\Reservas de Hotel - Ruben Lopez - Pablo Quiroa\Mvc_Reservas_Hotel\Capa_Vista_Reservas_Hotel\bin\Debug\Capa_Vista_Reservas_Hotel.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_S">
+      <HintPath>..\..\..\Gestión de Salones\Gestion de Salones - Cesar Santizo\Gestion_Salones\Capa_Vista_S\bin\Debug\Capa_Vista_S.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Seguridad">
+      <HintPath>..\..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaVista\bin\Debug\Capa_Vista_Seguridad.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />

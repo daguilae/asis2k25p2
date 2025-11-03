@@ -11,7 +11,7 @@ namespace Capa_Modelo_Check_In_Check_Out
 {
     public class Cls_Check_In_Dao
     {
-        // Sentencias SQL adaptadas a la tabla 'Tbl_Check_in'
+       
 
         private static readonly string SQL_SELECT = @"
             SELECT 
@@ -49,7 +49,27 @@ namespace Capa_Modelo_Check_In_Check_Out
         WHERE Pk_Id_Check_in = ?";
 
         private Cls_Conexion conexion = new Cls_Conexion();
-    
+        public int ObtenerHabitacionPorReserva(int idReserva)
+        {
+            int idHabitacion = 0;
+
+            string query = "SELECT Fk_Id_Habitacion FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?";
+
+            using (OdbcConnection conn = conexion.conexion())
+            {
+                using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", idReserva);
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                        idHabitacion = Convert.ToInt32(result);
+                }
+            }
+
+            return idHabitacion;
+        }
+
         public DataTable datObtenerHuespedes()
         {
             DataTable dt = new DataTable();
@@ -96,7 +116,7 @@ namespace Capa_Modelo_Check_In_Check_Out
 
             return dt;
         }
-        // Insertar Check-In
+     
 
         public bool bInsertarCheckIn(Cls_CheckIn checkIn)
         {
@@ -124,7 +144,7 @@ namespace Capa_Modelo_Check_In_Check_Out
             
         
 
-            // Actualizar Check-In
+         
             public bool bActualizarCheckIn(Cls_CheckIn checkIn)
         {
             using (OdbcConnection conn = conexion.conexion())
@@ -139,7 +159,7 @@ namespace Capa_Modelo_Check_In_Check_Out
             }
         }
 
-        // Eliminar Check-In
+       
         public bool bEliminarCheckIn(int pk_Id_CheckIn, out string mensajeError)
         {
             mensajeError = "";
@@ -165,7 +185,7 @@ namespace Capa_Modelo_Check_In_Check_Out
                 return false;
             }
         }
-        // Mostrar todos los registros de Check-In
+        
         public DataTable bMostrarCheckIn()
         {
             DataTable dt = new DataTable();

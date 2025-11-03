@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cls_Area.cs" />
+    <Compile Include="Cls_AreaDAO.cs" />
     <Compile Include="Cls_Check_In.cs" />
     <Compile Include="Cls_Check_In_Dao.cs" />
+    <Compile Include="Cls_Check_Out.cs" />
+    <Compile Include="Cls_CHeck_Out_Dao.cs" />
     <Compile Include="Cls_Conexion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
