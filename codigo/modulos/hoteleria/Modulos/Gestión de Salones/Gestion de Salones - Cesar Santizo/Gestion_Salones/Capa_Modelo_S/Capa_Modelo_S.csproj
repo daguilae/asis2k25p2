@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_Conexion_Hoteleria.cs" />
-    <Compile Include="Cls_Sentencias_Habitaciones.cs" />
+    <Compile Include="Cls_Sentencias_Reservacion.cs" />
     <Compile Include="Cls_Sentencias_Salones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
