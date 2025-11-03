@@ -52,11 +52,17 @@
     <Compile Include="Frm_CxP_Gestiòn.Designer.cs">
       <DependentUpon>Frm_CxP_Gestiòn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Frm_CxP_navegación.cs">
+    <Compile Include="Frm_CxP_Pagos.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_CxP_navegación.Designer.cs">
-      <DependentUpon>Frm_CxP_navegación.cs</DependentUpon>
+    <Compile Include="Frm_CxP_Pagos.Designer.cs">
+      <DependentUpon>Frm_CxP_Pagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_CxP_Pagos_Historial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_CxP_Pagos_Historial.Designer.cs">
+      <DependentUpon>Frm_CxP_Pagos_Historial.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -69,8 +75,11 @@
     <EmbeddedResource Include="Frm_CxP_Gestiòn.resx">
       <DependentUpon>Frm_CxP_Gestiòn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Frm_CxP_navegación.resx">
-      <DependentUpon>Frm_CxP_navegación.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_CxP_Pagos.resx">
+      <DependentUpon>Frm_CxP_Pagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_CxP_Pagos_Historial.resx">
+      <DependentUpon>Frm_CxP_Pagos_Historial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

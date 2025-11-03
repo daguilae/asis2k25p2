@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_CxP
 {
-    public partial class Frm_CxP_navegación : Form
+    public partial class Frm_CxP_Pagos_Historial : Form
     {
-        public Frm_CxP_navegación()
+        public Frm_CxP_Pagos_Historial()
         {
             InitializeComponent();
         }
