@@ -1,107 +1,125 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Odbc;
 using System.Data;
+using System.Data.Odbc;
+using System.Globalization;
 
 namespace Capa_Modelo_MH
 {
     public class Cls_Mantenimiento
     {
-        Cls_ConexionMysql conexion = new Cls_ConexionMysql();
+        private readonly Cls_ConexionMysql conexion = new Cls_ConexionMysql();
+
+        private object ValorONull(string valor) =>
+            string.IsNullOrWhiteSpace(valor) ? DBNull.Value : (object)valor;
+
+        private object FechaONull(string fecha)
+        {
+            if (string.IsNullOrWhiteSpace(fecha)) return DBNull.Value;
+            DateTime f = DateTime.ParseExact(fecha, new[] { "yyyy-MM-dd", "dd-MM-yyyy", "dd/MM/yyyy" }, CultureInfo.InvariantCulture, DateTimeStyles.None);
+            return f.ToString("yyyy-MM-dd");
+        }
 
         public OdbcDataAdapter MostrarMantenimientos()
         {
-            string query = "SELECT * FROM Tbl_mantenimiento;";
-            OdbcConnection conn = conexion.conexion();
-            OdbcDataAdapter data = new OdbcDataAdapter(query, conn);
-            return data;
+            return new OdbcDataAdapter("SELECT * FROM Tbl_mantenimiento;", conexion.conexion());
         }
 
-        public void InsertarMantenimiento(string Fk_Id_Salon, string Fk_Id_Habitacion, string Fk_Id_Empleado,
-                                          string Cmp_Tipo_Mantenimiento, string Cmp_Descripcion_Mantenimiento,
-                                          string Cmp_Estado, string Cmp_Fecha_Inicio, string Cmp_Fecha_Fin)
+        public void InsertarMantenimiento(string salon, string habitacion, string empleado, string tipo, string descripcion,
+                                          string estado, string fechaInicio, string fechaFin)
         {
-            string sql = "INSERT INTO Tbl_mantenimiento (Fk_Id_Salon, Fk_Id_Habitacion, Fk_Id_Empleado, " +
-                         "Cmp_Tipo_Mantenimiento, Cmp_Descripcion_Mantenimiento, Cmp_Estado, Cmp_Fecha_Inicio, Cmp_Fecha_Fin) " +
-                         "VALUES (?,?,?,?,?,?,?,?);";
+            const string sql = @"INSERT INTO Tbl_mantenimiento 
+                                 (Fk_Id_Salon, Fk_Id_Habitacion, Fk_Id_Empleado, 
+                                  Cmp_Tipo_Mantenimiento, Cmp_Descripcion_Mantenimiento,
+                                  Cmp_Estado, Cmp_Fecha_Inicio, Cmp_Fecha_Fin)
+                                 VALUES (?,?,?,?,?,?,?,?)";
 
-            using (OdbcConnection conn = conexion.conexion())
+            using (var conn = conexion.conexion())
             {
                 conn.Open();
-                using (OdbcCommand cmd = new OdbcCommand(sql, conn))
+                using (var cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@Fk_Id_Salon", Fk_Id_Salon);
-                    cmd.Parameters.AddWithValue("@Fk_Id_Habitacion", Fk_Id_Habitacion);
-                    cmd.Parameters.AddWithValue("@Fk_Id_Empleado", Fk_Id_Empleado);
-                    cmd.Parameters.AddWithValue("@Cmp_Tipo_Mantenimiento", Cmp_Tipo_Mantenimiento);
-                    cmd.Parameters.AddWithValue("@Cmp_Descripcion_Mantenimiento", Cmp_Descripcion_Mantenimiento);
-                    cmd.Parameters.AddWithValue("@Cmp_Estado", Cmp_Estado);
-                    cmd.Parameters.AddWithValue("@Cmp_Fecha_Inicio", Cmp_Fecha_Inicio);
-                    cmd.Parameters.AddWithValue("@Cmp_Fecha_Fin", Cmp_Fecha_Fin);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void EliminarMantenimiento(string idMantenimiento)
-        {
-            string sql = "DELETE FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento = ?;";
-
-            using (OdbcConnection conn = conexion.conexion())
-            {
-                conn.Open();
-                using (OdbcCommand cmd = new OdbcCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Pk_Id_Mantenimiento", idMantenimiento);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void ActualizarMantenimiento(string idMantenimiento, string Fk_Id_Salon, string Fk_Id_Habitacion, string Fk_Id_Empleado,
-                                    string Cmp_Tipo_Mantenimiento, string Cmp_Descripcion_Mantenimiento,
-                                    string Cmp_Estado, string Cmp_Fecha_Inicio, string Cmp_Fecha_Fin)
-        {
-            string sql = "UPDATE Tbl_mantenimiento SET " +
-                         "Fk_Id_Salon = ?, Fk_Id_Habitacion = ?, Fk_Id_Empleado = ?, " +
-                         "Cmp_Tipo_Mantenimiento = ?, Cmp_Descripcion_Mantenimiento = ?, " +
-                         "Cmp_Estado = ?, Cmp_Fecha_Inicio = ?, Cmp_Fecha_Fin = ? " +
-                         "WHERE Pk_Id_Mantenimiento = ?;";
-
-            using (OdbcConnection conn = conexion.conexion())
-            {
-                conn.Open();
-                using (OdbcCommand cmd = new OdbcCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Fk_Id_Salon", Fk_Id_Salon);
-                    cmd.Parameters.AddWithValue("@Fk_Id_Habitacion", Fk_Id_Habitacion);
-                    cmd.Parameters.AddWithValue("@Fk_Id_Empleado", Fk_Id_Empleado);
-                    cmd.Parameters.AddWithValue("@Cmp_Tipo_Mantenimiento", Cmp_Tipo_Mantenimiento);
-                    cmd.Parameters.AddWithValue("@Cmp_Descripcion_Mantenimiento", Cmp_Descripcion_Mantenimiento);
-                    cmd.Parameters.AddWithValue("@Cmp_Estado", Cmp_Estado);
-                    cmd.Parameters.AddWithValue("@Cmp_Fecha_Inicio", Cmp_Fecha_Inicio);
-                    cmd.Parameters.AddWithValue("@Cmp_Fecha_Fin", Cmp_Fecha_Fin);
-                    cmd.Parameters.AddWithValue("@Pk_Id_Mantenimiento", idMantenimiento);
-
+                    cmd.Parameters.AddWithValue("Fk_Id_Salon", ValorONull(salon));
+                    cmd.Parameters.AddWithValue("Fk_Id_Habitacion", ValorONull(habitacion));
+                    cmd.Parameters.AddWithValue("Fk_Id_Empleado", ValorONull(empleado));
+                    cmd.Parameters.AddWithValue("Cmp_Tipo_Mantenimiento", ValorONull(tipo));
+                    cmd.Parameters.AddWithValue("Cmp_Descripcion_Mantenimiento", ValorONull(descripcion));
+                    cmd.Parameters.AddWithValue("Cmp_Estado", ValorONull(estado));
+                    cmd.Parameters.AddWithValue("Cmp_Fecha_Inicio", FechaONull(fechaInicio));
+                    cmd.Parameters.AddWithValue("Cmp_Fecha_Fin", FechaONull(fechaFin));
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable BuscarMantenimientoPorId(string idMantenimiento)
+        public void ActualizarMantenimiento(string id, string salon, string habitacion, string empleado, string tipo,
+                                            string descripcion, string estado, string fechaInicio, string fechaFin)
         {
-            string sql = "SELECT * FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento = ?;";
-            OdbcConnection conn = conexion.conexion();
-            OdbcCommand cmd = new OdbcCommand(sql, conn);
-            cmd.Parameters.AddWithValue("@Pk_Id_Mantenimiento", idMantenimiento);
+            const string sql = @"UPDATE Tbl_mantenimiento SET 
+                                 Fk_Id_Salon=?, Fk_Id_Habitacion=?, Fk_Id_Empleado=?, 
+                                 Cmp_Tipo_Mantenimiento=?, Cmp_Descripcion_Mantenimiento=?, 
+                                 Cmp_Estado=?, Cmp_Fecha_Inicio=?, Cmp_Fecha_Fin=? 
+                                 WHERE Pk_Id_Mantenimiento=?";
 
-            OdbcDataAdapter adapter = new OdbcDataAdapter(cmd);
-            DataTable tabla = new DataTable();
-            adapter.Fill(tabla);
+            using (var conn = conexion.conexion())
+            {
+                conn.Open();
+                using (var cmd = new OdbcCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("Fk_Id_Salon", ValorONull(salon));
+                    cmd.Parameters.AddWithValue("Fk_Id_Habitacion", ValorONull(habitacion));
+                    cmd.Parameters.AddWithValue("Fk_Id_Empleado", ValorONull(empleado));
+                    cmd.Parameters.AddWithValue("Cmp_Tipo_Mantenimiento", ValorONull(tipo));
+                    cmd.Parameters.AddWithValue("Cmp_Descripcion_Mantenimiento", ValorONull(descripcion));
+                    cmd.Parameters.AddWithValue("Cmp_Estado", ValorONull(estado));
+                    cmd.Parameters.AddWithValue("Cmp_Fecha_Inicio", FechaONull(fechaInicio));
+                    cmd.Parameters.AddWithValue("Cmp_Fecha_Fin", FechaONull(fechaFin));
+                    cmd.Parameters.AddWithValue("Pk_Id_Mantenimiento", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void EliminarMantenimiento(string id)
+        {
+            using (var conn = conexion.conexion())
+            {
+                conn.Open();
+                using (var cmd = new OdbcCommand("DELETE FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
+                {
+                    cmd.Parameters.AddWithValue("Pk_Id_Mantenimiento", id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public DataTable BuscarMantenimientoPorId(string id)
+        {
+            var tabla = new DataTable();
+            using (var conn = conexion.conexion())
+            {
+                using (var cmd = new OdbcCommand("SELECT * FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
+                {
+                    cmd.Parameters.AddWithValue("Pk_Id_Mantenimiento", id);
+                    new OdbcDataAdapter(cmd).Fill(tabla);
+                }
+            }
             return tabla;
         }
 
+        public DataTable EjecutarConsulta(string sql)
+        {
+            var tabla = new DataTable();
+            new OdbcDataAdapter(sql, conexion.conexion()).Fill(tabla);
+            return tabla;
+        }
 
+        public DataTable ObtenerEmpleados() =>
+            EjecutarConsulta("SELECT Pk_Id_Empleado, CONCAT(Pk_Id_Empleado, ' - ', Cmp_Nombres_Empleado, ' ', Cmp_Apellidos_Empleado) AS Nombre_Empleado FROM tbl_empleado ORDER BY Pk_Id_Empleado;");
+
+        public DataTable ObtenerSalones() =>
+            EjecutarConsulta("SELECT Pk_Id_Salon, CONCAT(Pk_Id_Salon, ' - ', Cmp_Nombre_Salon) AS Nombre_Salon FROM tbl_salones ORDER BY Pk_Id_Salon;");
+
+        public DataTable ObtenerHabitaciones() =>
+            EjecutarConsulta("SELECT h.Pk_Id_Habitacion, CONCAT(h.Pk_Id_Habitacion, ' - ', t.Cmp_Nombre_Tipo) AS Nombre_Habitacion FROM tbl_habitaciones h INNER JOIN tbl_tipo_habitacion t ON h.Fk_Id_Tipo_Habitacion = t.Pk_Id_Tipo_Habitacion ORDER BY h.Pk_Id_Habitacion;");
     }
 }
