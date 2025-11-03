@@ -16,7 +16,7 @@ namespace Exe_OP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CapaVistaOP.Frm_Ordenes_de_Produccion());
+            Application.Run(new CapaVistaOP.Frm_menu_ordenes    ());
         }
     }
 }
