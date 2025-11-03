@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Vista_ReportesBancarios">
+      <HintPath>..\..\..\MVC_ReportesBancarios\Capa_Vista_ReportesBancarios\bin\Debug\Capa_Vista_ReportesBancarios.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
