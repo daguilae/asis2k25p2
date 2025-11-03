@@ -13,7 +13,7 @@ namespace Capa_Modelo_CB
 
         public OdbcConnection conexion()
         {
-            OdbcConnection conn = new OdbcConnection("Dsn=bancosdani");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bancos2");
             try
             {
                 conn.Open();
