@@ -146,6 +146,27 @@ namespace Capa_Controlador_Creacion_Nomina
         }
         // Fin de código de: Fredy Reyes Sabán en la fecha de: 29/10/2025
 
+        // Inicio de código de: Fredy Reyes Sabán en la fecha de: 2/11/2025
+        public DataTable funObtenerMovimientosPorIdNomina(int iIdNomina)
+        {
+            try
+            {
+                return clsDaoNomina.funObtenerMovimientosPorIdNomina(iIdNomina);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("tuve un errorsito en el cotrolador");
+                Console.WriteLine($"[ERROR] en controlador al obtener movimientos por nómina: {ex.Message}");
+                return null;
+            }
+        }
+
+        public void testIdNomina(int idNomina) {
+            Console.WriteLine(idNomina);
+        }
+
+        // Fin de código de: Fredy Reyes Sabán en la fecha de: 2/11/2025
+
 
     }
 }

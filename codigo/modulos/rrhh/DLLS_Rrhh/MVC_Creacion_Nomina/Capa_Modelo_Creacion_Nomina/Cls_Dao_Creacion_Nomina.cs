@@ -2,7 +2,7 @@
 // Capa_Modelo_Creacion_Nomina
 // Clase: Cls_Dao_Creacion_Nomina
 // Autor: Fredy Reyes Sabán
-// Carné: 20250000
+// Carné: 0901-22-9800
 // Fecha: 29/10/2025
 // Descripción: Acceso a datos para la tabla Tbl_Nomina
 // =============================================================
@@ -287,5 +287,59 @@ namespace Capa_Modelo_Creacion_Nomina
 
             return bExiste;
         }
+
+        // ==========================================================
+        // MÉTODO: OBTENER MOVIMIENTOS POR ID DE NÓMINA
+        // ==========================================================
+        public DataTable funObtenerMovimientosPorIdNomina(int iIdNomina)
+        {
+            DataTable dtsMovimientos = new DataTable();
+            Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+
+                    string sSql = @"
+                SELECT 
+                    mn.Cmp_iId_MovimientoNomina AS IdMovimiento,
+                    n.Cmp_iId_Nomina AS IdNomina,
+                    e.Cmp_iId_Empleado AS IdEmpleado,
+                    CONCAT(e.Cmp_sNombre_Empleado, ' ', e.Cmp_sApellido_Empleado) AS Empleado,
+                    c.Cmp_sNombre_ConceptoNomina AS Concepto,
+                    c.Cmp_sTipo_ConceptoNomina AS TipoConcepto,
+                    mn.Cmp_deMonto_MovimientoNomina AS Monto
+                FROM Tbl_MovimientosNomina mn
+                INNER JOIN Tbl_Nomina n ON mn.Cmp_iId_Nomina = n.Cmp_iId_Nomina
+                INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                INNER JOIN Tbl_DetallesNomina dn ON n.Cmp_iId_Nomina = dn.Cmp_iId_Nomina
+                INNER JOIN Tbl_Empleados e ON dn.Cmp_iId_Empleado = e.Cmp_iId_Empleado
+                WHERE n.Cmp_iId_Nomina = ?
+                ORDER BY c.Cmp_sTipo_ConceptoNomina ASC";
+
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                        da.Fill(dtsMovimientos);
+                    }
+
+                    Console.WriteLine($"[OK] Se obtuvieron {dtsMovimientos.Rows.Count} movimientos de la nómina #{iIdNomina}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[ERROR] al obtener movimientos por ID de nómina: {ex.Message}");
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+
+            return dtsMovimientos;
+        }
+
     }
 }

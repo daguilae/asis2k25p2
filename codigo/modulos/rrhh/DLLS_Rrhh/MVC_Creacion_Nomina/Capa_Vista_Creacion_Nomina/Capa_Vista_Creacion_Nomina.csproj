@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Creacion_Nomina">
+    <Reference Include="Capa_Controlador_Creacion_Nomina, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Capa_Controlador_Creacion_Nomina\bin\Debug\Capa_Controlador_Creacion_Nomina.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -52,6 +53,12 @@
     <Compile Include="Frm_Creacion_Nomina.Designer.cs">
       <DependentUpon>Frm_Creacion_Nomina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Movimientos_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Movimientos_Nomina.Designer.cs">
+      <DependentUpon>Frm_Movimientos_Nomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Principal_Nomina.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -63,6 +70,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Creacion_Nomina.resx">
       <DependentUpon>Frm_Creacion_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Movimientos_Nomina.resx">
+      <DependentUpon>Frm_Movimientos_Nomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Principal_Nomina.resx">
       <DependentUpon>Frm_Principal_Nomina.cs</DependentUpon>
