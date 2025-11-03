@@ -11,26 +11,6 @@ namespace Capa_Controldor_MB
         private readonly Cls_Sentencias cn = new Cls_Sentencias();
         private readonly Cls_CRUD crud = new Cls_CRUD();
 
-        public DataTable fun_CargarCuentas()
-        {
-            return crud.fun_ObtenerCuentas();
-        }
-
-        public string fun_ObtenerNombreCuenta(int iIdCuenta)
-        {
-            return crud.fun_ObtenerNombreCuenta(iIdCuenta);
-        }
-
-        public DataTable fun_ObtenerOperaciones()
-        {
-            return crud.fun_ObtenerOperaciones();
-        }
-
-        public string fun_ObtenerSignoOperacion(int iIdOperacion)
-        {
-            return crud.fun_ObtenerSignoOperacionPorId(iIdOperacion);
-        }
-
         public bool fun_RequiereCuentaDestino(string sNombreOperacion)
         {
             if (string.IsNullOrWhiteSpace(sNombreOperacion))
@@ -99,30 +79,6 @@ namespace Capa_Controldor_MB
                 sCmp_Descripcion = sDescripcion ?? "Movimiento principal",
                 iCmp_Conciliado = 0
             };
-        }
-
-        public DataTable fun_ObtenerMovimientosBancarios()
-        {
-            try
-            {
-                return crud.fun_ObtenerDetallesContablesParaCaptura();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error en controlador al obtener movimientos: {ex.Message}");
-            }
-        }
-
-        public DataTable fun_ObtenerDetallesContables()
-        {
-            try
-            {
-                return crud.fun_ObtenerDetallesContables();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error en controlador al obtener detalles contables: {ex.Message}");
-            }
         }
 
         public string fun_ValidarDetalles(List<Cls_Sentencias.Cls_MovimientoDetalle> lst_Detalles)
