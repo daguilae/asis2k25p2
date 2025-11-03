@@ -17,6 +17,8 @@ namespace Ejecutable_Facturas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+        //    Application.Run(new Frm_Listado_Facturas());
+        //    Application.Run(new Frm_Detalle_Factura());
             Application.Run(new Frm_Venta());
         }
     }

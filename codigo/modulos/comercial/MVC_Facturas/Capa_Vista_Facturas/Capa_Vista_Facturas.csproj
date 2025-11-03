@@ -52,6 +52,12 @@
     <Compile Include="Frm_Detalle_Factura.Designer.cs">
       <DependentUpon>Frm_Detalle_Factura.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_FacturaCrear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_FacturaCrear.Designer.cs">
+      <DependentUpon>Frm_FacturaCrear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Listado_Facturas.cs">
       <SubType>Form</SubType>
     </Compile>
