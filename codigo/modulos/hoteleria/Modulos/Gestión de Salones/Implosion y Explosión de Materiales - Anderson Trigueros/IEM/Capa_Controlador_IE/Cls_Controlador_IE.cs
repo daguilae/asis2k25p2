@@ -21,5 +21,11 @@ namespace Capa_Controlador_IE
         {
             return sentencias.fun_ObtenerReceta(codigoMenu);
         }
+
+        public List<(string sIngrediente, double doStock)> verificarInventario(List<string> ingredientes)
+        {
+            return sentencias.ConsultarInventario(ingredientes);
+        }
+
     }
 }
