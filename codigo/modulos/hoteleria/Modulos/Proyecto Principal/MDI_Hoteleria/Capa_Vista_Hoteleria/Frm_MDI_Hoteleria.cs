@@ -15,8 +15,8 @@ using Capa_Vista_Reservas_Hotel;
 using Capa_Vista_S;
 using Capa_Vista_IE;
 using Capa_Vista_MH;
-using Capa_Vista_Produccion;
-
+using CapaVistaOP;
+using CapaVistaProduccion;
 
 namespace Capa_Vista_Hoteleria
 {
@@ -103,20 +103,17 @@ namespace Capa_Vista_Hoteleria
             mantenimiento_Hoteleria.Show();
         }
 
-        private void ordenDeMenuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void ordenDeProduccionToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Frm_menu_ordenes formularioOP = new Frm_menu_ordenes();
+            formularioOP.Show();
         }
 
         private void produccionHoteleriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Produccion_Hoteleria produccion_Hoteleria = new Frm_Produccion_Hoteleria();
-
+            Frm_Produccion_Hoteleria formularioP = new Frm_Produccion_Hoteleria();
+            formularioP.Show();
+           
         }
 
         private void estadiaToolStripMenuItem_Click(object sender, EventArgs e)
