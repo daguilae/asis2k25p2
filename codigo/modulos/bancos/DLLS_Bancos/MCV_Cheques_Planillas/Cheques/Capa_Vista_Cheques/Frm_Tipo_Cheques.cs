@@ -26,7 +26,8 @@ namespace Capa_Vista_Cheques
 
         private void bnt_Proveedores_Click(object sender, EventArgs e)
         {
-
+            Frm_Proveedores formularioCheques = new Frm_Proveedores();
+            formularioCheques.Show();  // Abre el formulario de cheques
         }
     }
 }

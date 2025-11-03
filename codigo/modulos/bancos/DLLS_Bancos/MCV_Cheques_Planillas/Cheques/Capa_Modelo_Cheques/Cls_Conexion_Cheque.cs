@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Capa_Modelo_Cheques
 {
-    class Cls_Conexion_Cheque
+   public class Cls_Conexion_Cheque
     {
         public OdbcConnection conexion()
         {

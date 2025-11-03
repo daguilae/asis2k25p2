@@ -36,10 +36,9 @@ namespace Capa_Vista_Cheques
             this.label1 = new System.Windows.Forms.Label();
             this.Txt_Moneda = new System.Windows.Forms.TextBox();
             this.Lbl_Moneda = new System.Windows.Forms.Label();
-            this.Txt_Fecha = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_Cheques = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Btn_Cargar = new System.Windows.Forms.Button();
             this.btn_Generar_Cheque = new System.Windows.Forms.Button();
@@ -52,7 +51,8 @@ namespace Capa_Vista_Cheques
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Txt_Valor = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).BeginInit();
             this.SuspendLayout();
             // 
             // Txt_planilla
@@ -61,6 +61,7 @@ namespace Capa_Vista_Cheques
             this.Txt_planilla.Name = "Txt_planilla";
             this.Txt_planilla.Size = new System.Drawing.Size(143, 22);
             this.Txt_planilla.TabIndex = 109;
+            this.Txt_planilla.TextChanged += new System.EventHandler(this.Txt_planilla_TextChanged);
             // 
             // label3
             // 
@@ -71,6 +72,7 @@ namespace Capa_Vista_Cheques
             this.label3.Size = new System.Drawing.Size(243, 24);
             this.label3.TabIndex = 108;
             this.label3.Text = "Número de planilla (Lote):";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // Txt_Banco
             // 
@@ -89,6 +91,7 @@ namespace Capa_Vista_Cheques
             this.label1.Size = new System.Drawing.Size(139, 24);
             this.label1.TabIndex = 106;
             this.label1.Text = "Banco Cuenta:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // Txt_Moneda
             // 
@@ -96,6 +99,7 @@ namespace Capa_Vista_Cheques
             this.Txt_Moneda.Name = "Txt_Moneda";
             this.Txt_Moneda.Size = new System.Drawing.Size(143, 22);
             this.Txt_Moneda.TabIndex = 103;
+            this.Txt_Moneda.TextChanged += new System.EventHandler(this.Txt_Moneda_TextChanged);
             // 
             // Lbl_Moneda
             // 
@@ -109,13 +113,7 @@ namespace Capa_Vista_Cheques
             this.Lbl_Moneda.Size = new System.Drawing.Size(89, 24);
             this.Lbl_Moneda.TabIndex = 102;
             this.Lbl_Moneda.Text = "Moneda:";
-            // 
-            // Txt_Fecha
-            // 
-            this.Txt_Fecha.Location = new System.Drawing.Point(318, 80);
-            this.Txt_Fecha.Name = "Txt_Fecha";
-            this.Txt_Fecha.Size = new System.Drawing.Size(143, 22);
-            this.Txt_Fecha.TabIndex = 101;
+            this.Lbl_Moneda.Click += new System.EventHandler(this.Lbl_Moneda_Click);
             // 
             // Lbl_Fecha
             // 
@@ -126,6 +124,7 @@ namespace Capa_Vista_Cheques
             this.Lbl_Fecha.Size = new System.Drawing.Size(145, 24);
             this.Lbl_Fecha.TabIndex = 100;
             this.Lbl_Fecha.Text = "Fecha de pago:";
+            this.Lbl_Fecha.Click += new System.EventHandler(this.Lbl_Fecha_Click);
             // 
             // label2
             // 
@@ -136,17 +135,18 @@ namespace Capa_Vista_Cheques
             this.label2.Size = new System.Drawing.Size(379, 31);
             this.label2.TabIndex = 99;
             this.label2.Text = "Generacion de Cheques Planilla";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
-            // dataGridView1
+            // dgv_Cheques
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(31, 359);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(824, 162);
-            this.dataGridView1.TabIndex = 113;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgv_Cheques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Cheques.Location = new System.Drawing.Point(31, 359);
+            this.dgv_Cheques.Name = "dgv_Cheques";
+            this.dgv_Cheques.RowHeadersWidth = 51;
+            this.dgv_Cheques.RowTemplate.Height = 24;
+            this.dgv_Cheques.Size = new System.Drawing.Size(824, 162);
+            this.dgv_Cheques.TabIndex = 113;
+            this.dgv_Cheques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Btn_Cargar
             // 
@@ -157,15 +157,18 @@ namespace Capa_Vista_Cheques
             this.Btn_Cargar.Size = new System.Drawing.Size(56, 51);
             this.Btn_Cargar.TabIndex = 114;
             this.Btn_Cargar.UseVisualStyleBackColor = true;
+            this.Btn_Cargar.Click += new System.EventHandler(this.Btn_Cargar_Click);
             // 
             // btn_Generar_Cheque
             // 
             this.btn_Generar_Cheque.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Generar_Cheque.Image = ((System.Drawing.Image)(resources.GetObject("btn_Generar_Cheque.Image")));
             this.btn_Generar_Cheque.Location = new System.Drawing.Point(726, 23);
             this.btn_Generar_Cheque.Name = "btn_Generar_Cheque";
             this.btn_Generar_Cheque.Size = new System.Drawing.Size(56, 51);
             this.btn_Generar_Cheque.TabIndex = 115;
             this.btn_Generar_Cheque.UseVisualStyleBackColor = true;
+            this.btn_Generar_Cheque.Click += new System.EventHandler(this.btn_Generar_Cheque_Click);
             // 
             // btn_imprimir
             // 
@@ -176,6 +179,7 @@ namespace Capa_Vista_Cheques
             this.btn_imprimir.Size = new System.Drawing.Size(56, 51);
             this.btn_imprimir.TabIndex = 116;
             this.btn_imprimir.UseVisualStyleBackColor = true;
+            this.btn_imprimir.Click += new System.EventHandler(this.btn_imprimir_Click);
             // 
             // label4
             // 
@@ -189,6 +193,7 @@ namespace Capa_Vista_Cheques
             this.label4.Size = new System.Drawing.Size(166, 24);
             this.label4.TabIndex = 117;
             this.label4.Text = "Cuenta Contable:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // Txt_Cuenta_Contable
             // 
@@ -196,6 +201,7 @@ namespace Capa_Vista_Cheques
             this.Txt_Cuenta_Contable.Name = "Txt_Cuenta_Contable";
             this.Txt_Cuenta_Contable.Size = new System.Drawing.Size(162, 22);
             this.Txt_Cuenta_Contable.TabIndex = 118;
+            this.Txt_Cuenta_Contable.TextChanged += new System.EventHandler(this.Txt_Cuenta_Contable_TextChanged);
             // 
             // Txt_nombre_banco
             // 
@@ -203,6 +209,7 @@ namespace Capa_Vista_Cheques
             this.Txt_nombre_banco.Name = "Txt_nombre_banco";
             this.Txt_nombre_banco.Size = new System.Drawing.Size(143, 22);
             this.Txt_nombre_banco.TabIndex = 119;
+            this.Txt_nombre_banco.TextChanged += new System.EventHandler(this.Txt_nombre_banco_TextChanged);
             // 
             // Txt_debe_haber
             // 
@@ -210,6 +217,7 @@ namespace Capa_Vista_Cheques
             this.Txt_debe_haber.Name = "Txt_debe_haber";
             this.Txt_debe_haber.Size = new System.Drawing.Size(143, 22);
             this.Txt_debe_haber.TabIndex = 120;
+            this.Txt_debe_haber.TextChanged += new System.EventHandler(this.Txt_debe_haber_TextChanged);
             // 
             // label5
             // 
@@ -223,6 +231,7 @@ namespace Capa_Vista_Cheques
             this.label5.Size = new System.Drawing.Size(85, 24);
             this.label5.TabIndex = 121;
             this.label5.Text = "Nombre";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label6
             // 
@@ -236,6 +245,7 @@ namespace Capa_Vista_Cheques
             this.label6.Size = new System.Drawing.Size(50, 24);
             this.label6.TabIndex = 122;
             this.label6.Text = "D/H:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label7
             // 
@@ -249,6 +259,7 @@ namespace Capa_Vista_Cheques
             this.label7.Size = new System.Drawing.Size(61, 24);
             this.label7.TabIndex = 123;
             this.label7.Text = "Valor:";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // Txt_Valor
             // 
@@ -256,12 +267,21 @@ namespace Capa_Vista_Cheques
             this.Txt_Valor.Name = "Txt_Valor";
             this.Txt_Valor.Size = new System.Drawing.Size(143, 22);
             this.Txt_Valor.TabIndex = 124;
+            this.Txt_Valor.TextChanged += new System.EventHandler(this.Txt_Valor_TextChanged);
+            // 
+            // dtp_FechaPago
+            // 
+            this.dtp_FechaPago.Location = new System.Drawing.Point(318, 80);
+            this.dtp_FechaPago.Name = "dtp_FechaPago";
+            this.dtp_FechaPago.Size = new System.Drawing.Size(266, 22);
+            this.dtp_FechaPago.TabIndex = 125;
             // 
             // Frm_Cheques
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 575);
+            this.Controls.Add(this.dtp_FechaPago);
             this.Controls.Add(this.Txt_Valor);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -273,19 +293,18 @@ namespace Capa_Vista_Cheques
             this.Controls.Add(this.btn_imprimir);
             this.Controls.Add(this.btn_Generar_Cheque);
             this.Controls.Add(this.Btn_Cargar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgv_Cheques);
             this.Controls.Add(this.Txt_planilla);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Txt_Banco);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Txt_Moneda);
             this.Controls.Add(this.Lbl_Moneda);
-            this.Controls.Add(this.Txt_Fecha);
             this.Controls.Add(this.Lbl_Fecha);
             this.Controls.Add(this.label2);
             this.Name = "Frm_Cheques";
             this.Text = "Frm_Cheques";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,10 +317,9 @@ namespace Capa_Vista_Cheques
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Txt_Moneda;
         private System.Windows.Forms.Label Lbl_Moneda;
-        private System.Windows.Forms.TextBox Txt_Fecha;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_Cheques;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button Btn_Cargar;
         private System.Windows.Forms.Button btn_Generar_Cheque;
@@ -314,5 +332,6 @@ namespace Capa_Vista_Cheques
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox Txt_Valor;
+        private System.Windows.Forms.DateTimePicker dtp_FechaPago;
     }
 }
