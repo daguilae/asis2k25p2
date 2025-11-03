@@ -3,6 +3,7 @@ using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
 using Capa_Controlador_Facturas;
+using System.ComponentModel;   // BindingList
 
 namespace Capa_Vista_Facturas
 {
@@ -35,7 +36,7 @@ namespace Capa_Vista_Facturas
             Cbo_Producto.DisplayMember = "Cmp_NombreProducto";
             Cbo_Producto.ValueMember = "Cmp_CodigoProducto";
 
-            // columnas del DGV
+            // columnas del DGV (enlaza a propiedades de Cls_LineaVenta)
             if (Dgv_Lista.Columns.Count >= 5)
             {
                 Dgv_Lista.Columns[0].DataPropertyName = "Codigo";
@@ -48,13 +49,12 @@ namespace Capa_Vista_Facturas
                 Dgv_Lista.Columns[4].DefaultCellStyle.Format = "N2";
             }
 
-            // Inicializar textos
-            // Nombre de los textos (Titulos)
-            Lbl_Total.Text = "TOTAL A PAGAR:"; 
+            // Inicializar textos (títulos)
+            Lbl_Total.Text = "TOTAL A PAGAR:";
             Lbl_Efectivo.Text = "EFECTIVO:";
-            Lbl_Devolucion.Text = "DEVOLUCIÓN:"; 
-            
-            // Donde se muestra el valor 
+            Lbl_Devolucion.Text = "DEVOLUCIÓN:";
+
+            // Valores visibles
             Lbl_IngresoCodigo.Text = "-";
             Lbl_IngresoNombre.Text = "-";
             Lbl_IngresoPrecio.Text = "-";
@@ -68,7 +68,9 @@ namespace Capa_Vista_Facturas
             {
                 Lbl_IngresoCodigo.Text = drv["Cmp_CodigoProducto"].ToString();
                 Lbl_IngresoNombre.Text = drv["Cmp_NombreProducto"].ToString();
-                Lbl_IngresoPrecio.Text = Convert.ToDecimal(drv["Cmp_PrecioUnitario"]).ToString("N2", gt);
+                Lbl_IngresoPrecio.Text = Convert
+                    .ToDecimal(drv["Cmp_PrecioUnitario"])
+                    .ToString("N2", gt);
             }
         }
 
@@ -79,24 +81,23 @@ namespace Capa_Vista_Facturas
 
             if (codigo == "-" || nombre == "-")
             {
-                MessageBox.Show("Selecciona un producto.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Selecciona un producto.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            decimal precio;
-            if (!decimal.TryParse(Lbl_IngresoPrecio.Text, NumberStyles.Any, gt, out precio))
+            if (!decimal.TryParse(Lbl_IngresoPrecio.Text, NumberStyles.Any, gt, out decimal precio) &&
+                !decimal.TryParse(Lbl_IngresoPrecio.Text, out precio))
             {
-                if (!decimal.TryParse(Lbl_IngresoPrecio.Text, out precio))
-                {
-                    MessageBox.Show("Precio inválido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                MessageBox.Show("Precio inválido.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            int cantidad;
-            if (!int.TryParse(Txt_IngresoCantidad.Text, out cantidad) || cantidad <= 0)
+            if (!int.TryParse(Txt_IngresoCantidad.Text, out int cantidad) || cantidad <= 0)
             {
-                MessageBox.Show("Cantidad inválida.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Cantidad inválida.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -130,18 +131,14 @@ namespace Capa_Vista_Facturas
             decimal total = ctrl.CalcularTotal();
             Lbl_TotalPagar.Text = total.ToString("N2", gt);
 
-            decimal efectivo;
-            if (decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, gt, out efectivo) ||
+            if (decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, gt, out decimal efectivo) ||
                 decimal.TryParse(Txt_Efectivo.Text, out efectivo))
             {
                 var dev = ctrl.CalcularDevolucion(efectivo, total);
                 Lbl_IngresoDevolucion.Text = dev.ToString("N2", gt);
-
-                // color visual según devolución (Verde = Valor positivo y Rojo = Valor Negativo)
-                if (dev >= 0)
-                    Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.ForestGreen;
-                else
-                    Lbl_IngresoDevolucion.ForeColor = System.Drawing.Color.Firebrick;
+                Lbl_IngresoDevolucion.ForeColor = (dev >= 0)
+                    ? System.Drawing.Color.ForestGreen
+                    : System.Drawing.Color.Firebrick;
             }
             else
             {
@@ -154,31 +151,71 @@ namespace Capa_Vista_Facturas
         {
             if (ctrl.Lineas.Count == 0)
             {
-                MessageBox.Show("No hay productos para vender.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("No hay productos para vender.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
+            // 1) Guardar SOLO la VENTA en BD
             decimal efectivo = 0m;
             decimal.TryParse(Txt_Efectivo.Text, NumberStyles.Any, gt, out efectivo);
+            int idUsuario = 2;      // TODO: reemplazar por el usuario real
+            int idMetodoPago = 1;   // TODO: reemplazar por el método real
 
-            int idUsuario = 2;    
-            int idMetodoPago = 1; 
-
+            int idVenta;
             try
             {
-                int idVenta = ctrl.GuardarVenta(efectivo, idUsuario, idMetodoPago);
-                MessageBox.Show("Venta guardada con ID: " + idVenta, "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                ctrl.LimpiarLineas();
-                Txt_Efectivo.Clear();
-                ActualizarTotales();
+                idVenta = ctrl.GuardarVenta(efectivo, idUsuario, idMetodoPago);
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al guardar la venta:\n" + ex.Message, "Error",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            // 2) Preparar detalle y total para la factura (UI)
+            DataTable detalle = BuildDetalleFromLineas(ctrl.Lineas);
+            decimal total = ctrl.CalcularTotal();
+
+            // 3) Abrir formulario de factura (solo visualización/impresión)
+            var frm = new Frm_FacturaCrear
+            {
+                DetalleFactura = detalle,
+                Total = total
+            };
+            frm.Tag = idVenta;   // Pasamos el ID de la venta
+
+            var dr = frm.ShowDialog(this);
+
+            // 4) Si el usuario guardó la factura correctamente, limpiar la venta (UI)
+            if (dr == DialogResult.OK && frm.FacturaId != null)
+            {
+                MessageBox.Show($"Venta #{idVenta} finalizada. Factura #{frm.FacturaId}.",
+                    "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                ctrl.LimpiarLineas();
+                Dgv_Lista.Refresh();
+                Txt_Efectivo.Clear();
+                ActualizarTotales();
+            }
+        }
+
+
+        private static DataTable BuildDetalleFromLineas(
+            BindingList<Capa_Controlador_Facturas.Cls_Controlador.Cls_LineaVenta> lineas)
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Codigo", typeof(string));
+            dt.Columns.Add("Producto", typeof(string));
+            dt.Columns.Add("Cantidad", typeof(int));
+            dt.Columns.Add("Precio", typeof(decimal));
+            dt.Columns.Add("Subtotal", typeof(decimal));
+
+            foreach (var l in lineas)
+                dt.Rows.Add(l.Codigo, l.Producto, l.Cantidad, l.Precio, l.Total);
+
+            return dt;
         }
     }
 }
