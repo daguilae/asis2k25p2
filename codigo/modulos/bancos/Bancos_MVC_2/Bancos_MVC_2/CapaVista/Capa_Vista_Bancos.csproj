@@ -36,10 +36,29 @@
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Controlador_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\componentes\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Controldor_MB">
+      <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Controldor_MB\bin\Debug\Capa_Controldor_MB.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_CB">
+      <HintPath>..\..\..\DLLS_Bancos\MVC_ConciliacionBancaria\DLL_ConciliacionBancaria\Capa_Vista_CB\bin\Debug\Capa_Vista_CB.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Cheques, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DLLS_Bancos\MCV_Cheques_Planillas\Cheques\Capa_Vista_Cheques\bin\Debug\Capa_Vista_Cheques.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_MB">
+      <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Vista_MB\bin\Debug\Capa_Vista_MB.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Ordenes">
+      <HintPath>..\..\..\DLLS_Bancos\Ordenes Compra\Ordenes_Compra\Capa_Vista_Ordenes\bin\Debug\Capa_Vista_Ordenes.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Poliza">
+      <HintPath>..\..\..\DLLS_Bancos\MVC_Poliza\DLL_Poliza\Capa_Vista_Poliza\bin\Debug\Capa_Vista_Poliza.dll</HintPath>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />

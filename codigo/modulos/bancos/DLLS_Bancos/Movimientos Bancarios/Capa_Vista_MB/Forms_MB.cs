@@ -95,98 +95,114 @@ namespace Capa_Vista_MB
                 var dt = oCrud.fun_obtener_movimientos_por_filtro();
                 Dgv_Detalle_Movimiento.Rows.Clear();
 
-                if (dt != null && dt.Rows.Count > 0)
+                // Validar DataTable usando la clase de validaciones
+                var validacionDataTable = Cls_MovimientoValidaciones.ValidarDataTableMovimientos(dt);
+
+                if (validacionDataTable.tieneDatos)
                 {
+                    // Validar columnas obligatorias
+                    var columnasRequeridas = new[] {
+                "Pk_Id_Movimiento", "Fk_Id_CuentaOrigen", "Fk_Id_Operacion",
+                "Cmp_Estado", "Cmp_NombreBanco", "Cmp_NumeroCuenta",
+                "Cmp_NombreTransaccion", "Cmp_MontoTotal"
+            };
+
+                    var validacionColumnas = Cls_MovimientoValidaciones.ValidarColumnasObligatorias(dt, columnasRequeridas);
+
+                    if (!validacionColumnas.todasExisten)
+                    {
+                        MessageBox.Show($"Faltan columnas en los datos: {string.Join(", ", validacionColumnas.columnasFaltantes)}",
+                                      "Error de Datos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     foreach (DataRow row in dt.Rows)
                     {
                         int index = Dgv_Detalle_Movimiento.Rows.Add();
 
-                        if (dt.Columns.Contains("Pk_Id_Movimiento"))
+                        // Asignar valores básicos con validación
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Pk_Id_Movimiento"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Pk_Id_Movimiento"].Value = row["Pk_Id_Movimiento"];
 
-                        if (dt.Columns.Contains("Fk_Id_CuentaOrigen"))
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Fk_Id_CuentaOrigen"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Fk_Id_CuentaOrigen"].Value = row["Fk_Id_CuentaOrigen"];
 
-                        if (dt.Columns.Contains("Fk_Id_Operacion"))
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Fk_Id_Operacion"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Fk_Id_Operacion"].Value = row["Fk_Id_Operacion"];
 
-                        if (dt.Columns.Contains("Cmp_Estado"))
+                        // Estado y estilos
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_Estado"))
                         {
                             string estado = row["Cmp_Estado"]?.ToString() ?? "";
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Movimiento"].Value = estado;
-
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Value = estado;
 
-                            if (estado == "ANULADO")
+                            // Aplicar estilos según estado
+                            var estilos = Cls_MovimientoValidaciones.ObtenerEstilosPorEstado(estado);
+                            if (estilos.colorFondo != null)
                             {
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.BackColor = Color.LightCoral;
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.ForeColor = Color.DarkRed;
-                            }
-                            else if (estado == "ACTIVO")
-                            {
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.BackColor = Color.LightGreen;
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.ForeColor = Color.DarkGreen;
-                            }
-                            else
-                            {
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.BackColor = Color.LightYellow;
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.ForeColor = Color.DarkOrange;
+                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.BackColor =
+                                    Color.FromName(estilos.colorFondo);
+                                Dgv_Detalle_Movimiento.Rows[index].Cells["Estado_Visible"].Style.ForeColor =
+                                    Color.FromName(estilos.colorTexto);
                             }
                         }
 
-                        if (dt.Columns.Contains("Cmp_Conciliado"))
+                        // Conciliado
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_Conciliado"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Conciliado"].Value = row["Cmp_Conciliado"];
 
-                        if (dt.Columns.Contains("Cmp_NombreBanco"))
+                        // Información de cuenta
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_NombreBanco"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Nombre_Cuenta"].Value = row["Cmp_NombreBanco"];
 
-                        if (dt.Columns.Contains("Cmp_NumeroCuenta"))
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_NumeroCuenta"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Codigo_Cuenta"].Value = row["Cmp_NumeroCuenta"];
 
-                        if (dt.Columns.Contains("Cmp_NombreTransaccion"))
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_NombreTransaccion"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Tipo_Operacion"].Value = row["Cmp_NombreTransaccion"];
 
-                        if (dt.Columns.Contains("Cmp_MontoTotal") && dt.Columns.Contains("Cmp_NombreTransaccion"))
+                        // Débito y Haber
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_MontoTotal") &&
+                            Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_NombreTransaccion"))
                         {
-                            decimal monto = Convert.ToDecimal(row["Cmp_MontoTotal"]);
-                            string tipoTransaccion = row["Cmp_NombreTransaccion"]?.ToString() ?? "";
+                            var validacionMonto = Cls_MovimientoValidaciones.ValidarMontoMovimiento(row["Cmp_MontoTotal"]);
+                            if (validacionMonto.esValido)
+                            {
+                                decimal monto = validacionMonto.monto;
+                                string tipoTransaccion = row["Cmp_NombreTransaccion"]?.ToString() ?? "";
 
-                            if (tipoTransaccion.ToUpper().Contains("DEPÓSITO") ||
-                                tipoTransaccion.ToUpper().Contains("INGRESO") ||
-                                tipoTransaccion.ToUpper().Contains("RECIBIDA"))
-                            {
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Debe"].Value = monto; // Débito
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Haber"].Value = 0;
-                            }
-                            else
-                            {
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Debe"].Value = 0;
-                                Dgv_Detalle_Movimiento.Rows[index].Cells["Haber"].Value = monto; // Crédito
+                                var operacion = Cls_MovimientoValidaciones.DeterminarTipoOperacionYMonto(tipoTransaccion, monto);
+                                Dgv_Detalle_Movimiento.Rows[index].Cells["Debe"].Value = operacion.debe;
+                                Dgv_Detalle_Movimiento.Rows[index].Cells["Haber"].Value = operacion.haber;
                             }
                         }
 
-                        if (dt.Columns.Contains("Cmp_Concepto"))
+                        // Concepto
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_Concepto"))
                         {
-                            Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Concepto"].Value = row["Cmp_Concepto"];
-                        }
-                        else
-                        {
-                            Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Concepto"].Value = "Movimiento bancario";
+                            string concepto = Cls_MovimientoValidaciones.ObtenerConceptoPorDefecto(row["Cmp_Concepto"]);
+                            Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Concepto"].Value = concepto;
                         }
 
-                        if (dt.Columns.Contains("Cmp_NumeroDocumento"))
+                        // Documento
+                        if (Cls_MovimientoValidaciones.ValidarExistenciaColumna(dt, "Cmp_NumeroDocumento"))
                             Dgv_Detalle_Movimiento.Rows[index].Cells["Cmp_Num_Documento"].Value = row["Cmp_NumeroDocumento"];
                     }
 
-                    Dgv_Detalle_Movimiento.ReadOnly = true;
-                    Dgv_Detalle_Movimiento.AllowUserToAddRows = false;
+                    // Configurar modo del grid
+                    var modoGrid = Cls_MovimientoValidaciones.DeterminarModoGrid(true);
+                    Dgv_Detalle_Movimiento.ReadOnly = modoGrid.modoLectura;
+                    Dgv_Detalle_Movimiento.AllowUserToAddRows = modoGrid.permitirAgregarFilas;
 
                     pro_actualizar_todos_los_totales();
                 }
                 else
                 {
-                    Dgv_Detalle_Movimiento.ReadOnly = false;
-                    Dgv_Detalle_Movimiento.AllowUserToAddRows = true;
+                    // Modo sin datos - preparar para captura
+                    var modoGrid = Cls_MovimientoValidaciones.DeterminarModoGrid(false);
+                    Dgv_Detalle_Movimiento.ReadOnly = modoGrid.modoLectura;
+                    Dgv_Detalle_Movimiento.AllowUserToAddRows = modoGrid.permitirAgregarFilas;
                     Dgv_Detalle_Movimiento.Rows.Add();
 
                     pro_actualizar_todos_los_totales();
@@ -402,20 +418,35 @@ namespace Capa_Vista_MB
                 DataTable dts_Cuentas = oSeleccion.fun_obtener_cuentas();
                 if (dts_Cuentas.Rows.Count > 0)
                 {
-                    Cbo_NoCuenta_Recibe.DataSource = dts_Cuentas;
-                    Cbo_NoCuenta_Recibe.DisplayMember = "Cmp_Numero_Cuenta";
-                    Cbo_NoCuenta_Recibe.ValueMember = "Pk_Id_Cuenta";
-                    Cbo_NoCuenta_Recibe.SelectedIndex = -1;
+                    // Validar configuración del combo
+                    var validacionConfig = Cls_ValidacionesCombos.ValidarConfiguracionCombo(
+                        dts_Cuentas, "Cmp_Numero_Cuenta", "Pk_Id_Cuenta");
+
+                    if (validacionConfig.configuracionCorrecta)
+                    {
+                        // Configurar combo manualmente (sin pasar el control a la clase de validaciones)
+                        Cbo_NoCuenta_Recibe.DataSource = dts_Cuentas;
+                        Cbo_NoCuenta_Recibe.DisplayMember = "Cmp_Numero_Cuenta";
+                        Cbo_NoCuenta_Recibe.ValueMember = "Pk_Id_Cuenta";
+                        Cbo_NoCuenta_Recibe.SelectedIndex = -1;
+                        Cbo_NoCuenta_Recibe.DropDownStyle = ComboBoxStyle.DropDownList;
+                    }
+                    else
+                    {
+                        MessageBox.Show(validacionConfig.mensaje, "Error de Configuración",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No hay cuentas disponibles en la base de datos.");
+                    MessageBox.Show(validacion.mensaje, "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las cuentas: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensajeError = Cls_ValidacionesCombos.ObtenerMensajeErrorCarga("las cuentas", ex);
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -426,20 +457,34 @@ namespace Capa_Vista_MB
                 DataTable dts_Cuentas = oSeleccion.fun_obtener_cuentas();
                 if (dts_Cuentas.Rows.Count > 0)
                 {
-                    Cbo_NoCuenta_Envia.DataSource = dts_Cuentas;
-                    Cbo_NoCuenta_Envia.DisplayMember = "Cmp_Numero_Cuenta";
-                    Cbo_NoCuenta_Envia.ValueMember = "Pk_Id_Cuenta";
-                    Cbo_NoCuenta_Envia.SelectedIndex = -1;
+                    var validacionConfig = Cls_ValidacionesCombos.ValidarConfiguracionCombo(
+                        dts_Cuentas, "Cmp_Numero_Cuenta", "Pk_Id_Cuenta");
+
+                    if (validacionConfig.configuracionCorrecta)
+                    {
+                        // Configurar combo manualmente
+                        Cbo_NoCuenta_Envia.DataSource = dts_Cuentas;
+                        Cbo_NoCuenta_Envia.DisplayMember = "Cmp_Numero_Cuenta";
+                        Cbo_NoCuenta_Envia.ValueMember = "Pk_Id_Cuenta";
+                        Cbo_NoCuenta_Envia.SelectedIndex = -1;
+                        Cbo_NoCuenta_Envia.DropDownStyle = ComboBoxStyle.DropDownList;
+                    }
+                    else
+                    {
+                        MessageBox.Show(validacionConfig.mensaje, "Error de Configuración",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("No hay cuentas disponibles en la base de datos.");
+                    MessageBox.Show(validacion.mensaje, "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las cuentas: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensajeError = Cls_ValidacionesCombos.ObtenerMensajeErrorCarga("las cuentas", ex);
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -504,20 +549,41 @@ namespace Capa_Vista_MB
                 Cbo_Operacion.DataSource = null;
                 Cbo_Operacion.Items.Clear();
 
-                if (dts_Operaciones == null || dts_Operaciones.Rows.Count == 0)
+                var validacion = Cls_ValidacionesCombos.ValidarDataTableCombo(dts_Operaciones, "operaciones");
+
+                if (validacion.tieneDatos)
                 {
-                    MessageBox.Show("No hay operaciones disponibles en la base de datos.");
-                    Cbo_Operacion.Enabled = false;
-                    return;
+                    var validacionConfig = Cls_ValidacionesCombos.ValidarConfiguracionCombo(
+                        dts_Operaciones, "Cmp_nombre", "Pk_Id_operacion");
+
+                    if (validacionConfig.configuracionCorrecta)
+                    {
+                        // Configurar combo manualmente
+                        Cbo_Operacion.DataSource = dts_Operaciones;
+                        Cbo_Operacion.DisplayMember = "Cmp_nombre";
+                        Cbo_Operacion.ValueMember = "Pk_Id_operacion";
+                        Cbo_Operacion.SelectedIndex = -1;
+                        Cbo_Operacion.DropDownStyle = ComboBoxStyle.DropDownList;
+                        Cbo_Operacion.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show(validacionConfig.mensaje, "Error de Configuración",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cbo_Operacion.Enabled = false;
+                    }
                 }
-                Cbo_Operacion.DataSource = dts_Operaciones;
-                Cbo_Operacion.DisplayMember = "Cmp_nombre";
-                Cbo_Operacion.ValueMember = "Pk_Id_operacion";
-                Cbo_Operacion.SelectedIndex = -1;
+                else
+                {
+                    MessageBox.Show(validacion.mensaje, "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cbo_Operacion.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar operaciones: " + ex.Message);
+                string mensajeError = Cls_ValidacionesCombos.ObtenerMensajeErrorCarga("operaciones", ex);
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Cbo_Operacion.DataSource = null;
                 Cbo_Operacion.Items.Clear();
                 Cbo_Operacion.Enabled = false;
@@ -532,24 +598,46 @@ namespace Capa_Vista_MB
                 Cbo_Moneda.DataSource = null;
                 Cbo_Moneda.Items.Clear();
 
-                if (dts_Monedas == null || dts_Monedas.Rows.Count == 0)
+                var validacion = Cls_ValidacionesCombos.ValidarDataTableCombo(dts_Monedas, "monedas");
+
+                if (validacion.tieneDatos)
                 {
-                    MessageBox.Show("No hay monedas disponibles en la base de datos.");
-                    Cbo_Moneda.Enabled = false;
-                    return;
+                    var validacionConfig = Cls_ValidacionesCombos.ValidarConfiguracionCombo(
+                        dts_Monedas, "Cmp_NombreMoneda", "Pk_Id_Moneda");
+
+                    if (validacionConfig.configuracionCorrecta)
+                    {
+                        // Configurar combo manualmente
+                        Cbo_Moneda.DataSource = dts_Monedas;
+                        Cbo_Moneda.DisplayMember = "Cmp_NombreMoneda";
+                        Cbo_Moneda.ValueMember = "Pk_Id_Moneda";
+                        Cbo_Moneda.SelectedIndex = -1;
+                        Cbo_Moneda.DropDownStyle = ComboBoxStyle.DropDownList;
+                        Cbo_Moneda.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show(validacionConfig.mensaje, "Error de Configuración",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Cbo_Moneda.Enabled = false;
+                    }
                 }
-                Cbo_Moneda.DataSource = dts_Monedas;
-                Cbo_Moneda.DisplayMember = "Cmp_NombreMoneda";
-                Cbo_Moneda.ValueMember = "Pk_Id_Moneda";
-                Cbo_Moneda.SelectedIndex = -1; // Sin selección por defecto
-                Cbo_Moneda.DropDownStyle = ComboBoxStyle.DropDownList; // No editable
+                else
+                {
+                    MessageBox.Show(validacion.mensaje, "Información",
+                                  MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Cbo_Moneda.Enabled = false;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar las monedas: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string mensajeError = Cls_ValidacionesCombos.ObtenerMensajeErrorCarga("las monedas", ex);
+                MessageBox.Show(mensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Cbo_Moneda.Enabled = false;
             }
         }
+
+
         private void Cbo_Operacion_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (Cbo_Operacion.SelectedValue == null) return;
@@ -586,6 +674,10 @@ namespace Capa_Vista_MB
         private bool bGuardando = false;
 
 
+        // ====================================================================================
+        // ======================= DEBE Y HABER ===============================================
+        // ====================================================================================
+
         // debe - haber - diferencia 
         private void pro_actualizar_total_debe()
         {
@@ -602,18 +694,26 @@ namespace Capa_Vista_MB
                 // Verificar que existe la columna "Debe"
                 if (!Dgv_Detalle_Movimiento.Columns.Contains("Debe"))
                 {
-                    Lbl_Debe.Text = "Debe: Columna no encontrada";
+                    Lbl_Debe.Text = validacionGrid.mensaje.Contains("Debe") ?
+                                   "Debe: Columna no encontrada" : "Debe: 0.00";
                     return;
                 }
+
+                decimal totalDebe = 0;
+                int celdasProcesadas = 0;
+
                 // Recorrer todas las filas del DataGridView
                 foreach (DataGridViewRow row in Dgv_Detalle_Movimiento.Rows)
                 {
-                    // Saltar filas nuevas vacías
-                    if (row.IsNewRow) continue;
-                    // Obtener el valor de la celda "Debe"
-                    object valorCelda = row.Cells["Debe"].Value;
+                    // Validar fila
+                    if (!Cls_ValidacionesTotales.EsFilaValidaParaCalculo(row.IsNewRow))
+                        continue;
 
-                    if (valorCelda != null && valorCelda != DBNull.Value && !string.IsNullOrEmpty(valorCelda.ToString()))
+                    // Obtener y validar valor de la celda "Debe"
+                    object valorCelda = row.Cells["Debe"].Value;
+                    var validacionValor = Cls_ValidacionesTotales.ObtenerValorDecimalDeCelda(valorCelda);
+
+                    if (validacionValor.esValido)
                     {
                         if (decimal.TryParse(valorCelda.ToString(), out decimal deMonto))
                         {
@@ -648,19 +748,26 @@ namespace Capa_Vista_MB
                 // Verificar que existe la columna "Haber"
                 if (!Dgv_Detalle_Movimiento.Columns.Contains("Haber"))
                 {
-                    Lbl_Haber.Text = "Haber: Columna no encontrada";
+                    Lbl_Haber.Text = validacionGrid.mensaje.Contains("Haber") ?
+                                    "Haber: Columna no encontrada" : "Haber: 0.00";
                     return;
                 }
+
+                decimal totalHaber = 0;
+                int celdasProcesadas = 0;
+
                 // Recorrer todas las filas del DataGridView
                 foreach (DataGridViewRow row in Dgv_Detalle_Movimiento.Rows)
                 {
-                    // Saltar filas nuevas vacías
-                    if (row.IsNewRow) continue;
+                    // Validar fila
+                    if (!Cls_ValidacionesTotales.EsFilaValidaParaCalculo(row.IsNewRow))
+                        continue;
 
-                    // Obtener el valor de la celda "Haber"
+                    // Obtener y validar valor de la celda "Haber"
                     object valorCelda = row.Cells["Haber"].Value;
+                    var validacionValor = Cls_ValidacionesTotales.ObtenerValorDecimalDeCelda(valorCelda);
 
-                    if (valorCelda != null && valorCelda != DBNull.Value && !string.IsNullOrEmpty(valorCelda.ToString()))
+                    if (validacionValor.esValido)
                     {
                         if (decimal.TryParse(valorCelda.ToString(), out decimal deMonto))
                         {
@@ -689,7 +796,9 @@ namespace Capa_Vista_MB
                 // Calcular ambos totales
                 foreach (DataGridViewRow row in Dgv_Detalle_Movimiento.Rows)
                 {
-                    if (row.IsNewRow) continue;
+                    if (!Cls_ValidacionesTotales.EsFilaValidaParaCalculo(row.IsNewRow))
+                        continue;
+
                     // Débito
                     object valorDebe = row.Cells["Debe"].Value;
                     if (valorDebe != null && valorDebe != DBNull.Value)
@@ -756,14 +865,12 @@ namespace Capa_Vista_MB
                 // Un solo recorrido para ambos totales - SOLO FILAS ACTIVAS
                 foreach (DataGridViewRow row in Dgv_Detalle_Movimiento.Rows)
                 {
-                    if (row.IsNewRow) continue;
-                    //VERIFICAR SI EL MOVIMIENTO ESTÁ ACTIVO
-                    string estado = row.Cells["Estado_Movimiento"]?.Value?.ToString() ?? "ACTIVO";
-                    if (estado == "ANULADO")
-                    {
-                        // Si está anulado, no sumar a los totales
+                    if (!Cls_ValidacionesTotales.EsFilaValidaParaCalculo(row.IsNewRow))
                         continue;
-                    }
+
+                    // Obtener estado del movimiento
+                    string estado = row.Cells["Estado_Movimiento"]?.Value?.ToString() ?? "ACTIVO";
+
                     // Débito
                     object valorDebe = row.Cells["Debe"].Value;
                     if (valorDebe != null && valorDebe != DBNull.Value)
@@ -810,6 +917,7 @@ namespace Capa_Vista_MB
                     Lbl_Diferencia.Text = $"Diferencia: {deDiferencia:N2}";
                 }
 
+                // Aplicar estilos en negrita
                 Lbl_Debe.Font = new Font(Lbl_Debe.Font, FontStyle.Bold);
                 Lbl_Haber.Font = new Font(Lbl_Haber.Font, FontStyle.Bold);
                 Lbl_Diferencia.Font = new Font(Lbl_Diferencia.Font, FontStyle.Bold);
@@ -824,25 +932,24 @@ namespace Capa_Vista_MB
         }
 
 
-        ///bOTONES
+        // =============================================
+        // GUARDAR
+        // =============================================
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             Dgv_Detalle_Movimiento.EndEdit();
-
             // VERIFICAR SI ESTAMOS EN MODO EDICIÓN
             if (bEditando)
             {
                 pro_actualizar_movimiento();
                 return;
             }
-
             // SI NO ESTÁ EDITANDO, ENTONCES CREAR NUEVO MOVIMIENTO
             try
             {
                 // Evitar múltiples ejecuciones
                 if (bGuardando) return;
                 bGuardando = true;
-
                 // VALIDACIONES DEL FORMULARIO
                 var validacion = Cls_ValidacionesGuardar.fun_validar_formulario(
                     Cbo_NoCuenta_Envia,
@@ -947,7 +1054,7 @@ namespace Capa_Vista_MB
         }
 
         // =============================================
-        // MÉTODO AUXILIAR PARA LIMPIAR FORMULARIO
+        // LIMPIAR FORMULARIO
         // =============================================
         private void pro_limpiar_formulario()
         {
@@ -1003,6 +1110,7 @@ namespace Capa_Vista_MB
             }
         }
 
+ 
         // =============================================
         // MÉTODO PARA CARGAR TIPOS DE PAGO
         // =============================================
@@ -1165,8 +1273,7 @@ namespace Capa_Vista_MB
                     string sTipoLinea = sSigno == "+" ? "D" : "C";
                     string sCuentaContable = oSeleccion.fun_obtener_cuenta_contable_por_defecto();
 
-                    var lst_Detalles = new List<Cls_Sentencias.Cls_MovimientoDetalle>
-            {
+                    var lst_Detalles = new List<Cls_Sentencias.Cls_MovimientoDetalle> {
                 new Cls_Sentencias.Cls_MovimientoDetalle
                 {
                     sFk_Id_cuenta_contable = sCuentaContable,
@@ -1262,13 +1369,13 @@ namespace Capa_Vista_MB
                     oSeleccion.fun_obtener_signo_operacion_por_id
                 );
 
-                if (!res.Exito)
+                if (!resultado.Exito)
                 {
-                    MessageBox.Show(res.Mensaje, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(resultado.Mensaje, "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                var d = res.Data;
+                var d = resultado.Data;
 
                 // ---- PINTAR CONTROLES  ----
                 Cbo_NoCuenta_Envia.SelectedValue = d.FkCuentaOrigen;
@@ -1324,11 +1431,30 @@ namespace Capa_Vista_MB
                     Txt_NombreCuenta_Envia.Text = oSeleccion.fun_obtener_nombre_cuenta(idOri);
                 }
 
-                // Habilitar/deshabilitar cuenta recibe según nombre de operación en el combo
-                if (Cbo_Operacion.SelectedValue != null)
-                {
-                    var drv = Cbo_Operacion.SelectedItem as DataRowView;
-                    string nomOp = drv?["Cmp_nombre"]?.ToString().Trim() ?? string.Empty;
+        private void CargarControlesConDatos(Cls_ValidacionesCargarEdicion.MovimientoEdicionDTO d)
+        {
+            // ---- PINTAR CONTROLES ----
+            Cbo_NoCuenta_Envia.SelectedValue = d.FkCuentaOrigen;
+            Cbo_Operacion.SelectedValue = d.FkOperacion;
+            Txt_NumeroDocumento.Text = d.NumeroDocumento ?? string.Empty;
+            Dtp_FechaMovimiento.Value = d.Fecha;
+            Txt_Concepto.Text = d.Concepto ?? string.Empty;
+            Txt_Monto.Text = d.MontoTotal.ToString("N2");
+            Txt_Beneficiario.Text = d.Beneficiario ?? string.Empty;
+
+            // Estado
+            if (!string.IsNullOrWhiteSpace(d.Estado))
+                Cbo_Estado.SelectedItem = d.Estado;
+
+            // Signo 
+            if (d.Signo == "+" || d.Signo == "-")
+                Cbo_Signo.SelectedItem = d.Signo;
+
+            // Tipo de pago
+            if (d.TipoPagoId.HasValue)
+                Cbo_TipoPago.SelectedValue = d.TipoPagoId.Value;
+            else
+                Cbo_TipoPago.SelectedIndex = -1;
 
                     bool bHabilitarRecibe =
                         nomOp.Equals("TRANSFERENCIA_ENVIADA", StringComparison.OrdinalIgnoreCase) ||
@@ -1339,9 +1465,34 @@ namespace Capa_Vista_MB
                     Txt_NombreCuenta_Recibe.Enabled = bHabilitarRecibe;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception($"Error al cargar datos para edición: {ex.Message}");
+                Cbo_NoCuenta_Recibe.SelectedIndex = -1;
+                Txt_NombreCuenta_Recibe.Clear();
+                Cbo_NoCuenta_Recibe.Enabled = false;
+                Txt_NombreCuenta_Recibe.Enabled = false;
+            }
+
+            // Nombre cuenta origen
+            if (Cbo_NoCuenta_Envia.SelectedValue != null)
+            {
+                int idOri = Convert.ToInt32(Cbo_NoCuenta_Envia.SelectedValue);
+                Txt_NombreCuenta_Envia.Text = seleccion.fun_ObtenerNombreCuenta(idOri);
+            }
+
+            // Habilitar/deshabilitar cuenta recibe según nombre de operación en el combo
+            if (Cbo_Operacion.SelectedValue != null)
+            {
+                var drv = Cbo_Operacion.SelectedItem as DataRowView;
+                string nomOp = drv?["Cmp_nombre"]?.ToString().Trim() ?? string.Empty;
+
+                bool habilitarRecibe =
+                    nomOp.Equals("TRANSFERENCIA_ENVIADA", StringComparison.OrdinalIgnoreCase) ||
+                    nomOp.Equals("TRANSFERENCIA RECIBIDA", StringComparison.OrdinalIgnoreCase) ||
+                    nomOp.Equals("TRANSFERENCIA_RECIBIDA", StringComparison.OrdinalIgnoreCase);
+
+                Cbo_NoCuenta_Recibe.Enabled = habilitarRecibe;
+                Txt_NombreCuenta_Recibe.Enabled = habilitarRecibe;
             }
         }
 
@@ -1439,7 +1590,6 @@ namespace Capa_Vista_MB
                     {
                         MessageBox.Show("Movimiento anulado correctamente.", "Éxito",
                                       MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                         // Aplicar estilo de anulado en la vista
                         selectedRow.Cells["Estado_Movimiento"].Value = "ANULADO";
                         selectedRow.Cells["Estado_Visible"].Value = "ANULADO";

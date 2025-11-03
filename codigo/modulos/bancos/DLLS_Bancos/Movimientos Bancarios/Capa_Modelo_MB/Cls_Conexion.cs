@@ -7,7 +7,7 @@ namespace Capa_Modelo_MB
     {
         public OdbcConnection fun_conexion_bd()
         {
-            OdbcConnection odcn_Conn = new OdbcConnection("Dsn=bd_hoteleria");
+            OdbcConnection odcn_Conn = new OdbcConnection("Dsn=Bancos2");
             try
             {
                 odcn_Conn.Open();
