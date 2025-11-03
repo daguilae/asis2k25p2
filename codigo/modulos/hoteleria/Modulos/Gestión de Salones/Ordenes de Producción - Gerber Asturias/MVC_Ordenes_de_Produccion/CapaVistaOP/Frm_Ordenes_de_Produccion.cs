@@ -74,5 +74,10 @@ namespace CapaVistaOP
             MessageBox.Show("Orden de producción eliminada correctamente");
             CargarTabla();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

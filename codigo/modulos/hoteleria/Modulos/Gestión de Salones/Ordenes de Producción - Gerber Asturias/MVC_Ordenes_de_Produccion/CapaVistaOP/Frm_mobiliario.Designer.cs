@@ -1,7 +1,7 @@
 ﻿
 namespace CapaVistaOP
 {
-    partial class Frm_Ordenes_de_Produccion
+    partial class Frm_mobiliario
     {
         /// <summary>
         /// Required designer variable.
@@ -29,23 +29,21 @@ namespace CapaVistaOP
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_de_Produccion));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_mobiliario));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtIdOP = new System.Windows.Forms.TextBox();
             this.Lbl_Nombre_Huesped = new System.Windows.Forms.Label();
-            this.dgvOP = new System.Windows.Forms.DataGridView();
+            this.txt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpSolicitud = new System.Windows.Forms.DateTimePicker();
-            this.dtpRegistro = new System.Windows.Forms.DateTimePicker();
+            this.txtMobiliario = new System.Windows.Forms.TextBox();
+            this.dgvmobiliario = new System.Windows.Forms.DataGridView();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvmobiliario)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
@@ -57,16 +55,16 @@ namespace CapaVistaOP
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
-            this.Pnl_Superior.TabIndex = 99;
+            this.Pnl_Superior.TabIndex = 100;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(790, 7);
+            this.button1.Location = new System.Drawing.Point(837, 9);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 37);
+            this.button1.Size = new System.Drawing.Size(34, 37);
             this.button1.TabIndex = 105;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -85,93 +83,77 @@ namespace CapaVistaOP
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 69);
+            this.label2.Location = new System.Drawing.Point(29, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 21);
-            this.label2.TabIndex = 106;
-            this.label2.Text = "ORDENES DE PRODUCCIÓN";
+            this.label2.Size = new System.Drawing.Size(120, 21);
+            this.label2.TabIndex = 107;
+            this.label2.Text = "MOBILIARIO";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // txtIdOP
-            // 
-            this.txtIdOP.BackColor = System.Drawing.Color.White;
-            this.txtIdOP.Location = new System.Drawing.Point(251, 125);
-            this.txtIdOP.Name = "txtIdOP";
-            this.txtIdOP.Size = new System.Drawing.Size(200, 22);
-            this.txtIdOP.TabIndex = 118;
             // 
             // Lbl_Nombre_Huesped
             // 
             this.Lbl_Nombre_Huesped.AutoSize = true;
             this.Lbl_Nombre_Huesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(29, 125);
+            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(29, 115);
             this.Lbl_Nombre_Huesped.Name = "Lbl_Nombre_Huesped";
-            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(193, 20);
-            this.Lbl_Nombre_Huesped.TabIndex = 117;
-            this.Lbl_Nombre_Huesped.Text = "Id orden de produccion";
+            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(109, 20);
+            this.Lbl_Nombre_Huesped.TabIndex = 118;
+            this.Lbl_Nombre_Huesped.Text = "Id mobiliario";
             // 
-            // dgvOP
+            // txt
             // 
-            this.dgvOP.AllowUserToAddRows = false;
-            this.dgvOP.AllowUserToDeleteRows = false;
-            this.dgvOP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOP.Location = new System.Drawing.Point(33, 282);
-            this.dgvOP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvOP.Name = "dgvOP";
-            this.dgvOP.ReadOnly = true;
-            this.dgvOP.RowHeadersWidth = 51;
-            this.dgvOP.RowTemplate.Height = 24;
-            this.dgvOP.Size = new System.Drawing.Size(823, 295);
-            this.dgvOP.TabIndex = 119;
-            this.dgvOP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOP_CellContentClick);
+            this.txt.BackColor = System.Drawing.Color.White;
+            this.txt.Location = new System.Drawing.Point(179, 115);
+            this.txt.Name = "txt";
+            this.txt.Size = new System.Drawing.Size(200, 22);
+            this.txt.TabIndex = 119;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 176);
+            this.label3.Location = new System.Drawing.Point(29, 162);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 20);
-            this.label3.TabIndex = 120;
-            this.label3.Text = "Fecha de solicitud";
+            this.label3.Size = new System.Drawing.Size(90, 20);
+            this.label3.TabIndex = 121;
+            this.label3.Text = "Mobiliario";
             // 
-            // label4
+            // txtMobiliario
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(29, 219);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 20);
-            this.label4.TabIndex = 122;
-            this.label4.Text = "Fecha de registro";
+            this.txtMobiliario.BackColor = System.Drawing.Color.White;
+            this.txtMobiliario.Location = new System.Drawing.Point(179, 162);
+            this.txtMobiliario.Name = "txtMobiliario";
+            this.txtMobiliario.Size = new System.Drawing.Size(200, 22);
+            this.txtMobiliario.TabIndex = 122;
             // 
-            // dtpSolicitud
+            // dgvmobiliario
             // 
-            this.dtpSolicitud.Location = new System.Drawing.Point(251, 176);
-            this.dtpSolicitud.Name = "dtpSolicitud";
-            this.dtpSolicitud.Size = new System.Drawing.Size(200, 22);
-            this.dtpSolicitud.TabIndex = 123;
-            // 
-            // dtpRegistro
-            // 
-            this.dtpRegistro.Location = new System.Drawing.Point(251, 219);
-            this.dtpRegistro.Name = "dtpRegistro";
-            this.dtpRegistro.Size = new System.Drawing.Size(200, 22);
-            this.dtpRegistro.TabIndex = 124;
+            this.dgvmobiliario.AllowUserToAddRows = false;
+            this.dgvmobiliario.AllowUserToDeleteRows = false;
+            this.dgvmobiliario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvmobiliario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvmobiliario.Location = new System.Drawing.Point(30, 244);
+            this.dgvmobiliario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dgvmobiliario.Name = "dgvmobiliario";
+            this.dgvmobiliario.ReadOnly = true;
+            this.dgvmobiliario.RowHeadersWidth = 51;
+            this.dgvmobiliario.RowTemplate.Height = 24;
+            this.dgvmobiliario.Size = new System.Drawing.Size(841, 342);
+            this.dgvmobiliario.TabIndex = 123;
+            this.dgvmobiliario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvmobiliario_CellContentClick);
             // 
             // btnEditar
             // 
             this.btnEditar.BackColor = System.Drawing.Color.White;
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(815, 69);
+            this.btnEditar.Location = new System.Drawing.Point(809, 68);
             this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(53, 46);
-            this.btnEditar.TabIndex = 127;
+            this.btnEditar.TabIndex = 130;
             this.btnEditar.UseVisualStyleBackColor = false;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
@@ -180,13 +162,13 @@ namespace CapaVistaOP
             this.btnEliminar.BackColor = System.Drawing.Color.White;
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(756, 69);
+            this.btnEliminar.Location = new System.Drawing.Point(750, 68);
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(53, 46);
-            this.btnEliminar.TabIndex = 126;
+            this.btnEliminar.TabIndex = 129;
             this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // btnGuardar
             // 
@@ -194,15 +176,15 @@ namespace CapaVistaOP
             this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(697, 69);
+            this.btnGuardar.Location = new System.Drawing.Point(691, 68);
             this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(53, 46);
-            this.btnGuardar.TabIndex = 125;
+            this.btnGuardar.TabIndex = 128;
             this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.Btn_guardar_Click);
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // Frm_Ordenes_de_Produccion
+            // Frm_mobiliario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -210,20 +192,18 @@ namespace CapaVistaOP
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.dtpRegistro);
-            this.Controls.Add(this.dtpSolicitud);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.dgvmobiliario);
+            this.Controls.Add(this.txtMobiliario);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dgvOP);
-            this.Controls.Add(this.txtIdOP);
+            this.Controls.Add(this.txt);
             this.Controls.Add(this.Lbl_Nombre_Huesped);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Pnl_Superior);
-            this.Name = "Frm_Ordenes_de_Produccion";
-            this.Text = "Frm_Ordenes_de_Produccion";
+            this.Name = "Frm_mobiliario";
+            this.Text = "Frm_mobiliario";
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvmobiliario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,18 +212,16 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIdOP;
         private System.Windows.Forms.Label Lbl_Nombre_Huesped;
-        private System.Windows.Forms.DataGridView dgvOP;
+        private System.Windows.Forms.TextBox txt;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpSolicitud;
-        private System.Windows.Forms.DateTimePicker dtpRegistro;
+        private System.Windows.Forms.TextBox txtMobiliario;
+        private System.Windows.Forms.DataGridView dgvmobiliario;
         private System.Windows.Forms.Button btnEditar;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button button1;
     }
 }
