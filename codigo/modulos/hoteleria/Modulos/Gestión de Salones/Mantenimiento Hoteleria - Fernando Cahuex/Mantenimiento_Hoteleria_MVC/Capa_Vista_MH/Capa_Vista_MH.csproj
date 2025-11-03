@@ -83,5 +83,8 @@
   <ItemGroup>
     <None Include="Resources\icono_buscar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icono_limpiar %281%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
