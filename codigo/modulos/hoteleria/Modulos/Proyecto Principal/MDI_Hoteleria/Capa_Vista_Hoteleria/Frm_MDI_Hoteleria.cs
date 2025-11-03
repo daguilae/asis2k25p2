@@ -118,5 +118,10 @@ namespace Capa_Vista_Hoteleria
             Frm_Produccion_Hoteleria produccion_Hoteleria = new Frm_Produccion_Hoteleria();
 
         }
+
+        private void estadiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Estadia estadia = new Frm_Estadia();
+        }
     }
 }

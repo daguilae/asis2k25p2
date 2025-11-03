@@ -34,8 +34,10 @@ namespace Capa_Vista_Gestion_Habitacion
                         "Cmp_Piso_Habitacion",
                         "Cmp_Descripcion_Habitacion",
                         "Cmp_Tamaño_Habitacion_m2",
+                        "Cmp_Capacidad_Habitacion",
                         "Cmp_Estado_Habitacion",
                         "Cmp_Tarifa_Noche"
+
                     };
 
                                 string[] sEtiquetas = {
@@ -44,6 +46,7 @@ namespace Capa_Vista_Gestion_Habitacion
                         "Piso de Habitación",
                         "Descripción de Habitación",
                         "Tamaño Habitación (m²)",
+                        "Capacidad Habitaciones",
                         "Estado de Habitación",
                         "Tarifa por Noche"
                     };

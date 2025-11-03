@@ -29,9 +29,9 @@ namespace Capa_Vista_Gestion_Habitacion
 
                 string[] columnas = {
                     "Tbl_Tipo_Habitacion",
-                    "PK_ID_Tipo_Habitaciones",
+                    "Pk_ID_Tipo_Habitaciones",
                     "Cmp_Tipo_Habitacion",
-                    "Cmp_Description_Tipo_Habitacion"
+                    "Cmp_Descripcion_Tipo_Habitacion"
                 };
 
                 string[] sEtiquetas = {

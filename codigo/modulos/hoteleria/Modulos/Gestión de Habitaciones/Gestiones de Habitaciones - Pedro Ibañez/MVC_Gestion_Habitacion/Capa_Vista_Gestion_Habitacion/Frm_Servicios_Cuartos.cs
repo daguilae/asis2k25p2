@@ -28,9 +28,9 @@ namespace Capa_Vista_Gestion_Habitacion
             };
 
                    string[] columnas = {
-                        "Tbl_Service_habitacion",
-                        "PK_ID_Service_habitacion",
-                        "Cmp_Nombre_Service"
+                        "Tbl_Servicios_habitacion",
+                        "PK_ID_Servicio_habitacion",
+                        "Cmp_Nombre_Servicio"
                     };
 
                                 string[] sEtiquetas = {
