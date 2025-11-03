@@ -13,6 +13,7 @@ using Capa_Vista;
 using Capa_Vista_Ordenes;
 using Capa_Vista_Cheques;
 using Capa_Vista_MB;
+using Capa_Vista_Mantenimientos;
 
 namespace Capa_Vista_Bancos
 {
@@ -200,10 +201,8 @@ namespace Capa_Vista_Bancos
         }
         private void empleadosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Empleados formEmpleado = new Frm_Empleados();
-            formEmpleado.MdiParent = this;
-            formEmpleado.Show();
+            Frm_M_Bancos F = new Frm_M_Bancos();
+            F.ShowDialog();
         }
         private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -214,10 +213,8 @@ namespace Capa_Vista_Bancos
         }
         private void perfilesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Perfiles perfiles = new Frm_Perfiles();
-            perfiles.MdiParent = this;
-            perfiles.Show();
+            Frm_M_CuentasBancarias M = new Frm_M_CuentasBancarias();
+            M.ShowDialog();
         }
         private void modulosDeCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -228,17 +225,13 @@ namespace Capa_Vista_Bancos
         }
         private void modulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Modulo modulo = new Frm_Modulo();
-            modulo.MdiParent = this;
-            modulo.Show();
+            Frm_M_TipoPagos M = new Frm_M_TipoPagos();
+            M.ShowDialog();
         }
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Usuario frm = new Frm_Usuario();
-            frm.MdiParent = this;
-            frm.Show();
+            Frm_M_Monedas M = new Frm_M_Monedas();
+            M.ShowDialog();
         }
         private void Btn_Bitacora_Click(object sender, EventArgs e)
         {
@@ -263,10 +256,8 @@ namespace Capa_Vista_Bancos
         }
         private void Btn_Aplicacion_Click_1(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            FrmAplicacion formAplicacion = new FrmAplicacion();
-            formAplicacion.MdiParent = this;
-            formAplicacion.Show();
+            Frm_M_Transacciones M = new Frm_M_Transacciones();
+            M.ShowDialog();
         }
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
