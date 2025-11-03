@@ -29,14 +29,11 @@ namespace Capa_Vista_Contabilidad
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Poliza_Turismo));
-            this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
             this.Gpb_Rangos = new System.Windows.Forms.GroupBox();
             this.Txt_Fecha_Rango2 = new System.Windows.Forms.TextBox();
             this.Txt_fecha_Rango = new System.Windows.Forms.TextBox();
             this.Lbl_fecha_rango = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Gpb_Generales = new System.Windows.Forms.GroupBox();
             this.Txt_Concepto = new System.Windows.Forms.TextBox();
             this.Lbl_Concepto = new System.Windows.Forms.Label();
             this.Txt_ID_Poliza = new System.Windows.Forms.TextBox();
@@ -45,34 +42,9 @@ namespace Capa_Vista_Contabilidad
             this.Btn_Aceptar = new System.Windows.Forms.Button();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Lbl_Poliza = new System.Windows.Forms.Label();
-            this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Cerrar)).BeginInit();
             this.Gpb_Rangos.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.Gpb_Generales.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Pnl_Superior
-            // 
-            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.Pic_Cerrar);
-            this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(832, 44);
-            this.Pnl_Superior.TabIndex = 96;
-            // 
-            // Pic_Cerrar
-            // 
-            this.Pic_Cerrar.BackColor = System.Drawing.Color.Transparent;
-            this.Pic_Cerrar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Pic_Cerrar.Image = ((System.Drawing.Image)(resources.GetObject("Pic_Cerrar.Image")));
-            this.Pic_Cerrar.Location = new System.Drawing.Point(795, 0);
-            this.Pic_Cerrar.Name = "Pic_Cerrar";
-            this.Pic_Cerrar.Size = new System.Drawing.Size(37, 44);
-            this.Pic_Cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Pic_Cerrar.TabIndex = 1;
-            this.Pic_Cerrar.TabStop = false;
-            this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
             // Gpb_Rangos
             // 
@@ -112,20 +84,20 @@ namespace Capa_Vista_Contabilidad
             this.Lbl_fecha_rango.TabIndex = 0;
             this.Lbl_fecha_rango.Text = "Fechas";
             // 
-            // groupBox1
+            // Gpb_Generales
             // 
-            this.groupBox1.Controls.Add(this.Txt_Concepto);
-            this.groupBox1.Controls.Add(this.Lbl_Concepto);
-            this.groupBox1.Controls.Add(this.Txt_ID_Poliza);
-            this.groupBox1.Controls.Add(this.Txt_Fecha_Generales);
-            this.groupBox1.Controls.Add(this.Lbl_Fecha_Generales);
-            this.groupBox1.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(135, 257);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(566, 159);
-            this.groupBox1.TabIndex = 98;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Generales de la Poliza";
+            this.Gpb_Generales.Controls.Add(this.Txt_Concepto);
+            this.Gpb_Generales.Controls.Add(this.Lbl_Concepto);
+            this.Gpb_Generales.Controls.Add(this.Txt_ID_Poliza);
+            this.Gpb_Generales.Controls.Add(this.Txt_Fecha_Generales);
+            this.Gpb_Generales.Controls.Add(this.Lbl_Fecha_Generales);
+            this.Gpb_Generales.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Gpb_Generales.Location = new System.Drawing.Point(135, 257);
+            this.Gpb_Generales.Name = "Gpb_Generales";
+            this.Gpb_Generales.Size = new System.Drawing.Size(566, 159);
+            this.Gpb_Generales.TabIndex = 98;
+            this.Gpb_Generales.TabStop = false;
+            this.Gpb_Generales.Text = "Generales de la Poliza";
             // 
             // Txt_Concepto
             // 
@@ -205,12 +177,12 @@ namespace Capa_Vista_Contabilidad
             // 
             this.Lbl_Poliza.AutoSize = true;
             this.Lbl_Poliza.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Poliza.Location = new System.Drawing.Point(307, 57);
+            this.Lbl_Poliza.Location = new System.Drawing.Point(242, 61);
             this.Lbl_Poliza.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Poliza.Name = "Lbl_Poliza";
-            this.Lbl_Poliza.Size = new System.Drawing.Size(261, 35);
+            this.Lbl_Poliza.Size = new System.Drawing.Size(390, 35);
             this.Lbl_Poliza.TabIndex = 101;
-            this.Lbl_Poliza.Text = "Poliza de Turismo";
+            this.Lbl_Poliza.Text = "Traslado de Poliza Turismo";
             // 
             // Frm_Poliza_Turismo
             // 
@@ -221,33 +193,25 @@ namespace Capa_Vista_Contabilidad
             this.Controls.Add(this.Lbl_Poliza);
             this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Aceptar);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.Gpb_Generales);
             this.Controls.Add(this.Gpb_Rangos);
-            this.Controls.Add(this.Pnl_Superior);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "Frm_Poliza_Turismo";
             this.Text = "Frm_Poliza_Turismo";
-            this.Pnl_Superior.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Cerrar)).EndInit();
             this.Gpb_Rangos.ResumeLayout(false);
             this.Gpb_Rangos.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Gpb_Generales.ResumeLayout(false);
+            this.Gpb_Generales.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel Pnl_Superior;
         private System.Windows.Forms.GroupBox Gpb_Rangos;
         private System.Windows.Forms.TextBox Txt_Fecha_Rango2;
         private System.Windows.Forms.TextBox Txt_fecha_Rango;
         private System.Windows.Forms.Label Lbl_fecha_rango;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox Gpb_Generales;
         private System.Windows.Forms.TextBox Txt_Concepto;
         private System.Windows.Forms.Label Lbl_Concepto;
         private System.Windows.Forms.TextBox Txt_ID_Poliza;
@@ -256,6 +220,5 @@ namespace Capa_Vista_Contabilidad
         private System.Windows.Forms.Button Btn_Aceptar;
         private System.Windows.Forms.Button Btn_Cancelar;
         private System.Windows.Forms.Label Lbl_Poliza;
-        private System.Windows.Forms.PictureBox Pic_Cerrar;
     }
 }
