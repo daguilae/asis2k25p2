@@ -16,5 +16,13 @@ namespace Capa_Vista_CxP
         {
             InitializeComponent();
         }
+
+        private void Btn_Pagos_Click(object sender, EventArgs e)
+        {
+            Frm_CxP_Pagos frmPagos = new Frm_CxP_Pagos();
+
+            frmPagos.Show();
+            this.Hide();
+        }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Capa_Vista_CxP;
 
 namespace Ejecutable_CxP
 {
@@ -16,7 +17,7 @@ namespace Ejecutable_CxP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Frm_CxP_Gestiòn());
         }
     }
 }
