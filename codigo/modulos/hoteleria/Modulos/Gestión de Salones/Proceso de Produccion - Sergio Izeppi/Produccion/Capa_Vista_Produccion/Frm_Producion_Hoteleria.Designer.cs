@@ -1,5 +1,5 @@
 ﻿
-namespace Capa_Vista_Produccion
+namespace CapaVistaProduccion
 {
     partial class Frm_Produccion_Hoteleria
     {
@@ -58,6 +58,9 @@ namespace Capa_Vista_Produccion
             this.Txt_Subtotal = new System.Windows.Forms.TextBox();
             this.Dgv_Platos = new System.Windows.Forms.DataGridView();
             this.Btn_Guardar_Plato = new System.Windows.Forms.Button();
+            this.Btn_eliminar_Plato = new System.Windows.Forms.Button();
+            this.Btn_editar_plato = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Room_Service)).BeginInit();
             this.Pnl_Superior.SuspendLayout();
@@ -76,13 +79,14 @@ namespace Capa_Vista_Produccion
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Lbl_Room_Service
             // 
             this.Lbl_Room_Service.AutoSize = true;
             this.Lbl_Room_Service.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Room_Service.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Lbl_Room_Service.Location = new System.Drawing.Point(14, 87);
+            this.Lbl_Room_Service.Location = new System.Drawing.Point(14, 92);
             this.Lbl_Room_Service.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Room_Service.Name = "Lbl_Room_Service";
             this.Lbl_Room_Service.Size = new System.Drawing.Size(151, 21);
@@ -130,7 +134,7 @@ namespace Capa_Vista_Produccion
             this.Lbl_Titulo.AutoSize = true;
             this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Titulo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Lbl_Titulo.Location = new System.Drawing.Point(14, 12);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(14, 10);
             this.Lbl_Titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
             this.Lbl_Titulo.Size = new System.Drawing.Size(319, 35);
@@ -220,6 +224,7 @@ namespace Capa_Vista_Produccion
             this.Btn_modificar.Size = new System.Drawing.Size(53, 46);
             this.Btn_modificar.TabIndex = 129;
             this.Btn_modificar.UseVisualStyleBackColor = false;
+            this.Btn_modificar.Click += new System.EventHandler(this.Btn_modificar_Click);
             // 
             // Btn_eliminar
             // 
@@ -232,6 +237,7 @@ namespace Capa_Vista_Produccion
             this.Btn_eliminar.Size = new System.Drawing.Size(53, 46);
             this.Btn_eliminar.TabIndex = 128;
             this.Btn_eliminar.UseVisualStyleBackColor = false;
+            this.Btn_eliminar.Click += new System.EventHandler(this.Btn_eliminar_Click);
             // 
             // Btn_guardar
             // 
@@ -245,6 +251,7 @@ namespace Capa_Vista_Produccion
             this.Btn_guardar.Size = new System.Drawing.Size(53, 46);
             this.Btn_guardar.TabIndex = 127;
             this.Btn_guardar.UseVisualStyleBackColor = false;
+            this.Btn_guardar.Click += new System.EventHandler(this.Btn_guardar_Click);
             // 
             // Dgv_Room_Service
             // 
@@ -259,6 +266,7 @@ namespace Capa_Vista_Produccion
             this.Dgv_Room_Service.RowTemplate.Height = 24;
             this.Dgv_Room_Service.Size = new System.Drawing.Size(432, 295);
             this.Dgv_Room_Service.TabIndex = 126;
+            this.Dgv_Room_Service.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Room_Service_CellContentClick);
             // 
             // Txt_Id_Habitacion
             // 
@@ -277,6 +285,7 @@ namespace Capa_Vista_Produccion
             this.Txt_ID_Pedido.Name = "Txt_ID_Pedido";
             this.Txt_ID_Pedido.Size = new System.Drawing.Size(100, 22);
             this.Txt_ID_Pedido.TabIndex = 124;
+            this.Txt_ID_Pedido.TextChanged += new System.EventHandler(this.Txt_ID_Pedido_TextChanged);
             // 
             // Txt_Cantidad
             // 
@@ -360,13 +369,14 @@ namespace Capa_Vista_Produccion
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Platos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Platos.Location = new System.Drawing.Point(514, 341);
+            this.Dgv_Platos.Location = new System.Drawing.Point(494, 341);
             this.Dgv_Platos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Dgv_Platos.Name = "Dgv_Platos";
             this.Dgv_Platos.RowHeadersWidth = 51;
             this.Dgv_Platos.RowTemplate.Height = 24;
-            this.Dgv_Platos.Size = new System.Drawing.Size(388, 295);
+            this.Dgv_Platos.Size = new System.Drawing.Size(421, 295);
             this.Dgv_Platos.TabIndex = 146;
+            this.Dgv_Platos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Platos_CellContentClick);
             // 
             // Btn_Guardar_Plato
             // 
@@ -374,12 +384,49 @@ namespace Capa_Vista_Produccion
             this.Btn_Guardar_Plato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Guardar_Plato.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Btn_Guardar_Plato.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar_Plato.Image")));
-            this.Btn_Guardar_Plato.Location = new System.Drawing.Point(763, 222);
+            this.Btn_Guardar_Plato.Location = new System.Drawing.Point(754, 221);
             this.Btn_Guardar_Plato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Btn_Guardar_Plato.Name = "Btn_Guardar_Plato";
             this.Btn_Guardar_Plato.Size = new System.Drawing.Size(53, 46);
             this.Btn_Guardar_Plato.TabIndex = 147;
             this.Btn_Guardar_Plato.UseVisualStyleBackColor = false;
+            this.Btn_Guardar_Plato.Click += new System.EventHandler(this.Btn_Guardar_Plato_Click);
+            // 
+            // Btn_eliminar_Plato
+            // 
+            this.Btn_eliminar_Plato.BackColor = System.Drawing.Color.White;
+            this.Btn_eliminar_Plato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_eliminar_Plato.Image = ((System.Drawing.Image)(resources.GetObject("Btn_eliminar_Plato.Image")));
+            this.Btn_eliminar_Plato.Location = new System.Drawing.Point(813, 221);
+            this.Btn_eliminar_Plato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_eliminar_Plato.Name = "Btn_eliminar_Plato";
+            this.Btn_eliminar_Plato.Size = new System.Drawing.Size(53, 46);
+            this.Btn_eliminar_Plato.TabIndex = 148;
+            this.Btn_eliminar_Plato.UseVisualStyleBackColor = false;
+            this.Btn_eliminar_Plato.Click += new System.EventHandler(this.Btn_eliminar_Plato_Click);
+            // 
+            // Btn_editar_plato
+            // 
+            this.Btn_editar_plato.BackColor = System.Drawing.Color.White;
+            this.Btn_editar_plato.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_editar_plato.Image = ((System.Drawing.Image)(resources.GetObject("Btn_editar_plato.Image")));
+            this.Btn_editar_plato.Location = new System.Drawing.Point(872, 221);
+            this.Btn_editar_plato.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_editar_plato.Name = "Btn_editar_plato";
+            this.Btn_editar_plato.Size = new System.Drawing.Size(53, 46);
+            this.Btn_editar_plato.TabIndex = 149;
+            this.Btn_editar_plato.UseVisualStyleBackColor = false;
+            this.Btn_editar_plato.Click += new System.EventHandler(this.Btn_editar_plato_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(430, 86);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 150;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Frm_Produccion_Hoteleria
             // 
@@ -387,6 +434,9 @@ namespace Capa_Vista_Produccion
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(947, 647);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Btn_editar_plato);
+            this.Controls.Add(this.Btn_eliminar_Plato);
             this.Controls.Add(this.Btn_Guardar_Plato);
             this.Controls.Add(this.Dgv_Platos);
             this.Controls.Add(this.Lbl_Subtotal);
@@ -456,5 +506,8 @@ namespace Capa_Vista_Produccion
         private System.Windows.Forms.TextBox Txt_Subtotal;
         private System.Windows.Forms.DataGridView Dgv_Platos;
         private System.Windows.Forms.Button Btn_Guardar_Plato;
+        private System.Windows.Forms.Button Btn_eliminar_Plato;
+        private System.Windows.Forms.Button Btn_editar_plato;
+        private System.Windows.Forms.Button button1;
     }
 }
