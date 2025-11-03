@@ -95,6 +95,7 @@ namespace Capa_Vista_TipoDeCambio
             this.Btn_Buscar.TabIndex = 4;
             this.Btn_Buscar.Text = "Buscar";
             this.Btn_Buscar.UseVisualStyleBackColor = true;
+            this.Btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
             // 
             // Frm_TipoDeCambio
             // 
