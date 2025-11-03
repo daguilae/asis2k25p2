@@ -8,7 +8,7 @@ namespace Capa_Modelo_GesHab
 {
     class Cls_conexionMYSQL
     {
-        private readonly string ConexionODBC = "Dsn=bd_hoteleria"; // DSN de odbc
+        private readonly string ConexionODBC = "Dsn=db_hoteleria"; // DSN de odbc
 
         //retorna conexion cerrada para que el DAO la abra y cierre cuando sea necesario
         public OdbcConnection conexion()
