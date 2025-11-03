@@ -52,6 +52,12 @@
     <Compile Include="Frm_Cheques.Designer.cs">
       <DependentUpon>Frm_Cheques.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Proveedores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Proveedores.Designer.cs">
+      <DependentUpon>Frm_Proveedores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Tipo_Cheques.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Cheques.resx">
       <DependentUpon>Frm_Cheques.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Proveedores.resx">
+      <DependentUpon>Frm_Proveedores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Tipo_Cheques.resx">
       <DependentUpon>Frm_Tipo_Cheques.cs</DependentUpon>
