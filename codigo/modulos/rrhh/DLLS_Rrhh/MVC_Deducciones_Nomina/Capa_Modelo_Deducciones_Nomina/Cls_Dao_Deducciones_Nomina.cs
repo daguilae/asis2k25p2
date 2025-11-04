@@ -75,7 +75,10 @@ namespace Capa_Modelo_Deducciones_Nomina
                 try
                 {
                     cnConexion.Open();
-                    string sSql = "SELECT Cmp_iId_ConceptoNomina, Cmp_sNombre_ConceptoNomina FROM Tbl_ConceptosNomina WHERE Cmp_sTipo_ConceptoNomina = ´DEDUCCION´ ORDER BY Cmp_sNombre_ConceptoNomina ASC";
+                    string sSql = "SELECT Cmp_iId_ConceptoNomina, Cmp_sNombre_ConceptoNomina " +
+                                  "FROM Tbl_ConceptosNomina " +
+                                  "WHERE Cmp_sTipo_ConceptoNomina = 'DEDUCCION' " +
+                                  "ORDER BY Cmp_sNombre_ConceptoNomina ASC";
                     OdbcDataAdapter da = new OdbcDataAdapter(sSql, cnConexion);
                     da.Fill(dtsConceptos);
                 }
@@ -90,6 +93,7 @@ namespace Capa_Modelo_Deducciones_Nomina
             }
             return dtsConceptos;
         }
+
 
         // ==========================================================
         // MÉTODO: INSERTAR
