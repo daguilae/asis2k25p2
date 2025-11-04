@@ -31,11 +31,22 @@ namespace Capa_Vista_Creacion_Nomina
                 {
                     foreach (DataRow fila in dtsNominas.Rows)
                     {
+                        string fechaGeneracion;
+
+                        if (fila.IsNull("Cmp_dFechaGeneracion_Nomina"))
+                        {
+                            fechaGeneracion = "EN ESPERA";
+                        }
+                        else
+                        {
+                            fechaGeneracion = Convert.ToDateTime(fila["Cmp_dFechaGeneracion_Nomina"]).ToString("dd/MM/yyyy");
+                        }
+
                         dataGridView1.Rows.Add(
                             fila["Cmp_iId_Nomina"].ToString(),
                             Convert.ToDateTime(fila["Cmp_dPeriodoInicio_Nomina"]).ToString("dd/MM/yyyy"),
                             Convert.ToDateTime(fila["Cmp_dPeriodoFin_Nomina"]).ToString("dd/MM/yyyy"),
-                            Convert.ToDateTime(fila["Cmp_dFechaGeneracion_Nomina"]).ToString("dd/MM/yyyy"),
+                            fechaGeneracion,
                             fila["Cmp_sTipo_Nomina"].ToString(),
                             fila["Cmp_sEstado_Nomina"].ToString()
                         );
@@ -44,7 +55,7 @@ namespace Capa_Vista_Creacion_Nomina
                 else
                 {
                     Console.WriteLine("No hay nóminas registradas.");
-                    button3.Enabled = false; // Si no hay datos, mantener deshabilitado
+                    button3.Enabled = false;
                 }
             }
             catch (Exception ex)
@@ -58,7 +69,34 @@ namespace Capa_Vista_Creacion_Nomina
         // ==========================================================
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Función para generar nómina en desarrollo.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (id_nomina <= 0)
+            {
+                MessageBox.Show("Debe seleccionar una nómina antes de generar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult resultado = MessageBox.Show(
+                "¿Está seguro que desea generar la nómina seleccionada?",
+                "Confirmar generación de nómina",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (resultado == DialogResult.Yes)
+            {
+                // Aquí irá el proceso real de generación de nómina
+                MessageBox.Show("La nómina ha sido generada correctamente (simulado).", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Actualizar la tabla y botones
+                funCargarNominas();
+                button1.Enabled = true;
+                button2.Enabled = false;
+                button3.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Operación cancelada por el usuario.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -91,17 +129,39 @@ namespace Capa_Vista_Creacion_Nomina
             {
                 if (e.RowIndex >= 0)
                 {
-                    int iIdNomina = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-                    id_nomina = iIdNomina;
-                    Console.WriteLine($"[OK] Nómina seleccionada: {id_nomina}");
-                    button3.Enabled = true;
+                    // Obtener los valores de la fila seleccionada
+                    DataGridViewRow filaSeleccionada = dataGridView1.Rows[e.RowIndex];
+                    id_nomina = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
+
+                    string estadoNomina = filaSeleccionada.Cells[5].Value.ToString().Trim().ToUpper();
+
+                    Console.WriteLine($"[OK] Nómina seleccionada: {id_nomina} | Estado: {estadoNomina}");
+
+                    // Reglas de habilitación de botones
+                    if (estadoNomina == "GENERADA")
+                    {
+                        button3.Enabled = true;   
+                        button2.Enabled = false; 
+                    }
+                    else if (estadoNomina == "PENDIENTE")
+                    {
+                        button2.Enabled = true;
+                        button3.Enabled = false;
+                    }
+                    else
+                    {
+                        button2.Enabled = false;
+                        button3.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"[ERROR] al seleccionar nómina: {ex.Message}");
+                button1.Enabled = false;
                 button3.Enabled = false;
             }
         }
+
     }
 }

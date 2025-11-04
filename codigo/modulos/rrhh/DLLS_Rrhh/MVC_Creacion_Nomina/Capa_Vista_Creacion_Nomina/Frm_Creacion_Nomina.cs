@@ -73,7 +73,7 @@ namespace Capa_Vista_Creacion_Nomina
                 try
                 {
                     string sEstado = "PENDIENTE";
-                    clsControlador.proInsertarNomina(dPeriodoInicio, dPeriodoFin, dFechaGeneracion, sTipo, sEstado);
+                    clsControlador.proInsertarNomina(dPeriodoInicio, dPeriodoFin, sTipo, sEstado);
                     MessageBox.Show("Nómina creada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }

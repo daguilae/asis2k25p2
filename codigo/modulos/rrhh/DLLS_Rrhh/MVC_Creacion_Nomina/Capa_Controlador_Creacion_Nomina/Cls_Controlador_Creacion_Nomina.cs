@@ -26,7 +26,7 @@ namespace Capa_Controlador_Creacion_Nomina
         // ==========================================================
 
         // Inicio de código de: Fredy Reyes Sabán en la fecha de: 29/10/2025
-        public void proInsertarNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin, DateTime dFechaGeneracion, string sTipo, string sEstado)
+        public void proInsertarNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin, string sTipo, string sEstado)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace Capa_Controlador_Creacion_Nomina
                     throw new Exception("Ya existe una nómina generada para este periodo o un rango de fechas que se cruza.");
                 }
 
-                clsDaoNomina.proInsertarNomina(dPeriodoInicio, dPeriodoFin, dFechaGeneracion, sTipo, sEstado);
+                clsDaoNomina.proInsertarNomina(dPeriodoInicio, dPeriodoFin, sTipo, sEstado);
                 Console.WriteLine("Nómina creada con estado: " + sEstado);
             }
             catch (Exception ex)

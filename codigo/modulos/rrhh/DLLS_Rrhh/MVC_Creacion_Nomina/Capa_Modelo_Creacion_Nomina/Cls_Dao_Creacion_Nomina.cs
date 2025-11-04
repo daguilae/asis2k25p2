@@ -18,7 +18,7 @@ namespace Capa_Modelo_Creacion_Nomina
         // ==========================================================
         // MÉTODO: INSERTAR NÓMINA
         // ==========================================================
-        public void proInsertarNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin, DateTime dFechaGeneracion, string sTipo, string sEstado)
+        public void proInsertarNomina(DateTime dPeriodoInicio, DateTime dPeriodoFin, string sTipo, string sEstado)
         {
             Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
 
@@ -28,17 +28,18 @@ namespace Capa_Modelo_Creacion_Nomina
                 {
                     cnConexion.Open();
                     string sSql = @"
-                        INSERT INTO Tbl_Nomina
-                        (Cmp_dPeriodoInicio_Nomina, Cmp_dPeriodoFin_Nomina, Cmp_dFechaGeneracion_Nomina, Cmp_sTipo_Nomina, Cmp_sEstado_Nomina)
-                        VALUES (?, ?, ?, ?, ?)";
+                INSERT INTO Tbl_Nomina
+                (Cmp_dPeriodoInicio_Nomina, Cmp_dPeriodoFin_Nomina, Cmp_dFechaGeneracion_Nomina, Cmp_sTipo_Nomina, Cmp_sEstado_Nomina)
+                VALUES (?, ?, ?, ?, ?)";
 
                     using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
                         cmd.Parameters.AddWithValue("", dPeriodoInicio);
                         cmd.Parameters.AddWithValue("", dPeriodoFin);
-                        cmd.Parameters.AddWithValue("", dFechaGeneracion);
+                        cmd.Parameters.AddWithValue("", DBNull.Value); 
                         cmd.Parameters.AddWithValue("", sTipo);
                         cmd.Parameters.AddWithValue("", sEstado);
+
                         cmd.ExecuteNonQuery();
                     }
 

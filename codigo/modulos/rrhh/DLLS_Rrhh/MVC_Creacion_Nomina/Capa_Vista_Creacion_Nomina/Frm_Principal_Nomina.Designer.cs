@@ -61,6 +61,7 @@ namespace Capa_Vista_Creacion_Nomina
             this.button2.TabIndex = 1;
             this.button2.Text = "Generar Nomina";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
