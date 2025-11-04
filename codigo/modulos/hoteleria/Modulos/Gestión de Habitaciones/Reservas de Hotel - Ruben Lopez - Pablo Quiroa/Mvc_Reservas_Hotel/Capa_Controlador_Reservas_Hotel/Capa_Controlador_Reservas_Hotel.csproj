@@ -44,6 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cls_Pago_Cheque_Controlador.cs" />
+    <Compile Include="Cls_Pago_Controlador.cs" />
+    <Compile Include="Cls_Pago_Efectivo_Controlador.cs" />
+    <Compile Include="Cls_Pago_Tarjeta_Controlador.cs" />
+    <Compile Include="Cls_Pago_Transferencia_Controlador.cs" />
     <Compile Include="Controlador_Reservas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

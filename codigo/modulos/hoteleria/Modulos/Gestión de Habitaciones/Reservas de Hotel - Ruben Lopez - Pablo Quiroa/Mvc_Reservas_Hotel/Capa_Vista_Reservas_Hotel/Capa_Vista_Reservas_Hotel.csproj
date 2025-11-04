@@ -70,6 +70,30 @@
     <Compile Include="Frm_Pago.Designer.cs">
       <DependentUpon>Frm_Pago.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Pago_Cheque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Cheque.Designer.cs">
+      <DependentUpon>Frm_Pago_Cheque.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Tarjeta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Tarjeta.Designer.cs">
+      <DependentUpon>Frm_Pago_Tarjeta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Efectivo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Efectivo.Designer.cs">
+      <DependentUpon>Frm_Pago_Efectivo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_Pago_Transferencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Pago_Transferencia.Designer.cs">
+      <DependentUpon>Frm_Pago_Transferencia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Reservas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +116,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Pago.resx">
       <DependentUpon>Frm_Pago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Cheque.resx">
+      <DependentUpon>Frm_Pago_Cheque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Tarjeta.resx">
+      <DependentUpon>Frm_Pago_Tarjeta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Efectivo.resx">
+      <DependentUpon>Frm_Pago_Efectivo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Pago_Transferencia.resx">
+      <DependentUpon>Frm_Pago_Transferencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Reservas.resx">
       <DependentUpon>Frm_Reservas.cs</DependentUpon>
