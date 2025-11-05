@@ -7,34 +7,40 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Transferencia modelo = new Cls_Sentencia_Pago_Transferencia();
 
-        // ==================== GUARDAR ====================
-        public void GuardarPagoTransferencia(int fkPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
+        // ===================================================
+        // === REGISTRAR DETALLE DE PAGO POR TRANSFERENCIA ===
+        // ===================================================
+        public (bool exito, string mensaje) InsertarPagoTransferencia(int idPago, decimal monto,
+                                                                      string numeroTransferencia,
+                                                                      string bancoOrigen,
+                                                                      string cuentaOrigen)
         {
-            if (fkPago <= 0)
-                throw new ArgumentException("No se recibió el ID del pago principal.");
+            try
+            {
+                if (idPago <= 0)
+                    return (false, "El ID del pago principal no es válido.");
 
-            if (string.IsNullOrWhiteSpace(numeroTransferencia))
-                throw new ArgumentException("Debe ingresar el número de transferencia.");
+                if (string.IsNullOrWhiteSpace(numeroTransferencia))
+                    return (false, "Ingrese el número de transferencia.");
 
-            if (string.IsNullOrWhiteSpace(bancoOrigen))
-                throw new ArgumentException("Debe ingresar el banco de origen.");
+                if (string.IsNullOrWhiteSpace(bancoOrigen))
+                    return (false, "Ingrese el banco de origen.");
 
-            if (string.IsNullOrWhiteSpace(cuentaOrigen))
-                throw new ArgumentException("Debe ingresar la cuenta de origen.");
+                if (string.IsNullOrWhiteSpace(cuentaOrigen))
+                    return (false, "Ingrese la cuenta de origen.");
 
-            modelo.InsertarPagoTransferencia(fkPago, numeroTransferencia.Trim(), bancoOrigen.Trim(), cuentaOrigen.Trim());
-        }
+                // === Guardar detalle en Tbl_Pago_Transferencia ===
+                bool ok = modelo.InsertarDetalleTransferencia(idPago, numeroTransferencia.Trim(), bancoOrigen.Trim(), cuentaOrigen.Trim());
 
-        // ==================== MODIFICAR ====================
-        public void ModificarPagoTransferencia(int fkPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
-        {
-            if (fkPago <= 0)
-                throw new ArgumentException("Debe existir un ID de pago para modificar.");
-
-            if (string.IsNullOrWhiteSpace(numeroTransferencia))
-                throw new ArgumentException("Debe ingresar el número de transferencia.");
-
-            modelo.ModificarPagoTransferencia(fkPago, numeroTransferencia.Trim(), bancoOrigen.Trim(), cuentaOrigen.Trim());
+                if (ok)
+                    return (true, "Pago por transferencia registrado correctamente.");
+                else
+                    return (false, "Error al guardar el detalle del pago por transferencia.");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error inesperado al registrar el pago por transferencia: " + ex.Message);
+            }
         }
     }
 }

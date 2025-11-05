@@ -6,66 +6,70 @@ namespace Capa_Vista_Reservas_Hotel
 {
     public partial class Frm_Pago_Efectivo : Form
     {
-        private readonly Cls_Pago_Efectivo_Controlador controlador = new Cls_Pago_Efectivo_Controlador();
-        private readonly int idPago; // viene desde Frm_Pago
+        private readonly Cls_Pago_Efectivo_Controlador Controlador = new Cls_Pago_Efectivo_Controlador();
 
-        // ==================== CONSTRUCTOR ====================
-        public Frm_Pago_Efectivo(int idPago)
+        private int idPago;
+        private decimal montoPago;
+
+        // ===================================================
+        // CONSTRUCTOR QUE RECIBE ID DEL PAGO Y MONTO
+        // ===================================================
+        public Frm_Pago_Efectivo(int idPagoPrincipal, decimal monto)
         {
             InitializeComponent();
-            this.idPago = idPago;
+            idPago = idPagoPrincipal;
+            montoPago = monto;
         }
 
-        // ==================== EVENTOS DEL DESIGNER ====================
-        private void Txt_Numero_Recibo_TextChanged(object sender, EventArgs e) { }
-        private void Txt_Observaciones_TextChanged(object sender, EventArgs e) { }
+        // ===================================================
+        // === LIMPIAR CAMPOS ===
+        // ===================================================
+        private void LimpiarCampos()
+        {
+            Txt_Numero_Recibo.Clear();
+            Txt_Observaciones.Clear();
+        }
 
-        // ==================== BOTONES ====================
+        // ===================================================
+        // === EVENTO GUARDAR ===
+        // ===================================================
+        private void Btn_Guardar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string numeroRecibo = Txt_Numero_Recibo.Text.Trim();
+                string observaciones = Txt_Observaciones.Text.Trim();
+
+                // ✅ Insertamos detalle usando el ID del pago principal
+                var r = Controlador.InsertarPagoEfectivo(idPago, montoPago, numeroRecibo, observaciones);
+
+                MessageBox.Show(r.mensaje,
+                                r.exito ? "Éxito" : "Error",
+                                MessageBoxButtons.OK,
+                                r.exito ? MessageBoxIcon.Information : MessageBoxIcon.Error);
+
+                if (r.exito)
+                {
+                    LimpiarCampos();
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar el pago en efectivo:\n" + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
         }
 
-        private void Btn_Guardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                controlador.GuardarPagoEfectivo(
-                    idPago,
-                    Txt_Numero_Recibo.Text,
-                    Txt_Observaciones.Text
-                );
-
-                MessageBox.Show("Pago en efectivo registrado correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al guardar el pago en efectivo: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void Btn_Modificar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                controlador.ModificarPagoEfectivo(
-                    idPago,
-                    Txt_Numero_Recibo.Text,
-                    Txt_Observaciones.Text
-                );
-
-                MessageBox.Show("Pago en efectivo modificado correctamente.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al modificar el pago en efectivo: " + ex.Message,
-                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            MessageBox.Show("La modificación de pagos en efectivo se implementará más adelante.",
+                            "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Btn_Limpiar_Click(object sender, EventArgs e)
@@ -73,11 +77,8 @@ namespace Capa_Vista_Reservas_Hotel
             LimpiarCampos();
         }
 
-        // ==================== MÉTODO AUXILIAR ====================
-        private void LimpiarCampos()
-        {
-            Txt_Numero_Recibo.Clear();
-            Txt_Observaciones.Clear();
-        }
+        // === EVENTOS DE TEXTBOX (requeridos por el diseñador) ===
+        private void Txt_Numero_Recibo_TextChanged(object sender, EventArgs e) { }
+        private void Txt_Observaciones_TextChanged(object sender, EventArgs e) { }
     }
 }

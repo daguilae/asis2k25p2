@@ -8,56 +8,41 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ==================== INSERTAR ====================
-        public void InsertarPagoCheque(int fkPago, string numeroCheque, string bancoEmisor,
-                                       string nombreTitular, DateTime fechaEmision,
-                                       DateTime fechaCobro, string estadoCheque)
+        // ===================================================
+        // INSERTAR DETALLE EN TBL_PAGO_CHEQUE
+        // ===================================================
+        public bool InsertarDetalleCheque(int idPago, string numero, string banco, string titular,
+                                          DateTime fechaEmision, DateTime fechaCobro, string estadoCheque)
         {
-            string sSql = @"INSERT INTO tbl_pago_cheque
-                            (Fk_Id_Pago, Cmp_Numero_Cheque, Cmp_Banco_Emisor,
-                             Cmp_Nombre_Titular, Cmp_Fecha_Emision,
-                             Cmp_Fecha_Cobro, Cmp_Estado_Cheque)
-                            VALUES (?, ?, ?, ?, ?, ?, ?);";
-
-            using (var conn = conexion.conexion())
-            using (var cmd = new OdbcCommand(sSql, conn))
+            using (OdbcConnection conn = conexion.conexion())
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = fkPago;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = numeroCheque;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = bancoEmisor;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = nombreTitular;
-                cmd.Parameters.Add(null, OdbcType.Date).Value = fechaEmision;
-                cmd.Parameters.Add(null, OdbcType.Date).Value = fechaCobro;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value = estadoCheque;
-                cmd.ExecuteNonQuery();
-            }
-        }
+                try
+                {
+                    string sql = @"
+                        INSERT INTO tbl_pago_cheque
+                        (Fk_Id_Pago, Cmp_Numero_Cheque, Cmp_Banco_Emisor, Cmp_Nombre_Titular,
+                         Cmp_Fecha_Emision, Cmp_Fecha_Cobro, Cmp_Estado_Cheque)
+                        VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-        // ==================== MODIFICAR ====================
-        public void ModificarPagoCheque(int fkPago, string numeroCheque, string bancoEmisor,
-                                        string nombreTitular, DateTime fechaEmision,
-                                        DateTime fechaCobro, string estadoCheque)
-        {
-            string sSql = @"UPDATE tbl_pago_cheque
-                            SET Cmp_Numero_Cheque = ?,
-                                Cmp_Banco_Emisor = ?,
-                                Cmp_Nombre_Titular = ?,
-                                Cmp_Fecha_Emision = ?,
-                                Cmp_Fecha_Cobro = ?,
-                                Cmp_Estado_Cheque = ?
-                            WHERE Fk_Id_Pago = ?;";
+                    using (OdbcCommand cmd = new OdbcCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("Fk_Id_Pago", OdbcType.Int).Value = idPago;
+                        cmd.Parameters.Add("Cmp_Numero_Cheque", OdbcType.VarChar, 30).Value = numero;
+                        cmd.Parameters.Add("Cmp_Banco_Emisor", OdbcType.VarChar, 50).Value = banco;
+                        cmd.Parameters.Add("Cmp_Nombre_Titular", OdbcType.VarChar, 50).Value = titular;
+                        cmd.Parameters.Add("Cmp_Fecha_Emision", OdbcType.VarChar, 19).Value = fechaEmision.ToString("yyyy-MM-dd HH:mm:ss");
+                        cmd.Parameters.Add("Cmp_Fecha_Cobro", OdbcType.VarChar, 19).Value = fechaCobro.ToString("yyyy-MM-dd HH:mm:ss");
+                        cmd.Parameters.Add("Cmp_Estado_Cheque", OdbcType.VarChar, 20).Value = estadoCheque;
 
-            using (var conn = conexion.conexion())
-            using (var cmd = new OdbcCommand(sSql, conn))
-            {
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = numeroCheque;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = bancoEmisor;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = nombreTitular;
-                cmd.Parameters.Add(null, OdbcType.Date).Value = fechaEmision;
-                cmd.Parameters.Add(null, OdbcType.Date).Value = fechaCobro;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value = estadoCheque;
-                cmd.Parameters.Add(null, OdbcType.Int).Value = fkPago;
-                cmd.ExecuteNonQuery();
+                        int filas = cmd.ExecuteNonQuery();
+                        return filas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error SQL en InsertarDetalleCheque: " + ex.Message);
+                    throw new Exception("Error al registrar el detalle del cheque: " + ex.Message, ex);
+                }
             }
         }
     }
