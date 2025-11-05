@@ -53,6 +53,12 @@
     <Compile Include="Frm_Creacion_Nomina.Designer.cs">
       <DependentUpon>Frm_Creacion_Nomina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Detalle_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Detalle_Nomina.Designer.cs">
+      <DependentUpon>Frm_Detalle_Nomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Movimientos_Nomina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Creacion_Nomina.resx">
       <DependentUpon>Frm_Creacion_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Detalle_Nomina.resx">
+      <DependentUpon>Frm_Detalle_Nomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Movimientos_Nomina.resx">
       <DependentUpon>Frm_Movimientos_Nomina.cs</DependentUpon>

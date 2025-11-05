@@ -10,6 +10,8 @@
 using System;
 using System.Data;
 using System.Data.Odbc;
+using System.Linq;
+
 
 namespace Capa_Modelo_Creacion_Nomina
 {
@@ -292,6 +294,9 @@ namespace Capa_Modelo_Creacion_Nomina
         // ==========================================================
         // MÉTODO: OBTENER MOVIMIENTOS POR ID DE NÓMINA
         // ==========================================================
+        // ==========================================================
+        // MÉTODO: OBTENER MOVIMIENTOS POR ID DE NÓMINA (sin duplicados)
+        // ==========================================================
         public DataTable funObtenerMovimientosPorIdNomina(int iIdNomina)
         {
             DataTable dtsMovimientos = new DataTable();
@@ -313,10 +318,14 @@ namespace Capa_Modelo_Creacion_Nomina
                     c.Cmp_sTipo_ConceptoNomina AS TipoConcepto,
                     mn.Cmp_deMonto_MovimientoNomina AS Monto
                 FROM Tbl_MovimientosNomina mn
-                INNER JOIN Tbl_Nomina n ON mn.Cmp_iId_Nomina = n.Cmp_iId_Nomina
-                INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
-                INNER JOIN Tbl_DetallesNomina dn ON n.Cmp_iId_Nomina = dn.Cmp_iId_Nomina
-                INNER JOIN Tbl_Empleados e ON dn.Cmp_iId_Empleado = e.Cmp_iId_Empleado
+                INNER JOIN Tbl_Nomina n 
+                    ON mn.Cmp_iId_Nomina = n.Cmp_iId_Nomina
+                INNER JOIN Tbl_ConceptosNomina c 
+                    ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                LEFT JOIN Tbl_DetallesNomina dn 
+                    ON dn.Cmp_iId_Nomina = n.Cmp_iId_Nomina
+                LEFT JOIN Tbl_Empleados e 
+                    ON e.Cmp_iId_Empleado = dn.Cmp_iId_Empleado
                 WHERE n.Cmp_iId_Nomina = ?
                 ORDER BY c.Cmp_sTipo_ConceptoNomina ASC";
 
@@ -327,11 +336,372 @@ namespace Capa_Modelo_Creacion_Nomina
                         da.Fill(dtsMovimientos);
                     }
 
-                    Console.WriteLine($"[OK] Se obtuvieron {dtsMovimientos.Rows.Count} movimientos de la nómina #{iIdNomina}");
+                    Console.WriteLine($"[OK] Se obtuvieron {dtsMovimientos.Rows.Count} movimientos únicos de la nómina #{iIdNomina}");
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine($"[ERROR] al obtener movimientos por ID de nómina: {ex.Message}");
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+
+            return dtsMovimientos;
+        }
+
+
+        // ==========================================================
+        // MÉTODO: CALCULAR NÓMINA COMPLETA
+        // ==========================================================
+        public void proCalcularNomina(int iIdNomina, DateTime dPeriodoInicio, DateTime dPeriodoFin)
+        {
+            Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+
+                    // 🔹 1. Obtener empleados activos
+                    string sSqlEmpleados = @"SELECT Cmp_iId_Empleado, Cmp_deSalario_Empleado 
+                                     FROM Tbl_Empleados WHERE Cmp_bEstado_Empleado = 1";
+                    DataTable dtEmpleados = new DataTable();
+                    new OdbcDataAdapter(sSqlEmpleados, cnConexion).Fill(dtEmpleados);
+
+                    // 🔹 2. Obtener conceptos automáticos de nómina
+                    string sSqlConceptos = @"
+                SELECT 
+                    Cmp_iId_ConceptoNomina,
+                    TRIM(UPPER(Cmp_sNombre_ConceptoNomina)) AS Nombre,
+                    Cmp_sTipo_ConceptoNomina,
+                    UPPER(Cmp_sTipoCalculo_ConceptoNomina) AS TipoCalculo,
+                    IFNULL(Cmp_deValor_ConceptoNomina, 0) AS Valor
+                FROM Tbl_ConceptosNomina
+                WHERE Cmp_bAplicaAutomatico_ConceptoNomina = 1";
+
+                    DataTable dtConceptos = new DataTable();
+                    new OdbcDataAdapter(sSqlConceptos, cnConexion).Fill(dtConceptos);
+
+                    Console.WriteLine($"[INFO] Conceptos automáticos cargados: {dtConceptos.Rows.Count}");
+
+                    // 🔹 3. Procesar cada empleado activo
+                    foreach (DataRow fila in dtEmpleados.Rows)
+                    {
+                        int iIdEmpleado = Convert.ToInt32(fila["Cmp_iId_Empleado"]);
+                        double dSalarioMensual = Convert.ToDouble(fila["Cmp_deSalario_Empleado"]);
+                        int iDiasDelPeriodo = (dPeriodoFin - dPeriodoInicio).Days + 1;
+
+                        // ---- Calcular días y valores base ----
+                        int iDiasLaborados = funContarDiasAsistidos(cnConexion, iIdEmpleado, dPeriodoInicio, dPeriodoFin);
+                        int iDiasVacaciones = funObtenerVacacionesAprobadas(cnConexion, iIdEmpleado, dPeriodoInicio, dPeriodoFin);
+                        int iAusencias = Math.Max(0, iDiasDelPeriodo - iDiasLaborados - iDiasVacaciones);
+
+                        (int iHorasExtra, double dPagoHorasExtra) = funObtenerHorasExtra(cnConexion, iIdEmpleado, dSalarioMensual, dPeriodoInicio, dPeriodoFin);
+                        double dTotalAnticipos = funObtenerAnticipos(cnConexion, iIdEmpleado, dPeriodoInicio, dPeriodoFin);
+
+                        double dSueldoBase = (dSalarioMensual / iDiasDelPeriodo) * (iDiasLaborados + iDiasVacaciones);
+                        double dDeduccionAusencias = (dSalarioMensual / iDiasDelPeriodo) * iAusencias;
+
+                        // 🔹 Calcular percepciones y deducciones base
+                        double dPercepciones = dSueldoBase + dPagoHorasExtra;
+                        double dDeducciones = dDeduccionAusencias + dTotalAnticipos;
+                        double dSueldoLiquido = dPercepciones - dDeducciones;
+
+                        // ==============================================================
+                        // 🔹 Insertar DETALLE DE NÓMINA
+                        // ==============================================================
+                        string sSqlInsertDetalle = @"
+                    INSERT INTO Tbl_DetallesNomina 
+                    (Cmp_iId_Nomina, Cmp_iId_Empleado, Cmp_iAusencias_DetalleNomina, 
+                     Cmp_iDiasLaborados_DetalleNomina, Cmp_dePercepciones_DetalleNomina, 
+                     Cmp_deDeducciones_DetalleNomina, Cmp_deSueldoLiquido_DetalleNomina)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)";
+                        using (OdbcCommand cmdInsert = new OdbcCommand(sSqlInsertDetalle, cnConexion))
+                        {
+                            cmdInsert.Parameters.AddWithValue("", iIdNomina);
+                            cmdInsert.Parameters.AddWithValue("", iIdEmpleado);
+                            cmdInsert.Parameters.AddWithValue("", iAusencias);
+                            cmdInsert.Parameters.AddWithValue("", iDiasLaborados + iDiasVacaciones);
+                            cmdInsert.Parameters.AddWithValue("", dPercepciones);
+                            cmdInsert.Parameters.AddWithValue("", dDeducciones);
+                            cmdInsert.Parameters.AddWithValue("", dSueldoLiquido);
+                            cmdInsert.ExecuteNonQuery();
+                        }
+
+                        // ==============================================================
+                        // 🔹 Registrar MOVIMIENTOS AUTOMÁTICOS según configuración de la tabla
+                        // ==============================================================
+                        foreach (DataRow concepto in dtConceptos.Rows)
+                        {
+                            string nombre = concepto["Nombre"].ToString().Trim().ToUpper();
+                            Console.WriteLine(nombre);
+                            string tipo = concepto["Cmp_sTipo_ConceptoNomina"].ToString().ToUpper();
+                            string tipoCalculo = concepto["TipoCalculo"].ToString().ToUpper();
+                            int idConcepto = Convert.ToInt32(concepto["Cmp_iId_ConceptoNomina"]);
+                            double valor = Convert.ToDouble(concepto["Valor"]);
+                            double monto = 0.0;
+
+                            switch (tipoCalculo)
+                            {
+                                case "FIJO":
+                                    // Valor directo (ej. Bono Trimestral)
+                                    monto = valor;
+                                    break;
+
+                                case "MULTIPLICACION":
+                                    if (tipo == "PERCEPCION")
+                                    {
+                                        // Multiplica sobre el salario base o días trabajados
+                                        monto = (dSalarioMensual / iDiasDelPeriodo) * (iDiasLaborados + iDiasVacaciones) * valor;
+                                    }
+                                    else if (tipo == "DEDUCCION")
+                                    {
+                                        // Multiplica sobre percepciones
+                                        monto = dPercepciones * valor;
+                                    }
+                                    break;
+                            }
+
+                            // ---- Ajustes por nombre específico (casos particulares) ----
+                            if (nombre == "AUSENCIAS") monto = (dSalarioMensual / iDiasDelPeriodo) * iAusencias;
+                            if (nombre == "VACACIONES") monto = (dSalarioMensual / iDiasDelPeriodo) * iDiasVacaciones;
+                            if (nombre == "HORAS EXTRA") monto = dPagoHorasExtra;
+                            if (nombre == "SUELDO BASE") monto = dSueldoBase;
+                            if (nombre == "ANTICIPOS") monto = dTotalAnticipos;
+
+                            string sSqlInsertMov = @"
+                        INSERT INTO Tbl_MovimientosNomina 
+                        (Cmp_iId_Nomina, Cmp_iId_Empleado, Cmp_iId_ConceptoNomina, Cmp_deMonto_MovimientoNomina)
+                        VALUES (?, ?, ?, ?)";
+                            using (OdbcCommand cmdMov = new OdbcCommand(sSqlInsertMov, cnConexion))
+                            {
+                                cmdMov.Parameters.AddWithValue("", iIdNomina);
+                                cmdMov.Parameters.AddWithValue("", iIdEmpleado);
+                                cmdMov.Parameters.AddWithValue("", idConcepto);
+                                cmdMov.Parameters.AddWithValue("", monto);
+                                cmdMov.ExecuteNonQuery();
+                            }
+
+                            Console.WriteLine($"[OK] Movimiento automático: {nombre} | {tipoCalculo} | {tipo} | Monto={monto:N2}");
+                        }
+
+                        Console.WriteLine($"[INFO] Empleado {iIdEmpleado} procesado correctamente.");
+                    }
+                    // 🔹 Actualizar estado y fecha de generación
+                    string sSqlUpdate = @"
+                        UPDATE Tbl_Nomina 
+                        SET 
+                            Cmp_sEstado_Nomina = 'GENERADA',
+                            Cmp_dFechaGeneracion_Nomina = NOW()
+                        WHERE Cmp_iId_Nomina = ?";
+
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(sSqlUpdate, cnConexion))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("", iIdNomina);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    Console.WriteLine($"[OK] Nómina #{iIdNomina} actualizada a estado GENERADA con fecha {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[ERROR] al calcular nómina: {ex.Message}");
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+        }
+
+
+        // ==========================================================
+        // FUNCIONES AUXILIARES PRIVADAS
+        // ==========================================================
+
+        private int funContarDiasAsistidos(OdbcConnection cn, int iIdEmpleado, DateTime dInicio, DateTime dFin)
+        {
+            string sSql = @"SELECT COUNT(*) 
+                    FROM Tbl_Asistencias 
+                    WHERE Cmp_iId_Empleado = ? 
+                    AND Cmp_dFecha_Asistencia BETWEEN ? AND ?";
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdEmpleado);
+                cmd.Parameters.AddWithValue("", dInicio);
+                cmd.Parameters.AddWithValue("", dFin);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private int funObtenerVacacionesAprobadas(OdbcConnection cn, int iIdEmpleado, DateTime dInicio, DateTime dFin)
+        {
+            string sSql = @"SELECT IFNULL(SUM(Cmp_iDias_Vacacion), 0) 
+                    FROM Tbl_Vacaciones 
+                    WHERE Cmp_iId_Empleado = ? 
+                    AND Cmp_bAprobada_Vacacion = 1
+                    AND Cmp_dFechaInicio_Vacacion BETWEEN ? AND ?";
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdEmpleado);
+                cmd.Parameters.AddWithValue("", dInicio);
+                cmd.Parameters.AddWithValue("", dFin);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        private (int, double) funObtenerHorasExtra(OdbcConnection cn, int iIdEmpleado, double dSalarioMensual, DateTime dInicio, DateTime dFin)
+        {
+            string sSql = @"SELECT IFNULL(SUM(Cmp_iCantidad_HoraExtra), 0) 
+                    FROM Tbl_HorasExtra 
+                    WHERE Cmp_iId_Empleado = ? 
+                    AND Cmp_bAprobado_HoraExtra = 1
+                    AND Cmp_dFecha_HoraExtra BETWEEN ? AND ?";
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdEmpleado);
+                cmd.Parameters.AddWithValue("", dInicio);
+                cmd.Parameters.AddWithValue("", dFin);
+                int iHorasExtra = Convert.ToInt32(cmd.ExecuteScalar());
+                double dValorHora = (dSalarioMensual / 30.0 / 8.0) * 1.5;
+                double dPagoHorasExtra = iHorasExtra * dValorHora;
+                return (iHorasExtra, dPagoHorasExtra);
+            }
+        }
+
+        private double funObtenerAnticipos(OdbcConnection cn, int iIdEmpleado, DateTime dInicio, DateTime dFin)
+        {
+            string sSql = @"SELECT IFNULL(SUM(Cmp_deMonto_Anticipo), 0) 
+                    FROM Tbl_Anticipos 
+                    WHERE Cmp_iId_Empleado = ? 
+                    AND Cmp_dFecha_Anticipo BETWEEN ? AND ?";
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdEmpleado);
+                cmd.Parameters.AddWithValue("", dInicio);
+                cmd.Parameters.AddWithValue("", dFin);
+                return Convert.ToDouble(cmd.ExecuteScalar());
+            }
+        }
+
+        private double funSumarMovimientosPorTipo(OdbcConnection cn, int iIdNomina, string sTipo)
+        {
+            string sSql = @"SELECT IFNULL(SUM(mn.Cmp_deMonto_MovimientoNomina), 0)
+                    FROM Tbl_MovimientosNomina mn
+                    INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                    WHERE mn.Cmp_iId_Nomina = ? AND c.Cmp_sTipo_ConceptoNomina = ?";
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdNomina);
+                cmd.Parameters.AddWithValue("", sTipo);
+                return Convert.ToDouble(cmd.ExecuteScalar());
+            }
+        }
+
+        // ==========================================================
+        // MÉTODO: OBTENER DETALLE DE NÓMINA
+        // ==========================================================
+        public DataTable funObtenerDetalleNomina(int iIdNomina)
+        {
+            DataTable dtsDetalles = new DataTable();
+            Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+
+                    string sSql = @"
+                SELECT 
+                    dn.Cmp_iId_Nomina AS Nomina,
+                    e.Cmp_iId_Empleado AS IdEmpleado,
+                    CONCAT(e.Cmp_sNombre_Empleado, ' ', e.Cmp_sApellido_Empleado) AS Empleado,
+                    dn.Cmp_iAusencias_DetalleNomina AS Ausencias,
+                    dn.Cmp_iDiasLaborados_DetalleNomina AS DiasLaborados,
+                    dn.Cmp_dePercepciones_DetalleNomina AS Percepciones,
+                    dn.Cmp_deDeducciones_DetalleNomina AS Deducciones,
+                    dn.Cmp_deSueldoLiquido_DetalleNomina AS SueldoLiquido
+                FROM Tbl_DetallesNomina dn
+                INNER JOIN Tbl_Empleados e ON dn.Cmp_iId_Empleado = e.Cmp_iId_Empleado
+                WHERE dn.Cmp_iId_Nomina = ?";
+
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                        da.Fill(dtsDetalles);
+                    }
+
+                    Console.WriteLine($"[OK] Se obtuvieron {dtsDetalles.Rows.Count} registros del detalle de la nómina #{iIdNomina}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[ERROR] al obtener detalle de nómina: {ex.Message}");
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+
+            return dtsDetalles;
+        }
+
+
+        // ==========================================================
+        // MÉTODO: OBTENER MOVIMIENTOS POR EMPLEADO Y NÓMINA
+        // ==========================================================
+        // ==========================================================
+        // MÉTODO: OBTENER MOVIMIENTOS POR EMPLEADO Y NÓMINA (sin duplicados)
+        // ==========================================================
+        public DataTable funObtenerMovimientosPorEmpleado(int iIdNomina, int iIdEmpleado)
+        {
+            DataTable dtsMovimientos = new DataTable();
+            Cls_Conexion_Creacion_Nomina clsConexion = new Cls_Conexion_Creacion_Nomina();
+
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+
+                    string sSql = @"
+                SELECT 
+                    mn.Cmp_iId_MovimientoNomina AS IdMovimiento,
+                    n.Cmp_iId_Nomina AS IdNomina,
+                    e.Cmp_iId_Empleado AS IdEmpleado,
+                    CONCAT(e.Cmp_sNombre_Empleado, ' ', e.Cmp_sApellido_Empleado) AS Empleado,
+                    c.Cmp_sNombre_ConceptoNomina AS Concepto,
+                    c.Cmp_sTipo_ConceptoNomina AS TipoConcepto,
+                    mn.Cmp_deMonto_MovimientoNomina AS Monto
+                FROM Tbl_MovimientosNomina mn
+                INNER JOIN Tbl_Nomina n 
+                    ON mn.Cmp_iId_Nomina = n.Cmp_iId_Nomina
+                INNER JOIN Tbl_ConceptosNomina c 
+                    ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                INNER JOIN Tbl_Empleados e 
+                    ON e.Cmp_iId_Empleado = ?
+                WHERE mn.Cmp_iId_Nomina = ?
+                ORDER BY c.Cmp_sTipo_ConceptoNomina ASC";
+
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdEmpleado);
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+
+                        OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                        da.Fill(dtsMovimientos);
+                    }
+
+                    Console.WriteLine($"[OK] Se obtuvieron {dtsMovimientos.Rows.Count} movimientos del empleado #{iIdEmpleado} en la nómina #{iIdNomina}");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"[ERROR] al obtener movimientos del empleado: {ex.Message}");
                 }
                 finally
                 {

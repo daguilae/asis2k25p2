@@ -71,33 +71,73 @@ namespace Capa_Vista_Creacion_Nomina
         {
             if (id_nomina <= 0)
             {
-                MessageBox.Show("Debe seleccionar una nómina antes de generar.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Debe seleccionar una nómina válida antes de calcular.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Confirmación del usuario
             DialogResult resultado = MessageBox.Show(
-                "¿Está seguro que desea generar la nómina seleccionada?",
-                "Confirmar generación de nómina",
+                "¿Está seguro que desea calcular la nómina seleccionada?\n\nEste proceso generará los detalles de pago para cada empleado.",
+                "Confirmar cálculo de nómina",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question
             );
 
             if (resultado == DialogResult.Yes)
             {
-                // Aquí irá el proceso real de generación de nómina
-                MessageBox.Show("La nómina ha sido generada correctamente (simulado).", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                    // 🔹 Buscar la fila seleccionada o, si no, buscar por ID
+                    DataGridViewRow fila = null;
 
-                // Actualizar la tabla y botones
-                funCargarNominas();
-                button1.Enabled = true;
-                button2.Enabled = false;
-                button3.Enabled = false;
+                    if (dataGridView1.SelectedRows.Count > 0)
+                    {
+                        fila = dataGridView1.SelectedRows[0];
+                    }
+                    else
+                    {
+                        foreach (DataGridViewRow r in dataGridView1.Rows)
+                        {
+                            if (r.Cells[0].Value != null && Convert.ToInt32(r.Cells[0].Value) == id_nomina)
+                            {
+                                fila = r;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (fila == null)
+                    {
+                        MessageBox.Show("No se pudo obtener la nómina seleccionada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // 🔹 Obtener fechas del periodo desde el DataGridView
+                    DateTime dInicio = Convert.ToDateTime(fila.Cells[1].Value);
+                    DateTime dFin = Convert.ToDateTime(fila.Cells[2].Value);
+
+                    // 🔹 Llamar al método de cálculo en el controlador
+                    clsControlador.proCalcularNomina(id_nomina, dInicio, dFin);
+
+                    MessageBox.Show("✅ Nómina calculada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // 🔹 Refrescar datos y botones
+                    funCargarNominas();
+                    button1.Enabled = true;
+                    button2.Enabled = false;
+                    button3.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("❌ Error al calcular la nómina: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
                 MessageBox.Show("Operación cancelada por el usuario.", "Cancelado", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -111,7 +151,7 @@ namespace Capa_Vista_Creacion_Nomina
         {
             if (id_nomina > 0)
             {
-                Frm_Movimientos_Nomina frm = new Frm_Movimientos_Nomina(id_nomina);
+                Frm_Detalle_Nomina frm = new Frm_Detalle_Nomina(id_nomina);
                 frm.ShowDialog();
             }
             else
@@ -134,8 +174,6 @@ namespace Capa_Vista_Creacion_Nomina
                     id_nomina = Convert.ToInt32(filaSeleccionada.Cells[0].Value);
 
                     string estadoNomina = filaSeleccionada.Cells[5].Value.ToString().Trim().ToUpper();
-
-                    Console.WriteLine($"[OK] Nómina seleccionada: {id_nomina} | Estado: {estadoNomina}");
 
                     // Reglas de habilitación de botones
                     if (estadoNomina == "GENERADA")

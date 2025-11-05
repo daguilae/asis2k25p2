@@ -167,6 +167,44 @@ namespace Capa_Controlador_Creacion_Nomina
 
         // Fin de código de: Fredy Reyes Sabán en la fecha de: 2/11/2025
 
+        public void proCalcularNomina(int iIdNomina, DateTime dPeriodoInicio, DateTime dPeriodoFin)
+        {
+            try
+            {
+                clsDaoNomina.proCalcularNomina(iIdNomina, dPeriodoInicio, dPeriodoFin);
+                Console.WriteLine("✅ Nómina calculada correctamente desde el controlador.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error en controlador al calcular nómina: {ex.Message}");
+            }
+        }
+
+        public DataTable funObtenerDetalleNomina(int iIdNomina)
+        {
+            try
+            {
+                return clsDaoNomina.funObtenerDetalleNomina(iIdNomina);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] en controlador al obtener detalle de nómina: {ex.Message}");
+                return null;
+            }
+        }
+
+        public DataTable funObtenerMovimientosPorEmpleado(int iIdNomina, int iIdEmpleado)
+        {
+            try
+            {
+                return clsDaoNomina.funObtenerMovimientosPorEmpleado(iIdNomina, iIdEmpleado);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"[ERROR] en controlador al obtener movimientos por empleado: {ex.Message}");
+                return null;
+            }
+        }
 
     }
 }

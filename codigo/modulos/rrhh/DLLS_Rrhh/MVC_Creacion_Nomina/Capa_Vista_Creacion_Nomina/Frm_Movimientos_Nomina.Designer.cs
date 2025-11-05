@@ -37,7 +37,8 @@ namespace Capa_Vista_Creacion_Nomina
             this.empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipo_concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.abono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,10 +62,11 @@ namespace Capa_Vista_Creacion_Nomina
             this.empleado,
             this.concepto,
             this.tipo_concepto,
-            this.monto});
+            this.cargo,
+            this.abono});
             this.dataGridView1.Location = new System.Drawing.Point(19, 110);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(769, 319);
+            this.dataGridView1.Size = new System.Drawing.Size(846, 319);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -98,16 +100,21 @@ namespace Capa_Vista_Creacion_Nomina
             this.tipo_concepto.HeaderText = "Tipo Concepto";
             this.tipo_concepto.Name = "tipo_concepto";
             // 
-            // monto
+            // cargo
             // 
-            this.monto.HeaderText = "Monto";
-            this.monto.Name = "monto";
+            this.cargo.HeaderText = "Cargo";
+            this.cargo.Name = "cargo";
+            // 
+            // abono
+            // 
+            this.abono.HeaderText = "Abono";
+            this.abono.Name = "abono";
             // 
             // Frm_Movimientos_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(877, 450);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Name = "Frm_Movimientos_Nomina";
@@ -128,6 +135,7 @@ namespace Capa_Vista_Creacion_Nomina
         private System.Windows.Forms.DataGridViewTextBoxColumn empleado;
         private System.Windows.Forms.DataGridViewTextBoxColumn concepto;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipo_concepto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cargo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn abono;
     }
 }
