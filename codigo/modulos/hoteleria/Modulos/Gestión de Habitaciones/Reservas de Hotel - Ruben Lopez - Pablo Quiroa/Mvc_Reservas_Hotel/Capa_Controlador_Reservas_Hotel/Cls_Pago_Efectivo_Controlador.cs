@@ -7,28 +7,33 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Efectivo modelo = new Cls_Sentencia_Pago_Efectivo();
 
-        // ==================== GUARDAR ====================
-        public void GuardarPagoEfectivo(int fkPago, string numeroRecibo, string observaciones)
+        // ===================================================
+        // === REGISTRAR DETALLE DE PAGO EN EFECTIVO =========
+        // ===================================================
+        public (bool exito, string mensaje) InsertarPagoEfectivo(int idPago, decimal monto,
+                                                                string numeroRecibo, string observaciones)
         {
-            if (fkPago <= 0)
-                throw new ArgumentException("No se recibió el ID del pago principal.");
+            try
+            {
+                // === Validaciones básicas ===
+                if (idPago <= 0)
+                    return (false, "El ID del pago principal no es válido.");
 
-            if (string.IsNullOrWhiteSpace(numeroRecibo))
-                throw new ArgumentException("Debe ingresar el número de recibo.");
+                if (string.IsNullOrWhiteSpace(numeroRecibo))
+                    return (false, "Ingrese el número de recibo.");
 
-            modelo.InsertarPagoEfectivo(fkPago, numeroRecibo.Trim(), observaciones?.Trim());
-        }
+                // === Guardar detalle en Tbl_Pago_Efectivo ===
+                bool ok = modelo.InsertarDetalleEfectivo(idPago, numeroRecibo.Trim(), observaciones?.Trim());
 
-        // ==================== MODIFICAR ====================
-        public void ModificarPagoEfectivo(int fkPago, string numeroRecibo, string observaciones)
-        {
-            if (fkPago <= 0)
-                throw new ArgumentException("Debe existir un ID de pago para modificar.");
-
-            if (string.IsNullOrWhiteSpace(numeroRecibo))
-                throw new ArgumentException("Debe ingresar el número de recibo.");
-
-            modelo.ModificarPagoEfectivo(fkPago, numeroRecibo.Trim(), observaciones?.Trim());
+                if (ok)
+                    return (true, "Pago en efectivo registrado correctamente.");
+                else
+                    return (false, "Error al guardar el detalle del pago en efectivo.");
+            }
+            catch (Exception ex)
+            {
+                return (false, "Error inesperado al registrar el pago en efectivo: " + ex.Message);
+            }
         }
     }
 }

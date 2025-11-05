@@ -8,41 +8,36 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ==================== INSERTAR ====================
-        public void InsertarPagoTransferencia(int fkPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
+        // ===================================================
+        // INSERTAR DETALLE EN TBL_PAGO_TRANSFERENCIA
+        // ===================================================
+        public bool InsertarDetalleTransferencia(int idPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
         {
-            string sSql = @"INSERT INTO tbl_pago_transferencia
-                            (Fk_Id_Pago, Cmp_Numero_Transferencia, Cmp_Banco_Origen, Cmp_Cuenta_Origen)
-                            VALUES (?, ?, ?, ?);";
-
-            using (var conn = conexion.conexion())
-            using (var cmd = new OdbcCommand(sSql, conn))
+            using (OdbcConnection conn = conexion.conexion())
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = fkPago;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = numeroTransferencia;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = bancoOrigen;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = cuentaOrigen;
-                cmd.ExecuteNonQuery();
-            }
-        }
+                try
+                {
+                    string sql = @"
+                        INSERT INTO tbl_pago_transferencia
+                        (Fk_Id_Pago, Cmp_Numero_Transferencia, Cmp_Banco_Origen, Cmp_Cuenta_Origen)
+                        VALUES (?, ?, ?, ?);";
 
-        // ==================== MODIFICAR ====================
-        public void ModificarPagoTransferencia(int fkPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
-        {
-            string sSql = @"UPDATE tbl_pago_transferencia
-                            SET Cmp_Numero_Transferencia = ?,
-                                Cmp_Banco_Origen = ?,
-                                Cmp_Cuenta_Origen = ?
-                            WHERE Fk_Id_Pago = ?;";
+                    using (OdbcCommand cmd = new OdbcCommand(sql, conn))
+                    {
+                        cmd.Parameters.Add("Fk_Id_Pago", OdbcType.Int).Value = idPago;
+                        cmd.Parameters.Add("Cmp_Numero_Transferencia", OdbcType.VarChar, 30).Value = numeroTransferencia;
+                        cmd.Parameters.Add("Cmp_Banco_Origen", OdbcType.VarChar, 50).Value = bancoOrigen;
+                        cmd.Parameters.Add("Cmp_Cuenta_Origen", OdbcType.VarChar, 50).Value = cuentaOrigen;
 
-            using (var conn = conexion.conexion())
-            using (var cmd = new OdbcCommand(sSql, conn))
-            {
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = numeroTransferencia;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 50).Value = bancoOrigen;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 30).Value = cuentaOrigen;
-                cmd.Parameters.Add(null, OdbcType.Int).Value = fkPago;
-                cmd.ExecuteNonQuery();
+                        int filas = cmd.ExecuteNonQuery();
+                        return filas > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error SQL en InsertarDetalleTransferencia: " + ex.Message);
+                    throw new Exception("Error al registrar el detalle del pago por transferencia: " + ex.Message, ex);
+                }
             }
         }
     }
