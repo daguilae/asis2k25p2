@@ -153,6 +153,28 @@ namespace Capa_Vista_Deducciones_Nomina
                     return;
                 }
 
+                int iIdNomina = Convert.ToInt32(cboNoNomina.SelectedValue);
+
+                // 🔹 Verificar si la nómina está generada
+                string estadoNomina = controlador.funObtenerEstadoNomina(iIdNomina);
+                if (estadoNomina.ToUpper() == "GENERADA")
+                {
+                    MessageBox.Show(
+                        "No puede agregar movimientos a una nómina ya generada.",
+                        "Operación no permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    return;
+                }
+
+                // Validar selección de empleado
+                if (cboEmpleado.SelectedValue == null || !(cboEmpleado.SelectedValue is int))
+                {
+                    MessageBox.Show("Seleccione un empleado antes de guardar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 // Validar selección de concepto
                 if (cboConcepto.SelectedValue == null || !(cboConcepto.SelectedValue is int))
                 {
@@ -167,18 +189,15 @@ namespace Capa_Vista_Deducciones_Nomina
                     return;
                 }
 
-                // Obtener IDs seleccionados
-                int iIdNomina = Convert.ToInt32(cboNoNomina.SelectedValue);
+                int iIdEmpleado = Convert.ToInt32(cboEmpleado.SelectedValue);
                 int iIdConcepto = Convert.ToInt32(cboConcepto.SelectedValue);
 
-                // Guardar en base de datos
-                controlador.proInsertarMovimientoNomina(iIdNomina, iIdConcepto, dMonto);
-                Console.WriteLine($"[OK] Movimiento insertado en nómina #{iIdNomina} con concepto #{iIdConcepto} y monto {dMonto}");
+                // Guardar movimiento
+                controlador.proInsertarMovimientoNomina(iIdNomina, iIdEmpleado, iIdConcepto, dMonto);
+                Console.WriteLine($"[OK] Movimiento insertado en nómina #{iIdNomina}, empleado #{iIdEmpleado}, concepto #{iIdConcepto}, monto {dMonto}");
 
-                // Refrescar los datos en el grid
-                funCargarMovimientosPorNomina(iIdNomina);
+                funCargarMovimientosPorNominaYEmpleado(iIdNomina, iIdEmpleado);
 
-                // Limpiar campos
                 cboConcepto.SelectedIndex = -1;
                 txtValor.Clear();
             }

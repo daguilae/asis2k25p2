@@ -98,21 +98,28 @@ namespace Capa_Modelo_Deducciones_Nomina
         // ==========================================================
         // MÉTODO: INSERTAR
         // ==========================================================
-        public void proInsertarMovimientoNomina(int iIdNomina, int iIdConceptoNomina, decimal dMontoMovimiento)
+        public void proInsertarMovimientoNomina(int iIdNomina, int iIdEmpleado, int iIdConceptoNomina, decimal dMontoMovimiento)
         {
             using (OdbcConnection cnConexion = clsConexion.conexion())
             {
                 try
                 {
                     cnConexion.Open();
-                    string sSql = "INSERT INTO Tbl_MovimientosNomina (Cmp_iId_Nomina, Cmp_iId_ConceptoNomina, Cmp_deMonto_MovimientoNomina) VALUES (?, ?, ?)";
+                    string sSql = @"
+                INSERT INTO Tbl_MovimientosNomina 
+                (Cmp_iId_Nomina, Cmp_iId_Empleado, Cmp_iId_ConceptoNomina, Cmp_deMonto_MovimientoNomina)
+                VALUES (?, ?, ?, ?)";
+
                     using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
                         cmd.Parameters.AddWithValue("", iIdNomina);
+                        cmd.Parameters.AddWithValue("", iIdEmpleado);
                         cmd.Parameters.AddWithValue("", iIdConceptoNomina);
                         cmd.Parameters.AddWithValue("", dMontoMovimiento);
                         cmd.ExecuteNonQuery();
                     }
+
+                    Console.WriteLine($"[OK] Movimiento insertado correctamente para empleado #{iIdEmpleado}.");
                 }
                 catch (Exception ex)
                 {
@@ -380,5 +387,35 @@ namespace Capa_Modelo_Deducciones_Nomina
             }
             return iExiste;
         }
+
+        public string funObtenerEstadoNomina(int iIdNomina)
+        {
+            string estado = string.Empty;
+            using (OdbcConnection cnConexion = clsConexion.conexion())
+            {
+                try
+                {
+                    cnConexion.Open();
+                    string sSql = "SELECT Cmp_sEstado_Nomina FROM Tbl_Nomina WHERE Cmp_iId_Nomina = ?";
+                    using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
+                    {
+                        cmd.Parameters.AddWithValue("", iIdNomina);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                            estado = result.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener estado de nómina: " + ex.Message);
+                }
+                finally
+                {
+                    clsConexion.desconexion(cnConexion);
+                }
+            }
+            return estado;
+        }
+
     }
 }

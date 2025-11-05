@@ -134,69 +134,92 @@ namespace Capa_Vista_Percepciones_Nomina
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
-            // Ya no pedimos Empleado para guardar movimientos
-            if (Cbo_NoNomina.SelectedValue == null || Cbo_ConceptoNomina.SelectedValue == null)
+            try
             {
-                MessageBox.Show("Selecciona Nómina y Concepto.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!decimal.TryParse(Txt_Valor.Text, out var monto) || monto <= 0)
-            {
-                MessageBox.Show("Ingresa un monto válido.", "Validación",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int idNomina = Convert.ToInt32(Cbo_NoNomina.SelectedValue);
-            int idConcepto = Convert.ToInt32(Cbo_ConceptoNomina.SelectedValue);
-            int nuevoIdMovimiento = 0;
-
-            Conexion cn = new Conexion();
-            using (OdbcConnection con = cn.conexionDB())
-            using (OdbcTransaction tx = con.BeginTransaction())
-            {
-                try
+                // Validaciones
+                if (Cbo_NoNomina.SelectedValue == null || Cbo_ConceptoNomina.SelectedValue == null || Cbo_Empleado.SelectedValue == null)
                 {
-                    // 1) Insertar movimiento
-                    string sqlMov = @"
-                        INSERT INTO `Tbl_MovimientosNomina`
-                            (`Cmp_iId_Nomina`, `Cmp_iId_ConceptoNomina`, `Cmp_deMonto_MovimientoNomina`)
-                        VALUES (?, ?, ?);";
-                    using (OdbcCommand cmd = new OdbcCommand(sqlMov, con, tx))
+                    MessageBox.Show("Selecciona Nómina, Empleado y Concepto.", "Validación",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (!decimal.TryParse(Txt_Valor.Text, out var monto) || monto <= 0)
+                {
+                    MessageBox.Show("Ingresa un monto válido.", "Validación",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int idNomina = Convert.ToInt32(Cbo_NoNomina.SelectedValue);
+                int idEmpleado = Convert.ToInt32(Cbo_Empleado.SelectedValue);
+                int idConcepto = Convert.ToInt32(Cbo_ConceptoNomina.SelectedValue);
+
+                // ✅ Verificar estado de la nómina
+                string estadoNomina = ctrl.ObtenerEstadoNomina(idNomina);
+                if (estadoNomina.ToUpper() == "GENERADA")
+                {
+                    MessageBox.Show(
+                        "No puedes agregar movimientos a una nómina ya generada.",
+                        "Operación no permitida",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information
+                    );
+                    return;
+                }
+
+                // --- Guardar movimiento ---
+                Conexion cn = new Conexion();
+                using (OdbcConnection con = cn.conexionDB())
+                using (OdbcTransaction tx = con.BeginTransaction())
+                {
+                    int nuevoIdMovimiento = 0;
+
+                    try
                     {
-                        cmd.Parameters.Add("p1", OdbcType.Int).Value = idNomina;
-                        cmd.Parameters.Add("p2", OdbcType.Int).Value = idConcepto;
-                        cmd.Parameters.Add("p3", OdbcType.Decimal).Value = monto;
-                        cmd.ExecuteNonQuery();
-                    }
+                        string sqlMov = @"
+                    INSERT INTO `Tbl_MovimientosNomina`
+                        (`Cmp_iId_Nomina`, `Cmp_iId_Empleado`, `Cmp_iId_ConceptoNomina`, `Cmp_deMonto_MovimientoNomina`)
+                    VALUES (?, ?, ?, ?);";
 
-                    // 2) Obtener el ID insertado
-                    using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID();", con, tx))
+                        using (OdbcCommand cmd = new OdbcCommand(sqlMov, con, tx))
+                        {
+                            cmd.Parameters.Add("p1", OdbcType.Int).Value = idNomina;
+                            cmd.Parameters.Add("p2", OdbcType.Int).Value = idEmpleado;
+                            cmd.Parameters.Add("p3", OdbcType.Int).Value = idConcepto;
+                            cmd.Parameters.Add("p4", OdbcType.Decimal).Value = monto;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID();", con, tx))
+                        {
+                            nuevoIdMovimiento = Convert.ToInt32(cmdId.ExecuteScalar());
+                        }
+
+                        tx.Commit();
+
+                        CargarDgvMovimientos(idNomina);
+                        SeleccionarFilaPorMovimiento(nuevoIdMovimiento);
+
+                        MessageBox.Show("Movimiento registrado correctamente.", "Éxito",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
                     {
-                        nuevoIdMovimiento = Convert.ToInt32(cmdId.ExecuteScalar());
+                        try { tx.Rollback(); } catch { }
+                        MessageBox.Show("Error al insertar: " + ex.Message, "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    tx.Commit();
-
-                    // Recargar grid y resaltar el nuevo movimiento
-                    CargarDgvMovimientos(idNomina);
-                    SeleccionarFilaPorMovimiento(nuevoIdMovimiento);
-
-                    MessageBox.Show("Movimiento registrado.", "Éxito",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    finally
+                    {
+                        cn.cerrarConexion();
+                    }
                 }
-                catch (Exception ex)
-                {
-                    try { tx.Rollback(); } catch { /* ignore */ }
-                    MessageBox.Show("Error al insertar: " + ex.Message, "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    cn.cerrarConexion();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error general: " + ex.Message, "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

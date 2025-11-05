@@ -21,5 +21,11 @@ namespace Capa_Controlador_Percepciones_Nomina
         {
             return _modelo.ObtenerNumerosNomina();
         }
+
+        public string ObtenerEstadoNomina(int idNomina)
+        {
+            return _modelo.ObtenerEstadoNomina(idNomina);
+        }
+
     }
 }

@@ -64,11 +64,11 @@ namespace Capa_Controlador_Movimientos_Nomina
         // ==========================================================
         // MÉTODOS DE CREACIÓN
         // ==========================================================
-        public void proInsertarMovimientoNomina(int iIdNomina, int iIdConceptoNomina, decimal dMontoMovimiento)
+        public void proInsertarMovimientoNomina(int iIdNomina, int iIdEmpleado, int iIdConceptoNomina, decimal dMontoMovimiento)
         {
             try
             {
-                daoMovimientos.proInsertarMovimientoNomina(iIdNomina, iIdConceptoNomina, dMontoMovimiento);
+                daoMovimientos.proInsertarMovimientoNomina(iIdNomina, iIdEmpleado, iIdConceptoNomina, dMontoMovimiento);
                 Console.WriteLine("✅ Movimiento insertado correctamente.");
             }
             catch (Exception ex)
@@ -76,6 +76,7 @@ namespace Capa_Controlador_Movimientos_Nomina
                 Console.WriteLine("❌ Error en controlador al insertar movimiento: " + ex.Message);
             }
         }
+
 
         // ==========================================================
         // MÉTODOS DE ACTUALIZACIÓN
@@ -163,6 +164,20 @@ namespace Capa_Controlador_Movimientos_Nomina
                 return null;
             }
         }
+
+        public string funObtenerEstadoNomina(int iIdNomina)
+        {
+            try
+            {
+                return daoMovimientos.funObtenerEstadoNomina(iIdNomina);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("❌ Error en controlador al obtener estado de nómina: " + ex.Message);
+                return string.Empty;
+            }
+        }
+
 
         // ==========================================================
         // MÉTODOS DE CÁLCULO Y VERIFICACIÓN

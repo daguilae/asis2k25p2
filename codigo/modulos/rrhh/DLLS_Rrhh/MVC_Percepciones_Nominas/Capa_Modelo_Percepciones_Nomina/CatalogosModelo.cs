@@ -163,6 +163,39 @@ namespace Capa_Modelo_Percepciones_Nomina
             return dt;
         }
 
+        public string ObtenerEstadoNomina(int idNomina)
+        {
+            string estado = string.Empty;
+            Conexion cn = new Conexion();
+
+            using (OdbcConnection con = cn.conexionDB())
+            {
+                try
+                {
+                    using (OdbcCommand cmd = new OdbcCommand(
+                        "SELECT Cmp_sEstado_Nomina FROM Tbl_Nomina WHERE Cmp_iId_Nomina = ?",
+                        con))
+                    {
+                        cmd.Parameters.Add("p1", OdbcType.Int).Value = idNomina;
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                            estado = result.ToString();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error al obtener estado de nómina: " + ex.Message);
+                }
+                finally
+                {
+                    cn.cerrarConexion();
+                }
+            }
+
+            return estado;
+        }
+
+
     }
 
 }
