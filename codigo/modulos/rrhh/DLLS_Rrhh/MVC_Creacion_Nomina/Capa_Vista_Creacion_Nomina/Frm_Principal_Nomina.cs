@@ -87,7 +87,7 @@ namespace Capa_Vista_Creacion_Nomina
             {
                 try
                 {
-                    // 🔹 Buscar la fila seleccionada o, si no, buscar por ID
+                    // Buscar la fila seleccionada o, si no, buscar por ID
                     DataGridViewRow fila = null;
 
                     if (dataGridView1.SelectedRows.Count > 0)
@@ -112,16 +112,16 @@ namespace Capa_Vista_Creacion_Nomina
                         return;
                     }
 
-                    // 🔹 Obtener fechas del periodo desde el DataGridView
+                    // Obtener fechas del periodo desde el DataGridView
                     DateTime dInicio = Convert.ToDateTime(fila.Cells[1].Value);
                     DateTime dFin = Convert.ToDateTime(fila.Cells[2].Value);
 
-                    // 🔹 Llamar al método de cálculo en el controlador
+                    // Llamar al método de cálculo en el controlador
                     clsControlador.proCalcularNomina(id_nomina, dInicio, dFin);
 
                     MessageBox.Show("✅ Nómina calculada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    // 🔹 Refrescar datos y botones
+                    // Refrescar datos y botones
                     funCargarNominas();
                     button1.Enabled = true;
                     button2.Enabled = false;

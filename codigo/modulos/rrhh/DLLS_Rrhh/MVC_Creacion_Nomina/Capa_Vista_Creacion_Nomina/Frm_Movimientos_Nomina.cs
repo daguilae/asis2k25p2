@@ -76,7 +76,6 @@ namespace Capa_Vista_Creacion_Nomina
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Aquí podrías agregar acciones futuras (editar o eliminar movimientos)
         }
     }
 }

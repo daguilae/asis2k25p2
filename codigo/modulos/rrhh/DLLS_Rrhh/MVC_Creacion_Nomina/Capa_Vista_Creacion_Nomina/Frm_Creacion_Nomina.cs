@@ -8,7 +8,7 @@
 
 using System;
 using System.Windows.Forms;
-using Capa_Controlador_Creacion_Nomina; // Conexión con el controlador
+using Capa_Controlador_Creacion_Nomina;
 
 namespace Capa_Vista_Creacion_Nomina
 {

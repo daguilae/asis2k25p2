@@ -294,9 +294,6 @@ namespace Capa_Modelo_Creacion_Nomina
         // ==========================================================
         // MÉTODO: OBTENER MOVIMIENTOS POR ID DE NÓMINA
         // ==========================================================
-        // ==========================================================
-        // MÉTODO: OBTENER MOVIMIENTOS POR ID DE NÓMINA (sin duplicados)
-        // ==========================================================
         public DataTable funObtenerMovimientosPorIdNomina(int iIdNomina)
         {
             DataTable dtsMovimientos = new DataTable();
@@ -365,13 +362,13 @@ namespace Capa_Modelo_Creacion_Nomina
                 {
                     cnConexion.Open();
 
-                    // 🔹 1. Obtener empleados activos
+                    // 1. Obtener empleados activos
                     string sSqlEmpleados = @"SELECT Cmp_iId_Empleado, Cmp_deSalario_Empleado 
                                      FROM Tbl_Empleados WHERE Cmp_bEstado_Empleado = 1";
                     DataTable dtEmpleados = new DataTable();
                     new OdbcDataAdapter(sSqlEmpleados, cnConexion).Fill(dtEmpleados);
 
-                    // 🔹 2. Obtener conceptos automáticos de nómina
+                    // 2. Obtener conceptos automáticos de nómina
                     string sSqlConceptos = @"
                 SELECT 
                     Cmp_iId_ConceptoNomina,
@@ -387,7 +384,7 @@ namespace Capa_Modelo_Creacion_Nomina
 
                     Console.WriteLine($"[INFO] Conceptos automáticos cargados: {dtConceptos.Rows.Count}");
 
-                    // 🔹 3. Procesar cada empleado activo
+                    // 3. Procesar cada empleado activo
                     foreach (DataRow fila in dtEmpleados.Rows)
                     {
                         int iIdEmpleado = Convert.ToInt32(fila["Cmp_iId_Empleado"]);
@@ -406,19 +403,19 @@ namespace Capa_Modelo_Creacion_Nomina
                         double dDeduccionAusencias = (dSalarioMensual / iDiasDelPeriodo) * iAusencias;
 
                         // ==========================================================
-                        // 🔹 Calcular percepciones y deducciones (base + movimientos manuales)
+                        // Calcular percepciones y deducciones (base + movimientos manuales)
                         // ==========================================================
                         double dPercepciones = dSueldoBase + dPagoHorasExtra;
                         double dDeducciones = dDeduccionAusencias + dTotalAnticipos;
 
-                        // 🔹 Sumar movimientos manuales existentes
+                        // Sumar movimientos manuales existentes
                         dPercepciones += funSumarMovimientosPorTipoEmpleado(cnConexion, iIdNomina, iIdEmpleado, "PERCEPCION");
                         dDeducciones += funSumarMovimientosPorTipoEmpleado(cnConexion, iIdNomina, iIdEmpleado, "DEDUCCION");
 
                         double dSueldoLiquido = dPercepciones - dDeducciones;
 
                         // ============================================================== 
-                        // 🔹 Insertar DETALLE INICIAL DE NÓMINA (se actualizará al final)
+                        // Insertar DETALLE INICIAL DE NÓMINA (se actualizará al final)
                         // ==============================================================
                         string sSqlInsertDetalle = @"
                     INSERT INTO Tbl_DetallesNomina 
@@ -439,7 +436,7 @@ namespace Capa_Modelo_Creacion_Nomina
                         }
 
                         // ==============================================================
-                        // 🔹 Registrar MOVIMIENTOS AUTOMÁTICOS según configuración
+                        // Registrar MOVIMIENTOS AUTOMÁTICOS según configuración
                         // ==============================================================
                         foreach (DataRow concepto in dtConceptos.Rows)
                         {
@@ -488,7 +485,7 @@ namespace Capa_Modelo_Creacion_Nomina
                         }
 
                         // ==============================================================
-                        // 🔹 Recalcular totales REALES desde Tbl_MovimientosNomina
+                        // Recalcular totales REALES desde Tbl_MovimientosNomina
                         // ==============================================================
                         string sSqlTotales = @"
                     SELECT 
@@ -511,7 +508,7 @@ namespace Capa_Modelo_Creacion_Nomina
                                     double dTotDed = Convert.ToDouble(dr["TotalDeducciones"]);
                                     double dSueldoLiquidoFinal = dTotPer - dTotDed;
 
-                                    // 🔹 Actualizar el detalle con los totales finales
+                                    // Actualizar el detalle con los totales finales
                                     string sSqlUpdateDetalle = @"
                                 UPDATE Tbl_DetallesNomina
                                 SET Cmp_dePercepciones_DetalleNomina = ?, 
@@ -537,7 +534,7 @@ namespace Capa_Modelo_Creacion_Nomina
                         Console.WriteLine($"[INFO] Empleado {iIdEmpleado} procesado correctamente con totales actualizados.");
                     }
 
-                    // 🔹 Actualizar estado y fecha de generación
+                    // Actualizar estado y fecha de generación
                     string sSqlUpdateNomina = @"
                 UPDATE Tbl_Nomina 
                 SET Cmp_sEstado_Nomina = 'GENERADA',
@@ -725,9 +722,6 @@ namespace Capa_Modelo_Creacion_Nomina
 
         // ==========================================================
         // MÉTODO: OBTENER MOVIMIENTOS POR EMPLEADO Y NÓMINA
-        // ==========================================================
-        // ==========================================================
-        // MÉTODO: OBTENER MOVIMIENTOS POR EMPLEADO Y NÓMINA (sin duplicados)
         // ==========================================================
         public DataTable funObtenerMovimientosPorEmpleado(int iIdNomina, int iIdEmpleado)
         {

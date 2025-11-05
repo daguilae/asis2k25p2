@@ -119,7 +119,7 @@ namespace Capa_Modelo_Deducciones_Nomina
                         cmd.ExecuteNonQuery();
                     }
 
-                    Console.WriteLine($"[OK] Movimiento insertado correctamente para empleado #{iIdEmpleado}.");
+                    Console.WriteLine($"Movimiento insertado correctamente para empleado #{iIdEmpleado}.");
                 }
                 catch (Exception ex)
                 {

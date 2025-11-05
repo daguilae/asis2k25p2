@@ -52,7 +52,7 @@ namespace Capa_Vista_Deducciones_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] al cargar combos: {ex.Message}");
+                Console.WriteLine($"ERROR al cargar combos: {ex.Message}");
             }
         }
 
@@ -85,11 +85,11 @@ namespace Capa_Vista_Deducciones_Nomina
                     );
                 }
 
-                Console.WriteLine($"[OK] Movimientos cargados para nómina #{iIdNomina}");
+                Console.WriteLine($"Movimientos cargados para nómina #{iIdNomina}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] al cargar movimientos por nómina: {ex.Message}");
+                Console.WriteLine($"al cargar movimientos por nómina: {ex.Message}");
             }
         }
 
@@ -126,11 +126,11 @@ namespace Capa_Vista_Deducciones_Nomina
                     );
                 }
 
-                Console.WriteLine($"[OK] Movimientos cargados para nómina #{iIdNomina}, empleado #{iIdEmpleado}");
+                Console.WriteLine($"Movimientos cargados para nómina #{iIdNomina}, empleado #{iIdEmpleado}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] al cargar movimientos por nómina y empleado: {ex.Message}");
+                Console.WriteLine($"ERROR al cargar movimientos por nómina y empleado: {ex.Message}");
             }
         }
 
@@ -194,7 +194,7 @@ namespace Capa_Vista_Deducciones_Nomina
 
                 // Guardar movimiento
                 controlador.proInsertarMovimientoNomina(iIdNomina, iIdEmpleado, iIdConcepto, dMonto);
-                Console.WriteLine($"[OK] Movimiento insertado en nómina #{iIdNomina}, empleado #{iIdEmpleado}, concepto #{iIdConcepto}, monto {dMonto}");
+                Console.WriteLine($"Movimiento insertado en nómina #{iIdNomina}, empleado #{iIdEmpleado}, concepto #{iIdConcepto}, monto {dMonto}");
 
                 funCargarMovimientosPorNominaYEmpleado(iIdNomina, iIdEmpleado);
 
@@ -203,7 +203,7 @@ namespace Capa_Vista_Deducciones_Nomina
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[ERROR] al guardar movimiento: {ex.Message}");
+                Console.WriteLine($"ERROR al guardar movimiento: {ex.Message}");
                 MessageBox.Show("Ocurrió un error al guardar el movimiento. Revise la consola para más detalles.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

@@ -2,12 +2,8 @@
 // Capa_Controlador_Creacion_Nomina
 // Clase: Cls_Controlador_Creacion_Nomina
 // Autor: Fredy Reyes Sabán
-// Carné: 20250000
+// Carné: 0901-22-9800
 // Fecha: 29/10/2025
-// Descripción: Controlador encargado de manejar la lógica de negocio
-//              para la creación y administración de nóminas,
-//              aplicando las reglas de estandarización V2.1
-//              y adaptado a la estructura actual de Tbl_Nomina.
 // =============================================================
 
 using System;
@@ -160,13 +156,6 @@ namespace Capa_Controlador_Creacion_Nomina
                 return null;
             }
         }
-
-        public void testIdNomina(int idNomina) {
-            Console.WriteLine(idNomina);
-        }
-
-        // Fin de código de: Fredy Reyes Sabán en la fecha de: 2/11/2025
-
         public void proCalcularNomina(int iIdNomina, DateTime dPeriodoInicio, DateTime dPeriodoFin)
         {
             try
@@ -205,6 +194,7 @@ namespace Capa_Controlador_Creacion_Nomina
                 return null;
             }
         }
-
+        
+        // Fin de código de: Fredy Reyes Sabán en la fecha de: 2/11/2025
     }
 }
