@@ -31,10 +31,10 @@ namespace Capa_Vista_Gestion_Habitacion
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Estadia));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_salir = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_Buscar = new System.Windows.Forms.Button();
-            this.txt_pk_id_estadia = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_Num_Huespedes = new System.Windows.Forms.TextBox();
@@ -51,9 +51,13 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_guardar = new System.Windows.Forms.Button();
             this.btn_modificar = new System.Windows.Forms.Button();
             this.btn_eliminar = new System.Windows.Forms.Button();
-            this.btn_salir = new System.Windows.Forms.PictureBox();
-            this.txt_Id_Habitacion = new System.Windows.Forms.TextBox();
-            this.txt_ID_Huesped = new System.Windows.Forms.TextBox();
+            this.cbo_fk_id_Habitacion = new System.Windows.Forms.ComboBox();
+            this.cbo_Fk_Id_Huesped = new System.Windows.Forms.ComboBox();
+            this.btn_limpiar = new System.Windows.Forms.Button();
+            this.lbl_Precio_Unitario = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Cbo_PK_Id_Estadia = new System.Windows.Forms.ComboBox();
+            this.lbl_maxima_capacidad = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_salir)).BeginInit();
             this.SuspendLayout();
@@ -67,6 +71,16 @@ namespace Capa_Vista_Gestion_Habitacion
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1177, 36);
             this.panel1.TabIndex = 1;
+            // 
+            // btn_salir
+            // 
+            this.btn_salir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_salir.BackgroundImage")));
+            this.btn_salir.Location = new System.Drawing.Point(1115, 2);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(31, 32);
+            this.btn_salir.TabIndex = 24;
+            this.btn_salir.TabStop = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
             // label1
             // 
@@ -99,13 +113,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_Buscar.Text = "Buscar";
             this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_Buscar.UseVisualStyleBackColor = true;
-            // 
-            // txt_pk_id_estadia
-            // 
-            this.txt_pk_id_estadia.Location = new System.Drawing.Point(116, 81);
-            this.txt_pk_id_estadia.Name = "txt_pk_id_estadia";
-            this.txt_pk_id_estadia.Size = new System.Drawing.Size(170, 20);
-            this.txt_pk_id_estadia.TabIndex = 4;
+            this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
             // 
             // label3
             // 
@@ -113,9 +121,9 @@ namespace Capa_Vista_Gestion_Habitacion
             this.label3.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(304, 82);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 16);
+            this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Id Habitacion";
+            this.label3.Text = "Num Habitacion";
             // 
             // label4
             // 
@@ -130,6 +138,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // txt_Num_Huespedes
             // 
             this.txt_Num_Huespedes.Location = new System.Drawing.Point(171, 139);
+            this.txt_Num_Huespedes.MaxLength = 2;
             this.txt_Num_Huespedes.Name = "txt_Num_Huespedes";
             this.txt_Num_Huespedes.Size = new System.Drawing.Size(170, 20);
             this.txt_Num_Huespedes.TabIndex = 11;
@@ -148,7 +157,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 205);
+            this.label6.Location = new System.Drawing.Point(25, 222);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(119, 16);
             this.label6.TabIndex = 12;
@@ -156,7 +165,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             // DTP_Check_in
             // 
-            this.DTP_Check_in.Location = new System.Drawing.Point(150, 205);
+            this.DTP_Check_in.Location = new System.Drawing.Point(150, 222);
             this.DTP_Check_in.Name = "DTP_Check_in";
             this.DTP_Check_in.Size = new System.Drawing.Size(200, 20);
             this.DTP_Check_in.TabIndex = 13;
@@ -165,7 +174,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(431, 209);
+            this.label7.Location = new System.Drawing.Point(431, 226);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(102, 16);
             this.label7.TabIndex = 14;
@@ -173,7 +182,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             // DTP_CheckOut
             // 
-            this.DTP_CheckOut.Location = new System.Drawing.Point(539, 209);
+            this.DTP_CheckOut.Location = new System.Drawing.Point(539, 226);
             this.DTP_CheckOut.Name = "DTP_CheckOut";
             this.DTP_CheckOut.Size = new System.Drawing.Size(200, 20);
             this.DTP_CheckOut.TabIndex = 15;
@@ -201,7 +210,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(25, 277);
+            this.label9.Location = new System.Drawing.Point(25, 301);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(161, 16);
             this.label9.TabIndex = 18;
@@ -211,7 +220,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_montoTotal.AutoSize = true;
             this.lbl_montoTotal.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_montoTotal.Location = new System.Drawing.Point(211, 277);
+            this.lbl_montoTotal.Location = new System.Drawing.Point(211, 301);
             this.lbl_montoTotal.Name = "lbl_montoTotal";
             this.lbl_montoTotal.Size = new System.Drawing.Size(33, 16);
             this.lbl_montoTotal.TabIndex = 19;
@@ -231,7 +240,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // btn_guardar
             // 
             this.btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("btn_guardar.Image")));
-            this.btn_guardar.Location = new System.Drawing.Point(28, 324);
+            this.btn_guardar.Location = new System.Drawing.Point(912, 232);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(87, 85);
             this.btn_guardar.TabIndex = 21;
@@ -243,7 +252,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // btn_modificar
             // 
             this.btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("btn_modificar.Image")));
-            this.btn_modificar.Location = new System.Drawing.Point(135, 324);
+            this.btn_modificar.Location = new System.Drawing.Point(1005, 232);
             this.btn_modificar.Name = "btn_modificar";
             this.btn_modificar.Size = new System.Drawing.Size(87, 85);
             this.btn_modificar.TabIndex = 22;
@@ -255,7 +264,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // btn_eliminar
             // 
             this.btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("btn_eliminar.Image")));
-            this.btn_eliminar.Location = new System.Drawing.Point(245, 325);
+            this.btn_eliminar.Location = new System.Drawing.Point(1005, 138);
             this.btn_eliminar.Name = "btn_eliminar";
             this.btn_eliminar.Size = new System.Drawing.Size(87, 85);
             this.btn_eliminar.TabIndex = 23;
@@ -264,37 +273,87 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_eliminar.UseVisualStyleBackColor = true;
             this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
-            // btn_salir
+            // cbo_fk_id_Habitacion
             // 
-            this.btn_salir.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_salir.BackgroundImage")));
-            this.btn_salir.Location = new System.Drawing.Point(1115, 2);
-            this.btn_salir.Name = "btn_salir";
-            this.btn_salir.Size = new System.Drawing.Size(31, 32);
-            this.btn_salir.TabIndex = 24;
-            this.btn_salir.TabStop = false;
-            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            this.cbo_fk_id_Habitacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_fk_id_Habitacion.FormattingEnabled = true;
+            this.cbo_fk_id_Habitacion.Location = new System.Drawing.Point(407, 80);
+            this.cbo_fk_id_Habitacion.Name = "cbo_fk_id_Habitacion";
+            this.cbo_fk_id_Habitacion.Size = new System.Drawing.Size(170, 21);
+            this.cbo_fk_id_Habitacion.TabIndex = 26;
             // 
-            // txt_Id_Habitacion
+            // cbo_Fk_Id_Huesped
             // 
-            this.txt_Id_Habitacion.Location = new System.Drawing.Point(395, 82);
-            this.txt_Id_Habitacion.Name = "txt_Id_Habitacion";
-            this.txt_Id_Habitacion.Size = new System.Drawing.Size(170, 20);
-            this.txt_Id_Habitacion.TabIndex = 24;
+            this.cbo_Fk_Id_Huesped.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Fk_Id_Huesped.FormattingEnabled = true;
+            this.cbo_Fk_Id_Huesped.Location = new System.Drawing.Point(668, 81);
+            this.cbo_Fk_Id_Huesped.Name = "cbo_Fk_Id_Huesped";
+            this.cbo_Fk_Id_Huesped.Size = new System.Drawing.Size(170, 21);
+            this.cbo_Fk_Id_Huesped.TabIndex = 27;
             // 
-            // txt_ID_Huesped
+            // btn_limpiar
             // 
-            this.txt_ID_Huesped.Location = new System.Drawing.Point(668, 82);
-            this.txt_ID_Huesped.Name = "txt_ID_Huesped";
-            this.txt_ID_Huesped.Size = new System.Drawing.Size(170, 20);
-            this.txt_ID_Huesped.TabIndex = 25;
+            this.btn_limpiar.Image = ((System.Drawing.Image)(resources.GetObject("btn_limpiar.Image")));
+            this.btn_limpiar.Location = new System.Drawing.Point(912, 138);
+            this.btn_limpiar.Name = "btn_limpiar";
+            this.btn_limpiar.Size = new System.Drawing.Size(87, 85);
+            this.btn_limpiar.TabIndex = 28;
+            this.btn_limpiar.Text = "Limpiar";
+            this.btn_limpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_limpiar.UseVisualStyleBackColor = true;
+            this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);
+            // 
+            // lbl_Precio_Unitario
+            // 
+            this.lbl_Precio_Unitario.AutoSize = true;
+            this.lbl_Precio_Unitario.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Precio_Unitario.Location = new System.Drawing.Point(211, 275);
+            this.lbl_Precio_Unitario.Name = "lbl_Precio_Unitario";
+            this.lbl_Precio_Unitario.Size = new System.Drawing.Size(33, 16);
+            this.lbl_Precio_Unitario.TabIndex = 30;
+            this.lbl_Precio_Unitario.Text = "-----";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(25, 275);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(136, 16);
+            this.label11.TabIndex = 29;
+            this.label11.Text = "MONTO POR NOCHE:";
+            // 
+            // Cbo_PK_Id_Estadia
+            // 
+            this.Cbo_PK_Id_Estadia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cbo_PK_Id_Estadia.FormattingEnabled = true;
+            this.Cbo_PK_Id_Estadia.Location = new System.Drawing.Point(97, 80);
+            this.Cbo_PK_Id_Estadia.Name = "Cbo_PK_Id_Estadia";
+            this.Cbo_PK_Id_Estadia.Size = new System.Drawing.Size(170, 21);
+            this.Cbo_PK_Id_Estadia.TabIndex = 31;
+            // 
+            // lbl_maxima_capacidad
+            // 
+            this.lbl_maxima_capacidad.AutoSize = true;
+            this.lbl_maxima_capacidad.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_maxima_capacidad.Location = new System.Drawing.Point(94, 173);
+            this.lbl_maxima_capacidad.Name = "lbl_maxima_capacidad";
+            this.lbl_maxima_capacidad.Size = new System.Drawing.Size(33, 16);
+            this.lbl_maxima_capacidad.TabIndex = 33;
+            this.lbl_maxima_capacidad.Text = "-----";
             // 
             // Frm_Estadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1151, 446);
-            this.Controls.Add(this.txt_ID_Huesped);
-            this.Controls.Add(this.txt_Id_Habitacion);
+            this.ClientSize = new System.Drawing.Size(1151, 360);
+            this.Controls.Add(this.lbl_maxima_capacidad);
+            this.Controls.Add(this.Cbo_PK_Id_Estadia);
+            this.Controls.Add(this.lbl_Precio_Unitario);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.btn_limpiar);
+            this.Controls.Add(this.cbo_Fk_Id_Huesped);
+            this.Controls.Add(this.cbo_fk_id_Habitacion);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.btn_modificar);
             this.Controls.Add(this.btn_guardar);
@@ -311,7 +370,6 @@ namespace Capa_Vista_Gestion_Habitacion
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt_pk_id_estadia);
             this.Controls.Add(this.btn_Buscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
@@ -331,7 +389,6 @@ namespace Capa_Vista_Gestion_Habitacion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_Buscar;
-        private System.Windows.Forms.TextBox txt_pk_id_estadia;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_Num_Huespedes;
@@ -349,7 +406,12 @@ namespace Capa_Vista_Gestion_Habitacion
         private System.Windows.Forms.Button btn_modificar;
         private System.Windows.Forms.Button btn_eliminar;
         private System.Windows.Forms.PictureBox btn_salir;
-        private System.Windows.Forms.TextBox txt_Id_Habitacion;
-        private System.Windows.Forms.TextBox txt_ID_Huesped;
+        private System.Windows.Forms.ComboBox cbo_fk_id_Habitacion;
+        private System.Windows.Forms.ComboBox cbo_Fk_Id_Huesped;
+        private System.Windows.Forms.Button btn_limpiar;
+        private System.Windows.Forms.Label lbl_Precio_Unitario;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox Cbo_PK_Id_Estadia;
+        private System.Windows.Forms.Label lbl_maxima_capacidad;
     }
 }
