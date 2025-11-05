@@ -59,7 +59,7 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Controls.Add(this.Lbl_Compra);
             this.panel1.Controls.Add(this.Lbl_Fecha);
             this.panel1.Controls.Add(this.Lbl_Ingreso);
-            this.panel1.Location = new System.Drawing.Point(13, 13);
+            this.panel1.Location = new System.Drawing.Point(13, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(465, 409);
             this.panel1.TabIndex = 0;
