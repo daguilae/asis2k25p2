@@ -405,13 +405,20 @@ namespace Capa_Modelo_Creacion_Nomina
                         double dSueldoBase = (dSalarioMensual / iDiasDelPeriodo) * (iDiasLaborados + iDiasVacaciones);
                         double dDeduccionAusencias = (dSalarioMensual / iDiasDelPeriodo) * iAusencias;
 
-                        // 🔹 Calcular percepciones y deducciones base
+                        // ==========================================================
+                        // 🔹 Calcular percepciones y deducciones (base + movimientos manuales)
+                        // ==========================================================
                         double dPercepciones = dSueldoBase + dPagoHorasExtra;
                         double dDeducciones = dDeduccionAusencias + dTotalAnticipos;
+
+                        // 🔹 Sumar movimientos manuales existentes
+                        dPercepciones += funSumarMovimientosPorTipoEmpleado(cnConexion, iIdNomina, iIdEmpleado, "PERCEPCION");
+                        dDeducciones += funSumarMovimientosPorTipoEmpleado(cnConexion, iIdNomina, iIdEmpleado, "DEDUCCION");
+
                         double dSueldoLiquido = dPercepciones - dDeducciones;
 
-                        // ==============================================================
-                        // 🔹 Insertar DETALLE DE NÓMINA
+                        // ============================================================== 
+                        // 🔹 Insertar DETALLE INICIAL DE NÓMINA (se actualizará al final)
                         // ==============================================================
                         string sSqlInsertDetalle = @"
                     INSERT INTO Tbl_DetallesNomina 
@@ -432,12 +439,11 @@ namespace Capa_Modelo_Creacion_Nomina
                         }
 
                         // ==============================================================
-                        // 🔹 Registrar MOVIMIENTOS AUTOMÁTICOS según configuración de la tabla
+                        // 🔹 Registrar MOVIMIENTOS AUTOMÁTICOS según configuración
                         // ==============================================================
                         foreach (DataRow concepto in dtConceptos.Rows)
                         {
                             string nombre = concepto["Nombre"].ToString().Trim().ToUpper();
-                            Console.WriteLine(nombre);
                             string tipo = concepto["Cmp_sTipo_ConceptoNomina"].ToString().ToUpper();
                             string tipoCalculo = concepto["TipoCalculo"].ToString().ToUpper();
                             int idConcepto = Convert.ToInt32(concepto["Cmp_iId_ConceptoNomina"]);
@@ -447,31 +453,24 @@ namespace Capa_Modelo_Creacion_Nomina
                             switch (tipoCalculo)
                             {
                                 case "FIJO":
-                                    // Valor directo (ej. Bono Trimestral)
                                     monto = valor;
                                     break;
-
                                 case "MULTIPLICACION":
                                     if (tipo == "PERCEPCION")
-                                    {
-                                        // Multiplica sobre el salario base o días trabajados
                                         monto = (dSalarioMensual / iDiasDelPeriodo) * (iDiasLaborados + iDiasVacaciones) * valor;
-                                    }
                                     else if (tipo == "DEDUCCION")
-                                    {
-                                        // Multiplica sobre percepciones
                                         monto = dPercepciones * valor;
-                                    }
                                     break;
                             }
 
-                            // ---- Ajustes por nombre específico (casos particulares) ----
+                            // Casos especiales
                             if (nombre == "AUSENCIAS") monto = (dSalarioMensual / iDiasDelPeriodo) * iAusencias;
                             if (nombre == "VACACIONES") monto = (dSalarioMensual / iDiasDelPeriodo) * iDiasVacaciones;
                             if (nombre == "HORAS EXTRA") monto = dPagoHorasExtra;
                             if (nombre == "SUELDO BASE") monto = dSueldoBase;
                             if (nombre == "ANTICIPOS") monto = dTotalAnticipos;
 
+                            // Insertar movimiento
                             string sSqlInsertMov = @"
                         INSERT INTO Tbl_MovimientosNomina 
                         (Cmp_iId_Nomina, Cmp_iId_Empleado, Cmp_iId_ConceptoNomina, Cmp_deMonto_MovimientoNomina)
@@ -488,20 +487,67 @@ namespace Capa_Modelo_Creacion_Nomina
                             Console.WriteLine($"[OK] Movimiento automático: {nombre} | {tipoCalculo} | {tipo} | Monto={monto:N2}");
                         }
 
-                        Console.WriteLine($"[INFO] Empleado {iIdEmpleado} procesado correctamente.");
-                    }
-                    // 🔹 Actualizar estado y fecha de generación
-                    string sSqlUpdate = @"
-                        UPDATE Tbl_Nomina 
-                        SET 
-                            Cmp_sEstado_Nomina = 'GENERADA',
-                            Cmp_dFechaGeneracion_Nomina = NOW()
-                        WHERE Cmp_iId_Nomina = ?";
+                        // ==============================================================
+                        // 🔹 Recalcular totales REALES desde Tbl_MovimientosNomina
+                        // ==============================================================
+                        string sSqlTotales = @"
+                    SELECT 
+                        IFNULL(SUM(CASE WHEN c.Cmp_sTipo_ConceptoNomina = 'PERCEPCION' THEN m.Cmp_deMonto_MovimientoNomina ELSE 0 END), 0) AS TotalPercepciones,
+                        IFNULL(SUM(CASE WHEN c.Cmp_sTipo_ConceptoNomina = 'DEDUCCION' THEN m.Cmp_deMonto_MovimientoNomina ELSE 0 END), 0) AS TotalDeducciones
+                    FROM Tbl_MovimientosNomina m
+                    INNER JOIN Tbl_ConceptosNomina c ON m.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                    WHERE m.Cmp_iId_Nomina = ? AND m.Cmp_iId_Empleado = ?";
 
-                    using (OdbcCommand cmdUpdate = new OdbcCommand(sSqlUpdate, cnConexion))
+                        using (OdbcCommand cmdTotales = new OdbcCommand(sSqlTotales, cnConexion))
+                        {
+                            cmdTotales.Parameters.AddWithValue("", iIdNomina);
+                            cmdTotales.Parameters.AddWithValue("", iIdEmpleado);
+
+                            using (OdbcDataReader dr = cmdTotales.ExecuteReader())
+                            {
+                                if (dr.Read())
+                                {
+                                    double dTotPer = Convert.ToDouble(dr["TotalPercepciones"]);
+                                    double dTotDed = Convert.ToDouble(dr["TotalDeducciones"]);
+                                    double dSueldoLiquidoFinal = dTotPer - dTotDed;
+
+                                    // 🔹 Actualizar el detalle con los totales finales
+                                    string sSqlUpdateDetalle = @"
+                                UPDATE Tbl_DetallesNomina
+                                SET Cmp_dePercepciones_DetalleNomina = ?, 
+                                    Cmp_deDeducciones_DetalleNomina = ?, 
+                                    Cmp_deSueldoLiquido_DetalleNomina = ?
+                                WHERE Cmp_iId_Nomina = ? AND Cmp_iId_Empleado = ?";
+
+                                    using (OdbcCommand cmdUpdDet = new OdbcCommand(sSqlUpdateDetalle, cnConexion))
+                                    {
+                                        cmdUpdDet.Parameters.AddWithValue("", dTotPer);
+                                        cmdUpdDet.Parameters.AddWithValue("", dTotDed);
+                                        cmdUpdDet.Parameters.AddWithValue("", dSueldoLiquidoFinal);
+                                        cmdUpdDet.Parameters.AddWithValue("", iIdNomina);
+                                        cmdUpdDet.Parameters.AddWithValue("", iIdEmpleado);
+                                        cmdUpdDet.ExecuteNonQuery();
+                                    }
+
+                                    Console.WriteLine($"[UPDATE] Totales recalculados -> Percepciones: {dTotPer:N2}, Deducciones: {dTotDed:N2}, Líquido: {dSueldoLiquidoFinal:N2}");
+                                }
+                            }
+                        }
+
+                        Console.WriteLine($"[INFO] Empleado {iIdEmpleado} procesado correctamente con totales actualizados.");
+                    }
+
+                    // 🔹 Actualizar estado y fecha de generación
+                    string sSqlUpdateNomina = @"
+                UPDATE Tbl_Nomina 
+                SET Cmp_sEstado_Nomina = 'GENERADA',
+                    Cmp_dFechaGeneracion_Nomina = NOW()
+                WHERE Cmp_iId_Nomina = ?";
+
+                    using (OdbcCommand cmdUpdateNomina = new OdbcCommand(sSqlUpdateNomina, cnConexion))
                     {
-                        cmdUpdate.Parameters.AddWithValue("", iIdNomina);
-                        cmdUpdate.ExecuteNonQuery();
+                        cmdUpdateNomina.Parameters.AddWithValue("", iIdNomina);
+                        cmdUpdateNomina.ExecuteNonQuery();
                     }
 
                     Console.WriteLine($"[OK] Nómina #{iIdNomina} actualizada a estado GENERADA con fecha {DateTime.Now:yyyy-MM-dd HH:mm:ss}");
@@ -600,6 +646,31 @@ namespace Capa_Modelo_Creacion_Nomina
                 return Convert.ToDouble(cmd.ExecuteScalar());
             }
         }
+
+        // ==========================================================
+        // FUNCIÓN: SUMAR MOVIMIENTOS POR TIPO Y EMPLEADO
+        // ==========================================================
+        private double funSumarMovimientosPorTipoEmpleado(OdbcConnection cn, int iIdNomina, int iIdEmpleado, string sTipo)
+        {
+            string sSql = @"
+        SELECT IFNULL(SUM(mn.Cmp_deMonto_MovimientoNomina), 0)
+        FROM Tbl_MovimientosNomina mn
+        INNER JOIN Tbl_ConceptosNomina c 
+            ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+        WHERE mn.Cmp_iId_Nomina = ? 
+          AND mn.Cmp_iId_Empleado = ?
+          AND c.Cmp_sTipo_ConceptoNomina = ?";
+
+            using (OdbcCommand cmd = new OdbcCommand(sSql, cn))
+            {
+                cmd.Parameters.AddWithValue("", iIdNomina);
+                cmd.Parameters.AddWithValue("", iIdEmpleado);
+                cmd.Parameters.AddWithValue("", sTipo);
+                object result = cmd.ExecuteScalar();
+                return result != DBNull.Value ? Convert.ToDouble(result) : 0;
+            }
+        }
+
 
         // ==========================================================
         // MÉTODO: OBTENER DETALLE DE NÓMINA
