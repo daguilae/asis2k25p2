@@ -76,7 +76,7 @@ namespace Capa_Controlador_GesHab
                 montoTotal
             );
 
-            mensaje = exito ? "Estadía registrada correctamente." : "Ocurrió un error al registrar la estadía.";
+            mensaje = exito ? "Nuevo Registro de Estadía registrado correctamente." : "Ocurrió un error al registrar la estadía.";
             return exito;
         }
 
@@ -211,6 +211,7 @@ namespace Capa_Controlador_GesHab
             mensaje = "Datos de estadía cargados correctamente.";
             return dt;
         }
+
 
     }
 }

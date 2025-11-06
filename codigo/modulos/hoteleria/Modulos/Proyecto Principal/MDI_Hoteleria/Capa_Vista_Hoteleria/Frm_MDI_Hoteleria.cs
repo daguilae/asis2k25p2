@@ -27,12 +27,6 @@ namespace Capa_Vista_Hoteleria
             InitializeComponent();
         }
 
-        private void areaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_Areas areas = new Frm_Areas();
-            areas.Show();
-        }
-
 
         private void seguridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -116,9 +110,16 @@ namespace Capa_Vista_Hoteleria
            
         }
 
-        private void estadiaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void actualizaciónEstadiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_Estadia estadia = new Frm_Estadia();
+            estadia.Show();
+        }
+
+        private void asignacionServiciosAHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Asignacion_Servicio_Cuarto asig = new Frm_Asignacion_Servicio_Cuarto();
+            asig.Show();
         }
     }
 }
