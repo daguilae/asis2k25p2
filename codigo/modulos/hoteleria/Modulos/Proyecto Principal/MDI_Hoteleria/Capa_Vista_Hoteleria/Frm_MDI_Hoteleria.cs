@@ -30,8 +30,10 @@ namespace Capa_Vista_Hoteleria
 
         private void seguridadToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Frm_Seguridad seguridad = new Frm_Seguridad();
-            seguridad.Show();
+            seguridad.ShowDialog();
+            this.Close();
 
         }
 
@@ -120,6 +122,30 @@ namespace Capa_Vista_Hoteleria
         {
             Frm_Asignacion_Servicio_Cuarto asig = new Frm_Asignacion_Servicio_Cuarto();
             asig.Show();
+        }
+
+        private void areaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Frm_Area area = new Frm_Area();
+            area.Show();
+        }
+
+        private void checkOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Check_Out check_out = new Frm_Check_Out();
+            check_out.Show();
+        }
+
+        private void cuentaTurismoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Cuenta_Turismo cuenta_Turismo = new Frm_Cuenta_Turismo();
+            cuenta_Turismo.Show();
+        }
+
+        private void pagoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Pago Pago = new Frm_Pago();
+            Pago.Show();
         }
     }
 }

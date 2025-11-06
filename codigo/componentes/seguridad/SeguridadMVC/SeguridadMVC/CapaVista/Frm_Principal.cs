@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
+using Capa_Vista_Hoteleria;
 
 
 namespace Capa_Vista_Seguridad
@@ -182,6 +183,14 @@ namespace Capa_Vista_Seguridad
 
         private void Pic_Cerrar_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void hoteleriaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Frm_MDI_Hoteleria hoteleria = new Frm_MDI_Hoteleria();
+            hoteleria.ShowDialog();
             this.Close();
         }
     }

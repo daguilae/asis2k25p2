@@ -40,7 +40,7 @@ namespace Capa_Vista_Reservas_Hotel
                "Cmp_Email",
                "Cmp_Telefono",
                "Cmp_Pais",
-               "Cmp_Viajar_Por_Trabajo",
+               "Cmp_Viaja_Por_Trabajo",
                "Cmp_Nombre_Empresa"
             };
 
