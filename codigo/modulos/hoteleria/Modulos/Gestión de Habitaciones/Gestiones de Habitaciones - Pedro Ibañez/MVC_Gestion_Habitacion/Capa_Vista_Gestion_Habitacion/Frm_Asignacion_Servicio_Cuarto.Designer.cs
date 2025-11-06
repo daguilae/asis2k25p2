@@ -84,6 +84,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_salir.Size = new System.Drawing.Size(31, 32);
             this.btn_salir.TabIndex = 24;
             this.btn_salir.TabStop = false;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
             // Cbo_NumHabitaciones
             // 

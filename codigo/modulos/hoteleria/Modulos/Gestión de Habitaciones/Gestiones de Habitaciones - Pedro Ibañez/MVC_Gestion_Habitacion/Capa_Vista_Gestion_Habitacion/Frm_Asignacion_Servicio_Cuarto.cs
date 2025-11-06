@@ -132,5 +132,10 @@ namespace Capa_Vista_Gestion_Habitacion
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

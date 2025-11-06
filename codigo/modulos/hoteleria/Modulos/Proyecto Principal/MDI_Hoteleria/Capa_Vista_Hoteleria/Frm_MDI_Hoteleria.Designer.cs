@@ -137,7 +137,6 @@ namespace Capa_Vista_Hoteleria
             this.areaToolStripMenuItem.Name = "areaToolStripMenuItem";
             this.areaToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
             this.areaToolStripMenuItem.Text = "Area";
-            this.areaToolStripMenuItem.Click += new System.EventHandler(this.areaToolStripMenuItem_Click);
             // 
             // mantenimientoHabitacionesToolStripMenuItem
             // 

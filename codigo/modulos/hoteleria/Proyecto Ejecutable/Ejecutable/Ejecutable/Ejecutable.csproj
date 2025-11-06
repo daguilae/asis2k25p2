@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Capa_Vista_Hoteleria">
-      <HintPath>..\..\..\..\..\..\..\..\Hoteleria\Modulo-Hoteleria\codigo\modulos\hoteleria\Modulos\Proyecto Principal\MDI_Hoteleria\Capa_Vista_Hoteleria\bin\Debug\Capa_Vista_Hoteleria.dll</HintPath>
+      <HintPath>..\..\..\Modulos\Proyecto Principal\MDI_Hoteleria\Capa_Vista_Hoteleria\bin\Debug\Capa_Vista_Hoteleria.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -11,7 +11,7 @@ set "MSBUILD_PATH=C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\
 
 :: Directorios base
 set "ROOT_DIR=%~dp0"
-set "BASE_DIR=C:\asis2k25p2\codigo\modulos\hoteleria"
+set "BASE_DIR=C:\Modulo-Hoteleria\codigo\modulos\hoteleria"
 
 cd /d "%ROOT_DIR%"
 if not exist "logs" mkdir logs
