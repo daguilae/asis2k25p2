@@ -40,6 +40,9 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_Asignar = new System.Windows.Forms.Button();
             this.DGV_Asignaciones = new System.Windows.Forms.DataGridView();
             this.btn_eliminar = new System.Windows.Forms.Button();
+            this.btn_buscar = new System.Windows.Forms.Button();
+            this.btn_reporte = new System.Windows.Forms.Button();
+            this.btn_recargar = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btn_salir)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Asignaciones)).BeginInit();
@@ -150,11 +153,52 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_eliminar.UseVisualStyleBackColor = true;
             this.btn_eliminar.Click += new System.EventHandler(this.btn_eliminar_Click);
             // 
+            // btn_buscar
+            // 
+            this.btn_buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_buscar.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar.Image")));
+            this.btn_buscar.Location = new System.Drawing.Point(792, 140);
+            this.btn_buscar.Name = "btn_buscar";
+            this.btn_buscar.Size = new System.Drawing.Size(78, 78);
+            this.btn_buscar.TabIndex = 9;
+            this.btn_buscar.Text = "BUSCAR";
+            this.btn_buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_buscar.UseVisualStyleBackColor = true;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
+            // 
+            // btn_reporte
+            // 
+            this.btn_reporte.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reporte.Image = ((System.Drawing.Image)(resources.GetObject("btn_reporte.Image")));
+            this.btn_reporte.Location = new System.Drawing.Point(887, 139);
+            this.btn_reporte.Name = "btn_reporte";
+            this.btn_reporte.Size = new System.Drawing.Size(78, 78);
+            this.btn_reporte.TabIndex = 10;
+            this.btn_reporte.Text = "REPORTE";
+            this.btn_reporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_reporte.UseVisualStyleBackColor = true;
+            // 
+            // btn_recargar
+            // 
+            this.btn_recargar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_recargar.Image = ((System.Drawing.Image)(resources.GetObject("btn_recargar.Image")));
+            this.btn_recargar.Location = new System.Drawing.Point(832, 224);
+            this.btn_recargar.Name = "btn_recargar";
+            this.btn_recargar.Size = new System.Drawing.Size(102, 78);
+            this.btn_recargar.TabIndex = 11;
+            this.btn_recargar.Text = "RECARGAR";
+            this.btn_recargar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_recargar.UseVisualStyleBackColor = true;
+            this.btn_recargar.Click += new System.EventHandler(this.btn_recargar_Click);
+            // 
             // Frm_Asignacion_Servicio_Cuarto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(994, 515);
+            this.Controls.Add(this.btn_recargar);
+            this.Controls.Add(this.btn_reporte);
+            this.Controls.Add(this.btn_buscar);
             this.Controls.Add(this.btn_eliminar);
             this.Controls.Add(this.DGV_Asignaciones);
             this.Controls.Add(this.btn_Asignar);
@@ -186,5 +230,8 @@ namespace Capa_Vista_Gestion_Habitacion
         private System.Windows.Forms.Button btn_Asignar;
         private System.Windows.Forms.DataGridView DGV_Asignaciones;
         private System.Windows.Forms.Button btn_eliminar;
+        private System.Windows.Forms.Button btn_buscar;
+        private System.Windows.Forms.Button btn_reporte;
+        private System.Windows.Forms.Button btn_recargar;
     }
 }

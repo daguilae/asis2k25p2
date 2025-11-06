@@ -30,7 +30,7 @@ namespace Capa_Modelo_MH
             const string sql = @"INSERT INTO Tbl_mantenimiento 
                                  (Fk_Id_Salon, Fk_Id_Habitacion, Fk_Id_Empleado, 
                                   Cmp_Tipo_Mantenimiento, Cmp_Descripcion_Mantenimiento,
-                                  Cmp_Estado, Cmp_Fecha_Inicio, Cmp_Fecha_Fin)
+                                  Cmp_Estado, Cmp_Fecha_Inicio_Mantenimiento, Cmp_Fecha_Fin_Mantenimiento)
                                  VALUES (?,?,?,?,?,?,?,?)";
 
             using (var conn = conexion.conexion())
@@ -57,7 +57,7 @@ namespace Capa_Modelo_MH
             const string sql = @"UPDATE Tbl_mantenimiento SET 
                                  Fk_Id_Salon=?, Fk_Id_Habitacion=?, Fk_Id_Empleado=?, 
                                  Cmp_Tipo_Mantenimiento=?, Cmp_Descripcion_Mantenimiento=?, 
-                                 Cmp_Estado=?, Cmp_Fecha_Inicio=?, Cmp_Fecha_Fin=? 
+                                 Cmp_Estado=?, Cmp_Fecha_Inicio_Mantenimiento=?, Cmp_Fecha_Fin_Mantenimiento=? 
                                  WHERE Pk_Id_Mantenimiento=?";
 
             using (var conn = conexion.conexion())
@@ -120,6 +120,6 @@ namespace Capa_Modelo_MH
             EjecutarConsulta("SELECT Pk_Id_Salon, CONCAT(Pk_Id_Salon, ' - ', Cmp_Nombre_Salon) AS Nombre_Salon FROM tbl_salones ORDER BY Pk_Id_Salon;");
 
         public DataTable ObtenerHabitaciones() =>
-            EjecutarConsulta("SELECT h.Pk_Id_Habitacion, CONCAT(h.Pk_Id_Habitacion, ' - ', t.Cmp_Nombre_Tipo) AS Nombre_Habitacion FROM tbl_habitaciones h INNER JOIN tbl_tipo_habitacion t ON h.Fk_Id_Tipo_Habitacion = t.Pk_Id_Tipo_Habitacion ORDER BY h.Pk_Id_Habitacion;");
+            EjecutarConsulta("SELECT h.PK_ID_Habitaciones, CONCAT(h.PK_ID_Habitaciones, ' - ', t.Cmp_Nombre_Tipo) AS Nombre_Habitacion FROM tbl_habitaciones h INNER JOIN tbl_tipo_habitacion t ON h.FK_ID_Tipo_Habitaciones = t.pk_Id_Tipo_Habitaciones ORDER BY h.PK_ID_Habitaciones;");
     }
 }
