@@ -58,6 +58,12 @@
     <Compile Include="Frm_TipoDeCambio.Designer.cs">
       <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_TipoDeCambioDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_TipoDeCambioDia.Designer.cs">
+      <DependentUpon>Frm_TipoDeCambioDia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -66,6 +72,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_TipoDeCambio.resx">
       <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_TipoDeCambioDia.resx">
+      <DependentUpon>Frm_TipoDeCambioDia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
