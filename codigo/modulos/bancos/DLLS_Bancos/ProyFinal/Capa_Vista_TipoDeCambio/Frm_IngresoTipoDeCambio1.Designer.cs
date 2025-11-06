@@ -126,7 +126,7 @@ namespace Capa_Vista_TipoDeCambio
             // Btn_Agregar
             // 
             this.Btn_Agregar.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Agregar.Location = new System.Drawing.Point(156, 341);
+            this.Btn_Agregar.Location = new System.Drawing.Point(173, 288);
             this.Btn_Agregar.Name = "Btn_Agregar";
             this.Btn_Agregar.Size = new System.Drawing.Size(128, 34);
             this.Btn_Agregar.TabIndex = 11;
@@ -146,16 +146,16 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Controls.Add(this.Lbl_Compra);
             this.panel1.Controls.Add(this.Lbl_Fecha);
             this.panel1.Controls.Add(this.Lbl_Ingreso);
-            this.panel1.Location = new System.Drawing.Point(41, 29);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(465, 409);
+            this.panel1.Size = new System.Drawing.Size(465, 359);
             this.panel1.TabIndex = 1;
             // 
             // Frm_IngresoTipoDeCambio1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 450);
+            this.ClientSize = new System.Drawing.Size(492, 390);
             this.Controls.Add(this.panel1);
             this.Name = "Frm_IngresoTipoDeCambio1";
             this.Text = "Frm_IngresoTipoDeCambio1";
