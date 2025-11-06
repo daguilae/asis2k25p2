@@ -55,6 +55,7 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(809, 486);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Btn_Buscar
             // 
@@ -112,26 +113,31 @@ namespace Capa_Vista_TipoDeCambio
             // 
             this.tipo_cambio.HeaderText = "Tipo de cambio";
             this.tipo_cambio.Name = "tipo_cambio";
+            this.tipo_cambio.ReadOnly = true;
             // 
             // nombre_moneda
             // 
             this.nombre_moneda.HeaderText = "Moneda";
             this.nombre_moneda.Name = "nombre_moneda";
+            this.nombre_moneda.ReadOnly = true;
             // 
             // fecha
             // 
             this.fecha.HeaderText = "Fecha";
             this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
             // 
             // valor_compra
             // 
             this.valor_compra.HeaderText = "Valor Compra";
             this.valor_compra.Name = "valor_compra";
+            this.valor_compra.ReadOnly = true;
             // 
             // valor_venta
             // 
             this.valor_venta.HeaderText = "Valor Venta";
             this.valor_venta.Name = "valor_venta";
+            this.valor_venta.ReadOnly = true;
             // 
             // Frm_TipoDeCambio
             // 
