@@ -23,7 +23,7 @@ namespace Form_Estadia
         private void CargarFrmEstadia()
         {
             // Instancia del formulario de la otra capa
-            Frm_Estadia frm = new Frm_Estadia();
+            Frm_Asignacion_Servicio_Cuarto frm = new Frm_Asignacion_Servicio_Cuarto();
 
             // Opcional: configuraciones visuales
             frm.TopLevel = false;

@@ -120,5 +120,15 @@ namespace Capa_Vista_Hoteleria
         {
             Frm_Estadia estadia = new Frm_Estadia();
         }
+
+        private void actualizaciónEstadiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Estadia estadia = new Frm_Estadia();
+        }
+
+        private void asignacionServiciosAHabitacionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Asignacion_Servicio_Cuarto asig = new Frm_Asignacion_Servicio_Cuarto();
+        }
     }
 }

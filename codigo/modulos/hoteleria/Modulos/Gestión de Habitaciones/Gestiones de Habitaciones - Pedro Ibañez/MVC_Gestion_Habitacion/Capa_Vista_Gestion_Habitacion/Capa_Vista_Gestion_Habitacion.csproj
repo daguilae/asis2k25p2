@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Asignacion_Servicio_Cuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Asignacion_Servicio_Cuarto.Designer.cs">
+      <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Estadia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -84,6 +90,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Asignacion_Servicio_Cuarto.resx">
+      <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Estadia.resx">
       <DependentUpon>Frm_Estadia.cs</DependentUpon>
     </EmbeddedResource>

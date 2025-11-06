@@ -298,7 +298,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_limpiar.Name = "btn_limpiar";
             this.btn_limpiar.Size = new System.Drawing.Size(87, 85);
             this.btn_limpiar.TabIndex = 28;
-            this.btn_limpiar.Text = "Limpiar";
+            this.btn_limpiar.Text = "Refrescar";
             this.btn_limpiar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_limpiar.UseVisualStyleBackColor = true;
             this.btn_limpiar.Click += new System.EventHandler(this.btn_limpiar_Click);

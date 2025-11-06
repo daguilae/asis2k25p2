@@ -235,6 +235,8 @@ namespace Capa_Vista_Gestion_Habitacion
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             limpiar_controles();
+            btn_modificar.Enabled = true;
+            Estado_Crud = 1;
         }
 
         private void btn_Buscar_Click(object sender, EventArgs e)
