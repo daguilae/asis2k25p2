@@ -34,6 +34,10 @@
     <Reference Include="CapaVistaOP">
       <HintPath>..\..\..\Gestión de Salones\Ordenes de Producción - Gerber Asturias\MVC_Ordenes_de_Produccion\CapaVistaOP\bin\Debug\CapaVistaOP.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Controlador_Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_vista_Check_In_Check_out">
       <HintPath>..\..\..\Gestión de Habitaciones\ChekinCheckOut-Brandon Hernandez\MVC-Check_in_Check_out\Capa_vista_Check_In_Check_out\bin\Debug\Capa_vista_Check_In_Check_out.dll</HintPath>
     </Reference>
@@ -73,6 +77,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Login_Hoteleria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Login_Hoteleria.Designer.cs">
+      <DependentUpon>Frm_Login_Hoteleria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_MDI_Hoteleria.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +97,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Login_Hoteleria.resx">
+      <DependentUpon>Frm_Login_Hoteleria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_MDI_Hoteleria.resx">
       <DependentUpon>Frm_MDI_Hoteleria.cs</DependentUpon>
     </EmbeddedResource>
