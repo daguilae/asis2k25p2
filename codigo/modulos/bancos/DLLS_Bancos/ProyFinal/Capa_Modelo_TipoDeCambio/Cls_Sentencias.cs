@@ -58,5 +58,20 @@ namespace Capa_Modelo_TipoDeCambio
             cn.desconexion(conn);
             return dt;
         }
+
+        public DataTable MostrarTiposCambioHoy()
+        {
+            string sql = "SELECT M.Cmp_NombreMoneda AS Moneda, T.Cmp_ValorCompra AS Compra, T.Cmp_ValorVenta AS Venta " +
+                         "FROM Tbl_TiposCambio T INNER JOIN Tbl_Monedas M ON T.Fk_Id_Moneda = M.Pk_Id_Moneda " +
+                         "WHERE T.Cmp_Fecha = CURDATE() AND T.Cmp_Estado = 1;";
+
+            OdbcConnection conn = cn.conexion();
+            OdbcDataAdapter da = new OdbcDataAdapter(sql, conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            cn.desconexion(conn);
+            return dt;
+        }
+
     }
 }
