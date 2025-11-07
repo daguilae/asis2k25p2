@@ -39,6 +39,9 @@
             this.autorizaciónOrdenesDeComprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chequesDePlanillaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportesBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cierreBancarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tiposDeCambioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ingresoTipoCambioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +52,7 @@
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
-            this.cierreBancarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -121,7 +124,8 @@
             this.usuariosToolStripMenuItem,
             this.perfilesToolStripMenuItem,
             this.modulosToolStripMenuItem,
-            this.Btn_Aplicacion});
+            this.Btn_Aplicacion,
+            this.pruebaToolStripMenuItem});
             this.catálogosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
             this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
@@ -173,7 +177,9 @@
             this.autorizaciónOrdenesDeComprasToolStripMenuItem,
             this.chequesDePlanillaToolStripMenuItem,
             this.reportesBancariosToolStripMenuItem,
-            this.cierreBancarioToolStripMenuItem});
+            this.cierreBancarioToolStripMenuItem,
+            this.tiposDeCambioToolStripMenuItem,
+            this.ingresoTipoCambioToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
@@ -232,6 +238,26 @@
             this.reportesBancariosToolStripMenuItem.Name = "reportesBancariosToolStripMenuItem";
             this.reportesBancariosToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
             this.reportesBancariosToolStripMenuItem.Text = "Reportes Bancarios";
+            // 
+            // cierreBancarioToolStripMenuItem
+            // 
+            this.cierreBancarioToolStripMenuItem.Name = "cierreBancarioToolStripMenuItem";
+            this.cierreBancarioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.cierreBancarioToolStripMenuItem.Text = "Cierre Bancario";
+            // 
+            // tiposDeCambioToolStripMenuItem
+            // 
+            this.tiposDeCambioToolStripMenuItem.Name = "tiposDeCambioToolStripMenuItem";
+            this.tiposDeCambioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.tiposDeCambioToolStripMenuItem.Text = "Tipos de Cambio";
+            this.tiposDeCambioToolStripMenuItem.Click += new System.EventHandler(this.tiposDeCambioToolStripMenuItem_Click);
+            // 
+            // ingresoTipoCambioToolStripMenuItem
+            // 
+            this.ingresoTipoCambioToolStripMenuItem.Name = "ingresoTipoCambioToolStripMenuItem";
+            this.ingresoTipoCambioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.ingresoTipoCambioToolStripMenuItem.Text = "Ingreso Tipo Cambio";
+            this.ingresoTipoCambioToolStripMenuItem.Click += new System.EventHandler(this.ingresoTipoCambioToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -325,11 +351,12 @@
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
-            // cierreBancarioToolStripMenuItem
+            // pruebaToolStripMenuItem
             // 
-            this.cierreBancarioToolStripMenuItem.Name = "cierreBancarioToolStripMenuItem";
-            this.cierreBancarioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.cierreBancarioToolStripMenuItem.Text = "Cierre Bancario";
+            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
+            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
+            this.pruebaToolStripMenuItem.Text = "Prueba";
+            this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // Frm_Seguridad
             // 
@@ -391,5 +418,8 @@
         private System.Windows.Forms.ToolStripMenuItem reportesBancariosToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripMenuItem cierreBancarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tiposDeCambioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ingresoTipoCambioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
     }
 }

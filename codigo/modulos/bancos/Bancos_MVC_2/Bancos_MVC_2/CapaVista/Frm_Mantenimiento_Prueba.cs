@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Capa_Controlador_Navegador;
 
-namespace Capa_Vista_Mantenimientos
+namespace Capa_Vista_Bancos
 {
-    public partial class Frm_M_Transacciones : Form
+    public partial class Frm_Mantenimiento_Prueba : Form
     {
-        public Frm_M_Transacciones()
+        public Frm_Mantenimiento_Prueba()
         {
             InitializeComponent();
             Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config = new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
@@ -23,21 +24,23 @@ namespace Capa_Vista_Mantenimientos
                 PosY = 300,
                 ColorFondo = Color.AliceBlue,
                 TipoScrollBars = ScrollBars.Both,
-                Nombre = "dgv_Transacciones"
+                Nombre = "dgv_Monedas"
             };
 
             string[] columnas = {
-                "Tbl_TransaccionesBancarias",
-                "Pk_Id_Transaccion",
-                "Cmp_NombreTransaccion",
-                "Cmp_Efecto",
+                "Tbl_Monedas",
+                "Pk_Id_Moneda",
+                "Cmp_CodigoMoneda",
+                "Cmp_NombreMoneda",
+                "Cmp_Simbolo",
                 "Cmp_Estado"
             };
 
             string[] sEtiquetas = {
-                "ID",
-                "Nombre de Transacción",
-                "Efecto",
+                "ID Moneda",
+                "Código Moneda",
+                "Nombre Moneda",
+                "Simbolo",
                 "Estado"
             };
 

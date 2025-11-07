@@ -38,6 +38,9 @@
     <Reference Include="Capa_Controlador_Navegador">
       <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\componentes\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Controlador_Seguridad">
+      <HintPath>..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Controldor_MB">
       <HintPath>..\..\..\DLLS_Bancos\Movimientos Bancarios\Capa_Controldor_MB\bin\Debug\Capa_Controldor_MB.dll</HintPath>
     </Reference>
@@ -63,6 +66,9 @@
     <Reference Include="Capa_Vista_Poliza">
       <HintPath>..\..\..\DLLS_Bancos\MVC_Poliza\DLL_Poliza\Capa_Vista_Poliza\bin\Debug\Capa_Vista_Poliza.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_TipoDeCambio">
+      <HintPath>..\..\..\DLLS_Bancos\ProyFinal\Capa_Vista_TipoDeCambio\bin\Debug\Capa_Vista_TipoDeCambio.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
@@ -81,6 +87,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Mantenimiento_Prueba.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Mantenimiento_Prueba.Designer.cs">
+      <DependentUpon>Frm_Mantenimiento_Prueba.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Permisos_Perfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +269,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Mantenimiento_Prueba.resx">
+      <DependentUpon>Frm_Mantenimiento_Prueba.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Permisos_Perfiles.resx">
       <DependentUpon>Frm_Permisos_Perfiles.cs</DependentUpon>
     </EmbeddedResource>

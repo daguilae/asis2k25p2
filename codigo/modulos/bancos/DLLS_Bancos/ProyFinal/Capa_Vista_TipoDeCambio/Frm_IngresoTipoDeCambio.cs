@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Modelo_TipoDeCambio;
+using Capa_Controlador_TipoDeCambio;
 
 
 namespace Capa_Vista_TipoDeCambio

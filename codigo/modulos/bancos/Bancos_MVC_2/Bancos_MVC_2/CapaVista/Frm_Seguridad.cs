@@ -7,13 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Controlador_Bancos;
+using Capa_Controlador_Seguridad;
 using Capa_Vista_CB;
 using Capa_Vista;
 using Capa_Vista_Ordenes;
 using Capa_Vista_Cheques;
 using Capa_Vista_MB;
 using Capa_Vista_Mantenimientos;
+using Capa_Vista_TipoDeCambio;
+
 
 namespace Capa_Vista_Bancos
 {
@@ -46,8 +48,8 @@ namespace Capa_Vista_Bancos
             this.Load += Frm_Seguridad_Load;
 
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
             );
 
             this.FormClosing += Frm_Seguridad_FormClosing;
@@ -55,13 +57,13 @@ namespace Capa_Vista_Bancos
         private void Frm_Seguridad_Load(object sender, EventArgs e)
         {
             // Mostrar usuario conectado en StatusStrip
-            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Bancos.Cls_Usuario_Conectado.sNombreUsuario}";
+            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Seguridad.Cls_Usuario_Conectado.sNombreUsuario}";
 
             // El resto de tu código de carga...
             fun_inicializar_botones_por_defecto();
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
             );
         }
         private void Frm_Seguridad_FormClosing(object sender, FormClosingEventArgs e)
@@ -370,6 +372,24 @@ namespace Capa_Vista_Bancos
         {
             Forms_MB MB = new Forms_MB();
             MB.ShowDialog();
+        }
+
+        private void tiposDeCambioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_TipoDeCambio F = new Frm_TipoDeCambio();
+            F.ShowDialog();
+        }
+
+        private void ingresoTipoCambioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_IngresoTipoDeCambio F = new Frm_IngresoTipoDeCambio();
+            F.ShowDialog();
+        }
+
+        private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_PruebaNavegador M = new Frm_PruebaNavegador();
+            M.ShowDialog();
         }
     }
 }
