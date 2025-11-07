@@ -42,6 +42,9 @@
     <Reference Include="Capa_Controlador_Seguridad">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Anticipos_Nomina">
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_anticipos_nomina\Capa_Vista_Anticipos_Nomina\bin\Debug\Capa_Vista_Anticipos_Nomina.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Creacion_Nomina">
       <HintPath>..\..\..\DLLS_Rrhh\MVC_Creacion_Nomina\Capa_Vista_Creacion_Nomina\bin\Debug\Capa_Vista_Creacion_Nomina.dll</HintPath>
     </Reference>
@@ -72,6 +75,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Anticipos_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Anticipos_Nomina.Designer.cs">
+      <DependentUpon>Frm_Anticipos_Nomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Deducciones_Nomina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +281,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Anticipos_Nomina.resx">
+      <DependentUpon>Frm_Anticipos_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Deducciones_Nomina.resx">
       <DependentUpon>Frm_Deducciones_Nomina.cs</DependentUpon>
     </EmbeddedResource>

@@ -374,5 +374,11 @@ namespace Capa_Vista_Seguridad
             Frm_Nomina frm_Nomina = new Frm_Nomina();
             frm_Nomina.ShowDialog();
         }
+
+        private void anticiposToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Anticipos_Nomina frm_Anticipos_Nomina = new Frm_Anticipos_Nomina();
+            frm_Anticipos_Nomina.ShowDialog();
+        }
     }
 }
