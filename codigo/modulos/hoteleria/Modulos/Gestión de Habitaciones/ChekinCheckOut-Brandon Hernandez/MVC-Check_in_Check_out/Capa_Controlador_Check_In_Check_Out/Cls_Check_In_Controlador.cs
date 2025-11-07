@@ -207,7 +207,7 @@ namespace Capa_Controlador_Check_In_Check_Out
             {
                 try
                 {
-                    // 1️ Insertar Check-In
+                    // 1️⃣ Insertar nuevo Check-In
                     string insertCheckIn = @"
                 INSERT INTO Tbl_Check_in 
                     (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
@@ -221,14 +221,14 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdCheckIn.ExecuteNonQuery();
                     }
 
-                    // 2️ Obtener ID del nuevo Check-In
+                    // 2️⃣ Obtener ID del nuevo Check-In
                     int idCheckIn;
                     using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", conn, tx))
                     {
                         idCheckIn = Convert.ToInt32(cmdId.ExecuteScalar());
                     }
 
-                    // 3️Crear Folio vinculado al Check-In y la Habitación
+                    // 3️⃣ Crear Folio vinculado al Check-In y la Habitación
                     string insertFolio = @"
                 INSERT INTO Tbl_Folio
                     (Fk_Id_Check_In, Fk_Id_Habitacion, 
@@ -242,10 +242,21 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdFolio.ExecuteNonQuery();
                     }
 
-                    // 4️ Confirmar transacción
+                    // 4️⃣ Actualizar el estado de la reserva asociada a "Finalizada"
+                    string updateReserva = @"
+                UPDATE Tbl_Reserva
+                SET Cmp_Estado_Reserva = 'Finalizada'
+                WHERE Pk_Id_Reserva = ?";
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(updateReserva, conn, tx))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("?", checkIn.iFk_Id_Reserva);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    // 5️⃣ Confirmar la transacción
                     tx.Commit();
 
-                    MessageBox.Show("Check-In y Folio creados correctamente.",
+                    MessageBox.Show("✅ Check-In, Folio creados y Reserva finalizada correctamente.",
                                     "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     return true;
@@ -253,11 +264,13 @@ namespace Capa_Controlador_Check_In_Check_Out
                 catch (Exception ex)
                 {
                     tx.Rollback();
-                    MessageBox.Show("Error en el proceso de Check-In con Folio: " + ex.Message);
+                    MessageBox.Show("❌ Error en el proceso de Check-In con Folio: " + ex.Message,
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
+
 
     }
 }

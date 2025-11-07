@@ -17,7 +17,7 @@ namespace Capa_Controlador_Check_In_Check_Out
             {
                 try
                 {
-                    // 1️ Insertar Check-Out en base de datos
+                    // 1️⃣ Insertar Check-Out
                     var nuevoCheckOut = new Cls_Check_Out
                     {
                         iFk_Id_CheckIn = idCheckIn,
@@ -31,14 +31,14 @@ namespace Capa_Controlador_Check_In_Check_Out
                         return false;
                     }
 
-                    // 2️ Obtener el folio asociado (cerrado o abierto)
+                    // 2️⃣ Buscar folio del Check-In
                     int idFolio = 0;
                     string queryFolio = @"
-                        SELECT Pk_Id_Folio 
-                        FROM Tbl_Folio 
-                        WHERE Fk_Id_Check_In = ?
-                        ORDER BY Pk_Id_Folio DESC
-                        LIMIT 1;";
+                SELECT Pk_Id_Folio 
+                FROM Tbl_Folio 
+                WHERE Fk_Id_Check_In = ?
+                ORDER BY Pk_Id_Folio DESC
+                LIMIT 1;";
                     using (OdbcCommand cmd = new OdbcCommand(queryFolio, conn))
                     {
                         cmd.Parameters.AddWithValue("?", idCheckIn);
@@ -53,16 +53,16 @@ namespace Capa_Controlador_Check_In_Check_Out
                         return false;
                     }
 
-                    // 3️ Obtener datos del Check-In y habitación
+                    // 3️⃣ Obtener datos de Check-In y habitación
                     int idHabitacion = 0;
                     int idHuesped = 0;
                     DateTime fechaCheckIn = DateTime.Now;
 
                     string queryDatos = @"
-                        SELECT CI.Fk_Id_Reserva, R.Fk_Id_Habitacion, CI.Fk_Id_Huesped, CI.Cmp_Fecha_Check_In
-                        FROM Tbl_Check_in CI
-                        INNER JOIN Tbl_Reserva R ON CI.Fk_Id_Reserva = R.Pk_Id_Reserva
-                        WHERE CI.Pk_Id_Check_in = ?";
+                SELECT CI.Fk_Id_Reserva, R.Fk_Id_Habitacion, CI.Fk_Id_Huesped, CI.Cmp_Fecha_Check_In
+                FROM Tbl_Check_in CI
+                INNER JOIN Tbl_Reserva R ON CI.Fk_Id_Reserva = R.Pk_Id_Reserva
+                WHERE CI.Pk_Id_Check_in = ?";
                     using (OdbcCommand cmd = new OdbcCommand(queryDatos, conn))
                     {
                         cmd.Parameters.AddWithValue("?", idCheckIn);
@@ -77,7 +77,6 @@ namespace Capa_Controlador_Check_In_Check_Out
                         }
                     }
 
-                    //  Validar fecha de Check-Out
                     if (fechaCheckOut < fechaCheckIn)
                     {
                         System.Windows.Forms.MessageBox.Show(
@@ -89,7 +88,7 @@ namespace Capa_Controlador_Check_In_Check_Out
                         return false;
                     }
 
-                    // 4️ Obtener tarifa de habitación
+                    // 4️⃣ Calcular tarifas y totales
                     double tarifaNoche = 0;
                     using (OdbcCommand cmd = new OdbcCommand("SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?", conn))
                     {
@@ -99,12 +98,10 @@ namespace Capa_Controlador_Check_In_Check_Out
                             tarifaNoche = Convert.ToDouble(result);
                     }
 
-                    // 5️ Calcular noches
                     int totalDias = (fechaCheckOut.Date - fechaCheckIn.Date).Days;
                     if (totalDias <= 0) totalDias = 1;
                     double totalEstadia = tarifaNoche * totalDias;
 
-                    // 6️ Verificar nacionalidad del huésped
                     string paisHuesped = "";
                     using (OdbcCommand cmd = new OdbcCommand("SELECT Cmp_Pais FROM Tbl_Huesped WHERE Pk_Id_Huesped = ?", conn))
                     {
@@ -114,19 +111,18 @@ namespace Capa_Controlador_Check_In_Check_Out
                             paisHuesped = result.ToString();
                     }
 
-                    // 7️ Impuesto turístico (solo si no es Guatemala)
                     double impuestoTurismo = (!string.IsNullOrEmpty(paisHuesped) && !paisHuesped.Equals("Guatemala", StringComparison.OrdinalIgnoreCase))
                         ? totalEstadia * 0.10
                         : 0;
 
-                    // 8️ Otros cargos de áreas
+                    // 5️⃣ Cargos adicionales
                     double otrosCargos = 0;
                     using (OdbcCommand cmd = new OdbcCommand(@"
-                        SELECT IFNULL(SUM(Cmp_Monto), 0)
-                        FROM Tbl_Area
-                        WHERE Fk_Id_Folio = ?
-                          AND LOWER(Cmp_Tipo_Movimiento) = 'cargo'
-                          AND LOWER(Cmp_Nombre_Area) <> 'contabilidad';", conn))
+                SELECT IFNULL(SUM(Cmp_Monto), 0)
+                FROM Tbl_Area
+                WHERE Fk_Id_Folio = ?
+                  AND LOWER(Cmp_Tipo_Movimiento) = 'cargo'
+                  AND LOWER(Cmp_Nombre_Area) <> 'contabilidad';", conn))
                     {
                         cmd.Parameters.AddWithValue("?", idFolio);
                         object result = cmd.ExecuteScalar();
@@ -134,14 +130,30 @@ namespace Capa_Controlador_Check_In_Check_Out
                             otrosCargos = Convert.ToDouble(result);
                     }
 
-                    double totalHospedaje = totalEstadia + impuestoTurismo;
-                    double totalFinal = totalHospedaje + otrosCargos;
+                    // ✅ 5️⃣ bis: Detectar ABONOS (restar)
+                    double totalAbonos = 0;
+                    using (OdbcCommand cmd = new OdbcCommand(@"
+                SELECT IFNULL(SUM(Cmp_Monto), 0)
+                FROM Tbl_Area
+                WHERE Fk_Id_Folio = ?
+                  AND LOWER(Cmp_Tipo_Movimiento) = 'abono'
+                  AND LOWER(Cmp_Nombre_Area) <> 'contabilidad';", conn))
+                    {
+                        cmd.Parameters.AddWithValue("?", idFolio);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                            totalAbonos = Convert.ToDouble(result);
+                    }
 
-                    // 9️ Si existe registro contable, actualízalo
+                    // 6️⃣ Calcular totales finales
+                    double totalHospedaje = totalEstadia + impuestoTurismo;
+                    double totalFinal = (totalHospedaje + otrosCargos) - totalAbonos;
+
+                    // 7️⃣ Actualizar área contable
                     string updateArea = @"
-                        UPDATE Tbl_Area
-                        SET Cmp_Descripcion = ?, Cmp_Monto = ?, Cmp_Fecha_Movimiento = NOW()
-                        WHERE Fk_Id_Folio = ? AND LOWER(Cmp_Nombre_Area) = 'contabilidad';";
+                UPDATE Tbl_Area
+                SET Cmp_Descripcion = ?, Cmp_Monto = ?, Cmp_Fecha_Movimiento = NOW()
+                WHERE Fk_Id_Folio = ? AND LOWER(Cmp_Nombre_Area) = 'contabilidad';";
                     using (OdbcCommand cmd = new OdbcCommand(updateArea, conn))
                     {
                         string descripcion = impuestoTurismo > 0 ? "Cierre de hospedaje (con impuesto turista)" : "Cierre de hospedaje";
@@ -151,31 +163,46 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmd.ExecuteNonQuery();
                     }
 
-          
+                    // 8️⃣ Actualizar folio
                     string updateFolio = @"
-                        UPDATE Tbl_Folio 
-                        SET 
-                            Cmp_Total_Cargos = ?,
-                            Cmp_Saldo_Final = ?,
-                            Cmp_Fecha_Cierre = ?
-                        WHERE Pk_Id_Folio = ?";
+                UPDATE Tbl_Folio 
+                SET 
+                    Cmp_Total_Cargos = ?,
+                    Cmp_Total_Abonos = ?,
+                    Cmp_Saldo_Final = ?,
+                    Cmp_Fecha_Cierre = ?,
+                    Cmp_Estado = 'Cerrado'
+                WHERE Pk_Id_Folio = ?";
                     using (OdbcCommand cmdFolio = new OdbcCommand(updateFolio, conn))
                     {
-                        cmdFolio.Parameters.AddWithValue("?", totalFinal);
+                        cmdFolio.Parameters.AddWithValue("?", (totalHospedaje + otrosCargos)); // total de cargos
+                        cmdFolio.Parameters.AddWithValue("?", totalAbonos);
                         cmdFolio.Parameters.AddWithValue("?", totalFinal);
                         cmdFolio.Parameters.AddWithValue("?", fechaCheckOut);
                         cmdFolio.Parameters.AddWithValue("?", idFolio);
                         cmdFolio.ExecuteNonQuery();
                     }
 
-               
-                    string mensaje = $"✅ Check-Out completado.\n\n" +
+                    // 9️⃣ Actualizar estado del Check-In a 'Finalizado'
+                    string updateCheckIn = @"
+                UPDATE Tbl_Check_in
+                SET Cmp_Estado = 'Finalizado'
+                WHERE Pk_Id_Check_in = ?";
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(updateCheckIn, conn))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("?", idCheckIn);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
+                    // 🔟 Mensaje final
+                    string mensaje = $"✅ Check-Out completado y Check-In finalizado.\n\n" +
                                      $"Folio: #{idFolio}\n" +
                                      $"Tarifa/noche: Q{tarifaNoche:N2}\n" +
                                      $"Noches: {totalDias}\n" +
                                      $"Hospedaje: Q{totalEstadia:N2}\n" +
                                      (impuestoTurismo > 0 ? $"Impuesto turista: Q{impuestoTurismo:N2}\n" : "") +
                                      $"Otros cargos: Q{otrosCargos:N2}\n" +
+                                     $"Abonos: -Q{totalAbonos:N2}\n" +
                                      $"Total final: Q{totalFinal:N2}";
 
                     System.Windows.Forms.MessageBox.Show(mensaje, "Proceso exitoso",
@@ -195,7 +222,8 @@ namespace Capa_Controlador_Check_In_Check_Out
             }
         }
 
-   
+
+
         public DataTable datObtenerCheckIn() => DAO.datObtenerCheckIn();
 
         public DataTable MostrarCheckOut() => DAO.bMostrarCheckOut();
