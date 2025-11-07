@@ -30,7 +30,7 @@ namespace Capa_Modelo_IE
             }
             return tabla;
         }
-        public DataTable fun_ObtenerReceta(int codigoMenu)
+        public DataTable fun_ObtenerReceta(int iCodigoMenu)
         {
             Cls_Conexion_IE conexion = new Cls_Conexion_IE();
             DataTable tabla = new DataTable();
@@ -45,7 +45,7 @@ namespace Capa_Modelo_IE
                                               JOIN Tbl_Materia_Prima mp ON r.Fk_Id_Materia_Prima = mp.Pk_Id_Materia_Prima
                                               WHERE r.Fk_Id_Menu = ?";
                     OdbcCommand cmd = new OdbcCommand(sConsultaReceta, con);
-                    cmd.Parameters.AddWithValue("", codigoMenu);
+                    cmd.Parameters.AddWithValue("", iCodigoMenu);
                     OdbcDataAdapter da = new OdbcDataAdapter(cmd);
                     da.Fill(tabla);
                 }
@@ -97,6 +97,11 @@ namespace Capa_Modelo_IE
             {
                 throw new Exception("Error al verificar inventario: " + ex.Message, ex);
             }
+        }
+
+        public void GuardarOrdenCompra(List<(string sIngrediente, double doCantidad)> Listado)
+        {
+
         }
     }
 }
