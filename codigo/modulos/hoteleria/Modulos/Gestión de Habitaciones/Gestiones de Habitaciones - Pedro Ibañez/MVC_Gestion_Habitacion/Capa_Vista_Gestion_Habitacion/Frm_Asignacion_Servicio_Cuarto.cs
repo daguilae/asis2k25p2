@@ -137,5 +137,33 @@ namespace Capa_Vista_Gestion_Habitacion
         {
             this.Close();
         }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idHabitacion = Convert.ToInt32(Cbo_NumHabitaciones.SelectedValue);
+
+                string mensaje;
+                DataTable datos = ctrlAsig.BuscarAsignacion(idHabitacion, out mensaje);
+
+                MessageBox.Show(mensaje, "Resultado de búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                if (datos != null)
+                    DGV_Asignaciones.DataSource = datos;
+                else
+                    DGV_Asignaciones.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al buscar asignaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_recargar_Click(object sender, EventArgs e)
+        {
+            LimpiarCombos();
+            MostrarAsignaciones();
+        }
     }
 }

@@ -154,5 +154,48 @@ namespace Capa_Modelo_GesHab
             return tabla;
         }
 
+        public DataTable BuscarAsignaciones(int IidHabitacion)
+        {
+            string query = @"
+        SELECT 
+            a.Fk_ID_Habitacion AS Habitacion,
+            h.Cmp_Descripcion_Habitacion AS Descripcion,
+            a.Fk_Id_Servicio AS IdServicio,
+            s.Cmp_Nombre_Servicio AS Servicio
+        FROM tbl_asignacion_habitacion_servicio a
+        INNER JOIN tbl_habitaciones h ON a.Fk_ID_Habitacion = h.PK_ID_Habitaciones
+        INNER JOIN tbl_servicios_habitacion s ON a.Fk_Id_Servicio = s.PK_ID_Servicio_habitacion
+        WHERE a.Fk_ID_Habitacion = ? 
+        ORDER BY a.Fk_ID_Habitacion;
+    ";
+
+            OdbcConnection conn = conexion.conexion();
+            DataTable tabla = new DataTable();
+
+            try
+            {
+                using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                {
+                    // En ODBC el orden importa, no el nombre del parámetro
+                    cmd.Parameters.AddWithValue("@habitacion", IidHabitacion);
+
+                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                    {
+                        da.Fill(tabla);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener asignaciones: " + ex.Message);
+            }
+            finally
+            {
+                conexion.desconexion(conn);
+            }
+
+            return tabla;
+        }
+
     }
 }
