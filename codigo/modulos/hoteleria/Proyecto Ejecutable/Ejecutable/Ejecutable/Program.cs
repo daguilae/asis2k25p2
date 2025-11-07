@@ -16,7 +16,7 @@ namespace Ejecutable
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_Vista_Hoteleria.Frm_MDI_Hoteleria());
+            Application.Run(new Capa_Vista_Hoteleria.Frm_Login_Hoteleria());
         }
     }
 }
