@@ -148,6 +148,7 @@ namespace Capa_Vista_Gestion_Habitacion
                     limpiar_controles();
                     Estado_Crud = 1;
                     btn_modificar.Enabled = true;
+                    CargarCombos();
                 }
             }
             else
@@ -173,6 +174,7 @@ namespace Capa_Vista_Gestion_Habitacion
                     limpiar_controles();
                     Estado_Crud = 1;
                     btn_modificar.Enabled = true;
+                    CargarCombos();
                 }
             }
         }
@@ -235,6 +237,7 @@ namespace Capa_Vista_Gestion_Habitacion
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
             limpiar_controles();
+            CargarCombos();
             btn_modificar.Enabled = true;
             Estado_Crud = 1;
         }
