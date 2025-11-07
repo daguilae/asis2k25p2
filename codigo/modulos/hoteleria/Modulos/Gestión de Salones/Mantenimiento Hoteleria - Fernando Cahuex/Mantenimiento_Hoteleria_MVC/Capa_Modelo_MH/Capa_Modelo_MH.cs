@@ -120,6 +120,7 @@ namespace Capa_Modelo_MH
             EjecutarConsulta("SELECT Pk_Id_Salon, CONCAT(Pk_Id_Salon, ' - ', Cmp_Nombre_Salon) AS Nombre_Salon FROM tbl_salones ORDER BY Pk_Id_Salon;");
 
         public DataTable ObtenerHabitaciones() =>
-            EjecutarConsulta("SELECT h.PK_ID_Habitaciones, CONCAT(h.PK_ID_Habitaciones, ' - ', t.Cmp_Nombre_Tipo) AS Nombre_Habitacion FROM tbl_habitaciones h INNER JOIN tbl_tipo_habitacion t ON h.FK_ID_Tipo_Habitaciones = t.pk_Id_Tipo_Habitaciones ORDER BY h.PK_ID_Habitaciones;");
+            EjecutarConsulta(@"SELECT h.PK_ID_Habitaciones, CONCAT(h.PK_ID_Habitaciones, ' - ', t.Cmp_Tipo_Habitacion) AS Nombre_Habitacion FROM Tbl_Habitaciones h INNER JOIN Tbl_Tipo_Habitacion t ON h.FK_ID_Tipo_Habitaciones = t.PK_ID_Tipo_Habitaciones ORDER BY h.PK_ID_Habitaciones;");
+
     }
 }
