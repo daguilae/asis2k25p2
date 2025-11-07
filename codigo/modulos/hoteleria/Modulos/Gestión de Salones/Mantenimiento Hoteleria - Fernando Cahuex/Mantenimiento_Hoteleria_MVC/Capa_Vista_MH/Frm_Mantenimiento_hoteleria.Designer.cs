@@ -303,7 +303,7 @@ namespace Capa_Vista_MH
             // Pic_Eliminar
             // 
             this.Pic_Eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Pic_Eliminar.Image = global::Capa_Vista_MH.Properties.Resources.icono_limpiar__1_;
+            this.Pic_Eliminar.Image = global::Capa_Vista_MH.Properties.Resources.icono_eliminar;
             this.Pic_Eliminar.Location = new System.Drawing.Point(1168, 102);
             this.Pic_Eliminar.Name = "Pic_Eliminar";
             this.Pic_Eliminar.Size = new System.Drawing.Size(42, 42);
@@ -339,7 +339,7 @@ namespace Capa_Vista_MH
             // Pic_Cancelar
             // 
             this.Pic_Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Pic_Cancelar.Image = global::Capa_Vista_MH.Properties.Resources.icono_cancelar;
+            this.Pic_Cancelar.Image = global::Capa_Vista_MH.Properties.Resources.icono_limpiar__1_;
             this.Pic_Cancelar.Location = new System.Drawing.Point(1237, 102);
             this.Pic_Cancelar.Name = "Pic_Cancelar";
             this.Pic_Cancelar.Size = new System.Drawing.Size(42, 42);
