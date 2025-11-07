@@ -44,6 +44,37 @@ namespace Capa_Vista_IE
             }
         }
 
+        private void pro_GenerarOrden()
+        {
+            var listaCompra = new List<(string sProducto, double doCantidad)>();
+            foreach (DataGridViewRow fila in Dgv_ListadoCompra.Rows)
+            {
+                string sIngrediente = fila.Cells["ingrediente"].Value?.ToString();
+                double doCantidad = 0;
+                double.TryParse(fila.Cells["cantidad"].Value?.ToString(), out doCantidad);
 
+                listaCompra.Add((sIngrediente, doCantidad));
+            }
+
+        }
+
+
+        private void Btn_Guardar_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow fila in Dgv_ListadoCompra.Rows)
+            {
+                if (fila.Cells["cantidad"].Value != null)
+                {
+                    string sValor = fila.Cells["cantidad"].Value.ToString().Trim();
+
+                    if (!double.TryParse(sValor, out double doCantidad))
+                    {
+                        MessageBox.Show($"El valor '{sValor}' no es un número válido.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+
+        }
     }
 }

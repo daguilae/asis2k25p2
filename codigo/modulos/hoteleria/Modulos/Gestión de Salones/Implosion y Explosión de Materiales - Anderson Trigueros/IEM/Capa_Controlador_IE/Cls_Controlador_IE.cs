@@ -26,6 +26,10 @@ namespace Capa_Controlador_IE
         {
             return sentencias.ConsultarInventario(ingredientes);
         }
+        
+        public void generarOrden(List<(string sIngrediente, double doCantidad)> ListaCompra)
+        {
 
+        }
     }
-}
+} 

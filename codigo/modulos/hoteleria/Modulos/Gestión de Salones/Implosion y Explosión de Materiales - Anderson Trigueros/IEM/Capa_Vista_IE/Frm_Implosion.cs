@@ -152,9 +152,11 @@ namespace Capa_Vista_IE
                 MessageBox.Show("Error al cargar los datos de inventario " + ex.Message);
             }
         }
-        
+
         private void pro_ResultadoInventario()
         {
+            bool hayInsuficiente = false;
+
             foreach (ListViewItem item in Lstv_Receta.Items)
             {
                 if (item.SubItems.Count > 5)
@@ -162,17 +164,16 @@ namespace Capa_Vista_IE
                     string disponibilidad = item.SubItems[5].Text.Trim();
                     if (disponibilidad.Equals("Insuficiente", StringComparison.OrdinalIgnoreCase))
                     {
-                        Lbl_Resultado.Visible = true;
-                        Btn_OrdenCompra.Visible = true;
-                    }
-                    else
-                    {
-                        Lbl_Resultado.Visible = false;
-                        Btn_OrdenCompra.Visible = false;
+                        hayInsuficiente = true;
+                        break;
                     }
                 }
             }
+    
+            Lbl_Resultado.Visible = hayInsuficiente;
+            Btn_OrdenCompra.Visible = hayInsuficiente;
         }
+
         private void pro_LimpiarColumnas()
         {
             foreach (ListViewItem item in Lstv_Receta.Items)
@@ -186,6 +187,8 @@ namespace Capa_Vista_IE
 
         private void Cbo_Platillos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Lbl_Resultado.Visible = false;
+            Btn_OrdenCompra.Visible = false;
             try
             {
                 if (Cbo_Platillos.SelectedValue == null) return;
