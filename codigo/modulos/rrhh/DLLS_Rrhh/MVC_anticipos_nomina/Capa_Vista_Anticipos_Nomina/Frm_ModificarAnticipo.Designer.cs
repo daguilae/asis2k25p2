@@ -1,7 +1,7 @@
 ﻿
-namespace Capa_Vista_Anticipos
+namespace Capa_Vista_Anticipos_Nomina
 {
-    partial class solicitaranticipo
+    partial class Frm_ModificarAnticipo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,8 @@ namespace Capa_Vista_Anticipos
         /// </summary>
         private void InitializeComponent()
         {
-            this.Pnl_Encabezado = new System.Windows.Forms.Panel();
-            this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.Gpb_solicitaranticipo = new System.Windows.Forms.GroupBox();
+            this.Gpb_modificaranticipo = new System.Windows.Forms.GroupBox();
+            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Btn_guardar = new System.Windows.Forms.Button();
             this.Txt_motivo = new System.Windows.Forms.TextBox();
@@ -41,57 +40,45 @@ namespace Capa_Vista_Anticipos
             this.Lbl_monto = new System.Windows.Forms.Label();
             this.Lbl_fecha = new System.Windows.Forms.Label();
             this.Lbl_Nombreempleado = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Pnl_Encabezado = new System.Windows.Forms.Panel();
+            this.Lbl_Titulo = new System.Windows.Forms.Label();
+            this.Gpb_modificaranticipo.SuspendLayout();
             this.Pnl_Encabezado.SuspendLayout();
-            this.Gpb_solicitaranticipo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Pnl_Encabezado
+            // Gpb_modificaranticipo
             // 
-            this.Pnl_Encabezado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.Pnl_Encabezado.Controls.Add(this.Lbl_Titulo);
-            this.Pnl_Encabezado.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Pnl_Encabezado.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Encabezado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Pnl_Encabezado.Name = "Pnl_Encabezado";
-            this.Pnl_Encabezado.Size = new System.Drawing.Size(890, 62);
-            this.Pnl_Encabezado.TabIndex = 12;
+            this.Gpb_modificaranticipo.Controls.Add(this.cboEmpleado);
+            this.Gpb_modificaranticipo.Controls.Add(this.Btn_Cancelar);
+            this.Gpb_modificaranticipo.Controls.Add(this.Btn_guardar);
+            this.Gpb_modificaranticipo.Controls.Add(this.Txt_motivo);
+            this.Gpb_modificaranticipo.Controls.Add(this.Txt_monto);
+            this.Gpb_modificaranticipo.Controls.Add(this.Dtp_fecha);
+            this.Gpb_modificaranticipo.Controls.Add(this.Lbl_motivo);
+            this.Gpb_modificaranticipo.Controls.Add(this.Lbl_monto);
+            this.Gpb_modificaranticipo.Controls.Add(this.Lbl_fecha);
+            this.Gpb_modificaranticipo.Controls.Add(this.Lbl_Nombreempleado);
+            this.Gpb_modificaranticipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Gpb_modificaranticipo.Location = new System.Drawing.Point(66, 67);
+            this.Gpb_modificaranticipo.Name = "Gpb_modificaranticipo";
+            this.Gpb_modificaranticipo.Size = new System.Drawing.Size(815, 472);
+            this.Gpb_modificaranticipo.TabIndex = 17;
+            this.Gpb_modificaranticipo.TabStop = false;
+            this.Gpb_modificaranticipo.Text = "Modificar Anticipo";
             // 
-            // Lbl_Titulo
+            // cboEmpleado
             // 
-            this.Lbl_Titulo.AutoSize = true;
-            this.Lbl_Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Lbl_Titulo.Location = new System.Drawing.Point(61, 15);
-            this.Lbl_Titulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.Lbl_Titulo.Name = "Lbl_Titulo";
-            this.Lbl_Titulo.Size = new System.Drawing.Size(111, 29);
-            this.Lbl_Titulo.TabIndex = 0;
-            this.Lbl_Titulo.Text = "Anticipos";
-            // 
-            // Gpb_solicitaranticipo
-            // 
-            this.Gpb_solicitaranticipo.Controls.Add(this.textBox1);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Btn_Cancelar);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Btn_guardar);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Txt_motivo);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Txt_monto);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Dtp_fecha);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_motivo);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_monto);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_fecha);
-            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_Nombreempleado);
-            this.Gpb_solicitaranticipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Gpb_solicitaranticipo.Location = new System.Drawing.Point(49, 71);
-            this.Gpb_solicitaranticipo.Name = "Gpb_solicitaranticipo";
-            this.Gpb_solicitaranticipo.Size = new System.Drawing.Size(815, 472);
-            this.Gpb_solicitaranticipo.TabIndex = 13;
-            this.Gpb_solicitaranticipo.TabStop = false;
-            this.Gpb_solicitaranticipo.Text = "Solicitar Anticipo";
+            this.cboEmpleado.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEmpleado.FormattingEnabled = true;
+            this.cboEmpleado.Location = new System.Drawing.Point(276, 68);
+            this.cboEmpleado.Name = "cboEmpleado";
+            this.cboEmpleado.Size = new System.Drawing.Size(252, 35);
+            this.cboEmpleado.TabIndex = 12;
             // 
             // Btn_Cancelar
             // 
-            this.Btn_Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Btn_Cancelar.Image = global::Capa_Vista_Anticipos.Properties.Resources.Cancel_icon_icons_com_73703;
+            this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Cancelar.Image = global::Capa_Vista_Anticipos_Nomina.Properties.Resources.Cancel_icon_icons_com_73703;
             this.Btn_Cancelar.Location = new System.Drawing.Point(457, 386);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(80, 63);
@@ -99,12 +86,11 @@ namespace Capa_Vista_Anticipos
             this.Btn_Cancelar.Text = "Cancelar";
             this.Btn_Cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.Btn_Cancelar.UseVisualStyleBackColor = true;
-            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
             // Btn_guardar
             // 
-            this.Btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Btn_guardar.Image = global::Capa_Vista_Anticipos.Properties.Resources.savetheapplication_guardar_2958;
+            this.Btn_guardar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_guardar.Image = global::Capa_Vista_Anticipos_Nomina.Properties.Resources.savetheapplication_guardar_2958;
             this.Btn_guardar.Location = new System.Drawing.Point(276, 386);
             this.Btn_guardar.Name = "Btn_guardar";
             this.Btn_guardar.Size = new System.Drawing.Size(71, 63);
@@ -178,37 +164,49 @@ namespace Capa_Vista_Anticipos
             this.Lbl_Nombreempleado.TabIndex = 2;
             this.Lbl_Nombreempleado.Text = "Nombre Empleado";
             // 
-            // textBox1
+            // Pnl_Encabezado
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(276, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 23);
-            this.textBox1.TabIndex = 12;
+            this.Pnl_Encabezado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.Pnl_Encabezado.Controls.Add(this.Lbl_Titulo);
+            this.Pnl_Encabezado.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Pnl_Encabezado.Location = new System.Drawing.Point(0, 0);
+            this.Pnl_Encabezado.Margin = new System.Windows.Forms.Padding(2);
+            this.Pnl_Encabezado.Name = "Pnl_Encabezado";
+            this.Pnl_Encabezado.Size = new System.Drawing.Size(897, 62);
+            this.Pnl_Encabezado.TabIndex = 16;
             // 
-            // solicitaranticipo
+            // Lbl_Titulo
+            // 
+            this.Lbl_Titulo.AutoSize = true;
+            this.Lbl_Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(61, 15);
+            this.Lbl_Titulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Lbl_Titulo.Name = "Lbl_Titulo";
+            this.Lbl_Titulo.Size = new System.Drawing.Size(111, 29);
+            this.Lbl_Titulo.TabIndex = 0;
+            this.Lbl_Titulo.Text = "Anticipos";
+            // 
+            // Frm_ModificarAnticipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(890, 552);
-            this.Controls.Add(this.Gpb_solicitaranticipo);
+            this.ClientSize = new System.Drawing.Size(897, 562);
+            this.Controls.Add(this.Gpb_modificaranticipo);
             this.Controls.Add(this.Pnl_Encabezado);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "solicitaranticipo";
-            this.Text = "solicitaranticipo";
+            this.Name = "Frm_ModificarAnticipo";
+            this.Text = "Frm_ModificarAnticipo";
+            this.Gpb_modificaranticipo.ResumeLayout(false);
+            this.Gpb_modificaranticipo.PerformLayout();
             this.Pnl_Encabezado.ResumeLayout(false);
             this.Pnl_Encabezado.PerformLayout();
-            this.Gpb_solicitaranticipo.ResumeLayout(false);
-            this.Gpb_solicitaranticipo.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Panel Pnl_Encabezado;
-        private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.GroupBox Gpb_solicitaranticipo;
+        private System.Windows.Forms.GroupBox Gpb_modificaranticipo;
+        private System.Windows.Forms.ComboBox cboEmpleado;
         private System.Windows.Forms.Button Btn_Cancelar;
         private System.Windows.Forms.Button Btn_guardar;
         private System.Windows.Forms.TextBox Txt_motivo;
@@ -218,6 +216,7 @@ namespace Capa_Vista_Anticipos
         private System.Windows.Forms.Label Lbl_monto;
         private System.Windows.Forms.Label Lbl_fecha;
         private System.Windows.Forms.Label Lbl_Nombreempleado;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel Pnl_Encabezado;
+        private System.Windows.Forms.Label Lbl_Titulo;
     }
 }

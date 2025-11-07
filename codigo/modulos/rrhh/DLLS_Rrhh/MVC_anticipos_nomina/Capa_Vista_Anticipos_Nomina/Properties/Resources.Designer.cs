@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Capa_Vista_Anticipos.Properties {
+namespace Capa_Vista_Anticipos_Nomina.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Capa_Vista_Anticipos.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Anticipos.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Capa_Vista_Anticipos_Nomina.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -66,16 +66,6 @@ namespace Capa_Vista_Anticipos.Properties {
         internal static System.Drawing.Bitmap add_insert_new_plus_button_icon_142943 {
             get {
                 object obj = ResourceManager.GetObject("add_insert_new_plus_button_icon_142943", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap android_search_icon_icons_com_50501 {
-            get {
-                object obj = ResourceManager.GetObject("android-search_icon-icons.com_50501", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

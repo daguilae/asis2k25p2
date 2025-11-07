@@ -1,7 +1,7 @@
 ﻿
-namespace Capa_Vista_Anticipos
+namespace Capa_Vista_Anticipos_Nomina
 {
-    partial class editaranticipos
+    partial class Frm_NuevoAnticipo
     {
         /// <summary>
         /// Required designer variable.
@@ -29,9 +29,8 @@ namespace Capa_Vista_Anticipos
         /// </summary>
         private void InitializeComponent()
         {
-            this.Gpb_editaranticipo = new System.Windows.Forms.GroupBox();
-            this.Btn_Cancelar = new System.Windows.Forms.Button();
-            this.Btn_guardar = new System.Windows.Forms.Button();
+            this.Gpb_solicitaranticipo = new System.Windows.Forms.GroupBox();
+            this.cboEmpleado = new System.Windows.Forms.ComboBox();
             this.Txt_motivo = new System.Windows.Forms.TextBox();
             this.Txt_monto = new System.Windows.Forms.TextBox();
             this.Dtp_fecha = new System.Windows.Forms.DateTimePicker();
@@ -41,55 +40,40 @@ namespace Capa_Vista_Anticipos
             this.Lbl_Nombreempleado = new System.Windows.Forms.Label();
             this.Pnl_Encabezado = new System.Windows.Forms.Panel();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Gpb_editaranticipo.SuspendLayout();
+            this.Btn_Cancelar = new System.Windows.Forms.Button();
+            this.Btn_guardar = new System.Windows.Forms.Button();
+            this.Gpb_solicitaranticipo.SuspendLayout();
             this.Pnl_Encabezado.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Gpb_editaranticipo
+            // Gpb_solicitaranticipo
             // 
-            this.Gpb_editaranticipo.Controls.Add(this.textBox1);
-            this.Gpb_editaranticipo.Controls.Add(this.Btn_Cancelar);
-            this.Gpb_editaranticipo.Controls.Add(this.Btn_guardar);
-            this.Gpb_editaranticipo.Controls.Add(this.Txt_motivo);
-            this.Gpb_editaranticipo.Controls.Add(this.Txt_monto);
-            this.Gpb_editaranticipo.Controls.Add(this.Dtp_fecha);
-            this.Gpb_editaranticipo.Controls.Add(this.Lbl_motivo);
-            this.Gpb_editaranticipo.Controls.Add(this.Lbl_monto);
-            this.Gpb_editaranticipo.Controls.Add(this.Lbl_fecha);
-            this.Gpb_editaranticipo.Controls.Add(this.Lbl_Nombreempleado);
-            this.Gpb_editaranticipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.Gpb_editaranticipo.Location = new System.Drawing.Point(35, 68);
-            this.Gpb_editaranticipo.Name = "Gpb_editaranticipo";
-            this.Gpb_editaranticipo.Size = new System.Drawing.Size(815, 474);
-            this.Gpb_editaranticipo.TabIndex = 2;
-            this.Gpb_editaranticipo.TabStop = false;
-            this.Gpb_editaranticipo.Text = "Editar Anticipo";
+            this.Gpb_solicitaranticipo.Controls.Add(this.cboEmpleado);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Btn_Cancelar);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Btn_guardar);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Txt_motivo);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Txt_monto);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Dtp_fecha);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_motivo);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_monto);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_fecha);
+            this.Gpb_solicitaranticipo.Controls.Add(this.Lbl_Nombreempleado);
+            this.Gpb_solicitaranticipo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.Gpb_solicitaranticipo.Location = new System.Drawing.Point(66, 67);
+            this.Gpb_solicitaranticipo.Name = "Gpb_solicitaranticipo";
+            this.Gpb_solicitaranticipo.Size = new System.Drawing.Size(815, 472);
+            this.Gpb_solicitaranticipo.TabIndex = 15;
+            this.Gpb_solicitaranticipo.TabStop = false;
+            this.Gpb_solicitaranticipo.Text = "Solicitar Anticipo";
             // 
-            // Btn_Cancelar
+            // cboEmpleado
             // 
-            this.Btn_Cancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Btn_Cancelar.Image = global::Capa_Vista_Anticipos.Properties.Resources.Cancel_icon_icons_com_73703;
-            this.Btn_Cancelar.Location = new System.Drawing.Point(457, 386);
-            this.Btn_Cancelar.Name = "Btn_Cancelar";
-            this.Btn_Cancelar.Size = new System.Drawing.Size(80, 63);
-            this.Btn_Cancelar.TabIndex = 11;
-            this.Btn_Cancelar.Text = "Cancelar";
-            this.Btn_Cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Btn_Cancelar.UseVisualStyleBackColor = true;
-            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
-            // 
-            // Btn_guardar
-            // 
-            this.Btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.Btn_guardar.Image = global::Capa_Vista_Anticipos.Properties.Resources.savetheapplication_guardar_2958;
-            this.Btn_guardar.Location = new System.Drawing.Point(276, 386);
-            this.Btn_guardar.Name = "Btn_guardar";
-            this.Btn_guardar.Size = new System.Drawing.Size(71, 63);
-            this.Btn_guardar.TabIndex = 10;
-            this.Btn_guardar.Text = "Guardar";
-            this.Btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.Btn_guardar.UseVisualStyleBackColor = true;
+            this.cboEmpleado.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboEmpleado.FormattingEnabled = true;
+            this.cboEmpleado.Location = new System.Drawing.Point(276, 68);
+            this.cboEmpleado.Name = "cboEmpleado";
+            this.cboEmpleado.Size = new System.Drawing.Size(252, 35);
+            this.cboEmpleado.TabIndex = 12;
             // 
             // Txt_motivo
             // 
@@ -162,10 +146,10 @@ namespace Capa_Vista_Anticipos
             this.Pnl_Encabezado.Controls.Add(this.Lbl_Titulo);
             this.Pnl_Encabezado.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Encabezado.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Encabezado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Pnl_Encabezado.Margin = new System.Windows.Forms.Padding(2);
             this.Pnl_Encabezado.Name = "Pnl_Encabezado";
-            this.Pnl_Encabezado.Size = new System.Drawing.Size(875, 62);
-            this.Pnl_Encabezado.TabIndex = 13;
+            this.Pnl_Encabezado.Size = new System.Drawing.Size(897, 62);
+            this.Pnl_Encabezado.TabIndex = 14;
             // 
             // Lbl_Titulo
             // 
@@ -178,26 +162,41 @@ namespace Capa_Vista_Anticipos
             this.Lbl_Titulo.TabIndex = 0;
             this.Lbl_Titulo.Text = "Anticipos";
             // 
-            // textBox1
+            // Btn_Cancelar
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.textBox1.Location = new System.Drawing.Point(276, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(252, 23);
-            this.textBox1.TabIndex = 12;
+            this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Cancelar.Image = global::Capa_Vista_Anticipos_Nomina.Properties.Resources.Cancel_icon_icons_com_73703;
+            this.Btn_Cancelar.Location = new System.Drawing.Point(457, 386);
+            this.Btn_Cancelar.Name = "Btn_Cancelar";
+            this.Btn_Cancelar.Size = new System.Drawing.Size(80, 63);
+            this.Btn_Cancelar.TabIndex = 11;
+            this.Btn_Cancelar.Text = "Cancelar";
+            this.Btn_Cancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Btn_Cancelar.UseVisualStyleBackColor = true;
             // 
-            // editaranticipos
+            // Btn_guardar
+            // 
+            this.Btn_guardar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_guardar.Image = global::Capa_Vista_Anticipos_Nomina.Properties.Resources.savetheapplication_guardar_2958;
+            this.Btn_guardar.Location = new System.Drawing.Point(276, 386);
+            this.Btn_guardar.Name = "Btn_guardar";
+            this.Btn_guardar.Size = new System.Drawing.Size(71, 63);
+            this.Btn_guardar.TabIndex = 10;
+            this.Btn_guardar.Text = "Guardar";
+            this.Btn_guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.Btn_guardar.UseVisualStyleBackColor = true;
+            // 
+            // Frm_NuevoAnticipo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(875, 551);
+            this.ClientSize = new System.Drawing.Size(897, 562);
+            this.Controls.Add(this.Gpb_solicitaranticipo);
             this.Controls.Add(this.Pnl_Encabezado);
-            this.Controls.Add(this.Gpb_editaranticipo);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "editaranticipos";
-            this.Text = "editaranticipos";
-            this.Gpb_editaranticipo.ResumeLayout(false);
-            this.Gpb_editaranticipo.PerformLayout();
+            this.Name = "Frm_NuevoAnticipo";
+            this.Text = "Frm_NuevoAnticipo";
+            this.Gpb_solicitaranticipo.ResumeLayout(false);
+            this.Gpb_solicitaranticipo.PerformLayout();
             this.Pnl_Encabezado.ResumeLayout(false);
             this.Pnl_Encabezado.PerformLayout();
             this.ResumeLayout(false);
@@ -206,7 +205,7 @@ namespace Capa_Vista_Anticipos
 
         #endregion
 
-        private System.Windows.Forms.GroupBox Gpb_editaranticipo;
+        private System.Windows.Forms.GroupBox Gpb_solicitaranticipo;
         private System.Windows.Forms.Button Btn_Cancelar;
         private System.Windows.Forms.Button Btn_guardar;
         private System.Windows.Forms.TextBox Txt_motivo;
@@ -218,6 +217,6 @@ namespace Capa_Vista_Anticipos
         private System.Windows.Forms.Label Lbl_Nombreempleado;
         private System.Windows.Forms.Panel Pnl_Encabezado;
         private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cboEmpleado;
     }
 }
