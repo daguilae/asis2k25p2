@@ -42,6 +42,7 @@ namespace Capa_Vista_TipoDeCambio
             this.Lbl_Compra = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Lbl_Ingreso = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +60,7 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Controls.Add(this.Lbl_Compra);
             this.panel1.Controls.Add(this.Lbl_Fecha);
             this.panel1.Controls.Add(this.Lbl_Ingreso);
-            this.panel1.Location = new System.Drawing.Point(13, 13);
+            this.panel1.Location = new System.Drawing.Point(13, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(465, 409);
             this.panel1.TabIndex = 0;
@@ -173,11 +174,21 @@ namespace Capa_Vista_TipoDeCambio
             this.Lbl_Ingreso.TabIndex = 0;
             this.Lbl_Ingreso.Text = "Ingreso de Tipo De Cambio";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(265, 489);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // Frm_IngresoTipoDeCambio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(490, 442);
+            this.ClientSize = new System.Drawing.Size(602, 546);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.panel1);
             this.Name = "Frm_IngresoTipoDeCambio";
             this.Text = "Frm_IngresoTipoDeCambio";
@@ -203,5 +214,6 @@ namespace Capa_Vista_TipoDeCambio
         private System.Windows.Forms.TextBox Txt_Compra;
         private System.Windows.Forms.TextBox Txt_Fecha;
         private System.Windows.Forms.Button Btn_Agregar;
+        private System.Windows.Forms.Button button1;
     }
 }

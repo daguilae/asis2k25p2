@@ -8,8 +8,9 @@ namespace Capa_Modelo_MB
 {
     public class Cls_CRUD
     {
-        private Cls_Conexion cn = new Cls_Conexion();
-        private string fun_Trunc(string sCadena, int iMaxLongitud)
+        private readonly Cls_Conexion oCn = new Cls_Conexion();
+
+        private string fun_trunc(string sCadena, int iMaxLongitud)
         {
             if (string.IsNullOrWhiteSpace(sCadena)) return null;
             return sCadena.Length <= iMaxLongitud ? sCadena : sCadena.Substring(0, iMaxLongitud);
@@ -17,7 +18,7 @@ namespace Capa_Modelo_MB
 
 
         //crear movimeintos
-        public int fun_CrearMovimientoConDetalles(
+        public int fun_crear_movimiento_con_detalles(
             Cls_Sentencias mov,
             List<Cls_Sentencias.Cls_MovimientoDetalle> lst_Detalles)
         {
@@ -32,12 +33,12 @@ namespace Capa_Modelo_MB
                 throw new Exception("La operación es requerida");
 
             // Normalizar datos
-            mov.sCmp_numero_documento = fun_Trunc(mov.sCmp_numero_documento, 50);
-            mov.sCmp_concepto = fun_Trunc(mov.sCmp_concepto, 255);
-            mov.sCmp_beneficiario = fun_Trunc(mov.sCmp_beneficiario, 255);
-            mov.sCmp_estado = fun_Trunc(string.IsNullOrWhiteSpace(mov.sCmp_estado) ? "ACTIVO" : mov.sCmp_estado, 20);
+            mov.sCmp_numero_documento = fun_trunc(mov.sCmp_numero_documento, 50);
+            mov.sCmp_concepto = fun_trunc(mov.sCmp_concepto, 255);
+            mov.sCmp_beneficiario = fun_trunc(mov.sCmp_beneficiario, 255);
+            mov.sCmp_estado = fun_trunc(string.IsNullOrWhiteSpace(mov.sCmp_estado) ? "ACTIVO" : mov.sCmp_estado, 20);
 
-            using (var odcn_Conn = cn.fun_ConexionBD())
+            using (var odcn_Conn = oCn.fun_conexion_bd())
             {
                 if (odcn_Conn.State != ConnectionState.Open)
                     odcn_Conn.Open();
@@ -47,30 +48,36 @@ namespace Capa_Modelo_MB
                     try
                     {
                         // OBTENER SIGNO DE LA OPERACIÓN
-                        string sSignoOperacion = fun_ObtenerSignoOperacion(mov.iFk_Id_operacion, odcn_Conn, trx);
+                        string sSignoOperacion = fun_obtener_signo_operacion(mov.iFk_Id_operacion, odcn_Conn, trx);
                         decimal deFactor = sSignoOperacion == "+" ? 1 : -1;
+
                         //  OBTENER PRÓXIMO ID DE MOVIMIENTO
-                        int iProximoIdMovimiento = fun_ObtenerProximoIdMovimiento(mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, odcn_Conn, trx);
+                        int iProximoIdMovimiento = fun_obtener_proximo_id_movimiento(mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, odcn_Conn, trx);
+
                         // ACTUALIZAR SALDO DE LA CUENTA ORIGEN
-                        fun_ActualizarSaldoCuenta(mov.iFk_Id_cuenta_origen, mov.deCmp_valor_total * deFactor, odcn_Conn, trx);
+                        fun_actualizar_saldo_cuenta(mov.iFk_Id_cuenta_origen, mov.deCmp_valor_total * deFactor, odcn_Conn, trx);
+
                         // SI HAY CUENTA DESTINO, ACTUALIZAR SU SALDO TAMBIÉN
                         if (mov.iFk_Id_cuenta_destino.HasValue && mov.iFk_Id_cuenta_destino > 0)
                         {
                             // Para transferencias, el destino recibe el monto positivo
-                            fun_ActualizarSaldoCuenta(mov.iFk_Id_cuenta_destino.Value, mov.deCmp_valor_total, odcn_Conn, trx);
+                            fun_actualizar_saldo_cuenta(mov.iFk_Id_cuenta_destino.Value, mov.deCmp_valor_total, odcn_Conn, trx);
                         }
+
                         //  INSERTAR ENCABEZADO DEL MOVIMIENTO
-                        fun_InsertarEncabezadoMovimiento(mov, iProximoIdMovimiento, odcn_Conn, trx);
+                        fun_insertar_encabezado_movimiento(mov, iProximoIdMovimiento, odcn_Conn, trx);
+
                         // INSERTAR DETALLES CONTABLES
                         if (lst_Detalles.Count > 0)
                         {
-                            fun_InsertarDetallesMovimiento(mov, lst_Detalles, odcn_Conn, trx);
+                            fun_insertar_detalles_movimiento(mov, lst_Detalles, odcn_Conn, trx);
                         }
                         else
                         {
                             // INSERTAR DETALLE AUTOMÁTICO SI NO HAY DETALLES EXPLÍCITOS
-                            fun_CrearDetalleAutomatico(mov, sSignoOperacion, odcn_Conn, trx);
+                            fun_crear_detalle_automatico(mov, sSignoOperacion, odcn_Conn, trx);
                         }
+
                         trx.Commit();
                         return iProximoIdMovimiento;
                     }
@@ -85,7 +92,7 @@ namespace Capa_Modelo_MB
 
 
         // Método para obtener el signo de la operación
-        private string fun_ObtenerSignoOperacion(int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
+        private string fun_obtener_signo_operacion(int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
         {
             string sSql = @"SELECT Cmp_Efecto FROM Tbl_TransaccionesBancarias 
                    WHERE Pk_Id_Transaccion = ? AND Cmp_Estado = 1";
@@ -99,7 +106,7 @@ namespace Capa_Modelo_MB
         }
 
         // Método para obtener próximo ID de movimiento
-        private int fun_ObtenerProximoIdMovimiento(int iIdCuenta, int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
+        private int fun_obtener_proximo_id_movimiento(int iIdCuenta, int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
         {
             string sSql = @"SELECT COALESCE(MAX(Pk_Id_Movimiento), 0) + 1 
                    FROM Tbl_MovimientoBancarioEncabezado 
@@ -115,7 +122,7 @@ namespace Capa_Modelo_MB
         }
 
         // Actualizar saldo de cuenta
-        private void fun_ActualizarSaldoCuenta(int iIdCuenta, decimal deMonto, OdbcConnection connection, OdbcTransaction transaction)
+        private void fun_actualizar_saldo_cuenta(int iIdCuenta, decimal deMonto, OdbcConnection connection, OdbcTransaction transaction)
         {
             string sSql = @"UPDATE Tbl_CuentasBancarias 
                    SET Cmp_SaldoDisponible = Cmp_SaldoDisponible + ?,
@@ -135,7 +142,7 @@ namespace Capa_Modelo_MB
         }
 
         // Método para insertar encabezado
-        private void fun_InsertarEncabezadoMovimiento(Cls_Sentencias mov, int iIdMovimiento, OdbcConnection connection, OdbcTransaction transaction)
+        private void fun_insertar_encabezado_movimiento(Cls_Sentencias mov, int iIdMovimiento, OdbcConnection connection, OdbcTransaction transaction)
         {
             string sSql = @"
                         INSERT INTO Tbl_MovimientoBancarioEncabezado
@@ -170,7 +177,7 @@ namespace Capa_Modelo_MB
         }
 
 
-        public string fun_ObtenerCuentaContablePorDefecto()
+        public string fun_obtener_cuenta_contable_por_defecto()
         {
             try
             {
@@ -179,7 +186,7 @@ namespace Capa_Modelo_MB
                        WHERE Cmp_Parametro = 'CUENTA_BANCO_PRINCIPAL' 
                        AND Cmp_Estado = 1";
 
-                using (OdbcConnection odcn_Conn = new Cls_Conexion().fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = new Cls_Conexion().fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     object oResultado = odc_Cmd.ExecuteScalar();
@@ -194,13 +201,14 @@ namespace Capa_Modelo_MB
         }
 
         // Método para crear detalle automático
-        private void fun_CrearDetalleAutomatico(Cls_Sentencias mov, string sSignoOperacion, OdbcConnection connection, OdbcTransaction transaction)
+        private void fun_crear_detalle_automatico(Cls_Sentencias mov, string sSignoOperacion, OdbcConnection connection, OdbcTransaction transaction)
         {
             // Obtener cuenta contable por defecto
-            string sCuentaContable = fun_ObtenerCuentaContablePorDefecto();
+            string sCuentaContable = fun_obtener_cuenta_contable_por_defecto();
             string sTipoLinea = sSignoOperacion == "+" ? "D" : "C"; // Débito para positivo, Crédito para negativo
+
             // Obtener próximo ID de detalle
-            int iProximoIdDetalle = fun_ObtenerProximoIdDetalle(mov.iPk_Id_movimiento, mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, connection, transaction);
+            int iProximoIdDetalle = fun_obtener_proximo_id_detalle(mov.iPk_Id_movimiento, mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, connection, transaction);
 
             string sSql = @"
                         INSERT INTO Tbl_MovimientoBancarioDetalle
@@ -228,25 +236,28 @@ namespace Capa_Modelo_MB
             }
         }
 
-        private void fun_InsertarDetallesMovimiento(Cls_Sentencias mov, List<Cls_Sentencias.Cls_MovimientoDetalle> lst_Detalles, OdbcConnection connection, OdbcTransaction transaction)
+        private void fun_insertar_detalles_movimiento(Cls_Sentencias mov, List<Cls_Sentencias.Cls_MovimientoDetalle> lst_Detalles, OdbcConnection connection, OdbcTransaction transaction)
         {
-            int iProximoIdDetalle = fun_ObtenerProximoIdDetalle(mov.iPk_Id_movimiento, mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, connection, transaction);
+            int iProximoIdDetalle = fun_obtener_proximo_id_detalle(mov.iPk_Id_movimiento, mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, connection, transaction);
+
             string sSql = @"
                         INSERT INTO Tbl_MovimientoBancarioDetalle
                         (Fk_Id_Movimiento, Fk_Id_CuentaOrigen, Fk_Id_Operacion, Pk_Id_Detalle,
                          Fk_Id_CuentaContable, Cmp_TipoOperacion, Cmp_Valor, Cmp_Descripcion,
                          Cmp_OrdenDetalle, Cmp_UsuarioRegistro)
                         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
             int iOrden = 1;
             foreach (var det in lst_Detalles)
             {
                 using (var cmdDet = new OdbcCommand(sSql, connection, transaction))
                 {
                     // Sanitizar datos del detalle
-                    det.sCmp_Descripcion = fun_Trunc(det.sCmp_Descripcion, 255);
+                    det.sCmp_Descripcion = fun_trunc(det.sCmp_Descripcion, 255);
+
                     // Asegurar valores por defecto
                     string cuentaContable = string.IsNullOrWhiteSpace(det.sFk_Id_cuenta_contable) ?
-                        fun_ObtenerCuentaContablePorDefecto() : det.sFk_Id_cuenta_contable;
+                        fun_obtener_cuenta_contable_por_defecto() : det.sFk_Id_cuenta_contable;
                     string tipoOperacion = string.IsNullOrWhiteSpace(det.sCmp_tipo_operacion) ?
                         "C" : det.sCmp_tipo_operacion;
 
@@ -270,7 +281,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        private int fun_ObtenerProximoIdDetalle(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
+        private int fun_obtener_proximo_id_detalle(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion, OdbcConnection connection, OdbcTransaction transaction)
         {
             string sSql = @"
     SELECT COALESCE(MAX(Pk_Id_Detalle), 0) + 1 
@@ -288,12 +299,12 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public string fun_ObtenerTipoLineaPorSigno(string sSignoOperacion)
+        public string fun_obtener_tipo_linea_por_signo(string sSignoOperacion)
         {
             return sSignoOperacion == "-" ? "D" : "C";
         }
 
-        public DataTable fun_ObtenerMovimientosPorFiltro(int? iIdCuenta = null, DateTime? dFechaDesde = null, DateTime? dFechaHasta = null, string sEstado = null)
+        public DataTable fun_obtener_movimientos_por_filtro(int? iIdCuenta = null, DateTime? dFechaDesde = null, DateTime? dFechaHasta = null, string sEstado = null)
         {
             try
             {
@@ -346,7 +357,7 @@ namespace Capa_Modelo_MB
 
                 sSql += " ORDER BY mbe.Cmp_Fecha DESC, mbe.Pk_Id_Movimiento DESC";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 foreach (var param in lst_Parametros)
                 {
                     oda_Adapter.SelectCommand.Parameters.Add(param);
@@ -364,9 +375,9 @@ namespace Capa_Modelo_MB
 
 
         // eliminar
-        public bool fun_AnularMovimiento(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion, string sUsuario)
+        public bool fun_anular_movimiento(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion, string sUsuario)
         {
-            using (var odcn_Conn = cn.fun_ConexionBD())
+            using (var odcn_Conn = oCn.fun_conexion_bd())
             {
                 if (odcn_Conn.State != ConnectionState.Open)
                     odcn_Conn.Open();
@@ -408,17 +419,21 @@ namespace Capa_Modelo_MB
                                 }
                             }
                         }
+
                         // Obtener signo de la operación para reversar
-                        string sSigno = fun_ObtenerSignoOperacion(iIdOperacionActual, odcn_Conn, trx);
+                        string sSigno = fun_obtener_signo_operacion(iIdOperacionActual, odcn_Conn, trx);
                         decimal deFactor = sSigno == "+" ? -1 : 1; // Invertir para reversar
+
                         // Reversar saldo de la cuenta origen
-                        fun_ActualizarSaldoCuenta(iIdCuentaOrigen, deMontoTotal * deFactor, odcn_Conn, trx);
+                        fun_actualizar_saldo_cuenta(iIdCuentaOrigen, deMontoTotal * deFactor, odcn_Conn, trx);
+
                         // Si hay cuenta destino, reversar su saldo también
                         if (iIdCuentaDestino.HasValue && iIdCuentaDestino > 0)
                         {
                             // Para transferencias, el destino se afecta en sentido contrario
-                            fun_ActualizarSaldoCuenta(iIdCuentaDestino.Value, deMontoTotal * (deFactor * -1), odcn_Conn, trx);
+                            fun_actualizar_saldo_cuenta(iIdCuentaDestino.Value, deMontoTotal * (deFactor * -1), odcn_Conn, trx);
                         }
+
                         // Actualizar estado a ANULADO
                         string sSqlUpdate = @"UPDATE Tbl_MovimientoBancarioEncabezado 
                                      SET Cmp_Estado = 'ANULADO',
@@ -427,6 +442,7 @@ namespace Capa_Modelo_MB
                                      WHERE Pk_Id_Movimiento = ? 
                                      AND Fk_Id_CuentaOrigen = ? 
                                      AND Fk_Id_Operacion = ?";
+
                         using (var cmdUpdate = new OdbcCommand(sSqlUpdate, odcn_Conn, trx))
                         {
                             cmdUpdate.Parameters.AddWithValue("@Usuario", sUsuario);
@@ -438,6 +454,7 @@ namespace Capa_Modelo_MB
                             if (filasAfectadas == 0)
                                 throw new Exception("No se pudo anular el movimiento");
                         }
+
                         trx.Commit();
                         return true;
                     }
@@ -450,9 +467,9 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public bool fun_EliminarMovimientoFisico(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
+        public bool fun_eliminar_movimiento_fisico(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
         {
-            using (var odcn_Conn = cn.fun_ConexionBD())
+            using (var odcn_Conn = oCn.fun_conexion_bd())
             {
                 if (odcn_Conn.State != ConnectionState.Open)
                     odcn_Conn.Open();
@@ -495,13 +512,13 @@ namespace Capa_Modelo_MB
                         }
 
                         // Reversar saldos
-                        string sSigno = fun_ObtenerSignoOperacion(iIdOperacionActual, odcn_Conn, trx);
+                        string sSigno = fun_obtener_signo_operacion(iIdOperacionActual, odcn_Conn, trx);
                         decimal deFactor = sSigno == "+" ? -1 : 1;
-                        fun_ActualizarSaldoCuenta(iIdCuentaOrigen, deMontoTotal * deFactor, odcn_Conn, trx);
+                        fun_actualizar_saldo_cuenta(iIdCuentaOrigen, deMontoTotal * deFactor, odcn_Conn, trx);
 
                         if (iIdCuentaDestino.HasValue && iIdCuentaDestino > 0)
                         {
-                            fun_ActualizarSaldoCuenta(iIdCuentaDestino.Value, deMontoTotal * (deFactor * -1), odcn_Conn, trx);
+                            fun_actualizar_saldo_cuenta(iIdCuentaDestino.Value, deMontoTotal * (deFactor * -1), odcn_Conn, trx);
                         }
 
                         // Eliminar detalles primero (por la FK)
@@ -552,7 +569,7 @@ namespace Capa_Modelo_MB
         // ==========================================================
 
         // Método simple para actualizar movimiento
-        public bool fun_ActualizarMovimiento(
+        public bool fun_actualizar_movimiento(
             int iIdMovimiento,
             int iNuevaCuentaOrigen,
             int iNuevaOperacion,
@@ -568,7 +585,7 @@ namespace Capa_Modelo_MB
             int iOperacionOriginal,
             string sEstado)
         {
-            using (var odcn_Conn = cn.fun_ConexionBD())
+            using (var odcn_Conn = oCn.fun_conexion_bd())
             {
                 if (odcn_Conn.State != ConnectionState.Open)
                     odcn_Conn.Open();
@@ -614,8 +631,8 @@ namespace Capa_Modelo_MB
                         }
 
                         // Obtener signos para reversar y aplicar (código existente)
-                        string sSignoViejo = fun_ObtenerSignoOperacion(iOperacionOriginal, odcn_Conn, trx);
-                        string sSignoNuevo = fun_ObtenerSignoOperacion(iNuevaOperacion, odcn_Conn, trx);
+                        string sSignoViejo = fun_obtener_signo_operacion(iOperacionOriginal, odcn_Conn, trx);
+                        string sSignoNuevo = fun_obtener_signo_operacion(iNuevaOperacion, odcn_Conn, trx);
 
                         decimal factorViejo = (sSignoViejo == "+") ? 1m : -1m;
                         decimal factorNuevo = (sSignoNuevo == "+") ? 1m : -1m;
@@ -624,24 +641,24 @@ namespace Capa_Modelo_MB
                         if (sEstadoActual == "ACTIVO")
                         {
                             // Reversar saldo de la cuenta origen vieja
-                            fun_ActualizarSaldoCuenta(iCuentaOrigenOriginal, deMontoViejo * (-factorViejo), odcn_Conn, trx);
+                            fun_actualizar_saldo_cuenta(iCuentaOrigenOriginal, deMontoViejo * (-factorViejo), odcn_Conn, trx);
 
                             // Si hay cuenta destino vieja, reversar su saldo también
                             if (iCuentaDestinoVieja.HasValue && iCuentaDestinoVieja > 0)
                             {
-                                fun_ActualizarSaldoCuenta(iCuentaDestinoVieja.Value, -deMontoViejo, odcn_Conn, trx);
+                                fun_actualizar_saldo_cuenta(iCuentaDestinoVieja.Value, -deMontoViejo, odcn_Conn, trx);
                             }
 
                             // Aplicar nuevos saldos solo si el nuevo estado es ACTIVO
                             if (sEstado == "ACTIVO")
                             {
                                 // Origen con signo nuevo
-                                fun_ActualizarSaldoCuenta(iNuevaCuentaOrigen, deMontoNuevo * factorNuevo, odcn_Conn, trx);
+                                fun_actualizar_saldo_cuenta(iNuevaCuentaOrigen, deMontoNuevo * factorNuevo, odcn_Conn, trx);
 
                                 // Destino nuevo
                                 if (iCuentaDestinoNueva.HasValue && iCuentaDestinoNueva > 0)
                                 {
-                                    fun_ActualizarSaldoCuenta(iCuentaDestinoNueva.Value, deMontoNuevo, odcn_Conn, trx);
+                                    fun_actualizar_saldo_cuenta(iCuentaDestinoNueva.Value, deMontoNuevo, odcn_Conn, trx);
                                 }
                             }
                         }
@@ -718,9 +735,5 @@ namespace Capa_Modelo_MB
                 }
             }
         }
-
-
-
-
     }
 }

@@ -10,7 +10,9 @@ namespace Capa_Controldor_MB
     /// </summary>
     public class Cls_EditarValidaciones
     {
+        // =============================================
         // DTO con los datos necesarios para editar
+        // =============================================
         public class MovimientoEdicionData
         {
             public int FkCuentaOrigen { get; set; }
@@ -32,21 +34,30 @@ namespace Capa_Controldor_MB
             public bool Exito { get; set; }
             public string Mensaje { get; set; }
             public MovimientoEdicionData Data { get; set; }
+
             public static ResultadoCarga Ok(MovimientoEdicionData d) => new ResultadoCarga { Exito = true, Data = d };
             public static ResultadoCarga Fail(string m) => new ResultadoCarga { Exito = false, Mensaje = m };
         }
 
-        // Helpers de lectura segura
-        private static bool HasCol(DataTable dt, string col) => dt?.Columns.Contains(col) == true;
+        // =============================================
+        // Helpers de lectura segura (privados)
+        // =============================================
+        private static bool fun_has_col(DataTable dt_Datos, string sColumna)
+            => dt_Datos?.Columns.Contains(sColumna) == true;
 
-        private static T Get<T>(DataRow r, string col, T def = default)
+        private static T fun_get<T>(DataRow dr_Fila, string sColumna, T tDefault = default)
         {
             try
             {
-                if (r == null || !r.Table.Columns.Contains(col) || r[col] == DBNull.Value) return def;
-                return (T)Convert.ChangeType(r[col], typeof(T));
+                if (dr_Fila == null || !dr_Fila.Table.Columns.Contains(sColumna) || dr_Fila[sColumna] == DBNull.Value)
+                    return tDefault;
+
+                return (T)Convert.ChangeType(dr_Fila[sColumna], typeof(T));
             }
-            catch { return def; }
+            catch
+            {
+                return tDefault;
+            }
         }
 
         /// <summary>
@@ -56,41 +67,43 @@ namespace Capa_Controldor_MB
         ///  - obtenerSignoOperacionPorId: para calcular el signo
         /// </summary>
         public ResultadoCarga MapearMovimiento(
-            DataTable dt,
+            DataTable dt_Datos,
             Func<int, int?> obtenerMonedaPorCuenta,
             Func<int, string> obtenerSignoOperacionPorId)
         {
-            if (dt == null || dt.Rows.Count == 0)
+            // Validaciones iniciales
+            if (dt_Datos == null || dt_Datos.Rows.Count == 0)
                 return ResultadoCarga.Fail("No se encontró el movimiento.");
 
-            var row = dt.Rows[0];
+            DataRow dr_Row = dt_Datos.Rows[0];
 
             // Requeridos “duros”
-            if (!HasCol(dt, "Fk_Id_CuentaOrigen")) return ResultadoCarga.Fail("Falta la columna Fk_Id_CuentaOrigen.");
-            if (!HasCol(dt, "Fk_Id_Operacion")) return ResultadoCarga.Fail("Falta la columna Fk_Id_Operacion.");
-            if (!HasCol(dt, "Cmp_Fecha")) return ResultadoCarga.Fail("Falta la columna Cmp_Fecha.");
-            if (!HasCol(dt, "Cmp_MontoTotal")) return ResultadoCarga.Fail("Falta la columna Cmp_MontoTotal.");
+            if (!fun_has_col(dt_Datos, "Fk_Id_CuentaOrigen")) return ResultadoCarga.Fail("Falta la columna Fk_Id_CuentaOrigen.");
+            if (!fun_has_col(dt_Datos, "Fk_Id_Operacion")) return ResultadoCarga.Fail("Falta la columna Fk_Id_Operacion.");
+            if (!fun_has_col(dt_Datos, "Cmp_Fecha")) return ResultadoCarga.Fail("Falta la columna Cmp_Fecha.");
+            if (!fun_has_col(dt_Datos, "Cmp_MontoTotal")) return ResultadoCarga.Fail("Falta la columna Cmp_MontoTotal.");
 
+            // Construcción del DTO
             var dto = new MovimientoEdicionData
             {
-                FkCuentaOrigen = Get<int>(row, "Fk_Id_CuentaOrigen"),
-                FkOperacion = Get<int>(row, "Fk_Id_Operacion"),
-                NumeroDocumento = Get<string>(row, "Cmp_NumeroDocumento", string.Empty),
-                Fecha = Get<DateTime>(row, "Cmp_Fecha", DateTime.Now),
-                Concepto = Get<string>(row, "Cmp_Concepto", string.Empty),
-                MontoTotal = Get<decimal>(row, "Cmp_MontoTotal", 0m),
-                Beneficiario = Get<string>(row, "Cmp_Beneficiario", string.Empty),
-                Estado = Get<string>(row, "Cmp_Estado", "ACTIVO"),
-                TipoPagoId = HasCol(dt, "Fk_Id_TipoPago") && row["Fk_Id_TipoPago"] != DBNull.Value ? Get<int>(row, "Fk_Id_TipoPago") : (int?)null,
-                CuentaDestinoId = HasCol(dt, "Fk_Id_CuentaDestino") && row["Fk_Id_CuentaDestino"] != DBNull.Value ? Get<int>(row, "Fk_Id_CuentaDestino") : (int?)null,
-                MonedaId = HasCol(dt, "Fk_Id_Moneda") && row["Fk_Id_Moneda"] != DBNull.Value ? Get<int>(row, "Fk_Id_Moneda") : (int?)null
+                FkCuentaOrigen = fun_get<int>(dr_Row, "Fk_Id_CuentaOrigen"),
+                FkOperacion = fun_get<int>(dr_Row, "Fk_Id_Operacion"),
+                NumeroDocumento = fun_get<string>(dr_Row, "Cmp_NumeroDocumento", string.Empty),
+                Fecha = fun_get<DateTime>(dr_Row, "Cmp_Fecha", DateTime.Now),
+                Concepto = fun_get<string>(dr_Row, "Cmp_Concepto", string.Empty),
+                MontoTotal = fun_get<decimal>(dr_Row, "Cmp_MontoTotal", 0m),
+                Beneficiario = fun_get<string>(dr_Row, "Cmp_Beneficiario", string.Empty),
+                Estado = fun_get<string>(dr_Row, "Cmp_Estado", "ACTIVO"),
+                TipoPagoId = fun_has_col(dt_Datos, "Fk_Id_TipoPago") && dr_Row["Fk_Id_TipoPago"] != DBNull.Value ? fun_get<int>(dr_Row, "Fk_Id_TipoPago") : (int?)null,
+                CuentaDestinoId = fun_has_col(dt_Datos, "Fk_Id_CuentaDestino") && dr_Row["Fk_Id_CuentaDestino"] != DBNull.Value ? fun_get<int>(dr_Row, "Fk_Id_CuentaDestino") : (int?)null,
+                MonedaId = fun_has_col(dt_Datos, "Fk_Id_Moneda") && dr_Row["Fk_Id_Moneda"] != DBNull.Value ? fun_get<int>(dr_Row, "Fk_Id_Moneda") : (int?)null
             };
 
             // Signo desde operación
             if (obtenerSignoOperacionPorId != null)
                 dto.Signo = obtenerSignoOperacionPorId(dto.FkOperacion);
 
-            // Si no trae moneda, usar la de la cuenta
+            // Si no trae moneda, usar la de la cuenta (fallback)
             if (!dto.MonedaId.HasValue && obtenerMonedaPorCuenta != null)
                 dto.MonedaId = obtenerMonedaPorCuenta(dto.FkCuentaOrigen);
 
@@ -101,8 +114,5 @@ namespace Capa_Controldor_MB
 
             return ResultadoCarga.Ok(dto);
         }
-
-
-
     }
 }
