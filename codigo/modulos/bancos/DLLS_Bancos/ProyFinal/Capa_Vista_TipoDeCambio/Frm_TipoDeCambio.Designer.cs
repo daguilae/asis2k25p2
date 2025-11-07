@@ -30,11 +30,16 @@ namespace Capa_Vista_TipoDeCambio
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.Lbl_Historico = new System.Windows.Forms.Label();
-            this.Dgv_TipoDeCambio = new System.Windows.Forms.DataGridView();
-            this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.Txt_Fecha = new System.Windows.Forms.TextBox();
             this.Btn_Buscar = new System.Windows.Forms.Button();
+            this.Txt_Fecha = new System.Windows.Forms.TextBox();
+            this.Lbl_Fecha = new System.Windows.Forms.Label();
+            this.Dgv_TipoDeCambio = new System.Windows.Forms.DataGridView();
+            this.Lbl_Historico = new System.Windows.Forms.Label();
+            this.tipo_cambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor_compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.valor_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_TipoDeCambio)).BeginInit();
             this.SuspendLayout();
@@ -51,23 +56,23 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Size = new System.Drawing.Size(809, 486);
             this.panel1.TabIndex = 0;
             // 
-            // Lbl_Historico
+            // Btn_Buscar
             // 
-            this.Lbl_Historico.AutoSize = true;
-            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Historico.Location = new System.Drawing.Point(240, 11);
-            this.Lbl_Historico.Name = "Lbl_Historico";
-            this.Lbl_Historico.Size = new System.Drawing.Size(301, 27);
-            this.Lbl_Historico.TabIndex = 0;
-            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
+            this.Btn_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Buscar.Location = new System.Drawing.Point(528, 50);
+            this.Btn_Buscar.Name = "Btn_Buscar";
+            this.Btn_Buscar.Size = new System.Drawing.Size(83, 29);
+            this.Btn_Buscar.TabIndex = 4;
+            this.Btn_Buscar.Text = "Buscar";
+            this.Btn_Buscar.UseVisualStyleBackColor = true;
+            this.Btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
             // 
-            // Dgv_TipoDeCambio
+            // Txt_Fecha
             // 
-            this.Dgv_TipoDeCambio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_TipoDeCambio.Location = new System.Drawing.Point(13, 96);
-            this.Dgv_TipoDeCambio.Name = "Dgv_TipoDeCambio";
-            this.Dgv_TipoDeCambio.Size = new System.Drawing.Size(780, 376);
-            this.Dgv_TipoDeCambio.TabIndex = 1;
+            this.Txt_Fecha.Location = new System.Drawing.Point(245, 59);
+            this.Txt_Fecha.Name = "Txt_Fecha";
+            this.Txt_Fecha.Size = new System.Drawing.Size(209, 20);
+            this.Txt_Fecha.TabIndex = 3;
             // 
             // Lbl_Fecha
             // 
@@ -79,23 +84,54 @@ namespace Capa_Vista_TipoDeCambio
             this.Lbl_Fecha.TabIndex = 2;
             this.Lbl_Fecha.Text = "Ingresa fecha:";
             // 
-            // Txt_Fecha
+            // Dgv_TipoDeCambio
             // 
-            this.Txt_Fecha.Location = new System.Drawing.Point(245, 59);
-            this.Txt_Fecha.Name = "Txt_Fecha";
-            this.Txt_Fecha.Size = new System.Drawing.Size(209, 20);
-            this.Txt_Fecha.TabIndex = 3;
+            this.Dgv_TipoDeCambio.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_TipoDeCambio.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tipo_cambio,
+            this.nombre_moneda,
+            this.fecha,
+            this.valor_compra,
+            this.valor_venta});
+            this.Dgv_TipoDeCambio.Location = new System.Drawing.Point(13, 96);
+            this.Dgv_TipoDeCambio.Name = "Dgv_TipoDeCambio";
+            this.Dgv_TipoDeCambio.Size = new System.Drawing.Size(780, 376);
+            this.Dgv_TipoDeCambio.TabIndex = 1;
             // 
-            // Btn_Buscar
+            // Lbl_Historico
             // 
-            this.Btn_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Buscar.Location = new System.Drawing.Point(528, 50);
-            this.Btn_Buscar.Name = "Btn_Buscar";
-            this.Btn_Buscar.Size = new System.Drawing.Size(83, 29);
-            this.Btn_Buscar.TabIndex = 4;
-            this.Btn_Buscar.Text = "Buscar";
-            this.Btn_Buscar.UseVisualStyleBackColor = true;
-            this.Btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
+            this.Lbl_Historico.AutoSize = true;
+            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Historico.Location = new System.Drawing.Point(240, 11);
+            this.Lbl_Historico.Name = "Lbl_Historico";
+            this.Lbl_Historico.Size = new System.Drawing.Size(301, 27);
+            this.Lbl_Historico.TabIndex = 0;
+            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
+            // 
+            // tipo_cambio
+            // 
+            this.tipo_cambio.HeaderText = "Tipo de cambio";
+            this.tipo_cambio.Name = "tipo_cambio";
+            // 
+            // nombre_moneda
+            // 
+            this.nombre_moneda.HeaderText = "Moneda";
+            this.nombre_moneda.Name = "nombre_moneda";
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            // 
+            // valor_compra
+            // 
+            this.valor_compra.HeaderText = "Valor Compra";
+            this.valor_compra.Name = "valor_compra";
+            // 
+            // valor_venta
+            // 
+            this.valor_venta.HeaderText = "Valor Venta";
+            this.valor_venta.Name = "valor_venta";
             // 
             // Frm_TipoDeCambio
             // 
@@ -121,5 +157,10 @@ namespace Capa_Vista_TipoDeCambio
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.DataGridView Dgv_TipoDeCambio;
         private System.Windows.Forms.Label Lbl_Historico;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipo_cambio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_moneda;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor_compra;
+        private System.Windows.Forms.DataGridViewTextBoxColumn valor_venta;
     }
 }

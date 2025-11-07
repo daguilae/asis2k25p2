@@ -52,6 +52,12 @@
     <Compile Include="Frm_IngresoTipoDeCambio.Designer.cs">
       <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_IngresoTipoDeCambio1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_IngresoTipoDeCambio1.Designer.cs">
+      <DependentUpon>Frm_IngresoTipoDeCambio1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_TipoDeCambio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_IngresoTipoDeCambio.resx">
       <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_IngresoTipoDeCambio1.resx">
+      <DependentUpon>Frm_IngresoTipoDeCambio1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_TipoDeCambio.resx">
       <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
