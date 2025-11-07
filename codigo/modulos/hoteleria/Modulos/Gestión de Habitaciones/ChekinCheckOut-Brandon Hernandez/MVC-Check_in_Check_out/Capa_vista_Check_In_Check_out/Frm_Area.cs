@@ -240,7 +240,36 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Cbo_Areas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Se puede usar para mostrar automáticamente datos del área seleccionada
+            try
+            {
+                if (Cbo_Areas.SelectedIndex == -1 || Cbo_Areas.SelectedValue == null)
+                    return;
+
+                DataRowView row = Cbo_Areas.SelectedItem as DataRowView;
+                if (row == null)
+                    return;
+
+                // Cargar datos en los campos
+                Txt_Idarea.Text = row["Pk_Id_Area"].ToString();
+                Txt_Area.Text = row["Cmp_Nombre_Area"].ToString();
+                Txt_Descripcion.Text = row["Cmp_Descripcion"].ToString();
+                Cbo_Movimientos.Text = row["Cmp_Tipo_Movimiento"].ToString();
+                Txt_Montos.Text = row["Cmp_Monto"].ToString();
+
+                if (DateTime.TryParse(row["Cmp_Fecha_Movimiento"].ToString(), out DateTime fecha))
+                    Dtp_Fecha.Value = fecha;
+
+                if (row.DataView.Table.Columns.Contains("Fk_Id_Folio"))
+                    Cbo_Folios.SelectedValue = Convert.ToInt32(row["Fk_Id_Folio"]);
+
+                // Cambio visual opcional
+                Cbo_Areas.BackColor = System.Drawing.Color.LightYellow;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar datos del área seleccionada:\n" + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

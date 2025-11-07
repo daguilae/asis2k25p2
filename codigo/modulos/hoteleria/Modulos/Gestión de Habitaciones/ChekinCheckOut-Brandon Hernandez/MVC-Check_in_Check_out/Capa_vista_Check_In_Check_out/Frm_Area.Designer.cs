@@ -49,6 +49,8 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbo_Buscar = new System.Windows.Forms.GroupBox();
             this.Cbo_Areas = new System.Windows.Forms.ComboBox();
             this.Gbo_Campos = new System.Windows.Forms.GroupBox();
+            this.Txt_Idarea = new System.Windows.Forms.TextBox();
+            this.Lbd_Area = new System.Windows.Forms.Label();
             this.Txt_Montos = new System.Windows.Forms.TextBox();
             this.Dtp_Fecha = new System.Windows.Forms.DateTimePicker();
             this.Cbo_Movimientos = new System.Windows.Forms.ComboBox();
@@ -56,8 +58,6 @@ namespace Capa_vista_Check_In_Check_out
             this.Txt_Area = new System.Windows.Forms.TextBox();
             this.Cbo_Folios = new System.Windows.Forms.ComboBox();
             this.Btn_Buscar = new System.Windows.Forms.Button();
-            this.Lbd_Area = new System.Windows.Forms.Label();
-            this.Txt_Idarea = new System.Windows.Forms.TextBox();
             this.Gbp_Titulo.SuspendLayout();
             this.Gbo_Buscar.SuspendLayout();
             this.Gbo_Campos.SuspendLayout();
@@ -300,6 +300,23 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbo_Campos.TabIndex = 35;
             this.Gbo_Campos.TabStop = false;
             // 
+            // Txt_Idarea
+            // 
+            this.Txt_Idarea.Location = new System.Drawing.Point(166, 61);
+            this.Txt_Idarea.Name = "Txt_Idarea";
+            this.Txt_Idarea.Size = new System.Drawing.Size(890, 22);
+            this.Txt_Idarea.TabIndex = 42;
+            // 
+            // Lbd_Area
+            // 
+            this.Lbd_Area.AutoSize = true;
+            this.Lbd_Area.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbd_Area.Location = new System.Drawing.Point(44, 63);
+            this.Lbd_Area.Name = "Lbd_Area";
+            this.Lbd_Area.Size = new System.Drawing.Size(63, 20);
+            this.Lbd_Area.TabIndex = 41;
+            this.Lbd_Area.Text = "id area";
+            // 
             // Txt_Montos
             // 
             this.Txt_Montos.Location = new System.Drawing.Point(196, 319);
@@ -359,28 +376,11 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Buscar.UseVisualStyleBackColor = false;
             this.Btn_Buscar.Click += new System.EventHandler(this.Btn_Buscar_Click);
             // 
-            // Lbd_Area
-            // 
-            this.Lbd_Area.AutoSize = true;
-            this.Lbd_Area.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbd_Area.Location = new System.Drawing.Point(44, 63);
-            this.Lbd_Area.Name = "Lbd_Area";
-            this.Lbd_Area.Size = new System.Drawing.Size(79, 25);
-            this.Lbd_Area.TabIndex = 41;
-            this.Lbd_Area.Text = "id area";
-            // 
-            // Txt_Idarea
-            // 
-            this.Txt_Idarea.Location = new System.Drawing.Point(166, 61);
-            this.Txt_Idarea.Name = "Txt_Idarea";
-            this.Txt_Idarea.Size = new System.Drawing.Size(890, 22);
-            this.Txt_Idarea.TabIndex = 42;
-            // 
             // Frm_Area
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(947, 651);
+            this.ClientSize = new System.Drawing.Size(1308, 842);
             this.Controls.Add(this.Btn_Buscar);
             this.Controls.Add(this.Gbo_Campos);
             this.Controls.Add(this.Gbo_Buscar);
