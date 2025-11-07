@@ -10,9 +10,9 @@ namespace Capa_Vista_Reservas_Hotel
         private int idPago;
         private decimal montoPago;
 
-        // ===================================================
+      
         // CONSTRUCTOR QUE RECIBE ID DEL PAGO Y MONTO
-        // ===================================================
+       
         public Frm_Pago_Transferencia(int idPagoPrincipal, decimal monto)
         {
             InitializeComponent();
@@ -27,9 +27,9 @@ namespace Capa_Vista_Reservas_Hotel
             Txt_Cuenta_Origen.Clear();
         }
 
-        // ===================================================
+       
         // === EVENTO GUARDAR ===
-        // ===================================================
+    
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             try
@@ -74,7 +74,7 @@ namespace Capa_Vista_Reservas_Hotel
             LimpiarCampos();
         }
 
-        // === EVENTOS DE TEXTBOX (sin lógica adicional) ===
+     
         private void Txt_Numero_Transferencia_TextChanged(object sender, EventArgs e) { }
         private void Txt_Banco_Origen_TextChanged(object sender, EventArgs e) { }
         private void Txt_Cuenta_Origen_TextChanged(object sender, EventArgs e) { }

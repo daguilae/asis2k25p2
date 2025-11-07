@@ -8,9 +8,9 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ===================================================
+      
         // === INSERTAR DETALLE EN TBL_PAGO_EFECTIVO =========
-        // ===================================================
+       
         public bool InsertarDetalleEfectivo(int idPago, string numeroRecibo, string observaciones)
         {
             using (OdbcConnection conn = conexion.conexion())

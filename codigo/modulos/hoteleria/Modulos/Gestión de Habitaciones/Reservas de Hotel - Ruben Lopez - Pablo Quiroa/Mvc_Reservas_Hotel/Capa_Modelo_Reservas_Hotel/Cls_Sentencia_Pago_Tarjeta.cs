@@ -8,9 +8,9 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ===================================================
+        
         // INSERTAR EN TBL_PAGO Y DEVOLVER ID
-        // ===================================================
+        
         public int InsertarPagoYObtenerId(int fkFolio, string metodo, DateTime fecha, decimal monto, string estado)
         {
             int idPagoGenerado = -1;
@@ -36,7 +36,7 @@ namespace Capa_Modelo_Reservas_Hotel
                         cmd.ExecuteNonQuery();
                     }
 
-                    // ✅ Obtener el último ID generado (seguro por sesión)
+                    
                     string selectIdSql = "SELECT LAST_INSERT_ID();";
                     using (OdbcCommand cmdId = new OdbcCommand(selectIdSql, conn))
                     {
@@ -55,9 +55,9 @@ namespace Capa_Modelo_Reservas_Hotel
             return idPagoGenerado;
         }
 
-        // ===================================================
+        
         // INSERTAR DETALLE EN TBL_PAGO_TARJETA
-        // ===================================================
+        
         public bool InsertarDetalleTarjeta(int idPago, string nombreTitular, string numeroTarjeta, DateTime fechaVencimiento, int cvc, int codigoPostal)
         {
             using (OdbcConnection conn = conexion.conexion())
@@ -71,12 +71,12 @@ namespace Capa_Modelo_Reservas_Hotel
 
                     using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                     {
-                        // ✅ Tipos definidos para evitar errores ODBC
+                     
                         cmd.Parameters.Add("Fk_Id_Pago", OdbcType.Int).Value = idPago;
                         cmd.Parameters.Add("Cmp_Nombre_Titular", OdbcType.VarChar, 50).Value = nombreTitular;
                         cmd.Parameters.Add("Cmp_Numero_Tarjeta", OdbcType.VarChar, 20).Value = numeroTarjeta;
 
-                        // Fecha DATE → en formato "yyyy-MM-dd"
+                        
                         cmd.Parameters.Add("Cmp_Fecha_Vencimiento", OdbcType.VarChar, 10).Value = fechaVencimiento.ToString("yyyy-MM-dd");
 
                         cmd.Parameters.Add("Cmp_CVC", OdbcType.Int).Value = cvc;

@@ -11,9 +11,9 @@ namespace Capa_Vista_Reservas_Hotel
         private int idPago;
         private decimal montoPago;
 
-        // ===================================================
+      
         // CONSTRUCTOR QUE RECIBE ID DEL PAGO Y MONTO
-        // ===================================================
+       
         public Frm_Pago_Efectivo(int idPagoPrincipal, decimal monto)
         {
             InitializeComponent();
@@ -21,18 +21,18 @@ namespace Capa_Vista_Reservas_Hotel
             montoPago = monto;
         }
 
-        // ===================================================
+        
         // === LIMPIAR CAMPOS ===
-        // ===================================================
+        
         private void LimpiarCampos()
         {
             Txt_Numero_Recibo.Clear();
             Txt_Observaciones.Clear();
         }
 
-        // ===================================================
+       
         // === EVENTO GUARDAR ===
-        // ===================================================
+        
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             try
@@ -40,7 +40,7 @@ namespace Capa_Vista_Reservas_Hotel
                 string numeroRecibo = Txt_Numero_Recibo.Text.Trim();
                 string observaciones = Txt_Observaciones.Text.Trim();
 
-                // ✅ Insertamos detalle usando el ID del pago principal
+               
                 var r = Controlador.InsertarPagoEfectivo(idPago, montoPago, numeroRecibo, observaciones);
 
                 MessageBox.Show(r.mensaje,
@@ -77,7 +77,7 @@ namespace Capa_Vista_Reservas_Hotel
             LimpiarCampos();
         }
 
-        // === EVENTOS DE TEXTBOX (requeridos por el diseñador) ===
+       
         private void Txt_Numero_Recibo_TextChanged(object sender, EventArgs e) { }
         private void Txt_Observaciones_TextChanged(object sender, EventArgs e) { }
     }

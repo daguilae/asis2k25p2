@@ -7,9 +7,8 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Cheque modelo = new Cls_Sentencia_Pago_Cheque();
 
-        // ===================================================
-        // === REGISTRAR DETALLE DE PAGO CON CHEQUE ==========
-        // ===================================================
+        
+        // === REGISTRAR DETALLE DE PAGO CON CHEQUE ===========
         public (bool exito, string mensaje) InsertarPagoCheque(int idPago, decimal monto, string numeroCheque,
                                                               string bancoEmisor, string nombreTitular,
                                                               DateTime fechaEmision, DateTime fechaCobro,
@@ -17,7 +16,7 @@ namespace Capa_Controlador_Reservas_Hotel
         {
             try
             {
-                // === Validaciones básicas ===
+                // Validaciones básicas
                 if (idPago <= 0)
                     return (false, "El ID del pago principal no es válido.");
 
