@@ -149,8 +149,8 @@ namespace Capa_Modelo_MB
                         (Pk_Id_Movimiento, Fk_Id_CuentaOrigen, Fk_Id_Operacion,
                          Cmp_NumeroDocumento, Cmp_Fecha, Cmp_Concepto, Cmp_MontoTotal,
                          Fk_Id_TipoPago, Fk_Id_CuentaDestino, Cmp_Beneficiario, Cmp_Estado,
-                         Cmp_Conciliado, Cmp_UsuarioRegistro)
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                         Cmp_Conciliado, Cmp_UsuarioRegistro,  Fk_Id_Moneda)
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
 
             using (var cmd = new OdbcCommand(sSql, connection, transaction))
             {
@@ -167,6 +167,8 @@ namespace Capa_Modelo_MB
                 cmd.Parameters.Add(new OdbcParameter("@Estado", OdbcType.VarChar, 20) { Value = mov.sCmp_estado });
                 cmd.Parameters.Add(new OdbcParameter("@Conc", OdbcType.Int) { Value = mov.iCmp_conciliado });
                 cmd.Parameters.Add(new OdbcParameter("@Usuario", OdbcType.VarChar, 50) { Value = mov.sCmp_usuario_registro ?? "SISTEMA" });
+                cmd.Parameters.Add(new OdbcParameter("@Moneda", OdbcType.Int) { Value = (object)mov.iFk_Id_moneda ?? DBNull.Value });
+
 
                 int filasAfectadas = cmd.ExecuteNonQuery();
                 if (filasAfectadas == 0)

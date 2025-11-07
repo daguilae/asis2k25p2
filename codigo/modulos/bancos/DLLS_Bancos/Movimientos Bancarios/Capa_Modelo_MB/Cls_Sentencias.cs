@@ -7,6 +7,7 @@ namespace Capa_Modelo_MB
     public class Cls_Sentencias
     {
         // ENCABEZADO CON PREFIJOS
+        public int? iFk_Id_moneda { get; set; }
         public int iPk_Id_movimiento { get; set; }
         public int iFk_Id_cuenta_origen { get; set; }
         public int iFk_Id_operacion { get; set; }
