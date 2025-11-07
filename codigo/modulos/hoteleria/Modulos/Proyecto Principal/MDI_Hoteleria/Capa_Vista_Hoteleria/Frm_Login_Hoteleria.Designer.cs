@@ -48,10 +48,10 @@ namespace Capa_Vista_Hoteleria
             // 
             this.chkMostrarContrasena.AutoSize = true;
             this.chkMostrarContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.chkMostrarContrasena.Location = new System.Drawing.Point(297, 129);
-            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(2);
+            this.chkMostrarContrasena.Location = new System.Drawing.Point(396, 159);
+            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkMostrarContrasena.Name = "chkMostrarContrasena";
-            this.chkMostrarContrasena.Size = new System.Drawing.Size(96, 38);
+            this.chkMostrarContrasena.Size = new System.Drawing.Size(118, 44);
             this.chkMostrarContrasena.TabIndex = 40;
             this.chkMostrarContrasena.Text = "mostrar\r\ncontraseña";
             this.chkMostrarContrasena.UseVisualStyleBackColor = true;
@@ -61,10 +61,9 @@ namespace Capa_Vista_Hoteleria
             // 
             this.lblContrasena.AutoSize = true;
             this.lblContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblContrasena.Location = new System.Drawing.Point(30, 138);
-            this.lblContrasena.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblContrasena.Location = new System.Drawing.Point(40, 170);
             this.lblContrasena.Name = "lblContrasena";
-            this.lblContrasena.Size = new System.Drawing.Size(85, 17);
+            this.lblContrasena.Size = new System.Drawing.Size(105, 20);
             this.lblContrasena.TabIndex = 38;
             this.lblContrasena.Text = "Contraseña:";
             // 
@@ -72,10 +71,9 @@ namespace Capa_Vista_Hoteleria
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblUsuario.Location = new System.Drawing.Point(53, 89);
-            this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblUsuario.Location = new System.Drawing.Point(71, 110);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(60, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(75, 20);
             this.lblUsuario.TabIndex = 37;
             this.lblUsuario.Text = "Usuario:";
             // 
@@ -86,10 +84,10 @@ namespace Capa_Vista_Hoteleria
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciarSesion.Font = new System.Drawing.Font("Rockwell", 10F);
             this.btnIniciarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(163, 221);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(217, 272);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(106, 39);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(141, 48);
             this.btnIniciarSesion.TabIndex = 36;
             this.btnIniciarSesion.Text = "Iniciar Sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -99,10 +97,9 @@ namespace Capa_Vista_Hoteleria
             // 
             this.lblkRecuperarContrasena.AutoSize = true;
             this.lblkRecuperarContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblkRecuperarContrasena.Location = new System.Drawing.Point(149, 172);
-            this.lblkRecuperarContrasena.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblkRecuperarContrasena.Location = new System.Drawing.Point(199, 212);
             this.lblkRecuperarContrasena.Name = "lblkRecuperarContrasena";
-            this.lblkRecuperarContrasena.Size = new System.Drawing.Size(148, 17);
+            this.lblkRecuperarContrasena.Size = new System.Drawing.Size(182, 20);
             this.lblkRecuperarContrasena.TabIndex = 35;
             this.lblkRecuperarContrasena.TabStop = true;
             this.lblkRecuperarContrasena.Text = "Recuperar contraseña";
@@ -112,10 +109,10 @@ namespace Capa_Vista_Hoteleria
             // 
             this.txtContrasena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
             this.txtContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.txtContrasena.Location = new System.Drawing.Point(126, 133);
-            this.txtContrasena.Margin = new System.Windows.Forms.Padding(2);
+            this.txtContrasena.Location = new System.Drawing.Point(168, 164);
+            this.txtContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtContrasena.Name = "txtContrasena";
-            this.txtContrasena.Size = new System.Drawing.Size(161, 23);
+            this.txtContrasena.Size = new System.Drawing.Size(213, 27);
             this.txtContrasena.TabIndex = 34;
             this.txtContrasena.UseSystemPasswordChar = true;
             // 
@@ -123,10 +120,10 @@ namespace Capa_Vista_Hoteleria
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
             this.txtUsuario.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.txtUsuario.Location = new System.Drawing.Point(126, 89);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsuario.Location = new System.Drawing.Point(168, 110);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(161, 23);
+            this.txtUsuario.Size = new System.Drawing.Size(213, 27);
             this.txtUsuario.TabIndex = 33;
             // 
             // Pnl_Superior
@@ -136,17 +133,18 @@ namespace Capa_Vista_Hoteleria
             this.Pnl_Superior.Controls.Add(this.label1);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2);
+            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(453, 52);
+            this.Pnl_Superior.Size = new System.Drawing.Size(604, 64);
             this.Pnl_Superior.TabIndex = 98;
             // 
             // Btn_Cerrar
             // 
             this.Btn_Cerrar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Cerrar.BackgroundImage")));
-            this.Btn_Cerrar.Location = new System.Drawing.Point(410, 11);
+            this.Btn_Cerrar.Location = new System.Drawing.Point(547, 14);
+            this.Btn_Cerrar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Btn_Cerrar.Name = "Btn_Cerrar";
-            this.Btn_Cerrar.Size = new System.Drawing.Size(31, 31);
+            this.Btn_Cerrar.Size = new System.Drawing.Size(41, 38);
             this.Btn_Cerrar.TabIndex = 3;
             this.Btn_Cerrar.TabStop = false;
             this.Btn_Cerrar.Click += new System.EventHandler(this.Btn_Cerrar_Click);
@@ -156,17 +154,18 @@ namespace Capa_Vista_Hoteleria
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(21, 11);
+            this.label1.Location = new System.Drawing.Point(28, 14);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(198, 23);
+            this.label1.Size = new System.Drawing.Size(253, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "LOGIN HOTELERIA";
             // 
             // Frm_Login_Hoteleria
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 301);
+            this.ClientSize = new System.Drawing.Size(604, 370);
             this.Controls.Add(this.Pnl_Superior);
             this.Controls.Add(this.chkMostrarContrasena);
             this.Controls.Add(this.lblContrasena);
@@ -176,6 +175,7 @@ namespace Capa_Vista_Hoteleria
             this.Controls.Add(this.txtContrasena);
             this.Controls.Add(this.txtUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Frm_Login_Hoteleria";
             this.Text = "Frm_Login_Hoteleria";
             this.Pnl_Superior.ResumeLayout(false);

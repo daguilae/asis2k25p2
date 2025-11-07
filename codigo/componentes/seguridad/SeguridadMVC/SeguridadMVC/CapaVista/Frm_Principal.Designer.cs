@@ -86,8 +86,6 @@ namespace Capa_Vista_Seguridad
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
-            this.modulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hoteleriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -107,13 +105,12 @@ namespace Capa_Vista_Seguridad
             this.toolsMenu,
             this.windowsMenu,
             this.helpMenu,
-            this.seguridadToolStripMenuItem,
-            this.modulosToolStripMenuItem});
+            this.seguridadToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 47);
             this.menuStrip.MdiWindowListItem = this.windowsMenu;
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 1778, 2);
-            this.menuStrip.Size = new System.Drawing.Size(2636, 28);
+            this.menuStrip.Size = new System.Drawing.Size(2395, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             // 
@@ -341,7 +338,7 @@ namespace Capa_Vista_Seguridad
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.optionsToolStripMenuItem.Text = "&Opciones";
             // 
             // windowsMenu
@@ -583,22 +580,6 @@ namespace Capa_Vista_Seguridad
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
-            // modulosToolStripMenuItem
-            // 
-            this.modulosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.hoteleriaToolStripMenuItem});
-            this.modulosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.modulosToolStripMenuItem.Name = "modulosToolStripMenuItem";
-            this.modulosToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
-            this.modulosToolStripMenuItem.Text = "Modulos";
-            // 
-            // hoteleriaToolStripMenuItem
-            // 
-            this.hoteleriaToolStripMenuItem.Name = "hoteleriaToolStripMenuItem";
-            this.hoteleriaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.hoteleriaToolStripMenuItem.Text = "Hoteleria";
-            this.hoteleriaToolStripMenuItem.Click += new System.EventHandler(this.hoteleriaToolStripMenuItem_Click);
-            // 
             // Frm_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -611,7 +592,7 @@ namespace Capa_Vista_Seguridad
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Frm_Principal";
             this.Text = "frmPrincipal";
@@ -687,8 +668,6 @@ namespace Capa_Vista_Seguridad
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.Panel Pnl_Superior;
         private System.Windows.Forms.PictureBox Pic_Cerrar;
-        private System.Windows.Forms.ToolStripMenuItem modulosToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem hoteleriaToolStripMenuItem;
     }
 }
 
