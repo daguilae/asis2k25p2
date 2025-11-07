@@ -47,7 +47,7 @@ namespace Capa_Modelo_MB
 
             private readonly Cls_Conexion cn = new Cls_Conexion();
 
-            public OdbcDataAdapter fun_llenarTbl(string sTabla)
+            public OdbcDataAdapter fun_llenar_tbl(string sTabla)
             {
                 if (string.IsNullOrWhiteSpace(sTabla))
                     throw new ArgumentException("El nombre de la tabla no puede estar vacío.");
@@ -84,7 +84,7 @@ namespace Capa_Modelo_MB
                     default:
                         throw new ArgumentException($"Tabla '{sTabla}' no está permitida para consulta.");
                 }
-                return new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                return new OdbcDataAdapter(sSql, cn.fun_conexion_bd());
             }
         }
     }

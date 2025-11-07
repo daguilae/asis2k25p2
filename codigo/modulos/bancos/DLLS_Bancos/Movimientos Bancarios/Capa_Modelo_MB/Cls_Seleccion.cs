@@ -8,9 +8,9 @@ namespace Capa_Modelo_MB
 {
     public class Cls_Seleccion
     {
-        private Cls_Conexion cn = new Cls_Conexion();
+        private readonly Cls_Conexion oCn = new Cls_Conexion();
 
-        public DataTable fun_ObtenerCuentas()
+        public DataTable fun_obtener_cuentas()
         {
             try
             {
@@ -22,7 +22,7 @@ namespace Capa_Modelo_MB
                        INNER JOIN Tbl_Bancos b ON cb.Fk_Id_Banco = b.Pk_Id_Banco
                        WHERE cb.Cmp_Estado = 1";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 DataTable dts_Resultado = new DataTable();
                 oda_Adapter.Fill(dts_Resultado);
                 return dts_Resultado;
@@ -33,7 +33,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public string fun_ObtenerNombreCuenta(int iIdCuenta)
+        public string fun_obtener_nombre_cuenta(int iIdCuenta)
         {
             string sNombreCuenta = "";
             try
@@ -43,7 +43,7 @@ namespace Capa_Modelo_MB
                        INNER JOIN Tbl_Bancos b ON cb.Fk_Id_Banco = b.Pk_Id_Banco
                        WHERE cb.Pk_Id_CuentaBancaria = ?";
 
-                using (OdbcConnection odcn_Conn = cn.fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 {
                     using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                     {
@@ -62,7 +62,7 @@ namespace Capa_Modelo_MB
             return sNombreCuenta;
         }
 
-        public DataTable fun_ObtenerOperaciones()
+        public DataTable fun_obtener_operaciones()
         {
             try
             {
@@ -72,7 +72,7 @@ namespace Capa_Modelo_MB
                    FROM Tbl_TransaccionesBancarias
                    WHERE Cmp_Estado = 1";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 DataTable dts_Resultado = new DataTable();
                 oda_Adapter.Fill(dts_Resultado);
                 return dts_Resultado;
@@ -83,7 +83,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public DataTable fun_ObtenerTiposPago()
+        public DataTable fun_obtener_tipos_pago()
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Capa_Modelo_MB
                    FROM Tbl_TiposPago
                    WHERE Cmp_Estado = 1";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 DataTable dts_Resultado = new DataTable();
                 oda_Adapter.Fill(dts_Resultado);
                 return dts_Resultado;
@@ -104,19 +104,19 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public int? fun_ObtenerMonedaPorCuenta(int iIdCuenta)
+        public int? fun_obtener_moneda_por_cuenta(int iIdCuenta)
         {
             try
             {
                 string sSql = @"SELECT Fk_Id_Moneda FROM Tbl_CuentasBancarias 
                        WHERE Pk_Id_CuentaBancaria = ?";
 
-                using (OdbcConnection conn = new Cls_Conexion().fun_ConexionBD())
+                using (OdbcConnection conn = new Cls_Conexion().fun_conexion_bd())
                 using (OdbcCommand cmd = new OdbcCommand(sSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", iIdCuenta);
-                    object result = cmd.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : (int?)null;
+                    object oResult = cmd.ExecuteScalar();
+                    return oResult != null ? Convert.ToInt32(oResult) : (int?)null;
                 }
             }
             catch (Exception ex)
@@ -126,7 +126,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public string fun_ObtenerSignoOperacionPorId(int iIdOperacion)
+        public string fun_obtener_signo_operacion_por_id(int iIdOperacion)
         {
             string sSigno = "";
             try
@@ -135,7 +135,7 @@ namespace Capa_Modelo_MB
                        FROM Tbl_TransaccionesBancarias
                        WHERE Pk_Id_Transaccion = ? AND Cmp_Estado = 1";
 
-                using (OdbcConnection odcn_Conn = cn.fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     odc_Cmd.Parameters.AddWithValue("@id", iIdOperacion);
@@ -154,7 +154,7 @@ namespace Capa_Modelo_MB
             return sSigno;
         }
 
-        public DataTable fun_ObtenerMonedas()
+        public DataTable fun_obtener_monedas()
         {
             try
             {
@@ -167,7 +167,7 @@ namespace Capa_Modelo_MB
                 WHERE Cmp_Estado = 1
                 ORDER BY Cmp_NombreMoneda";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 DataTable dts_Resultado = new DataTable();
                 oda_Adapter.Fill(dts_Resultado);
                 return dts_Resultado;
@@ -178,7 +178,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public List<string> fun_ObtenerEstadosMovimiento()
+        public List<string> fun_obtener_estados_movimiento()
         {
             List<string> lst_Estados = new List<string>();
 
@@ -191,7 +191,7 @@ namespace Capa_Modelo_MB
             AND TRIM(Cmp_Estado) != ''
             ORDER BY Cmp_Estado";
 
-                using (OdbcConnection odcn_Conn = cn.fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     using (OdbcDataReader odr_Reader = odc_Cmd.ExecuteReader())
@@ -223,7 +223,7 @@ namespace Capa_Modelo_MB
         }
 
 
-        public DataTable fun_ObtenerCuentasContables()
+        public DataTable fun_obtener_cuentas_contables()
         {
             try
             {
@@ -234,7 +234,7 @@ namespace Capa_Modelo_MB
                        WHERE Cmp_Estado = 1
                        ORDER BY Pk_Id_CuentaContable";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 DataTable dts_Resultado = new DataTable();
                 oda_Adapter.Fill(dts_Resultado);
                 return dts_Resultado;
@@ -245,7 +245,7 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public DataTable fun_ObtenerMovimientosCompletos(DateTime? desde = null, DateTime? hasta = null, string estado = null)
+        public DataTable fun_obtener_movimientos_completos(DateTime? dDesde = null, DateTime? dHasta = null, string sEstado = null)
         {
             var sb = new StringBuilder();
             sb.AppendLine("SELECT");
@@ -269,18 +269,18 @@ namespace Capa_Modelo_MB
             sb.AppendLine("FROM Vw_MovimientosBancariosCompletos");
             sb.AppendLine("WHERE 1=1");
 
-            var sql = sb.ToString();
-            var pars = new List<OdbcParameter>();
+            var sSql = sb.ToString();
+            var lst_Params = new List<OdbcParameter>();
 
-            if (desde.HasValue) { sql += " AND Cmp_Fecha >= ?"; pars.Add(new OdbcParameter("", desde.Value)); }
-            if (hasta.HasValue) { sql += " AND Cmp_Fecha <  DATE_ADD(?, INTERVAL 1 DAY)"; pars.Add(new OdbcParameter("", hasta.Value)); }
-            if (!string.IsNullOrWhiteSpace(estado)) { sql += " AND Estado_Movimiento = ?"; pars.Add(new OdbcParameter("", estado)); }
+            if (dDesde.HasValue) { sSql += " AND Cmp_Fecha >= ?"; lst_Params.Add(new OdbcParameter("", dDesde.Value)); }
+            if (dHasta.HasValue) { sSql += " AND Cmp_Fecha <  DATE_ADD(?, INTERVAL 1 DAY)"; lst_Params.Add(new OdbcParameter("", dHasta.Value)); }
+            if (!string.IsNullOrWhiteSpace(sEstado)) { sSql += " AND Estado_Movimiento = ?"; lst_Params.Add(new OdbcParameter("", sEstado)); }
 
-            sql += " ORDER BY Cmp_Fecha DESC, Pk_Id_Movimiento DESC;";
+            sSql += " ORDER BY Cmp_Fecha DESC, Pk_Id_Movimiento DESC;";
 
-            using (var da = new OdbcDataAdapter(sql, cn.fun_ConexionBD()))
+            using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
             {
-                foreach (var p in pars) da.SelectCommand.Parameters.Add(p);
+                foreach (var p in lst_Params) da.SelectCommand.Parameters.Add(p);
                 var dt = new DataTable();
                 da.Fill(dt);
 
@@ -295,22 +295,22 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public DataTable fun_ObtenerMovimientosView(DateTime? desde = null, DateTime? hasta = null, string estado = null)
+        public DataTable fun_obtener_movimientos_view(DateTime? dDesde = null, DateTime? dHasta = null, string sEstado = null)
         {
             var sb = new System.Text.StringBuilder();
             sb.AppendLine("SELECT * FROM Vw_MovimientosBancariosCompletos WHERE 1=1");
 
-            var pars = new List<OdbcParameter>();
+            var lst_Params = new List<OdbcParameter>();
 
-            if (desde.HasValue) { sb.AppendLine("AND Cmp_Fecha >= ?"); pars.Add(new OdbcParameter("", desde.Value)); }
-            if (hasta.HasValue) { sb.AppendLine("AND Cmp_Fecha < DATE_ADD(?, INTERVAL 1 DAY)"); pars.Add(new OdbcParameter("", hasta.Value)); }
-            if (!string.IsNullOrWhiteSpace(estado)) { sb.AppendLine("AND Estado_Movimiento = ?"); pars.Add(new OdbcParameter("", estado)); }
+            if (dDesde.HasValue) { sb.AppendLine("AND Cmp_Fecha >= ?"); lst_Params.Add(new OdbcParameter("", dDesde.Value)); }
+            if (dHasta.HasValue) { sb.AppendLine("AND Cmp_Fecha < DATE_ADD(?, INTERVAL 1 DAY)"); lst_Params.Add(new OdbcParameter("", dHasta.Value)); }
+            if (!string.IsNullOrWhiteSpace(sEstado)) { sb.AppendLine("AND Estado_Movimiento = ?"); lst_Params.Add(new OdbcParameter("", sEstado)); }
 
             sb.AppendLine("ORDER BY Cmp_Fecha DESC, Pk_Id_Movimiento DESC;");
 
-            using (var da = new OdbcDataAdapter(sb.ToString(), cn.fun_ConexionBD()))
+            using (var da = new OdbcDataAdapter(sb.ToString(), oCn.fun_conexion_bd()))
             {
-                foreach (var p in pars) da.SelectCommand.Parameters.Add(p);
+                foreach (var p in lst_Params) da.SelectCommand.Parameters.Add(p);
                 var dt = new DataTable();
                 da.Fill(dt);
                 return dt;
@@ -318,7 +318,7 @@ namespace Capa_Modelo_MB
         }
 
         // En Cls_Seleccion.cs
-        public string fun_ObtenerCuentaContablePorDefecto()
+        public string fun_obtener_cuenta_contable_por_defecto()
         {
             try
             {
@@ -327,7 +327,7 @@ namespace Capa_Modelo_MB
                        WHERE Cmp_Parametro = 'CUENTA_BANCO_PRINCIPAL' 
                        AND Cmp_Estado = 1";
 
-                using (OdbcConnection odcn_Conn = new Cls_Conexion().fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = new Cls_Conexion().fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     object oResultado = odc_Cmd.ExecuteScalar();
@@ -343,7 +343,7 @@ namespace Capa_Modelo_MB
 
 
         // Método para obtener un movimiento específico por ID
-        public DataTable fun_ObtenerMovimientoPorId(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
+        public DataTable fun_obtener_movimiento_por_id(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
         {
             try
             {
@@ -366,7 +366,7 @@ namespace Capa_Modelo_MB
           AND Fk_Id_CuentaOrigen = ? 
           AND Fk_Id_Operacion = ?";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, cn.fun_ConexionBD());
+                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
                 oda_Adapter.SelectCommand.Parameters.AddWithValue("@Mov", iIdMovimiento);
                 oda_Adapter.SelectCommand.Parameters.AddWithValue("@CtaOri", iIdCuentaOrigen);
                 oda_Adapter.SelectCommand.Parameters.AddWithValue("@Op", iIdOperacion);
@@ -382,7 +382,7 @@ namespace Capa_Modelo_MB
         }
 
         // Método para obtener detalles de un movimiento
-        public DataTable fun_ObtenerDetallesMovimiento(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
+        public DataTable fun_obtener_detalles_movimiento(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
         {
             try
             {
@@ -400,7 +400,7 @@ namespace Capa_Modelo_MB
             AND Fk_Id_Operacion = ?
             ORDER BY Cmp_OrdenDetalle";
 
-                using (OdbcConnection odcn_Conn = cn.fun_ConexionBD())
+                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     cmd.Parameters.AddWithValue("@Mov", iIdMovimiento);
@@ -418,8 +418,5 @@ namespace Capa_Modelo_MB
                 throw new Exception("Error al obtener detalles del movimiento: " + ex.Message);
             }
         }
-
-
-
     }
 }

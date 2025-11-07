@@ -8,45 +8,45 @@ namespace Capa_Controldor_MB
 {
     public class Cls_ValidacionesGuardar
     {
-        public static (bool esValido, string mensaje, string campoError) ValidarFormulario(
-            object cuentaOrigenSelectedValue,
-            object operacionSelectedValue,
-            string numeroDocumento,
-            string concepto,
-            string monto)
+        public static (bool esValido, string mensaje, string campoError) fun_validar_formulario(
+            object oCuentaOrigenSelectedValue,
+            object oOperacionSelectedValue,
+            string sNumeroDocumento,
+            string sConcepto,
+            string sMonto)
         {
             // Validar cuenta origen
-            if (cuentaOrigenSelectedValue == null)
+            if (oCuentaOrigenSelectedValue == null)
             {
                 return (false, "Seleccione una cuenta origen.", "cuentaOrigen");
             }
 
             // Validar operación
-            if (operacionSelectedValue == null)
+            if (oOperacionSelectedValue == null)
             {
                 return (false, "Seleccione una operación.", "operacion");
             }
 
             // Validar número de documento
-            if (string.IsNullOrWhiteSpace(numeroDocumento))
+            if (string.IsNullOrWhiteSpace(sNumeroDocumento))
             {
                 return (false, "Ingrese el número de documento.", "numeroDocumento");
             }
 
             // Validar concepto
-            if (string.IsNullOrWhiteSpace(concepto))
+            if (string.IsNullOrWhiteSpace(sConcepto))
             {
                 return (false, "Ingrese el concepto del movimiento.", "concepto");
             }
 
             // Validar monto
-            if (string.IsNullOrEmpty(monto))
+            if (string.IsNullOrEmpty(sMonto))
             {
                 return (false, "Ingrese un monto.", "monto");
             }
 
             // Conversión y validación de monto
-            string sMontoTexto = monto.Trim().Replace(",", "").Replace(" ", "");
+            string sMontoTexto = sMonto.Trim().Replace(",", "").Replace(" ", "");
             if (!decimal.TryParse(sMontoTexto, System.Globalization.NumberStyles.Any,
                 System.Globalization.CultureInfo.InvariantCulture, out decimal deMontoPrincipal) || deMontoPrincipal <= 0)
             {
@@ -56,14 +56,14 @@ namespace Capa_Controldor_MB
             return (true, "OK", "");
         }
 
-        public static (bool esValido, string mensaje, decimal monto) ValidarMonto(string textoMonto)
+        public static (bool esValido, string mensaje, decimal monto) fun_validar_monto(string sTextoMonto)
         {
-            if (string.IsNullOrEmpty(textoMonto))
+            if (string.IsNullOrEmpty(sTextoMonto))
             {
                 return (false, "Ingrese un monto.", 0);
             }
 
-            string sMontoTexto = textoMonto.Trim().Replace(",", "").Replace(" ", "");
+            string sMontoTexto = sTextoMonto.Trim().Replace(",", "").Replace(" ", "");
             if (!decimal.TryParse(sMontoTexto, System.Globalization.NumberStyles.Any,
                 System.Globalization.CultureInfo.InvariantCulture, out decimal deMontoPrincipal) || deMontoPrincipal <= 0)
             {
@@ -73,30 +73,30 @@ namespace Capa_Controldor_MB
             return (true, "OK", deMontoPrincipal);
         }
 
-        public static (bool esValido, string mensaje) ValidarCuentaDestino(object cuentaDestinoSelectedValue, bool cuentaDestinoHabilitada)
+        public static (bool esValido, string mensaje) fun_validar_cuenta_destino(object oCuentaDestinoSelectedValue, bool bCuentaDestinoHabilitada)
         {
-            if (cuentaDestinoHabilitada && cuentaDestinoSelectedValue == null)
+            if (bCuentaDestinoHabilitada && oCuentaDestinoSelectedValue == null)
             {
                 return (false, "Cuando está habilitada, debe seleccionar una cuenta destino.");
             }
             return (true, "OK");
         }
 
-        public static (bool ok, string msg) CamposObligatorios(object cuenta, object operacion, string doc, string concepto)
+        public static (bool ok, string msg) fun_campos_obligatorios(object oCuenta, object oOperacion, string sDoc, string sConcepto)
         {
-            if (cuenta == null) return (false, "Seleccione la cuenta origen.");
-            if (operacion == null) return (false, "Seleccione la operación.");
-            if (string.IsNullOrWhiteSpace(doc)) return (false, "Ingrese el número de documento.");
-            if (string.IsNullOrWhiteSpace(concepto)) return (false, "Ingrese el concepto.");
+            if (oCuenta == null) return (false, "Seleccione la cuenta origen.");
+            if (oOperacion == null) return (false, "Seleccione la operación.");
+            if (string.IsNullOrWhiteSpace(sDoc)) return (false, "Ingrese el número de documento.");
+            if (string.IsNullOrWhiteSpace(sConcepto)) return (false, "Ingrese el concepto.");
             return (true, null);
         }
 
-        public static (bool ok, string msg, decimal monto) MontoPositivo(string texto)
+        public static (bool ok, string msg, decimal monto) fun_monto_positivo(string sTexto)
         {
-            var limpio = (texto ?? "").Replace(",", "").Trim();
-            if (!decimal.TryParse(limpio, out var m) || m <= 0)
+            var sLimpio = (sTexto ?? "").Replace(",", "").Trim();
+            if (!decimal.TryParse(sLimpio, out var deMonto) || deMonto <= 0)
                 return (false, "Ingrese un monto válido mayor a cero.", 0m);
-            return (true, null, m);
+            return (true, null, deMonto);
         }
     }
 }

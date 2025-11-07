@@ -9,19 +9,19 @@ namespace Capa_Controldor_MB
 {
     public static class Cls_ValidacionesEditar
     {
-        public static (bool ok, string msg) CamposObligatorios(
-            object cuentaOrigenVal,
-            object operacionVal,
-            string numeroDocumento,
-            string concepto)
+        public static (bool ok, string msg) fun_campos_obligatorios(
+            object oCuentaOrigenVal,
+            object oOperacionVal,
+            string sNumeroDocumento,
+            string sConcepto)
         {
-            if (cuentaOrigenVal == null)
+            if (oCuentaOrigenVal == null)
                 return (false, "Seleccione la cuenta origen.");
-            if (operacionVal == null)
+            if (oOperacionVal == null)
                 return (false, "Seleccione la operación.");
-            if (string.IsNullOrWhiteSpace(numeroDocumento))
+            if (string.IsNullOrWhiteSpace(sNumeroDocumento))
                 return (false, "Ingrese el número de documento.");
-            if (string.IsNullOrWhiteSpace(concepto))
+            if (string.IsNullOrWhiteSpace(sConcepto))
                 return (false, "Ingrese el concepto.");
             return (true, string.Empty);
         }
@@ -29,61 +29,65 @@ namespace Capa_Controldor_MB
         /// <summary>
         /// Acepta texto con separadores comunes y valida que sea decimal > 0.
         /// </summary>
-        public static (bool ok, string msg, decimal monto) MontoPositivo(string textoMonto)
+        public static (bool ok, string msg, decimal monto) fun_monto_positivo(string sTextoMonto)
         {
-            if (string.IsNullOrWhiteSpace(textoMonto))
+            if (string.IsNullOrWhiteSpace(sTextoMonto))
                 return (false, "Ingrese un monto.", 0m);
 
             // Normaliza espacios y separadores
-            string t = textoMonto.Trim();
+            string sTexto = sTextoMonto.Trim();
 
             // Intenta con cultura invariante y con cultura actual
-            if (TryParseMonto(t, CultureInfo.InvariantCulture, out decimal m) ||
-                TryParseMonto(t, CultureInfo.CurrentCulture, out m))
+            if (fun_try_parse_monto(sTexto, CultureInfo.InvariantCulture, out decimal deMonto) ||
+                fun_try_parse_monto(sTexto, CultureInfo.CurrentCulture, out deMonto))
             {
-                if (m > 0m) return (true, string.Empty, m);
+                if (deMonto > 0m) return (true, string.Empty, deMonto);
                 return (false, "Ingrese un monto válido mayor a cero.", 0m);
             }
 
             // Fallback: quitar separadores de miles frecuentes y reintentar
-            t = t.Replace(" ", "").Replace(",", "").Replace(".", ","); // deja coma como decimal
-            if (decimal.TryParse(t, NumberStyles.Number, new CultureInfo("es-GT"), out m))
+            sTexto = sTexto.Replace(" ", "").Replace(",", "").Replace(".", ","); // deja coma como decimal
+            if (decimal.TryParse(sTexto, NumberStyles.Number, new CultureInfo("es-GT"), out deMonto))
             {
-                if (m > 0m) return (true, string.Empty, m);
+                if (deMonto > 0m) return (true, string.Empty, deMonto);
                 return (false, "Ingrese un monto válido mayor a cero.", 0m);
             }
 
             return (false, "Formato de monto no válido.", 0m);
         }
 
-        private static bool TryParseMonto(string input, CultureInfo ci, out decimal value)
+        private static bool fun_try_parse_monto(string sInput, CultureInfo oCulture, out decimal deValue)
         {
-            return decimal.TryParse(input, NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign, ci, out value);
+            return decimal.TryParse(
+                sInput,
+                NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint | NumberStyles.AllowLeadingSign,
+                oCulture,
+                out deValue
+            );
         }
 
-        public static string EstadoSeleccionado(object estadoItem)
+        public static string fun_estado_seleccionado(object oEstadoItem)
         {
-            string estado = estadoItem?.ToString()?.Trim();
-            return string.IsNullOrEmpty(estado) ? "ACTIVO" : estado;
+            string sEstado = oEstadoItem?.ToString()?.Trim();
+            return string.IsNullOrEmpty(sEstado) ? "ACTIVO" : sEstado;
         }
 
-        public static int? IntNullable(object selectedValue)
+        public static int? fun_int_nullable(object oSelectedValue)
         {
-            if (selectedValue == null || selectedValue == DBNull.Value) return null;
-            try { return Convert.ToInt32(selectedValue); }
+            if (oSelectedValue == null || oSelectedValue == DBNull.Value) return null;
+            try { return Convert.ToInt32(oSelectedValue); }
             catch { return null; }
         }
 
-        public static int? CuentaDestinoNullable(bool comboHabilitado, object selectedValue)
+        public static int? fun_cuenta_destino_nullable(bool bComboHabilitado, object oSelectedValue)
         {
-            if (!comboHabilitado) return null;
-            return IntNullable(selectedValue);
+            if (!bComboHabilitado) return null;
+            return fun_int_nullable(oSelectedValue);
         }
 
-        public static bool CambioClave(int nuevaCuentaOrigen, int cuentaOrigenOriginal, int nuevaOperacion, int operacionOriginal)
+        public static bool fun_cambio_clave(int iNuevaCuentaOrigen, int iCuentaOrigenOriginal, int iNuevaOperacion, int iOperacionOriginal)
         {
-            return (nuevaCuentaOrigen != cuentaOrigenOriginal) || (nuevaOperacion != operacionOriginal);
+            return (iNuevaCuentaOrigen != iCuentaOrigenOriginal) || (iNuevaOperacion != iOperacionOriginal);
         }
     }
 }
-
