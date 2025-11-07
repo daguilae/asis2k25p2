@@ -22,10 +22,16 @@ namespace Capa_Vista_TipoDeCambio
 
         private void Frm_TipoDeCambioDia_Load(object sender, EventArgs e)
         {
+                Dgv_TipoDeCambioDia.AutoGenerateColumns = false; // Muy importante
+
+            Dgv_TipoDeCambioDia.Columns["Moneda"].DataPropertyName = "Moneda";
+            Dgv_TipoDeCambioDia.Columns["Compra"].DataPropertyName = "Compra";
+            Dgv_TipoDeCambioDia.Columns["Venta"].DataPropertyName = "Venta";
+
             Dgv_TipoDeCambioDia.DataSource = ctrl.MostrarTipoCambioHoy();
 
         }
 
 
-        }
+    }
     }

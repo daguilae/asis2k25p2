@@ -31,10 +31,10 @@ namespace Capa_Vista_TipoDeCambio
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.Dgv_TipoDeCambioDia = new System.Windows.Forms.DataGridView();
+            this.Lbl_TipoDeCambioDia = new System.Windows.Forms.Label();
             this.Moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lbl_TipoDeCambioDia = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_TipoDeCambioDia)).BeginInit();
             this.SuspendLayout();
@@ -60,21 +60,6 @@ namespace Capa_Vista_TipoDeCambio
             this.Dgv_TipoDeCambioDia.Size = new System.Drawing.Size(345, 330);
             this.Dgv_TipoDeCambioDia.TabIndex = 1;
             // 
-            // Moneda
-            // 
-            this.Moneda.HeaderText = "Moneda";
-            this.Moneda.Name = "Moneda";
-            // 
-            // Compra
-            // 
-            this.Compra.HeaderText = "Compra";
-            this.Compra.Name = "Compra";
-            // 
-            // Venta
-            // 
-            this.Venta.HeaderText = "Venta";
-            this.Venta.Name = "Venta";
-            // 
             // Lbl_TipoDeCambioDia
             // 
             this.Lbl_TipoDeCambioDia.AutoSize = true;
@@ -84,6 +69,24 @@ namespace Capa_Vista_TipoDeCambio
             this.Lbl_TipoDeCambioDia.Size = new System.Drawing.Size(299, 29);
             this.Lbl_TipoDeCambioDia.TabIndex = 0;
             this.Lbl_TipoDeCambioDia.Text = "Tipo De Cambio Del Dia";
+            // 
+            // Moneda
+            // 
+            this.Moneda.HeaderText = "Moneda";
+            this.Moneda.Name = "Moneda";
+            this.Moneda.ReadOnly = true;
+            // 
+            // Compra
+            // 
+            this.Compra.HeaderText = "Compra";
+            this.Compra.Name = "Compra";
+            this.Compra.ReadOnly = true;
+            // 
+            // Venta
+            // 
+            this.Venta.HeaderText = "Venta";
+            this.Venta.Name = "Venta";
+            this.Venta.ReadOnly = true;
             // 
             // Frm_TipoDeCambioDia
             // 
