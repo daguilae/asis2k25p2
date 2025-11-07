@@ -8,9 +8,9 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ===================================================
+        
         // INSERTAR DETALLE EN TBL_PAGO_CHEQUE
-        // ===================================================
+        
         public bool InsertarDetalleCheque(int idPago, string numero, string banco, string titular,
                                           DateTime fechaEmision, DateTime fechaCobro, string estadoCheque)
         {

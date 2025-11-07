@@ -17,9 +17,9 @@ namespace Capa_Vista_Reservas_Hotel
             CargarEstadosPago();
         }
 
-        // ===================================================
+    
         // === MÉTODOS DE APOYO ===
-        // ===================================================
+    
         private void CargarFolios()
         {
             try
@@ -65,9 +65,7 @@ namespace Capa_Vista_Reservas_Hotel
             Dtp_Fecha_Pago.Value = DateTime.Now;
         }
 
-        // ===================================================
-        // === EVENTOS (mismos nombres del Designer)
-        // ===================================================
+       
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
             LimpiarCampos();
@@ -104,7 +102,7 @@ namespace Capa_Vista_Reservas_Hotel
                 DateTime fecha = Dtp_Fecha_Pago.Value;
                 decimal monto = decimal.TryParse(Txt_Monto.Text, out decimal val) ? val : 0;
 
-                // ✅ Insertamos el pago principal una sola vez
+               
                 int idPago = Controlador.funInsertarPago(idFolio, metodo, fecha, monto, estado);
 
                 if (idPago <= 0)
@@ -117,7 +115,7 @@ namespace Capa_Vista_Reservas_Hotel
                 MessageBox.Show("Pago registrado correctamente. Complete los detalles en el subformulario.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // ✅ Enviamos el ID del PAGO (no del folio) al subformulario
+                
                 AbrirSubformulario(metodo, idPago, monto);
             }
             catch (Exception ex)
@@ -174,9 +172,9 @@ namespace Capa_Vista_Reservas_Hotel
             // Sin validación adicional
         }
 
-        // ===================================================
+     
         // === MÉTODO: ABRIR SUBFORMULARIOS (con monto)
-        // ===================================================
+        
         private void AbrirSubformulario(string metodo, int idPago, decimal monto)
         {
             switch (metodo)

@@ -8,14 +8,13 @@ namespace Capa_Vista_Reservas_Hotel
     {
         private readonly Cls_Pago_Cheque_Controlador Controlador = new Cls_Pago_Cheque_Controlador();
 
-        // ✅ AHORA RECIBIMOS EL ID DEL PAGO (NO EL FOLIO)
+       
         private int idPago;
         private decimal montoPago;
 
-        // ===================================================
+        
         // CONSTRUCTOR QUE RECIBE ID DEL PAGO Y MONTO
-        // (No cambies el nombre del form ni de los controles)
-        // ===================================================
+        
         public Frm_Pago_Cheque(int idPagoPrincipal, decimal monto)
         {
             InitializeComponent();
@@ -36,7 +35,7 @@ namespace Capa_Vista_Reservas_Hotel
 
         private void LimpiarCampos()
         {
-            // Mantiene los nombres EXACTOS del designer
+            
             Txt_Numero_Cheque.Clear();
             Txt_Banco_Emisor.Clear();
             Txt_Nombre_Titular.Clear();
@@ -45,9 +44,9 @@ namespace Capa_Vista_Reservas_Hotel
             Dtp_Fecha_Cobro.Value = DateTime.Now;
         }
 
-        // ===================================================
-        // === BOTONES (mismos nombres del Designer)
-        // ===================================================
+       
+       
+        
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             try
@@ -59,9 +58,9 @@ namespace Capa_Vista_Reservas_Hotel
                 DateTime cobro = Dtp_Fecha_Cobro.Value;
                 string estado = Cbo_Estado_Cheque.Text.Trim();
 
-                // ✅ Enviar el ID DEL PAGO ya creado desde Frm_Pago
+                
                 var r = Controlador.InsertarPagoCheque(
-                    idPago,                // ← ID del pago principal
+                    idPago,               
                     montoPago,
                     numero,
                     banco,
@@ -105,10 +104,7 @@ namespace Capa_Vista_Reservas_Hotel
             LimpiarCampos();
         }
 
-        // ===================================================
-        // === HANDLERS NECESARIOS PARA EL DESIGNER ==========
-        // (Se dejan aunque no tengan lógica, para NO romper el .Designer)
-        // ===================================================
+     
         private void Txt_Numero_Cheque_TextChanged(object sender, EventArgs e) { }
         private void Cbo_Estado_Cheque_SelectedIndexChanged(object sender, EventArgs e) { }
         private void Txt_Banco_Emisor_TextChanged(object sender, EventArgs e) { }

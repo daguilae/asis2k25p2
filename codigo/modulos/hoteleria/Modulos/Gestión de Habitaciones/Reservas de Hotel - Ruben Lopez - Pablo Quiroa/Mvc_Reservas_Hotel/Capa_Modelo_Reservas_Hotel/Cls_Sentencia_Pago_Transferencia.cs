@@ -8,9 +8,9 @@ namespace Capa_Modelo_Reservas_Hotel
     {
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ===================================================
+     
         // INSERTAR DETALLE EN TBL_PAGO_TRANSFERENCIA
-        // ===================================================
+       
         public bool InsertarDetalleTransferencia(int idPago, string numeroTransferencia, string bancoOrigen, string cuentaOrigen)
         {
             using (OdbcConnection conn = conexion.conexion())

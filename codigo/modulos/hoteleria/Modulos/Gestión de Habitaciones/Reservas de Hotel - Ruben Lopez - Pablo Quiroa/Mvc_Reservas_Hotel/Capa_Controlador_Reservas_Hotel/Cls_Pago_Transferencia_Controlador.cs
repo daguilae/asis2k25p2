@@ -7,9 +7,9 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Transferencia modelo = new Cls_Sentencia_Pago_Transferencia();
 
-        // ===================================================
-        // === REGISTRAR DETALLE DE PAGO POR TRANSFERENCIA ===
-        // ===================================================
+        // 
+        // REGISTRAR DETALLE DE PAGO POR TRANSFERENCIA 
+        // 
         public (bool exito, string mensaje) InsertarPagoTransferencia(int idPago, decimal monto,
                                                                       string numeroTransferencia,
                                                                       string bancoOrigen,
@@ -29,7 +29,7 @@ namespace Capa_Controlador_Reservas_Hotel
                 if (string.IsNullOrWhiteSpace(cuentaOrigen))
                     return (false, "Ingrese la cuenta de origen.");
 
-                // === Guardar detalle en Tbl_Pago_Transferencia ===
+                // Guardar detalle en Tbl_Pago_Transferencia 
                 bool ok = modelo.InsertarDetalleTransferencia(idPago, numeroTransferencia.Trim(), bancoOrigen.Trim(), cuentaOrigen.Trim());
 
                 if (ok)

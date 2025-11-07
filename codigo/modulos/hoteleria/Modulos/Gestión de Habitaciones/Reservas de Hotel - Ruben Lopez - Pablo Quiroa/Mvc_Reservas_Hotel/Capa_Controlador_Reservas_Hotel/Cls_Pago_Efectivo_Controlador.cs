@@ -7,22 +7,22 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Efectivo modelo = new Cls_Sentencia_Pago_Efectivo();
 
-        // ===================================================
+       
         // === REGISTRAR DETALLE DE PAGO EN EFECTIVO =========
-        // ===================================================
+        
         public (bool exito, string mensaje) InsertarPagoEfectivo(int idPago, decimal monto,
                                                                 string numeroRecibo, string observaciones)
         {
             try
             {
-                // === Validaciones básicas ===
+                // Validaciones básicas 
                 if (idPago <= 0)
                     return (false, "El ID del pago principal no es válido.");
 
                 if (string.IsNullOrWhiteSpace(numeroRecibo))
                     return (false, "Ingrese el número de recibo.");
 
-                // === Guardar detalle en Tbl_Pago_Efectivo ===
+                // Guardar detalle en Tbl_Pago_Efectivo 
                 bool ok = modelo.InsertarDetalleEfectivo(idPago, numeroRecibo.Trim(), observaciones?.Trim());
 
                 if (ok)

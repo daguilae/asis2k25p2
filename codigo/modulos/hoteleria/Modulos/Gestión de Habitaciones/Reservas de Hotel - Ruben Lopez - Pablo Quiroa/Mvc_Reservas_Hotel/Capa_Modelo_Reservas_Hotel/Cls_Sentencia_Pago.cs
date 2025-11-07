@@ -6,14 +6,14 @@ namespace Capa_Modelo_Reservas_Hotel
 {
     public class Cls_Sentencia_Pago
     {
-        // ======================================================
+        // 
         // === CONEXIÓN GENERAL ===
-        // ======================================================
+        // 
         private readonly Cls_Conexion conexion = new Cls_Conexion();
 
-        // ======================================================
+        // 
         // === OBTENER LISTA DE FOLIOS DISPONIBLES ===
-        // ======================================================
+        // 
         public DataTable datObtenerFolios()
         {
             DataTable dt = new DataTable();
@@ -44,9 +44,9 @@ namespace Capa_Modelo_Reservas_Hotel
             return dt;
         }
 
-        // ======================================================
+        
         // === INSERTAR PAGO PRINCIPAL Y DEVOLVER SU ID ===
-        // ======================================================
+        
         public int funInsertarPago(int fkFolio, string metodo, DateTime fecha, decimal monto, string estado)
         {
             int idPagoGenerado = 0;
@@ -62,14 +62,14 @@ namespace Capa_Modelo_Reservas_Hotel
 
                     using (var cmd = new OdbcCommand(insertSql, conn))
                     {
-                        // ✅ Tipos seguros para MySQL ODBC
+                        
                         cmd.Parameters.Add("Fk_Id_Folio", OdbcType.Int).Value = fkFolio;
 
                         // ENUMs se manejan como texto (VARCHAR)
                         cmd.Parameters.Add("Cmp_Metodo_Pago", OdbcType.VarChar, 20).Value = metodo;
                         cmd.Parameters.Add("Cmp_Fecha_Pago", OdbcType.VarChar, 19).Value = fecha.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        // DECIMAL -> DOUBLE para compatibilidad ODBC
+                        
                         cmd.Parameters.Add("Cmp_Monto_Total", OdbcType.Double).Value = Convert.ToDouble(monto);
 
                         // ENUM del estado también es texto
@@ -79,7 +79,7 @@ namespace Capa_Modelo_Reservas_Hotel
                         cmd.ExecuteNonQuery();
                     }
 
-                    // ✅ Obtener el último ID insertado (seguro en la sesión actual)
+                    
                     string selectIdSql = "SELECT LAST_INSERT_ID();";
                     using (var cmdId = new OdbcCommand(selectIdSql, conn))
                     {

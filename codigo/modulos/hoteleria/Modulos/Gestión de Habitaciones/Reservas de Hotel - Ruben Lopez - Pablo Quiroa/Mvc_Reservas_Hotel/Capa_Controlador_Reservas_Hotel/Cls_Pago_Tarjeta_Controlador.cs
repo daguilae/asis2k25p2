@@ -8,9 +8,9 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Sentencia_Pago_Tarjeta modelo = new Cls_Sentencia_Pago_Tarjeta();
 
-        // ===================================================
-        // === MÉTODO PARA VALIDAR Y PARSEAR FECHA DE VENC. ===
-        // ===================================================
+        // 
+        //  MÉTODO PARA VALIDAR Y PARSEAR FECHA DE VENC. 
+        // 
         private bool TryParseFechaVencimiento(string input, out DateTime fecha)
         {
             fecha = DateTime.MinValue;
@@ -20,16 +20,16 @@ namespace Capa_Controlador_Reservas_Hotel
             return DateTime.TryParseExact(input.Trim(), formatos, CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha);
         }
 
-        // ===================================================
+        // 
         // === REGISTRAR DETALLE DE PAGO CON TARJETA =========
-        // ===================================================
+        // 
         public (bool exito, string mensaje) InsertarPagoTarjeta(int idPago, decimal monto,
                                                                 string nombreTitular, string numeroTarjeta,
                                                                 string fechaVencimientoTexto, string cvc, string codigoPostal)
         {
             try
             {
-                // === Validaciones básicas ===
+                // Validaciones básicas 
                 if (idPago <= 0)
                     return (false, "El ID del pago principal no es válido.");
 
@@ -48,7 +48,7 @@ namespace Capa_Controlador_Reservas_Hotel
                 if (!int.TryParse(codigoPostal, out int iCodigoPostal) || iCodigoPostal <= 0)
                     return (false, "Ingrese un código postal válido.");
 
-                // === Guardar detalle en Tbl_Pago_Tarjeta ===
+                // Guardar detalle en Tbl_Pago_Tarjeta 
                 bool ok = modelo.InsertarDetalleTarjeta(idPago, nombreTitular.Trim(), numeroTarjeta.Trim(), fechaVenc, iCvc, iCodigoPostal);
 
                 if (ok)
