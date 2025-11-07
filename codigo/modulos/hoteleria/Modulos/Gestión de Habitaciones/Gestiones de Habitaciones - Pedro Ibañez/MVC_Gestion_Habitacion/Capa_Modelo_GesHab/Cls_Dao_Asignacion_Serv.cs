@@ -5,14 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.Odbc;
+
 namespace Capa_Modelo_GesHab
 {
-   public class Cls_Dao_Asignacion_Serv
+    public class Cls_Dao_Asignacion_Serv
     {
         Cls_conexionMYSQL conexion = new Cls_conexionMYSQL();
+
+        // --- Obtener servicios disponibles ---
         public DataTable ObtenerServicios()
         {
-            string query = "SELECT PK_ID_Servicio_habitacion, Cmp_Nombre_Servicio FROM tbl_servicios_habitacion;";
+            string query = "SELECT PK_ID_Servicio_habitacion, Cmp_Nombre_Servicio FROM Tbl_Servicios_habitacion;";
             OdbcConnection conn = conexion.conexion();
             DataTable tabla = new DataTable();
 
@@ -30,12 +33,14 @@ namespace Capa_Modelo_GesHab
             {
                 conexion.desconexion(conn);
             }
+
             return tabla;
         }
 
+        // --- Obtener habitaciones ---
         public DataTable ObtenerHabitaciones()
         {
-            string query = "SELECT PK_ID_Habitaciones, Cmp_Descripcion_Habitacion FROM tbl_habitaciones;";
+            string query = "SELECT PK_ID_Habitaciones, Cmp_Descripcion_Habitacion FROM Tbl_Habitaciones;";
             OdbcConnection conn = conexion.conexion();
             DataTable tabla = new DataTable();
 
@@ -53,12 +58,12 @@ namespace Capa_Modelo_GesHab
             {
                 conexion.desconexion(conn);
             }
+
             return tabla;
         }
 
-        public bool InsertarAsignacionServ(
-            int IidHabitacion,
-            int IidServicio)
+        // --- Insertar asignación habitación-servicio ---
+        public bool InsertarAsignacionServ(int IidHabitacion, int IidServicio)
         {
             try
             {
@@ -66,7 +71,7 @@ namespace Capa_Modelo_GesHab
                 {
                     conn.Open();
 
-                    string query = "INSERT INTO tbl_asignacion_habitacion_servicio " +
+                    string query = "INSERT INTO Tbl_Asignacion_habitacion_Servicio " +
                                    "(Fk_ID_Habitacion, Fk_Id_Servicio) " +
                                    "VALUES (?,?)";
 
@@ -84,13 +89,15 @@ namespace Capa_Modelo_GesHab
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error al asignar servicios: " + ex.Message);
+                Console.WriteLine("Error al asignar servicio: " + ex.Message);
                 return false;
             }
         }
+
+        // --- Eliminar asignación habitación-servicio ---
         public bool EliminarAsignacion(int idHabitacion, int idServicio)
         {
-            string query = "DELETE FROM tbl_asignacion_habitacion_servicio " +
+            string query = "DELETE FROM Tbl_Asignacion_habitacion_Servicio " +
                            "WHERE Fk_ID_Habitacion = ? AND Fk_Id_Servicio = ?;";
 
             using (OdbcConnection conn = conexion.conexion())
@@ -102,8 +109,8 @@ namespace Capa_Modelo_GesHab
 
                     using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@hab", idHabitacion);
-                        cmd.Parameters.AddWithValue("@serv", idServicio);
+                        cmd.Parameters.AddWithValue("@Fk_ID_Habitacion", idHabitacion);
+                        cmd.Parameters.AddWithValue("@Fk_Id_Servicio", idServicio);
 
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         return filasAfectadas > 0;
@@ -117,20 +124,19 @@ namespace Capa_Modelo_GesHab
             }
         }
 
-
+        // --- Obtener todas las asignaciones ---
         public DataTable ObtenerAsignaciones()
         {
             string query = @"
-              SELECT 
+                SELECT 
                     a.Fk_ID_Habitacion AS Habitacion,
                     h.Cmp_Descripcion_Habitacion AS Descripcion,
                     a.Fk_Id_Servicio AS IdServicio,
                     s.Cmp_Nombre_Servicio AS Servicio
-                FROM tbl_asignacion_habitacion_servicio a
-                INNER JOIN tbl_habitaciones h ON a.Fk_ID_Habitacion = h.PK_ID_Habitaciones
-                INNER JOIN tbl_servicios_habitacion s ON a.Fk_Id_Servicio = s.PK_ID_Servicio_habitacion
+                FROM Tbl_Asignacion_habitacion_Servicio a
+                INNER JOIN Tbl_Habitaciones h ON a.Fk_ID_Habitacion = h.PK_ID_Habitaciones
+                INNER JOIN Tbl_Servicios_habitacion s ON a.Fk_Id_Servicio = s.PK_ID_Servicio_habitacion
                 ORDER BY a.Fk_ID_Habitacion;
-
             ";
 
             OdbcConnection conn = conexion.conexion();
@@ -154,20 +160,21 @@ namespace Capa_Modelo_GesHab
             return tabla;
         }
 
+        // --- Buscar asignaciones por habitación ---
         public DataTable BuscarAsignaciones(int IidHabitacion)
         {
             string query = @"
-        SELECT 
-            a.Fk_ID_Habitacion AS Habitacion,
-            h.Cmp_Descripcion_Habitacion AS Descripcion,
-            a.Fk_Id_Servicio AS IdServicio,
-            s.Cmp_Nombre_Servicio AS Servicio
-        FROM tbl_asignacion_habitacion_servicio a
-        INNER JOIN tbl_habitaciones h ON a.Fk_ID_Habitacion = h.PK_ID_Habitaciones
-        INNER JOIN tbl_servicios_habitacion s ON a.Fk_Id_Servicio = s.PK_ID_Servicio_habitacion
-        WHERE a.Fk_ID_Habitacion = ? 
-        ORDER BY a.Fk_ID_Habitacion;
-    ";
+                SELECT 
+                    a.Fk_ID_Habitacion AS Habitacion,
+                    h.Cmp_Descripcion_Habitacion AS Descripcion,
+                    a.Fk_Id_Servicio AS IdServicio,
+                    s.Cmp_Nombre_Servicio AS Servicio
+                FROM Tbl_Asignacion_habitacion_Servicio a
+                INNER JOIN Tbl_Habitaciones h ON a.Fk_ID_Habitacion = h.PK_ID_Habitaciones
+                INNER JOIN Tbl_Servicios_habitacion s ON a.Fk_Id_Servicio = s.PK_ID_Servicio_habitacion
+                WHERE a.Fk_ID_Habitacion = ? 
+                ORDER BY a.Fk_ID_Habitacion;
+            ";
 
             OdbcConnection conn = conexion.conexion();
             DataTable tabla = new DataTable();
@@ -176,8 +183,7 @@ namespace Capa_Modelo_GesHab
             {
                 using (OdbcCommand cmd = new OdbcCommand(query, conn))
                 {
-                    // En ODBC el orden importa, no el nombre del parámetro
-                    cmd.Parameters.AddWithValue("@habitacion", IidHabitacion);
+                    cmd.Parameters.AddWithValue("@Fk_ID_Habitacion", IidHabitacion);
 
                     using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
                     {
@@ -196,6 +202,5 @@ namespace Capa_Modelo_GesHab
 
             return tabla;
         }
-
     }
 }

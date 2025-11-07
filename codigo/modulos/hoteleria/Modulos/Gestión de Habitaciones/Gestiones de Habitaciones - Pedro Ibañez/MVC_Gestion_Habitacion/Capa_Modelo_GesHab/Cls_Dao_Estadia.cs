@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.Odbc;
+
 namespace Capa_Modelo_GesHab
 {
     public class Cls_Dao_Estadia
     {
         Cls_conexionMYSQL conexion = new Cls_conexionMYSQL();
+
         public bool InsertarEstadia(
             int idHabitacion,
             int idHuesped,
@@ -25,20 +27,20 @@ namespace Capa_Modelo_GesHab
                 {
                     conn.Open();
 
-                    string query = "INSERT INTO tbl_estadia " +
-                                   "(FK_ID_Habitaciones, Fk_Id_Huesped_Checkin, Cmp_Num_Huespedes, " +
+                    string query = "INSERT INTO Tbl_Estadia " +
+                                   "(Fk_Id_Habitaciones, Fk_Id_Huesped_Checkin, Cmp_Num_Huespedes, " +
                                    "Cmp_Fecha_Check_In, Cmp_Fecha_Check_Out, Cmp_Tiene_Reservacion, Cmp_Monto_Total_Pago) " +
                                    "VALUES (?,?,?,?,?,?,?)";
 
                     using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@FK_ID_Habitaciones", idHabitacion);
-                        cmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", idHuesped);
-                        cmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", numHuespedes);
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", fechaCheckIn);
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", fechaActual);
-                        cmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", tieneReserva ? 1 : 0);
-                        cmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", montoTotal);
+                        cmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", idHabitacion);             // int
+                        cmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", idHuesped);             // int
+                        cmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", numHuespedes);              // int
+                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", fechaCheckIn);             // date
+                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", fechaActual);             // date
+                        cmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", tieneReserva ? 1 : 0);  // tinyint(1)
+                        cmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", montoTotal);             // decimal(10,2)
 
                         cmd.ExecuteNonQuery();
                     }
@@ -62,16 +64,14 @@ namespace Capa_Modelo_GesHab
                 {
                     conn.Open();
 
-                    string query = "DELETE FROM tbl_estadia WHERE PK_ID_Estadia = ?";
+                    string query = "DELETE FROM Tbl_Estadia WHERE Pk_Id_Estadia = ?";
 
                     using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@PK_ID_Estadia", idEstadia);
+                        cmd.Parameters.AddWithValue("@Pk_Id_Estadia", idEstadia);
                         int filasAfectadas = cmd.ExecuteNonQuery();
 
                         conn.Close();
-
-                        // Devuelve true solo si se eliminó algo
                         return filasAfectadas > 0;
                     }
                 }
@@ -83,16 +83,15 @@ namespace Capa_Modelo_GesHab
             }
         }
 
-
         public bool ModificarEstadia(
-    int idEstadia,
-    int idHabitacion,
-    int idHuesped,
-    int numHuespedes,
-    bool tieneReserva,
-    DateTime fechaCheckIn,
-    DateTime fechaActual,
-    decimal montoTotal)
+            int idEstadia,
+            int idHabitacion,
+            int idHuesped,
+            int numHuespedes,
+            bool tieneReserva,
+            DateTime fechaCheckIn,
+            DateTime fechaActual,
+            decimal montoTotal)
         {
             try
             {
@@ -100,26 +99,26 @@ namespace Capa_Modelo_GesHab
                 {
                     conn.Open();
 
-                    string query = "UPDATE tbl_estadia SET " +
-                                   "FK_ID_Habitaciones = ?, " +
+                    string query = "UPDATE Tbl_Estadia SET " +
+                                   "Fk_Id_Habitaciones = ?, " +
                                    "Fk_Id_Huesped_Checkin = ?, " +
                                    "Cmp_Num_Huespedes = ?, " +
                                    "Cmp_Fecha_Check_In = ?, " +
                                    "Cmp_Fecha_Check_Out = ?, " +
                                    "Cmp_Tiene_Reservacion = ?, " +
                                    "Cmp_Monto_Total_Pago = ? " +
-                                   "WHERE PK_ID_Estadia = ?";
+                                   "WHERE Pk_Id_Estadia = ?";
 
                     using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@FK_ID_Habitaciones", idHabitacion);
+                        cmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", idHabitacion);
                         cmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", idHuesped);
                         cmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", numHuespedes);
                         cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", fechaCheckIn);
                         cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", fechaActual);
                         cmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", tieneReserva ? 1 : 0);
                         cmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", montoTotal);
-                        cmd.Parameters.AddWithValue("@PK_ID_Estadia", idEstadia);
+                        cmd.Parameters.AddWithValue("@Pk_Id_Estadia", idEstadia);
 
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         conn.Close();
@@ -135,7 +134,7 @@ namespace Capa_Modelo_GesHab
             }
         }
 
-        //id de estadia
+        // --- Obtener IDs de estadías ---
         public DataTable ObtenerIdsEstadia()
         {
             DataTable dt = new DataTable();
@@ -161,11 +160,12 @@ namespace Capa_Modelo_GesHab
             return dt;
         }
 
-        // --- Obtener IDs de habitaciones ---
+        // --- Obtener IDs de habitaciones disponibles ---
         public DataTable ObtenerHabitaciones()
         {
             DataTable dt = new DataTable();
-            string query = "SELECT PK_ID_Habitaciones FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 1 ;"; // 0 = disponible
+            string query = "SELECT Pk_Id_Habitaciones FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 1;";
+
             try
             {
                 using (OdbcConnection conn = conexion.conexion())
@@ -182,6 +182,7 @@ namespace Capa_Modelo_GesHab
             {
                 Console.WriteLine("Error al obtener habitaciones: " + ex.Message);
             }
+
             return dt;
         }
 
@@ -190,6 +191,7 @@ namespace Capa_Modelo_GesHab
         {
             DataTable dt = new DataTable();
             string query = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto FROM Tbl_Huesped;";
+
             try
             {
                 using (OdbcConnection conn = conexion.conexion())
@@ -206,13 +208,15 @@ namespace Capa_Modelo_GesHab
             {
                 Console.WriteLine("Error al obtener huéspedes: " + ex.Message);
             }
+
             return dt;
         }
 
+        // --- Obtener tarifa por noche de una habitación ---
         public double ObtenerTarifaPorNoche(int idHabitacion)
         {
             double tarifa = 0.0;
-            string query = "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE PK_ID_Habitaciones = ?;";
+            string query = "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
 
             try
             {
@@ -239,10 +243,11 @@ namespace Capa_Modelo_GesHab
             return tarifa;
         }
 
+        // --- Obtener capacidad de una habitación ---
         public int ObtenerCapacidadHabitacion(int idHabitacion)
         {
             int capacidad = 0;
-            string query = "SELECT Cmp_Capacidad_Habitacion FROM Tbl_Habitaciones WHERE PK_ID_Habitaciones = ?;";
+            string query = "SELECT Cmp_Capacidad_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
 
             try
             {
@@ -269,21 +274,22 @@ namespace Capa_Modelo_GesHab
             return capacidad;
         }
 
+        // --- Obtener una estadía por su ID ---
         public DataTable ObtenerEstadiaPorId(int idEstadia)
         {
             DataTable dt = new DataTable();
             string query = @"
-        SELECT 
-            E.Pk_Id_Estadia,
-            E.Fk_Id_Habitaciones,
-            E.Fk_Id_Huesped_Checkin,
-            E.Cmp_Num_Huespedes,
-            E.Cmp_Tiene_Reservacion,
-            E.Cmp_Fecha_Check_In,
-            E.Cmp_Fecha_Check_Out,
-            E.Cmp_Monto_Total_Pago
-        FROM Tbl_Estadia E
-        WHERE E.Pk_Id_Estadia = ?;";
+                SELECT 
+                    E.Pk_Id_Estadia,
+                    E.Fk_Id_Habitaciones,
+                    E.Fk_Id_Huesped_Checkin,
+                    E.Cmp_Num_Huespedes,
+                    E.Cmp_Tiene_Reservacion,
+                    E.Cmp_Fecha_Check_In,
+                    E.Cmp_Fecha_Check_Out,
+                    E.Cmp_Monto_Total_Pago
+                FROM Tbl_Estadia E
+                WHERE E.Pk_Id_Estadia = ?;";
 
             try
             {
@@ -307,7 +313,5 @@ namespace Capa_Modelo_GesHab
 
             return dt;
         }
-
-
     }
 }

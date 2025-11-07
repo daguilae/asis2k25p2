@@ -373,7 +373,6 @@ namespace Capa_Vista_Gestion_Habitacion
             this.Controls.Add(this.btn_Buscar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Estadia";
             this.Text = "Frm_Estadia";
             this.panel1.ResumeLayout(false);

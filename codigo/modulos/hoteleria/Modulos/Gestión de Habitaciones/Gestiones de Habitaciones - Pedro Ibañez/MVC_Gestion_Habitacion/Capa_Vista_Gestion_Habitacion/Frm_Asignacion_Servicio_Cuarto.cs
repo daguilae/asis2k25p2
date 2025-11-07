@@ -164,6 +164,7 @@ namespace Capa_Vista_Gestion_Habitacion
         {
             LimpiarCombos();
             MostrarAsignaciones();
+            CargarCombos();
         }
     }
 }
