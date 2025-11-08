@@ -30,7 +30,9 @@ namespace Capa_Vista_ReportesBancarios
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.MVC_ReportesBancarios1 = new Capa_Vista_ReportesBancarios.MVC_ReportesBancarios();
+
+            this.MV_Reportes_Bancarios1 = new Capa_Vista_ReportesBancarios.MV_Reportes_Bancarios();
+
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -41,7 +43,9 @@ namespace Capa_Vista_ReportesBancarios
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.MVC_ReportesBancarios1;
+
+            this.crystalReportViewer1.ReportSource = this.MV_Reportes_Bancarios1;
+
             this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
             // 
@@ -60,6 +64,8 @@ namespace Capa_Vista_ReportesBancarios
         #endregion
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private MVC_ReportesBancarios MVC_ReportesBancarios1;
+
+        private MV_Reportes_Bancarios MV_Reportes_Bancarios1;
+
     }
 }
