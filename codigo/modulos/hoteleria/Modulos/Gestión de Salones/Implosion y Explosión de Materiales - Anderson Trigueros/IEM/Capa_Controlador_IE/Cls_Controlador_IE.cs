@@ -22,14 +22,15 @@ namespace Capa_Controlador_IE
             return sentencias.fun_ObtenerReceta(codigoMenu);
         }
 
-        public List<(string sIngrediente, double doStock)> verificarInventario(List<string> ingredientes)
+        public List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> verificarInventario(List<string> ingredientes)
         {
             return sentencias.ConsultarInventario(ingredientes);
         }
         
-        public void generarOrden(List<(string sIngrediente, double doCantidad)> ListaCompra)
+        public void GenerarOrdenCompra(List<(int iCodigo, double doCantidad)> Listado)
         {
-
+            sentencias.GuardarOrdenCompra(Listado);
         }
+
     }
 } 

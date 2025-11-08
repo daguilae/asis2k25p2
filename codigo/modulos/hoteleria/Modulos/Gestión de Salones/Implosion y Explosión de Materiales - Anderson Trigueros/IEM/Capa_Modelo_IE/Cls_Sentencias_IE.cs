@@ -57,41 +57,63 @@ namespace Capa_Modelo_IE
             return tabla;
         }
 
-        public List<(string sIngrediente, double doStock)> ConsultarInventario(List<string> Ingredientes)
+        public List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> ConsultarInventario(List<string> Ingredientes)
         {
             Cls_Conexion_IE conexion = new Cls_Conexion_IE();
-            List<(string sIngrediente, double doStock)> Inventario = new List<(string sIngrediente, double doStock)>();
+            List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> resultado =
+                new List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)>();
+
             try
             {
                 using (OdbcConnection con = conexion.conexion())
                 {
-                    foreach (string sIngrediente in Ingredientes)
+                    // Consulta rápida
+                    string sIngredientes = string.Join(",", Ingredientes.Select(_ => "?"));
+
+                    string sConsulta = $@"SELECT p.Cmp_Id_Producto AS Codigo,
+                                                 p.Cmp_Nombre_Producto AS Producto,
+                                                 e.Cmp_Cantidad AS Cantidad,
+                                                 u.Cmp_Nombre_Unidad AS Unidad
+                                          FROM Tbl_Existencia e
+                                          JOIN Tbl_Producto p ON e.Cmp_Id_Producto = p.Cmp_Id_Producto
+                                          JOIN Tbl_Unidad_Medida u ON p.Cmp_Id_Unidad_Base = u.Cmp_Id_Unidad_Medida
+                                          WHERE p.Cmp_Nombre_Producto IN ({sIngredientes})";
+
+                    OdbcCommand cmd = new OdbcCommand(sConsulta, con);
+
+                    foreach (var ing in Ingredientes)
+                        cmd.Parameters.AddWithValue("", ing);
+
+                    Dictionary<string, (string sCodigo, double doStock, string sUnidad)> datos =
+                        new Dictionary<string, (string sCodigo, double doStock, string sUnidad)>();
+
+                    using (var reader = cmd.ExecuteReader())
                     {
-                        string sConsultaInventario = @"SELECT p.Cmp_Nombre_Producto AS Producto,
-                                                      e.Cmp_Cantidad as Cantidad
-                                                      FROM Tbl_Existencia e
-                                                      JOIN Tbl_Producto p ON e.Cmp_Id_Producto = p.Cmp_Id_Producto
-                                                      WHERE p.Cmp_Nombre_Producto = ?";
-                        OdbcCommand cmd = new OdbcCommand(sConsultaInventario, con);
-                        cmd.Parameters.AddWithValue("", sIngrediente);
-                        using (OdbcDataReader reader = cmd.ExecuteReader())
+                        while (reader.Read())
                         {
-                            if (reader.HasRows)
-                            {
-                                while (reader.Read())
-                                {
-                                    double doCantidad = Convert.ToDouble(reader["Cantidad"]);
-                                    Inventario.Add((sIngrediente, doCantidad));
-                                }
-                            }
-                            else
-                            {
-                                Inventario.Add((sIngrediente, 0));
-                            }
+                            string sNombre = reader["Producto"].ToString();
+                            string sCodigo = reader["Codigo"].ToString();
+                            double doCantidad = Convert.ToDouble(reader["Cantidad"]);
+                            string sUnidad = reader["Unidad"].ToString();
+
+                            datos[sNombre] = (sCodigo, doCantidad, sUnidad);
                         }
                     }
-                    return Inventario;
+
+                    foreach (var ing in Ingredientes)
+                    {
+                        if (datos.ContainsKey(ing))
+                        {
+                            var dato = datos[ing];
+                            resultado.Add((dato.sCodigo, ing, dato.doStock, dato.sUnidad));
+                        }
+                        else
+                        {
+                            resultado.Add(("", ing, 0, "")); // No encontrado
+                        }
+                    }
                 }
+                return resultado;
             }
             catch (Exception ex)
             {
@@ -99,9 +121,53 @@ namespace Capa_Modelo_IE
             }
         }
 
-        public void GuardarOrdenCompra(List<(string sIngrediente, double doCantidad)> Listado)
-        {
 
+        public void GuardarOrdenCompra(List<(int iCodigo, double doCantidad)> Listado)
+        {
+            Cls_Conexion_IE conexion = new Cls_Conexion_IE();
+            try
+            {
+                using (OdbcConnection con = conexion.conexion())
+                {
+                    using (var transaction = con.BeginTransaction())
+                    {
+                        try
+                        {
+                            string sIngresoEncabezado = @"INSERT INTO Tbl_OC (Cmp_Fecha_OC) VALUES (CURRENT_DATE)";
+                            OdbcCommand cmdEnc = new OdbcCommand(sIngresoEncabezado, con, transaction);
+                            cmdEnc.ExecuteNonQuery();
+
+                            int iCodigoOrdenCompra = 0;
+                            OdbcCommand cmdLast = new OdbcCommand("SELECT LAST_INSERT_ID()", con, transaction);
+                            iCodigoOrdenCompra = Convert.ToInt32(cmdLast.ExecuteScalar());
+
+                            foreach (var item in Listado)
+                            {
+                                int iCodigoProducto = item.iCodigo;
+                                double doCantidadSolicitada = item.doCantidad;
+
+                                string sIngresoDetalle = @"INSERT INTO Tbl_OC_Det(Cmp_Id_OC,Cmp_Id_Producto,Cmp_Cantidad)
+                                                            VALUES (?,?,?)";
+                                OdbcCommand cmdDet = new OdbcCommand(sIngresoDetalle, con, transaction);
+                                cmdDet.Parameters.AddWithValue("", iCodigoOrdenCompra);
+                                cmdDet.Parameters.AddWithValue("", iCodigoProducto);
+                                cmdDet.Parameters.AddWithValue("", doCantidadSolicitada);
+                                cmdDet.ExecuteNonQuery();
+                            }
+                            transaction.Commit();
+                        }
+                        catch
+                        {
+                            transaction.Rollback();
+                            throw;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al registrar la orden de compra." + ex.Message, ex);
+            }
         }
     }
 }
