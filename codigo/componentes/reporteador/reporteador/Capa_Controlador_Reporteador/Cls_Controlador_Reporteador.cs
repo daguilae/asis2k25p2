@@ -8,8 +8,6 @@ using System.Data; //Paula Leonardo
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.Windows.Forms;
-using Capa_Modelo_Reporteador;
-using System.IO;
 using Capa_Modelo_Reporteador; //Paula Leonardo
 
 namespace Capa_Controlador_Reporteador
@@ -34,8 +32,11 @@ namespace Capa_Controlador_Reporteador
         // Inicio de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha de: 11/09/2025
         public void GuardarReporte(string sTitulo, String sRuta, DateTime dFecha)
         {
+            if (!ValidarTexto(sTitulo))
+                throw new Exception("El título contiene caracteres no permitidos.");
+
             sentencias.InsertarReporte(sTitulo, sRuta, dFecha);
-            }
+        }
         // fin de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha de: 11/09/2025
 
         // ==========================
@@ -43,16 +44,19 @@ namespace Capa_Controlador_Reporteador
         // ==========================
 
         // Inicio de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha de: 11/09/2025
-        public void ModificarRuta(int id, string sNuevaRuta)
+        public void ModificarRuta(int iIdReporte, string sNuevaRuta)
         {
-            sentencias.ModificarRuta(id, sNuevaRuta);
+            sentencias.ModificarRuta(iIdReporte, sNuevaRuta);
         }
         // fin de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha de: 11/09/2025
 
         // Inicio de código de: Anderson Trigueros con carné: 0901-22-6961 en la fecha de 23/09/2025
-        public void ModificarTitulo(int id, String sTituloNuevo)
+        public void ModificarTitulo(int iIdReporte, String sTituloNuevo)
         {
-            sentencias.ModificarTitulo(id, sTituloNuevo);
+            if (!ValidarTexto(sTituloNuevo))
+                throw new Exception("El título contiene caracteres no permitidos.");
+
+            sentencias.ModificarTitulo(iIdReporte, sTituloNuevo);
         }
         // Fin de código de: Anderson Trigueros con carné: 0901-22-6961 en la fecha de: 23/09/2025
 
@@ -161,6 +165,23 @@ namespace Capa_Controlador_Reporteador
 
         // Fin de código de: Gerber Asturias con carné: 0901-22-11992 en la fecha: 13/10/2025
 
+
+
+        // Inicio de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha: 04/11/2025
+        private bool ValidarTexto(string sTexto)
+        {
+            if (string.IsNullOrWhiteSpace(sTexto))
+                return false;
+
+            // Solo permite letras, números, espacios, guiones y puntos.
+            return System.Text.RegularExpressions.Regex.IsMatch(
+            sTexto, @"^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ \-\._]+$"
+            );
+        }
+        // Fin de código de: Paula Leonardo con carné: 0901-22-9580 en la fecha: 04/11/2025
+
+
     }
+
 }
 
