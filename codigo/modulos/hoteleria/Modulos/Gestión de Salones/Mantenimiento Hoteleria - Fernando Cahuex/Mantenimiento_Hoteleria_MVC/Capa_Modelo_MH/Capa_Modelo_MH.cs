@@ -21,13 +21,13 @@ namespace Capa_Modelo_MH
 
         public OdbcDataAdapter MostrarMantenimientos()
         {
-            return new OdbcDataAdapter("SELECT * FROM Tbl_mantenimiento;", conexion.conexion());
+            return new OdbcDataAdapter("SELECT * FROM Tbl_Mantenimiento;", conexion.conexion());
         }
 
         public void InsertarMantenimiento(string salon, string habitacion, string empleado, string tipo, string descripcion,
                                           string estado, string fechaInicio, string fechaFin)
         {
-            const string sql = @"INSERT INTO Tbl_mantenimiento 
+            const string sql = @"INSERT INTO Tbl_Mantenimiento 
                                  (Fk_Id_Salon, Fk_Id_Habitacion, Fk_Id_Empleado, 
                                   Cmp_Tipo_Mantenimiento, Cmp_Descripcion_Mantenimiento,
                                   Cmp_Estado, Cmp_Fecha_Inicio_Mantenimiento, Cmp_Fecha_Fin_Mantenimiento)
@@ -54,7 +54,7 @@ namespace Capa_Modelo_MH
         public void ActualizarMantenimiento(string id, string salon, string habitacion, string empleado, string tipo,
                                             string descripcion, string estado, string fechaInicio, string fechaFin)
         {
-            const string sql = @"UPDATE Tbl_mantenimiento SET 
+            const string sql = @"UPDATE Tbl_Mantenimiento SET 
                                  Fk_Id_Salon=?, Fk_Id_Habitacion=?, Fk_Id_Empleado=?, 
                                  Cmp_Tipo_Mantenimiento=?, Cmp_Descripcion_Mantenimiento=?, 
                                  Cmp_Estado=?, Cmp_Fecha_Inicio_Mantenimiento=?, Cmp_Fecha_Fin_Mantenimiento=? 
@@ -84,7 +84,7 @@ namespace Capa_Modelo_MH
             using (var conn = conexion.conexion())
             {
                 conn.Open();
-                using (var cmd = new OdbcCommand("DELETE FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
+                using (var cmd = new OdbcCommand("DELETE FROM Tbl_Mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
                 {
                     cmd.Parameters.AddWithValue("Pk_Id_Mantenimiento", id);
                     cmd.ExecuteNonQuery();
@@ -97,7 +97,7 @@ namespace Capa_Modelo_MH
             var tabla = new DataTable();
             using (var conn = conexion.conexion())
             {
-                using (var cmd = new OdbcCommand("SELECT * FROM Tbl_mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
+                using (var cmd = new OdbcCommand("SELECT * FROM Tbl_Mantenimiento WHERE Pk_Id_Mantenimiento=?;", conn))
                 {
                     cmd.Parameters.AddWithValue("Pk_Id_Mantenimiento", id);
                     new OdbcDataAdapter(cmd).Fill(tabla);
@@ -114,10 +114,10 @@ namespace Capa_Modelo_MH
         }
 
         public DataTable ObtenerEmpleados() =>
-            EjecutarConsulta("SELECT Pk_Id_Empleado, CONCAT(Pk_Id_Empleado, ' - ', Cmp_Nombres_Empleado, ' ', Cmp_Apellidos_Empleado) AS Nombre_Empleado FROM tbl_empleado ORDER BY Pk_Id_Empleado;");
+            EjecutarConsulta("SELECT Pk_Id_Empleado, CONCAT(Pk_Id_Empleado, ' - ', Cmp_Nombres_Empleado, ' ', Cmp_Apellidos_Empleado) AS Nombre_Empleado FROM Tbl_Empleado ORDER BY Pk_Id_Empleado;");
 
         public DataTable ObtenerSalones() =>
-            EjecutarConsulta("SELECT Pk_Id_Salon, CONCAT(Pk_Id_Salon, ' - ', Cmp_Nombre_Salon) AS Nombre_Salon FROM tbl_salones ORDER BY Pk_Id_Salon;");
+            EjecutarConsulta("SELECT Pk_Id_Salon, CONCAT(Pk_Id_Salon, ' - ', Cmp_Nombre_Salon) AS Nombre_Salon FROM Tbl_Salones ORDER BY Pk_Id_Salon;");
 
         public DataTable ObtenerHabitaciones() =>
             EjecutarConsulta(@"SELECT h.PK_ID_Habitaciones, CONCAT(h.PK_ID_Habitaciones, ' - ', t.Cmp_Tipo_Habitacion) AS Nombre_Habitacion FROM Tbl_Habitaciones h INNER JOIN Tbl_Tipo_Habitacion t ON h.FK_ID_Tipo_Habitaciones = t.PK_ID_Tipo_Habitaciones ORDER BY h.PK_ID_Habitaciones;");
