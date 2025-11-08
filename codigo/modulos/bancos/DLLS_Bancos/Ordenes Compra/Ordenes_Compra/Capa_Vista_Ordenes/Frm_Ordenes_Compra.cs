@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Ordenes;
 
+// Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
 namespace Capa_Vista_Ordenes
 {
     public partial class Frm_Ordenes_Compra : Form
@@ -173,3 +174,4 @@ namespace Capa_Vista_Ordenes
         }
     }
 }
+// Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
