@@ -358,7 +358,7 @@ namespace Capa_Vista_Bancos
 
         private void autorizaciónOrdenesDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Ordenes Ord = new Frm_Ordenes();
+            Frm_Ordenes_Compra Ord = new Frm_Ordenes_Compra();
             Ord.ShowDialog();
         }
 

@@ -1527,7 +1527,7 @@ namespace Capa_Vista_MB
 
 
 
-         void CargarControlesConDatos(Cls_ValidacionesCargarEdicion.MovimientoEdicionDTO )
+         void CargarControlesConDatos(Cls_ValidacionesCargarEdicion.MovimientoEdicionDTO d )
         {
             // ---- PINTAR CONTROLES BÁSICOS ----
             Cbo_NoCuenta_Envia.SelectedValue = d.FkCuentaOrigen;
