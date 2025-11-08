@@ -1431,7 +1431,7 @@ namespace Capa_Vista_MB
                     Txt_NombreCuenta_Envia.Text = oSeleccion.fun_obtener_nombre_cuenta(idOri);
                 }
 
-        private void CargarControlesConDatos(Cls_ValidacionesCargarEdicion.MovimientoEdicionDTO d)
+         void CargarControlesConDatos(Cls_ValidacionesCargarEdicion.MovimientoEdicionDTO )
         {
             // ---- PINTAR CONTROLES ----
             Cbo_NoCuenta_Envia.SelectedValue = d.FkCuentaOrigen;
