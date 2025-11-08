@@ -1,4 +1,4 @@
-﻿//Ernesto Samayoa
+﻿//Ernesto Samayoa Nuevo Estandarizado
 using System;
 using System.Data;
 using Capa_Modelo_Cierre;
@@ -9,34 +9,28 @@ namespace Capa_Controlador_Cierre
     {
         private readonly Cls_Cierre_DiarioDAO dao = new Cls_Cierre_DiarioDAO();
 
-        // ======================================================
-        // 🔹 ESTRUCTURA DE RESULTADOS
-        // ======================================================
+        //ESTRUCTURA DE RESULTADOS
         public class CierreResultado
         {
             public DataTable Detalle { get; set; } = new DataTable();
-            public double Ingresos { get; set; }
-            public double Egresos { get; set; }
-            public double Saldo { get; set; }
+            public double doIngresos { get; set; }
+            public double doEgresos { get; set; }
+            public double doSaldo { get; set; }
         }
 
-        // ======================================================
-        // 🔹 RESULTADO PARA CONSULTA (incluye encabezado)
-        // ======================================================
+        //RESULTADO PARA CONSULTA (incluye encabezado)
         public class CierreConsultaResultado : CierreResultado
         {
-            public DateTime Fecha { get; set; }
-            public string Descripcion { get; set; } = string.Empty;
+            public DateTime dFecha { get; set; }
+            public string sDescripcion { get; set; } = string.Empty;
         }
 
-        // ======================================================
-        // 🔹 OBTENER FOLIOS POR FECHA (Habitaciones + Salones)
-        // ======================================================
-        public DataTable ObtenerFolios(DateTime fechaCorte)
+        //OBTENER FOLIOS POR FECHA (Habitaciones + Salones)
+        public DataTable fun_ObtenerFolios(DateTime fechaCorte)
         {
             try
             {
-                var data = dao.ObtenerFoliosPorFecha(fechaCorte);
+                var data = dao.fun_ObtenerFoliosPorFecha(fechaCorte);
                 if (data == null || data.Rows.Count == 0)
                     Console.WriteLine($"⚠️ No se encontraron folios para la fecha {fechaCorte:dd/MM/yyyy}");
                 return data ?? new DataTable();
@@ -48,14 +42,12 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 CALCULAR TOTALES (Habitaciones + Salones)
-        // ======================================================
-        public (double ingresos, double egresos, double saldo) CalcularTotales(DateTime fechaCorte)
+        //CALCULAR TOTALES (Habitaciones + Salones)
+        public (double doIngresos, double doEgresos, double doSaldo) fun_CalcularTotales(DateTime dFechaCorte)
         {
             try
             {
-                return dao.CalcularTotales(fechaCorte);
+                return dao.fun_CalcularTotales(dFechaCorte);
             }
             catch (Exception ex)
             {
@@ -64,21 +56,19 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 GENERAR CIERRE (simula cálculo previo)
-        // ======================================================
-        public CierreResultado GenerarCierre(DateTime fechaCorte, string descripcion)
+        // GENERAR CIERRE (simula cálculo previo)
+        public CierreResultado fun_GenerarCierre(DateTime dFechaCorte, string sDescripcion)
         {
-            if (string.IsNullOrWhiteSpace(descripcion))
-                descripcion = $"Cierre automático del día {fechaCorte:dd/MM/yyyy}";
+            if (string.IsNullOrWhiteSpace(sDescripcion))
+                sDescripcion = $"Cierre automático del día {dFechaCorte:dd/MM/yyyy}";
 
             try
             {
-                var detalle = ObtenerFolios(fechaCorte);
-                var (ingresos, egresos, saldo) = CalcularTotales(fechaCorte);
+                var detalle = fun_ObtenerFolios(dFechaCorte);
+                var (doIngresos, doEgresos, doSaldo) = fun_CalcularTotales(dFechaCorte);
 
                 // Fallback: si la consulta de totales devuelve 0 pero hay filas, recalcular desde el detalle
-                if (detalle != null && detalle.Rows.Count > 0 && ingresos == 0 && egresos == 0)
+                if (detalle != null && detalle.Rows.Count > 0 && doIngresos == 0 && doEgresos == 0)
                 {
                     double ingresosCalc = 0, egresosCalc = 0;
                     foreach (DataRow row in detalle.Rows)
@@ -88,17 +78,17 @@ namespace Capa_Controlador_Cierre
                         if (row["Egresos"] != DBNull.Value)
                             egresosCalc += Convert.ToDouble(row["Egresos"]);
                     }
-                    ingresos = ingresosCalc;
-                    egresos = egresosCalc;
-                    saldo = ingresos - egresos;
+                    doIngresos = ingresosCalc;
+                    doEgresos = egresosCalc;
+                    doSaldo = doIngresos - doEgresos;
                 }
 
                 return new CierreResultado
                 {
                     Detalle = detalle,
-                    Ingresos = ingresos,
-                    Egresos = egresos,
-                    Saldo = saldo
+                    doIngresos = doIngresos,
+                    doEgresos = doEgresos,
+                    doSaldo = doSaldo
                 };
             }
             catch (Exception ex)
@@ -108,38 +98,36 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 CARGAR CIERRE EXISTENTE (Detalle + Totales + Encabezado)
-        // ======================================================
-        public CierreConsultaResultado CargarCierreExistente(int idCierre)
+        //CARGAR CIERRE EXISTENTE (Detalle + Totales + Encabezado)
+        public CierreConsultaResultado fun_CargarCierreExistente(int iIdCierre)
         {
             try
             {
                 var resultado = new CierreConsultaResultado();
 
                 // Detalle del cierre
-                var detalle = dao.ObtenerDetalleCierre(idCierre) ?? new DataTable();
+                var detalle = dao.fun_ObtenerDetalleCierre(iIdCierre) ?? new DataTable();
                 resultado.Detalle = detalle;
 
                 // Calcular totales en el controlador (la vista no calcula)
-                double ingresos = 0, egresos = 0;
+                double doIngresos = 0, doEgresos = 0;
                 foreach (DataRow row in detalle.Rows)
                 {
                     if (row["Ingresos"] != DBNull.Value)
-                        ingresos += Convert.ToDouble(row["Ingresos"]);
+                        doIngresos += Convert.ToDouble(row["Ingresos"]);
                     if (row["Egresos"] != DBNull.Value)
-                        egresos += Convert.ToDouble(row["Egresos"]);
+                        doEgresos += Convert.ToDouble(row["Egresos"]);
                 }
-                resultado.Ingresos = ingresos;
-                resultado.Egresos = egresos;
-                resultado.Saldo = ingresos - egresos;
+                resultado.doIngresos = doIngresos;
+                resultado.doEgresos = doEgresos;
+                resultado.doSaldo = doIngresos - doEgresos;
 
                 // Encabezado (fecha y descripción)
-                var encabezado = dao.ObtenerEncabezadoCierre(idCierre);
+                var encabezado = dao.fun_ObtenerEncabezadoCierre(iIdCierre);
                 if (encabezado.HasValue)
                 {
-                    resultado.Fecha = encabezado.Value.fecha;
-                    resultado.Descripcion = encabezado.Value.descripcion ?? string.Empty;
+                    resultado.dFecha = encabezado.Value.dFecha;
+                    resultado.sDescripcion = encabezado.Value.sDescripcion ?? string.Empty;
                 }
 
                 return resultado;
@@ -151,10 +139,8 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 GUARDAR CIERRE COMPLETO (Encabezado + Detalle)
-        // ======================================================
-        public bool GuardarCierre(DateTime fechaCorte, string descripcion, double ingresos, double egresos, double saldo, DataTable detalle)
+        // GUARDAR CIERRE COMPLETO (Encabezado + Detalle)
+        public bool fun_GuardarCierre(DateTime dFechaCorte, string sDescripcion, double doIngresos, double doEgresos, double doSaldo, DataTable detalle)
         {
             try
             {
@@ -164,30 +150,30 @@ namespace Capa_Controlador_Cierre
                     return false;
                 }
 
-                if (string.IsNullOrWhiteSpace(descripcion))
-                    descripcion = $"Cierre del día {fechaCorte:dd/MM/yyyy}";
+                if (string.IsNullOrWhiteSpace(sDescripcion))
+                    sDescripcion = $"Cierre del día {dFechaCorte:dd/MM/yyyy}";
 
-                // 1️⃣ Insertar encabezado del cierre
-                int idCierre = dao.InsertarCierre(fechaCorte, descripcion, ingresos, egresos, saldo);
-                if (idCierre <= 0)
+                // 1️ Insertar encabezado del cierre
+                int iIdCierre = dao.fun_InsertarCierre(dFechaCorte, sDescripcion, doIngresos, doEgresos, doSaldo);
+                if (iIdCierre <= 0)
                 {
                     Console.WriteLine("⚠️ No se pudo insertar el encabezado del cierre.");
                     return false;
                 }
 
-                // 2️⃣ Insertar cada folio del detalle (habitaciones o salones)
+                // 2️ Insertar cada folio del detalle (habitaciones o salones)
                 foreach (DataRow row in detalle.Rows)
                 {
                     if (row["ID Folio"] == DBNull.Value || row["Tipo_Folio"] == DBNull.Value)
                         continue;
 
-                    int idFolio = Convert.ToInt32(row["ID Folio"]);
-                    string tipo = row["Tipo_Folio"].ToString();
+                    int iIdFolio = Convert.ToInt32(row["ID Folio"]);
+                    string sTipo = row["Tipo_Folio"].ToString();
 
-                    dao.InsertarDetalle(idCierre, idFolio, tipo);
+                    dao.fun_InsertarDetalle(iIdCierre, iIdFolio, sTipo);
                 }
 
-                Console.WriteLine($"✅ Cierre #{idCierre} guardado correctamente ({fechaCorte:dd/MM/yyyy}).");
+                Console.WriteLine($"✅ Cierre #{iIdCierre} guardado correctamente ({dFechaCorte:dd/MM/yyyy}).");
                 return true;
             }
             catch (Exception ex)
@@ -197,14 +183,12 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 OBTENER LISTA DE CIERRES (para ComboBox)
-        // ======================================================
-        public DataTable ObtenerListaCierres()
+        //OBTENER LISTA DE CIERRES (para ComboBox)
+        public DataTable fun_ObtenerListaCierres()
         {
             try
             {
-                return dao.ObtenerListaCierres();
+                return dao.fun_ObtenerListaCierres();
             }
             catch (Exception ex)
             {
@@ -213,14 +197,12 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 OBTENER DETALLE COMPLETO DE UN CIERRE
-        // ======================================================
-        public DataTable ObtenerDetalleCierre(int idCierre)
+        // OBTENER DETALLE COMPLETO DE UN CIERRE
+        public DataTable fun_ObtenerDetalleCierre(int iIdCierre)
         {
             try
             {
-                return dao.ObtenerDetalleCierre(idCierre);
+                return dao.fun_ObtenerDetalleCierre(iIdCierre);
             }
             catch (Exception ex)
             {
@@ -229,14 +211,12 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // ======================================================
-        // 🔹 OBTENER ENCABEZADO DE UN CIERRE (Fecha + Descripción)
-        // ======================================================
-        public (DateTime fecha, string descripcion)? ObtenerEncabezadoCierre(int idCierre)
+        //OBTENER ENCABEZADO DE UN CIERRE (Fecha + Descripción)
+        public (DateTime dFecha, string sDescripcion)? fun_ObtenerEncabezadoCierre(int iIdCierre)
         {
             try
             {
-                return dao.ObtenerEncabezadoCierre(idCierre);
+                return dao.fun_ObtenerEncabezadoCierre(iIdCierre);
             }
             catch (Exception ex)
             {
@@ -245,12 +225,12 @@ namespace Capa_Controlador_Cierre
             }
         }
 
-        // 🔹 ELIMINAR CIERRE DESDE CONTROLADOR
-        public bool EliminarCierre(int idCierre)
+        //ELIMINAR CIERRE DESDE CONTROLADOR
+        public bool fun_EliminarCierre(int idCierre)
         {
             try
             {
-                return dao.EliminarCierre(idCierre);
+                return dao.fun_EliminarCierre(idCierre);
             }
             catch (Exception ex)
             {

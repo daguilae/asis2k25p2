@@ -1,4 +1,5 @@
-﻿using System;
+﻿//Ernesto Samayoa Estandarizado
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Odbc;
@@ -9,8 +10,8 @@ namespace Capa_Modelo_Cierre
     {
         private Cls_Conexion conexion = new Cls_Conexion();
 
-        // OBTENER FOLIOS (Habitaciones y Salones) por fecha
-        public DataTable ObtenerFoliosPorFecha(DateTime fechaCorte)
+        //OBTENER FOLIOS (HABITACIONES Y SALONES) POR FECHA
+        public DataTable fun_ObtenerFoliosPorFecha(DateTime dFechaCorte)
         {
             DataTable tabla = new DataTable();
 
@@ -25,7 +26,7 @@ namespace Capa_Modelo_Cierre
                 'Habitación' AS 'Tipo_Folio'
             FROM Tbl_Folio f
             WHERE DATE(f.Cmp_Fecha_Cierre) = ?
-              AND UPPER(f.Cmp_Estado) = 'CERRADO'
+              AND UPPER(f.Cmp_Estado) = 'Cerrado'
             
             UNION ALL
             
@@ -43,8 +44,8 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@fecha1", fechaCorte.Date);
-                    cmd.Parameters.AddWithValue("@fecha2", fechaCorte.Date);
+                    cmd.Parameters.AddWithValue("@fecha1", dFechaCorte.Date);
+                    cmd.Parameters.AddWithValue("@fecha2", dFechaCorte.Date);
 
                     OdbcDataAdapter da = new OdbcDataAdapter(cmd);
                     da.Fill(tabla);
@@ -58,10 +59,10 @@ namespace Capa_Modelo_Cierre
             return tabla;
         }
 
-        // 🔹 CALCULAR TOTALES AUTOMÁTICAMENTE (Habitaciones + Salones)
-        public (double ingresos, double egresos, double saldo) CalcularTotales(DateTime fechaCorte)
+        //CALCULAR TOTALES AUTOMÁTICAMENTE (Habitaciones + Salones)
+        public (double doIngresos, double doEgresos, double doSaldo) fun_CalcularTotales(DateTime dFechaCorte)
         {
-            double ingresosHabitaciones = 0, egresosHabitaciones = 0, ingresosSalones = 0;
+            double doIngresosHabitaciones = 0, doEgresosHabitaciones = 0, doIngresosSalones = 0;
             try
             {
                 using (OdbcConnection conn = conexion.conexion())
@@ -72,28 +73,28 @@ namespace Capa_Modelo_Cierre
                                               WHERE DATE(Cmp_Fecha_Cierre) = ? AND UPPER(Cmp_Estado) = 'CERRADO';";
                     using (OdbcCommand cmdHab = new OdbcCommand(sqlHabitaciones, conn))
                     {
-                        cmdHab.Parameters.AddWithValue("@fechaH", fechaCorte.Date);
+                        cmdHab.Parameters.AddWithValue("@fechaH", dFechaCorte.Date);
                         using (var dr = cmdHab.ExecuteReader())
                         {
                             if (dr.Read())
                             {
-                                ingresosHabitaciones = dr.IsDBNull(0) ? 0 : dr.GetDouble(0);
-                                egresosHabitaciones = dr.IsDBNull(1) ? 0 : dr.GetDouble(1);
+                                doIngresosHabitaciones = dr.IsDBNull(0) ? 0 : dr.GetDouble(0);
+                                doEgresosHabitaciones = dr.IsDBNull(1) ? 0 : dr.GetDouble(1);
                             }
                         }
                     }
 
-                    // Folios de salones
+                    //Folios de salones
                     string sqlSalones = @"SELECT IFNULL(SUM(Cmp_Pago_Total),0)
                                           FROM Tbl_Folio_Salones
                                           WHERE DATE(Cmp_Fecha_Pago) = ? AND UPPER(Cmp_Estado) = 'PAGADO';";
                     using (OdbcCommand cmdSal = new OdbcCommand(sqlSalones, conn))
                     {
-                        cmdSal.Parameters.AddWithValue("@fechaS", fechaCorte.Date);
+                        cmdSal.Parameters.AddWithValue("@fechaS", dFechaCorte.Date);
                         using (var dr = cmdSal.ExecuteReader())
                         {
                             if (dr.Read())
-                                ingresosSalones = dr.IsDBNull(0) ? 0 : dr.GetDouble(0);
+                                doIngresosSalones = dr.IsDBNull(0) ? 0 : dr.GetDouble(0);
                         }
                     }
                 }
@@ -103,16 +104,16 @@ namespace Capa_Modelo_Cierre
                 Console.WriteLine("❌ Error al calcular totales: " + ex.Message);
             }
 
-            double ingresos = ingresosHabitaciones + ingresosSalones;
-            double egresos = egresosHabitaciones;
-            double saldo = ingresos - egresos;
-            return (ingresos, egresos, saldo);
+            double doIngresos = doIngresosHabitaciones + doIngresosSalones;
+            double doEgresos = doEgresosHabitaciones;
+            double doSaldo = doIngresos - doEgresos;
+            return (doIngresos, doEgresos, doSaldo);
         }
 
-        // INSERTAR ENCABEZADO DEL CIERRE
-        public int InsertarCierre(DateTime fechaCorte, string descripcion, double ingresos, double egresos, double saldo)
+        //INSERTAR ENCABEZADO DEL CIERRE
+        public int fun_InsertarCierre(DateTime dFechaCorte, string sDescripcion, double doIngresos, double doEgresos, double doSaldo)
         {
-            int idCierre = -1;
+            int iIdCierre = -1;
 
             try
             {
@@ -127,11 +128,11 @@ namespace Capa_Modelo_Cierre
                 {
                     using (OdbcCommand cmd = new OdbcCommand(sqlInsert, conn))
                     {
-                        cmd.Parameters.AddWithValue("@fechaCorte", fechaCorte);
-                        cmd.Parameters.AddWithValue("@descripcion", descripcion);
-                        cmd.Parameters.AddWithValue("@ingresos", ingresos);
-                        cmd.Parameters.AddWithValue("@egresos", egresos);
-                        cmd.Parameters.AddWithValue("@saldo", saldo);
+                        cmd.Parameters.AddWithValue("@fechaCorte", dFechaCorte);
+                        cmd.Parameters.AddWithValue("@descripcion", sDescripcion);
+                        cmd.Parameters.AddWithValue("@ingresos", doIngresos);
+                        cmd.Parameters.AddWithValue("@egresos", doEgresos);
+                        cmd.Parameters.AddWithValue("@saldo", doSaldo);
                         cmd.ExecuteNonQuery();
                     }
 
@@ -140,27 +141,29 @@ namespace Capa_Modelo_Cierre
                     {
                         object result = cmdLast.ExecuteScalar();
                         if (result != null && int.TryParse(result.ToString(), out int id))
-                            idCierre = id;
+                            iIdCierre = id;
                     }
                 }
 
-                Console.WriteLine($"✅ Cierre insertado correctamente: ID={idCierre}, Ingresos={ingresos}, Egresos={egresos}, Saldo={saldo}");
+                Console.WriteLine($"✅ Cierre insertado correctamente: ID={iIdCierre}, Ingresos={doIngresos}, Egresos={doEgresos}, Saldo={doSaldo}");
             }
             catch (Exception ex)
             {
                 Console.WriteLine("❌ Error al insertar cierre: " + ex.Message);
             }
 
-            return idCierre;
+            return iIdCierre;
         }
 
-        // INSERTAR DETALLE (Habitaciones y Salones)
-        public void InsertarDetalle(int idCierre, int idFolio, string tipoFolio)
+        // ======================================================
+        // 🔹 INSERTAR DETALLE (Habitaciones y Salones)
+        // ======================================================
+        public void fun_InsertarDetalle(int iIdCierre, int iIdFolio, string sTipoFolio)
         {
             try
             {
-                string tablaDestino = tipoFolio == "Salón" ? "Tbl_Detalle_Cierre_Salones" : "Tbl_Detalle_Cierre_Diario";
-                string campoFolio = tipoFolio == "Salón" ? "Fk_Id_Folio_Salon" : "Fk_Id_Folio";
+                string tablaDestino = sTipoFolio == "Salón" ? "Tbl_Detalle_Cierre_Salones" : "Tbl_Detalle_Cierre_Diario";
+                string campoFolio = sTipoFolio == "Salón" ? "Fk_Id_Folio_Salon" : "Fk_Id_Folio";
 
                 string sql = $@"
                     INSERT INTO {tablaDestino} (Fk_Id_Cierre, {campoFolio})
@@ -170,16 +173,16 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idCierre", idCierre);
-                    cmd.Parameters.AddWithValue("@idFolio", idFolio);
+                    cmd.Parameters.AddWithValue("@idCierre", iIdCierre);
+                    cmd.Parameters.AddWithValue("@idFolio", iIdFolio);
                     cmd.ExecuteNonQuery();
                 }
 
                 // Actualizar estado según tipo
-                if (tipoFolio == "Habitación")
-                    ActualizarEstadoFolio(idFolio, "ASIGNADO AL CIERRE");
-                else if (tipoFolio == "Salón")
-                    ActualizarEstadoFolioSalon(idFolio, "ASIGNADO AL CIERRE");
+                if (sTipoFolio == "Habitación")
+                    fun_ActualizarEstadoFolio(iIdFolio, "ASIGNADO AL CIERRE");
+                else if (sTipoFolio == "Salón")
+                    fun_ActualizarEstadoFolioSalon(iIdFolio, "ASIGNADO AL CIERRE");
             }
             catch (Exception ex)
             {
@@ -188,7 +191,7 @@ namespace Capa_Modelo_Cierre
         }
 
         //ACTUALIZAR ESTADO DE FOLIOS
-        private void ActualizarEstadoFolio(int idFolio, string nuevoEstado)
+        private void fun_ActualizarEstadoFolio(int iIdFolio, string sNuevoEstado)
         {
             try
             {
@@ -196,8 +199,8 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@estado", nuevoEstado);
-                    cmd.Parameters.AddWithValue("@folio", idFolio);
+                    cmd.Parameters.AddWithValue("@estado", sNuevoEstado);
+                    cmd.Parameters.AddWithValue("@folio", iIdFolio);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -207,7 +210,7 @@ namespace Capa_Modelo_Cierre
             }
         }
 
-        private void ActualizarEstadoFolioSalon(int idFolioSalon, string nuevoEstado)
+        private void fun_ActualizarEstadoFolioSalon(int iIdFolioSalon, string sNuevoEstado)
         {
             try
             {
@@ -215,8 +218,8 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@estado", nuevoEstado);
-                    cmd.Parameters.AddWithValue("@folio", idFolioSalon);
+                    cmd.Parameters.AddWithValue("@estado", sNuevoEstado);
+                    cmd.Parameters.AddWithValue("@folio", iIdFolioSalon);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -226,8 +229,8 @@ namespace Capa_Modelo_Cierre
             }
         }
 
-        // OBTENER LISTA DE CIERRES
-        public DataTable ObtenerListaCierres()
+        //OBTENER LISTA DE CIERRES
+        public DataTable fun_ObtenerListaCierres()
         {
             DataTable tabla = new DataTable();
             try
@@ -239,7 +242,7 @@ namespace Capa_Modelo_Cierre
                         Cmp_Descripcion AS 'Descripcion',
                         CONCAT(Pk_Id_Cierre, ' - ', DATE_FORMAT(Cmp_Fecha_Corte, '%d/%m/%Y')) AS 'Etiqueta'
                     FROM Tbl_Cierre_Diario
-                    ORDER BY Cmp_Fecha_Corte ASC;
+                    ORDER BY Pk_Id_Cierre ASC;
                 ";
 
                 using (OdbcConnection conn = conexion.conexion())
@@ -256,21 +259,21 @@ namespace Capa_Modelo_Cierre
         }
 
         //OBTENER DETALLE COMPLETO (Habitaciones + Salones)
-        public DataTable ObtenerDetalleCierre(int idCierre)
+        public DataTable fun_ObtenerDetalleCierre(int iIdCierre)
         {
             DataTable tabla = new DataTable();
             try
             {
                 string sql = @"
                     SELECT 
+                        cd.Pk_Id_Cierre AS 'ID_Cierre',
+                        DATE_FORMAT(cd.Cmp_Fecha_Corte, '%d/%m/%Y') AS 'Fecha_Cierre',
                         d.Pk_Id_Detalle AS 'ID Detalle',
                         f.Pk_Id_Folio AS 'ID Folio',
                         f.Cmp_Total_Cargos AS 'Ingresos',
                         f.Cmp_Total_Abonos AS 'Egresos',
                         f.Cmp_Saldo_Final AS 'Saldo',
-                        'Habitación' AS 'Tipo_Folio',
-                        cd.Pk_Id_Cierre AS 'ID_Cierre',
-                        DATE_FORMAT(cd.Cmp_Fecha_Corte, '%d/%m/%Y') AS 'Fecha_Cierre'
+                        'Habitación' AS 'Tipo_Folio'
                     FROM Tbl_Detalle_Cierre_Diario d
                     INNER JOIN Tbl_Folio f ON d.Fk_Id_Folio = f.Pk_Id_Folio
                     INNER JOIN Tbl_Cierre_Diario cd ON d.Fk_Id_Cierre = cd.Pk_Id_Cierre
@@ -279,14 +282,14 @@ namespace Capa_Modelo_Cierre
                     UNION ALL
                     
                     SELECT 
+                        cd.Pk_Id_Cierre AS 'ID_Cierre',
+                        DATE_FORMAT(cd.Cmp_Fecha_Corte, '%d/%m/%Y') AS 'Fecha_Cierre',
                         ds.Pk_Id_Detalle_Salon AS 'ID Detalle',
                         fs.Pk_Id_Folio_Salones AS 'ID Folio',
                         fs.Cmp_Pago_Total AS 'Ingresos',
                         0 AS 'Egresos',
                         fs.Cmp_Pago_Total AS 'Saldo',
-                        'Salón' AS 'Tipo_Folio',
-                        cd.Pk_Id_Cierre AS 'ID_Cierre',
-                        DATE_FORMAT(cd.Cmp_Fecha_Corte, '%d/%m/%Y') AS 'Fecha_Cierre'
+                        'Salón' AS 'Tipo_Folio'
                     FROM Tbl_Detalle_Cierre_Salones ds
                     INNER JOIN Tbl_Folio_Salones fs ON ds.Fk_Id_Folio_Salon = fs.Pk_Id_Folio_Salones
                     INNER JOIN Tbl_Cierre_Diario cd ON ds.Fk_Id_Cierre = cd.Pk_Id_Cierre
@@ -296,8 +299,8 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idCierre1", idCierre);
-                    cmd.Parameters.AddWithValue("@idCierre2", idCierre);
+                    cmd.Parameters.AddWithValue("@idCierre1", iIdCierre);
+                    cmd.Parameters.AddWithValue("@idCierre2", iIdCierre);
                     OdbcDataAdapter da = new OdbcDataAdapter(cmd);
                     da.Fill(tabla);
                 }
@@ -309,8 +312,9 @@ namespace Capa_Modelo_Cierre
             return tabla;
         }
 
-        // OBTENER ENCABEZADO DEL CIERRE
-        public (DateTime fecha, string descripcion)? ObtenerEncabezadoCierre(int idCierre)
+
+        //OBTENER ENCABEZADO DEL CIERRE
+        public (DateTime dFecha, string sDescripcion)? fun_ObtenerEncabezadoCierre(int iIdCierre)
         {
             try
             {
@@ -318,7 +322,7 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idCierre", idCierre);
+                    cmd.Parameters.AddWithValue("@idCierre", iIdCierre);
                     using (OdbcDataReader dr = cmd.ExecuteReader())
                     {
                         if (dr.Read())
@@ -337,9 +341,8 @@ namespace Capa_Modelo_Cierre
             return null;
         }
 
-
-        // ELIMINAR CIERRE (y sus detalles en cascada)
-        public bool EliminarCierre(int idCierre)
+        //ELIMINAR CIERRE (y sus detalles en cascada)
+        public bool fun_EliminarCierre(int iIdCierre)
         {
             try
             {
@@ -348,12 +351,12 @@ namespace Capa_Modelo_Cierre
                 using (OdbcConnection conn = conexion.conexion())
                 using (OdbcCommand cmd = new OdbcCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@idCierre", idCierre);
+                    cmd.Parameters.AddWithValue("@idCierre", iIdCierre);
                     int filas = cmd.ExecuteNonQuery();
 
                     if (filas > 0)
                     {
-                        Console.WriteLine($"✅ Cierre ID {idCierre} eliminado correctamente (con detalles).");
+                        Console.WriteLine($"✅ Cierre ID {iIdCierre} eliminado correctamente (con detalles).");
                         return true;
                     }
                 }
