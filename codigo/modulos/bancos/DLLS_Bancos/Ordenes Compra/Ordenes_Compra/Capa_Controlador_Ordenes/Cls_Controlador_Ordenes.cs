@@ -6,56 +6,24 @@ namespace Capa_Controlador_Ordenes
 {
     public class Cls_Controlador_Ordenes
     {
-        Cls_Sentencias_Ordenes modelo = new Cls_Sentencias_Ordenes();
+        private readonly Cls_Sentencias_Ordenes _m = new Cls_Sentencias_Ordenes();
 
-        public void Agregar(string idOrden, string idBanco, string fecha, string autorizadoPor, string monto, string idEstado)
-        {
-            try
-            {
-                int orden = int.Parse(idOrden);
-                int banco = int.Parse(idBanco);
+        // Listas
+        public DataTable ObtenerOrdenes() => _m.ObtenerOrdenes();
+        public DataTable ObtenerBancos() => _m.ObtenerBancos();
+        public DataTable ObtenerEmpleados() => _m.ObtenerEmpleados();
+        public DataTable ObtenerEstados() => _m.ObtenerEstados();
 
-                int estado = int.Parse(idEstado);
+        // Grid
+        public DataTable ObtenerAutorizacionesDetalle() => _m.ObtenerAutorizacionesDetalle();
 
-                modelo.Insertar(orden, banco,  fecha, autorizadoPor,  monto, estado);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al procesar datos: " + ex.Message);
-            }
-        }
+        // CRUD
+        public int Agregar(int idOrden, int idBanco, int? idEmpleado, DateTime fecha, decimal monto, int idEstado, string observ)
+            => _m.InsertarAutorizacion(idOrden, idBanco, idEmpleado, fecha, monto, idEstado, observ);
 
+        public int Actualizar(int idAut, int idOrden, int idBanco, int? idEmpleado, DateTime fecha, decimal monto, int idEstado, string observ)
+            => _m.ActualizarAutorizacion(idAut, idOrden, idBanco, idEmpleado, fecha, monto, idEstado, observ);
 
-        public void Eliminar(string idAutorizacion)
-        {
-            modelo.Eliminar(idAutorizacion);
-        }
-
-        public DataTable Mostrar()
-        {
-            return modelo.Mostrar();
-        }
-
-
-        public void Editar(string idAutorizacion, string idOrden, string idBanco, string fecha, string autorizadoPor, string monto, string idEstado)
-        {
-            try
-            {
-                int orden = int.Parse(idOrden);
-                int banco = int.Parse(idBanco);
-                int estado = int.Parse(idEstado);
-
-                modelo.Actualizar(idAutorizacion, orden, banco, fecha, autorizadoPor, monto, estado);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error al procesar datos: " + ex.Message);
-            }
-        }
-
-
-
-
-
+        public int Eliminar(int idAut) => _m.EliminarAutorizacion(idAut);
     }
 }

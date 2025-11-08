@@ -6,111 +6,144 @@ namespace Capa_Modelo_Ordenes
 {
     public class Cls_Sentencias_Ordenes
     {
-        Cls_Conexion_Ordenes con = new Cls_Conexion_Ordenes();
+        private readonly Cls_Conexion_Ordenes _cnx = new Cls_Conexion_Ordenes();
 
-        // INSERTAR
-        public void Insertar(int idOrden, int idBanco, string fecha, string autorizadoPor, string monto, int idEstado)
+
+        public DataTable ObtenerOrdenes()
         {
-            try
-            {
-                using (OdbcConnection conn = con.conexion())
-                {
-                    string sql = "INSERT INTO Tbl_Orden_Compra_Autorizada (Fk_Id_Orden_Compra, Fk_Id_Banco, Cmp_Fecha_Autorizacion, Cmp_Autorizado_Por, Cmp_Monto_Autorizado, Fk_Id_Estado_Autorizacion) VALUES (?, ?, ?, ?, ?, ?)";
-                    OdbcCommand cmd = new OdbcCommand(sql, conn);
-
-                    cmd.Parameters.AddWithValue("Fk_Id_Orden_Compra", idOrden);
-                    cmd.Parameters.AddWithValue("Fk_Id_Banco", idBanco);
-                    cmd.Parameters.AddWithValue("Cmp_Fecha_Autorizacion", fecha);
-                    cmd.Parameters.AddWithValue("Cmp_Autorizado_Por", autorizadoPor);
-                    cmd.Parameters.AddWithValue("Cmp_Monto_Autorizado", monto);
-                    cmd.Parameters.AddWithValue("Fk_Id_Estado_Autorizacion", idEstado);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (OdbcException ex)
-            {
-                Console.WriteLine("Error al insertar: " + ex.Message);
-            }
+            const string sql = @"SELECT Pk_Id_Orden_Compra, Cmp_Descripcion_Orden_Compra
+                                 FROM Tbl_Orden_Compra ORDER BY 1;";
+            return FillTable(sql);
         }
 
-        // ELIMINAR
-        public void Eliminar(string idAutorizacion)
+        public DataTable ObtenerBancos()
         {
-            try
-            {
-                using (OdbcConnection conn = con.conexion())
-                {
-                    string sql = "DELETE FROM Tbl_Orden_Compra_Autorizada WHERE Pk_Id_Autorizacion = ?";
-                    OdbcCommand cmd = new OdbcCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("Pk_Id_Autorizacion", idAutorizacion);
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (OdbcException ex)
-            {
-                Console.WriteLine("Error al eliminar: " + ex.Message);
-            }
+            const string sql = @"SELECT Pk_Id_Banco, Cmp_NombreBanco
+                                 FROM Tbl_Bancos ORDER BY Cmp_NombreBanco;";
+            return FillTable(sql);
         }
 
-
-        // ACTUALIZAR
-        public void Actualizar(string idAutorizacion, int idOrden, int idBanco, string fecha, string autorizadoPor, string monto, int idEstado)
+        public DataTable ObtenerEmpleados()
         {
-            try
-            {
-                using (OdbcConnection conn = con.conexion())
-                {
-                    string sql = "UPDATE Tbl_Orden_Compra_Autorizada " +
-                                 "SET Fk_Id_Orden_Compra = ?, Fk_Id_Banco = ?, Cmp_Fecha_Autorizacion = ?, " +
-                                 "Cmp_Autorizado_Por = ?, Cmp_Monto_Autorizado = ?, Fk_Id_Estado_Autorizacion = ? " +
-                                 "WHERE Pk_Id_Autorizacion = ?";
+            const string sql = @"SELECT Pk_Id_Empleado, Cmp_Nombre_Empleado
+                                 FROM Tbl_Empleado_Autorizado ORDER BY Cmp_Nombre_Empleado;";
+            return FillTable(sql);
+        }
 
-                    OdbcCommand cmd = new OdbcCommand(sql, conn);
+        public DataTable ObtenerEstados()
+        {
+            const string sql = @"SELECT Pk_Id_Estado_Autorizacion, Cmp_Nombre_Estado
+                                 FROM Tbl_Estado_Autorizacion;";
+            return FillTable(sql);
+        }
 
-                    cmd.Parameters.AddWithValue("Fk_Id_Orden_Compra", idOrden);
-                    cmd.Parameters.AddWithValue("Fk_Id_Banco", idBanco);
-                    cmd.Parameters.AddWithValue("Cmp_Fecha_Autorizacion", fecha);
-                    cmd.Parameters.AddWithValue("Cmp_Autorizado_Por", autorizadoPor);
-                    cmd.Parameters.AddWithValue("Cmp_Monto_Autorizado", monto);
-                    cmd.Parameters.AddWithValue("Fk_Id_Estado_Autorizacion", idEstado);
-                    cmd.Parameters.AddWithValue("Pk_Id_Autorizacion", idAutorizacion);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-            catch (OdbcException ex)
-            {
-                Console.WriteLine("Error al actualizar: " + ex.Message);
-            }
+        public DataTable ObtenerAutorizacionesDetalle()
+        {
+            const string sql = @"
+                SELECT
+                  a.Pk_Id_Autorizacion,
+                  a.Fk_Id_Orden_Compra,
+                  oc.Cmp_Descripcion_Orden_Compra AS Orden_Compra,
+                  a.Fk_Id_Banco,
+                  b.Cmp_NombreBanco AS Banco,
+                  a.Fk_Id_Empleado,
+                  ea.Cmp_Nombre_Empleado AS Empleado,
+                  a.Cmp_Fecha_Autorizacion,
+                  a.Cmp_Monto_Autorizado,
+                  a.Fk_Id_Estado_Autorizacion,
+                  es.Cmp_Nombre_Estado AS Estado,
+                  a.Cmp_Observaciones
+                FROM Tbl_Orden_Compra_Autorizada a
+                JOIN Tbl_Orden_Compra oc        ON oc.Pk_Id_Orden_Compra = a.Fk_Id_Orden_Compra
+                JOIN Tbl_Bancos b                ON b.Pk_Id_Banco = a.Fk_Id_Banco
+                LEFT JOIN Tbl_Empleado_Autorizado ea ON ea.Pk_Id_Empleado = a.Fk_Id_Empleado
+                JOIN Tbl_Estado_Autorizacion es ON es.Pk_Id_Estado_Autorizacion = a.Fk_Id_Estado_Autorizacion
+                ORDER BY a.Pk_Id_Autorizacion DESC;";
+            return FillTable(sql);
         }
 
 
-
-        // MOSTRAR TABLA
-        public DataTable Mostrar()
+        public int InsertarAutorizacion(int idOrden, int idBanco, int? idEmpleado, DateTime fecha,
+                                        decimal monto, int idEstado, string observ)
         {
-            DataTable tabla = new DataTable();
+            const string sql = @"
+                INSERT INTO Tbl_Orden_Compra_Autorizada
+                (Fk_Id_Orden_Compra, Fk_Id_Banco, Fk_Id_Empleado, Cmp_Fecha_Autorizacion,
+                 Cmp_Monto_Autorizado, Fk_Id_Estado_Autorizacion, Cmp_Observaciones)
+                VALUES (?, ?, ?, ?, ?, ?, ?);";
 
-            try
+            using (var conn = _cnx.conexion())
+            using (var cmd = new OdbcCommand(sql, conn))
             {
-                using (OdbcConnection conn = con.conexion())
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
+                cmd.Parameters.Add("@p2", OdbcType.Int).Value = idBanco;
+                cmd.Parameters.Add("@p3", OdbcType.Int).Value =
+                idEmpleado.HasValue ? (object)idEmpleado.Value : (object)DBNull.Value;
+
+                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = fecha;
+                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = monto;
+                cmd.Parameters.Add("@p6", OdbcType.Int).Value = idEstado;
+                cmd.Parameters.Add("@p7", OdbcType.VarChar, 255).Value =
+                observ != null ? (object)observ : (object)DBNull.Value;
+
+                cmd.ExecuteNonQuery();
+
+                using (var cmdId = new OdbcCommand("SELECT LAST_INSERT_ID();", conn))
                 {
-                    string sql = "SELECT * FROM Tbl_Orden_Compra_Autorizada";
-                    OdbcDataAdapter da = new OdbcDataAdapter(sql, conn);
-                    da.Fill(tabla);
+                    return Convert.ToInt32(cmdId.ExecuteScalar());
                 }
             }
-            catch (OdbcException ex)
-            {
-                Console.WriteLine("Error al mostrar datos: " + ex.Message);
-            }
-
-            return tabla;
         }
 
+        public int ActualizarAutorizacion(int idAut, int idOrden, int idBanco, int? idEmpleado, DateTime fecha,
+                                          decimal monto, int idEstado, string observ)
+        {
+            const string sql = @"
+                UPDATE Tbl_Orden_Compra_Autorizada
+                SET Fk_Id_Orden_Compra = ?, Fk_Id_Banco = ?, Fk_Id_Empleado = ?,
+                    Cmp_Fecha_Autorizacion = ?, Cmp_Monto_Autorizado = ?,
+                    Fk_Id_Estado_Autorizacion = ?, Cmp_Observaciones = ?
+                WHERE Pk_Id_Autorizacion = ?;";
 
+            using (var conn = _cnx.conexion())
+            using (var cmd = new OdbcCommand(sql, conn))
+            {
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
+                cmd.Parameters.Add("@p2", OdbcType.Int).Value = idBanco;
+                cmd.Parameters.Add("@p3", OdbcType.Int).Value =
+                 idEmpleado.HasValue ? (object)idEmpleado.Value : (object)DBNull.Value;
+                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = fecha;
+                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = monto;
+                cmd.Parameters.Add("@p6", OdbcType.Int).Value = idEstado;
+                cmd.Parameters.Add("@p7", OdbcType.VarChar, 255).Value =
+                observ != null ? (object)observ : (object)DBNull.Value;
+                cmd.Parameters.Add("@p8", OdbcType.Int).Value = idAut;
 
+                return cmd.ExecuteNonQuery();
+            }
+        }
 
+        public int EliminarAutorizacion(int idAut)
+        {
+            const string sql = @"DELETE FROM Tbl_Orden_Compra_Autorizada WHERE Pk_Id_Autorizacion = ?;";
+            using (var conn = _cnx.conexion())
+            using (var cmd = new OdbcCommand(sql, conn))
+            {
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idAut;
+                return cmd.ExecuteNonQuery();
+            }
+        }
+
+ 
+        private DataTable FillTable(string sql)
+        {
+            using (var conn = _cnx.conexion())
+            using (var da = new OdbcDataAdapter(sql, conn))
+            {
+                var dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }
