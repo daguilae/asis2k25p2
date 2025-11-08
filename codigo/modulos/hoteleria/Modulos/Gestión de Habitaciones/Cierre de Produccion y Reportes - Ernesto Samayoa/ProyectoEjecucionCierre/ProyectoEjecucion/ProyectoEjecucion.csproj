@@ -35,15 +35,15 @@
   <ItemGroup>
     <Reference Include="Capa_Controlador_Cierre, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Capa_Controlador_Cierre\bin\Debug\Capa_Controlador_Cierre.dll</HintPath>
+      <HintPath>..\..\Modulo-Hoteleria\codigo\modulos\hoteleria\Modulos\Gestión de Habitaciones\Cierre de Produccion y Reportes - Ernesto Samayoa\MVC_Cierre\Capa_Controlador_Cierre\bin\Debug\Capa_Controlador_Cierre.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Modelo_Cierre, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Capa_Modelo_Cierre\bin\Debug\Capa_Modelo_Cierre.dll</HintPath>
+      <HintPath>..\..\Modulo-Hoteleria\codigo\modulos\hoteleria\Modulos\Gestión de Habitaciones\Cierre de Produccion y Reportes - Ernesto Samayoa\MVC_Cierre\Capa_Modelo_Cierre\bin\Debug\Capa_Modelo_Cierre.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Cierre, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Capa_Vista_Cierre\bin\Debug\Capa_Vista_Cierre.dll</HintPath>
+      <HintPath>..\..\Modulo-Hoteleria\codigo\modulos\hoteleria\Modulos\Gestión de Habitaciones\Cierre de Produccion y Reportes - Ernesto Samayoa\MVC_Cierre\Capa_Vista_Cierre\bin\Debug\Capa_Vista_Cierre.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

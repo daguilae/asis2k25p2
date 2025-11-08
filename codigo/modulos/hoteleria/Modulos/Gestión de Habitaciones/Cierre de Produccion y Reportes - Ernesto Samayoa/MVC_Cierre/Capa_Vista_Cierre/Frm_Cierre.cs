@@ -13,18 +13,20 @@ namespace Capa_Vista_Cierre
         public Frm_Cierre()
         {
             InitializeComponent();
+            // Centrar el formulario en la pantalla al iniciar
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void Frm_Cierre_Load(object sender, EventArgs e)
         {
-            BloquearControles();
+            fun_BloquearControles();
             Txt_ingresos.Text = Txt_egresos.Text = Txt_Saldo_total.Text = "Q 0.00";
         }
 
         // BOTÓN AGREGAR (NUEVO CIERRE)
         private void Btn_Agregar_cierre_Click(object sender, EventArgs e)
         {
-            HabilitarControles();
+            fun_HabilitarControles();
             Btn_Agregar_cierre.Enabled = false; // Evita reiniciar mientras se edita
 
             Txt_Descripcion_Cierre.Clear();
@@ -43,23 +45,23 @@ namespace Capa_Vista_Cierre
         {
             try
             {
-                string descripcion = Txt_Descripcion_Cierre.Text.Trim();
-                DateTime fechaCorte = Dtp_Fecha_Cierre.Value.Date;
+                string sDescripcion = Txt_Descripcion_Cierre.Text.Trim();
+                DateTime dFechaCorte = Dtp_Fecha_Cierre.Value.Date;
 
-                ultimoResultado = ctrl.GenerarCierre(fechaCorte, descripcion);
+                ultimoResultado = ctrl.fun_GenerarCierre(dFechaCorte, sDescripcion);
 
                 if (ultimoResultado == null || ultimoResultado.Detalle.Rows.Count == 0)
                 {
                     MessageBox.Show("No existen folios cerrados ni pagos de salones para esta fecha.",
                                     "Sin datos", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTodo();
+                    fun_LimpiarTodo();
                     return;
                 }
 
                 Dgv_Cierre_general.DataSource = ultimoResultado.Detalle;
-                Txt_ingresos.Text = $"Q {ultimoResultado.Ingresos:N2}";
-                Txt_egresos.Text = $"Q {ultimoResultado.Egresos:N2}";
-                Txt_Saldo_total.Text = $"Q {ultimoResultado.Saldo:N2}";
+                Txt_ingresos.Text = $"Q {ultimoResultado.doIngresos:N2}";
+                Txt_egresos.Text = $"Q {ultimoResultado.doEgresos:N2}";
+                Txt_Saldo_total.Text = $"Q {ultimoResultado.doSaldo:N2}";
 
                 MessageBox.Show("Cierre generado correctamente. Revise los totales antes de guardar.",
                                 "Generar Cierre", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -83,14 +85,14 @@ namespace Capa_Vista_Cierre
                     return;
                 }
 
-                DateTime fecha = Dtp_Fecha_Cierre.Value.Date;
-                string descripcion = Txt_Descripcion_Cierre.Text.Trim();
+                DateTime dFecha = Dtp_Fecha_Cierre.Value.Date;
+                string sDescripcion = Txt_Descripcion_Cierre.Text.Trim();
 
-                bool exito = ctrl.GuardarCierre(
-                    fecha, descripcion,
-                    ultimoResultado.Ingresos,
-                    ultimoResultado.Egresos,
-                    ultimoResultado.Saldo,
+                bool exito = ctrl.fun_GuardarCierre(
+                    dFecha, sDescripcion,
+                    ultimoResultado.doIngresos,
+                    ultimoResultado.doEgresos,
+                    ultimoResultado.doSaldo,
                     ultimoResultado.Detalle
                 );
 
@@ -98,11 +100,11 @@ namespace Capa_Vista_Cierre
                 {
                     MessageBox.Show("Cierre guardado correctamente.",
                                     "Guardar Cierre", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTodo();
+                    fun_LimpiarTodo();
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo guardar el cierre.",
+                    MessageBox.Show("No se puede guardar el cierre.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -123,7 +125,7 @@ namespace Capa_Vista_Cierre
                 Cbo_buscar.Enabled = true;
 
                 // Obtiene la lista de cierres disponibles
-                DataTable lista = ctrl.ObtenerListaCierres();
+                DataTable lista = ctrl.fun_ObtenerListaCierres();
 
                 if (lista == null || lista.Rows.Count == 0)
                 {
@@ -174,12 +176,12 @@ namespace Capa_Vista_Cierre
             var value = Cbo_buscar.SelectedValue;
             if (value == null || value is DataRowView) return;
 
-            if (!int.TryParse(value.ToString(), out int idCierre))
+            if (!int.TryParse(value.ToString(), out int iIdCierre))
                 return;
             try
             {
                 // Usar nuevo método del controlador que encapsula todo
-                var resultadoConsulta = ctrl.CargarCierreExistente(idCierre);
+                var resultadoConsulta = ctrl.fun_CargarCierreExistente(iIdCierre);
                 Dgv_Cierre_general.DataSource = resultadoConsulta.Detalle;
 
                 if (resultadoConsulta.Detalle.Rows.Count == 0)
@@ -189,12 +191,12 @@ namespace Capa_Vista_Cierre
                     return;
                 }
 
-                Dtp_Fecha_Cierre.Value = resultadoConsulta.Fecha == default ? DateTime.Now : resultadoConsulta.Fecha;
-                Txt_Descripcion_Cierre.Text = resultadoConsulta.Descripcion;
+                Dtp_Fecha_Cierre.Value = resultadoConsulta.dFecha == default ? DateTime.Now : resultadoConsulta.dFecha;
+                Txt_Descripcion_Cierre.Text = resultadoConsulta.sDescripcion;
 
-                Txt_ingresos.Text = $"Q {resultadoConsulta.Ingresos:N2}";
-                Txt_egresos.Text = $"Q {resultadoConsulta.Egresos:N2}";
-                Txt_Saldo_total.Text = $"Q {resultadoConsulta.Saldo:N2}";
+                Txt_ingresos.Text = $"Q {resultadoConsulta.doIngresos:N2}";
+                Txt_egresos.Text = $"Q {resultadoConsulta.doEgresos:N2}";
+                Txt_Saldo_total.Text = $"Q {resultadoConsulta.doSaldo:N2}";
 
                 // Modo lectura
                 Dtp_Fecha_Cierre.Enabled = false;
@@ -213,7 +215,7 @@ namespace Capa_Vista_Cierre
         }
 
         //UTILIDADES
-        private void BloquearControles()
+        private void fun_BloquearControles()
         {
             Dtp_Fecha_Cierre.Enabled = false;
             Txt_Descripcion_Cierre.Enabled = false;
@@ -230,7 +232,7 @@ namespace Capa_Vista_Cierre
             Btn_Imprimir_cierre_general.Enabled = false;
         }
 
-        private void HabilitarControles()
+        private void fun_HabilitarControles()
         {
             Dtp_Fecha_Cierre.Enabled = true;
             Txt_Descripcion_Cierre.Enabled = true;
@@ -242,7 +244,7 @@ namespace Capa_Vista_Cierre
             Btn_Imprimir_cierre_general.Enabled = true;
         }
 
-        private void LimpiarFormulario()
+        private void fun_LimpiarFormulario()
         {
             Txt_Descripcion_Cierre.Clear();
             Txt_ingresos.Text = Txt_egresos.Text = Txt_Saldo_total.Text = "Q 0.00";
@@ -262,22 +264,22 @@ namespace Capa_Vista_Cierre
                     return;
                 }
 
-                int idCierre = Convert.ToInt32(Cbo_buscar.SelectedValue);
+                int iIdCierre = Convert.ToInt32(Cbo_buscar.SelectedValue);
 
                 var confirm = MessageBox.Show(
-                    $"¿Está seguro que desea eliminar el cierre #{idCierre}?\n\n",
+                    $"¿Está seguro que desea eliminar el cierre #{iIdCierre}?\n\n",
                     "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirm == DialogResult.No)
                     return;
 
-                bool exito = ctrl.EliminarCierre(idCierre);
+                bool exito = ctrl.fun_EliminarCierre(iIdCierre);
 
                 if (exito)
                 {
                     MessageBox.Show("✅ Cierre eliminado correctamente.",
                                     "Eliminado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LimpiarTodo();
+                    fun_LimpiarTodo();
                 }
                 else
                 {
@@ -295,11 +297,11 @@ namespace Capa_Vista_Cierre
         // BOTÓN CANCELAR
         private void Btn_cancelar_Click(object sender, EventArgs e)
         {
-            LimpiarTodo();
+            fun_LimpiarTodo();
         }
 
         //LIMPIAR TODO
-        private void LimpiarTodo()
+        private void fun_LimpiarTodo()
         {
             Txt_Descripcion_Cierre.Clear();
             Txt_ingresos.Text = "Q 0.00";
@@ -313,13 +315,13 @@ namespace Capa_Vista_Cierre
             Cbo_buscar.Enabled = false;
             ultimoResultado = null;
 
-            BloquearControles();
+            fun_BloquearControles();
 
             Btn_Agregar_cierre.Enabled = true;
         }
 
         // BOTÓN IMPRIMIR CIERRE GENERAL
-        private void Btn_Imprimir_cierre_general_Click(object sender, EventArgs e)
+        private void Btn_Imprimir_cierre_general_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -332,7 +334,7 @@ namespace Capa_Vista_Cierre
                     return;
                 }
 
-                // 🔸 Aquí puedes conectar tu módulo de reportes o exportación
+                //Módulo de reportes o exportación
                 MessageBox.Show("Funcionalidad de impresión pendiente. " +
                                 "\n(En esta parte se generará el reporte PDF o Crystal Report del cierre seleccionado).",
                                 "Imprimir Cierre General",
@@ -347,6 +349,5 @@ namespace Capa_Vista_Cierre
                                 MessageBoxIcon.Error);
             }
         }
-
     }
 }

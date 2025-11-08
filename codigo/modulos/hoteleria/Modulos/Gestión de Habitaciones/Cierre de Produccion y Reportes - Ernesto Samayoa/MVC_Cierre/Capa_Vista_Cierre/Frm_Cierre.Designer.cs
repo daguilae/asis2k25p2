@@ -257,6 +257,7 @@ namespace Capa_Vista_Cierre
             this.Btn_Imprimir_cierre_general.Size = new System.Drawing.Size(65, 51);
             this.Btn_Imprimir_cierre_general.TabIndex = 42;
             this.Btn_Imprimir_cierre_general.UseVisualStyleBackColor = false;
+            this.Btn_Imprimir_cierre_general.Click += new System.EventHandler(this.Btn_Imprimir_cierre_general_Click_1);
             // 
             // Btn_eliminar_cierre
             // 
@@ -302,7 +303,7 @@ namespace Capa_Vista_Cierre
             this.Cbo_buscar.FormattingEnabled = true;
             this.Cbo_buscar.Location = new System.Drawing.Point(892, 114);
             this.Cbo_buscar.Name = "Cbo_buscar";
-            this.Cbo_buscar.Size = new System.Drawing.Size(247, 24);
+            this.Cbo_buscar.Size = new System.Drawing.Size(228, 24);
             this.Cbo_buscar.TabIndex = 46;
             this.Cbo_buscar.SelectedIndexChanged += new System.EventHandler(this.Cbo_buscar_SelectedIndexChanged);
             // 

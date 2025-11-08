@@ -28,17 +28,17 @@ using System.Threading.Tasks;
             public Cls_Cierre_Diario() { }
 
             //Constructor con parámetros (útil al crear nuevos cierres)
-            public Cls_Cierre_Diario(DateTime fechaCorte, string descripcion, double ingresos, double egresos)
+            public Cls_Cierre_Diario(DateTime dFechaCorte, string sDescripcion, double doIngresos, double doEgresos)
             {
-                Cmp_Fecha_Corte = fechaCorte;
-                Cmp_Descripcion = descripcion;
-                Cmp_Total_Ingresos = ingresos;
-                Cmp_Total_Egresos = egresos;
-                Cmp_Saldo_Final = ingresos - egresos;
+                Cmp_Fecha_Corte = dFechaCorte;
+                Cmp_Descripcion = sDescripcion;
+                Cmp_Total_Ingresos = doIngresos;
+                Cmp_Total_Egresos = doEgresos;
+                Cmp_Saldo_Final = doIngresos - doEgresos;
             }
 
             // 🔹 Método auxiliar: Calcular saldo final
-            public void CalcularSaldoFinal()
+            public void fun_CalcularSaldoFinal()
             {
                 Cmp_Saldo_Final = Cmp_Total_Ingresos - Cmp_Total_Egresos;
             }
