@@ -34,6 +34,9 @@
     <Reference Include="Capa_Modelo_Bancos">
       <HintPath>..\CapaModelo\bin\Debug\Capa_Modelo_Bancos.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Modelo_Seguridad">
+      <HintPath>..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaModelo\bin\Debug\Capa_Modelo_Seguridad.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
