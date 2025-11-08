@@ -54,6 +54,7 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Observaciones = new System.Windows.Forms.Label();
             this.Dgv_Auto_Ordenes = new System.Windows.Forms.DataGridView();
             this.Lbl_Detalle = new System.Windows.Forms.Label();
+            this.Btn_Limpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Monto_Autorizado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +62,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Agregar_Autorizacion
             // 
             this.Btn_Agregar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Autorizacion.Image")));
-            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(684, 18);
+            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(628, 19);
             this.Btn_Agregar_Autorizacion.Name = "Btn_Agregar_Autorizacion";
             this.Btn_Agregar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Agregar_Autorizacion.TabIndex = 36;
@@ -89,7 +90,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Eliminar_Autorizacion
             // 
             this.Btn_Eliminar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar_Autorizacion.Image")));
-            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(796, 17);
+            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(740, 18);
             this.Btn_Eliminar_Autorizacion.Name = "Btn_Eliminar_Autorizacion";
             this.Btn_Eliminar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Eliminar_Autorizacion.TabIndex = 33;
@@ -99,7 +100,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Actualizar_Autorizacion
             // 
             this.Btn_Actualizar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Actualizar_Autorizacion.Image")));
-            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(740, 17);
+            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(684, 18);
             this.Btn_Actualizar_Autorizacion.Name = "Btn_Actualizar_Autorizacion";
             this.Btn_Actualizar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Actualizar_Autorizacion.TabIndex = 32;
@@ -286,11 +287,22 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Detalle.TabIndex = 54;
             this.Lbl_Detalle.Text = "Detalle Autorizaciones:";
             // 
+            // Btn_Limpiar
+            // 
+            this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
+            this.Btn_Limpiar.Location = new System.Drawing.Point(796, 19);
+            this.Btn_Limpiar.Name = "Btn_Limpiar";
+            this.Btn_Limpiar.Size = new System.Drawing.Size(50, 45);
+            this.Btn_Limpiar.TabIndex = 55;
+            this.Btn_Limpiar.UseVisualStyleBackColor = true;
+            this.Btn_Limpiar.Click += new System.EventHandler(this.Btn_Limpiar_Click);
+            // 
             // Frm_Ordenes_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(980, 602);
+            this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Lbl_Detalle);
             this.Controls.Add(this.Dgv_Auto_Ordenes);
             this.Controls.Add(this.Lbl_Observaciones);
@@ -351,5 +363,6 @@ namespace Capa_Vista_Ordenes
         private System.Windows.Forms.Label Lbl_Observaciones;
         private System.Windows.Forms.DataGridView Dgv_Auto_Ordenes;
         private System.Windows.Forms.Label Lbl_Detalle;
+        private System.Windows.Forms.Button Btn_Limpiar;
     }
 }

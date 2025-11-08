@@ -229,6 +229,11 @@ namespace Capa_Vista_Ordenes
         {
 
         }
+
+        private void Btn_Limpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
     }
 }
 // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
