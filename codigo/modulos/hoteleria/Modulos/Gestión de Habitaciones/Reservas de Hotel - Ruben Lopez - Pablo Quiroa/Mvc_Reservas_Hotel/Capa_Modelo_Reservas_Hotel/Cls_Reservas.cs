@@ -16,7 +16,7 @@ namespace Capa_Modelo_Reservas_Hotel
                     PK_ID_Habitaciones AS IdHabitacion,
                     Cmp_Descripcion_Habitacion AS Descripcion,
                     Cmp_Tarifa_Noche AS Tarifa
-                FROM tbl_habitaciones
+                FROM `Tbl_Habitaciones`
                 WHERE Cmp_Estado_Habitacion = 1
                 ORDER BY PK_ID_Habitaciones;";
 
@@ -33,7 +33,7 @@ namespace Capa_Modelo_Reservas_Hotel
         {
             string sSql2 = @"
                 SELECT Pk_Id_Buffet, Cmp_Tipo_Buffet, Cmp_Descripcion
-                FROM Tbl_Buffet
+                FROM `Tbl_Buffet`
                 WHERE Cmp_Incluido_En_Reserva = 1
                 ORDER BY Pk_Id_Buffet
                 LIMIT 1;";
@@ -49,9 +49,10 @@ namespace Capa_Modelo_Reservas_Hotel
 
         public DataTable ObtenerHuespedData(string tipoDoc, string numero)
         {
-            string sSql3 = @"SELECT * 
-                           FROM Tbl_Huesped 
-                           WHERE Cmp_Tipo_Documento = ? AND Cmp_Numero_Documento = ?;";
+            string sSql3 = @"
+                SELECT * 
+                FROM `Tbl_Huesped`
+                WHERE Cmp_Tipo_Documento = ? AND Cmp_Numero_Documento = ?;";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql3, conn))
@@ -68,9 +69,10 @@ namespace Capa_Modelo_Reservas_Hotel
 
         public int ObtenerPuntosHuesped(int idHuesped)
         {
-            string sSql4 = @"SELECT Cmp_Puntos_Acumulados 
-                           FROM Tbl_Puntos_Huesped 
-                           WHERE Fk_Id_Huesped = ?;";
+            string sSql4 = @"
+                SELECT Cmp_Puntos_Acumulados 
+                FROM `Tbl_Puntos_Huesped`
+                WHERE Fk_Id_Huesped = ?;";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql4, conn))
@@ -82,11 +84,11 @@ namespace Capa_Modelo_Reservas_Hotel
         }
 
         public void InsertarReserva(int iDHuesped, int iDHabitacion, int iDBuffet,
-                                    DateTime dDechaEntrada, DateTime dFechaSalida,
+                                    DateTime dFechaEntrada, DateTime dFechaSalida,
                                     int iNumHuespedes, string sPeticiones, string sEstado, decimal dTotal)
         {
             string sSql5 = @"
-                INSERT INTO Tbl_Reserva 
+                INSERT INTO `Tbl_Reserva`
                 (Fk_Id_Huesped, Fk_Id_Habitacion, Fk_Id_Buffet,
                  Cmp_Fecha_Reserva, Cmp_Fecha_Entrada, Cmp_Fecha_Salida,
                  Cmp_Num_Huespedes, Cmp_Peticiones_Especiales,
@@ -100,10 +102,10 @@ namespace Capa_Modelo_Reservas_Hotel
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iDHabitacion;
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iDBuffet;
                 cmd.Parameters.Add(null, OdbcType.Date).Value = DateTime.Now.Date;
-                cmd.Parameters.Add(null, OdbcType.Date).Value = dDechaEntrada.Date;
+                cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaEntrada.Date;
                 cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaSalida.Date;
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iNumHuespedes;
-                cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones ?? string.Empty;
+                cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones ?? "";
                 cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value = string.IsNullOrWhiteSpace(sEstado) ? "Pendiente" : sEstado;
                 cmd.Parameters.Add(null, OdbcType.Decimal).Value = dTotal;
 
@@ -113,9 +115,10 @@ namespace Capa_Modelo_Reservas_Hotel
 
         public void ActualizarPuntosHuesped(int iDHuesped, int iPuntosRestantes)
         {
-            string sSql6 = @"UPDATE Tbl_Puntos_Huesped 
-                           SET Cmp_Puntos_Acumulados = ? 
-                           WHERE Fk_Id_Huesped = ?;";
+            string sSql6 = @"
+                UPDATE `Tbl_Puntos_Huesped`
+                SET Cmp_Puntos_Acumulados = ?
+                WHERE Fk_Id_Huesped = ?;";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql6, conn))
@@ -142,13 +145,13 @@ namespace Capa_Modelo_Reservas_Hotel
                     r.Cmp_Peticiones_Especiales,
                     r.Cmp_Estado_Reserva,
                     r.Cmp_Total_Reserva
-                FROM tbl_reserva r
-                JOIN tbl_huesped h ON h.Pk_Id_Huesped = r.Fk_Id_Huesped
+                FROM `Tbl_Reserva` r
+                JOIN `Tbl_Huesped` h ON h.Pk_Id_Huesped = r.Fk_Id_Huesped
                 WHERE h.Cmp_Numero_Documento LIKE ?
                    OR CONCAT(h.Cmp_Nombre,' ',h.Cmp_Apellido) LIKE ?
                 ORDER BY r.Pk_Id_Reserva DESC;";
 
-            string patron = $"%{sFiltro?.Trim() ?? string.Empty}%";
+            string patron = $"%{sFiltro?.Trim() ?? ""}%";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql7, conn))
@@ -165,9 +168,10 @@ namespace Capa_Modelo_Reservas_Hotel
 
         public decimal ObtenerTarifaHabitacion(int idHabitacion)
         {
-            string sSql8 = @"SELECT Cmp_Tarifa_Noche 
-                           FROM tbl_habitaciones
-                           WHERE PK_ID_Habitaciones = ?;";
+            string sSql8 = @"
+                SELECT Cmp_Tarifa_Noche
+                FROM `Tbl_Habitaciones`
+                WHERE PK_ID_Habitaciones = ?;";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql8, conn))
@@ -179,25 +183,24 @@ namespace Capa_Modelo_Reservas_Hotel
         }
 
         public void ActualizarReserva(int iDReserva, int iDHabitacion, DateTime dFechaEntrada, DateTime dFechaSalida,
-                              int iNumHuespedes, string sPeticiones, string sEstado, decimal dTotal)
+                                      int iNumHuespedes, string sPeticiones, string sEstado, decimal dTotal)
         {
             string sql = @"
-        UPDATE tbl_reserva
-        SET Fk_Id_Habitacion = ?,
-            Cmp_Fecha_Entrada = ?,
-            Cmp_Fecha_Salida  = ?,
-            Cmp_Num_Huespedes = ?,
-            Cmp_Peticiones_Especiales = ?,
-            Cmp_Estado_Reserva = ?,
-            Cmp_Total_Reserva  = ?
-        WHERE Pk_Id_Reserva = ?;";
+                UPDATE `Tbl_Reserva`
+                SET Fk_Id_Habitacion = ?,
+                    Cmp_Fecha_Entrada = ?,
+                    Cmp_Fecha_Salida  = ?,
+                    Cmp_Num_Huespedes = ?,
+                    Cmp_Peticiones_Especiales = ?,
+                    Cmp_Estado_Reserva = ?,
+                    Cmp_Total_Reserva  = ?
+                WHERE Pk_Id_Reserva = ?;";
 
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
                 sPeticiones = (sPeticiones ?? "").Trim();
                 if (sPeticiones.Length > 255) sPeticiones = sPeticiones.Substring(0, 255);
-
                 if (string.IsNullOrWhiteSpace(sEstado)) sEstado = "Pendiente";
 
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iDHabitacion;
@@ -206,13 +209,11 @@ namespace Capa_Modelo_Reservas_Hotel
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iNumHuespedes;
                 cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones;
                 cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value = sEstado;
-                cmd.Parameters.Add(null, OdbcType.Double).Value = Convert.ToDouble(dTotal); // ✅ CORRECCIÓN
+                cmd.Parameters.Add(null, OdbcType.Double).Value = Convert.ToDouble(dTotal);
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iDReserva;
 
                 cmd.ExecuteNonQuery();
             }
         }
-
-
     }
 }
