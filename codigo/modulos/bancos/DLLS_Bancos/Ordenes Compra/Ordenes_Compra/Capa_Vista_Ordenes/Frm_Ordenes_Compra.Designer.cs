@@ -86,6 +86,7 @@ namespace Capa_Vista_Ordenes
             this.Btn_Imprimir_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Imprimir_Autorizacion.TabIndex = 34;
             this.Btn_Imprimir_Autorizacion.UseVisualStyleBackColor = true;
+            this.Btn_Imprimir_Autorizacion.Click += new System.EventHandler(this.Btn_Imprimir_Autorizacion_Click);
             // 
             // Btn_Eliminar_Autorizacion
             // 
