@@ -167,8 +167,9 @@ namespace Capa_Vista_Ordenes
             Nud_Monto_Autorizado.Value = 0.01M;
         }
 
+        private void Frm_Ordenes_Compra_Load_1(object sender, EventArgs e)
+        {
 
-
-
+        }
     }
 }
