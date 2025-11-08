@@ -6,143 +6,149 @@ using System.Threading.Tasks;
 
 namespace Capa_Modelo_Inventario
 {
-    // ==================== Stevens Cambranes 01/11/2025 ====================
+    // ==================== Stevens Cambranes 05/11/2025 ====================
     // ==================== Clase Sentencias Inventario ====================
-    // (Esta clase almacena y construye todas las cadenas de texto SQL)
     public class Cls_Sentencias_Inventario
     {
-        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Stevens Cambranes 05/11/2025 ====================
         // ==================== Construir SQL Histórico (Movimientos) ====================
-        // (Construye la consulta SQL dinámica para buscar Movimientos con filtros)
         public string Snt_ConstruirSqlHistorico(
             string tipoMovimiento,
             int? idAlmacen,
-            int? idEstado,
+            int? idEstado, // (idEstado 1 = Activo, 2 = Inactivo)
             bool usarRangoFechas,
             DateTime fechaInicio,
             DateTime fechaFin,
             string ordenarPor,
             out List<object> parametros)
         {
-            // Inicializa la lista de parámetros para la consulta ODBC
+            // Solo 'tipoMovimiento' y 'idAlmacen' usarán parámetros.
+            // Estado y Fecha se "quemarán" en el SQL.
             parametros = new List<object>();
 
-            // Consulta Principal (JOIN de 5 tablas)
             var sqlBuilder = new System.Text.StringBuilder(
                 @"SELECT 
-                    mov.Pk_ID_Movimiento, mov.Cmp_Fecha, prod.Cmp_Nombre AS Producto, 
-                    tm.Cmp_Nombre AS TipoMovimiento, alm.Cmp_Nombre AS Almacen, 
-                    mov.Cmp_Cantidad, mov.Cmp_CostoUnitario_Snapshot AS CostoEnEseMomento, 
-                    (mov.Cmp_Cantidad * mov.Cmp_CostoUnitario_Snapshot) AS ValorTotal, 
-                    est.Cmp_Nombre AS EstadoDelProducto 
-                  FROM Tbl_MovimientosInventario AS mov
-                  JOIN Tbl_Productos AS prod ON mov.Fk_ID_Producto = prod.Pk_ID_Producto
-                  JOIN Tbl_Almacenes AS alm ON mov.Fk_ID_Almacen = alm.Pk_ID_Almacen
-                  JOIN Tbl_TipoMovimiento AS tm ON mov.Fk_ID_TipoMovimiento = tm.Pk_ID_TipoMovimiento
-                  JOIN Tbl_EstadoProducto AS est ON prod.Fk_ID_EstadoProducto = est.Pk_ID_EstadoProducto "
+                    mov.Cmp_Id_Mov_Inv AS Pk_ID_Movimiento, mov.Cmp_Fecha_Movimiento AS Cmp_Fecha, prod.Cmp_Nombre_Producto AS Producto, 
+                    tm.Cmp_Nombre_Tipo AS TipoMovimiento, alm.Cmp_Nombre_Almacen AS Almacen, 
+                    movdet.Cmp_Cantidad, 
+                    prod.Cmp_PrecioUnitario AS CostoEnEseMomento, 
+                    (movdet.Cmp_Cantidad * prod.Cmp_PrecioUnitario) AS ValorTotal, 
+                    CASE WHEN prod.Cmp_Activo = 1 THEN 'Activo' ELSE 'Inactivo' END AS EstadoDelProducto 
+                  FROM Tbl_Mov_Inv AS mov 
+                  JOIN Tbl_Mov_Inv_Det AS movdet ON mov.Cmp_Id_Mov_Inv = movdet.Cmp_Id_Mov_Inv 
+                  JOIN Tbl_Producto AS prod ON movdet.Cmp_Id_Producto = prod.Cmp_Id_Producto
+                  JOIN Tbl_Almacen AS alm ON movdet.Cmp_Id_Almacen = alm.Cmp_Id_Almacen
+                  JOIN Tbl_Tipo_Movimiento_Inv AS tm ON mov.Cmp_Id_Tipo_Movimiento_Inv = tm.Cmp_Id_Tipo_Movimiento_Inv "
             );
 
-            // 2. Cláusulas WHERE dinámicas (se añaden solo si el filtro existe)
             var whereClauses = new List<string>();
 
+            // Filtro 1: Tipo Movimiento (SEGURO - Usa parámetros)
             if (!string.IsNullOrEmpty(tipoMovimiento))
             {
-                whereClauses.Add("tm.Cmp_Nombre = ?"); // '?' es el parámetro para ODBC
-                parametros.Add(tipoMovimiento); // Añade el valor a la lista de parámetros
+                whereClauses.Add("tm.Cmp_Nombre_Tipo = ?");
+                parametros.Add(tipoMovimiento);
             }
 
+            // Filtro 2: Almacén (SEGURO - Usa parámetros)
             if (idAlmacen.HasValue && idAlmacen.Value > 0)
             {
-                whereClauses.Add("mov.Fk_ID_Almacen = ?");
+                whereClauses.Add("movdet.Cmp_Id_Almacen = ?");
                 parametros.Add(idAlmacen.Value);
             }
 
+            // Filtro 3: Estado (INSEGURO - "Quemado" en SQL)
             if (idEstado.HasValue && idEstado.Value > 0)
             {
-                whereClauses.Add("est.Pk_ID_EstadoProducto = ?");
-                parametros.Add(idEstado.Value);
+                string valorBit = (idEstado.Value == 1) ? "1" : "0";
+                whereClauses.Add($"prod.Cmp_Activo = {valorBit}");
             }
 
+            // Filtro 4: Fecha (INSEGURO - "Quemado" en SQL)
             if (usarRangoFechas)
             {
-                whereClauses.Add("mov.Cmp_Fecha BETWEEN ? AND ?");
-                parametros.Add(fechaInicio);
-                parametros.Add(fechaFin);
+                // Formatea la fecha 'yyyy-MM-dd' y la rodea con comillas simples '
+                string fechaInicioSql = fechaInicio.ToString("yyyy-MM-dd");
+                string fechaFinSql = fechaFin.ToString("yyyy-MM-dd");
+
+                whereClauses.Add($"mov.Cmp_Fecha_Movimiento BETWEEN '{fechaInicioSql}' AND '{fechaFinSql}'");
             }
 
-            // 3. WHERE
+            // Ensambla el WHERE
             if (whereClauses.Count > 0)
             {
                 sqlBuilder.Append(" WHERE " + string.Join(" AND ", whereClauses));
             }
 
-            // 4. ORDER BY
             if (string.IsNullOrEmpty(ordenarPor))
             {
-                ordenarPor = "mov.Cmp_Fecha DESC"; // Orden por defecto
+                ordenarPor = "mov.Cmp_Fecha_Movimiento DESC";
             }
             sqlBuilder.Append(" ORDER BY " + ordenarPor);
 
-            return sqlBuilder.ToString(); // Devuelve el string SQL final
+            return sqlBuilder.ToString();
         }
 
-        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Stevens Cambranes 05/11/2025 ====================
         // ==================== Cargar ComboBox Almacenes ====================
-        // (Devuelve el SQL para obtener todos los almacenes)
         public string Snt_CargarAlmacenes()
         {
-            return "SELECT Pk_ID_Almacen, Cmp_Nombre FROM Tbl_Almacenes ORDER BY Cmp_Nombre;";
+            return "SELECT Cmp_Id_Almacen AS Pk_ID_Almacen, Cmp_Nombre_Almacen AS Cmp_Nombre FROM Tbl_Almacen ORDER BY Cmp_Nombre_Almacen;";
         }
 
-        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Stevens Cambranes 05/11/2025 ====================
         // ==================== Cargar ComboBox Estados ====================
-        // (Devuelve el SQL para obtener todos los estados de producto)
         public string Snt_CargarEstadosProducto()
         {
-            return "SELECT Pk_ID_EstadoProducto, Cmp_Nombre FROM Tbl_EstadoProducto ORDER BY Cmp_Nombre;";
+            return "SELECT 1 AS Pk_ID_EstadoProducto, 'Activo' AS Cmp_Nombre UNION ALL SELECT 2, 'Inactivo' ORDER BY 1;";
         }
 
-        // ==================== Stevens Cambranes 01/11/2025 ====================
-        // ==================== Cargar Todos los Cierres ====================
-        // (Devuelve el SQL para obtener TODOS los cierres (resúmenes))
+        // ==================== Stevens Cambranes 05/11/2025 ====================
+        // ==================== Cargar Todos los Cierres (CORREGIDO) ====================
         public string Snt_CargarTodosLosCierres()
         {
             return @"SELECT 
-            c.Pk_ID_Cierre, c.Cmp_FechaCierre, p.Cmp_Nombre AS Producto, 
-            a.Cmp_Nombre AS Almacen, c.Cmp_SaldoInicial, c.Cmp_SaldoFinal, 
-            c.Cmp_AbonoDelMes, c.Cmp_CargosDelMes, c.Cmp_AbonosAcumulados, c.Cmp_CargosAcumulados
-          FROM Tbl_CierresInventario AS c
-          JOIN Tbl_Productos AS p ON c.Fk_ID_Producto = p.Pk_ID_Producto
-          JOIN Tbl_Almacenes AS a ON c.Fk_ID_Almacen = a.Pk_ID_Almacen
-          ORDER BY c.Cmp_FechaCierre DESC;";
+                    c.Cmp_Id_Cierre AS Pk_ID_Cierre, 
+                    c.Cmp_Fecha_Cierre AS Cmp_FechaCierre, 
+                    a.Cmp_Nombre_Almacen AS Almacen, 
+                    c.Cmp_Observaciones AS Observaciones,
+                    'N/A (Encabezado)' AS Producto, 
+                    0.00 AS Cmp_SaldoInicial, 
+                    0.00 AS Cmp_SaldoFinal,
+                    0.00 AS Cmp_AbonoDelMes,
+                    0.00 AS Cmp_CargosDelMes,
+                    0.00 AS Cmp_AbonosAcumulados, 
+                    0.00 AS Cmp_CargosAcumulados
+                  FROM Tbl_Cierre_Inventario AS c
+                  JOIN Tbl_Almacen AS a ON c.Cmp_Id_Almacen = a.Cmp_Id_Almacen
+                  ORDER BY c.Cmp_Fecha_Cierre DESC;";
         }
 
-        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Stevens Cambranes 05/11/2025 ====================
         // ==================== Cargar ComboBox Tipo Movimiento ====================
-        // (Devuelve el SQL para obtener todos los tipos de movimiento)
         public string Snt_CargarTiposMovimiento()
         {
-            return "SELECT Pk_ID_TipoMovimiento, Cmp_Nombre FROM Tbl_TipoMovimiento ORDER BY Cmp_Nombre;";
+            return "SELECT Cmp_Id_Tipo_Movimiento_Inv AS Pk_ID_TipoMovimiento, Cmp_Nombre_Tipo AS Cmp_Nombre FROM Tbl_Tipo_Movimiento_Inv ORDER BY Cmp_Nombre_Tipo;";
         }
 
-        // ==================== Stevens Cambranes 01/11/2025 ====================
+        // ==================== Stevens Cambranes 05/11/2025 ====================
         // ==================== Cargar DGV por Defecto ====================
-        // (Devuelve el SQL para obtener los 100 movimientos más recientes)
         public string Snt_CargarHistoricoDefault()
         {
             return @"SELECT 
-                mov.Pk_ID_Movimiento, mov.Cmp_Fecha, prod.Cmp_Nombre AS Producto, 
-                tm.Cmp_Nombre AS TipoMovimiento, alm.Cmp_Nombre AS Almacen, 
-                mov.Cmp_Cantidad, mov.Cmp_CostoUnitario_Snapshot AS CostoEnEseMomento, 
-                (mov.Cmp_Cantidad * mov.Cmp_CostoUnitario_Snapshot) AS ValorTotal, 
-                est.Cmp_Nombre AS EstadoDelProducto 
-              FROM Tbl_MovimientosInventario AS mov
-              JOIN Tbl_Productos AS prod ON mov.Fk_ID_Producto = prod.Pk_ID_Producto
-              JOIN Tbl_Almacenes AS alm ON mov.Fk_ID_Almacen = alm.Pk_ID_Almacen
-              JOIN Tbl_TipoMovimiento AS tm ON mov.Fk_ID_TipoMovimiento = tm.Pk_ID_TipoMovimiento
-              JOIN Tbl_EstadoProducto AS est ON prod.Fk_ID_EstadoProducto = est.Pk_ID_EstadoProducto
-              ORDER BY mov.Cmp_Fecha DESC 
-              LIMIT 100;"; // Limita a 100 resultados
+                    mov.Cmp_Id_Mov_Inv AS Pk_ID_Movimiento, mov.Cmp_Fecha_Movimiento AS Cmp_Fecha, prod.Cmp_Nombre_Producto AS Producto, 
+                    tm.Cmp_Nombre_Tipo AS TipoMovimiento, alm.Cmp_Nombre_Almacen AS Almacen, 
+                    movdet.Cmp_Cantidad, 
+                    prod.Cmp_PrecioUnitario AS CostoEnEseMomento, 
+                    (movdet.Cmp_Cantidad * prod.Cmp_PrecioUnitario) AS ValorTotal,
+                    CASE WHEN prod.Cmp_Activo = 1 THEN 'Activo' ELSE 'Inactivo' END AS EstadoDelProducto 
+                  FROM Tbl_Mov_Inv AS mov
+                  JOIN Tbl_Mov_Inv_Det AS movdet ON mov.Cmp_Id_Mov_Inv = movdet.Cmp_Id_Mov_Inv
+                  JOIN Tbl_Producto AS prod ON movdet.Cmp_Id_Producto = prod.Cmp_Id_Producto
+                  JOIN Tbl_Almacen AS alm ON movdet.Cmp_Id_Almacen = alm.Cmp_Id_Almacen
+                  JOIN Tbl_Tipo_Movimiento_Inv AS tm ON mov.Cmp_Id_Tipo_Movimiento_Inv = tm.Cmp_Id_Tipo_Movimiento_Inv
+                  ORDER BY mov.Cmp_Fecha_Movimiento DESC 
+                  LIMIT 100;";
         }
     }
 }
