@@ -59,10 +59,12 @@
     <Compile Include="Forms_Reportes_Bancarios.Designer.cs">
       <DependentUpon>Forms_Reportes_Bancarios.cs</DependentUpon>
     </Compile>
+
     <Compile Include="MV_Reportes_Bancarios.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MV_Reportes_Bancarios.rpt</DependentUpon>
+
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -71,9 +73,11 @@
     <EmbeddedResource Include="Forms_Reportes_Bancarios.resx">
       <DependentUpon>Forms_Reportes_Bancarios.cs</DependentUpon>
     </EmbeddedResource>
+
     <EmbeddedResource Include="MV_Reportes_Bancarios.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>MV_Reportes_Bancarios.cs</LastGenOutput>
+
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
