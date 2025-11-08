@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_DisponibilidadDiaria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_DisponibilidadDiaria.Designer.cs">
+      <DependentUpon>Frm_DisponibilidadDiaria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_IngresoTipoDeCambio1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +73,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_DisponibilidadDiaria.resx">
+      <DependentUpon>Frm_DisponibilidadDiaria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_IngresoTipoDeCambio1.resx">
       <DependentUpon>Frm_IngresoTipoDeCambio1.cs</DependentUpon>
     </EmbeddedResource>
