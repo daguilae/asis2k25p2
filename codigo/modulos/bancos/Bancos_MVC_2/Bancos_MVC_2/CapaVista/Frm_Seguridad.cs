@@ -7,7 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Controlador_Bancos;
+using Capa_Controlador_Seguridad;
+using Capa_Vista_CB;
+using Capa_Vista;
+using Capa_Vista_Ordenes;
+using Capa_Vista_Cheques;
+using Capa_Vista_MB;
+using Capa_Vista_Mantenimientos;
+using Capa_Vista_TipoDeCambio;
+
 
 namespace Capa_Vista_Bancos
 {
@@ -40,8 +48,8 @@ namespace Capa_Vista_Bancos
             this.Load += Frm_Seguridad_Load;
 
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
             );
 
             this.FormClosing += Frm_Seguridad_FormClosing;
@@ -49,13 +57,13 @@ namespace Capa_Vista_Bancos
         private void Frm_Seguridad_Load(object sender, EventArgs e)
         {
             // Mostrar usuario conectado en StatusStrip
-            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Bancos.Cls_Usuario_Conectado.sNombreUsuario}";
+            toolStripStatusLabel.Text = $"Estado: Conectado | Usuario: {Capa_Controlador_Seguridad.Cls_Usuario_Conectado.sNombreUsuario}";
 
             // El resto de tu código de carga...
             fun_inicializar_botones_por_defecto();
             fun_habilitar_botones_por_permisos_combinados(
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdUsuario,
-                Capa_Controlador_Bancos.Cls_Usuario_Conectado.iIdPerfil
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario,
+                Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdPerfil
             );
         }
         private void Frm_Seguridad_FormClosing(object sender, FormClosingEventArgs e)
@@ -195,10 +203,8 @@ namespace Capa_Vista_Bancos
         }
         private void empleadosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Empleados formEmpleado = new Frm_Empleados();
-            formEmpleado.MdiParent = this;
-            formEmpleado.Show();
+            Frm_M_Bancos F = new Frm_M_Bancos();
+            F.ShowDialog();
         }
         private void perfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -209,10 +215,8 @@ namespace Capa_Vista_Bancos
         }
         private void perfilesToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Perfiles perfiles = new Frm_Perfiles();
-            perfiles.MdiParent = this;
-            perfiles.Show();
+            Frm_M_CuentasBancarias M = new Frm_M_CuentasBancarias();
+            M.ShowDialog();
         }
         private void modulosDeCatalogoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -223,17 +227,13 @@ namespace Capa_Vista_Bancos
         }
         private void modulosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Modulo modulo = new Frm_Modulo();
-            modulo.MdiParent = this;
-            modulo.Show();
+            Frm_M_TipoPagos M = new Frm_M_TipoPagos();
+            M.ShowDialog();
         }
         private void usuariosToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            Frm_Usuario frm = new Frm_Usuario();
-            frm.MdiParent = this;
-            frm.Show();
+            Frm_M_Monedas M = new Frm_M_Monedas();
+            M.ShowDialog();
         }
         private void Btn_Bitacora_Click(object sender, EventArgs e)
         {
@@ -258,10 +258,8 @@ namespace Capa_Vista_Bancos
         }
         private void Btn_Aplicacion_Click_1(object sender, EventArgs e)
         {
-            CerrarFormulariosHijos();
-            FrmAplicacion formAplicacion = new FrmAplicacion();
-            formAplicacion.MdiParent = this;
-            formAplicacion.Show();
+            Frm_M_Transacciones M = new Frm_M_Transacciones();
+            M.ShowDialog();
         }
         private void cambiarContraseñaToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -344,6 +342,54 @@ namespace Capa_Vista_Bancos
         {
             Frm_PruebaNavegador nav = new Frm_PruebaNavegador();
             nav.ShowDialog();
+        }
+
+        private void conciliaciónBancariaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_ConciliacionBancaria CB = new Frm_ConciliacionBancaria();
+            CB.ShowDialog();
+        }
+
+        private void generaciónDePólizaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Poliza PL = new Frm_Poliza();
+            PL.ShowDialog();
+        }
+
+        private void autorizaciónOrdenesDeComprasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Ordenes_Compra Ord = new Frm_Ordenes_Compra();
+            Ord.ShowDialog();
+        }
+
+        private void chequesDePlanillaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Tipo_Cheques ch = new Frm_Tipo_Cheques();
+            ch.ShowDialog();
+        }
+
+        private void movimientosBancariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms_MB MB = new Forms_MB();
+            MB.ShowDialog();
+        }
+
+        private void tiposDeCambioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_TipoDeCambio F = new Frm_TipoDeCambio();
+            F.ShowDialog();
+        }
+
+        private void ingresoTipoCambioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_IngresoTipoDeCambio F = new Frm_IngresoTipoDeCambio();
+            F.ShowDialog();
+        }
+
+        private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_PruebaNavegador M = new Frm_PruebaNavegador();
+            M.ShowDialog();
         }
     }
 }

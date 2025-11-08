@@ -4,10 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Capa_Controlador_Bancos;
-using Capa_Vista;
+using Capa_Vista; // Esta es la vista de la poliza
 using Capa_Vista_Ordenes;
 using Capa_Vista_CB;
-
 
 //;
 
@@ -316,8 +315,8 @@ namespace Capa_Vista_Bancos
 
         private void conciliaciónBancariaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_ConciliacionBancaria frm = new Frm_ConciliacionBancaria();
-            frm.ShowDialog();
+           Frm_ConciliacionBancaria frm = new Frm_ConciliacionBancaria();
+           frm.ShowDialog();
         }
         //============================ KEVIN NATARENO 0901-21-635: LLAMADA A VISTA DE POLIZA, 26/10/2025===============================
     }

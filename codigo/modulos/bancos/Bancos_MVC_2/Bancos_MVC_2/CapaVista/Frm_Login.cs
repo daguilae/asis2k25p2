@@ -2,7 +2,8 @@
 using System;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
-using Capa_Controlador_Bancos;
+using Capa_Controlador_Seguridad;
+
 
 namespace Capa_Vista_Bancos
 {

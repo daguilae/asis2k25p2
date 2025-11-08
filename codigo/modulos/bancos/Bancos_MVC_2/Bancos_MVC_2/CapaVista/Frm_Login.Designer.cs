@@ -64,9 +64,9 @@ namespace Capa_Vista_Bancos
             this.lblModuloSeguridad.Font = new System.Drawing.Font("Rockwell", 18F);
             this.lblModuloSeguridad.Location = new System.Drawing.Point(234, 103);
             this.lblModuloSeguridad.Name = "lblModuloSeguridad";
-            this.lblModuloSeguridad.Size = new System.Drawing.Size(273, 35);
+            this.lblModuloSeguridad.Size = new System.Drawing.Size(225, 35);
             this.lblModuloSeguridad.TabIndex = 30;
-            this.lblModuloSeguridad.Text = "Modulo Seguridad";
+            this.lblModuloSeguridad.Text = "Modulo Bancos";
             this.lblModuloSeguridad.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // lblContrasena
@@ -91,7 +91,7 @@ namespace Capa_Vista_Bancos
             // 
             // btnIniciarSesion
             // 
-            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
+            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciarSesion.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -140,7 +140,7 @@ namespace Capa_Vista_Bancos
             // 
             // Pnl_Superior
             // 
-            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
+            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.Pnl_Superior.Controls.Add(this.Pic_Cerrar);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
@@ -172,7 +172,7 @@ namespace Capa_Vista_Bancos
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
             // 
-            // frmLogin
+            // Frm_Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -190,7 +190,7 @@ namespace Capa_Vista_Bancos
             this.Controls.Add(this.txtUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmLogin";
+            this.Name = "Frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
             this.Load += new System.EventHandler(this.frmLogin_Load);

@@ -11,7 +11,7 @@ namespace Capa_Modelo_Bancos
         // Devuelve la cadena de conexión ODBC
         public string ObtenerCadenaConexion()
         {
-            return "Dsn=bd_hoteleria";
+            return "Dsn=Bancos2";
         }
 
         // Abre y retorna una nueva conexión ODBC

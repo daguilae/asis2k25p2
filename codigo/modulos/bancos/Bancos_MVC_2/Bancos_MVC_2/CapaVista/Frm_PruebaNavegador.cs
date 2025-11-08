@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace Capa_Vista_Bancos
 {
     public partial class Frm_PruebaNavegador : Form
@@ -29,7 +30,7 @@ namespace Capa_Vista_Bancos
             };
 
             string[] columnas = {
-                    "Tbl_Perfil",
+                    "tbl_perfil",
                     "Pk_Id_Perfil",
                     "Cmp_Puesto_Perfil",
                     "Cmp_Descripcion_Perfil",
