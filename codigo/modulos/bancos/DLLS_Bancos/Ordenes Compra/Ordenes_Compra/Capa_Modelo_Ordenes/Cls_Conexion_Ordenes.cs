@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Capa_Modelo_Ordenes
 {
-    class Cls_Conexion_Ordenes
+    public class Cls_Conexion_Ordenes
     {
         public OdbcConnection conexion()
         {
