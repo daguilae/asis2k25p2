@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54A49188-AF2C-4B92-B164-BB316F75217E}</ProjectGuid>
+    <ProjectGuid>{3C691FFD-D049-4869-AC57-F833AAF90AC7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Exe_Bancos</RootNamespace>
-    <AssemblyName>Exe_Bancos</AssemblyName>
+    <RootNamespace>EjecucionMantenimientos</RootNamespace>
+    <AssemblyName>EjecucionMantenimientos</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,11 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Bancos">
-      <HintPath>..\..\..\Bancos_MVC_2\Bancos_MVC_2\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
-    </Reference>
-    <Reference Include="Capa_Vista_Bancos">
-      <HintPath>..\..\..\Bancos_MVC_2\Bancos_MVC_2\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
+    <Reference Include="Capa_Vista_Mantenimientos">
+      <HintPath>..\..\Capa_Vista_Mantenimientos\bin\Debug\Capa_Vista_Mantenimientos.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +57,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

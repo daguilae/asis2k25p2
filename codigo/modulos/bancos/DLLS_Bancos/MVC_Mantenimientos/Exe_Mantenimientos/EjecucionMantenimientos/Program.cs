@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Exe_Bancos
+namespace EjecucionMantenimientos
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Exe_Bancos
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-           Application.Run(new Capa_Vista_Bancos.Frm_Login());
+            Application.Run(new Form1());
         }
     }
 }
