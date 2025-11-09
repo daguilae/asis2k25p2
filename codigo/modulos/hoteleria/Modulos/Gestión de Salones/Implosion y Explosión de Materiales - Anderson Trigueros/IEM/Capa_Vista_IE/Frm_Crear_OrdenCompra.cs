@@ -21,7 +21,7 @@ namespace Capa_Vista_IE
             lista = Listado;
         }
 
-        private void Frm_Crear_OrdenCompra_Load(object sender, EventArgs e)
+        private void pro_Frm_Crear_OrdenCompra_Load(object sender, EventArgs e)
         {
             Dgv_ListadoCompra.Columns.Clear();
 
@@ -32,10 +32,10 @@ namespace Capa_Vista_IE
             Dgv_ListadoCompra.AllowUserToAddRows = false;
             Dgv_ListadoCompra.Columns[0].ReadOnly = true;
 
-            mostrarDatos(lista);
+            pro_MostrarDatos(lista);
         }
 
-        public void mostrarDatos(List<(int iCodigo, string sIngrediente, double doCantidad)> Listado)
+        public void pro_MostrarDatos(List<(int iCodigo, string sIngrediente, double doCantidad)> Listado)
         {
             Dgv_ListadoCompra.Rows.Clear();
 
@@ -60,7 +60,7 @@ namespace Capa_Vista_IE
             }
             try
             {
-                controlador.GenerarOrdenCompra(listaCompra);
+                controlador.pro_GenerarOrdenCompra(listaCompra);
                 MessageBox.Show("Orden de Compra Registrada Correctamente.");
             }
             catch(Exception ex)
@@ -71,7 +71,7 @@ namespace Capa_Vista_IE
         }
 
 
-        private void Btn_Guardar_Click(object sender, EventArgs e)
+        private void pro_Btn_Guardar_Click(object sender, EventArgs e)
         {
             foreach (DataGridViewRow fila in Dgv_ListadoCompra.Rows)
             {
@@ -85,9 +85,21 @@ namespace Capa_Vista_IE
                                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
+                    if (doCantidad <= 0)
+                    {
+                        MessageBox.Show($"El valor '{sValor}' debe ser mayor que cero.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                 }
             }
             pro_GenerarOrden();
+        }
+
+        private void pro_Pic_Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
