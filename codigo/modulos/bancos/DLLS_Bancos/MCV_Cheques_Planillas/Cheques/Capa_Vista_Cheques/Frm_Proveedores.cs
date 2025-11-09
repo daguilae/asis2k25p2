@@ -63,7 +63,7 @@ namespace Capa_Vista_Cheques
                 MessageBox.Show("Error al cargar lotes: " + ex.Message);
             }
         }
-
+        //
         private void Frm_Cheques_Load(object sender, EventArgs e)
         {
             CargarLotes();          // ✅ Cargar lista de lotes
