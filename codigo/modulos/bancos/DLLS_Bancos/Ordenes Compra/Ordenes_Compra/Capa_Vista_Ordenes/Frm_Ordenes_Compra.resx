@@ -218,6 +218,7 @@
         /4PeCdSusDmZmHaTGYJqKL4l2xsVvKSe7Xk9n0RzmtvXPpr5XxFtMw99maG0AAAAAElFTkSuQmCC
 </value>
   </data>
+
   <data name="Btn_Limpiar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -234,4 +235,5 @@
         +O+VbeIeQfzJne/t8kA1uXuKsaPuk3oJfAA6B12FM5uxawAAAABJRU5ErkJggg==
 </value>
   </data>
+
 </root>
