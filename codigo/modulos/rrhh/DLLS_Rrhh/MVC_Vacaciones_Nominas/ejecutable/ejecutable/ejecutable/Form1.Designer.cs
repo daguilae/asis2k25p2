@@ -29,22 +29,31 @@ namespace ejecutable
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucVacaciones1 = new Capa_Vista_Vacaciones.ucVacaciones();
+            this.ucVacaciones1 = new Capa_Vista_Vacaciones.Frm_Solicitar_Vacaciones_Nomina();
+            this.frm_Prinicpal_Vacaciones_Nomina1 = new Capa_Vista_Vacaciones.Frm_Prinicpal_Vacaciones_Nomina();
             this.SuspendLayout();
             // 
             // ucVacaciones1
             // 
+            this.ucVacaciones1.ClientSize = new System.Drawing.Size(805, 439);
             this.ucVacaciones1.Location = new System.Drawing.Point(12, 12);
             this.ucVacaciones1.Name = "ucVacaciones1";
-            this.ucVacaciones1.Size = new System.Drawing.Size(821, 478);
-            this.ucVacaciones1.TabIndex = 0;
+            this.ucVacaciones1.Text = "Solicitar Vacaciones";
+            this.ucVacaciones1.Visible = false;
+            // 
+            // frm_Prinicpal_Vacaciones_Nomina1
+            // 
+            this.frm_Prinicpal_Vacaciones_Nomina1.Location = new System.Drawing.Point(12, 3);
+            this.frm_Prinicpal_Vacaciones_Nomina1.Name = "frm_Prinicpal_Vacaciones_Nomina1";
+            this.frm_Prinicpal_Vacaciones_Nomina1.Size = new System.Drawing.Size(821, 478);
+            this.frm_Prinicpal_Vacaciones_Nomina1.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 477);
-            this.Controls.Add(this.ucVacaciones1);
+            this.Controls.Add(this.frm_Prinicpal_Vacaciones_Nomina1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -53,7 +62,8 @@ namespace ejecutable
 
         #endregion
 
-        private Capa_Vista_Vacaciones.ucVacaciones ucVacaciones1;
+        private Capa_Vista_Vacaciones.Frm_Solicitar_Vacaciones_Nomina ucVacaciones1;
+        private Capa_Vista_Vacaciones.Frm_Prinicpal_Vacaciones_Nomina frm_Prinicpal_Vacaciones_Nomina1;
     }
 }
 

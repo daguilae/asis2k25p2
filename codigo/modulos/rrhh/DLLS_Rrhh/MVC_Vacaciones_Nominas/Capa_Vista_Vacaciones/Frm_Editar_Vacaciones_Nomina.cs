@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Nombre: Jose Pablo Medina González
+// Carné: 0901-22-2592
+// Fecha de modificación: 2025-11-09
+// Descripción: Form para editar una vacación existente.
+
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Windows.Forms;
@@ -7,15 +12,15 @@ using Capa_Modelo_Vacaciones;
 
 namespace Capa_Vista_Vacaciones
 {
-    public partial class EditarVacaciones : Form
+    public partial class Frm_Editar_Vacaciones_Nomina : Form
     {
-        private Controlador controlador = new Controlador();
-        private int idVacacion;
+        private readonly Controlador _controlador = new Controlador();
+        private readonly int _idVacacion;
 
-        public EditarVacaciones(int idVacacion)
+        public Frm_Editar_Vacaciones_Nomina(int idVacacion)
         {
             InitializeComponent();
-            this.idVacacion = idVacacion;
+            _idVacacion = idVacacion;
             CargarEmpleados();
             CargarDatos();
         }
@@ -48,7 +53,7 @@ namespace Capa_Vista_Vacaciones
 
         private void CargarDatos()
         {
-            DataRow row = controlador.CargarVacacion(idVacacion);
+            DataRow row = _controlador.CargarVacacion(_idVacacion);
             if (row != null)
             {
                 Cbo_Empleado.SelectedValue = row["Cmp_iId_Empleado"];
@@ -58,8 +63,9 @@ namespace Capa_Vista_Vacaciones
             }
             else
             {
-                MessageBox.Show("No se encontró la vacación.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                MessageBox.Show("No se encontró la vacación.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
             }
         }
 
@@ -67,36 +73,27 @@ namespace Capa_Vista_Vacaciones
         {
             if (Dtp_FechaI.Value >= Dtp_FechaF.Value)
             {
-                MessageBox.Show("Fecha inicio debe ser menor que fecha final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Fecha inicio debe ser menor que fecha final.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string resultado = controlador.EditarVacacion(idVacacion, Dtp_FechaI.Value, Dtp_FechaF.Value);
+            string resultado = _controlador.EditarVacacion(_idVacacion, Dtp_FechaI.Value, Dtp_FechaF.Value);
             MessageBox.Show(resultado, "Resultado", MessageBoxButtons.OK,
                 resultado.Contains("correctamente") ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             if (resultado.Contains("correctamente"))
-            {
-                this.Close();
-            }
+                Close();
         }
 
-        private void Btn_Regresar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void Btn_Regresar_Click(object sender, EventArgs e) => Close();
 
         private void Dtp_FechaF_ValueChanged(object sender, EventArgs e)
         {
             if (Dtp_FechaI.Value < Dtp_FechaF.Value)
-            {
-                int dias = (Dtp_FechaF.Value - Dtp_FechaI.Value).Days + 1;
-                Nud_Dias.Value = dias;
-            }
+                Nud_Dias.Value = (Dtp_FechaF.Value - Dtp_FechaI.Value).Days + 1;
             else
-            {
                 Nud_Dias.Value = 0;
-            }
         }
 
         private void Gpb_EditarV_Enter(object sender, EventArgs e) { }

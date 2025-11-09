@@ -1,13 +1,17 @@
-﻿namespace Capa_Vista_Vacaciones
+﻿// Nombre: Jose Pablo Medina González
+// Carné: 0901-22-2592
+// Fecha de modificación: 2025-11-09
+// Descripción: Designer del Form Solicitar Vacaciones.
+
+namespace Capa_Vista_Vacaciones
 {
-    partial class EditarVacaciones
+    partial class Frm_Solicitar_Vacaciones_Nomina
     {
         private System.ComponentModel.IContainer components = null;
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-                components.Dispose();
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
@@ -15,8 +19,8 @@
 
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditarVacaciones));
-            this.Gpb_EditarV = new System.Windows.Forms.GroupBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Solicitar_Vacaciones_Nomina));
+            this.Gpb_SolicitarV = new System.Windows.Forms.GroupBox();
             this.Dtp_FechaF = new System.Windows.Forms.DateTimePicker();
             this.Lbl_FechaFinal = new System.Windows.Forms.Label();
             this.Cbo_Empleado = new System.Windows.Forms.ComboBox();
@@ -29,31 +33,30 @@
             this.Lbl_Empleado = new System.Windows.Forms.Label();
             this.Pnl_encabezado = new System.Windows.Forms.Panel();
             this.Lbl_Nomina = new System.Windows.Forms.Label();
-            this.Gpb_EditarV.SuspendLayout();
+            this.Gpb_SolicitarV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Dias)).BeginInit();
             this.Pnl_encabezado.SuspendLayout();
             this.SuspendLayout();
             // 
-            // Gpb_EditarV
+            // Gpb_SolicitarV
             // 
-            this.Gpb_EditarV.Controls.Add(this.Dtp_FechaF);
-            this.Gpb_EditarV.Controls.Add(this.Lbl_FechaFinal);
-            this.Gpb_EditarV.Controls.Add(this.Cbo_Empleado);
-            this.Gpb_EditarV.Controls.Add(this.Nud_Dias);
-            this.Gpb_EditarV.Controls.Add(this.Dtp_FechaI);
-            this.Gpb_EditarV.Controls.Add(this.Btn_Regresar);
-            this.Gpb_EditarV.Controls.Add(this.Btn_Guardar);
-            this.Gpb_EditarV.Controls.Add(this.Lbl_Dias);
-            this.Gpb_EditarV.Controls.Add(this.Lbl_FechaInicio);
-            this.Gpb_EditarV.Controls.Add(this.Lbl_Empleado);
-            this.Gpb_EditarV.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.Gpb_EditarV.Location = new System.Drawing.Point(18, 99);
-            this.Gpb_EditarV.Name = "Gpb_EditarV";
-            this.Gpb_EditarV.Size = new System.Drawing.Size(769, 358);
-            this.Gpb_EditarV.TabIndex = 15;
-            this.Gpb_EditarV.TabStop = false;
-            this.Gpb_EditarV.Text = "Editar Vacaciones";
-            this.Gpb_EditarV.Enter += new System.EventHandler(this.Gpb_EditarV_Enter);
+            this.Gpb_SolicitarV.Controls.Add(this.Dtp_FechaF);
+            this.Gpb_SolicitarV.Controls.Add(this.Lbl_FechaFinal);
+            this.Gpb_SolicitarV.Controls.Add(this.Cbo_Empleado);
+            this.Gpb_SolicitarV.Controls.Add(this.Nud_Dias);
+            this.Gpb_SolicitarV.Controls.Add(this.Dtp_FechaI);
+            this.Gpb_SolicitarV.Controls.Add(this.Btn_Regresar);
+            this.Gpb_SolicitarV.Controls.Add(this.Btn_Guardar);
+            this.Gpb_SolicitarV.Controls.Add(this.Lbl_Dias);
+            this.Gpb_SolicitarV.Controls.Add(this.Lbl_FechaInicio);
+            this.Gpb_SolicitarV.Controls.Add(this.Lbl_Empleado);
+            this.Gpb_SolicitarV.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Gpb_SolicitarV.Location = new System.Drawing.Point(12, 99);
+            this.Gpb_SolicitarV.Name = "Gpb_SolicitarV";
+            this.Gpb_SolicitarV.Size = new System.Drawing.Size(769, 358);
+            this.Gpb_SolicitarV.TabIndex = 14;
+            this.Gpb_SolicitarV.TabStop = false;
+            this.Gpb_SolicitarV.Text = "Solicitar Vacaciones";
             // 
             // Dtp_FechaF
             // 
@@ -62,6 +65,7 @@
             this.Dtp_FechaF.Name = "Dtp_FechaF";
             this.Dtp_FechaF.Size = new System.Drawing.Size(200, 25);
             this.Dtp_FechaF.TabIndex = 20;
+            this.Dtp_FechaF.ValueChanged += new System.EventHandler(this.Dtp_FechaF_ValueChanged);
             // 
             // Lbl_FechaFinal
             // 
@@ -79,14 +83,13 @@
             this.Cbo_Empleado.FormattingEnabled = true;
             this.Cbo_Empleado.Location = new System.Drawing.Point(126, 85);
             this.Cbo_Empleado.Name = "Cbo_Empleado";
-            this.Cbo_Empleado.Size = new System.Drawing.Size(200, 25);
+            this.Cbo_Empleado.Size = new System.Drawing.Size(229, 25);
             this.Cbo_Empleado.TabIndex = 18;
             // 
             // Nud_Dias
             // 
             this.Nud_Dias.Font = new System.Drawing.Font("Rockwell", 11.25F);
             this.Nud_Dias.Location = new System.Drawing.Point(104, 205);
-            this.Nud_Dias.Maximum = new decimal(new int[] { 365, 0, 0, 0 });
             this.Nud_Dias.Name = "Nud_Dias";
             this.Nud_Dias.Size = new System.Drawing.Size(120, 25);
             this.Nud_Dias.TabIndex = 17;
@@ -159,45 +162,46 @@
             // 
             // Pnl_encabezado
             // 
-            this.Pnl_encabezado.BackColor = System.Drawing.Color.FromArgb(128, 128, 255);
+            this.Pnl_encabezado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.Pnl_encabezado.Controls.Add(this.Lbl_Nomina);
             this.Pnl_encabezado.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_encabezado.Location = new System.Drawing.Point(0, 0);
             this.Pnl_encabezado.Name = "Pnl_encabezado";
             this.Pnl_encabezado.Size = new System.Drawing.Size(800, 100);
-            this.Pnl_encabezado.TabIndex = 14;
+            this.Pnl_encabezado.TabIndex = 13;
             this.Pnl_encabezado.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnl_encabezado_Paint);
             // 
             // Lbl_Nomina
             // 
             this.Lbl_Nomina.AutoSize = true;
             this.Lbl_Nomina.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.Lbl_Nomina.Location = new System.Drawing.Point(14, 38);
+            this.Lbl_Nomina.Location = new System.Drawing.Point(20, 39);
             this.Lbl_Nomina.Name = "Lbl_Nomina";
             this.Lbl_Nomina.Size = new System.Drawing.Size(109, 27);
-            this.Lbl_Nomina.TabIndex = 0;
-            this.Lbl_Nomina.Text = "Nominas";
+            this.Lbl_Nomina.TabIndex = 12;
+            this.Lbl_Nomina.Text = "Nóminas";
             // 
-            // EditarVacaciones
+            // SolicitarVacaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 470);
-            this.Controls.Add(this.Gpb_EditarV);
+            this.ClientSize = new System.Drawing.Size(800, 463);
+            this.Controls.Add(this.Gpb_SolicitarV);
             this.Controls.Add(this.Pnl_encabezado);
-            this.Name = "EditarVacaciones";
-            this.Text = "Editar Vacaciones";
-            this.Gpb_EditarV.ResumeLayout(false);
-            this.Gpb_EditarV.PerformLayout();
+            this.Name = "SolicitarVacaciones";
+            this.Text = "Solicitar Vacaciones";
+            this.Gpb_SolicitarV.ResumeLayout(false);
+            this.Gpb_SolicitarV.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Dias)).EndInit();
             this.Pnl_encabezado.ResumeLayout(false);
             this.Pnl_encabezado.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox Gpb_EditarV;
+        private System.Windows.Forms.GroupBox Gpb_SolicitarV;
         private System.Windows.Forms.DateTimePicker Dtp_FechaF;
         private System.Windows.Forms.Label Lbl_FechaFinal;
         private System.Windows.Forms.ComboBox Cbo_Empleado;

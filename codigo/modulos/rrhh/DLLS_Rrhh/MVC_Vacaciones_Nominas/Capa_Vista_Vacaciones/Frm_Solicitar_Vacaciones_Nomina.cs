@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Nombre: Jose Pablo Medina González
+// Carné: 0901-22-2592
+// Fecha de modificación: 2025-11-09
+// Descripción: Form para crear una nueva solicitud de vacaciones.
+
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Windows.Forms;
@@ -7,11 +12,11 @@ using Capa_Modelo_Vacaciones;
 
 namespace Capa_Vista_Vacaciones
 {
-    public partial class SolicitarVacaciones : Form
+    public partial class Frm_Solicitar_Vacaciones_Nomina : Form
     {
-        private Controlador controlador = new Controlador();
+        private readonly Controlador _controlador = new Controlador();
 
-        public SolicitarVacaciones()
+        public Frm_Solicitar_Vacaciones_Nomina()
         {
             InitializeComponent();
             CargarEmpleados();
@@ -45,44 +50,37 @@ namespace Capa_Vista_Vacaciones
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (Cbo_Empleado.SelectedValue == null || !int.TryParse(Cbo_Empleado.SelectedValue.ToString(), out int idEmpleado))
+            if (Cbo_Empleado.SelectedValue == null ||
+                !int.TryParse(Cbo_Empleado.SelectedValue.ToString(), out int idEmpleado))
             {
-                MessageBox.Show("Seleccione un empleado válido.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Seleccione un empleado válido.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (Dtp_FechaI.Value >= Dtp_FechaF.Value)
             {
-                MessageBox.Show("Fecha inicio debe ser menor que fecha final.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Fecha inicio debe ser menor que fecha final.", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string resultado = controlador.SolicitarVacaciones(idEmpleado, Dtp_FechaI.Value, Dtp_FechaF.Value);
+            string resultado = _controlador.SolicitarVacaciones(idEmpleado, Dtp_FechaI.Value, Dtp_FechaF.Value);
             MessageBox.Show(resultado, "Resultado", MessageBoxButtons.OK,
                 resultado.Contains("correctamente") ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
             if (resultado.Contains("correctamente"))
-            {
-                this.Close();  // Cierra y dispara FormClosed en el UC
-            }
+                Close();
         }
 
-        private void Btn_Regresar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void Btn_Regresar_Click(object sender, EventArgs e) => Close();
 
         private void Dtp_FechaF_ValueChanged(object sender, EventArgs e)
         {
             if (Dtp_FechaI.Value < Dtp_FechaF.Value)
-            {
-                int dias = (Dtp_FechaF.Value - Dtp_FechaI.Value).Days + 1;
-                Nud_Dias.Value = dias;
-            }
+                Nud_Dias.Value = (Dtp_FechaF.Value - Dtp_FechaI.Value).Days + 1;
             else
-            {
                 Nud_Dias.Value = 0;
-            }
         }
 
         private void Pnl_encabezado_Paint(object sender, PaintEventArgs e) { }

@@ -1,34 +1,25 @@
-﻿namespace Capa_Vista_Vacaciones
+﻿// Nombre: Jose Pablo Medina González
+// Carné: 0901-22-2592
+// Fecha de modificación: 2025-11-09
+// Descripción: Designer del UserControl de Vacaciones.
+
+namespace Capa_Vista_Vacaciones
 {
-    partial class ucVacaciones
+    partial class Frm_Prinicpal_Vacaciones_Nomina
     {
-        /// <summary> 
-        /// Variable del diseñador necesaria.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Limpiar los recursos que se estén usando.
-        /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
-            {
-                components.Dispose();
-            }
+            if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
         #region Código generado por el Diseñador de componentes
 
-        /// <summary> 
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
-        /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ucVacaciones));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Prinicpal_Vacaciones_Nomina));
             this.Pnl_encabezado = new System.Windows.Forms.Panel();
             this.Lbl_Nomina = new System.Windows.Forms.Label();
             this.Gpb_Vacaciones = new System.Windows.Forms.GroupBox();
@@ -38,10 +29,10 @@
             this.Btn_buscar = new System.Windows.Forms.Button();
             this.Cbo_NombreE = new System.Windows.Forms.ComboBox();
             this.Lbl_NomE = new System.Windows.Forms.Label();
-            this.Dvg_HoraE = new System.Windows.Forms.DataGridView();
+            this.Dgv_HoraE = new System.Windows.Forms.DataGridView();
             this.Pnl_encabezado.SuspendLayout();
             this.Gpb_Vacaciones.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Dvg_HoraE)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_HoraE)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_encabezado
@@ -72,7 +63,7 @@
             this.Gpb_Vacaciones.Controls.Add(this.Btn_buscar);
             this.Gpb_Vacaciones.Controls.Add(this.Cbo_NombreE);
             this.Gpb_Vacaciones.Controls.Add(this.Lbl_NomE);
-            this.Gpb_Vacaciones.Controls.Add(this.Dvg_HoraE);
+            this.Gpb_Vacaciones.Controls.Add(this.Dgv_HoraE);
             this.Gpb_Vacaciones.Font = new System.Drawing.Font("Rockwell", 18F);
             this.Gpb_Vacaciones.Location = new System.Drawing.Point(3, 106);
             this.Gpb_Vacaciones.Name = "Gpb_Vacaciones";
@@ -156,17 +147,17 @@
             this.Lbl_NomE.TabIndex = 8;
             this.Lbl_NomE.Text = "Nombre Empleado";
             // 
-            // Dvg_HoraE
+            // Dgv_HoraE
             // 
-            this.Dvg_HoraE.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.Dvg_HoraE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dvg_HoraE.Location = new System.Drawing.Point(16, 92);
-            this.Dvg_HoraE.MultiSelect = false;
-            this.Dvg_HoraE.Name = "Dvg_HoraE";
-            this.Dvg_HoraE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dvg_HoraE.Size = new System.Drawing.Size(776, 245);
-            this.Dvg_HoraE.TabIndex = 7;
-            this.Dvg_HoraE.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dvg_HoraE_CellContentClick);
+            this.Dgv_HoraE.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.Dgv_HoraE.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_HoraE.Location = new System.Drawing.Point(16, 92);
+            this.Dgv_HoraE.MultiSelect = false;
+            this.Dgv_HoraE.Name = "Dgv_HoraE";
+            this.Dgv_HoraE.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_HoraE.Size = new System.Drawing.Size(776, 245);
+            this.Dgv_HoraE.TabIndex = 7;
+            this.Dgv_HoraE.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_HoraE_CellContentClick);
             // 
             // ucVacaciones
             // 
@@ -181,7 +172,7 @@
             this.Pnl_encabezado.PerformLayout();
             this.Gpb_Vacaciones.ResumeLayout(false);
             this.Gpb_Vacaciones.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Dvg_HoraE)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_HoraE)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -197,6 +188,6 @@
         private System.Windows.Forms.Button Btn_buscar;
         private System.Windows.Forms.ComboBox Cbo_NombreE;
         private System.Windows.Forms.Label Lbl_NomE;
-        private System.Windows.Forms.DataGridView Dvg_HoraE;
+        private System.Windows.Forms.DataGridView Dgv_HoraE;
     }
 }
