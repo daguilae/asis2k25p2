@@ -34,12 +34,16 @@ namespace Capa_Vista_TipoDeCambio
             this.Txt_Fecha = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Dgv_TipoDeCambio = new System.Windows.Forms.DataGridView();
-            this.Lbl_Historico = new System.Windows.Forms.Label();
+
+
             this.tipo_cambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valor_compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valor_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+
+            this.Lbl_Historico = new System.Windows.Forms.Label();
+
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_TipoDeCambio)).BeginInit();
             this.SuspendLayout();
@@ -53,13 +57,18 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Controls.Add(this.Lbl_Historico);
             this.panel1.Location = new System.Drawing.Point(13, 13);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(809, 486);
+
+            this.panel1.Size = new System.Drawing.Size(568, 486);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+
             // 
             // Btn_Buscar
             // 
             this.Btn_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Buscar.Location = new System.Drawing.Point(528, 50);
+
+            this.Btn_Buscar.Location = new System.Drawing.Point(438, 50);
+
             this.Btn_Buscar.Name = "Btn_Buscar";
             this.Btn_Buscar.Size = new System.Drawing.Size(83, 29);
             this.Btn_Buscar.TabIndex = 4;
@@ -69,7 +78,9 @@ namespace Capa_Vista_TipoDeCambio
             // 
             // Txt_Fecha
             // 
-            this.Txt_Fecha.Location = new System.Drawing.Point(245, 59);
+
+            this.Txt_Fecha.Location = new System.Drawing.Point(155, 59);
+
             this.Txt_Fecha.Name = "Txt_Fecha";
             this.Txt_Fecha.Size = new System.Drawing.Size(209, 20);
             this.Txt_Fecha.TabIndex = 3;
@@ -78,7 +89,9 @@ namespace Capa_Vista_TipoDeCambio
             // 
             this.Lbl_Fecha.AutoSize = true;
             this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(132, 59);
+
+            this.Lbl_Fecha.Location = new System.Drawing.Point(42, 59);
+
             this.Lbl_Fecha.Name = "Lbl_Fecha";
             this.Lbl_Fecha.Size = new System.Drawing.Size(107, 17);
             this.Lbl_Fecha.TabIndex = 2;
@@ -95,49 +108,68 @@ namespace Capa_Vista_TipoDeCambio
             this.valor_venta});
             this.Dgv_TipoDeCambio.Location = new System.Drawing.Point(13, 96);
             this.Dgv_TipoDeCambio.Name = "Dgv_TipoDeCambio";
-            this.Dgv_TipoDeCambio.Size = new System.Drawing.Size(780, 376);
+
+            this.Dgv_TipoDeCambio.Size = new System.Drawing.Size(543, 377);
             this.Dgv_TipoDeCambio.TabIndex = 1;
             // 
-            // Lbl_Historico
-            // 
-            this.Lbl_Historico.AutoSize = true;
-            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Historico.Location = new System.Drawing.Point(240, 11);
-            this.Lbl_Historico.Name = "Lbl_Historico";
-            this.Lbl_Historico.Size = new System.Drawing.Size(301, 27);
-            this.Lbl_Historico.TabIndex = 0;
-            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
-            // 
+
             // tipo_cambio
             // 
             this.tipo_cambio.HeaderText = "Tipo de cambio";
             this.tipo_cambio.Name = "tipo_cambio";
+
+            this.tipo_cambio.ReadOnly = true;
+
             // 
             // nombre_moneda
             // 
             this.nombre_moneda.HeaderText = "Moneda";
             this.nombre_moneda.Name = "nombre_moneda";
+
+            this.nombre_moneda.ReadOnly = true;
+
             // 
             // fecha
             // 
             this.fecha.HeaderText = "Fecha";
             this.fecha.Name = "fecha";
+
+            this.fecha.ReadOnly = true;
+
             // 
             // valor_compra
             // 
             this.valor_compra.HeaderText = "Valor Compra";
             this.valor_compra.Name = "valor_compra";
+
+            this.valor_compra.ReadOnly = true;
+
             // 
             // valor_venta
             // 
             this.valor_venta.HeaderText = "Valor Venta";
             this.valor_venta.Name = "valor_venta";
+
+            this.valor_venta.ReadOnly = true;
+            // 
+            // Lbl_Historico
+            // 
+            this.Lbl_Historico.AutoSize = true;
+            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Historico.Location = new System.Drawing.Point(144, 11);
+            this.Lbl_Historico.Name = "Lbl_Historico";
+            this.Lbl_Historico.Size = new System.Drawing.Size(318, 29);
+            this.Lbl_Historico.TabIndex = 0;
+            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
+
             // 
             // Frm_TipoDeCambio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 511);
+
+            this.ClientSize = new System.Drawing.Size(592, 510);
+
             this.Controls.Add(this.panel1);
             this.Name = "Frm_TipoDeCambio";
             this.Text = "Frm_TipoDeCambio";

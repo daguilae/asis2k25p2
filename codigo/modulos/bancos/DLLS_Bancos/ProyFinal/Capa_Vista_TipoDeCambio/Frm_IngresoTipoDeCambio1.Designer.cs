@@ -56,40 +56,48 @@ namespace Capa_Vista_TipoDeCambio
             // Lbl_Fecha
             // 
             this.Lbl_Fecha.AutoSize = true;
-            this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(78, 93);
+
+            this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Fecha.Location = new System.Drawing.Point(78, 91);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
-            this.Lbl_Fecha.Size = new System.Drawing.Size(58, 18);
+            this.Lbl_Fecha.Size = new System.Drawing.Size(54, 17);
+
             this.Lbl_Fecha.TabIndex = 1;
             this.Lbl_Fecha.Text = "Fecha:";
             // 
             // Lbl_Compra
             // 
             this.Lbl_Compra.AutoSize = true;
-            this.Lbl_Compra.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Compra.Location = new System.Drawing.Point(62, 131);
+
+            this.Lbl_Compra.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Compra.Location = new System.Drawing.Point(64, 131);
             this.Lbl_Compra.Name = "Lbl_Compra";
-            this.Lbl_Compra.Size = new System.Drawing.Size(74, 18);
+            this.Lbl_Compra.Size = new System.Drawing.Size(68, 17);
+
             this.Lbl_Compra.TabIndex = 2;
             this.Lbl_Compra.Text = "Compra:";
             // 
             // Lbl_Venta
             // 
             this.Lbl_Venta.AutoSize = true;
-            this.Lbl_Venta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+
+            this.Lbl_Venta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Venta.Location = new System.Drawing.Point(78, 173);
             this.Lbl_Venta.Name = "Lbl_Venta";
-            this.Lbl_Venta.Size = new System.Drawing.Size(55, 18);
+            this.Lbl_Venta.Size = new System.Drawing.Size(54, 17);
+
             this.Lbl_Venta.TabIndex = 3;
             this.Lbl_Venta.Text = "Venta:";
             // 
             // Lbl_Moneda
             // 
             this.Lbl_Moneda.AutoSize = true;
-            this.Lbl_Moneda.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Moneda.Location = new System.Drawing.Point(59, 220);
+
+            this.Lbl_Moneda.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Moneda.Location = new System.Drawing.Point(63, 220);
             this.Lbl_Moneda.Name = "Lbl_Moneda";
-            this.Lbl_Moneda.Size = new System.Drawing.Size(74, 18);
+            this.Lbl_Moneda.Size = new System.Drawing.Size(69, 17);
+
             this.Lbl_Moneda.TabIndex = 5;
             this.Lbl_Moneda.Text = "Moneda:";
             // 
@@ -126,7 +134,9 @@ namespace Capa_Vista_TipoDeCambio
             // Btn_Agregar
             // 
             this.Btn_Agregar.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Agregar.Location = new System.Drawing.Point(156, 341);
+
+            this.Btn_Agregar.Location = new System.Drawing.Point(173, 288);
+
             this.Btn_Agregar.Name = "Btn_Agregar";
             this.Btn_Agregar.Size = new System.Drawing.Size(128, 34);
             this.Btn_Agregar.TabIndex = 11;
@@ -146,16 +156,20 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Controls.Add(this.Lbl_Compra);
             this.panel1.Controls.Add(this.Lbl_Fecha);
             this.panel1.Controls.Add(this.Lbl_Ingreso);
-            this.panel1.Location = new System.Drawing.Point(41, 29);
+
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(465, 409);
+            this.panel1.Size = new System.Drawing.Size(465, 359);
+
             this.panel1.TabIndex = 1;
             // 
             // Frm_IngresoTipoDeCambio1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(566, 450);
+
+            this.ClientSize = new System.Drawing.Size(492, 390);
+
             this.Controls.Add(this.panel1);
             this.Name = "Frm_IngresoTipoDeCambio1";
             this.Text = "Frm_IngresoTipoDeCambio1";
