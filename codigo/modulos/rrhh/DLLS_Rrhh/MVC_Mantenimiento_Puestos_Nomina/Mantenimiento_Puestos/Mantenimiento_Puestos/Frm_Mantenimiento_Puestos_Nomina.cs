@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Mantenimiento_Puestos
 {
-    public partial class Frm_Mantenimiento_Puestos : UserControl
+    public partial class Frm_Mantenimiento_Puestos_Nomina : Form
     {
-        public Frm_Mantenimiento_Puestos()
+        public Frm_Mantenimiento_Puestos_Nomina()
         {
             InitializeComponent();
             Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config = new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
@@ -50,6 +50,11 @@ namespace Mantenimiento_Puestos
             navegador1.SAlias = columnas;
             navegador1.SEtiquetas = sEtiquetas;
             navegador1.mostrarDatos();
+        }
+
+        private void Frm_Mantenimiento_Puestos_Nomina_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

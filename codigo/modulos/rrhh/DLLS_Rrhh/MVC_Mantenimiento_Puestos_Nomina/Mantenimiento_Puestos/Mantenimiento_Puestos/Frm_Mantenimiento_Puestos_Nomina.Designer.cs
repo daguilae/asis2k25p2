@@ -1,14 +1,14 @@
 ﻿
 namespace Mantenimiento_Puestos
 {
-    partial class Frm_Mantenimiento_Puestos
+    partial class Frm_Mantenimiento_Puestos_Nomina
     {
-        /// <summary> 
+        /// <summary>
         /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
+        /// <summary>
         /// Limpiar los recursos que se estén usando.
         /// </summary>
         /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
@@ -21,9 +21,9 @@ namespace Mantenimiento_Puestos
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de componentes
+        #region Código generado por el Diseñador de Windows Forms
 
-        /// <summary> 
+        /// <summary>
         /// Método necesario para admitir el Diseñador. No se puede modificar
         /// el contenido de este método con el editor de código.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Mantenimiento_Puestos
             // 
             this.navegador1.IPkId_Aplicacion = 0;
             this.navegador1.IPkId_Modulo = 0;
-            this.navegador1.Location = new System.Drawing.Point(3, 3);
+            this.navegador1.Location = new System.Drawing.Point(12, 12);
             this.navegador1.Name = "navegador1";
             this.navegador1.SAlias = null;
             this.navegador1.SEtiquetas = null;
@@ -44,13 +44,15 @@ namespace Mantenimiento_Puestos
             this.navegador1.SNombreTabla = null;
             this.navegador1.TabIndex = 0;
             // 
-            // Frm_Mantenimiento_Puestos
+            // Frm_Mantenimiento_Puestos_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1215, 659);
             this.Controls.Add(this.navegador1);
-            this.Name = "Frm_Mantenimiento_Puestos";
-            this.Size = new System.Drawing.Size(1208, 665);
+            this.Name = "Frm_Mantenimiento_Puestos_Nomina";
+            this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Frm_Mantenimiento_Puestos_Nomina_Load);
             this.ResumeLayout(false);
 
         }
@@ -60,3 +62,4 @@ namespace Mantenimiento_Puestos
         private Capa_Vista_Navegador.Navegador navegador1;
     }
 }
+

@@ -1,15 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Mantenimiento_Puestos
 {
-    class Program
+    static class Program
     {
-        static void Main() { 
-            
+        /// <summary>
+        /// Punto de entrada principal para la aplicación.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Frm_Mantenimiento_Puestos_Nomina());
         }
     }
 }
