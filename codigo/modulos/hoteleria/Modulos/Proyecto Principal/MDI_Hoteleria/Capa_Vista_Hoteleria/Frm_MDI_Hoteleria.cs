@@ -193,13 +193,6 @@ namespace Capa_Vista_Hoteleria
             check_out.Show();
         }
 
-        private void cuentaTurismoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CerrarFormulariosHijos();
-            Frm_Cuenta_Turismo cuenta_Turismo = new Frm_Cuenta_Turismo();
-            cuenta_Turismo.MdiParent = this;
-            cuenta_Turismo.Show();
-        }
 
         private void pagoToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -212,9 +205,9 @@ namespace Capa_Vista_Hoteleria
         private void foliosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
-            //Frm_Detalle_Folio folios = new Frm_Detalle_Folio();
-            //folios.MdiParent = this;
-            //folios.Show();
+            Frm_Detalle_Folio folios = new Frm_Detalle_Folio();
+            folios.MdiParent = this;
+            folios.Show();
         }
     }
 }

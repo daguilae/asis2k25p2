@@ -71,7 +71,7 @@ namespace Capa_Controlador_Reservas_Hotel
                 sPeticiones, sEstado, dTotal
             );
 
-            // ✅ Si la reserva inicia como Confirmada, sumar puntos
+            // Si la reserva inicia como Confirmada, sumar puntos
             if (sEstado == "Confirmada")
             {
                 int puntosActuales = modeloReserva.ObtenerPuntosHuesped(iDHuesped);
@@ -97,7 +97,7 @@ namespace Capa_Controlador_Reservas_Hotel
                 sEstadoAnterior, idHuesped
             );
 
-            // ✅ Manejo de puntos según cambio de estado
+            // Manejo de puntos según cambio de estado
             int puntosActuales = modeloReserva.ObtenerPuntosHuesped(idHuesped);
 
             if (sEstadoAnterior != "Confirmada" && sEstadoNuevo == "Confirmada")
