@@ -9,20 +9,36 @@ namespace Capa_Modelo_Poliza
 {
     class Cls_Conexion
     {
-        private readonly string ConexionODBC = "Dsn=Bd_Hoteleria"; // DSN de odbc
+        private static readonly string dsn = "DSN=Bd_Hoteleria;";
 
-        //retorna conexion cerrada para que el DAO la abra y cierre cuando sea necesario
-        public OdbcConnection conexion()
+        //abre la conexion
+        public OdbcConnection AbrirConexion()
         {
-            return new OdbcConnection(ConexionODBC); // crea una nueva conexión
+            try
+            {
+                OdbcConnection conexion = new OdbcConnection(dsn);
+                conexion.Open();
+                return conexion;
+            }
+            catch (OdbcException ex)
+            {
+                throw new Exception("Error al conectar con la base de datos ODBC (Bd_Contabilidad): " + ex.Message);
+            }
         }
 
-        // Cierra la conexión si está abierta
-        public void desconexion(OdbcConnection conn)
+        //cerrar conexion
+        public void CerrarConexion(OdbcConnection conexion)
         {
-            if (conn != null && conn.State == System.Data.ConnectionState.Open)
+            try
             {
-                conn.Close();
+                if (conexion != null && conexion.State == System.Data.ConnectionState.Open)
+                {
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al cerrar la conexión: " + ex.Message);
             }
         }
     }
