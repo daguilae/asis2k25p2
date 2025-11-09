@@ -3,7 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using Capa_Controlador_MH;
-
+// hecho Por Fernando José Cahuex Gonzalez con carnet 0901-22-14979
 namespace Capa_Vista_MH
 {
     public partial class Frm_Mantenimiento_hoteleria : Form
@@ -17,33 +17,32 @@ namespace Capa_Vista_MH
 
         private void Frm_Mantenimiento_hoteleria_Load(object sender, EventArgs e)
         {
-            CargarCombos();
-            CargarComboMantenimientos();
-            MostrarMantenimientos();
+            fun_CargarCombos();
+            fun_CargarComboMantenimientos();
+            fun_MostrarMantenimientos();
 
-            // Bloqueo dinámico de combos
+            // Bloqueo dinámico de combos (para no escribir un mantenimiento a la vez en salon y habitacion)
             Cbo_Id_Salon.SelectedIndexChanged += Cbo_Id_Salon_TextChanged;
             Cbo_Id_Habitacion.SelectedIndexChanged += Cbo_Id_Habitacion_TextChanged;
         }
 
-        // ============================================================
         // CARGA DE COMBOS
-        // ============================================================
-        private void CargarCombos()
+    
+        private void fun_CargarCombos()
         {
             try
             {
-                Cbo_Id_Salon.DataSource = controlador.ObtenerSalones();
+                Cbo_Id_Salon.DataSource = controlador.fun_ObtenerSalones();
                 Cbo_Id_Salon.DisplayMember = "Nombre_Salon";
                 Cbo_Id_Salon.ValueMember = "Pk_Id_Salon";
                 Cbo_Id_Salon.SelectedIndex = -1;
 
-                Cbo_Id_Habitacion.DataSource = controlador.ObtenerHabitaciones();
+                Cbo_Id_Habitacion.DataSource = controlador.fun_ObtenerHabitaciones();
                 Cbo_Id_Habitacion.DisplayMember = "Nombre_Habitacion";
                 Cbo_Id_Habitacion.ValueMember = "PK_ID_Habitaciones";
                 Cbo_Id_Habitacion.SelectedIndex = -1;
 
-                Cbo_Id_Empleado.DataSource = controlador.ObtenerEmpleados();
+                Cbo_Id_Empleado.DataSource = controlador.fun_ObtenerEmpleados();
                 Cbo_Id_Empleado.DisplayMember = "Nombre_Empleado";
                 Cbo_Id_Empleado.ValueMember = "Pk_Id_Empleado";
                 Cbo_Id_Empleado.SelectedIndex = -1;
@@ -54,11 +53,11 @@ namespace Capa_Vista_MH
             }
         }
 
-        private void CargarComboMantenimientos()
+        private void fun_CargarComboMantenimientos()
         {
             try
             {
-                Cbo_Id_Mantenimiento.DataSource = controlador.MostrarMantenimientos();
+                Cbo_Id_Mantenimiento.DataSource = controlador.fun_MostrarMantenimientos();
                 Cbo_Id_Mantenimiento.DisplayMember = "Pk_Id_Mantenimiento";
                 Cbo_Id_Mantenimiento.ValueMember = "Pk_Id_Mantenimiento";
                 Cbo_Id_Mantenimiento.SelectedIndex = -1;
@@ -69,12 +68,11 @@ namespace Capa_Vista_MH
             }
         }
 
-        // ============================================================
         // BOTONES CRUD
-        // ============================================================
+
         private void Pic_Guardar_Click(object sender, EventArgs e)
         {
-            string mensaje = controlador.GuardarMantenimiento(
+            string mensaje = controlador.fun_GuardarMantenimiento(
                 Cbo_Id_Salon.SelectedValue?.ToString(),
                 Cbo_Id_Habitacion.SelectedValue?.ToString(),
                 Cbo_Id_Empleado.SelectedValue?.ToString(),
@@ -86,14 +84,14 @@ namespace Capa_Vista_MH
             );
 
             MessageBox.Show(mensaje);
-            MostrarMantenimientos();
-            CargarComboMantenimientos();
-            LimpiarCampos();
+            fun_MostrarMantenimientos();
+            fun_CargarComboMantenimientos();
+            fun_LimpiarCampos();
         }
 
         private void Pic_Editar_Click(object sender, EventArgs e)
         {
-            string mensaje = controlador.ActualizarMantenimiento(
+            string mensaje = controlador.fun_ActualizarMantenimiento(
                 Cbo_Id_Mantenimiento.SelectedValue?.ToString(),
                 Cbo_Id_Salon.SelectedValue?.ToString(),
                 Cbo_Id_Habitacion.SelectedValue?.ToString(),
@@ -106,28 +104,28 @@ namespace Capa_Vista_MH
             );
 
             MessageBox.Show(mensaje);
-            MostrarMantenimientos();
-            CargarComboMantenimientos();
-            LimpiarCampos();
+            fun_MostrarMantenimientos();
+            fun_CargarComboMantenimientos();
+            fun_LimpiarCampos();
         }
 
         private void Pic_Eliminar_Click(object sender, EventArgs e)
         {
-            string mensaje = controlador.EliminarMantenimiento(Cbo_Id_Mantenimiento.SelectedValue?.ToString());
+            string mensaje = controlador.fun_EliminarMantenimiento(Cbo_Id_Mantenimiento.SelectedValue?.ToString());
             MessageBox.Show(mensaje);
-            MostrarMantenimientos();
-            CargarComboMantenimientos();
-            LimpiarCampos();
+            fun_MostrarMantenimientos();
+            fun_CargarComboMantenimientos();
+            fun_LimpiarCampos();
         }
 
         private void Pic_Buscar_Click(object sender, EventArgs e)
         {
-            string id = Cbo_Id_Mantenimiento.SelectedValue?.ToString() ?? Cbo_Id_Mantenimiento.Text.Trim();
-            DataTable resultado = controlador.BuscarMantenimientoPorId(id);
+            string sid = Cbo_Id_Mantenimiento.SelectedValue?.ToString() ?? Cbo_Id_Mantenimiento.Text.Trim();
+            DataTable dts_resultado = controlador.fun_BuscarMantenimientoPorId(sid);
 
-            if (resultado.Rows.Count > 0)
+            if (dts_resultado.Rows.Count > 0)
             {
-                DataRow fila = resultado.Rows[0];
+                DataRow fila = dts_resultado.Rows[0];
                 Cbo_Id_Salon.SelectedValue = fila["Fk_Id_Salon"];
                 Cbo_Id_Habitacion.SelectedValue = fila["Fk_Id_Habitacion"];
                 Cbo_Id_Empleado.SelectedValue = fila["Fk_Id_Empleado"];
@@ -146,15 +144,12 @@ namespace Capa_Vista_MH
             }
         }
 
-        // ============================================================
-        // FUNCIONES DE APOYO
-        // ============================================================
-        private void MostrarMantenimientos()
+        private void fun_MostrarMantenimientos()
         {
-            Dgv_Mantenimiento_hoteleria.DataSource = controlador.MostrarMantenimientos();
+            Dgv_Mantenimiento_hoteleria.DataSource = controlador.fun_MostrarMantenimientos();
         }
 
-        private void LimpiarCampos()
+        private void fun_LimpiarCampos()
         {
             Cbo_Id_Mantenimiento.SelectedIndex = -1;
             Cbo_Id_Salon.SelectedIndex = -1;
@@ -181,12 +176,18 @@ namespace Capa_Vista_MH
 
         private void Pic_Cancelar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
         }
 
         private void Pic_Salir_Click_1(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void Pic_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_MHOT frm = new Frm_Reporte_MHOT();
+            frm.Show();
         }
     }
 }
