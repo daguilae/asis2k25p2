@@ -252,7 +252,7 @@ namespace Capa_Vista_Cierre
             this.Btn_Imprimir_cierre_general.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Imprimir_cierre_general.ForeColor = System.Drawing.Color.Transparent;
             this.Btn_Imprimir_cierre_general.Image = global::Capa_Vista_Cierre.Properties.Resources.icono_imprimir;
-            this.Btn_Imprimir_cierre_general.Location = new System.Drawing.Point(1083, 12);
+            this.Btn_Imprimir_cierre_general.Location = new System.Drawing.Point(1074, 12);
             this.Btn_Imprimir_cierre_general.Name = "Btn_Imprimir_cierre_general";
             this.Btn_Imprimir_cierre_general.Size = new System.Drawing.Size(65, 51);
             this.Btn_Imprimir_cierre_general.TabIndex = 42;

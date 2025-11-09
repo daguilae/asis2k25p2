@@ -12,7 +12,7 @@ namespace Capa_Modelo_Cierre
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=HoteleriaCierre");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bd_Hoteleria");
             try
             {
                 conn.Open();
