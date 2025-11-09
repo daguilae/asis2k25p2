@@ -54,8 +54,6 @@ namespace Capa_Vista_S
             // 
             // Txt_capacidad
             // 
-            this.Txt_capacidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Txt_capacidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Txt_capacidad.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Txt_capacidad.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -67,8 +65,6 @@ namespace Capa_Vista_S
             // 
             // Txt_ubicacion
             // 
-            this.Txt_ubicacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Txt_ubicacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Txt_ubicacion.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Txt_ubicacion.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -123,8 +119,6 @@ namespace Capa_Vista_S
             // 
             // Lbl_Capacidad
             // 
-            this.Lbl_Capacidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Capacidad.AutoSize = true;
             this.Lbl_Capacidad.Cursor = System.Windows.Forms.Cursors.Default;
             this.Lbl_Capacidad.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -136,8 +130,6 @@ namespace Capa_Vista_S
             // 
             // Lbl_Ubicacion
             // 
-            this.Lbl_Ubicacion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Ubicacion.AutoSize = true;
             this.Lbl_Ubicacion.Cursor = System.Windows.Forms.Cursors.Default;
             this.Lbl_Ubicacion.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -149,8 +141,6 @@ namespace Capa_Vista_S
             // 
             // Lbl_Nombre
             // 
-            this.Lbl_Nombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Nombre.AutoSize = true;
             this.Lbl_Nombre.Cursor = System.Windows.Forms.Cursors.Default;
             this.Lbl_Nombre.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -162,8 +152,6 @@ namespace Capa_Vista_S
             // 
             // Txt_Nombre
             // 
-            this.Txt_Nombre.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Txt_Nombre.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Txt_Nombre.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.Txt_Nombre.Font = new System.Drawing.Font("Rockwell", 10F);
@@ -199,8 +187,6 @@ namespace Capa_Vista_S
             // 
             // Lbl_Disponibilidad
             // 
-            this.Lbl_Disponibilidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_Disponibilidad.AutoSize = true;
             this.Lbl_Disponibilidad.Cursor = System.Windows.Forms.Cursors.Default;
             this.Lbl_Disponibilidad.Font = new System.Drawing.Font("Rockwell", 10F);
