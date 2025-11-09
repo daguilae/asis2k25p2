@@ -11,13 +11,13 @@ namespace Capa_Vista_Reservas_Hotel
         private readonly Controlador_Reserva controlador = new Controlador_Reserva();
         private int iDReservaSeleccionada = 0;
 
-        // === Nuevo: necesarios para puntos de huésped ===
-        private string _estadoAnterior = "Pendiente";
-        private int _idHuespedActual = 0;
+        // === necesarios para puntos de huésped ===
+        private string sEtadoAnterior = "Pendiente";
+        private int iIdHuespedActual = 0;
 
         // ====== VARIABLES PARA BLOQUEO VISUAL DE FECHAS ======
-        private Panel _popupPanel;
-        private MonthCalendar _mc;
+        private Panel popupPanel;
+        private MonthCalendar mc;
         private HashSet<DateTime> _fechasOcupadas = new HashSet<DateTime>();
         private enum PickerObjetivo { Ninguno, Entrada, Salida }
         private PickerObjetivo _objetivoActual = PickerObjetivo.Ninguno;
@@ -128,8 +128,8 @@ namespace Capa_Vista_Reservas_Hotel
                 }
 
                 iDReservaSeleccionada = 0;
-                _idHuespedActual = 0;
-                _estadoAnterior = "Pendiente";
+                iIdHuespedActual = 0;
+                sEtadoAnterior = "Pendiente";
                 LimpiarDetalle();
             }
             catch (Exception ex)
@@ -197,9 +197,9 @@ namespace Capa_Vista_Reservas_Hotel
                 if (!int.TryParse(rowView["Pk_Id_Reserva"]?.ToString(), out iDReservaSeleccionada))
                     iDReservaSeleccionada = 0;
 
-                _idHuespedActual = 0;
+                iIdHuespedActual = 0;
                 if (rowView.DataView.Table.Columns.Contains("Pk_Id_Huesped"))
-                    int.TryParse(rowView["Pk_Id_Huesped"]?.ToString(), out _idHuespedActual);
+                    int.TryParse(rowView["Pk_Id_Huesped"]?.ToString(), out iIdHuespedActual);
 
                 int idHab = -1;
                 if (int.TryParse(rowView["Fk_Id_Habitacion"]?.ToString(), out idHab))
@@ -229,9 +229,9 @@ namespace Capa_Vista_Reservas_Hotel
 
                 Txt_Peticiones.Text = rowView["Cmp_Peticiones_Especiales"]?.ToString() ?? "";
 
-                string estadoActual = rowView["Cmp_Estado_Reserva"]?.ToString() ?? "Pendiente";
-                _estadoAnterior = estadoActual;
-                CargarOpcionesEstado(estadoActual);
+                string sEstadoActual = rowView["Cmp_Estado_Reserva"]?.ToString() ?? "Pendiente";
+                sEtadoAnterior = sEstadoActual;
+                CargarOpcionesEstado(sEstadoActual);
 
                 if (decimal.TryParse(rowView["Cmp_Total_Reserva"]?.ToString(), out decimal total))
                     Txt_Total.Text = total.ToString("F2");
@@ -241,7 +241,7 @@ namespace Capa_Vista_Reservas_Hotel
                 if (idHab > 0)
                     CargarFechasOcupadas(idHab, _rangoActualInicio, _rangoActualFin);
 
-                if (estadoActual.Equals("Finalizada", StringComparison.OrdinalIgnoreCase))
+                if (sEstadoActual.Equals("Finalizada", StringComparison.OrdinalIgnoreCase))
                     BloquearModificacion();
                 else
                     DesbloquearModificacion();
@@ -251,8 +251,8 @@ namespace Capa_Vista_Reservas_Hotel
                 MessageBox.Show($"Error al cargar detalle: {ex.Message}",
                                 "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 iDReservaSeleccionada = 0;
-                _idHuespedActual = 0;
-                _estadoAnterior = "Pendiente";
+                iIdHuespedActual = 0;
+                sEtadoAnterior = "Pendiente";
             }
         }
 
@@ -263,8 +263,8 @@ namespace Capa_Vista_Reservas_Hotel
             Cmb_Estado.Items.Add("Confirmada");
             Cmb_Estado.Items.Add("Cancelada");
 
-            int index = Cmb_Estado.Items.IndexOf(estadoActual);
-            Cmb_Estado.SelectedIndex = (index >= 0) ? index : 0;
+            int iIndex = Cmb_Estado.Items.IndexOf(estadoActual);
+            Cmb_Estado.SelectedIndex = (iIndex >= 0) ? iIndex : 0;
         }
 
         private void BloquearModificacion()
@@ -317,9 +317,9 @@ namespace Capa_Vista_Reservas_Hotel
                     return;
                 }
 
-                string estadoNuevo = Cmb_Estado.SelectedItem?.ToString() ?? "Pendiente";
+                string sEstadoNuevo = Cmb_Estado.SelectedItem?.ToString() ?? "Pendiente";
 
-                if (_idHuespedActual <= 0)
+                if (iIdHuespedActual <= 0)
                 {
                     MessageBox.Show("No se pudo determinar el huésped de la reserva. Seleccione nuevamente la fila.", "Aviso");
                     return;
@@ -331,10 +331,10 @@ namespace Capa_Vista_Reservas_Hotel
                     Dtp_Entrada.Value.Date,
                     Dtp_Salida.Value.Date,
                     Txt_Peticiones.Text.Trim(),
-                    estadoNuevo,
+                    sEstadoNuevo,
                     total,
-                    _estadoAnterior,
-                    _idHuespedActual
+                    sEtadoAnterior,
+                    iIdHuespedActual
                 );
 
                 MessageBox.Show("Reserva actualizada correctamente.");
@@ -353,51 +353,51 @@ namespace Capa_Vista_Reservas_Hotel
 
         private void InicializarPopupCalendario()
         {
-            _popupPanel = new Panel
+            popupPanel = new Panel
             {
                 Visible = false,
                 BorderStyle = BorderStyle.FixedSingle,
                 Width = 250,
                 Height = 190
             };
-            _mc = new MonthCalendar
+            mc = new MonthCalendar
             {
                 MaxSelectionCount = 1,
                 Dock = DockStyle.Fill,
             };
 
-            _mc.DateSelected += Mc_DateSelected;
-            _mc.DateChanged += Mc_DateChangedBloquearVisual;
+            mc.DateSelected += Mc_DateSelected;
+            mc.DateChanged += Mc_DateChangedBloquearVisual;
 
-            _popupPanel.Controls.Add(_mc);
-            this.Controls.Add(_popupPanel);
+            popupPanel.Controls.Add(mc);
+            this.Controls.Add(popupPanel);
 
-            _mc.Leave += (s, e) => _popupPanel.Visible = false;
-            _popupPanel.Leave += (s, e) => _popupPanel.Visible = false;
+            mc.Leave += (s, e) => popupPanel.Visible = false;
+            popupPanel.Leave += (s, e) => popupPanel.Visible = false;
         }
 
         private void MostrarPopupCalendarioCercaDe(Control ancla)
         {
-            if (_popupPanel == null || _mc == null) return;
+            if (popupPanel == null || mc == null) return;
 
             var p = ancla.PointToScreen(new System.Drawing.Point(0, ancla.Height));
             p = this.PointToClient(p);
-            _popupPanel.Location = p;
+            popupPanel.Location = p;
 
-            _mc.RemoveAllBoldedDates();
+            mc.RemoveAllBoldedDates();
             foreach (var d in _fechasOcupadas)
-                _mc.AddBoldedDate(d);
-            _mc.UpdateBoldedDates();
+                mc.AddBoldedDate(d);
+            mc.UpdateBoldedDates();
 
             DateTime baseDate = (_objetivoActual == PickerObjetivo.Entrada)
                                 ? Dtp_Entrada.Value.Date
                                 : Dtp_Salida.Value.Date;
 
-            _mc.SetDate(baseDate);
+            mc.SetDate(baseDate);
 
-            _popupPanel.BringToFront();
-            _popupPanel.Visible = true;
-            _mc.Focus();
+            popupPanel.BringToFront();
+            popupPanel.Visible = true;
+            mc.Focus();
         }
 
         private void Mc_DateChangedBloquearVisual(object sender, DateRangeEventArgs e)
@@ -414,7 +414,7 @@ namespace Capa_Vista_Reservas_Hotel
                 if (_fechasOcupadas.Contains(fallback))
                     fallback = DateTime.Today;
 
-                _mc.SetDate(fallback);
+                mc.SetDate(fallback);
             }
         }
 
@@ -429,15 +429,15 @@ namespace Capa_Vista_Reservas_Hotel
             else if (_objetivoActual == PickerObjetivo.Salida)
                 Dtp_Salida.Value = seleccionado;
 
-            _popupPanel.Visible = false;
+            popupPanel.Visible = false;
             _objetivoActual = PickerObjetivo.Ninguno;
         }
 
-        private void CargarFechasOcupadas(int idHabitacion, DateTime? excluirInicio, DateTime? excluirFin)
+        private void CargarFechasOcupadas(int iIdHabitacion, DateTime? excluirInicio, DateTime? excluirFin)
         {
             try
             {
-                _fechasOcupadas = controlador.ExpandirFechasOcupadas(idHabitacion) ?? new HashSet<DateTime>();
+                _fechasOcupadas = controlador.ExpandirFechasOcupadas(iIdHabitacion) ?? new HashSet<DateTime>();
 
                 if (excluirInicio.HasValue && excluirFin.HasValue)
                 {
@@ -445,12 +445,12 @@ namespace Capa_Vista_Reservas_Hotel
                         _fechasOcupadas.Remove(d);
                 }
 
-                if (_popupPanel != null && _mc != null && _popupPanel.Visible)
+                if (popupPanel != null && mc != null && popupPanel.Visible)
                 {
-                    _mc.RemoveAllBoldedDates();
+                    mc.RemoveAllBoldedDates();
                     foreach (var d in _fechasOcupadas)
-                        _mc.AddBoldedDate(d);
-                    _mc.UpdateBoldedDates();
+                        mc.AddBoldedDate(d);
+                    mc.UpdateBoldedDates();
                 }
             }
             catch
