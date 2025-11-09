@@ -32,7 +32,7 @@ namespace Capa_Controlador_Percepciones_Nomina
             return modelo.funObtenerMovimientosPorNomina(iIdNomina, asc);
         }
 
-        // Eliminar por ID (si lo usas)
+        // Eliminar por ID (si se usa)
         public void proEliminarMovimiento(int iIdMovimiento)
         {
             modelo.proEliminarMovimiento(iIdMovimiento);
