@@ -13,68 +13,39 @@ namespace Capa_Vista_CB
         public Frm_BuscarConciliacion()
         {
             InitializeComponent();
-            // ENLACE SEGURO: si ya lo uniste con el diseñador (⚡), no lo dupliques.
-            this.Load += Frm_BuscarConciliacion_Load;
+            this.Load += Frm_BuscarConciliacion_Load; // si ya está en diseñador, quita esta línea
         }
 
-        private void Frm_BuscarConciliacion_Load(object sender, EventArgs e)
-        {
-            ActualizarGrid();
-        }
+        private void Frm_BuscarConciliacion_Load(object sender, EventArgs e) => ActualizarGrid();
 
-        private void Btn_AyudaBC_Click(object sender, EventArgs e)
-        {
-            // Aún no se programa
-        }
+        private void Btn_AyudaBC_Click(object sender, EventArgs e) { /* pendiente */ }
 
         private void Btn_SalirBuscarCB_Click(object sender, EventArgs e)
         {
-            // Regresar al formulario principal si existe
             var frmPrincipal = Application.OpenForms.OfType<Frm_ConciliacionBancaria>().FirstOrDefault();
-            if (frmPrincipal != null)
-            {
-                frmPrincipal.Show();
-                frmPrincipal.Activate();
-            }
-            else
-            {
-                new Frm_ConciliacionBancaria().Show();
-            }
-            this.Close();
-        }
-
-        private void Btn_Reporte_Click(object sender, EventArgs e)
-        {
-            // Aún no se programa
+            if (frmPrincipal != null) { frmPrincipal.Show(); frmPrincipal.Activate(); }
+            else { new Frm_ConciliacionBancaria().Show(); }
+            Close();
         }
 
         private void Btn_ModificarSeleccion_Click(object sender, EventArgs e)
         {
             int iIdConciliacion = ObtenerIdSeleccionado();
-            if (iIdConciliacion <= 0)
-            {
-                MessageBox.Show("Seleccione una conciliación de la tabla.");
-                return;
-            }
+            if (iIdConciliacion <= 0) { MessageBox.Show("Seleccione una conciliación de la tabla."); return; }
 
-            var frmPrincipal = Application.OpenForms.OfType<Frm_ConciliacionBancaria>().FirstOrDefault();
-            if (frmPrincipal == null)
-                frmPrincipal = new Frm_ConciliacionBancaria();
+            var frmPrincipal = Application.OpenForms.OfType<Frm_ConciliacionBancaria>().FirstOrDefault()
+                              ?? new Frm_ConciliacionBancaria();
 
             frmPrincipal.Show();
             frmPrincipal.Activate();
             frmPrincipal.CargarConciliacionPorId(iIdConciliacion);
-            this.Close();
+            Close();
         }
 
         private void Btn_EliminarCB_Click(object sender, EventArgs e)
         {
             int iIdConciliacion = ObtenerIdSeleccionado();
-            if (iIdConciliacion <= 0)
-            {
-                MessageBox.Show("Seleccione una conciliación de la tabla.");
-                return;
-            }
+            if (iIdConciliacion <= 0) { MessageBox.Show("Seleccione una conciliación de la tabla."); return; }
 
             var dr = MessageBox.Show("¿Desea eliminar la conciliación seleccionada?",
                                      "Confirmación",
@@ -95,20 +66,17 @@ namespace Capa_Vista_CB
             }
         }
 
-        private void Dgv_Conciliaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
+        private void Dgv_Conciliaciones_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
 
-
+        // -------- Helpers --------
         private void ActualizarGrid()
         {
             try
             {
-                DataTable dtConciliaciones = gControlador.ObtenerConciliaciones();
+                DataTable dt = gControlador.ObtenerConciliaciones();
                 Dgv_Conciliaciones.AutoGenerateColumns = true;
-                Dgv_Conciliaciones.DataSource = dtConciliaciones;
+                Dgv_Conciliaciones.DataSource = dt;
 
-                // Formato amigable
                 if (Dgv_Conciliaciones.Columns.Count > 0)
                 {
                     SetHeader("Pk_Id_Conciliacion", "ID");
@@ -123,7 +91,6 @@ namespace Capa_Vista_CB
                     SetHeader("Cmp_Observaciones", "Observaciones");
                     SetHeader("Cmp_EstadoConciliacion", "Estado");
                 }
-
 
                 Dgv_Conciliaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 Dgv_Conciliaciones.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -148,11 +115,8 @@ namespace Capa_Vista_CB
         {
             if (Dgv_Conciliaciones.CurrentRow == null) return 0;
             var cell = Dgv_Conciliaciones.CurrentRow.Cells["Pk_Id_Conciliacion"];
-            if (cell == null || cell.Value == null || cell.Value == DBNull.Value) return 0;
-
-            int id;
-            return int.TryParse(cell.Value.ToString(), out id) ? id : 0;
+            if (cell?.Value == null || cell.Value == DBNull.Value) return 0;
+            return int.TryParse(cell.Value.ToString(), out int id) ? id : 0;
         }
     }
 }
-

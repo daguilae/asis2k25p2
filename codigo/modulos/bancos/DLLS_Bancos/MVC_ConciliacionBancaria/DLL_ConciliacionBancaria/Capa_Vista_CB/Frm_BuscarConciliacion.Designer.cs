@@ -32,7 +32,6 @@ namespace Capa_Vista_CB
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_BuscarConciliacion));
             this.Lbl_TituloBuscarCB = new System.Windows.Forms.Label();
             this.Dgv_Conciliaciones = new System.Windows.Forms.DataGridView();
-            this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Btn_SalirBuscarCB = new System.Windows.Forms.Button();
             this.Btn_AyudaBC = new System.Windows.Forms.Button();
             this.Btn_ModificarSeleccion = new System.Windows.Forms.Button();
@@ -61,19 +60,8 @@ namespace Capa_Vista_CB
             this.Dgv_Conciliaciones.RowHeadersWidth = 51;
             this.Dgv_Conciliaciones.RowTemplate.Height = 24;
             this.Dgv_Conciliaciones.Size = new System.Drawing.Size(1254, 522);
-            this.Dgv_Conciliaciones.TabIndex = 44;
+            this.Dgv_Conciliaciones.TabIndex = 20;
             this.Dgv_Conciliaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Conciliaciones_CellContentClick);
-            // 
-            // Btn_Reporte
-            // 
-            this.Btn_Reporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
-            this.Btn_Reporte.Location = new System.Drawing.Point(128, 63);
-            this.Btn_Reporte.Name = "Btn_Reporte";
-            this.Btn_Reporte.Size = new System.Drawing.Size(50, 50);
-            this.Btn_Reporte.TabIndex = 45;
-            this.Btn_Reporte.UseVisualStyleBackColor = true;
-            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Btn_SalirBuscarCB
             // 
@@ -82,7 +70,7 @@ namespace Capa_Vista_CB
             this.Btn_SalirBuscarCB.Location = new System.Drawing.Point(1220, 8);
             this.Btn_SalirBuscarCB.Name = "Btn_SalirBuscarCB";
             this.Btn_SalirBuscarCB.Size = new System.Drawing.Size(50, 50);
-            this.Btn_SalirBuscarCB.TabIndex = 46;
+            this.Btn_SalirBuscarCB.TabIndex = 22;
             this.Btn_SalirBuscarCB.UseVisualStyleBackColor = true;
             this.Btn_SalirBuscarCB.Click += new System.EventHandler(this.Btn_SalirBuscarCB_Click);
             // 
@@ -93,7 +81,7 @@ namespace Capa_Vista_CB
             this.Btn_AyudaBC.Location = new System.Drawing.Point(1164, 8);
             this.Btn_AyudaBC.Name = "Btn_AyudaBC";
             this.Btn_AyudaBC.Size = new System.Drawing.Size(50, 50);
-            this.Btn_AyudaBC.TabIndex = 47;
+            this.Btn_AyudaBC.TabIndex = 21;
             this.Btn_AyudaBC.UseVisualStyleBackColor = true;
             this.Btn_AyudaBC.Click += new System.EventHandler(this.Btn_AyudaBC_Click);
             // 
@@ -104,7 +92,7 @@ namespace Capa_Vista_CB
             this.Btn_ModificarSeleccion.Location = new System.Drawing.Point(16, 63);
             this.Btn_ModificarSeleccion.Name = "Btn_ModificarSeleccion";
             this.Btn_ModificarSeleccion.Size = new System.Drawing.Size(50, 50);
-            this.Btn_ModificarSeleccion.TabIndex = 50;
+            this.Btn_ModificarSeleccion.TabIndex = 17;
             this.Btn_ModificarSeleccion.UseVisualStyleBackColor = true;
             this.Btn_ModificarSeleccion.Click += new System.EventHandler(this.Btn_ModificarSeleccion_Click);
             // 
@@ -115,7 +103,7 @@ namespace Capa_Vista_CB
             this.Btn_EliminarCB.Location = new System.Drawing.Point(72, 63);
             this.Btn_EliminarCB.Name = "Btn_EliminarCB";
             this.Btn_EliminarCB.Size = new System.Drawing.Size(50, 50);
-            this.Btn_EliminarCB.TabIndex = 51;
+            this.Btn_EliminarCB.TabIndex = 18;
             this.Btn_EliminarCB.UseVisualStyleBackColor = true;
             this.Btn_EliminarCB.Click += new System.EventHandler(this.Btn_EliminarCB_Click);
             // 
@@ -128,7 +116,6 @@ namespace Capa_Vista_CB
             this.Controls.Add(this.Btn_ModificarSeleccion);
             this.Controls.Add(this.Btn_AyudaBC);
             this.Controls.Add(this.Btn_SalirBuscarCB);
-            this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Dgv_Conciliaciones);
             this.Controls.Add(this.Lbl_TituloBuscarCB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -145,7 +132,6 @@ namespace Capa_Vista_CB
 
         private System.Windows.Forms.Label Lbl_TituloBuscarCB;
         private System.Windows.Forms.DataGridView Dgv_Conciliaciones;
-        private System.Windows.Forms.Button Btn_Reporte;
         private System.Windows.Forms.Button Btn_SalirBuscarCB;
         private System.Windows.Forms.Button Btn_AyudaBC;
         private System.Windows.Forms.Button Btn_ModificarSeleccion;

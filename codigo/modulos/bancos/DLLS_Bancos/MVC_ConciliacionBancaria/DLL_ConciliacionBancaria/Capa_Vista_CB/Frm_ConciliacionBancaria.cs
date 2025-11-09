@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Globalization;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_CB;
 
@@ -14,81 +10,55 @@ namespace Capa_Vista_CB
 {
     public partial class Frm_ConciliacionBancaria : Form
     {
-        // ===== Item para el combo de meses =====
         private class MesItem
         {
             public int iValor { get; set; }
             public string sNombre { get; set; }
-            
         }
 
-        // ===== Controlador =====
         private readonly Cls_Controlador_Conciliacion gControlador = new Cls_Controlador_Conciliacion();
-
         private int? gIdEditando = null;
-
-        // Bandera para evitar eventos durante el bind inicial
         private bool bCargando = false;
 
         public Frm_ConciliacionBancaria()
         {
             InitializeComponent();
-            WireEvents(); // <<< Enlaza todos los eventos por código
+            WireEvents(); // Solo Load y combos para evitar duplicados de botones
         }
 
         private void WireEvents()
         {
-            // Form
             this.Load += Frm_ConciliacionBancaria_Load;
-
-            // Combos
             Cbo_Bancos.SelectedIndexChanged += Cbo_Bancos_SelectedIndexChanged;
             Cbo_Cuenta.SelectedIndexChanged += Cbo_Cuenta_SelectedIndexChanged;
             Cbo_Mes.SelectedIndexChanged += Cbo_Mes_SelectedIndexChanged;
-
-            // DateTimePicker
-            Dtp_FechaConciliacion.ValueChanged += Dtp_FechaConciliacion_ValueChanged;
-
-            // Botones
-            Btn_Guardar.Click += Btn_Guardar_Click;
-            Btn_LimpiarCampos.Click += Btn_LimpiarCampos_Click;
-            Btn_Salir.Click += Btn_Salir_Click;
         }
 
-        // ================== EVENTOS ==================
+        // ============== EVENTOS ==============
+
         private void Frm_ConciliacionBancaria_Load(object sender, EventArgs e)
         {
             try
             {
                 bCargando = true;
-
                 LlenarMeses();
                 LlenarBancos();
 
                 Dtp_FechaConciliacion.Value = DateTime.Today;
                 Txt_Anio.Text = DateTime.Today.Year.ToString();
                 Chk_Estado.Checked = true;
-                Txt_Diferencias.ReadOnly = true; // campo calculado
+                Txt_Diferencias.ReadOnly = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al iniciar el formulario: " + ex.Message);
             }
-            finally
-            {
-                bCargando = false;
-            }
+            finally { bCargando = false; }
         }
 
-        private void Btn_Ayuda_Click(object sender, EventArgs e)
-        {
-            // Este botón aún no se programa
-        }
+        private void Btn_Ayuda_Click(object sender, EventArgs e) { /* pendiente */ }
 
-        private void Btn_Salir_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void Btn_Salir_Click(object sender, EventArgs e) => Close();
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
@@ -105,29 +75,25 @@ namespace Capa_Vista_CB
                 int iIdBanco = Convert.ToInt32(Cbo_Bancos.SelectedValue);
                 int iIdCuenta = Convert.ToInt32(Cbo_Cuenta.SelectedValue);
 
-                decimal deSaldoBanco = ParseDecimalSafe(Txt_SaldoBanco.Text);
-                decimal deSaldoSistema = ParseDecimalSafe(Txt_SaldoLibros.Text);
-
-                string sObservaciones = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
+                // Validaciones en Controlador
+                decimal deSaldoBanco = gControlador.ParseMonto2DecOrThrow(Txt_SaldoBanco.Text, "Saldo de banco");
+                decimal deSaldoSistema = gControlador.ParseMonto2DecOrThrow(Txt_SaldoLibros.Text, "Saldo de libros");
+                string sObservaciones = gControlador.ValidarObservacionesSoloTextoOrThrow(Txt_Observaciones.Text);
                 bool bActiva = Chk_Estado.Checked;
 
                 if (gIdEditando.HasValue)
                 {
-                    // UPDATE
                     gControlador.ModificarConciliacion(gIdEditando.Value,
-                                                       iAnio, iMes, dFecha,
-                                                       iIdBanco, iIdCuenta,
-                                                       deSaldoBanco, deSaldoSistema,
-                                                       sObservaciones, bActiva);
+                        iAnio, iMes, dFecha, iIdBanco, iIdCuenta,
+                        deSaldoBanco, deSaldoSistema, sObservaciones, bActiva);
+
                     MessageBox.Show("Conciliación actualizada correctamente.");
                 }
                 else
                 {
-                    // INSERT
                     int iNuevoId = gControlador.GuardarConciliacion(iAnio, iMes, dFecha,
-                                                                    iIdBanco, iIdCuenta,
-                                                                    deSaldoBanco, deSaldoSistema,
-                                                                    sObservaciones, bActiva);
+                        iIdBanco, iIdCuenta, deSaldoBanco, deSaldoSistema, sObservaciones, bActiva);
+
                     MessageBox.Show("Conciliación guardada. ID: " + iNuevoId);
                 }
 
@@ -139,65 +105,49 @@ namespace Capa_Vista_CB
             }
         }
 
+        private void Txt_Diferencias_TextChanged(object sender, EventArgs e)
+        {
+            // Campo calculado (solo lectura). No hacer nada aquí.
+        }
+
+        private void Chk_Estado_CheckedChanged(object sender, EventArgs e)
+        {
+            // No hay lógica necesaria por ahora; checkbox solo marca Activa/Inactiva.
+        }
+
+        private void Txt_Observaciones_TextChanged(object sender, EventArgs e)
+        {
+            // No hacemos nada aquí. La validación real va por KeyPress/Validating. dentro de Controlador
+        }
 
         private void Btn_BuscarConciliacion_Click(object sender, EventArgs e)
         {
-            // Abre el buscador y oculta este formulario
             Hide();
-            Frm_BuscarConciliacion oFrmBuscar = new Frm_BuscarConciliacion();
-            oFrmBuscar.FormClosed += (s, args) => this.Show();
+            var oFrmBuscar = new Frm_BuscarConciliacion();
+            oFrmBuscar.FormClosed += (s, args) => Show();
             oFrmBuscar.Show();
         }
 
-        private void Btn_LimpiarCampos_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
+        private void Btn_LimpiarCampos_Click(object sender, EventArgs e) => LimpiarCampos();
 
         private void Cbo_Bancos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (bCargando) return;
-            if (Cbo_Bancos.SelectedValue == null) return;
+            if (bCargando || Cbo_Bancos.SelectedValue == null) return;
 
             int iIdBanco;
-
-            // Normalmente SelectedValue ya es int
-            if (Cbo_Bancos.SelectedValue is int)
-            {
-                iIdBanco = (int)Cbo_Bancos.SelectedValue;
-            }
-            else if (Cbo_Bancos.SelectedItem is DataRowView drv)
-            {
-                iIdBanco = Convert.ToInt32(drv["Pk_Id_Banco"]);
-            }
-            else
-            {
-                // fallback
-                iIdBanco = Convert.ToInt32(Cbo_Bancos.SelectedValue.ToString());
-            }
+            if (Cbo_Bancos.SelectedValue is int v) iIdBanco = v;
+            else if (Cbo_Bancos.SelectedItem is DataRowView drv) iIdBanco = Convert.ToInt32(drv["Pk_Id_Banco"]);
+            else iIdBanco = Convert.ToInt32(Cbo_Bancos.SelectedValue.ToString());
 
             LlenarCuentas(iIdBanco);
         }
 
-        private void Cbo_Cuenta_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Muestra la cuenta según el banco seleccionado (sin lógica extra)
-            if (Cbo_Cuenta.SelectedValue == null) return;
-        }
-
-        private void Dtp_FechaConciliacion_ValueChanged(object sender, EventArgs e)
-        {
-            // Se guarda junto con la conciliación
-        }
-
-        private void Cbo_Mes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Seleccion de Mes
-        }
+        private void Cbo_Cuenta_SelectedIndexChanged(object sender, EventArgs e) { /* sin lógica extra */ }
+        private void Dtp_FechaConciliacion_ValueChanged(object sender, EventArgs e) { /* opcional sync */ }
+        private void Cbo_Mes_SelectedIndexChanged(object sender, EventArgs e) { /* sin lógica extra */ }
 
         private void Txt_Anio_TextChanged(object sender, EventArgs e)
         {
-            // Higiene mínima: solo dígitos
             string sTexto = Txt_Anio.Text;
             if (sTexto.Length == 0) return;
             if (sTexto.Any(ch => !char.IsDigit(ch)))
@@ -208,32 +158,11 @@ namespace Capa_Vista_CB
             }
         }
 
-        private void Txt_SaldoBanco_TextChanged(object sender, EventArgs e)
-        {
-            RecalcularDiferencia();
-        }
+        private void Txt_SaldoBanco_TextChanged(object sender, EventArgs e) => RecalcularDiferencia();
+        private void Txt_SaldoLibros_TextChanged(object sender, EventArgs e) => RecalcularDiferencia();
 
-        private void Txt_SaldoLibros_TextChanged(object sender, EventArgs e)
-        {
-            RecalcularDiferencia();
-        }
+        // ============== AUXILIARES ==============
 
-        private void Txt_Diferencias_TextChanged(object sender, EventArgs e)
-        {
-            // Campo calculado: (banco - libros)
-        }
-
-        private void Txt_Observaciones_TextChanged(object sender, EventArgs e)
-        {
-            // Se guarda junto con la conciliación
-        }
-
-        private void Chk_Estado_CheckedChanged(object sender, EventArgs e)
-        {
-            // Checked = 1 (activa), Unchecked = 0 (inactiva)
-        }
-
-        // ================== AUXILIARES ==================
         private void LlenarMeses()
         {
             var lMeses = new[]
@@ -263,15 +192,12 @@ namespace Capa_Vista_CB
         {
             DataTable dtBancos = gControlador.ObtenerBancos();
 
-            // Limpiar bind previo y configurar columnas de visualización
             Cbo_Bancos.DataSource = null;
-            Cbo_Bancos.DisplayMember = "Cmp_NombreBanco"; // coincide con tu tabla
+            Cbo_Bancos.DisplayMember = "Cmp_NombreBanco";
             Cbo_Bancos.ValueMember = "Pk_Id_Banco";
             Cbo_Bancos.DropDownStyle = ComboBoxStyle.DropDownList;
-
             Cbo_Bancos.DataSource = dtBancos;
 
-            // Si hay datos, cargar sus cuentas
             if (dtBancos.Rows.Count > 0 && Cbo_Bancos.SelectedValue != null)
             {
                 int iIdBanco = Convert.ToInt32(Cbo_Bancos.SelectedValue);
@@ -284,26 +210,24 @@ namespace Capa_Vista_CB
             DataTable dtCuentas = gControlador.ObtenerCuentasPorBanco(iIdBanco);
 
             Cbo_Cuenta.DataSource = null;
-            Cbo_Cuenta.DisplayMember = "Cmp_NumeroCuenta";    // coincide con tu tabla
+            Cbo_Cuenta.DisplayMember = "Cmp_NumeroCuenta";
             Cbo_Cuenta.ValueMember = "Pk_Id_CuentaBancaria";
             Cbo_Cuenta.DropDownStyle = ComboBoxStyle.DropDownList;
-
             Cbo_Cuenta.DataSource = dtCuentas;
         }
 
+        // Solo cálculo informativo (sin validar). La validación real ocurre al Guardar. y la validación se encuentra en controlador
         private void RecalcularDiferencia()
         {
-            decimal deBanco = ParseDecimalSafe(Txt_SaldoBanco.Text);
-            decimal deLibros = ParseDecimalSafe(Txt_SaldoLibros.Text);
-            decimal deDif = gControlador.CalcularDiferencia(deBanco, deLibros);
-            Txt_Diferencias.Text = deDif.ToString("0.00", CultureInfo.InvariantCulture);
-        }
-
-        private decimal ParseDecimalSafe(string sValor)
-        {
-            if (decimal.TryParse(sValor, NumberStyles.Any, CultureInfo.InvariantCulture, out var deTmp)) return deTmp;
-            if (decimal.TryParse(sValor, out deTmp)) return deTmp;
-            return 0m;
+            if (decimal.TryParse(Txt_SaldoBanco.Text.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out var deBanco) &&
+                decimal.TryParse(Txt_SaldoLibros.Text.Replace(',', '.'), NumberStyles.Number, CultureInfo.InvariantCulture, out var deLibros))
+            {
+                Txt_Diferencias.Text = (deBanco - deLibros).ToString("0.00", CultureInfo.InvariantCulture);
+            }
+            else
+            {
+                Txt_Diferencias.Text = "";
+            }
         }
 
         private void LimpiarCampos()
@@ -320,13 +244,11 @@ namespace Capa_Vista_CB
             if (Cbo_Bancos.Items.Count > 0)
                 Cbo_Bancos.SelectedIndex = 0;
 
-            // Salir de modo edición
             gIdEditando = null;
             Btn_Guardar.Text = "Guardar";
         }
 
-
-        // ===== Público: para cargar una conciliación desde el buscador =====
+        // ----- Público: cargar desde buscador -----
         public void CargarConciliacionPorId(int iIdConciliacion)
         {
             try
@@ -336,7 +258,6 @@ namespace Capa_Vista_CB
 
                 var r = dt.Rows[0];
 
-                // ESTO ES CLAVE: modo edición
                 gIdEditando = iIdConciliacion;
                 Btn_Guardar.Text = "Actualizar";
 
@@ -365,3 +286,4 @@ namespace Capa_Vista_CB
         }
     }
 }
+

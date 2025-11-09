@@ -133,7 +133,7 @@ namespace Capa_Vista_CB
             this.Cbo_Mes.Location = new System.Drawing.Point(842, 185);
             this.Cbo_Mes.Name = "Cbo_Mes";
             this.Cbo_Mes.Size = new System.Drawing.Size(316, 28);
-            this.Cbo_Mes.TabIndex = 6;
+            this.Cbo_Mes.TabIndex = 5;
             this.Cbo_Mes.SelectedIndexChanged += new System.EventHandler(this.Cbo_Mes_SelectedIndexChanged);
             // 
             // Lbl_anio
@@ -153,7 +153,7 @@ namespace Capa_Vista_CB
             this.Txt_Anio.Location = new System.Drawing.Point(842, 219);
             this.Txt_Anio.Name = "Txt_Anio";
             this.Txt_Anio.Size = new System.Drawing.Size(316, 20);
-            this.Txt_Anio.TabIndex = 8;
+            this.Txt_Anio.TabIndex = 6;
             this.Txt_Anio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Txt_Anio.TextChanged += new System.EventHandler(this.Txt_Anio_TextChanged);
             // 
@@ -182,7 +182,7 @@ namespace Capa_Vista_CB
             // 
             this.Lbl_Diferencia.AutoSize = true;
             this.Lbl_Diferencia.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Diferencia.Location = new System.Drawing.Point(609, 261);
+            this.Lbl_Diferencia.Location = new System.Drawing.Point(578, 263);
             this.Lbl_Diferencia.Name = "Lbl_Diferencia";
             this.Lbl_Diferencia.Size = new System.Drawing.Size(106, 20);
             this.Lbl_Diferencia.TabIndex = 11;
@@ -192,7 +192,7 @@ namespace Capa_Vista_CB
             // 
             this.Lbl_Observaciones.AutoSize = true;
             this.Lbl_Observaciones.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Observaciones.Location = new System.Drawing.Point(14, 325);
+            this.Lbl_Observaciones.Location = new System.Drawing.Point(12, 331);
             this.Lbl_Observaciones.Name = "Lbl_Observaciones";
             this.Lbl_Observaciones.Size = new System.Drawing.Size(144, 20);
             this.Lbl_Observaciones.TabIndex = 12;
@@ -215,7 +215,7 @@ namespace Capa_Vista_CB
             this.Txt_SaldoLibros.Location = new System.Drawing.Point(140, 281);
             this.Txt_SaldoLibros.Name = "Txt_SaldoLibros";
             this.Txt_SaldoLibros.Size = new System.Drawing.Size(349, 20);
-            this.Txt_SaldoLibros.TabIndex = 15;
+            this.Txt_SaldoLibros.TabIndex = 8;
             this.Txt_SaldoLibros.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txt_SaldoLibros.TextChanged += new System.EventHandler(this.Txt_SaldoLibros_TextChanged);
             // 
@@ -226,7 +226,7 @@ namespace Capa_Vista_CB
             this.Txt_SaldoBanco.Location = new System.Drawing.Point(134, 249);
             this.Txt_SaldoBanco.Name = "Txt_SaldoBanco";
             this.Txt_SaldoBanco.Size = new System.Drawing.Size(349, 20);
-            this.Txt_SaldoBanco.TabIndex = 16;
+            this.Txt_SaldoBanco.TabIndex = 7;
             this.Txt_SaldoBanco.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txt_SaldoBanco.TextChanged += new System.EventHandler(this.Txt_SaldoBanco_TextChanged);
             // 
@@ -234,10 +234,11 @@ namespace Capa_Vista_CB
             // 
             this.Txt_Diferencias.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Txt_Diferencias.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Diferencias.Location = new System.Drawing.Point(721, 261);
+            this.Txt_Diferencias.Location = new System.Drawing.Point(690, 263);
             this.Txt_Diferencias.Name = "Txt_Diferencias";
             this.Txt_Diferencias.Size = new System.Drawing.Size(316, 20);
-            this.Txt_Diferencias.TabIndex = 17;
+            this.Txt_Diferencias.TabIndex = 9;
+            this.Txt_Diferencias.TabStop = false;
             this.Txt_Diferencias.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Txt_Diferencias.TextChanged += new System.EventHandler(this.Txt_Diferencias_TextChanged);
             // 
@@ -245,10 +246,10 @@ namespace Capa_Vista_CB
             // 
             this.Txt_Observaciones.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.Txt_Observaciones.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Observaciones.Location = new System.Drawing.Point(164, 325);
+            this.Txt_Observaciones.Location = new System.Drawing.Point(164, 331);
             this.Txt_Observaciones.Name = "Txt_Observaciones";
             this.Txt_Observaciones.Size = new System.Drawing.Size(985, 20);
-            this.Txt_Observaciones.TabIndex = 18;
+            this.Txt_Observaciones.TabIndex = 10;
             this.Txt_Observaciones.TextChanged += new System.EventHandler(this.Txt_Observaciones_TextChanged);
             // 
             // Btn_LimpiarCampos
@@ -258,18 +259,19 @@ namespace Capa_Vista_CB
             this.Btn_LimpiarCampos.Location = new System.Drawing.Point(124, 51);
             this.Btn_LimpiarCampos.Name = "Btn_LimpiarCampos";
             this.Btn_LimpiarCampos.Size = new System.Drawing.Size(50, 50);
-            this.Btn_LimpiarCampos.TabIndex = 34;
+            this.Btn_LimpiarCampos.TabIndex = 14;
             this.Btn_LimpiarCampos.UseVisualStyleBackColor = true;
             this.Btn_LimpiarCampos.Click += new System.EventHandler(this.Btn_LimpiarCampos_Click);
             // 
             // Btn_Guardar
             // 
             this.Btn_Guardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 4.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
             this.Btn_Guardar.Location = new System.Drawing.Point(12, 51);
             this.Btn_Guardar.Name = "Btn_Guardar";
             this.Btn_Guardar.Size = new System.Drawing.Size(50, 50);
-            this.Btn_Guardar.TabIndex = 37;
+            this.Btn_Guardar.TabIndex = 12;
             this.Btn_Guardar.UseVisualStyleBackColor = true;
             this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
@@ -280,7 +282,7 @@ namespace Capa_Vista_CB
             this.Btn_BuscarConciliacion.Location = new System.Drawing.Point(68, 51);
             this.Btn_BuscarConciliacion.Name = "Btn_BuscarConciliacion";
             this.Btn_BuscarConciliacion.Size = new System.Drawing.Size(50, 50);
-            this.Btn_BuscarConciliacion.TabIndex = 40;
+            this.Btn_BuscarConciliacion.TabIndex = 13;
             this.Btn_BuscarConciliacion.UseVisualStyleBackColor = true;
             this.Btn_BuscarConciliacion.Click += new System.EventHandler(this.Btn_BuscarConciliacion_Click);
             // 
@@ -291,7 +293,7 @@ namespace Capa_Vista_CB
             this.Btn_Salir.Location = new System.Drawing.Point(1108, 8);
             this.Btn_Salir.Name = "Btn_Salir";
             this.Btn_Salir.Size = new System.Drawing.Size(50, 50);
-            this.Btn_Salir.TabIndex = 42;
+            this.Btn_Salir.TabIndex = 16;
             this.Btn_Salir.UseVisualStyleBackColor = true;
             this.Btn_Salir.Click += new System.EventHandler(this.Btn_Salir_Click);
             // 
@@ -302,7 +304,7 @@ namespace Capa_Vista_CB
             this.Btn_Ayuda.Location = new System.Drawing.Point(1052, 8);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
             this.Btn_Ayuda.Size = new System.Drawing.Size(50, 50);
-            this.Btn_Ayuda.TabIndex = 43;
+            this.Btn_Ayuda.TabIndex = 15;
             this.Btn_Ayuda.UseVisualStyleBackColor = true;
             this.Btn_Ayuda.Click += new System.EventHandler(this.Btn_Ayuda_Click);
             // 
@@ -324,14 +326,14 @@ namespace Capa_Vista_CB
             this.Cbo_Cuenta.Location = new System.Drawing.Point(96, 185);
             this.Cbo_Cuenta.Name = "Cbo_Cuenta";
             this.Cbo_Cuenta.Size = new System.Drawing.Size(316, 28);
-            this.Cbo_Cuenta.TabIndex = 48;
+            this.Cbo_Cuenta.TabIndex = 3;
             this.Cbo_Cuenta.SelectedIndexChanged += new System.EventHandler(this.Cbo_Cuenta_SelectedIndexChanged);
             // 
             // Lbl_Estado
             // 
             this.Lbl_Estado.AutoSize = true;
             this.Lbl_Estado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado.Location = new System.Drawing.Point(14, 369);
+            this.Lbl_Estado.Location = new System.Drawing.Point(12, 380);
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(72, 20);
             this.Lbl_Estado.TabIndex = 13;
@@ -341,10 +343,10 @@ namespace Capa_Vista_CB
             // 
             this.Chk_Estado.AutoSize = true;
             this.Chk_Estado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Chk_Estado.Location = new System.Drawing.Point(96, 368);
+            this.Chk_Estado.Location = new System.Drawing.Point(96, 380);
             this.Chk_Estado.Name = "Chk_Estado";
             this.Chk_Estado.Size = new System.Drawing.Size(156, 24);
-            this.Chk_Estado.TabIndex = 19;
+            this.Chk_Estado.TabIndex = 11;
             this.Chk_Estado.Text = "Activa / Inactiva";
             this.Chk_Estado.UseVisualStyleBackColor = true;
             this.Chk_Estado.CheckedChanged += new System.EventHandler(this.Chk_Estado_CheckedChanged);
