@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using CapaModeloProduccion;  // Asumo que tu modelo está en este namespace
+using CapaModeloProduccion; 
 
 namespace CapaControladorProduccion
 {
@@ -8,21 +8,22 @@ namespace CapaControladorProduccion
     {
         Cls_Sentencias_Produccion sentencias = new Cls_Sentencias_Produccion();
 
-        public void GuardarRoomService(int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
+        // GUARDAR (Insertar registro nuevo)
+        public void GuardarRoomService(int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
-            sentencias.InsertarRoomService(idHuesped, idHabitacion, fechaOrden, estado);
+            sentencias.InsertarRoomService(iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
         }
 
         // ACTUALIZAR (Editar registro existente)
-        public void ActualizarRoomService(int idRoom, int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
+        public void ActualizarRoomService(int iIdRoom, int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
-            sentencias.EditarRoomService(idRoom, idHuesped, idHabitacion, fechaOrden, estado);
+            sentencias.EditarRoomService(iIdRoom, iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
         }
 
         // ELIMINAR
-        public void EliminarRoomService(int idRoom)
+        public void EliminarRoomService(int iIdRoom)
         {
-            sentencias.EliminarRoomService(idRoom);
+            sentencias.EliminarRoomService(iIdRoom);
         }
 
         // MOSTRAR TODOS LOS ROOM SERVICES
@@ -31,24 +32,24 @@ namespace CapaControladorProduccion
             return sentencias.CargarRoomServices();
         }
 
-        public void GuardarDetalle(int idRoom, int idMenu, int cantidad)
+        public void GuardarDetalle(int iIdRoom, int iIdMenu, int iCantidad)
         {
             // Obtenemos el precio desde el modelo automáticamente
-            decimal precioUnitario = sentencias.ObtenerPrecioUnitario(idMenu);
-            sentencias.InsertarDetalle(idRoom, idMenu, cantidad);
+            decimal dePrecioUnitario = sentencias.ObtenerPrecioUnitario(iIdMenu);
+            sentencias.InsertarDetalle(iIdRoom, iIdMenu, iCantidad);
         }
 
         // ✅ ACTUALIZAR
-        public void ActualizarDetalle(int idDetalle, int idRoom, int idMenu, int cantidad)
+        public void ActualizarDetalle(int iIdDetalle, int iIdRoom, int iIdMenu, int iCantidad)
         {
-            decimal precioUnitario = sentencias.ObtenerPrecioUnitario(idMenu);
-            sentencias.EditarDetalle(idDetalle, idRoom, idMenu, cantidad);
+            decimal dePrecioUnitario = sentencias.ObtenerPrecioUnitario(iIdMenu);
+            sentencias.EditarDetalle(iIdDetalle, iIdRoom, iIdMenu, iCantidad);
         }
 
         // ✅ ELIMINAR
-        public void BorrarDetalle(int idDetalle)
+        public void BorrarDetalle(int iIdDetalle)
         {
-            sentencias.EliminarDetalle(idDetalle);
+            sentencias.EliminarDetalle(iIdDetalle);
         }
 
         // ✅ MOSTRAR TODOS LOS DETALLES
@@ -58,15 +59,15 @@ namespace CapaControladorProduccion
         }
 
         // ✅ MOSTRAR DETALLES POR ROOM SERVICE
-        public DataTable MostrarDetallesPorRoom(int idRoom)
+        public DataTable MostrarDetallesPorRoom(int iIdRoom)
         {
-            return sentencias.CargarDetallesPorRoom(idRoom);
+            return sentencias.CargarDetallesPorRoom(iIdRoom);
         }
 
         // ✅ OBTENER PRECIO UNITARIO (para llenar automáticamente en la vista)
-        public decimal ObtenerPrecio(int idMenu)
+        public decimal ObtenerPrecio(int iIdMenu)
         {
-            return sentencias.ObtenerPrecioUnitario(idMenu);
+            return sentencias.ObtenerPrecioUnitario(iIdMenu);
         }
 
         public DataTable ObtenerPlatos()
@@ -80,21 +81,21 @@ namespace CapaControladorProduccion
         }
 
         // INSERTAR nueva reserva
-        public void GuardarReserva(int idHuesped, int idHabitacion, int idSalon, DateTime fecha, TimeSpan hora, int numComensales, int estado)
+        public void GuardarReserva(int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
         {
-            sentencias.InsertarReservaAlacarta(idHuesped, idHabitacion, idSalon, fecha, hora, numComensales, estado);
+            sentencias.InsertarReservaAlacarta(iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
         }
 
         // ACTUALIZAR reserva existente
-        public void ActualizarReserva(int idReserva, int idHuesped, int idHabitacion, int idSalon, DateTime fecha, TimeSpan hora, int numComensales, int estado)
+        public void ActualizarReserva(int iIdReserva, int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
         {
-            sentencias.EditarReservaAlacarta(idReserva, idHuesped, idHabitacion, idSalon, fecha, hora, numComensales, estado);
+            sentencias.EditarReservaAlacarta(iIdReserva, iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
         }
 
         // ELIMINAR reserva
-        public void EliminarReserva(int idReserva)
+        public void EliminarReserva(int iIdReserva)
         {
-            sentencias.EliminarReservaAlacarta(idReserva);
+            sentencias.EliminarReservaAlacarta(iIdReserva);
         }
 
         // CONSULTAR todas las reservas
@@ -103,6 +104,10 @@ namespace CapaControladorProduccion
             return sentencias.CargarReservasAlacarta();
         }
 
+        public DataTable ObtenerSalones()
+        {
+            return sentencias.CargarSalones();
+        }
 
     }
 

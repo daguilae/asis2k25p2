@@ -52,7 +52,7 @@ namespace Capa_Vista_S
             this.Lbl_FechaR = new System.Windows.Forms.Label();
             this.Lbl_Monto = new System.Windows.Forms.Label();
             this.Txt_Monto = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Msp_Menu1 = new System.Windows.Forms.MenuStrip();
             this.salonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Lbl_Promocion = new System.Windows.Forms.Label();
             this.Cbo_Promocion = new System.Windows.Forms.ComboBox();
@@ -64,9 +64,10 @@ namespace Capa_Vista_S
             this.Txt_Estadopago = new System.Windows.Forms.TextBox();
             this.Lbl_MetodoPago = new System.Windows.Forms.Label();
             this.Txt_MetodoPago = new System.Windows.Forms.TextBox();
+            this.Btn_Reportes = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Reservaciones)).BeginInit();
-            this.menuStrip1.SuspendLayout();
+            this.Msp_Menu1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Pnl_Superior
@@ -99,7 +100,7 @@ namespace Capa_Vista_S
             this.Btn_modificar.BackColor = System.Drawing.Color.White;
             this.Btn_modificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_modificar.Image")));
-            this.Btn_modificar.Location = new System.Drawing.Point(1252, 86);
+            this.Btn_modificar.Location = new System.Drawing.Point(1157, 86);
             this.Btn_modificar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_modificar.Name = "Btn_modificar";
             this.Btn_modificar.Size = new System.Drawing.Size(40, 37);
@@ -113,7 +114,7 @@ namespace Capa_Vista_S
             this.Btn_eliminar.BackColor = System.Drawing.Color.White;
             this.Btn_eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_eliminar.Image")));
-            this.Btn_eliminar.Location = new System.Drawing.Point(1208, 86);
+            this.Btn_eliminar.Location = new System.Drawing.Point(1113, 86);
             this.Btn_eliminar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_eliminar.Name = "Btn_eliminar";
             this.Btn_eliminar.Size = new System.Drawing.Size(40, 37);
@@ -128,7 +129,7 @@ namespace Capa_Vista_S
             this.Btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_guardar.Image")));
-            this.Btn_guardar.Location = new System.Drawing.Point(1164, 86);
+            this.Btn_guardar.Location = new System.Drawing.Point(1069, 86);
             this.Btn_guardar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_guardar.Name = "Btn_guardar";
             this.Btn_guardar.Size = new System.Drawing.Size(40, 37);
@@ -333,16 +334,16 @@ namespace Capa_Vista_S
             this.Txt_Monto.Size = new System.Drawing.Size(200, 23);
             this.Txt_Monto.TabIndex = 138;
             // 
-            // menuStrip1
+            // Msp_Menu1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Msp_Menu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
+            this.Msp_Menu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salonesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1301, 24);
-            this.menuStrip1.TabIndex = 139;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Msp_Menu1.Location = new System.Drawing.Point(0, 0);
+            this.Msp_Menu1.Name = "Msp_Menu1";
+            this.Msp_Menu1.Size = new System.Drawing.Size(1301, 24);
+            this.Msp_Menu1.TabIndex = 139;
+            this.Msp_Menu1.Text = "Msp_Menu";
             // 
             // salonesToolStripMenuItem
             // 
@@ -466,11 +467,27 @@ namespace Capa_Vista_S
             this.Txt_MetodoPago.Size = new System.Drawing.Size(200, 23);
             this.Txt_MetodoPago.TabIndex = 149;
             // 
+            // Btn_Reportes
+            // 
+            this.Btn_Reportes.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Btn_Reportes.BackColor = System.Drawing.Color.White;
+            this.Btn_Reportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Reportes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Reportes.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reportes.Image")));
+            this.Btn_Reportes.Location = new System.Drawing.Point(1201, 86);
+            this.Btn_Reportes.Margin = new System.Windows.Forms.Padding(2);
+            this.Btn_Reportes.Name = "Btn_Reportes";
+            this.Btn_Reportes.Size = new System.Drawing.Size(40, 37);
+            this.Btn_Reportes.TabIndex = 150;
+            this.Btn_Reportes.UseVisualStyleBackColor = false;
+            this.Btn_Reportes.Click += new System.EventHandler(this.Btn_Reportes_Click);
+            // 
             // Frm_Reservaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1301, 684);
+            this.Controls.Add(this.Btn_Reportes);
             this.Controls.Add(this.Txt_MetodoPago);
             this.Controls.Add(this.Lbl_MetodoPago);
             this.Controls.Add(this.Txt_Estadopago);
@@ -502,15 +519,16 @@ namespace Capa_Vista_S
             this.Controls.Add(this.Lbl_Consulta);
             this.Controls.Add(this.Dvg_Reservaciones);
             this.Controls.Add(this.Pnl_Superior);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.Msp_Menu1);
+            this.MainMenuStrip = this.Msp_Menu1;
             this.Name = "Frm_Reservaciones";
             this.Text = "Frm_Reservaciones";
+            this.Load += new System.EventHandler(this.Frm_Reservaciones_Load_1);
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Reservaciones)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Msp_Menu1.ResumeLayout(false);
+            this.Msp_Menu1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,7 +558,7 @@ namespace Capa_Vista_S
         private System.Windows.Forms.Label Lbl_FechaR;
         private System.Windows.Forms.Label Lbl_Monto;
         private System.Windows.Forms.TextBox Txt_Monto;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip Msp_Menu1;
         private System.Windows.Forms.ToolStripMenuItem salonesToolStripMenuItem;
         private System.Windows.Forms.Label Lbl_Promocion;
         private System.Windows.Forms.ComboBox Cbo_Promocion;
@@ -552,5 +570,6 @@ namespace Capa_Vista_S
         private System.Windows.Forms.TextBox Txt_Estadopago;
         private System.Windows.Forms.Label Lbl_MetodoPago;
         private System.Windows.Forms.TextBox Txt_MetodoPago;
+        private System.Windows.Forms.Button Btn_Reportes;
     }
 } 
