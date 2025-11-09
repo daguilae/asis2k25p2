@@ -29,6 +29,10 @@ namespace Capa_Vista_TipoDeCambio
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Dgv_TipoDeCambioDia = new System.Windows.Forms.DataGridView();
             this.Lbl_TipoDeCambioDia = new System.Windows.Forms.Label();
@@ -50,6 +54,14 @@ namespace Capa_Vista_TipoDeCambio
             // 
             // Dgv_TipoDeCambioDia
             // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Dgv_TipoDeCambioDia.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.Dgv_TipoDeCambioDia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_TipoDeCambioDia.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Moneda,
@@ -72,18 +84,27 @@ namespace Capa_Vista_TipoDeCambio
             // 
             // Moneda
             // 
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Moneda.DefaultCellStyle = dataGridViewCellStyle2;
             this.Moneda.HeaderText = "Moneda";
             this.Moneda.Name = "Moneda";
             this.Moneda.ReadOnly = true;
             // 
             // Compra
             // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Compra.DefaultCellStyle = dataGridViewCellStyle3;
             this.Compra.HeaderText = "Compra";
             this.Compra.Name = "Compra";
             this.Compra.ReadOnly = true;
             // 
             // Venta
             // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Rockwell", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Venta.DefaultCellStyle = dataGridViewCellStyle4;
             this.Venta.HeaderText = "Venta";
             this.Venta.Name = "Venta";
             this.Venta.ReadOnly = true;
