@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Odbc;
+using System.Collections.Generic;
 using Capa_Modelo_Reservas_Hotel;
 
 namespace Capa_Controlador_Reservas_Hotel
@@ -9,7 +10,8 @@ namespace Capa_Controlador_Reservas_Hotel
     {
         private readonly Cls_Reserva modeloReserva = new Cls_Reserva();
 
-        // ==================== METODOS PARA Frm_Reserva ====================
+        // ==================== MÉTODOS PARA Frm_Reserva ====================
+
         public DataTable ObtenerHabitaciones() => modeloReserva.ObtenerHabitaciones();
 
         public string ObtenerBuffetDescripcion()
@@ -38,7 +40,8 @@ namespace Capa_Controlador_Reservas_Hotel
         public decimal CalcularTotalReserva(decimal dTarifaNoche, DateTime dFechaEntrada, DateTime dFechaSalida)
         {
             int dias = (dFechaSalida - dFechaEntrada).Days;
-            if (dias <= 0) throw new ArgumentException("La fecha de salida debe ser posterior a la fecha de entrada.");
+            if (dias <= 0)
+                throw new ArgumentException("La fecha de salida debe ser posterior a la fecha de entrada.");
             return dTarifaNoche * dias;
         }
 
@@ -55,30 +58,66 @@ namespace Capa_Controlador_Reservas_Hotel
             return (dTotalFinal, iUsados, iRestantes);
         }
 
-        public void InsertarReserva(int iDHuesped, int iDHabitacion, int iDBuffet,
+        public void InsertarReserva(int iDHuesped, int iDHabitacion, int iDBuffet, int iNumHuespedes,
                                     DateTime dFechaEntrada, DateTime dFechaSalida,
-                                    int iNumHuespedes, string sPeticiones, string sEstado, decimal dTotal)
+                                    string sPeticiones, string sEstado, decimal dTotal)
         {
             if (dFechaEntrada >= dFechaSalida)
                 throw new ArgumentException("La fecha de entrada debe ser anterior a la de salida.");
 
-            modeloReserva.InsertarReserva(iDHuesped, iDHabitacion, iDBuffet,
-                                          dFechaEntrada, dFechaSalida,
-                                          iNumHuespedes, sPeticiones, sEstado, dTotal);
+            modeloReserva.InsertarReserva(
+                iDHuesped, iDHabitacion, iDBuffet,
+                iNumHuespedes, dFechaEntrada, dFechaSalida,
+                sPeticiones, sEstado, dTotal
+            );
+
+            // ✅ Si la reserva inicia como Confirmada, sumar puntos
+            if (sEstado == "Confirmada")
+            {
+                int puntosActuales = modeloReserva.ObtenerPuntosHuesped(iDHuesped);
+                modeloReserva.ActualizarPuntosHuesped(iDHuesped, puntosActuales + 15);
+            }
         }
 
-        // ==================== METODOS PARA Frm_ModificarReserva ====================
+        // ==================== MÉTODOS PARA Frm_ModificarReserva ====================
+
         public DataTable BuscarReservas(string sFiltro) => modeloReserva.BuscarReservas(sFiltro);
+
         public decimal ObtenerTarifaHabitacion(int iDHabitacion) => modeloReserva.ObtenerTarifaHabitacion(iDHabitacion);
 
+        public int ObtenerCapacidadHabitacion(int idHabitacion) => modeloReserva.ObtenerCapacidadHabitacion(idHabitacion);
+
         public void ActualizarReserva(int iDReserva, int iDHabitacion, DateTime dFechaEntrada, DateTime dFechaSalida,
-                                      int iNumHuespedes, string sPeticiones, string sEstado, decimal dTotal)
+                                      string sPeticiones, string sEstadoNuevo, decimal dTotal,
+                                      string sEstadoAnterior, int idHuesped)
         {
-            modeloReserva.ActualizarReserva(iDReserva, iDHabitacion, dFechaEntrada, dFechaSalida, iNumHuespedes, sPeticiones, sEstado, dTotal);
+            modeloReserva.ActualizarReserva(
+                iDReserva, iDHabitacion, dFechaEntrada, dFechaSalida,
+                sPeticiones, sEstadoNuevo, dTotal,
+                sEstadoAnterior, idHuesped
+            );
+
+            // ✅ Manejo de puntos según cambio de estado
+            int puntosActuales = modeloReserva.ObtenerPuntosHuesped(idHuesped);
+
+            if (sEstadoAnterior != "Confirmada" && sEstadoNuevo == "Confirmada")
+            {
+                modeloReserva.ActualizarPuntosHuesped(idHuesped, puntosActuales + 15);
+            }
+            else if (sEstadoAnterior == "Confirmada" && sEstadoNuevo != "Confirmada")
+            {
+                int nuevosPuntos = Math.Max(puntosActuales - 15, 0);
+                modeloReserva.ActualizarPuntosHuesped(idHuesped, nuevosPuntos);
+            }
         }
 
-        // ==================== Salud de conexion ====================
-        // Solo depuracion de que se conecta a la base de datos.
+        // ==================== FECHAS OCUPADAS ====================
+
+        public HashSet<DateTime> ExpandirFechasOcupadas(int idHabitacion)
+            => modeloReserva.ExpandirFechasOcupadas(idHabitacion);
+
+        // ==================== SALUD DE CONEXIÓN ====================
+
         public bool ProbarConexion()
         {
             try
@@ -86,7 +125,7 @@ namespace Capa_Controlador_Reservas_Hotel
                 Cls_Conexion c = new Cls_Conexion();
                 using (OdbcConnection conn = c.conexion())
                 {
-                    return conn.State == System.Data.ConnectionState.Open;
+                    return conn.State == ConnectionState.Open;
                 }
             }
             catch { return false; }
