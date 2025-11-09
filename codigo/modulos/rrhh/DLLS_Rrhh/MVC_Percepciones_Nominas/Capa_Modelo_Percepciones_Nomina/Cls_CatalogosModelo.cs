@@ -1,15 +1,23 @@
-﻿using System;
+﻿/* 
+ * Programador: Richard Anthony De León Milian
+ * Carné: 0901-22-10245
+ * Fecha de modificación: 8/11/2025
+ * Archivo: Cls_CatalogosModelo.cs
+ * Descripción: Obtención de los valores de las tablas hacia los combobox
+ */
+using System;
 using System.Data;
 using System.Data.Odbc;
 
 namespace Capa_Modelo_Percepciones_Nomina
 {
-    public class CatalogosModelo
+    public class Cls_CatalogosModelo
     {
-        public DataTable Ejecutar(string sql)
+        //Ejecutar los scripts SQL
+        public DataTable funEjecutar(string sql)
         {
             DataTable dt = new DataTable();
-            Conexion cn = new Conexion();
+            Cls_Conexion cn = new Cls_Conexion();
             OdbcConnection con = null;
 
             try
@@ -33,13 +41,8 @@ namespace Capa_Modelo_Percepciones_Nomina
             return dt;
         }
 
-        /// <summary>
-        /// ComboBox Concepto de Nómina:
-        /// DisplayMember = nombre_concepto_nomina
-        /// ValueMember   = id_concepto_nomina
-        /// (Mapea desde Tbl_ConceptosNomina de la nueva BD)
-        /// </summary>
-        public DataTable ObtenerConceptosNomina()
+        //obtención de los valores de conceptos de nómina
+        public DataTable funObtenerConceptosNomina()
         {
             string sql = @"
         SELECT
@@ -48,17 +51,10 @@ namespace Capa_Modelo_Percepciones_Nomina
         FROM Tbl_ConceptosNomina
         WHERE Cmp_sTipo_ConceptoNomina = 'PERCEPCION'
         ORDER BY Cmp_sNombre_ConceptoNomina;";
-            return Ejecutar(sql);
+            return funEjecutar(sql);
         }
 
-
-        /// <summary>
-        /// ComboBox Empleados:
-        /// DisplayMember = nombre_empleado
-        /// ValueMember   = id_empleado
-        /// (Concatena nombre + apellido desde Tbl_Empleados)
-        /// </summary>
-        public DataTable ObtenerEmpleados()
+        public DataTable funObtenerEmpleados()
         {
             string sql = @"
                 SELECT
@@ -66,16 +62,11 @@ namespace Capa_Modelo_Percepciones_Nomina
                     CONCAT_WS(' ', e.`Cmp_sNombre_Empleado`, e.`Cmp_sApellido_Empleado`) AS nombre_empleado
                 FROM `Tbl_Empleados` e
                 ORDER BY nombre_empleado;";
-            return Ejecutar(sql);
+            return funEjecutar(sql);
         }
 
-        /// <summary>
-        /// ComboBox No. Nómina:
-        /// DisplayMember = numero_nomina
-        /// ValueMember   = id_nomina
-        /// (En el esquema nuevo usamos el Id como número de nómina)
-        /// </summary>
-        public DataTable ObtenerNumerosNomina()
+        //Obtención de los números de nómina
+        public DataTable funObtenerNumerosNomina()
         {
             string sql = @"
                 SELECT
@@ -83,43 +74,36 @@ namespace Capa_Modelo_Percepciones_Nomina
                     CAST(n.`Cmp_iId_Nomina` AS CHAR)    AS numero_nomina
                 FROM `Tbl_Nomina` n
                 ORDER BY n.`Cmp_iId_Nomina`;";
-            return Ejecutar(sql);
+            return funEjecutar(sql);
         }
 
-        // ===== (Opcional útiles, por si los quieres ya listos) =================
 
-        /// <summary>
-        /// Conceptos filtrados por tipo (ej. 'Percepcion' o 'Deduccion')
-        /// </summary>
-        public DataTable ObtenerConceptosPorTipo(string tipo)
+        //Obtención de conceptos de nómina por tipo
+        public DataTable funObtenerConceptosNominaPorTipo(string sTipo)
         {
-            // OJO: como no usamos parámetros en OdbcCommand aquí, sanitiza 'tipo' si viene del UI;
-            // idealmente usa parámetros. Te dejo una versión parametrizada:
-            DataTable dt = new DataTable();
-            Conexion cn = new Conexion();
+            string sSql = @"
+        SELECT 
+            Cmp_iId_ConceptoNomina     AS id_concepto_nomina,
+            Cmp_sNombre_ConceptoNomina AS nombre_concepto_nomina
+        FROM Tbl_ConceptosNomina
+        WHERE LOWER(TRIM(Cmp_sTipo_ConceptoNomina)) = LOWER(TRIM(?))
+        ORDER BY Cmp_sNombre_ConceptoNomina;";
+
+            var dt = new DataTable();
+            var cn = new Cls_Conexion();
             using (var con = cn.conexionDB())
-            using (var cmd = new OdbcCommand(@"
-                SELECT
-                    `Cmp_iId_ConceptoNomina`     AS id_concepto_nomina,
-                    `Cmp_sNombre_ConceptoNomina` AS nombre_concepto_nomina
-                FROM `Tbl_ConceptosNomina`
-                WHERE `Cmp_sTipo_ConceptoNomina` = ?
-                ORDER BY `Cmp_sNombre_ConceptoNomina`;", con))
+            using (var cmd = new OdbcCommand(sSql, con))
+            using (var da = new OdbcDataAdapter(cmd))
             {
-                cmd.Parameters.Add("p1", OdbcType.VarChar).Value = tipo;
-                using (var da = new OdbcDataAdapter(cmd))
-                {
-                    da.Fill(dt);
-                }
+                cmd.Parameters.Add("p1", OdbcType.VarChar).Value = sTipo;
+                da.Fill(dt);
             }
             cn.cerrarConexion();
             return dt;
         }
 
-        /// <summary>
-        /// Lista de Puestos (útil para combos): Display = nombre_puesto, Value = id_puesto
-        /// </summary>
-        public DataTable ObtenerPuestos()
+       //Obtención de puestos del empleado
+        public DataTable funObtenerPuestos()
         {
             string sql = @"
                 SELECT
@@ -127,12 +111,14 @@ namespace Capa_Modelo_Percepciones_Nomina
                     `Cmp_sNombre_Puesto` AS nombre_puesto
                 FROM `Tbl_Puestos`
                 ORDER BY `Cmp_sNombre_Puesto`;";
-            return Ejecutar(sql);
+            return funEjecutar(sql);
         }
-        private DataTable ObtenerDetalleNomina(int idNomina)
+
+        //Obtención de los detalles de nómina 
+        private DataTable funObtenerDetalleNomina(int idNomina)
         {
             DataTable dt = new DataTable();
-            Conexion cn = new Conexion();
+            Cls_Conexion cn = new Cls_Conexion();
 
             using (OdbcConnection con = cn.conexionDB())
             using (OdbcCommand cmd = new OdbcCommand(@"
@@ -163,10 +149,11 @@ namespace Capa_Modelo_Percepciones_Nomina
             return dt;
         }
 
-        public string ObtenerEstadoNomina(int idNomina)
+        //Obtención del estado de nómina ya que una generada no permitirá ingreso de percepción
+        public string funObtenerEstadoNomina(int idNomina)
         {
             string estado = string.Empty;
-            Conexion cn = new Conexion();
+            Cls_Conexion cn = new Cls_Conexion();
 
             using (OdbcConnection con = cn.conexionDB())
             {
@@ -194,7 +181,7 @@ namespace Capa_Modelo_Percepciones_Nomina
 
             return estado;
         }
-
+        
 
     }
 

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/* 
+ * Programador: Richard Anthony De León Milian
+ * Carné: 0901-22-10245
+ * Fecha de modificación: 8/11/2025
+ * Archivo: Cls_UtilModelo
+ * Descripción: Resetear el autoincrement cuando la tabla esté vacía
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +15,12 @@ using System.Data.Odbc;
 
 namespace Capa_Modelo_Percepciones_Nomina
 {
-    public class UtilModelo
+    public class Cls_UtilModelo
     {
-        // 🔁 Reinicia el AUTO_INCREMENT solo si la tabla está vacía
-        public void ResetAutoIncrementIfEmpty(string tableName, string idColumn)
+        //Reinicia el AUTO_INCREMENT solo si la tabla está vacía
+        public void funResetAutoIncrementIfEmpty(string tableName, string idColumn)
         {
-            Conexion cn = new Conexion();
+            Cls_Conexion cn = new Cls_Conexion();
             using (OdbcConnection con = cn.conexionDB())
             {
                 int count = 0;
@@ -32,17 +40,7 @@ namespace Capa_Modelo_Percepciones_Nomina
             cn.cerrarConexion();
         }
 
-        // 🧨 Método para vaciar una tabla completamente y reiniciar el contador
-        public void TruncarTabla(string tableName)
-        {
-            Conexion cn = new Conexion();
-            using (OdbcConnection con = cn.conexionDB())
-            using (OdbcCommand cmd = new OdbcCommand($"TRUNCATE TABLE `{tableName}`;", con))
-            {
-                cmd.ExecuteNonQuery();
-            }
-            cn.cerrarConexion();
-        }
+
     }
 }
 

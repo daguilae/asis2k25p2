@@ -39,18 +39,19 @@ namespace Capa_Vista_Percepciones_Nomina
             this.Cbo_Empleado = new System.Windows.Forms.ComboBox();
             this.Cbo_ConceptoNomina = new System.Windows.Forms.ComboBox();
             this.Txt_Valor = new System.Windows.Forms.TextBox();
-            this.Dvg_Detalle = new System.Windows.Forms.DataGridView();
+            this.Dgv_Detalle = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.Btn_Eliminar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Dvg_Detalle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).BeginInit();
             this.SuspendLayout();
             // 
             // Btn_Guardar
             // 
+            this.Btn_Guardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
-            this.Btn_Guardar.Location = new System.Drawing.Point(730, 13);
+            this.Btn_Guardar.Location = new System.Drawing.Point(639, 10);
             this.Btn_Guardar.Name = "Btn_Guardar";
-            this.Btn_Guardar.Size = new System.Drawing.Size(40, 42);
+            this.Btn_Guardar.Size = new System.Drawing.Size(48, 44);
             this.Btn_Guardar.TabIndex = 0;
             this.Btn_Guardar.UseVisualStyleBackColor = true;
             this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
@@ -130,13 +131,13 @@ namespace Capa_Vista_Percepciones_Nomina
             this.Txt_Valor.Size = new System.Drawing.Size(142, 23);
             this.Txt_Valor.TabIndex = 8;
             // 
-            // Dvg_Detalle
+            // Dgv_Detalle
             // 
-            this.Dvg_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dvg_Detalle.Location = new System.Drawing.Point(33, 151);
-            this.Dvg_Detalle.Name = "Dvg_Detalle";
-            this.Dvg_Detalle.Size = new System.Drawing.Size(737, 203);
-            this.Dvg_Detalle.TabIndex = 9;
+            this.Dgv_Detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Detalle.Location = new System.Drawing.Point(33, 151);
+            this.Dgv_Detalle.Name = "Dgv_Detalle";
+            this.Dgv_Detalle.Size = new System.Drawing.Size(737, 203);
+            this.Dgv_Detalle.TabIndex = 9;
             // 
             // label5
             // 
@@ -150,11 +151,11 @@ namespace Capa_Vista_Percepciones_Nomina
             // 
             // Btn_Eliminar
             // 
-            this.Btn_Eliminar.Location = new System.Drawing.Point(651, 16);
+            this.Btn_Eliminar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.BackgroundImage")));
+            this.Btn_Eliminar.Location = new System.Drawing.Point(706, 14);
             this.Btn_Eliminar.Name = "Btn_Eliminar";
-            this.Btn_Eliminar.Size = new System.Drawing.Size(58, 36);
+            this.Btn_Eliminar.Size = new System.Drawing.Size(32, 36);
             this.Btn_Eliminar.TabIndex = 11;
-            this.Btn_Eliminar.Text = "Eliminar";
             this.Btn_Eliminar.UseVisualStyleBackColor = true;
             this.Btn_Eliminar.Click += new System.EventHandler(this.Btn_Eliminar_Click);
             // 
@@ -165,7 +166,7 @@ namespace Capa_Vista_Percepciones_Nomina
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(47)))), ((int)(((byte)(149)))));
             this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.Dvg_Detalle);
+            this.Controls.Add(this.Dgv_Detalle);
             this.Controls.Add(this.Txt_Valor);
             this.Controls.Add(this.Cbo_ConceptoNomina);
             this.Controls.Add(this.Cbo_Empleado);
@@ -179,7 +180,7 @@ namespace Capa_Vista_Percepciones_Nomina
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Form_Percep";
             this.Size = new System.Drawing.Size(800, 450);
-            ((System.ComponentModel.ISupportInitialize)(this.Dvg_Detalle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,7 +197,7 @@ namespace Capa_Vista_Percepciones_Nomina
         private System.Windows.Forms.ComboBox Cbo_Empleado;
         private System.Windows.Forms.ComboBox Cbo_ConceptoNomina;
         private System.Windows.Forms.TextBox Txt_Valor;
-        private System.Windows.Forms.DataGridView Dvg_Detalle;
+        private System.Windows.Forms.DataGridView Dgv_Detalle;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button Btn_Eliminar;
     }
