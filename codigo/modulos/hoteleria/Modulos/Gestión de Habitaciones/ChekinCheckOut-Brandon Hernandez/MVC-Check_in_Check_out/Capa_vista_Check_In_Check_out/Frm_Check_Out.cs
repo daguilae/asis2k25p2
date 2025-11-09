@@ -3,12 +3,14 @@ using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
+using Capa_Controlador_Seguridad;
 
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Check_Out : Form
     {
         private readonly Cls_Check_Out_Controlador Controlador = new Cls_Check_Out_Controlador();
+        Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
 
         public Frm_Check_Out()
         {
@@ -121,6 +123,7 @@ namespace Capa_vista_Check_In_Check_out
 
                     MessageBox.Show("Check-Out registrado correctamente.",
                         "Proceso exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3403, $"Check Out Guardado ", true);
                 }
             }
             catch (Exception ex)
@@ -159,6 +162,7 @@ namespace Capa_vista_Check_In_Check_out
                     fun_CargarDatos();
                     fun_LimpiarCampos();
                     fun_configuracion_inicial();
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3403, $"Check Out Modificado ", true);
                 }
                 else
                 {
@@ -193,6 +197,7 @@ namespace Capa_vista_Check_In_Check_out
                     fun_CargarDatos();
                     fun_LimpiarCampos();
                     fun_configuracion_inicial();
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3403, $"Check Out Eliminado ", true);
                 }
                 else
                 {

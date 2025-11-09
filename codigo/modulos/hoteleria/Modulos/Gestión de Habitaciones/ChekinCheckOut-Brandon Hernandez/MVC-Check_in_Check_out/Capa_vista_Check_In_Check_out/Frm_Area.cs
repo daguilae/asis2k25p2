@@ -2,12 +2,14 @@
 using System.Data;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
+using Capa_Controlador_Seguridad;
 
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Area : Form
     {
         private readonly Cls_Area_Controlador Controlador = new Cls_Area_Controlador();
+        Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
 
         public Frm_Area()
         {
@@ -102,7 +104,7 @@ namespace Capa_vista_Check_In_Check_out
                     MessageBox.Show("Área registrada exitosamente y vinculada al folio seleccionado.",
                                     "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     fun_LimpiarCampos();
-                   
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Guardado: ", true);
                     fun_configuracion_inicial();
                 }
             }
@@ -136,13 +138,14 @@ namespace Capa_vista_Check_In_Check_out
                 string sMontoTexto = Txt_Montos.Text.Trim();
                 DateTime dFecha = Dtp_Fecha.Value;
 
-                // ✅ Método actualizado
+                
                 bool bOk = Controlador.bActualizar_Area(iIdArea, iFkFolio, sNombre, sDescripcion, sTipo, sMontoTexto, dFecha);
 
                 if (bOk)
                 {
                     MessageBox.Show("Registro de área actualizado correctamente.",
                                     "Modificación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Modificado ", true);
                     fun_LimpiarCampos();
                     
                     fun_configuracion_inicial();
@@ -176,6 +179,7 @@ namespace Capa_vista_Check_In_Check_out
                     {
                         MessageBox.Show("Registro eliminado correctamente.",
                                         "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Eliminado: ", true);
                         fun_LimpiarCampos();
                         fun_CargarAreas();
                     }
