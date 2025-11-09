@@ -44,12 +44,12 @@ namespace Capa_Vista_S
             this.Lbl_Disponibilidad = new System.Windows.Forms.Label();
             this.Chk_disponibilidad = new System.Windows.Forms.CheckBox();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Lbl_Hoteleria = new System.Windows.Forms.Label();
+            this.Msp_Menu = new System.Windows.Forms.MenuStrip();
             this.salonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Salones)).BeginInit();
             this.Pnl_Superior.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.Msp_Menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // Txt_capacidad
@@ -208,7 +208,7 @@ namespace Capa_Vista_S
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 24);
             this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2);
@@ -216,27 +216,27 @@ namespace Capa_Vista_S
             this.Pnl_Superior.Size = new System.Drawing.Size(1011, 52);
             this.Pnl_Superior.TabIndex = 140;
             // 
-            // label1
+            // Lbl_Hoteleria
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(21, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 23);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "MODULO HOTELERIA";
+            this.Lbl_Hoteleria.AutoSize = true;
+            this.Lbl_Hoteleria.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Hoteleria.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Lbl_Hoteleria.Location = new System.Drawing.Point(21, 11);
+            this.Lbl_Hoteleria.Name = "Lbl_Hoteleria";
+            this.Lbl_Hoteleria.Size = new System.Drawing.Size(223, 23);
+            this.Lbl_Hoteleria.TabIndex = 2;
+            this.Lbl_Hoteleria.Text = "MODULO HOTELERIA";
             // 
-            // menuStrip1
+            // Msp_Menu
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Msp_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
+            this.Msp_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salonesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1011, 24);
-            this.menuStrip1.TabIndex = 141;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Msp_Menu.Location = new System.Drawing.Point(0, 0);
+            this.Msp_Menu.Name = "Msp_Menu";
+            this.Msp_Menu.Size = new System.Drawing.Size(1011, 24);
+            this.Msp_Menu.TabIndex = 141;
+            this.Msp_Menu.Text = "menuStrip1";
             // 
             // salonesToolStripMenuItem
             // 
@@ -251,7 +251,7 @@ namespace Capa_Vista_S
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 641);
             this.Controls.Add(this.Pnl_Superior);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.Msp_Menu);
             this.Controls.Add(this.Chk_disponibilidad);
             this.Controls.Add(this.Lbl_Disponibilidad);
             this.Controls.Add(this.Txt_capacidad);
@@ -270,8 +270,8 @@ namespace Capa_Vista_S
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Salones)).EndInit();
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Msp_Menu.ResumeLayout(false);
+            this.Msp_Menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -292,8 +292,8 @@ namespace Capa_Vista_S
         private System.Windows.Forms.Label Lbl_Disponibilidad;
         private System.Windows.Forms.CheckBox Chk_disponibilidad;
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label Lbl_Hoteleria;
+        private System.Windows.Forms.MenuStrip Msp_Menu;
         private System.Windows.Forms.ToolStripMenuItem salonesToolStripMenuItem;
     }
 }

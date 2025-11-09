@@ -384,5 +384,16 @@ namespace Capa_Vista_S
         {
 
         }
+
+        private void Frm_Reservaciones_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Reportes_Click(object sender, EventArgs e)
+        {
+            Frm_Reportes_Reservacion fNuevoFormulario = new Frm_Reportes_Reservacion();
+            fNuevoFormulario.Show();
+        }
     }
 }
