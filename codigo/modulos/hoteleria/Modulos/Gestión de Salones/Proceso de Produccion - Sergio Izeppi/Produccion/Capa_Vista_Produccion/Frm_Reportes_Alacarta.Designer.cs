@@ -30,7 +30,7 @@ namespace Capa_Vista_Produccion
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.Reporte_alacarta1 = new Capa_Vista_Produccion.Reporte_alacarta();
+            this.ReporteAlacarta1 = new Capa_Vista_Produccion.ReporteAlacarta();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -41,15 +41,15 @@ namespace Capa_Vista_Produccion
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.Reporte_alacarta1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(1178, 450);
+            this.crystalReportViewer1.ReportSource = this.ReporteAlacarta1;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(800, 450);
             this.crystalReportViewer1.TabIndex = 0;
             // 
             // Frm_Reportes_Alacarta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1178, 450);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crystalReportViewer1);
             this.Name = "Frm_Reportes_Alacarta";
             this.Text = "Frm_Reportes_Alacarta";
@@ -60,6 +60,6 @@ namespace Capa_Vista_Produccion
         #endregion
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private Reporte_alacarta Reporte_alacarta1;
+        private ReporteAlacarta ReporteAlacarta1;
     }
 }

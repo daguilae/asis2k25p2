@@ -16,14 +16,14 @@ namespace Capa_Vista_Produccion {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Reporte_alacarta : ReportClass {
+    public class ReporteAlacarta : ReportClass {
         
-        public Reporte_alacarta() {
+        public ReporteAlacarta() {
         }
         
         public override string ResourceName {
             get {
-                return "Reporte_alacarta.rpt";
+                return "ReporteAlacarta.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Capa_Vista_Produccion {
         
         public override string FullResourceName {
             get {
-                return "Capa_Vista_Produccion.Reporte_alacarta.rpt";
+                return "Capa_Vista_Produccion.ReporteAlacarta.rpt";
             }
             set {
                 // Do nothing
@@ -106,9 +106,9 @@ namespace Capa_Vista_Produccion {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedReporte_alacarta : Component, ICachedReport {
+    public class CachedReporteAlacarta : Component, ICachedReport {
         
-        public CachedReporte_alacarta() {
+        public CachedReporteAlacarta() {
         }
         
         [Browsable(false)]
@@ -145,7 +145,7 @@ namespace Capa_Vista_Produccion {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Reporte_alacarta rpt = new Reporte_alacarta();
+            ReporteAlacarta rpt = new ReporteAlacarta();
             rpt.Site = this.Site;
             return rpt;
         }

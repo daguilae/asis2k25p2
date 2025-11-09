@@ -83,16 +83,16 @@
     <Compile Include="Frm_Reporte.Designer.cs">
       <DependentUpon>Frm_Reporte.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteAlacarta.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteAlacarta.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteRoomService.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReporteRoomService.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reporte_alacarta.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reporte_alacarta.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -113,13 +113,13 @@
     <EmbeddedResource Include="Frm_Reporte.resx">
       <DependentUpon>Frm_Reporte.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteAlacarta.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteAlacarta.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteRoomService.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteRoomService.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporte_alacarta.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>Reporte_alacarta.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
