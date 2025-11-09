@@ -34,10 +34,8 @@ namespace Capa_Vista_Cheques
             this.label3 = new System.Windows.Forms.Label();
             this.Txt_Banco = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.Txt_Moneda = new System.Windows.Forms.TextBox();
-            this.Lbl_Moneda = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbl_titulo = new System.Windows.Forms.Label();
             this.dgv_Cheques = new System.Windows.Forms.DataGridView();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.Btn_Cargar = new System.Windows.Forms.Button();
@@ -93,28 +91,6 @@ namespace Capa_Vista_Cheques
             this.label1.Text = "Banco Cuenta:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // Txt_Moneda
-            // 
-            this.Txt_Moneda.Location = new System.Drawing.Point(318, 214);
-            this.Txt_Moneda.Name = "Txt_Moneda";
-            this.Txt_Moneda.Size = new System.Drawing.Size(143, 22);
-            this.Txt_Moneda.TabIndex = 103;
-            this.Txt_Moneda.TextChanged += new System.EventHandler(this.Txt_Moneda_TextChanged);
-            // 
-            // Lbl_Moneda
-            // 
-            this.Lbl_Moneda.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_Moneda.AutoSize = true;
-            this.Lbl_Moneda.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Moneda.Location = new System.Drawing.Point(28, 212);
-            this.Lbl_Moneda.Name = "Lbl_Moneda";
-            this.Lbl_Moneda.Size = new System.Drawing.Size(89, 24);
-            this.Lbl_Moneda.TabIndex = 102;
-            this.Lbl_Moneda.Text = "Moneda:";
-            this.Lbl_Moneda.Click += new System.EventHandler(this.Lbl_Moneda_Click);
-            // 
             // Lbl_Fecha
             // 
             this.Lbl_Fecha.AutoSize = true;
@@ -126,16 +102,16 @@ namespace Capa_Vista_Cheques
             this.Lbl_Fecha.Text = "Fecha de pago:";
             this.Lbl_Fecha.Click += new System.EventHandler(this.Lbl_Fecha_Click);
             // 
-            // label2
+            // lbl_titulo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 23);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(379, 31);
-            this.label2.TabIndex = 99;
-            this.label2.Text = "Generacion de Cheques Planilla";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.lbl_titulo.AutoSize = true;
+            this.lbl_titulo.Font = new System.Drawing.Font("Microsoft JhengHei", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_titulo.Location = new System.Drawing.Point(25, 23);
+            this.lbl_titulo.Name = "lbl_titulo";
+            this.lbl_titulo.Size = new System.Drawing.Size(379, 31);
+            this.lbl_titulo.TabIndex = 99;
+            this.lbl_titulo.Text = "Generacion de Cheques Planilla";
+            this.lbl_titulo.Click += new System.EventHandler(this.label2_Click);
             // 
             // dgv_Cheques
             // 
@@ -298,10 +274,8 @@ namespace Capa_Vista_Cheques
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Txt_Banco);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Txt_Moneda);
-            this.Controls.Add(this.Lbl_Moneda);
             this.Controls.Add(this.Lbl_Fecha);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lbl_titulo);
             this.Name = "Frm_Cheques";
             this.Text = "Frm_Cheques";
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).EndInit();
@@ -315,10 +289,8 @@ namespace Capa_Vista_Cheques
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox Txt_Banco;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox Txt_Moneda;
-        private System.Windows.Forms.Label Lbl_Moneda;
         private System.Windows.Forms.Label Lbl_Fecha;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbl_titulo;
         private System.Windows.Forms.DataGridView dgv_Cheques;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Button Btn_Cargar;

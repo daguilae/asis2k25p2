@@ -96,31 +96,23 @@ namespace Capa_Vista_Cheques
 
         private void btn_Generar_Cheque_Click(object sender, EventArgs e)
         {
-            // 1️ Crear instancia del controlador
-            Capa_Controlador_Cheques.Cls_Controlador_Cheques control = new Capa_Controlador_Cheques.Cls_Controlador_Cheques();
+            var controlador = new Cls_Controlador_Cheques();
 
-            // 2️ Obtener los empleados simulados
-            List<Empleado> empleados = control.ObtenerEmpleadosSimulados();
+            // 1. Obtener empleados (o desde nómina después)
+            List<Empleado> empleados = controlador.ObtenerEmpleadosSimulados();
+
+            // 2. Crear lote
+            int idLote = controlador.CrearLote("Rocio");
+
+            // 3. Generar cheques
+            controlador.GenerarChequesCompletos("Rocio", idLote, empleados);
+
+            // 4. Mostrar en DataGridView
+            dgv_Cheques.DataSource = empleados;
+
+            MessageBox.Show("✅ Cheques generados correctamente.\nLote ID: " + idLote);
 
 
-            // 2. Generar el lote y guardar los cheques en la BD
-            bool exito = control.GenerarLoteConCheques("Rocio", empleados);
-
-
-            // 3️ Recorrer cada empleado y generar su cheque
-            int numeroCheque = 1;
-
-            foreach (var emp in empleados)
-            {
-                // Simular la creación de un cheque
-                string infoCheque = $"Cheque #{numeroCheque}\n" +
-                                    $"Nombre: {emp.Nombre}\n" +
-                                    $"Monto: Q{emp.MontoPagar}\n";
-
-                MessageBox.Show(infoCheque, "Cheque generado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                numeroCheque++;
-            }
 
         }
 
