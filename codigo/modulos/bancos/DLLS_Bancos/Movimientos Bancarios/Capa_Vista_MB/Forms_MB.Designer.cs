@@ -35,9 +35,7 @@ namespace Capa_Vista_MB
             this.Lbl_Detalle_Movimiento = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.Lbl_NombreCuenta_Envia = new System.Windows.Forms.Label();
             this.Lbl_Operacion = new System.Windows.Forms.Label();
-            this.Lbl_NombreCuenta_Recibe = new System.Windows.Forms.Label();
             this.Lbl_Concepto = new System.Windows.Forms.Label();
             this.Cbo_Operacion = new System.Windows.Forms.ComboBox();
             this.Lbl_Estado = new System.Windows.Forms.Label();
@@ -46,8 +44,6 @@ namespace Capa_Vista_MB
             this.Lbl_Monto = new System.Windows.Forms.Label();
             this.Lbl_Signo = new System.Windows.Forms.Label();
             this.Lbl_NoCuenta_Envia = new System.Windows.Forms.Label();
-            this.Txt_NombreCuenta_Envia = new System.Windows.Forms.TextBox();
-            this.Txt_NombreCuenta_Recibe = new System.Windows.Forms.TextBox();
             this.Lbl_NoCuenta_Recibe = new System.Windows.Forms.Label();
             this.Txt_Concepto = new System.Windows.Forms.RichTextBox();
             this.Lbl_Titulo_Envia = new System.Windows.Forms.Label();
@@ -76,12 +72,15 @@ namespace Capa_Vista_MB
             this.Lbl_Division3 = new System.Windows.Forms.Label();
             this.Lbl_OperacionTipo = new System.Windows.Forms.Label();
             this.Cbo_TipoPago = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Lbl_Pago = new System.Windows.Forms.Label();
             this.Dtp_FechaMovimiento = new System.Windows.Forms.DateTimePicker();
             this.Txt_Beneficiario = new System.Windows.Forms.TextBox();
             this.Lbl_Benefeciario = new System.Windows.Forms.Label();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
+            this.Lbl_NombreCuenta_Recibe = new System.Windows.Forms.Label();
+            this.Txt_NombreCuenta_Recibe = new System.Windows.Forms.TextBox();
+            this.Lbl_NombreCuenta_Envia = new System.Windows.Forms.Label();
+            this.Txt_NombreCuenta_Envia = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Movimiento)).BeginInit();
             this.Pnl_DetalleMovimientos.SuspendLayout();
             this.SuspendLayout();
@@ -146,19 +145,6 @@ namespace Capa_Vista_MB
             this.Lbl_Fecha.TabIndex = 37;
             this.Lbl_Fecha.Text = "Fecha:";
             // 
-            // Lbl_NombreCuenta_Envia
-            // 
-            this.Lbl_NombreCuenta_Envia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_NombreCuenta_Envia.AutoSize = true;
-            this.Lbl_NombreCuenta_Envia.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NombreCuenta_Envia.Location = new System.Drawing.Point(24, 274);
-            this.Lbl_NombreCuenta_Envia.Name = "Lbl_NombreCuenta_Envia";
-            this.Lbl_NombreCuenta_Envia.Size = new System.Drawing.Size(159, 24);
-            this.Lbl_NombreCuenta_Envia.TabIndex = 38;
-            this.Lbl_NombreCuenta_Envia.Text = "Nombre Cuenta:";
-            // 
             // Lbl_Operacion
             // 
             this.Lbl_Operacion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -171,19 +157,6 @@ namespace Capa_Vista_MB
             this.Lbl_Operacion.Size = new System.Drawing.Size(180, 24);
             this.Lbl_Operacion.TabIndex = 39;
             this.Lbl_Operacion.Text = "Tipo de Operación:";
-            // 
-            // Lbl_NombreCuenta_Recibe
-            // 
-            this.Lbl_NombreCuenta_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_NombreCuenta_Recibe.AutoSize = true;
-            this.Lbl_NombreCuenta_Recibe.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NombreCuenta_Recibe.Location = new System.Drawing.Point(23, 386);
-            this.Lbl_NombreCuenta_Recibe.Name = "Lbl_NombreCuenta_Recibe";
-            this.Lbl_NombreCuenta_Recibe.Size = new System.Drawing.Size(159, 24);
-            this.Lbl_NombreCuenta_Recibe.TabIndex = 40;
-            this.Lbl_NombreCuenta_Recibe.Text = "Nombre Cuenta:";
             // 
             // Lbl_Concepto
             // 
@@ -269,20 +242,6 @@ namespace Capa_Vista_MB
             this.Lbl_NoCuenta_Envia.TabIndex = 64;
             this.Lbl_NoCuenta_Envia.Text = "No. Cuenta";
             // 
-            // Txt_NombreCuenta_Envia
-            // 
-            this.Txt_NombreCuenta_Envia.Location = new System.Drawing.Point(211, 274);
-            this.Txt_NombreCuenta_Envia.Name = "Txt_NombreCuenta_Envia";
-            this.Txt_NombreCuenta_Envia.Size = new System.Drawing.Size(388, 31);
-            this.Txt_NombreCuenta_Envia.TabIndex = 65;
-            // 
-            // Txt_NombreCuenta_Recibe
-            // 
-            this.Txt_NombreCuenta_Recibe.Location = new System.Drawing.Point(210, 382);
-            this.Txt_NombreCuenta_Recibe.Name = "Txt_NombreCuenta_Recibe";
-            this.Txt_NombreCuenta_Recibe.Size = new System.Drawing.Size(388, 31);
-            this.Txt_NombreCuenta_Recibe.TabIndex = 67;
-            // 
             // Lbl_NoCuenta_Recibe
             // 
             this.Lbl_NoCuenta_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -341,6 +300,7 @@ namespace Capa_Vista_MB
             this.Btn_Ayuda.Size = new System.Drawing.Size(64, 51);
             this.Btn_Ayuda.TabIndex = 73;
             this.Btn_Ayuda.UseVisualStyleBackColor = true;
+            this.Btn_Ayuda.Click += new System.EventHandler(this.Btn_Ayuda_Click);
             // 
             // Cbo_Estado
             // 
@@ -578,17 +538,6 @@ namespace Capa_Vista_MB
             this.Cbo_TipoPago.Size = new System.Drawing.Size(192, 32);
             this.Cbo_TipoPago.TabIndex = 101;
             // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(699, 168);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 24);
-            this.label3.TabIndex = 100;
-            this.label3.Text = "Moneda:";
-            // 
             // Lbl_Pago
             // 
             this.Lbl_Pago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -637,6 +586,46 @@ namespace Capa_Vista_MB
             this.Btn_Cancelar.UseVisualStyleBackColor = true;
             this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
+            // Lbl_NombreCuenta_Recibe
+            // 
+            this.Lbl_NombreCuenta_Recibe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_NombreCuenta_Recibe.AutoSize = true;
+            this.Lbl_NombreCuenta_Recibe.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_NombreCuenta_Recibe.Location = new System.Drawing.Point(23, 386);
+            this.Lbl_NombreCuenta_Recibe.Name = "Lbl_NombreCuenta_Recibe";
+            this.Lbl_NombreCuenta_Recibe.Size = new System.Drawing.Size(159, 24);
+            this.Lbl_NombreCuenta_Recibe.TabIndex = 40;
+            this.Lbl_NombreCuenta_Recibe.Text = "Nombre Cuenta:";
+            // 
+            // Txt_NombreCuenta_Recibe
+            // 
+            this.Txt_NombreCuenta_Recibe.Location = new System.Drawing.Point(210, 382);
+            this.Txt_NombreCuenta_Recibe.Name = "Txt_NombreCuenta_Recibe";
+            this.Txt_NombreCuenta_Recibe.Size = new System.Drawing.Size(388, 31);
+            this.Txt_NombreCuenta_Recibe.TabIndex = 67;
+            // 
+            // Lbl_NombreCuenta_Envia
+            // 
+            this.Lbl_NombreCuenta_Envia.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_NombreCuenta_Envia.AutoSize = true;
+            this.Lbl_NombreCuenta_Envia.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_NombreCuenta_Envia.Location = new System.Drawing.Point(24, 274);
+            this.Lbl_NombreCuenta_Envia.Name = "Lbl_NombreCuenta_Envia";
+            this.Lbl_NombreCuenta_Envia.Size = new System.Drawing.Size(159, 24);
+            this.Lbl_NombreCuenta_Envia.TabIndex = 38;
+            this.Lbl_NombreCuenta_Envia.Text = "Nombre Cuenta:";
+            // 
+            // Txt_NombreCuenta_Envia
+            // 
+            this.Txt_NombreCuenta_Envia.Location = new System.Drawing.Point(211, 274);
+            this.Txt_NombreCuenta_Envia.Name = "Txt_NombreCuenta_Envia";
+            this.Txt_NombreCuenta_Envia.Size = new System.Drawing.Size(388, 31);
+            this.Txt_NombreCuenta_Envia.TabIndex = 65;
+            // 
             // Forms_MB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -649,7 +638,6 @@ namespace Capa_Vista_MB
             this.Controls.Add(this.Dtp_FechaMovimiento);
             this.Controls.Add(this.Lbl_Pago);
             this.Controls.Add(this.Cbo_TipoPago);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.Lbl_Division3);
             this.Controls.Add(this.Lbl_OperacionTipo);
             this.Controls.Add(this.Cbo_Moneda);
@@ -717,9 +705,7 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.Label Lbl_Detalle_Movimiento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Lbl_Fecha;
-        private System.Windows.Forms.Label Lbl_NombreCuenta_Envia;
         private System.Windows.Forms.Label Lbl_Operacion;
-        private System.Windows.Forms.Label Lbl_NombreCuenta_Recibe;
         private System.Windows.Forms.Label Lbl_Concepto;
         private System.Windows.Forms.ComboBox Cbo_Operacion;
         private System.Windows.Forms.Label Lbl_Estado;
@@ -728,8 +714,6 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.Label Lbl_Monto;
         private System.Windows.Forms.Label Lbl_Signo;
         private System.Windows.Forms.Label Lbl_NoCuenta_Envia;
-        private System.Windows.Forms.TextBox Txt_NombreCuenta_Envia;
-        private System.Windows.Forms.TextBox Txt_NombreCuenta_Recibe;
         private System.Windows.Forms.Label Lbl_NoCuenta_Recibe;
         private System.Windows.Forms.RichTextBox Txt_Concepto;
         private System.Windows.Forms.Label Lbl_Titulo_Envia;
@@ -758,11 +742,14 @@ namespace Capa_Vista_MB
         private System.Windows.Forms.Label Lbl_Division3;
         private System.Windows.Forms.Label Lbl_OperacionTipo;
         private System.Windows.Forms.ComboBox Cbo_TipoPago;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Lbl_Pago;
         private System.Windows.Forms.DateTimePicker Dtp_FechaMovimiento;
         private System.Windows.Forms.TextBox Txt_Beneficiario;
         private System.Windows.Forms.Label Lbl_Benefeciario;
         private System.Windows.Forms.Button Btn_Cancelar;
+        private System.Windows.Forms.Label Lbl_NombreCuenta_Recibe;
+        private System.Windows.Forms.TextBox Txt_NombreCuenta_Recibe;
+        private System.Windows.Forms.Label Lbl_NombreCuenta_Envia;
+        private System.Windows.Forms.TextBox Txt_NombreCuenta_Envia;
     }
 }

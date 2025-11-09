@@ -14,18 +14,23 @@ namespace Capa_Modelo_MB
         {
             try
             {
-                string sSql = @"SELECT 
-                            Pk_Id_CuentaBancaria AS Pk_Id_Cuenta, 
-                            Cmp_NumeroCuenta AS Cmp_Numero_Cuenta,
-                            CONCAT(b.Cmp_NombreBanco, ' - ', cb.Cmp_NumeroCuenta) AS Cmp_Nombre_Cuenta
-                       FROM Tbl_CuentasBancarias cb
-                       INNER JOIN Tbl_Bancos b ON cb.Fk_Id_Banco = b.Pk_Id_Banco
-                       WHERE cb.Cmp_Estado = 1";
+                string sSql = @"
+            SELECT 
+                Pk_Codigo_Cuenta,
+                Cmp_CtaNombre,
+                Cmp_CtaMadre,
+                Cmp_CtaTipo,
+                Cmp_CtaNaturaleza
+            FROM Tbl_Catalogo_Cuentas
+            WHERE Cmp_CtaTipo = 1       
+            ORDER BY Pk_Codigo_Cuenta;";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -33,49 +38,133 @@ namespace Capa_Modelo_MB
             }
         }
 
-        public string fun_obtener_nombre_cuenta(int iIdCuenta)
+
+        public DataTable fun_obtener_cuentas_bancarias()
         {
-            string sNombreCuenta = "";
             try
             {
-                string sSql = @"SELECT CONCAT(b.Cmp_NombreBanco, ' - ', cb.Cmp_NumeroCuenta)
-                       FROM Tbl_CuentasBancarias cb
-                       INNER JOIN Tbl_Bancos b ON cb.Fk_Id_Banco = b.Pk_Id_Banco
-                       WHERE cb.Pk_Id_CuentaBancaria = ?";
+                string sSql = @"
+            SELECT 
+                cb.Pk_Id_CuentaBancaria,
+                cb.Cmp_NumeroCuenta,
+                b.Cmp_NombreBanco
+            FROM Tbl_CuentasBancarias cb
+            INNER JOIN Tbl_Bancos b ON b.Pk_Id_Banco = cb.Fk_Id_Banco
+            WHERE cb.Cmp_Estado = 1
+            ORDER BY b.Cmp_NombreBanco, cb.Cmp_NumeroCuenta;";
 
-                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
                 {
-                    using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
-                    {
-                        odc_Cmd.Parameters.AddWithValue("@Pk_Id_Cuenta", iIdCuenta);
-                        object oResultado = odc_Cmd.ExecuteScalar();
-
-                        if (oResultado != null && oResultado != DBNull.Value)
-                            sNombreCuenta = oResultado.ToString();
-                    }
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener el nombre de la cuenta: " + ex.Message);
+                throw new Exception("Error al obtener cuentas bancarias: " + ex.Message);
             }
-            return sNombreCuenta;
         }
+
+
+        public string fun_obtener_nombre_cuenta_bancaria_por_id(int iIdCuentaBancaria)
+        {
+            try
+            {
+                string sSql = @"
+            SELECT CONCAT(cb.Cmp_NumeroCuenta, ' - ', b.Cmp_NombreBanco) AS Nombre
+            FROM Tbl_CuentasBancarias cb
+            INNER JOIN Tbl_Bancos b ON b.Pk_Id_Banco = cb.Fk_Id_Banco
+            WHERE cb.Pk_Id_CuentaBancaria = ?";
+
+                using (var cn = oCn.fun_conexion_bd())
+                using (var cmd = new OdbcCommand(sSql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@id", iIdCuentaBancaria);
+                    object o = cmd.ExecuteScalar();
+                    return (o == null || o == DBNull.Value) ? "" : o.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener nombre de cuenta bancaria: " + ex.Message);
+            }
+        }
+
+
+        public DataTable fun_obtener_cuentas_catalogo()
+        {
+            try
+            {
+                string sSql = @"
+            SELECT 
+                Pk_Codigo_Cuenta,
+                Cmp_CtaNombre,
+                CONCAT(Pk_Codigo_Cuenta, ' - ', Cmp_CtaNombre) AS CuentaDisplay
+            FROM Tbl_Catalogo_Cuentas
+            WHERE Cmp_CtaTipo = 1       -- Solo cuentas detalle
+            ORDER BY Pk_Codigo_Cuenta;";
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener cuentas del catálogo: " + ex.Message);
+            }
+        }
+
+        public string fun_obtener_nombre_cuenta_catalogo(string sCodigoCuenta)
+        {
+            try
+            {
+                string sSql = @"
+            SELECT Cmp_CtaNombre
+            FROM Tbl_Catalogo_Cuentas
+            WHERE Pk_Codigo_Cuenta = ?";
+                using (var cn = oCn.fun_conexion_bd())
+                using (var cmd = new OdbcCommand(sSql, cn))
+                {
+                    cmd.Parameters.AddWithValue("@cod", sCodigoCuenta);
+                    object o = cmd.ExecuteScalar();
+                    return (o == null || o == DBNull.Value) ? "" : o.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener nombre (catálogo): " + ex.Message);
+            }
+        }
+
+
+        // Overload de compatibilidad para llamadas que envían int
+        public string fun_obtener_nombre_cuenta_catalogo(int iCodigoCuenta)
+        {
+            return fun_obtener_nombre_cuenta_catalogo(iCodigoCuenta.ToString());
+        }
+
+
 
         public DataTable fun_obtener_operaciones()
         {
             try
             {
-                string sSql = @"SELECT 
-                    Pk_Id_Transaccion AS Pk_Id_operacion, 
-                    Cmp_NombreTransaccion AS Cmp_nombre
-                   FROM Tbl_TransaccionesBancarias
-                   WHERE Cmp_Estado = 1";
+                string sSql = @"
+                    SELECT 
+                        Pk_Id_Transaccion AS Pk_Id_operacion, 
+                        Cmp_NombreTransaccion AS Cmp_nombre
+                    FROM Tbl_TransaccionesBancarias
+                    WHERE Cmp_Estado = 1";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -87,16 +176,19 @@ namespace Capa_Modelo_MB
         {
             try
             {
-                string sSql = @"SELECT 
-                    Pk_Id_TipoPago AS Pk_Id_TipoPago, 
-                    Cmp_NombreTipoPago AS Cmp_nombre
-                   FROM Tbl_TiposPago
-                   WHERE Cmp_Estado = 1";
+                string sSql = @"
+                    SELECT 
+                        Pk_Id_TipoPago AS Pk_Id_TipoPago, 
+                        Cmp_NombreTipoPago AS Cmp_nombre
+                    FROM Tbl_TiposPago
+                    WHERE Cmp_Estado = 1";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -108,15 +200,19 @@ namespace Capa_Modelo_MB
         {
             try
             {
-                string sSql = @"SELECT Fk_Id_Moneda FROM Tbl_CuentasBancarias 
-                       WHERE Pk_Id_CuentaBancaria = ?";
+                string sSql = @"
+                    SELECT m.Pk_Id_Moneda
+                    FROM Tbl_CuentasBancarias cb
+                    INNER JOIN Tbl_Monedas m
+                        ON m.Cmp_CodigoMoneda = cb.Cmp_Moneda
+                    WHERE cb.Pk_Id_CuentaBancaria = ?";
 
-                using (OdbcConnection conn = new Cls_Conexion().fun_conexion_bd())
+                using (OdbcConnection conn = oCn.fun_conexion_bd())
                 using (OdbcCommand cmd = new OdbcCommand(sSql, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", iIdCuenta);
                     object oResult = cmd.ExecuteScalar();
-                    return oResult != null ? Convert.ToInt32(oResult) : (int?)null;
+                    return (oResult != null && oResult != DBNull.Value) ? Convert.ToInt32(oResult) : (int?)null;
                 }
             }
             catch (Exception ex)
@@ -131,9 +227,10 @@ namespace Capa_Modelo_MB
             string sSigno = "";
             try
             {
-                string sSql = @"SELECT Cmp_Efecto 
-                       FROM Tbl_TransaccionesBancarias
-                       WHERE Pk_Id_Transaccion = ? AND Cmp_Estado = 1";
+                string sSql = @"
+                    SELECT Cmp_Efecto 
+                    FROM Tbl_TransaccionesBancarias
+                    WHERE Pk_Id_Transaccion = ? AND Cmp_Estado = 1";
 
                 using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
@@ -158,19 +255,22 @@ namespace Capa_Modelo_MB
         {
             try
             {
-                string sSql = @"SELECT 
-                    Pk_Id_Moneda, 
-                    Cmp_CodigoMoneda,
-                    Cmp_NombreMoneda,
-                    Cmp_Simbolo
-                FROM Tbl_Monedas
-                WHERE Cmp_Estado = 1
-                ORDER BY Cmp_NombreMoneda";
+                string sSql = @"
+                    SELECT 
+                        Pk_Id_Moneda, 
+                        Cmp_CodigoMoneda,
+                        Cmp_NombreMoneda,
+                        Cmp_Simbolo
+                    FROM Tbl_Monedas
+                    WHERE Cmp_Estado = 1
+                    ORDER BY Cmp_NombreMoneda";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -185,25 +285,23 @@ namespace Capa_Modelo_MB
             try
             {
                 string sSql = @"
-            SELECT DISTINCT UPPER(TRIM(Cmp_Estado)) 
-            FROM Tbl_MovimientoBancarioEncabezado 
-            WHERE Cmp_Estado IS NOT NULL 
-            AND TRIM(Cmp_Estado) != ''
-            ORDER BY Cmp_Estado";
+                    SELECT DISTINCT UPPER(TRIM(Cmp_Estado)) 
+                    FROM Tbl_MovimientoBancarioEncabezado 
+                    WHERE Cmp_Estado IS NOT NULL 
+                      AND TRIM(Cmp_Estado) != ''
+                    ORDER BY Cmp_Estado";
 
                 using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
+                using (OdbcDataReader odr_Reader = odc_Cmd.ExecuteReader())
                 {
-                    using (OdbcDataReader odr_Reader = odc_Cmd.ExecuteReader())
+                    while (odr_Reader.Read())
                     {
-                        while (odr_Reader.Read())
+                        if (!odr_Reader.IsDBNull(0))
                         {
-                            if (!odr_Reader.IsDBNull(0))
-                            {
-                                string sEstado = odr_Reader.GetString(0).Trim();
-                                if (!string.IsNullOrEmpty(sEstado) && !lst_Estados.Contains(sEstado))
-                                    lst_Estados.Add(sEstado);
-                            }
+                            string sEstado = odr_Reader.GetString(0).Trim();
+                            if (!string.IsNullOrEmpty(sEstado) && !lst_Estados.Contains(sEstado))
+                                lst_Estados.Add(sEstado);
                         }
                     }
                 }
@@ -222,22 +320,23 @@ namespace Capa_Modelo_MB
             return lst_Estados;
         }
 
-
         public DataTable fun_obtener_cuentas_contables()
         {
             try
             {
-                string sSql = @"SELECT 
-                            Pk_Id_CuentaContable, 
-                            CONCAT(Pk_Id_CuentaContable, ' - ', Cmp_NombreCuenta) AS Cmp_NombreCompleto
-                       FROM Tbl_CatalogoCuentas
-                       WHERE Cmp_Estado = 1
-                       ORDER BY Pk_Id_CuentaContable";
+                string sSql = @"
+                    SELECT 
+                        Pk_Codigo_Cuenta AS Pk_Id_CuentaContable, 
+                        CONCAT(Pk_Codigo_Cuenta, ' - ', Cmp_CtaNombre) AS Cmp_NombreCompleto
+                    FROM Tbl_Catalogo_Cuentas
+                    ORDER BY Pk_Codigo_Cuenta";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -284,10 +383,9 @@ namespace Capa_Modelo_MB
                 var dt = new DataTable();
                 da.Fill(dt);
 
-                // El grid quiere "Cmp_Num_Documento"
+                // Compatibilidad con grids viejos
                 if (!dt.Columns.Contains("Cmp_Num_Documento") && dt.Columns.Contains("Cmp_NumeroDocumento"))
                     dt.Columns["Cmp_NumeroDocumento"].ColumnName = "Cmp_Num_Documento";
-                // El grid tiene columna "Fk_Id_tipo_pago"
                 if (!dt.Columns.Contains("Fk_Id_tipo_pago") && dt.Columns.Contains("Fk_Id_TipoPago"))
                     dt.Columns["Fk_Id_TipoPago"].ColumnName = "Fk_Id_tipo_pago";
 
@@ -317,17 +415,19 @@ namespace Capa_Modelo_MB
             }
         }
 
-        // En Cls_Seleccion.cs
         public string fun_obtener_cuenta_contable_por_defecto()
         {
             try
             {
-                string sSql = @"SELECT Cmp_Valor 
-                       FROM Tbl_ParametrosCheques 
-                       WHERE Cmp_Parametro = 'CUENTA_BANCO_PRINCIPAL' 
-                       AND Cmp_Estado = 1";
+                string sSql = @"
+                    SELECT Cmp_Valor 
+                    FROM Tbl_ParametrosCheques 
+                    WHERE Cmp_Estado = 1
+                      AND (Cmp_Parametro = 'CUENTA BANCO PRINCIPAL' OR Cmp_Parametro = 'CUENTA_BANCO_PRINCIPAL')
+                    ORDER BY (Cmp_Parametro = 'CUENTA BANCO PRINCIPAL') DESC
+                    LIMIT 1";
 
-                using (OdbcConnection odcn_Conn = new Cls_Conexion().fun_conexion_bd())
+                using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand odc_Cmd = new OdbcCommand(sSql, odcn_Conn))
                 {
                     object oResultado = odc_Cmd.ExecuteScalar();
@@ -341,39 +441,41 @@ namespace Capa_Modelo_MB
             }
         }
 
-
-        // Método para obtener un movimiento específico por ID
+        // Obtener un movimiento específico por PK compuesta
         public DataTable fun_obtener_movimiento_por_id(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
         {
             try
             {
                 string sSql = @"
-            SELECT 
-            Pk_Id_Movimiento,
-            Fk_Id_CuentaOrigen,
-            Fk_Id_Operacion,
-            Cmp_NumeroDocumento,
-            Cmp_Fecha,
-            Cmp_Concepto,
-            Cmp_MontoTotal,
-            Cmp_Beneficiario,
-            Cmp_Estado,
-            Fk_Id_TipoPago,
-            Fk_Id_CuentaDestino,
-            Fk_Id_Moneda  -- Asegúrate de que este campo exista
-        FROM Tbl_MovimientoBancarioEncabezado 
-        WHERE Pk_Id_Movimiento = ? 
-          AND Fk_Id_CuentaOrigen = ? 
-          AND Fk_Id_Operacion = ?";
+                    SELECT 
+                        Pk_Id_Movimiento,
+                        Fk_Id_CuentaOrigen,
+                        Fk_Id_Operacion,
+                        Cmp_NumeroDocumento,
+                        Cmp_Fecha,
+                        Cmp_Concepto,
+                        Cmp_MontoTotal,
+                        Cmp_Beneficiario,
+                        Cmp_Estado,
+                        Fk_Id_TipoPago,
+                        Fk_Id_CuentaDestino,
+                        Fk_Id_Moneda,
+                        Cmp_Conciliado 
+                    FROM Tbl_MovimientoBancarioEncabezado 
+                    WHERE Pk_Id_Movimiento = ? 
+                      AND Fk_Id_CuentaOrigen = ? 
+                      AND Fk_Id_Operacion = ?";
 
-                OdbcDataAdapter oda_Adapter = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd());
-                oda_Adapter.SelectCommand.Parameters.AddWithValue("@Mov", iIdMovimiento);
-                oda_Adapter.SelectCommand.Parameters.AddWithValue("@CtaOri", iIdCuentaOrigen);
-                oda_Adapter.SelectCommand.Parameters.AddWithValue("@Op", iIdOperacion);
+                using (var da = new OdbcDataAdapter(sSql, oCn.fun_conexion_bd()))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@Mov", iIdMovimiento);
+                    da.SelectCommand.Parameters.AddWithValue("@CtaOri", iIdCuentaOrigen);
+                    da.SelectCommand.Parameters.AddWithValue("@Op", iIdOperacion);
 
-                DataTable dts_Resultado = new DataTable();
-                oda_Adapter.Fill(dts_Resultado);
-                return dts_Resultado;
+                    var dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
+                }
             }
             catch (Exception ex)
             {
@@ -381,24 +483,24 @@ namespace Capa_Modelo_MB
             }
         }
 
-        // Método para obtener detalles de un movimiento
+        // Detalles del movimiento (por PK compuesta)
         public DataTable fun_obtener_detalles_movimiento(int iIdMovimiento, int iIdCuentaOrigen, int iIdOperacion)
         {
             try
             {
                 string sSql = @"
-            SELECT 
-                Pk_Id_Detalle,
-                Fk_Id_CuentaContable,
-                Cmp_TipoOperacion,
-                Cmp_Valor,
-                Cmp_Descripcion,
-                Cmp_OrdenDetalle
-            FROM Tbl_MovimientoBancarioDetalle
-            WHERE Fk_Id_Movimiento = ? 
-            AND Fk_Id_CuentaOrigen = ? 
-            AND Fk_Id_Operacion = ?
-            ORDER BY Cmp_OrdenDetalle";
+                    SELECT 
+                        Pk_Id_Detalle,
+                        Fk_Id_CuentaContable,
+                        Cmp_TipoOperacion,
+                        Cmp_Valor,
+                        Cmp_Descripcion,
+                        Cmp_OrdenDetalle
+                    FROM Tbl_MovimientoBancarioDetalle
+                    WHERE Fk_Id_Movimiento = ? 
+                      AND Fk_Id_CuentaOrigen = ? 
+                      AND Fk_Id_Operacion = ?
+                    ORDER BY Cmp_OrdenDetalle";
 
                 using (OdbcConnection odcn_Conn = oCn.fun_conexion_bd())
                 using (OdbcCommand cmd = new OdbcCommand(sSql, odcn_Conn))
@@ -407,10 +509,12 @@ namespace Capa_Modelo_MB
                     cmd.Parameters.AddWithValue("@CtaOri", iIdCuentaOrigen);
                     cmd.Parameters.AddWithValue("@Op", iIdOperacion);
 
-                    OdbcDataAdapter adapter = new OdbcDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-                    return dt;
+                    using (var da = new OdbcDataAdapter(cmd))
+                    {
+                        var dt = new DataTable();
+                        da.Fill(dt);
+                        return dt;
+                    }
                 }
             }
             catch (Exception ex)
@@ -418,5 +522,7 @@ namespace Capa_Modelo_MB
                 throw new Exception("Error al obtener detalles del movimiento: " + ex.Message);
             }
         }
+
+
     }
 }
