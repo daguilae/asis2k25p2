@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
+using Capa_Controlador_Seguridad;
 
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Check_In : Form
     {
         private readonly Cls_Check_In_Controlador Controlador = new Cls_Check_In_Controlador();
+        Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
         private int idHabitacionSeleccionada = 0;
 
         public Frm_Check_In()
@@ -178,6 +180,7 @@ namespace Capa_vista_Check_In_Check_out
 
                 if (exito)
                 {
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3402, $"Check In Guardado ", true);
                     fun_CargarTabla();
                     fun_LimpiarCampos();
                     idHabitacionSeleccionada = 0;
@@ -217,6 +220,7 @@ namespace Capa_vista_Check_In_Check_out
                     MessageBox.Show("Check-In modificado correctamente.");
                     fun_CargarTabla();
                     fun_LimpiarCampos();
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3402, $"Check In Modificado ", true);
                 }
                 else
                 {
