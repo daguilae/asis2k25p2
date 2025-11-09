@@ -226,6 +226,7 @@
             this.vacacionesToolStripMenuItem.Name = "vacacionesToolStripMenuItem";
             this.vacacionesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.vacacionesToolStripMenuItem.Text = "Vacaciones";
+            this.vacacionesToolStripMenuItem.Click += new System.EventHandler(this.vacacionesToolStripMenuItem_Click);
             // 
             // horasExtraToolStripMenuItem
             // 

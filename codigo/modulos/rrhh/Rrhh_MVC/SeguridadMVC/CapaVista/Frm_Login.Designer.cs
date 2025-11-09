@@ -48,11 +48,11 @@ namespace Capa_Vista_Seguridad
             // chkMostrarContrasena
             // 
             this.chkMostrarContrasena.AutoSize = true;
-            this.chkMostrarContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.chkMostrarContrasena.Location = new System.Drawing.Point(375, 249);
-            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.chkMostrarContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.chkMostrarContrasena.Location = new System.Drawing.Point(281, 202);
+            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.chkMostrarContrasena.Name = "chkMostrarContrasena";
-            this.chkMostrarContrasena.Size = new System.Drawing.Size(118, 44);
+            this.chkMostrarContrasena.Size = new System.Drawing.Size(98, 38);
             this.chkMostrarContrasena.TabIndex = 31;
             this.chkMostrarContrasena.Text = "mostrar\r\ncontraseña";
             this.chkMostrarContrasena.UseVisualStyleBackColor = true;
@@ -61,31 +61,35 @@ namespace Capa_Vista_Seguridad
             // lblModuloSeguridad
             // 
             this.lblModuloSeguridad.AutoSize = true;
-            this.lblModuloSeguridad.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.lblModuloSeguridad.Location = new System.Drawing.Point(234, 103);
+            this.lblModuloSeguridad.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.lblModuloSeguridad.Location = new System.Drawing.Point(176, 84);
+            this.lblModuloSeguridad.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblModuloSeguridad.Name = "lblModuloSeguridad";
-            this.lblModuloSeguridad.Size = new System.Drawing.Size(273, 35);
+            this.lblModuloSeguridad.Size = new System.Drawing.Size(196, 29);
             this.lblModuloSeguridad.TabIndex = 30;
-            this.lblModuloSeguridad.Text = "Modulo Seguridad";
+            this.lblModuloSeguridad.Text = "Modulo Nominas";
             this.lblModuloSeguridad.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblModuloSeguridad.Click += new System.EventHandler(this.lblModuloSeguridad_Click);
             // 
             // lblContrasena
             // 
             this.lblContrasena.AutoSize = true;
-            this.lblContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblContrasena.Location = new System.Drawing.Point(19, 260);
+            this.lblContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblContrasena.Location = new System.Drawing.Point(14, 211);
+            this.lblContrasena.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContrasena.Name = "lblContrasena";
-            this.lblContrasena.Size = new System.Drawing.Size(105, 20);
+            this.lblContrasena.Size = new System.Drawing.Size(85, 17);
             this.lblContrasena.TabIndex = 29;
             this.lblContrasena.Text = "Contraseña:";
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblUsuario.Location = new System.Drawing.Point(49, 199);
+            this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblUsuario.Location = new System.Drawing.Point(37, 162);
+            this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(75, 20);
+            this.lblUsuario.Size = new System.Drawing.Size(61, 17);
             this.lblUsuario.TabIndex = 28;
             this.lblUsuario.Text = "Usuario:";
             // 
@@ -94,12 +98,12 @@ namespace Capa_Vista_Seguridad
             this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
             this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciarSesion.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnIniciarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(196, 362);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(147, 294);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(141, 48);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(106, 39);
             this.btnIniciarSesion.TabIndex = 27;
             this.btnIniciarSesion.Text = "Iniciar Sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -108,10 +112,11 @@ namespace Capa_Vista_Seguridad
             // lblkRecuperarContrasena
             // 
             this.lblkRecuperarContrasena.AutoSize = true;
-            this.lblkRecuperarContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.lblkRecuperarContrasena.Location = new System.Drawing.Point(177, 301);
+            this.lblkRecuperarContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.lblkRecuperarContrasena.Location = new System.Drawing.Point(133, 245);
+            this.lblkRecuperarContrasena.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblkRecuperarContrasena.Name = "lblkRecuperarContrasena";
-            this.lblkRecuperarContrasena.Size = new System.Drawing.Size(182, 20);
+            this.lblkRecuperarContrasena.Size = new System.Drawing.Size(150, 17);
             this.lblkRecuperarContrasena.TabIndex = 26;
             this.lblkRecuperarContrasena.TabStop = true;
             this.lblkRecuperarContrasena.Text = "Recuperar contraseña";
@@ -120,22 +125,22 @@ namespace Capa_Vista_Seguridad
             // txtContrasena
             // 
             this.txtContrasena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.txtContrasena.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.txtContrasena.Location = new System.Drawing.Point(146, 253);
-            this.txtContrasena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtContrasena.Location = new System.Drawing.Point(110, 206);
+            this.txtContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtContrasena.Name = "txtContrasena";
-            this.txtContrasena.Size = new System.Drawing.Size(213, 27);
+            this.txtContrasena.Size = new System.Drawing.Size(161, 23);
             this.txtContrasena.TabIndex = 25;
             this.txtContrasena.UseSystemPasswordChar = true;
             // 
             // txtUsuario
             // 
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.txtUsuario.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.txtUsuario.Location = new System.Drawing.Point(146, 199);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.txtUsuario.Location = new System.Drawing.Point(110, 162);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(213, 27);
+            this.txtUsuario.Size = new System.Drawing.Size(161, 23);
             this.txtUsuario.TabIndex = 24;
             // 
             // Pnl_Superior
@@ -144,8 +149,9 @@ namespace Capa_Vista_Seguridad
             this.Pnl_Superior.Controls.Add(this.Pic_Cerrar);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
+            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(712, 44);
+            this.Pnl_Superior.Size = new System.Drawing.Size(534, 36);
             this.Pnl_Superior.TabIndex = 33;
             this.Pnl_Superior.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Pnl_Superior_MouseDown);
             // 
@@ -154,9 +160,10 @@ namespace Capa_Vista_Seguridad
             this.Pic_Cerrar.BackColor = System.Drawing.Color.Transparent;
             this.Pic_Cerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.Pic_Cerrar.Image = global::Capa_Vista_Seguridad.Properties.Resources.Cancel_icon_icons_com_73703;
-            this.Pic_Cerrar.Location = new System.Drawing.Point(675, 0);
+            this.Pic_Cerrar.Location = new System.Drawing.Point(506, 0);
+            this.Pic_Cerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Pic_Cerrar.Name = "Pic_Cerrar";
-            this.Pic_Cerrar.Size = new System.Drawing.Size(37, 44);
+            this.Pic_Cerrar.Size = new System.Drawing.Size(28, 36);
             this.Pic_Cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Pic_Cerrar.TabIndex = 0;
             this.Pic_Cerrar.TabStop = false;
@@ -165,19 +172,20 @@ namespace Capa_Vista_Seguridad
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Capa_Vista_Seguridad.Properties.Resources.usuario;
-            this.pictureBox1.Location = new System.Drawing.Point(499, 180);
+            this.pictureBox1.Location = new System.Drawing.Point(374, 146);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(201, 168);
+            this.pictureBox1.Size = new System.Drawing.Size(151, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 32;
             this.pictureBox1.TabStop = false;
             // 
-            // frmLogin
+            // Frm_Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
-            this.ClientSize = new System.Drawing.Size(712, 483);
+            this.ClientSize = new System.Drawing.Size(534, 392);
             this.Controls.Add(this.Pnl_Superior);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.chkMostrarContrasena);
@@ -189,8 +197,7 @@ namespace Capa_Vista_Seguridad
             this.Controls.Add(this.txtContrasena);
             this.Controls.Add(this.txtUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmLogin";
+            this.Name = "Frm_Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
             this.Load += new System.EventHandler(this.frmLogin_Load);

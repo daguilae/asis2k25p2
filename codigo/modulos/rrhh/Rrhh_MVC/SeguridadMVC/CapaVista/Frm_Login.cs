@@ -117,6 +117,11 @@ namespace Capa_Vista_Seguridad
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HTCAPTION, 0);
             }
         }
+
+        private void lblModuloSeguridad_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 // Pablo Quiroa 0901-22-2929 12/10/2025
