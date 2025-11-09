@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Windows.Forms;
@@ -11,7 +8,9 @@ namespace Capa_Modelo_Check_In_Check_Out
 {
     public class Cls_Check_In_Dao
     {
-       
+
+        private readonly Cls_Conexion prConexion = new Cls_Conexion();
+
 
         private static readonly string SQL_SELECT = @"
             SELECT 
@@ -20,207 +19,215 @@ namespace Capa_Modelo_Check_In_Check_Out
                 Fk_Id_Reserva, 
                 Cmp_Fecha_Check_In, 
                 Cmp_Estado
-            FROM Tbl_Check_in";
+            FROM Tbl_Check_In";
 
         private static readonly string SQL_INSERT = @"
-            INSERT INTO Tbl_Check_in 
+            INSERT INTO Tbl_Check_In 
                 (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
             VALUES (?, ?, ?, ?)";
 
         private static readonly string SQL_UPDATE = @"
-        UPDATE Tbl_Check_in SET
-            Fk_Id_Huesped = ?, 
-            Fk_Id_Reserva = ?, 
-            Cmp_Fecha_Check_In = ?, 
-            Cmp_Estado = ?
-        WHERE Pk_Id_Check_in = ?";
+            UPDATE Tbl_Check_In SET
+                Fk_Id_Huesped = ?, 
+                Fk_Id_Reserva = ?, 
+                Cmp_Fecha_Check_In = ?, 
+                Cmp_Estado = ?
+            WHERE Pk_Id_Check_in = ?";
 
         private static readonly string SQL_DELETE =
-            "DELETE FROM Tbl_Check_in WHERE Pk_Id_Check_in = ?";
+            "DELETE FROM Tbl_Check_In WHERE Pk_Id_Check_in = ?";
 
         private static readonly string SQL_QUERY = @"
-        SELECT 
-            Pk_Id_Check_in, 
-            Fk_Id_Huesped, 
-            Fk_Id_Reserva, 
-            Cmp_Fecha_Check_In, 
-            Cmp_Estado
-        FROM Tbl_Check_in 
-        WHERE Pk_Id_Check_in = ?";
+            SELECT 
+                Pk_Id_Check_in, 
+                Fk_Id_Huesped, 
+                Fk_Id_Reserva, 
+                Cmp_Fecha_Check_In, 
+                Cmp_Estado
+            FROM Tbl_Check_In 
+            WHERE Pk_Id_Check_in = ?";
 
-        private Cls_Conexion conexion = new Cls_Conexion();
-        public int ObtenerHabitacionPorReserva(int idReserva)
+
+        public int fun_Obtener_Habitacion_Por_Reserva(int iIdReserva)
         {
-            int idHabitacion = 0;
+            int iIdHabitacion = 0;
+            string sQuery = "SELECT Fk_Id_Habitacion FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?";
 
-            string query = "SELECT Fk_Id_Habitacion FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?";
-
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             {
-                using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
                 {
-                    cmd.Parameters.AddWithValue("?", idReserva);
-                    object result = cmd.ExecuteScalar();
+                    cmd.Parameters.AddWithValue("?", iIdReserva);
+                    object oResultado = cmd.ExecuteScalar();
 
-                    if (result != null && result != DBNull.Value)
-                        idHabitacion = Convert.ToInt32(result);
+                    if (oResultado != null && oResultado != DBNull.Value)
+                        iIdHabitacion = Convert.ToInt32(oResultado);
                 }
             }
-
-            return idHabitacion;
+            return iIdHabitacion;
         }
 
-        public DataTable datObtenerHuespedes()
+
+        public DataTable fun_Obtener_Huespedes()
         {
-            DataTable dt = new DataTable();
-            string query = @"
-        SELECT 
-            Pk_Id_Huesped, 
-            CONCAT(Pk_Id_Huesped, ' - ', Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto
-        FROM Tbl_Huesped";
-            using (OdbcConnection conn = conexion.conexion())
+            DataTable dtResultado = new DataTable();
+            string sQuery = @"
+                SELECT 
+                    Pk_Id_Huesped, 
+                    CONCAT(Pk_Id_Huesped, ' - ', Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto
+                FROM Tbl_Huesped";
+
+            using (OdbcConnection conn = prConexion.conexion())
+            using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
+            using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
             {
-                using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                {
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
-                    {
-                        da.Fill(dt); // Llena el DataTable con los datos de usuarios
-                    }
-                }
+                da.Fill(dtResultado);
             }
-            return dt;
-        
-    }
-        public DataTable datObtenerReservaPorHuesped(int idHuesped)
-        {
-            DataTable dt = new DataTable();
-            string query = @"
-        SELECT 
-            Pk_Id_Reserva, 
-            CONCAT('Reserva #', Pk_Id_Reserva, ' - ', DATE_FORMAT(Cmp_Fecha_Entrada, '%d/%m/%Y'), ' (', Cmp_Estado_Reserva, ')') AS DescripcionReserva
-        FROM Tbl_Reserva
-        WHERE Fk_Id_Huesped = ? AND Cmp_Estado_Reserva = 'Confirmada'";
-
-            using (OdbcConnection conn = conexion.conexion())
-            {
-                using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@Fk_Id_Huesped", idHuesped);
-
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-            }
-
-            return dt;
+            return dtResultado;
         }
-     
 
-        public bool bInsertarCheckIn(Cls_CheckIn checkIn)
+
+        public DataTable fun_Obtener_Reserva_Por_Huesped(int iIdHuesped, int? iIdReservaActual = null)
         {
-            using (OdbcConnection conn = conexion.conexion())
+            DataTable dtResultado = new DataTable();
+
+            string sQuery = @"
+                SELECT 
+                    Pk_Id_Reserva, 
+                    CONCAT('Reserva #', Pk_Id_Reserva, ' - ',
+                           DATE_FORMAT(Cmp_Fecha_Entrada, '%d/%m/%Y'),
+                           ' (', Cmp_Estado_Reserva, ')') AS DescripcionReserva
+                FROM Tbl_Reserva
+                WHERE Fk_Id_Huesped = ?";
+
+            if (iIdReservaActual == null)
+            {
+                sQuery += " AND Cmp_Estado_Reserva = 'Confirmada'";
+            }
+            else
+            {
+                sQuery += " AND (Cmp_Estado_Reserva = 'Confirmada' OR Pk_Id_Reserva = ?)";
+            }
+
+            using (OdbcConnection conn = prConexion.conexion())
+            using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
+            {
+                cmd.Parameters.AddWithValue("?", iIdHuesped);
+
+                if (iIdReservaActual != null)
+                    cmd.Parameters.AddWithValue("?", iIdReservaActual);
+
+                using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                {
+                    da.Fill(dtResultado);
+                }
+            }
+
+            return dtResultado;
+        }
+
+
+        public bool bInsertar_CheckIn(Cls_CheckIn clsCheckIn)
+        {
+            using (OdbcConnection conn = prConexion.conexion())
             {
                 try
                 {
-                    OdbcCommand cmd = new OdbcCommand(SQL_INSERT, conn);
-                    cmd.Parameters.AddWithValue("", checkIn.iFk_Id_Huesped);
-                    cmd.Parameters.AddWithValue("", checkIn.iFk_Id_Reserva);
-                    cmd.Parameters.AddWithValue("", checkIn.dCmp_Fecha_CheckIn);
-                    cmd.Parameters.AddWithValue("", checkIn.sCmp_Estado);
+                    using (OdbcCommand cmd = new OdbcCommand(SQL_INSERT, conn))
+                    {
+                        cmd.Parameters.AddWithValue("", clsCheckIn.iFk_Id_Huesped);
+                        cmd.Parameters.AddWithValue("", clsCheckIn.iFk_Id_Reserva);
+                        cmd.Parameters.AddWithValue("", clsCheckIn.dCmp_Fecha_CheckIn);
+                        cmd.Parameters.AddWithValue("", clsCheckIn.sCmp_Estado);
 
-                    int filas = cmd.ExecuteNonQuery();
-                    return filas > 0;
+                        int iFilas = cmd.ExecuteNonQuery();
+                        return iFilas > 0;
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error al insertar Check-In: " + ex.Message);
+                    MessageBox.Show("Error al insertar Check-In: " + ex.Message,
+                        "Error de Inserción", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
-                
-            
-        
 
-         
-            public bool bActualizarCheckIn(Cls_CheckIn checkIn)
+
+        public bool bActualizar_CheckIn(Cls_CheckIn clsCheckIn)
         {
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             {
-                OdbcCommand cmd = new OdbcCommand(SQL_UPDATE, conn);
-                cmd.Parameters.AddWithValue("@Fk_Id_Huesped", checkIn.iFk_Id_Huesped);
-                cmd.Parameters.AddWithValue("@Fk_Id_Reserva", checkIn.iFk_Id_Reserva);
-                cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", checkIn.dCmp_Fecha_CheckIn);
-                cmd.Parameters.AddWithValue("@Cmp_Estado", checkIn.sCmp_Estado);
-                cmd.Parameters.AddWithValue("@Pk_Id_Check_in", checkIn.iPk_Id_CheckIn);
-                return cmd.ExecuteNonQuery() > 0;
+                using (OdbcCommand cmd = new OdbcCommand(SQL_UPDATE, conn))
+                {
+                    cmd.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Huesped);
+                    cmd.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Reserva);
+                    cmd.Parameters.AddWithValue("?", clsCheckIn.dCmp_Fecha_CheckIn);
+                    cmd.Parameters.AddWithValue("?", clsCheckIn.sCmp_Estado);
+                    cmd.Parameters.AddWithValue("?", clsCheckIn.iPk_Id_CheckIn);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
             }
         }
 
-       
-        public bool bEliminarCheckIn(int pk_Id_CheckIn, out string mensajeError)
+
+        public bool bEliminar_CheckIn(int iPk_Id_CheckIn, out string sMensajeError)
         {
-            mensajeError = "";
+            sMensajeError = "";
+
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection conn = prConexion.conexion())
                 {
-                    OdbcCommand cmd = new OdbcCommand(SQL_DELETE, conn);
-                    cmd.Parameters.AddWithValue("@Pk_Id_Check_in", pk_Id_CheckIn);
-                    return cmd.ExecuteNonQuery() > 0;
+                    using (OdbcCommand cmd = new OdbcCommand(SQL_DELETE, conn))
+                    {
+                        cmd.Parameters.AddWithValue("?", iPk_Id_CheckIn);
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
                 }
             }
             catch (OdbcException ex)
             {
                 if (ex.Message.Contains("a foreign key constraint fails"))
                 {
-                    mensajeError = "No es posible eliminar el Check-In porque está vinculado a otras tablas (por ejemplo, Check-Out o Pagos).";
+                    sMensajeError = "No es posible eliminar el Check-In porque está vinculado a otras tablas (por ejemplo, Check-Out o Pagos).";
                 }
                 else
                 {
-                    mensajeError = "Error al eliminar el Check-In: " + ex.Message;
+                    sMensajeError = "Error al eliminar el Check-In: " + ex.Message;
                 }
                 return false;
             }
         }
-        
-        public DataTable bMostrarCheckIn()
+
+
+        public DataTable fun_Mostrar_CheckIn()
         {
-            DataTable dt = new DataTable();
+            DataTable dtResultado = new DataTable();
 
-            string SQL_SELECT = @"
-     
-                  SELECT
-        C.Pk_Id_Check_in,
-        C.Fk_Id_Huesped,
-        C.Fk_Id_Reserva,
-        H.Cmp_Nombre AS Nombre_Huesped,
-        H.Cmp_Apellido AS Apellido_Huesped,
-        R.Cmp_Fecha_Entrada AS Fecha_Reserva,
-        C.Cmp_Fecha_Check_In,
-        C.Cmp_Estado
-    FROM Tbl_Check_in C
-    INNER JOIN Tbl_Huesped H ON C.Fk_Id_Huesped = H.Pk_Id_Huesped
-    INNER JOIN Tbl_Reserva R ON C.Fk_Id_Reserva = R.Pk_Id_Reserva;";
+            string sQuery = @"
+                SELECT
+                    C.Pk_Id_Check_in,
+                    C.Fk_Id_Huesped,
+                    C.Fk_Id_Reserva,
+                    H.Cmp_Nombre AS Nombre_Huesped,
+                    H.Cmp_Apellido AS Apellido_Huesped,
+                    R.Cmp_Fecha_Entrada AS Fecha_Reserva,
+                    C.Cmp_Fecha_Check_In,
+                    C.Cmp_Estado
+                FROM Tbl_Check_In C
+                INNER JOIN Tbl_Huesped H ON C.Fk_Id_Huesped = H.Pk_Id_Huesped
+                INNER JOIN Tbl_Reserva R ON C.Fk_Id_Reserva = R.Pk_Id_Reserva;";
 
-
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
+            using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
+            using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
             {
-                using (OdbcCommand cmd = new OdbcCommand(SQL_SELECT, conn))
-                {
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
-                    {
-                        da.Fill(dt);
-                    }
-                }
+                da.Fill(dtResultado);
             }
 
-            return dt;
+            return dtResultado;
         }
-
     }
-
 }
-

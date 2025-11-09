@@ -15,6 +15,7 @@ namespace Capa_vista_Check_In_Check_out
     {
         private readonly Cls_Check_In_Controlador Controlador = new Cls_Check_In_Controlador();
         private int idHabitacionSeleccionada = 0;
+
         public Frm_Check_In()
         {
             InitializeComponent();
@@ -26,28 +27,26 @@ namespace Capa_vista_Check_In_Check_out
 
         public void fun_configuracion_inicial()
         {
-            Btn_guardar.Enabled = false; ;
+            Btn_guardar.Enabled = false;
             Btn_Modificar.Enabled = false;
-          
             Btn_Nuevo.Enabled = true;
         }
+
         private void fun_CargarCombos()
         {
             try
             {
                 // ComboBox de Huéspedes
-                Cbo_Huesped.DataSource = Controlador.datObtenerHuespedes();
+                Cbo_Huesped.DataSource = Controlador.fun_Obtener_Huespedes();
                 Cbo_Huesped.DisplayMember = "NombreCompleto";
                 Cbo_Huesped.ValueMember = "Pk_Id_Huesped";
                 Cbo_Huesped.SelectedIndex = -1;
-
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar combos: " + ex.Message);
             }
         }
-
 
         private void fun_CargarEstados()
         {
@@ -62,17 +61,13 @@ namespace Capa_vista_Check_In_Check_out
         {
             try
             {
-                Dgv_Check_In.DataSource = Controlador.MostrarCheckIn();
+                Dgv_Check_In.DataSource = Controlador.fun_Mostrar_CheckIn();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cargar tabla: " + ex.Message);
             }
         }
-
-
-
-
 
         private void fun_LimpiarCampos()
         {
@@ -85,21 +80,18 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Cbo_Huesped_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             if (Cbo_Huesped.SelectedValue == null || Cbo_Huesped.SelectedValue is DataRowView)
                 return;
 
             try
             {
-
                 Cbo_Reservas.DataSource = null;
                 Cbo_Reservas.Items.Clear();
                 Cbo_Reservas.Text = string.Empty;
 
                 int idHuesped = Convert.ToInt32(Cbo_Huesped.SelectedValue);
 
-                DataTable dtReservas = Controlador.datObtenerReservaPorHuesped(idHuesped);
-
+                DataTable dtReservas = Controlador.fun_Obtener_Reserva_Por_Huesped(idHuesped);
 
                 Cbo_Reservas.DataSource = dtReservas;
                 Cbo_Reservas.DisplayMember = "DescripcionReserva";
@@ -113,37 +105,34 @@ namespace Capa_vista_Check_In_Check_out
         }
 
         private void Dgv_Check_In_CellClick(object sender, DataGridViewCellEventArgs e)
-
         {
-            Btn_guardar.Enabled = false; ;
+            Btn_guardar.Enabled = false;
             Btn_Modificar.Enabled = true;
-           
             Btn_Nuevo.Enabled = false;
+
             if (e.RowIndex >= 0)
             {
                 try
                 {
                     DataGridViewRow fila = Dgv_Check_In.Rows[e.RowIndex];
-
                     Txt_Id_Check_In.Text = fila.Cells["Pk_Id_Check_in"].Value.ToString();
 
-
+                    // Cargar huésped
                     if (fila.Cells["Fk_Id_Huesped"].Value != null)
                         Cbo_Huesped.SelectedValue = Convert.ToInt32(fila.Cells["Fk_Id_Huesped"].Value);
 
-
-                    if (Cbo_Huesped.SelectedValue != null && !(Cbo_Huesped.SelectedValue is DataRowView))
+                    // Cargar reservas (incluyendo la finalizada actual)
+                    if (fila.Cells["Fk_Id_Reserva"].Value != null)
                     {
-                        int idHuesped = Convert.ToInt32(Cbo_Huesped.SelectedValue);
-                        DataTable dtReservas = Controlador.datObtenerReservaPorHuesped(idHuesped);
+                        int iIdHuesped = Convert.ToInt32(fila.Cells["Fk_Id_Huesped"].Value);
+                        int iIdReservaActual = Convert.ToInt32(fila.Cells["Fk_Id_Reserva"].Value);
+
+                        DataTable dtReservas = Controlador.fun_Obtener_Reserva_Por_Huesped_Edicion(iIdHuesped, iIdReservaActual);
                         Cbo_Reservas.DataSource = dtReservas;
                         Cbo_Reservas.DisplayMember = "DescripcionReserva";
                         Cbo_Reservas.ValueMember = "Pk_Id_Reserva";
+                        Cbo_Reservas.SelectedValue = iIdReservaActual;
                     }
-
-
-                    if (fila.Cells["Fk_Id_Reserva"].Value != null)
-                        Cbo_Reservas.SelectedValue = Convert.ToInt32(fila.Cells["Fk_Id_Reserva"].Value);
 
                     Dtp_Fecha.Value = Convert.ToDateTime(fila.Cells["Cmp_Fecha_Check_In"].Value);
                     Cbo_Estado.SelectedItem = fila.Cells["Cmp_Estado"].Value.ToString();
@@ -155,71 +144,56 @@ namespace Capa_vista_Check_In_Check_out
             }
         }
 
-
-
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
+            try
             {
-                try
+                if (Cbo_Huesped.SelectedIndex == -1 || Cbo_Reservas.SelectedIndex == -1)
                 {
-                    
-                    if (Cbo_Huesped.SelectedIndex == -1 || Cbo_Reservas.SelectedIndex == -1)
-                    {
-                        MessageBox.Show("Debe seleccionar un huésped y una reserva válida.",
-                                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
-                    }
-
-                   
-                    int idHuesped = Convert.ToInt32(Cbo_Huesped.SelectedValue);
-                    int idReserva = Convert.ToInt32(Cbo_Reservas.SelectedValue);
-                    DateTime fecha = Dtp_Fecha.Value;
-                    string estado = Cbo_Estado.SelectedItem.ToString();
-
-                   
-                    if (idHabitacionSeleccionada == 0)
-                    {
-                        MessageBox.Show("No se encontró una habitación asociada a esta reserva.",
-                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                   
-                    bool exito = Controlador.RegistrarCheckInConFolio(
-                        idHuesped,
-                        idReserva,
-                        fecha,
-                        estado,
-                        idHabitacionSeleccionada
-                    );
-
-                   
-                    if (exito)
-                    {
-                       
-                                       
-                        fun_CargarTabla();
-                        fun_LimpiarCampos();
-                        idHabitacionSeleccionada = 0;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Ocurrió un error al registrar el Check-In con Folio.",
-                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("Debe seleccionar un huésped y una reserva válida.",
+                                    "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                catch (Exception ex)
+
+                int idHuesped = Convert.ToInt32(Cbo_Huesped.SelectedValue);
+                int idReserva = Convert.ToInt32(Cbo_Reservas.SelectedValue);
+                DateTime fecha = Dtp_Fecha.Value;
+                string estado = Cbo_Estado.SelectedItem.ToString();
+
+                if (idHabitacionSeleccionada == 0)
                 {
-                    MessageBox.Show("Error al guardar: " + ex.Message,
+                    MessageBox.Show("No se encontró una habitación asociada a esta reserva.",
+                                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Usa el método estandarizado del controlador
+                bool exito = Controlador.pro_Registrar_CheckIn_Con_Folio(
+                    idHuesped,
+                    idReserva,
+                    fecha,
+                    estado,
+                    idHabitacionSeleccionada
+                );
+
+                if (exito)
+                {
+                    fun_CargarTabla();
+                    fun_LimpiarCampos();
+                    idHabitacionSeleccionada = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrió un error al registrar el Check-In con Folio.",
                                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al guardar: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-            
-
-
-
-        
 
         private void Btn_modificar_Click(object sender, EventArgs e)
         {
@@ -237,29 +211,29 @@ namespace Capa_vista_Check_In_Check_out
                 DateTime fecha = Dtp_Fecha.Value;
                 string estado = Cbo_Estado.SelectedItem.ToString();
 
-                if (Controlador.bActualizarCheckIn(idCheckIn, idHuesped, idReserva, fecha, estado, out string mensaje))
+                // Actualiza usando el método estandarizado
+                if (Controlador.bActualizar_CheckIn(idCheckIn, idHuesped, idReserva, fecha, estado, out string mensaje))
                 {
-                    MessageBox.Show("check-In modificado correctamente");
+                    MessageBox.Show("Check-In modificado correctamente.");
                     fun_CargarTabla();
                     fun_LimpiarCampos();
                 }
                 else
                 {
-                    MessageBox.Show(" " + mensaje);
+                    MessageBox.Show(mensaje);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" " + ex.Message);
+                MessageBox.Show("Error al modificar: " + ex.Message);
             }
         }
 
         private void Btn_nuevo_Click(object sender, EventArgs e)
         {
             fun_LimpiarCampos();
-            Btn_guardar.Enabled = true; ;
+            Btn_guardar.Enabled = true;
             Btn_Modificar.Enabled = false;
-   
         }
 
         private void Btn_cancelar_Click(object sender, EventArgs e)
@@ -275,38 +249,36 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Cbo_Reservas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (Cbo_Reservas.SelectedValue == null || Cbo_Reservas.SelectedValue is DataRowView)
+                return;
 
+            try
             {
-                if (Cbo_Reservas.SelectedValue == null || Cbo_Reservas.SelectedValue is DataRowView)
-                    return;
+                int idReserva = Convert.ToInt32(Cbo_Reservas.SelectedValue);
 
-                try
+                // Usa el método actualizado del controlador
+                idHabitacionSeleccionada = Controlador.fun_Obtener_Habitacion_Por_Reserva(idReserva);
+
+                if (idHabitacionSeleccionada > 0)
                 {
-                    int idReserva = Convert.ToInt32(Cbo_Reservas.SelectedValue);
-
-
-                    idHabitacionSeleccionada = Controlador.ObtenerHabitacionPorReserva(idReserva);
-
-                    if (idHabitacionSeleccionada > 0)
-                    {
-                        Console.WriteLine($"Habitación vinculada a la reserva: {idHabitacionSeleccionada}");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Esta reserva no tiene una habitación asignada.",
-                                        "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    Console.WriteLine($"Habitación vinculada a la reserva: {idHabitacionSeleccionada}");
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error al obtener la habitación: " + ex.Message);
+                    MessageBox.Show("Esta reserva no tiene una habitación asignada.",
+                                    "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al obtener la habitación: " + ex.Message);
+            }
+        }
 
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Check_In Reporte = new Frm_Reporte_Check_In();
+            Reporte.Show();
         }
     }
 }
-    
-    
-
-

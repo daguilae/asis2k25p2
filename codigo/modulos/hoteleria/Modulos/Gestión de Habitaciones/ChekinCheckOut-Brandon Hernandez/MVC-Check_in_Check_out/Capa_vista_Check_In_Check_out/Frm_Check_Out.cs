@@ -15,10 +15,19 @@ namespace Capa_vista_Check_In_Check_out
             InitializeComponent();
             fun_CargarCombos();
             fun_CargarDatos();
-            ConfigurarDataGrid();
+            fun_ConfigurarDataGrid();
+            fun_configuracion_inicial();
         }
 
-        private void ConfigurarDataGrid()
+        public void fun_configuracion_inicial()
+        {
+            Btn_guardar.Enabled = false;
+            Btn_Modificar.Enabled = false;
+            Btn_Eliminar.Enabled = false;
+            Btn_Nuevo.Enabled = true;
+        }
+
+        private void fun_ConfigurarDataGrid()
         {
             Dgv_Check_Out.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             Dgv_Check_Out.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -26,21 +35,20 @@ namespace Capa_vista_Check_In_Check_out
             Dgv_Check_Out.ReadOnly = true;
         }
 
-        private void LimpiarCampos()
+        private void fun_LimpiarCampos()
         {
             Txt_Check_out.Clear();
             Cbo_Huesped.SelectedIndex = -1;
-            dateTimePicker1.Value = DateTime.Now;
-            dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White;
+            Dtp_Fecha_CheckOut.Value = DateTime.Now;
+            Dtp_Fecha_CheckOut.CalendarMonthBackground = System.Drawing.Color.White;
             Cbo_Huesped.BackColor = System.Drawing.Color.White;
         }
-
 
         private void fun_CargarCombos()
         {
             try
             {
-                DataTable dt = Controlador.datObtenerCheckIn();
+                DataTable dt = Controlador.fun_Obtener_CheckIn();
 
                 if (!dt.Columns.Contains("Descripcion_Combo"))
                     dt.Columns.Add("Descripcion_Combo", typeof(string));
@@ -68,7 +76,8 @@ namespace Capa_vista_Check_In_Check_out
         {
             try
             {
-                Dgv_Check_Out.DataSource = Controlador.MostrarCheckOut();
+                Dgv_Check_Out.DataSource = Controlador.fun_Mostrar_CheckOut();
+
                 if (Dgv_Check_Out.Columns.Contains("Fk_Id_Check_In"))
                     Dgv_Check_Out.Columns["Fk_Id_Check_In"].Visible = false;
             }
@@ -78,10 +87,10 @@ namespace Capa_vista_Check_In_Check_out
             }
         }
 
-
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
+            Btn_guardar.Enabled = true;
         }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
@@ -90,49 +99,34 @@ namespace Capa_vista_Check_In_Check_out
             {
                 if (Cbo_Huesped.SelectedValue == null)
                 {
-                    MessageBox.Show("Debe seleccionar un Check-In válido.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Debe seleccionar un Check-In válido.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     Cbo_Huesped.BackColor = System.Drawing.Color.MistyRose;
                     return;
                 }
 
-                int idCheckIn = Convert.ToInt32(Cbo_Huesped.SelectedValue);
-                DateTime fechaCheckOut = dateTimePicker1.Value;
+                Cbo_Huesped.BackColor = System.Drawing.Color.White;
 
+                int iIdCheckIn = Convert.ToInt32(Cbo_Huesped.SelectedValue);
+                DateTime dFechaCheckOut = Dtp_Fecha_CheckOut.Value;
 
-                DataRowView filaSeleccionada = Cbo_Huesped.SelectedItem as DataRowView;
-                DateTime fechaCheckIn = DateTime.MinValue;
-                if (filaSeleccionada != null && filaSeleccionada.Row.Table.Columns.Contains("Cmp_Fecha_Check_In"))
-                    fechaCheckIn = Convert.ToDateTime(filaSeleccionada["Cmp_Fecha_Check_In"]);
+                // Llama al método estandarizado
+                bool bExito = Controlador.pro_Registrar_CheckOut_Con_Folio(iIdCheckIn, dFechaCheckOut);
 
-                // ✅ Validación visual
-                if (fechaCheckOut < fechaCheckIn)
-                {
-                    dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.MistyRose;
-                    MessageBox.Show(
-                        $"⚠️ La fecha de Check-Out ({fechaCheckOut:dd/MM/yyyy}) no puede ser anterior al Check-In ({fechaCheckIn:dd/MM/yyyy}).",
-                        "Fecha inválida",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning
-                    );
-                    return;
-                }
-                else
-                {
-                    dateTimePicker1.CalendarMonthBackground = System.Drawing.Color.White;
-                }
-
-
-                bool exito = Controlador.RegistrarCheckOutConFolio(idCheckIn, fechaCheckOut);
-
-                if (exito)
+                if (bExito)
                 {
                     fun_CargarDatos();
-                    LimpiarCampos();
+                    fun_LimpiarCampos();
+                    fun_configuracion_inicial();
+
+                    MessageBox.Show("Check-Out registrado correctamente.",
+                        "Proceso exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar Check-Out: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar Check-Out: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -142,35 +136,39 @@ namespace Capa_vista_Check_In_Check_out
             {
                 if (string.IsNullOrWhiteSpace(Txt_Check_out.Text))
                 {
-                    MessageBox.Show("Seleccione un registro para modificar.");
+                    MessageBox.Show("Seleccione un registro para modificar.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 if (Cbo_Huesped.SelectedValue == null)
                 {
-                    MessageBox.Show("Debe seleccionar un Check-In válido.");
+                    MessageBox.Show("Debe seleccionar un Check-In válido.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                int idCheckOut = Convert.ToInt32(Txt_Check_out.Text);
-                int idCheckIn = Convert.ToInt32(Cbo_Huesped.SelectedValue);
-                DateTime fechaCheckOut = dateTimePicker1.Value;
+                int iIdCheckOut = Convert.ToInt32(Txt_Check_out.Text);
+                int iIdCheckIn = Convert.ToInt32(Cbo_Huesped.SelectedValue);
+                DateTime dFechaCheckOut = Dtp_Fecha_CheckOut.Value;
 
-      
-                if (Controlador.bActualizarCheckOut(idCheckOut, idCheckIn, fechaCheckOut, out string mensaje))
+                // Usa el método estandarizado correcto
+                if (Controlador.bActualizar_CheckOut(iIdCheckOut, iIdCheckIn, dFechaCheckOut, out string sMensaje))
                 {
-                    MessageBox.Show("✅ " + mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(sMensaje);
                     fun_CargarDatos();
-                    LimpiarCampos();
+                    fun_LimpiarCampos();
+                    fun_configuracion_inicial();
                 }
                 else
                 {
-                    MessageBox.Show("⚠️ " + mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(sMensaje);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al modificar Check-Out: " + ex.Message);
+                MessageBox.Show("Error al modificar Check-Out: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -180,31 +178,37 @@ namespace Capa_vista_Check_In_Check_out
             {
                 if (string.IsNullOrWhiteSpace(Txt_Check_out.Text))
                 {
-                    MessageBox.Show("Seleccione un registro para eliminar.");
+                    MessageBox.Show("Seleccione un registro para eliminar.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                int idCheckOut = Convert.ToInt32(Txt_Check_out.Text);
-                if (Controlador.bBorrarCheckOut(idCheckOut, out string mensajeError))
+                int iIdCheckOut = Convert.ToInt32(Txt_Check_out.Text);
+
+                // Usa el método estandarizado correcto
+                if (Controlador.bEliminar_CheckOut(iIdCheckOut, out string sMensajeError))
                 {
-                    MessageBox.Show("🗑️ Check-Out eliminado correctamente.");
+                    MessageBox.Show("Check-Out eliminado correctamente.",
+                        "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     fun_CargarDatos();
-                    LimpiarCampos();
+                    fun_LimpiarCampos();
+                    fun_configuracion_inicial();
                 }
                 else
                 {
-                    MessageBox.Show("⚠️ " + mensajeError);
+                    MessageBox.Show(sMensajeError);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al eliminar Check-Out: " + ex.Message);
+                MessageBox.Show("Error al eliminar Check-Out: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void Btn_Limpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
         }
 
         private void Btn_Salir_Click(object sender, EventArgs e)
@@ -212,57 +216,68 @@ namespace Capa_vista_Check_In_Check_out
             this.Close();
         }
 
-
         private void Dgv_Check_Out_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            Btn_Modificar.Enabled = true;
+            Btn_Eliminar.Enabled = true;
+
             if (e.RowIndex >= 0)
             {
                 try
                 {
                     Txt_Check_out.Text = Dgv_Check_Out.Rows[e.RowIndex].Cells["Pk_Id_Check_out"].Value.ToString();
 
-                    // 🔹 Verificar que el Combo esté cargado
                     if (Cbo_Huesped.DataSource == null)
                         fun_CargarCombos();
 
-                    // 🔹 Buscar la columna que contiene el ID del Check-In
                     var colCheckIn = Dgv_Check_Out.Columns.Cast<DataGridViewColumn>()
                         .FirstOrDefault(c => c.Name.ToLower().Contains("check_in"));
 
                     if (colCheckIn != null)
                     {
                         object valor = Dgv_Check_Out.Rows[e.RowIndex].Cells[colCheckIn.Name].Value;
-                        if (valor != null && int.TryParse(valor.ToString(), out int idCheckIn))
+                        if (valor != null && int.TryParse(valor.ToString(), out int iIdCheckIn))
                         {
-                            var dataSource = (Cbo_Huesped.DataSource as DataTable);
-                            bool existe = dataSource.AsEnumerable()
-                                .Any(r => Convert.ToInt32(r["Pk_Id_Check_in"]) == idCheckIn);
+                            var dtSource = (Cbo_Huesped.DataSource as DataTable);
+                            bool existe = dtSource.AsEnumerable()
+                                .Any(r => Convert.ToInt32(r["Pk_Id_Check_in"]) == iIdCheckIn);
 
                             if (existe)
                             {
-                                Cbo_Huesped.SelectedValue = idCheckIn;
+                                Cbo_Huesped.SelectedValue = iIdCheckIn;
                             }
                             else
                             {
-                        
-                                DataRow newRow = dataSource.NewRow();
-                                newRow["Pk_Id_Check_in"] = idCheckIn;
+                                DataRow newRow = dtSource.NewRow();
+                                newRow["Pk_Id_Check_in"] = iIdCheckIn;
                                 newRow["Nombre_Huesped"] = Dgv_Check_Out.Rows[e.RowIndex].Cells["Nombre_Huesped"].Value.ToString();
                                 newRow["Cmp_Fecha_Check_In"] = Dgv_Check_Out.Rows[e.RowIndex].Cells["Cmp_Fecha_Check_In"].Value;
-                                newRow["Descripcion_Combo"] = $"#{idCheckIn} – {newRow["Nombre_Huesped"]} – {Convert.ToDateTime(newRow["Cmp_Fecha_Check_In"]).ToString("dd/MM/yyyy")}";
-                                dataSource.Rows.Add(newRow);
-                                Cbo_Huesped.SelectedValue = idCheckIn;
+                                newRow["Descripcion_Combo"] = $"#{iIdCheckIn} – {newRow["Nombre_Huesped"]} – {Convert.ToDateTime(newRow["Cmp_Fecha_Check_In"]).ToString("dd/MM/yyyy")}";
+                                dtSource.Rows.Add(newRow);
+                                Cbo_Huesped.SelectedValue = iIdCheckIn;
                             }
                         }
                     }
 
-                    dateTimePicker1.Value = Convert.ToDateTime(Dgv_Check_Out.Rows[e.RowIndex].Cells["Cmp_Fecha_Check_Out"].Value);
+                    Dtp_Fecha_CheckOut.Value = Convert.ToDateTime(Dgv_Check_Out.Rows[e.RowIndex].Cells["Cmp_Fecha_Check_Out"].Value);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error al cargar datos del registro: " + ex.Message);
                 }
             }
+        }
+
+        private void Btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            fun_configuracion_inicial();
+            fun_LimpiarCampos();
+        }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Check_Out Reporte = new Frm_Reporte_Check_Out();
+            Reporte.Show();
         }
     }
 }

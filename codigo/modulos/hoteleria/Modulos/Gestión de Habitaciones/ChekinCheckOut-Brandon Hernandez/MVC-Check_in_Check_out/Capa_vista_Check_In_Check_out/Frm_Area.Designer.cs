@@ -76,6 +76,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Salir.TabIndex = 23;
             this.Btn_Salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Salir.UseVisualStyleBackColor = false;
+            this.Btn_Salir.Click += new System.EventHandler(this.Btn_Salir_Click);
             // 
             // Btn_Reporte
             // 
@@ -90,6 +91,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.TabIndex = 27;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Btn_Cancelar
             // 
@@ -104,6 +106,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Cancelar.TabIndex = 22;
             this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Cancelar.UseVisualStyleBackColor = false;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
             // Btn_Ayuda
             // 
@@ -381,8 +384,8 @@ namespace Capa_vista_Check_In_Check_out
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1308, 842);
-            this.Controls.Add(this.Btn_Buscar);
             this.Controls.Add(this.Gbo_Campos);
+            this.Controls.Add(this.Btn_Buscar);
             this.Controls.Add(this.Gbo_Buscar);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
