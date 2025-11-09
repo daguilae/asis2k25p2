@@ -155,6 +155,15 @@ namespace Capa_Vista_Ordenes
             Dgv_Auto_Ordenes.AutoGenerateColumns = true;
             Dgv_Auto_Ordenes.DataSource = _ctrl.ObtenerAutorizacionesDetalle();
             Dgv_Auto_Ordenes.ClearSelection();
+
+
+            // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+            Dgv_Auto_Ordenes.AllowUserToAddRows = false;
+            Dgv_Auto_Ordenes.ReadOnly = true;
+            Dgv_Auto_Ordenes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Dgv_Auto_Ordenes.MultiSelect = false;
+
+            // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
         }
 
 
