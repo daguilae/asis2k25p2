@@ -38,7 +38,7 @@ namespace Capa_Modelo_Cierre
                 'Salón' AS 'Tipo_Folio'
             FROM Tbl_Folio_Salones fs
             WHERE DATE(fs.Cmp_Fecha_Pago) = ?
-              AND UPPER(fs.Cmp_Estado) = 'PAGADO';
+              AND UPPER(fs.Cmp_Estado) = 'Pagado';
         ";
 
                 using (OdbcConnection conn = conexion.conexion())
@@ -70,7 +70,7 @@ namespace Capa_Modelo_Cierre
                     // Folios de habitaciones
                     string sqlHabitaciones = @"SELECT IFNULL(SUM(Cmp_Total_Cargos),0), IFNULL(SUM(Cmp_Total_Abonos),0)
                                               FROM Tbl_Folio
-                                              WHERE DATE(Cmp_Fecha_Cierre) = ? AND UPPER(Cmp_Estado) = 'CERRADO';";
+                                              WHERE DATE(Cmp_Fecha_Cierre) = ? AND UPPER(Cmp_Estado) = 'Cerrado';";
                     using (OdbcCommand cmdHab = new OdbcCommand(sqlHabitaciones, conn))
                     {
                         cmdHab.Parameters.AddWithValue("@fechaH", dFechaCorte.Date);
@@ -87,7 +87,7 @@ namespace Capa_Modelo_Cierre
                     //Folios de salones
                     string sqlSalones = @"SELECT IFNULL(SUM(Cmp_Pago_Total),0)
                                           FROM Tbl_Folio_Salones
-                                          WHERE DATE(Cmp_Fecha_Pago) = ? AND UPPER(Cmp_Estado) = 'PAGADO';";
+                                          WHERE DATE(Cmp_Fecha_Pago) = ? AND UPPER(Cmp_Estado) = 'Pagado';";
                     using (OdbcCommand cmdSal = new OdbcCommand(sqlSalones, conn))
                     {
                         cmdSal.Parameters.AddWithValue("@fechaS", dFechaCorte.Date);

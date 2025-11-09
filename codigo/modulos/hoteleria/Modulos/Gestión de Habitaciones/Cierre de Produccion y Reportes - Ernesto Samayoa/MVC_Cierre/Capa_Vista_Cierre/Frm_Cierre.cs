@@ -323,31 +323,8 @@ namespace Capa_Vista_Cierre
         // BOTÓN IMPRIMIR CIERRE GENERAL
         private void Btn_Imprimir_cierre_general_Click_1(object sender, EventArgs e)
         {
-            try
-            {
-                if (Dgv_Cierre_general.DataSource == null || Dgv_Cierre_general.Rows.Count == 0)
-                {
-                    MessageBox.Show("No hay datos de cierre para imprimir.",
-                                    "Aviso",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Warning);
-                    return;
-                }
-
-                //Módulo de reportes o exportación
-                MessageBox.Show("Funcionalidad de impresión pendiente. " +
-                                "\n(En esta parte se generará el reporte PDF o Crystal Report del cierre seleccionado).",
-                                "Imprimir Cierre General",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("❌ Error al intentar imprimir: " + ex.Message,
-                                "Error",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-            }
+            Frm_Reporte_CD frm = new Frm_Reporte_CD();
+            frm.ShowDialog();
         }
     }
 }
