@@ -6,44 +6,38 @@ namespace Capa_Controlador_MH
 {
     public class Cls_Controlador_MH
     {
-        private readonly Cls_Mantenimiento modelo = new Cls_Mantenimiento();
+        private readonly Cls_Mantenimiento cls_Modelo = new Cls_Mantenimiento();
 
-        // ================================================================
-        // MOSTRAR TODOS LOS REGISTROS
-        // ================================================================
-        public DataTable MostrarMantenimientos()
+        public DataTable fun_MostrarMantenimientos()
         {
-            var adapter = modelo.MostrarMantenimientos();
-            var tabla = new DataTable();
-            adapter.Fill(tabla);
-            return tabla;
+            var dts_Adapter = cls_Modelo.fun_MostrarMantenimientos();
+            var dts_Tabla = new DataTable();
+            dts_Adapter.Fill(dts_Tabla);
+            return dts_Tabla;
         }
 
-        // ================================================================
-        // GUARDAR REGISTRO
-        // ================================================================
-        public string GuardarMantenimiento(string salon, string habitacion, string empleado,
-                                           string tipo, string descripcion, string estado,
-                                           string fechaInicio, string fechaFin)
+        public string fun_GuardarMantenimiento(string sSalon, string sHabitacion, string sEmpleado,
+                                               string sTipo, string sDescripcion, string sEstado,
+                                               string sFechaInicio, string sFechaFin)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(habitacion) && string.IsNullOrWhiteSpace(salon))
+                if (string.IsNullOrWhiteSpace(sHabitacion) && string.IsNullOrWhiteSpace(sSalon))
                     return "Debe seleccionar una habitación o un salón.";
 
-                if (!string.IsNullOrWhiteSpace(habitacion) && !string.IsNullOrWhiteSpace(salon))
+                if (!string.IsNullOrWhiteSpace(sHabitacion) && !string.IsNullOrWhiteSpace(sSalon))
                     return "Solo puede seleccionar uno: habitación o salón.";
 
-                if (string.IsNullOrWhiteSpace(empleado))
+                if (string.IsNullOrWhiteSpace(sEmpleado))
                     return "Debe seleccionar un empleado.";
 
-                if (string.IsNullOrWhiteSpace(tipo))
+                if (string.IsNullOrWhiteSpace(sTipo))
                     return "Debe especificar el tipo de mantenimiento.";
 
-                if (string.IsNullOrWhiteSpace(estado))
-                    estado = "En mantenimiento";
+                if (string.IsNullOrWhiteSpace(sEstado))
+                    sEstado = "En mantenimiento";
 
-                modelo.InsertarMantenimiento(salon, habitacion, empleado, tipo, descripcion, estado, fechaInicio, fechaFin);
+                cls_Modelo.fun_InsertarMantenimiento(sSalon, sHabitacion, sEmpleado, sTipo, sDescripcion, sEstado, sFechaInicio, sFechaFin);
                 return "Registro guardado correctamente.";
             }
             catch (Exception ex)
@@ -52,19 +46,16 @@ namespace Capa_Controlador_MH
             }
         }
 
-        // ================================================================
-        // ACTUALIZAR
-        // ================================================================
-        public string ActualizarMantenimiento(string id, string salon, string habitacion, string empleado,
-                                              string tipo, string descripcion, string estado,
-                                              string fechaInicio, string fechaFin)
+        public string fun_ActualizarMantenimiento(string sId, string sSalon, string sHabitacion, string sEmpleado,
+                                                  string sTipo, string sDescripcion, string sEstado,
+                                                  string sFechaInicio, string sFechaFin)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrWhiteSpace(sId))
                     return "Debe seleccionar un ID válido para actualizar.";
 
-                modelo.ActualizarMantenimiento(id, salon, habitacion, empleado, tipo, descripcion, estado, fechaInicio, fechaFin);
+                cls_Modelo.fun_ActualizarMantenimiento(sId, sSalon, sHabitacion, sEmpleado, sTipo, sDescripcion, sEstado, sFechaInicio, sFechaFin);
                 return "Registro actualizado correctamente.";
             }
             catch (Exception ex)
@@ -73,17 +64,14 @@ namespace Capa_Controlador_MH
             }
         }
 
-        // ================================================================
-        // ELIMINAR
-        // ================================================================
-        public string EliminarMantenimiento(string id)
+        public string fun_EliminarMantenimiento(string sId)
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrWhiteSpace(sId))
                     return "Debe seleccionar un ID válido para eliminar.";
 
-                modelo.EliminarMantenimiento(id);
+                cls_Modelo.fun_EliminarMantenimiento(sId);
                 return "Registro eliminado correctamente.";
             }
             catch (Exception ex)
@@ -92,22 +80,16 @@ namespace Capa_Controlador_MH
             }
         }
 
-        // ================================================================
-        // BUSCAR POR ID
-        // ================================================================
-        public DataTable BuscarMantenimientoPorId(string id)
+        public DataTable fun_BuscarMantenimientoPorId(string sId)
         {
-            if (string.IsNullOrWhiteSpace(id))
+            if (string.IsNullOrWhiteSpace(sId))
                 return new DataTable();
 
-            return modelo.BuscarMantenimientoPorId(id);
+            return cls_Modelo.fun_BuscarMantenimientoPorId(sId);
         }
 
-        // ================================================================
-        // MÉTODOS PARA COMBOS
-        // ================================================================
-        public DataTable ObtenerEmpleados() => modelo.ObtenerEmpleados();
-        public DataTable ObtenerSalones() => modelo.ObtenerSalones();
-        public DataTable ObtenerHabitaciones() => modelo.ObtenerHabitaciones();
+        public DataTable fun_ObtenerEmpleados() => cls_Modelo.fun_ObtenerEmpleados();
+        public DataTable fun_ObtenerSalones() => cls_Modelo.fun_ObtenerSalones();
+        public DataTable fun_ObtenerHabitaciones() => cls_Modelo.fun_ObtenerHabitaciones();
     }
 }

@@ -29,9 +29,6 @@ namespace Capa_Vista_MH
         /// </summary>
         private void InitializeComponent()
         {
-            this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.Pic_Salir = new System.Windows.Forms.PictureBox();
-            this.Lbl_Titulo_Hoteleria = new System.Windows.Forms.Label();
             this.Lbl_Mantenimiento = new System.Windows.Forms.Label();
             this.Dgv_Mantenimiento_hoteleria = new System.Windows.Forms.DataGridView();
             this.Lbl_Id_mantenimiento = new System.Windows.Forms.Label();
@@ -52,56 +49,22 @@ namespace Capa_Vista_MH
             this.Txt_Estado = new System.Windows.Forms.TextBox();
             this.Dtp_Fecha_Inicio = new System.Windows.Forms.DateTimePicker();
             this.Dtp_Fecha_Fin = new System.Windows.Forms.DateTimePicker();
+            this.Pic_Reporte = new System.Windows.Forms.PictureBox();
             this.Pic_Buscar = new System.Windows.Forms.PictureBox();
             this.Pic_Eliminar = new System.Windows.Forms.PictureBox();
             this.Pic_Guardar = new System.Windows.Forms.PictureBox();
             this.Pic_Editar = new System.Windows.Forms.PictureBox();
             this.Pic_Cancelar = new System.Windows.Forms.PictureBox();
-            this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).BeginInit();
+            this.Pic_Salir = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mantenimiento_hoteleria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Reporte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Buscar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Eliminar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Guardar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Editar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Cancelar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Pnl_Superior
-            // 
-            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.Pic_Salir);
-            this.Pnl_Superior.Controls.Add(this.Lbl_Titulo_Hoteleria);
-            this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(1320, 64);
-            this.Pnl_Superior.TabIndex = 98;
-            // 
-            // Pic_Salir
-            // 
-            this.Pic_Salir.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.Pic_Salir.Image = global::Capa_Vista_MH.Properties.Resources.icono_cancelar;
-            this.Pic_Salir.Location = new System.Drawing.Point(1266, 12);
-            this.Pic_Salir.Name = "Pic_Salir";
-            this.Pic_Salir.Size = new System.Drawing.Size(42, 42);
-            this.Pic_Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Pic_Salir.TabIndex = 122;
-            this.Pic_Salir.TabStop = false;
-            this.Pic_Salir.Click += new System.EventHandler(this.Pic_Salir_Click_1);
-            // 
-            // Lbl_Titulo_Hoteleria
-            // 
-            this.Lbl_Titulo_Hoteleria.AutoSize = true;
-            this.Lbl_Titulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo_Hoteleria.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Lbl_Titulo_Hoteleria.Location = new System.Drawing.Point(25, 15);
-            this.Lbl_Titulo_Hoteleria.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Lbl_Titulo_Hoteleria.Name = "Lbl_Titulo_Hoteleria";
-            this.Lbl_Titulo_Hoteleria.Size = new System.Drawing.Size(319, 35);
-            this.Lbl_Titulo_Hoteleria.TabIndex = 2;
-            this.Lbl_Titulo_Hoteleria.Text = "MODULO HOTELERIA";
             // 
             // Lbl_Mantenimiento
             // 
@@ -288,11 +251,23 @@ namespace Capa_Vista_MH
             this.Dtp_Fecha_Fin.Size = new System.Drawing.Size(210, 22);
             this.Dtp_Fecha_Fin.TabIndex = 120;
             // 
+            // Pic_Reporte
+            // 
+            this.Pic_Reporte.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Pic_Reporte.Image = global::Capa_Vista_MH.Properties.Resources.icono_imprimir;
+            this.Pic_Reporte.Location = new System.Drawing.Point(1125, 102);
+            this.Pic_Reporte.Name = "Pic_Reporte";
+            this.Pic_Reporte.Size = new System.Drawing.Size(42, 42);
+            this.Pic_Reporte.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Pic_Reporte.TabIndex = 123;
+            this.Pic_Reporte.TabStop = false;
+            this.Pic_Reporte.Click += new System.EventHandler(this.Pic_Reporte_Click);
+            // 
             // Pic_Buscar
             // 
             this.Pic_Buscar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pic_Buscar.Image = global::Capa_Vista_MH.Properties.Resources.icono_buscar;
-            this.Pic_Buscar.Location = new System.Drawing.Point(961, 102);
+            this.Pic_Buscar.Location = new System.Drawing.Point(893, 102);
             this.Pic_Buscar.Name = "Pic_Buscar";
             this.Pic_Buscar.Size = new System.Drawing.Size(42, 42);
             this.Pic_Buscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -304,7 +279,7 @@ namespace Capa_Vista_MH
             // 
             this.Pic_Eliminar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pic_Eliminar.Image = global::Capa_Vista_MH.Properties.Resources.icono_eliminar;
-            this.Pic_Eliminar.Location = new System.Drawing.Point(1168, 102);
+            this.Pic_Eliminar.Location = new System.Drawing.Point(1066, 102);
             this.Pic_Eliminar.Name = "Pic_Eliminar";
             this.Pic_Eliminar.Size = new System.Drawing.Size(42, 42);
             this.Pic_Eliminar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -316,7 +291,7 @@ namespace Capa_Vista_MH
             // 
             this.Pic_Guardar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pic_Guardar.Image = global::Capa_Vista_MH.Properties.Resources.icono_guardar;
-            this.Pic_Guardar.Location = new System.Drawing.Point(1034, 102);
+            this.Pic_Guardar.Location = new System.Drawing.Point(950, 102);
             this.Pic_Guardar.Name = "Pic_Guardar";
             this.Pic_Guardar.Size = new System.Drawing.Size(42, 42);
             this.Pic_Guardar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -328,7 +303,7 @@ namespace Capa_Vista_MH
             // 
             this.Pic_Editar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pic_Editar.Image = global::Capa_Vista_MH.Properties.Resources.icono_modificar;
-            this.Pic_Editar.Location = new System.Drawing.Point(1100, 102);
+            this.Pic_Editar.Location = new System.Drawing.Point(1009, 102);
             this.Pic_Editar.Name = "Pic_Editar";
             this.Pic_Editar.Size = new System.Drawing.Size(42, 42);
             this.Pic_Editar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -340,7 +315,7 @@ namespace Capa_Vista_MH
             // 
             this.Pic_Cancelar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Pic_Cancelar.Image = global::Capa_Vista_MH.Properties.Resources.icono_limpiar__1_;
-            this.Pic_Cancelar.Location = new System.Drawing.Point(1237, 102);
+            this.Pic_Cancelar.Location = new System.Drawing.Point(1185, 102);
             this.Pic_Cancelar.Name = "Pic_Cancelar";
             this.Pic_Cancelar.Size = new System.Drawing.Size(42, 42);
             this.Pic_Cancelar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -348,12 +323,26 @@ namespace Capa_Vista_MH
             this.Pic_Cancelar.TabStop = false;
             this.Pic_Cancelar.Click += new System.EventHandler(this.Pic_Cancelar_Click);
             // 
+            // Pic_Salir
+            // 
+            this.Pic_Salir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.Pic_Salir.Image = global::Capa_Vista_MH.Properties.Resources.icono_cancelar;
+            this.Pic_Salir.Location = new System.Drawing.Point(1266, 12);
+            this.Pic_Salir.Name = "Pic_Salir";
+            this.Pic_Salir.Size = new System.Drawing.Size(42, 42);
+            this.Pic_Salir.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Pic_Salir.TabIndex = 122;
+            this.Pic_Salir.TabStop = false;
+            this.Pic_Salir.Click += new System.EventHandler(this.Pic_Salir_Click_1);
+            // 
             // Frm_Mantenimiento_hoteleria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
             this.ClientSize = new System.Drawing.Size(1320, 711);
+            this.Controls.Add(this.Pic_Salir);
+            this.Controls.Add(this.Pic_Reporte);
             this.Controls.Add(this.Pic_Buscar);
             this.Controls.Add(this.Pic_Eliminar);
             this.Controls.Add(this.Dtp_Fecha_Fin);
@@ -379,30 +368,25 @@ namespace Capa_Vista_MH
             this.Controls.Add(this.Pic_Editar);
             this.Controls.Add(this.Pic_Cancelar);
             this.Controls.Add(this.Lbl_Mantenimiento);
-            this.Controls.Add(this.Pnl_Superior);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Mantenimiento_hoteleria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Frm_Mantenimiento_hoteleria_Load);
-            this.Pnl_Superior.ResumeLayout(false);
-            this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mantenimiento_hoteleria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Reporte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Buscar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Eliminar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Guardar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Editar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Cancelar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Pic_Salir)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label Lbl_Titulo_Hoteleria;
         private System.Windows.Forms.Label Lbl_Mantenimiento;
         private System.Windows.Forms.PictureBox Pic_Cancelar;
         private System.Windows.Forms.PictureBox Pic_Editar;
@@ -429,5 +413,6 @@ namespace Capa_Vista_MH
         private System.Windows.Forms.PictureBox Pic_Eliminar;
         private System.Windows.Forms.PictureBox Pic_Salir;
         private System.Windows.Forms.PictureBox Pic_Buscar;
+        private System.Windows.Forms.PictureBox Pic_Reporte;
     }
 }

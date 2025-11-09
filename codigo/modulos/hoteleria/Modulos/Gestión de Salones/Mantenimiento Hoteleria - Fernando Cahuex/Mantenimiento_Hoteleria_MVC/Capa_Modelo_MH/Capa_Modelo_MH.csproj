@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Capa_Modelo_MH.cs" />
+    <Compile Include="Cls_Modelo_MH.cs" />
     <Compile Include="Cls_ConexionMysql.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

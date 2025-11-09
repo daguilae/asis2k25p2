@@ -103,6 +103,16 @@ namespace Capa_Vista_MH.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icono_imprimir {
+            get {
+                object obj = ResourceManager.GetObject("icono_imprimir", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icono_limpiar__1_ {
             get {
                 object obj = ResourceManager.GetObject("icono_limpiar (1)", resourceCulture);
