@@ -47,7 +47,15 @@ namespace Capa_Vista_Ordenes
            
             Btn_Actualizar_Autorizacion.Click += Btn_Actualizar_Autorizacion_Click;
             Btn_Eliminar_Autorizacion.Click += Btn_Eliminar_Autorizacion_Click;
+
         }
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+        // valdiaciones para el formulario 
+        private bool EsAprobada() => string.Equals(Cbo_Id_Estado.Text?.Trim(), "Aprobada", StringComparison.InvariantCultureIgnoreCase);
+        private bool EsRechazada() => string.Equals(Cbo_Id_Estado.Text?.Trim(), "Rechazada", StringComparison.InvariantCultureIgnoreCase);
+
 
 
         private void Frm_Ordenes_Compra_Load(object sender, EventArgs e)
@@ -55,8 +63,45 @@ namespace Capa_Vista_Ordenes
             ConfigurarControles();
             CargarCombos();
             CargarGrid();
+
+
+            // Rellenar el monto una vez con la selección actual
+            ActualizarMontoSegunOrden();
+
+            Cbo_Id_Orden.SelectionChangeCommitted += (s, ev) => ActualizarMontoSegunOrden();
+
+
         }
 
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+        private void ActualizarMontoSegunOrden()
+        {
+            try
+            {
+                if (Cbo_Id_Orden.SelectedValue == null || Cbo_Id_Orden.SelectedValue == DBNull.Value) return;
+                if (Cbo_Id_Orden.SelectedValue is DataRowView) return; // aún está bindeando
+
+                int idOrden;
+                if (!int.TryParse(Cbo_Id_Orden.SelectedValue.ToString(), out idOrden)) return;
+
+                var monto = _ctrl.ObtenerMontoOrden(idOrden);
+
+                // Encajar en el rango del NumericUpDown
+                if (monto < Nud_Monto_Autorizado.Minimum) monto = Nud_Monto_Autorizado.Minimum;
+                if (monto > Nud_Monto_Autorizado.Maximum) monto = Nud_Monto_Autorizado.Maximum;
+
+                Nud_Monto_Autorizado.Value = monto;
+            }
+            catch
+            {
+               
+            }
+        }
+
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
 
 
         private void ConfigurarControles()
@@ -133,6 +178,18 @@ namespace Capa_Vista_Ordenes
                 var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
                 var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
 
+               
+
+                var saldo = _ctrl.ObtenerSaldoBanco(idBanco);
+                if (EsAprobada() && saldo < monto)
+                {
+                    AlertWarn($"El banco seleccionado no tiene fondos suficientes. Saldo: {saldo:N2}, Monto requerido: {monto:N2}.");
+                    return;
+                }
+
+
+
+
                 var nuevoId = _ctrl.Agregar(idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
                 Txt_Id_Autorizacion.Text = nuevoId.ToString();
                 CargarGrid();
@@ -144,6 +201,8 @@ namespace Capa_Vista_Ordenes
             catch (Exception ex) { AlertErr("Error al agregar: " + ex.Message); }
         }
         // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+
+
 
         private void Btn_Actualizar_Autorizacion_Click(object sender, EventArgs e)
         {
@@ -159,6 +218,16 @@ namespace Capa_Vista_Ordenes
                 var monto = Nud_Monto_Autorizado.Value;
                 var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
                 var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
+
+
+                var saldo = _ctrl.ObtenerSaldoBanco(idBanco);
+                if (EsAprobada() && saldo < monto)
+                {
+                    AlertWarn($"El banco seleccionado no tiene fondos suficientes. Saldo: {saldo:N2}, Monto requerido: {monto:N2}.");
+                    return;
+                }
+
+
 
                 var filas = _ctrl.Actualizar(idAut, idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
                 CargarGrid();
