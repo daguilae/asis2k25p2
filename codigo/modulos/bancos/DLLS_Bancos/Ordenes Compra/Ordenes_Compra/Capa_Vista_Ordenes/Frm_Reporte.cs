@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Ordenes
 {
-    public partial class Frm_Reporte_Autorizaciones : Form
+    public partial class Frm_Reporte : Form
     {
-        public Frm_Reporte_Autorizaciones()
+        public Frm_Reporte()
         {
             InitializeComponent();
         }
