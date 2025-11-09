@@ -11,13 +11,12 @@ using CapaControladorProduccion;
 using Capa_Vista_Produccion;
 using System.Linq;
 
-
 namespace CapaVistaProduccion
 {
     public partial class Frm_Produccion_Hoteleria : Form
     {
-        Cls_Controlador_Produccion controlador = new Cls_Controlador_Produccion();
-        private int idRoomUltimo;
+        Cls_Controlador_Produccion pControlador = new Cls_Controlador_Produccion();
+        private int iIdRoomUltimo;
 
         public Frm_Produccion_Hoteleria()
         {
@@ -28,20 +27,20 @@ namespace CapaVistaProduccion
             CargarTabla();
             CargarMenus();
 
-            int idRoomUltimo = 0;
+            int iIdRoomUltimo = 0;
 
             try
             {
-                idRoomUltimo = controlador.ObtenerUltimoIdRoomService();
+                iIdRoomUltimo = pControlador.ObtenerUltimoIdRoomService();
             }
             catch
             {
-                idRoomUltimo = 0;
+                iIdRoomUltimo = 0;
             }
 
-            if (idRoomUltimo > 0)
+            if (iIdRoomUltimo > 0)
             {
-                CargarDetalles(idRoomUltimo);
+                CargarDetalles(iIdRoomUltimo);
             }
         }
 
@@ -53,12 +52,10 @@ namespace CapaVistaProduccion
             Cbo_Estado.SelectedIndex = -1;
         }
 
-        //AQUI ABAJO
-
         // ✅ Cargar datos en DataGridView
         private void CargarTabla()
         {
-            Dgv_Room_Service.DataSource = controlador.MostrarRoomServices();
+            Dgv_Room_Service.DataSource = pControlador.MostrarRoomServices();
             Dgv_Room_Service.Columns["Pk_Id_Room"].HeaderText = "ID Room";
             Dgv_Room_Service.Columns["FK_Id_Huesped"].HeaderText = "ID Huesped";
             Dgv_Room_Service.Columns["Fk_Id_Habitacion"].HeaderText = "ID Habitación";
@@ -68,18 +65,18 @@ namespace CapaVistaProduccion
 
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(Txt_Id_Huesped.Text, out int idHuesped) ||
-                !int.TryParse(Txt_Id_Habitacion.Text, out int idHabitacion) ||
+            if (!int.TryParse(Txt_Id_Huesped.Text, out int iIdHuesped) ||
+                !int.TryParse(Txt_Id_Habitacion.Text, out int iIdHabitacion) ||
                 Cbo_Estado.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor complete todos los campos correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            DateTime fecha = Dtp_Fecha.Value;
-            string estado = Cbo_Estado.SelectedItem.ToString();
+            DateTime dFecha = Dtp_Fecha.Value;
+            string sEstado = Cbo_Estado.SelectedItem.ToString();
 
-            controlador.GuardarRoomService(idHuesped, idHabitacion, fecha, estado);
+            pControlador.GuardarRoomService(iIdHuesped, iIdHabitacion, dFecha, sEstado);
 
             MessageBox.Show("Room Service guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarCampos();
@@ -95,27 +92,24 @@ namespace CapaVistaProduccion
                 return;
             }
 
-            if (!int.TryParse(Txt_Id_Huesped.Text, out int idHuesped) ||
-                !int.TryParse(Txt_Id_Habitacion.Text, out int idHabitacion) ||
+            if (!int.TryParse(Txt_Id_Huesped.Text, out int iIdHuesped) ||
+                !int.TryParse(Txt_Id_Habitacion.Text, out int iIdHabitacion) ||
                 Cbo_Estado.SelectedIndex == -1)
             {
                 MessageBox.Show("Por favor complete todos los campos correctamente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int idRoom = Convert.ToInt32(Txt_ID_Pedido.Text);
-            DateTime fecha = Dtp_Fecha.Value;
-            string estado = Cbo_Estado.SelectedItem.ToString();
+            int iIdRoom = Convert.ToInt32(Txt_ID_Pedido.Text);
+            DateTime dFecha = Dtp_Fecha.Value;
+            string sEstado = Cbo_Estado.SelectedItem.ToString();
 
-            controlador.ActualizarRoomService(idRoom, idHuesped, idHabitacion, fecha, estado);
+            pControlador.ActualizarRoomService(iIdRoom, iIdHuesped, iIdHabitacion, dFecha, sEstado);
 
             MessageBox.Show("Room Service actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarCampos();
             CargarTabla();
         }
-
-
-        //HASTA AQUII
 
         // ✅ Eliminar registro
         private void Btn_eliminar_Click(object sender, EventArgs e)
@@ -126,12 +120,12 @@ namespace CapaVistaProduccion
                 return;
             }
 
-            int idRoom = Convert.ToInt32(Txt_ID_Pedido.Text);
+            int iIdRoom = Convert.ToInt32(Txt_ID_Pedido.Text);
 
-            var confirm = MessageBox.Show("¿Seguro que desea eliminar este Room Service?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm == DialogResult.Yes)
+            var dConfirm = MessageBox.Show("¿Seguro que desea eliminar este Room Service?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dConfirm == DialogResult.Yes)
             {
-                controlador.EliminarRoomService(idRoom);
+                pControlador.EliminarRoomService(iIdRoom);
                 MessageBox.Show("Room Service eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
                 CargarTabla();
@@ -151,9 +145,9 @@ namespace CapaVistaProduccion
                 Cbo_Estado.SelectedItem = Dgv_Room_Service.Rows[e.RowIndex].Cells["Cmp_Estado"].Value.ToString();
 
                 // ✅ Cargar automáticamente los detalles del Room seleccionado
-                if (int.TryParse(Txt_ID_Pedido.Text, out int idRoom))
+                if (int.TryParse(Txt_ID_Pedido.Text, out int iIdRoom))
                 {
-                    CargarDetalles(idRoom);
+                    CargarDetalles(iIdRoom);
                 }
             }
         }
@@ -175,38 +169,35 @@ namespace CapaVistaProduccion
 
         private void CargarMenus()
         {
-            DataTable dtMenus = controlador.MostrarDetallesPorRoom(0); // o método que obtenga menús
-            // O mejor: puedes usar el modelo de menús que ya tienes
-            var model = new Cls_Controlador_Produccion();
-            DataTable platos = controlador.ObtenerPlatos();
+            DataTable dPlatos = pControlador.ObtenerPlatos();
 
-            Cbo_Menu.DataSource = platos;
-            Cbo_Menu.DisplayMember = "Cmp_Nombre_Platillo"; // el campo exacto de la tabla Tbl_Menu
-            Cbo_Menu.ValueMember = "Pk_Id_Menu";       // el ID del menú
+            Cbo_Menu.DataSource = dPlatos;
+            Cbo_Menu.DisplayMember = "Cmp_Nombre_Platillo";
+            Cbo_Menu.ValueMember = "Pk_Id_Menu";
             Cbo_Menu.SelectedIndex = -1;
         }
 
         // ✅ Cargar detalles en DataGridView
-        private void CargarDetalles(int idRoom)
+        private void CargarDetalles(int iIdRoom)
         {
             // Traemos solo los detalles del Room Service específico
-            DataTable dt = controlador.MostrarDetallesPorRoom(idRoom);
+            DataTable dTabla = pControlador.MostrarDetallesPorRoom(iIdRoom);
 
             // Agregar columna extra para el total general del cliente
-            if (!dt.Columns.Contains("Total_Cliente"))
-                dt.Columns.Add("Total_Cliente", typeof(decimal));
+            if (!dTabla.Columns.Contains("Total_Cliente"))
+                dTabla.Columns.Add("Total_Cliente", typeof(decimal));
 
             // Calcular total del cliente
-            decimal totalCliente = dt.AsEnumerable().Sum(row => row.Field<decimal>("Cmp_Subtotal"));
+            decimal deTotalCliente = dTabla.AsEnumerable().Sum(row => row.Field<decimal>("Cmp_Subtotal"));
 
             // Llenar la columna "Total_Cliente" con el mismo total para cada fila
-            foreach (DataRow row in dt.Rows)
+            foreach (DataRow dRow in dTabla.Rows)
             {
-                row["Total_Cliente"] = totalCliente;
+                dRow["Total_Cliente"] = deTotalCliente;
             }
 
             // Asignar al DataGridView
-            Dgv_Platos.DataSource = dt;
+            Dgv_Platos.DataSource = dTabla;
 
             // Configurar columnas visibles y encabezados
             if (Dgv_Platos.Columns.Contains("Pk_Id_Detalle"))
@@ -228,18 +219,16 @@ namespace CapaVistaProduccion
                 Dgv_Platos.Columns["Total_Cliente"].HeaderText = "Total Cliente";
         }
 
-
-
         // ✅ Cuando se seleccione un menú, llenar precio unitario automáticamente
         private void Cbo_Menu_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Cbo_Menu.SelectedIndex == -1) return;
             if (Cbo_Menu.SelectedValue == null) return;
 
-            if (int.TryParse(Cbo_Menu.SelectedValue.ToString(), out int idMenu))
+            if (int.TryParse(Cbo_Menu.SelectedValue.ToString(), out int iIdMenu))
             {
-                decimal precio = controlador.ObtenerPrecio(idMenu);
-                Txt_PrecioUni.Text = precio.ToString("0.00");
+                decimal dePrecio = pControlador.ObtenerPrecio(iIdMenu);
+                Txt_PrecioUni.Text = dePrecio.ToString("0.00");
                 CalcularSubtotal();
             }
         }
@@ -252,11 +241,11 @@ namespace CapaVistaProduccion
 
         private void CalcularSubtotal()
         {
-            if (int.TryParse(Txt_Cantidad.Text, out int cantidad) &&
-                decimal.TryParse(Txt_PrecioUni.Text, out decimal precio))
+            if (int.TryParse(Txt_Cantidad.Text, out int iCantidad) &&
+                decimal.TryParse(Txt_PrecioUni.Text, out decimal dePrecio))
             {
-                decimal subtotal = cantidad * precio;
-                Txt_Subtotal.Text = subtotal.ToString("0.00");
+                decimal deSubtotal = iCantidad * dePrecio;
+                Txt_Subtotal.Text = deSubtotal.ToString("0.00");
             }
             else
             {
@@ -267,7 +256,7 @@ namespace CapaVistaProduccion
         // ✅ GUARDAR
         private void Btn_Guardar_Plato_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(Txt_ID_Pedido.Text, out int idRoom))
+            if (!int.TryParse(Txt_ID_Pedido.Text, out int iIdRoom))
             {
                 MessageBox.Show("Debe ingresar el ID del Room Service.");
                 return;
@@ -279,24 +268,24 @@ namespace CapaVistaProduccion
                 return;
             }
 
-            if (!int.TryParse(Txt_Cantidad.Text, out int cantidad) || cantidad <= 0)
+            if (!int.TryParse(Txt_Cantidad.Text, out int iCantidad) || iCantidad <= 0)
             {
                 MessageBox.Show("Ingrese una cantidad válida.");
                 return;
             }
 
-            int idMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
-            controlador.GuardarDetalle(idRoom, idMenu, cantidad);
+            int iIdMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
+            pControlador.GuardarDetalle(iIdRoom, iIdMenu, iCantidad);
 
             MessageBox.Show("Detalle guardado correctamente.");
-            CargarDetalles(idRoomUltimo);
+            CargarDetalles(iIdRoomUltimo);
             LimpiarCampos2();
         }
 
         // ✅ EDITAR
         private void Btn_editar_plato_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(Txt_ID_Pedido.Text, out int idRoom))
+            if (!int.TryParse(Txt_ID_Pedido.Text, out int iIdRoom))
             {
                 MessageBox.Show("Debe ingresar el ID del Room Service.");
                 return;
@@ -308,19 +297,19 @@ namespace CapaVistaProduccion
                 return;
             }
 
-            if (!int.TryParse(Txt_Cantidad.Text, out int cantidad) || cantidad <= 0)
+            if (!int.TryParse(Txt_Cantidad.Text, out int iCantidad) || iCantidad <= 0)
             {
                 MessageBox.Show("Ingrese una cantidad válida.");
                 return;
             }
 
-            int idDetalle = Convert.ToInt32(Txt_ID_Pedido.Text);
-            int idMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
+            int iIdDetalle = Convert.ToInt32(Txt_ID_Pedido.Text);
+            int iIdMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
 
-            controlador.ActualizarDetalle(idDetalle, idRoom, idMenu, cantidad);
+            pControlador.ActualizarDetalle(iIdDetalle, iIdRoom, iIdMenu, iCantidad);
 
             MessageBox.Show("Detalle actualizado correctamente.");
-            CargarDetalles(idRoomUltimo);
+            CargarDetalles(iIdRoomUltimo);
             LimpiarCampos2();
         }
 
@@ -333,11 +322,11 @@ namespace CapaVistaProduccion
                 return;
             }
 
-            int idDetalle = Convert.ToInt32(Txt_ID_Pedido.Text);
-            controlador.BorrarDetalle(idDetalle);
+            int iIdDetalle = Convert.ToInt32(Txt_ID_Pedido.Text);
+            pControlador.BorrarDetalle(iIdDetalle);
 
             MessageBox.Show("Detalle eliminado correctamente.");
-            CargarDetalles(idRoomUltimo);
+            CargarDetalles(iIdRoomUltimo);
             LimpiarCampos2();
         }
 
@@ -347,23 +336,21 @@ namespace CapaVistaProduccion
             // Ignorar clics en encabezado
             if (e.RowIndex < 0) return;
 
-            var row = Dgv_Platos.Rows[e.RowIndex];
+            var dRow = Dgv_Platos.Rows[e.RowIndex];
 
             // Comprobar que la celda no sea nula
-            if (row.Cells["Cmp_Nombre_Platillo"].Value != null)
-                Cbo_Menu.Text = row.Cells["Cmp_Nombre_Platillo"].Value.ToString();
+            if (dRow.Cells["Cmp_Nombre_Platillo"].Value != null)
+                Cbo_Menu.Text = dRow.Cells["Cmp_Nombre_Platillo"].Value.ToString();
 
-            if (row.Cells["Cmp_Cantidad"].Value != null)
-                Txt_Cantidad.Text = row.Cells["Cmp_Cantidad"].Value.ToString();
+            if (dRow.Cells["Cmp_Cantidad"].Value != null)
+                Txt_Cantidad.Text = dRow.Cells["Cmp_Cantidad"].Value.ToString();
 
-            if (row.Cells["Cmp_Precio_Unitario"].Value != null)
-                Txt_PrecioUni.Text = row.Cells["Cmp_Precio_Unitario"].Value.ToString();
+            if (dRow.Cells["Cmp_Precio_Unitario"].Value != null)
+                Txt_PrecioUni.Text = dRow.Cells["Cmp_Precio_Unitario"].Value.ToString();
 
-            if (row.Cells["Cmp_Subtotal"].Value != null)
-                Txt_Subtotal.Text = row.Cells["Cmp_Subtotal"].Value.ToString();
+            if (dRow.Cells["Cmp_Subtotal"].Value != null)
+                Txt_Subtotal.Text = dRow.Cells["Cmp_Subtotal"].Value.ToString();
         }
-
-
 
         // ✅ Limpiar
         private void LimpiarCampos2()
@@ -377,16 +364,16 @@ namespace CapaVistaProduccion
 
         private void Txt_ID_Pedido_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(Txt_ID_Pedido.Text, out int idRoomUltimo))
+            if (int.TryParse(Txt_ID_Pedido.Text, out int iIdRoomUltimo))
             {
-                CargarDetalles(idRoomUltimo);
+                CargarDetalles(iIdRoomUltimo);
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Frm_Produccion_Alacarta nuevoFormulario = new Frm_Produccion_Alacarta();
-            nuevoFormulario.Show();
+            Frm_Produccion_Alacarta frmNuevo = new Frm_Produccion_Alacarta();
+            frmNuevo.Show();
         }
 
         private void Btn_Reporte_Click(object sender, EventArgs e)
