@@ -53,6 +53,8 @@ namespace CapaVistaProduccion
             Cbo_Estado.SelectedIndex = -1;
         }
 
+        //AQUI ABAJO
+
         // ✅ Cargar datos en DataGridView
         private void CargarTabla()
         {
@@ -64,7 +66,6 @@ namespace CapaVistaProduccion
             Dgv_Room_Service.Columns["Cmp_Estado"].HeaderText = "Estado";
         }
 
-        // ✅ Guardar nuevo registro
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(Txt_Id_Huesped.Text, out int idHuesped) ||
@@ -112,6 +113,9 @@ namespace CapaVistaProduccion
             LimpiarCampos();
             CargarTabla();
         }
+
+
+        //HASTA AQUII
 
         // ✅ Eliminar registro
         private void Btn_eliminar_Click(object sender, EventArgs e)
@@ -383,6 +387,12 @@ namespace CapaVistaProduccion
         {
             Frm_Produccion_Alacarta nuevoFormulario = new Frm_Produccion_Alacarta();
             nuevoFormulario.Show();
+        }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte frm = new Frm_Reporte();
+            frm.Show();
         }
     }
 }

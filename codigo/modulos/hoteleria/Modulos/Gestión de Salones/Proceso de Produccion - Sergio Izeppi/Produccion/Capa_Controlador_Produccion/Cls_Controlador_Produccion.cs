@@ -8,6 +8,8 @@ namespace CapaControladorProduccion
     {
         Cls_Sentencias_Produccion sentencias = new Cls_Sentencias_Produccion();
 
+        //CAMBIAR SI NO JALA
+        // GUARDAR (Insertar registro nuevo)
         public void GuardarRoomService(int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
         {
             sentencias.InsertarRoomService(idHuesped, idHabitacion, fechaOrden, estado);
@@ -18,6 +20,8 @@ namespace CapaControladorProduccion
         {
             sentencias.EditarRoomService(idRoom, idHuesped, idHabitacion, fechaOrden, estado);
         }
+
+        //ESTOS 2
 
         // ELIMINAR
         public void EliminarRoomService(int idRoom)
@@ -101,6 +105,11 @@ namespace CapaControladorProduccion
         public DataTable MostrarReservas()
         {
             return sentencias.CargarReservasAlacarta();
+        }
+
+        public DataTable ObtenerSalones()
+        {
+            return sentencias.CargarSalones();
         }
 
 

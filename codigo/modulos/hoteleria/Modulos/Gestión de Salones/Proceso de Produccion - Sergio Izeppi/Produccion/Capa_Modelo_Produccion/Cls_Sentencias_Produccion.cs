@@ -10,6 +10,7 @@ namespace CapaModeloProduccion
 {
     public class Cls_Sentencias_Produccion
     {
+        // Insertar un Room Service usando el Cmp_Numero_Documento del huésped
         public void InsertarRoomService(int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
         {
             Cls_Conexion_Produccion cn = new Cls_Conexion_Produccion();
@@ -89,6 +90,8 @@ namespace CapaModeloProduccion
             return tabla;
         }
 
+
+        //DE AQUI PA ARRIBA
         // ✅ Insertar detalle
         public void InsertarDetalle(int idRoom, int idMenu, int cantidad)
         {
@@ -350,7 +353,39 @@ namespace CapaModeloProduccion
             }
         }
 
-        // CARGAR todas las reservas
+        // CARGAR todas las reservas — mostrando texto en lugar de 0/1
+        /*public DataTable CargarReservasAlacarta()
+        {
+            Cls_Conexion_Produccion cn = new Cls_Conexion_Produccion();
+            DataTable tabla = new DataTable();
+
+            using (OdbcConnection con = cn.conexion())
+            {
+                string sql = @"
+                SELECT 
+                    PK_Id_Reserva,
+                    Fk_Id_Huessed,
+                    Fk_Id_Habitacion,
+                    Fk_Id_Salon,
+                    Cmp_Fecha_Reserva,
+                    Cmp_Hora_reserva,
+                    Cmp_Numero_Comensales,
+                    CASE 
+                        WHEN Cmp_Estado = 1 THEN 'Activa'
+                        WHEN Cmp_Estado = 0 THEN 'Cancelada'
+                        ELSE 'Desconocido'
+                    END AS Cmp_Estado
+                FROM Tbl_Reservas_Alacarta";
+
+                using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
+                {
+                    da.Fill(tabla);
+                }
+            }
+
+            return tabla;
+        }*/
+
         public DataTable CargarReservasAlacarta()
         {
             Cls_Conexion_Produccion cn = new Cls_Conexion_Produccion();
@@ -358,7 +393,22 @@ namespace CapaModeloProduccion
 
             using (OdbcConnection con = cn.conexion())
             {
-                string sql = "SELECT PK_Id_Reserva, Fk_Id_Huessed, Fk_Id_Habitacion, Fk_Id_Salon, Cmp_Fecha_Reserva, Cmp_Hora_reserva, Cmp_Numero_Comensales, Cmp_Estado FROM Tbl_Reservas_Alacarta";
+                string sql = @"
+            SELECT 
+                r.PK_Id_Reserva,
+                r.Fk_Id_Huessed,
+                r.Fk_Id_Habitacion,
+                s.Cmp_Nombre_Salon AS SalonNombre,
+                r.Cmp_Fecha_Reserva,
+                r.Cmp_Hora_reserva,
+                r.Cmp_Numero_Comensales,
+                CASE 
+                    WHEN r.Cmp_Estado = 1 THEN 'Activa'
+                    WHEN r.Cmp_Estado = 0 THEN 'Cancelada'
+                    ELSE 'Desconocido'
+                END AS Cmp_Estado
+            FROM Tbl_Reservas_Alacarta r
+            LEFT JOIN Tbl_Salones s ON r.Fk_Id_Salon = s.Pk_Id_Salon";
 
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
                 {
@@ -368,10 +418,29 @@ namespace CapaModeloProduccion
 
             return tabla;
         }
-    }
+
+
+        public DataTable CargarSalones()
+        {
+            DataTable tabla = new DataTable();
+            string sql = "SELECT Pk_Id_Salon, Cmp_Nombre_Salon FROM Tbl_Salones";
+
+            Cls_Conexion_Produccion cn = new Cls_Conexion_Produccion();
+            using (OdbcConnection con = cn.conexion())
+            {
+                using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
+                {
+                    da.Fill(tabla);
+                }
+            }
+            return tabla;
+        }
 
 
     }
+
+
+}
 
 
 
