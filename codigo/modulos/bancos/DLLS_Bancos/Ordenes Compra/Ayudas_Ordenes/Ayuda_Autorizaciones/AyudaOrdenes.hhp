@@ -1,0 +1,17 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=AyudaOrdenes.chm
+Contents file=AyudaAutorizaciones.hhc
+Default Window=AyudaAutorizaciones
+Display compile progress=No
+Language=0x80a Español (México)
+
+[WINDOWS]
+AyudaAutorizaciones="Ayudas para Autorizaciones","AyudaAutorizaciones.hhc",,"ayuda_auto.html","ayuda_auto.html",,,,,0x23520,,0x387e,,,,,,,,0
+
+
+[FILES]
+ayuda_auto.html
+
+[INFOTYPES]
+

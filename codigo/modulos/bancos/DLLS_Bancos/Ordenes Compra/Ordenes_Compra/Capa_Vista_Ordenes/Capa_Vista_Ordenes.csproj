@@ -73,11 +73,15 @@
       <DependentUpon>Frm_Reporte_Autorizaciones.cs</DependentUpon>
     </Compile>
 
-    <Compile Include="Frm_Reporte_Autorizaciones.cs">
+    <Compile Include="Frm_Reporte.cs">
+
+
+    
+
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Reporte_Autorizaciones.Designer.cs">
-      <DependentUpon>Frm_Reporte_Autorizaciones.cs</DependentUpon>
+    <Compile Include="Frm_Reporte.Designer.cs">
+      <DependentUpon>Frm_Reporte.cs</DependentUpon>
     </Compile>
 
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +91,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
 
+
     <Compile Include="Reporte_Autorizaciones.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -94,25 +99,30 @@
       <SubType>Component</SubType>
     </Compile>
 
+
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Frm_Ordenes_Compra.resx">
       <DependentUpon>Frm_Ordenes_Compra.cs</DependentUpon>
     </EmbeddedResource>
 
+
     <EmbeddedResource Include="Frm_Reporte_Autorizaciones.resx">
       <DependentUpon>Frm_Reporte_Autorizaciones.cs</DependentUpon>
     </EmbeddedResource>
+
 
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
 
+
     <EmbeddedResource Include="Reporte_Autorizaciones.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Reporte_Autorizaciones.cs</LastGenOutput>
     </EmbeddedResource>
+
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

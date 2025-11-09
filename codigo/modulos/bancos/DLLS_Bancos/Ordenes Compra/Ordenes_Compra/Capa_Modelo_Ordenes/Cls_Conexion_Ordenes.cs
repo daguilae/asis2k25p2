@@ -16,7 +16,7 @@ namespace Capa_Modelo_Ordenes
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=Bancos2");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bd_Hoteleria");
             try
             {
                 conn.Open();

@@ -148,6 +148,43 @@ namespace Capa_Modelo_Ordenes
                 return dt;
             }
         }
+
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+
+        // Obtener el monto solicitado de una orden
+        public decimal ObtenerMontoOrden(int idOrden)
+        {
+            const string sql = "SELECT Cmp_Monto_Solicitado FROM Tbl_Orden_Compra WHERE Pk_Id_Orden_Compra = ?;";
+            using (var conn = _cnx.conexion())
+            using (var cmd = new OdbcCommand(sql, conn))
+            {
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
+                var r = cmd.ExecuteScalar();
+                return r == null || r == DBNull.Value ? 0m : Convert.ToDecimal(r);
+            }
+        }
+
+        // Suma de saldo disponible por banco (todas sus cuentas activas)
+        public decimal ObtenerSaldoDisponibleBanco(int idBanco)
+        {
+            const string sql = @"
+        SELECT COALESCE(SUM(Cmp_SaldoDisponible), 0)
+        FROM Tbl_CuentasBancarias
+        WHERE Fk_Id_Banco = ? AND Cmp_Estado = 1;";
+            using (var conn = _cnx.conexion())
+            using (var cmd = new OdbcCommand(sql, conn))
+            {
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idBanco;
+                var r = cmd.ExecuteScalar();
+                return r == null || r == DBNull.Value ? 0m : Convert.ToDecimal(r);
+            }
+        }
+
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+
     }
 }
 
