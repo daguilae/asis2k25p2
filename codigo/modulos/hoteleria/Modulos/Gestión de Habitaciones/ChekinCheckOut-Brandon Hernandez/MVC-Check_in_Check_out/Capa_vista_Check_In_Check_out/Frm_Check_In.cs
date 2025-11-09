@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
 using Capa_Controlador_Seguridad;
@@ -17,6 +11,7 @@ namespace Capa_vista_Check_In_Check_out
         private readonly Cls_Check_In_Controlador Controlador = new Cls_Check_In_Controlador();
         Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
         private int idHabitacionSeleccionada = 0;
+        private bool _canIngresar, _canConsultar, _canModificar, _canEliminar, _canImprimir;
 
         public Frm_Check_In()
         {
@@ -24,14 +19,81 @@ namespace Capa_vista_Check_In_Check_out
             fun_CargarCombos();
             fun_CargarEstados();
             fun_CargarTabla();
+           
+            fun_AplicarPermisos();
             fun_configuracion_inicial();
         }
+        private void fun_AplicarPermisos()
+        {
+            int idUsuario = Cls_Usuario_Conectado.iIdUsuario;
+            var usuarioCtrl = new Cls_Usuario_Controlador();
+            var permisoUsuario = new Cls_Permiso_Usuario_Controlador();
 
+            // Módulo y aplicación específicos
+            int idAplicacion = permisoUsuario.ObtenerIdAplicacionPorNombre("Check In");
+            if (idAplicacion <= 0) idAplicacion = 3402; // ID por defecto para Check In
+            int idModulo = permisoUsuario.ObtenerIdModuloPorNombre("Hoteleria");
+            int idPerfil = usuarioCtrl.ObtenerIdPerfilDeUsuario(idUsuario);
+
+            var permisos = Cls_Aplicacion_Permisos.ObtenerPermisosCombinados(
+                idUsuario, idAplicacion, idModulo, idPerfil);
+
+
+            // ✅ Validar si todos los permisos son falsos
+            if (!permisos.ingresar && !permisos.consultar &&
+                !permisos.modificar && !permisos.eliminar &&
+                !permisos.imprimir)
+            {
+                MessageBox.Show("El usuario no tiene permisos asignados para esta aplicación.",
+                                "Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            _canIngresar = permisos.ingresar;
+            _canConsultar = permisos.consultar;
+            _canModificar = permisos.modificar;
+            _canEliminar = permisos.eliminar;
+            _canImprimir = permisos.imprimir;
+
+
+            // Asignar permisos
+            _canIngresar = permisos.ingresar;
+            _canConsultar = permisos.consultar;
+            _canModificar = permisos.modificar;
+            _canEliminar = permisos.eliminar;
+            _canImprimir = permisos.imprimir;
+
+            // Asignar permisos a controles
+            if (Btn_Nuevo != null) Btn_Nuevo.Enabled = _canIngresar;
+            if (Btn_Guardar != null) Btn_Guardar.Enabled = _canIngresar;
+            if (Btn_Modificar != null) Btn_Modificar.Enabled = _canModificar;
+            if (Btn_Reporte != null) Btn_Reporte.Enabled = _canImprimir;
+
+            // DataGridView y combos visibles si puede consultar
+            Dgv_Check_In.Enabled = _canConsultar;
+            Cbo_Huesped.Enabled = _canConsultar || _canIngresar || _canModificar;
+            Cbo_Reservas.Enabled = _canConsultar || _canIngresar || _canModificar;
+
+            // Campos de texto / fecha
+            bool puedeEditar = (_canIngresar || _canModificar);
+            Txt_Id_Check_In.Enabled = false;
+            Dtp_Fecha.Enabled = puedeEditar;
+            Cbo_Estado.Enabled = puedeEditar;
+        }
         public void fun_configuracion_inicial()
         {
-            Btn_guardar.Enabled = false;
+            Btn_Guardar.Enabled = false;
             Btn_Modificar.Enabled = false;
-            Btn_Nuevo.Enabled = true;
+            Btn_Nuevo.Enabled = _canIngresar;
+            Btn_Reporte.Enabled = _canImprimir;
+            Txt_Id_Check_In.Enabled = false;
+            Cbo_Huesped.Enabled = false;
+            Cbo_Estado.Enabled = false;
+            Cbo_Huesped.Enabled = false;
+            Dtp_Fecha.Enabled = false;
+            Dgv_Check_In.Enabled = _canConsultar;
+            Cbo_Reservas.Enabled = false;
+
         }
 
         private void fun_CargarCombos()
@@ -108,9 +170,16 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Dgv_Check_In_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Btn_guardar.Enabled = false;
-            Btn_Modificar.Enabled = true;
-            Btn_Nuevo.Enabled = false;
+           
+            Btn_Guardar.Enabled = false;
+            Btn_Modificar.Enabled = _canModificar;
+            Btn_Nuevo.Enabled = _canIngresar;
+            Cbo_Huesped.Enabled = true;
+            Cbo_Estado.Enabled = true;
+            Cbo_Huesped.Enabled = true;
+            Dtp_Fecha.Enabled = true;
+            Cbo_Reservas.Enabled = true; 
+
 
             if (e.RowIndex >= 0)
             {
@@ -200,6 +269,11 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_modificar_Click(object sender, EventArgs e)
         {
+            Cbo_Huesped.Enabled = true;
+            Cbo_Estado.Enabled = true;
+            Cbo_Huesped.Enabled = true;
+            Dtp_Fecha.Enabled = true;
+            Cbo_Reservas.Enabled = true;
             try
             {
                 if (string.IsNullOrWhiteSpace(Txt_Id_Check_In.Text))
@@ -221,6 +295,7 @@ namespace Capa_vista_Check_In_Check_out
                     fun_CargarTabla();
                     fun_LimpiarCampos();
                     ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3402, $"Check In Modificado ", true);
+                    fun_configuracion_inicial();
                 }
                 else
                 {
@@ -235,12 +310,24 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_nuevo_Click(object sender, EventArgs e)
         {
+            if (!_canIngresar)
+            {
+                MessageBox.Show("No tiene permiso para crear nuevos Check-In.");
+                return;
+            }
+            Cbo_Huesped.Enabled = true;
+            Cbo_Estado.Enabled = true;
+            Cbo_Huesped.Enabled = true ;
+            Dtp_Fecha.Enabled = true;
             fun_LimpiarCampos();
-            Btn_guardar.Enabled = true;
+            Btn_Guardar.Enabled = _canIngresar;
             Btn_Modificar.Enabled = false;
+            Cbo_Reservas.Enabled = true;
         }
 
-        private void Btn_cancelar_Click(object sender, EventArgs e)
+    
+
+    private void Btn_cancelar_Click(object sender, EventArgs e)
         {
             fun_LimpiarCampos();
             fun_configuracion_inicial();
@@ -281,6 +368,12 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_Reporte_Click(object sender, EventArgs e)
         {
+            if (!_canImprimir)
+            {
+                MessageBox.Show("No tiene permiso para generar reportes.");
+                return;
+            }
+
             Frm_Reporte_Check_In Reporte = new Frm_Reporte_Check_In();
             Reporte.Show();
         }
