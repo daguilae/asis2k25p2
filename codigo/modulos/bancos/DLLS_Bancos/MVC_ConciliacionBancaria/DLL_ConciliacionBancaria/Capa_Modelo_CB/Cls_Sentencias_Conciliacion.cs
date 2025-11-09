@@ -7,86 +7,90 @@ using System.Data;
 using System.Data.Odbc;
 
 
-    namespace Capa_Modelo_CB
+namespace Capa_Modelo_CB
+{
+    // ==========================================================
+    // Capa Modelo: Cls_Sentencias_Conciliacion
+    // Paula Daniela Leonardo Paredes
+    // ==========================================================
+    public class Cls_Sentencias_Conciliacion
     {
-        // ==========================================================
-        // Capa Modelo: Cls_Sentencias_Conciliacion
-        // Paula Daniela Leonardo Paredes
-        // ==========================================================
-        public class Cls_Sentencias_Conciliacion
+        // ==========================
+        // Crear (ahora con iIdBanco)
+        // ==========================
+        public int InsertarConciliacion(
+            int iAnio, int iMes, DateTime dFechaConciliacion,
+            int iIdBanco, int iIdCuentaBancaria,
+            decimal deSaldoBanco, decimal deSaldoSistema,
+            string sObservaciones, bool bActiva)
         {
-            // ==========================
-            // Crear
-            // ==========================
-            public int InsertarConciliacion(
-                int iAnio, int iMes, DateTime dFechaConciliacion,
-                int iIdCuentaBancaria,
-                decimal deSaldoBanco, decimal deSaldoSistema,
-                string sObservaciones, bool bActiva)
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
             {
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
-                {
-                    string sSql = @"
+                string sSql = @"
                     INSERT INTO Tbl_ConciliacionBancaria
-                        (Cmp_AnioConciliacion, Cmp_MesConciliacion, Cmp_FechaConciliacion,
-                         Fk_Id_CuentaBancaria, Cmp_SaldoBanco, Cmp_SaldoSistema,
+                        (Fk_Id_Banco,
+                         Fk_Id_CuentaBancaria,
+                         Cmp_AnioConciliacion, Cmp_MesConciliacion, Cmp_FechaConciliacion,
+                         Cmp_SaldoBanco, Cmp_SaldoSistema,
                          Cmp_Observaciones, Cmp_EstadoConciliacion)
-                    VALUES (?,?,?,?,?,?,?,?)";
+                    VALUES (?,?,?,?,?,?,?,?,?)";
 
-                    using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
-                    {
-                        oCmd.Parameters.AddWithValue("", iAnio);
-                        oCmd.Parameters.AddWithValue("", iMes);
-                        oCmd.Parameters.AddWithValue("", dFechaConciliacion);
-                        oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
-                        oCmd.Parameters.AddWithValue("", deSaldoBanco);
-                        oCmd.Parameters.AddWithValue("", deSaldoSistema);
-                        oCmd.Parameters.AddWithValue("", (object)sObservaciones ?? DBNull.Value);
-                        oCmd.Parameters.AddWithValue("", bActiva ? 1 : 0);
-                        oCmd.ExecuteNonQuery();
-                    }
+                using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
+                {
+                    oCmd.Parameters.AddWithValue("", iIdBanco);
+                    oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
+                    oCmd.Parameters.AddWithValue("", iAnio);
+                    oCmd.Parameters.AddWithValue("", iMes);
+                    oCmd.Parameters.AddWithValue("", dFechaConciliacion);
+                    oCmd.Parameters.AddWithValue("", deSaldoBanco);
+                    oCmd.Parameters.AddWithValue("", deSaldoSistema);
+                    oCmd.Parameters.AddWithValue("", (object)sObservaciones ?? DBNull.Value);
+                    oCmd.Parameters.AddWithValue("", bActiva ? 1 : 0);
+                    oCmd.ExecuteNonQuery();
+                }
 
-                    using (OdbcCommand oCmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", oCon))
-                    {
-                        object oResult = oCmdId.ExecuteScalar();
-                        return (oResult != null && oResult != DBNull.Value) ? Convert.ToInt32(oResult) : 0;
-                    }
+                using (OdbcCommand oCmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", oCon))
+                {
+                    object oResult = oCmdId.ExecuteScalar();
+                    return (oResult != null && oResult != DBNull.Value) ? Convert.ToInt32(oResult) : 0;
                 }
             }
+        }
 
-            // ==========================
-            // Eliminar
-            // ==========================
-            public void EliminarConciliacion(int iIdConciliacion)
+        // ==========================
+        // Eliminar
+        // ==========================
+        public void EliminarConciliacion(int iIdConciliacion)
+        {
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
             {
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
+                string sSql = "DELETE FROM Tbl_ConciliacionBancaria WHERE Pk_Id_Conciliacion = ?";
+                using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
                 {
-                    string sSql = "DELETE FROM Tbl_ConciliacionBancaria WHERE Pk_Id_Conciliacion = ?";
-                    using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
-                    {
-                        oCmd.Parameters.AddWithValue("", iIdConciliacion);
-                        oCmd.ExecuteNonQuery();
-                    }
+                    oCmd.Parameters.AddWithValue("", iIdConciliacion);
+                    oCmd.ExecuteNonQuery();
                 }
             }
+        }
 
-            // ==========================
-            // Consultas
-            // ==========================
-            public DataTable ObtenerConciliaciones()
+        // ==========================
+        // Consultas
+        // ==========================
+        public DataTable ObtenerConciliaciones()
+        {
+            DataTable dtConciliaciones = new DataTable();
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
             {
-                DataTable dtConciliaciones = new DataTable();
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
-                {
-                    string sSql = @"
+                string sSql = @"
                     SELECT Pk_Id_Conciliacion,
+                           Fk_Id_Banco,
+                           Fk_Id_CuentaBancaria,
                            Cmp_AnioConciliacion,
                            Cmp_MesConciliacion,
                            Cmp_FechaConciliacion,
-                           Fk_Id_CuentaBancaria,
                            Cmp_SaldoBanco,
                            Cmp_SaldoSistema,
                            Cmp_Diferencia,
@@ -94,26 +98,27 @@ using System.Data.Odbc;
                            Cmp_EstadoConciliacion
                       FROM Tbl_ConciliacionBancaria
                   ORDER BY Cmp_AnioConciliacion DESC, Cmp_MesConciliacion DESC, Pk_Id_Conciliacion DESC";
-                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
-                    {
-                        oDa.Fill(dtConciliaciones);
-                    }
-                }
-                return dtConciliaciones;
-            }
-
-            public DataTable ObtenerConciliacionPorId(int iIdConciliacion)
-            {
-                DataTable dtConciliacion = new DataTable();
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
+                using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
                 {
-                    string sSql = @"
+                    oDa.Fill(dtConciliaciones);
+                }
+            }
+            return dtConciliaciones;
+        }
+
+        public DataTable ObtenerConciliacionPorId(int iIdConciliacion)
+        {
+            DataTable dtConciliacion = new DataTable();
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
                     SELECT Pk_Id_Conciliacion,
+                           Fk_Id_Banco,
+                           Fk_Id_CuentaBancaria,
                            Cmp_AnioConciliacion,
                            Cmp_MesConciliacion,
                            Cmp_FechaConciliacion,
-                           Fk_Id_CuentaBancaria,
                            Cmp_SaldoBanco,
                            Cmp_SaldoSistema,
                            Cmp_Diferencia,
@@ -121,81 +126,148 @@ using System.Data.Odbc;
                            Cmp_EstadoConciliacion
                       FROM Tbl_ConciliacionBancaria
                      WHERE Pk_Id_Conciliacion = ?";
-                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
-                    {
-                        oDa.SelectCommand.Parameters.AddWithValue("", iIdConciliacion);
-                        oDa.Fill(dtConciliacion);
-                    }
-                }
-                return dtConciliacion;
-            }
-
-            public bool ExisteConciliacionPeriodoCuenta(int iAnio, int iMes, int iIdCuentaBancaria)
-            {
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
+                using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
                 {
-                    string sSql = @"
+                    oDa.SelectCommand.Parameters.AddWithValue("", iIdConciliacion);
+                    oDa.Fill(dtConciliacion);
+                }
+            }
+            return dtConciliacion;
+        }
+
+        public bool ExisteConciliacionPeriodoCuenta(int iAnio, int iMes, int iIdCuentaBancaria)
+        {
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
                     SELECT 1
                       FROM Tbl_ConciliacionBancaria
                      WHERE Cmp_AnioConciliacion = ?
                        AND Cmp_MesConciliacion  = ?
                        AND Fk_Id_CuentaBancaria = ?
                      LIMIT 1";
-                    using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
-                    {
-                        oCmd.Parameters.AddWithValue("", iAnio);
-                        oCmd.Parameters.AddWithValue("", iMes);
-                        oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
-                        object oResult = oCmd.ExecuteScalar();
-                        return oResult != null;
-                    }
-                }
-            }
-
-            // ==========================
-            // Catálogos (para combos)
-            // *Ajusta nombres de columnas si tus tablas difieren*
-            // ==========================
-            public DataTable ObtenerBancos()
-            {
-                DataTable dtBancos = new DataTable();
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
+                using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
                 {
-                    string sSql = @"SELECT Pk_Id_Banco, Cmp_Nombre_Banco
-                                  FROM Tbl_Bancos
-                                 WHERE Cmp_Estado_Banco = 1
-                              ORDER BY Cmp_Nombre_Banco";
-                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
-                    {
-                        oDa.Fill(dtBancos);
-                    }
+                    oCmd.Parameters.AddWithValue("", iAnio);
+                    oCmd.Parameters.AddWithValue("", iMes);
+                    oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
+                    object oResult = oCmd.ExecuteScalar();
+                    return oResult != null;
                 }
-                return dtBancos;
-            }
-
-            public DataTable ObtenerCuentasPorBanco(int iIdBanco)
-            {
-                DataTable dtCuentas = new DataTable();
-                Cls_Conexion gConexion = new Cls_Conexion();
-                using (OdbcConnection oCon = gConexion.conexion())
-                {
-                    string sSql = @"
-                    SELECT Pk_Id_CuentaBancaria, Cmp_NumeroCuenta
-                      FROM Tbl_CuentasBancarias
-                     WHERE Fk_Id_Banco = ?
-                       AND (Cmp_Estado_Cuenta = 1 OR Cmp_Estado_Cuenta IS NULL)
-                  ORDER BY Cmp_NumeroCuenta";
-                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
-                    {
-                        oDa.SelectCommand.Parameters.AddWithValue("", iIdBanco);
-                        oDa.Fill(dtCuentas);
-                    }
-                }
-                return dtCuentas;
             }
         }
+
+        // ==========================
+        // Catálogos (para combos)
+        // ==========================
+        public DataTable ObtenerBancos()
+        {
+            DataTable dtBancos = new DataTable();
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
+                    SELECT Pk_Id_Banco, Cmp_NombreBanco
+                    FROM Tbl_Bancos
+                    WHERE Cmp_Estado = 1
+                    ORDER BY Cmp_NombreBanco";
+                using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
+                {
+                    oDa.Fill(dtBancos);
+                }
+            }
+            return dtBancos;
+        }
+
+        public DataTable ObtenerCuentasPorBanco(int iIdBanco)
+        {
+            DataTable dtCuentas = new DataTable();
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
+                    SELECT Pk_Id_CuentaBancaria, Cmp_NumeroCuenta
+                    FROM Tbl_CuentasBancarias
+                    WHERE Fk_Id_Banco = ?
+                      AND (Cmp_Estado = 1 OR Cmp_Estado IS NULL)
+                    ORDER BY Cmp_NumeroCuenta";
+                using (OdbcDataAdapter oDa = new OdbcDataAdapter(sSql, oCon))
+                {
+                    oDa.SelectCommand.Parameters.AddWithValue("", iIdBanco);
+                    oDa.Fill(dtCuentas);
+                }
+            }
+            return dtCuentas;
+        }
+
+        // UPDATE
+        public void ActualizarConciliacion(
+            int iIdConciliacion,
+            int iAnio, int iMes, DateTime dFechaConciliacion,
+            int iIdBanco, int iIdCuentaBancaria,
+            decimal deSaldoBanco, decimal deSaldoSistema,
+            string sObservaciones, bool bActiva)
+        {
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
+            UPDATE Tbl_ConciliacionBancaria
+               SET Fk_Id_Banco = ?,
+                   Fk_Id_CuentaBancaria = ?,
+                   Cmp_AnioConciliacion = ?,
+                   Cmp_MesConciliacion  = ?,
+                   Cmp_FechaConciliacion = ?,
+                   Cmp_SaldoBanco = ?,
+                   Cmp_SaldoSistema = ?,
+                   Cmp_Observaciones = ?,
+                   Cmp_EstadoConciliacion = ?
+             WHERE Pk_Id_Conciliacion = ?";
+
+                using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
+                {
+                    oCmd.Parameters.AddWithValue("", iIdBanco);
+                    oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
+                    oCmd.Parameters.AddWithValue("", iAnio);
+                    oCmd.Parameters.AddWithValue("", iMes);
+                    oCmd.Parameters.AddWithValue("", dFechaConciliacion);
+                    oCmd.Parameters.AddWithValue("", deSaldoBanco);
+                    oCmd.Parameters.AddWithValue("", deSaldoSistema);
+                    oCmd.Parameters.AddWithValue("", (object)sObservaciones ?? DBNull.Value);
+                    oCmd.Parameters.AddWithValue("", bActiva ? 1 : 0);
+                    oCmd.Parameters.AddWithValue("", iIdConciliacion);
+                    oCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // Verificación de duplicados EXCEPTO el propio ID (para modo edición)
+        public bool ExisteConciliacionPeriodoCuentaExceptoId(
+            int iAnio, int iMes, int iIdCuentaBancaria, int iIdExcluir)
+        {
+            Cls_Conexion gConexion = new Cls_Conexion();
+            using (OdbcConnection oCon = gConexion.conexion())
+            {
+                string sSql = @"
+            SELECT 1
+              FROM Tbl_ConciliacionBancaria
+             WHERE Cmp_AnioConciliacion = ?
+               AND Cmp_MesConciliacion  = ?
+               AND Fk_Id_CuentaBancaria = ?
+               AND Pk_Id_Conciliacion  <> ?
+             LIMIT 1";
+                using (OdbcCommand oCmd = new OdbcCommand(sSql, oCon))
+                {
+                    oCmd.Parameters.AddWithValue("", iAnio);
+                    oCmd.Parameters.AddWithValue("", iMes);
+                    oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
+                    oCmd.Parameters.AddWithValue("", iIdExcluir);
+                    object oRes = oCmd.ExecuteScalar();
+                    return oRes != null;
+                }
+            }
+        }
+
     }
-
-
+}

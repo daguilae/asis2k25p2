@@ -46,7 +46,7 @@ namespace Capa_Vista_CB
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Lbl_TituloBuscarCB.AutoSize = true;
             this.Lbl_TituloBuscarCB.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_TituloBuscarCB.Location = new System.Drawing.Point(255, 9);
+            this.Lbl_TituloBuscarCB.Location = new System.Drawing.Point(414, 8);
             this.Lbl_TituloBuscarCB.Name = "Lbl_TituloBuscarCB";
             this.Lbl_TituloBuscarCB.Size = new System.Drawing.Size(457, 38);
             this.Lbl_TituloBuscarCB.TabIndex = 1;
@@ -60,7 +60,7 @@ namespace Capa_Vista_CB
             this.Dgv_Conciliaciones.Name = "Dgv_Conciliaciones";
             this.Dgv_Conciliaciones.RowHeadersWidth = 51;
             this.Dgv_Conciliaciones.RowTemplate.Height = 24;
-            this.Dgv_Conciliaciones.Size = new System.Drawing.Size(954, 522);
+            this.Dgv_Conciliaciones.Size = new System.Drawing.Size(1254, 522);
             this.Dgv_Conciliaciones.TabIndex = 44;
             this.Dgv_Conciliaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Conciliaciones_CellContentClick);
             // 
@@ -79,7 +79,7 @@ namespace Capa_Vista_CB
             // 
             this.Btn_SalirBuscarCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_SalirBuscarCB.Image = ((System.Drawing.Image)(resources.GetObject("Btn_SalirBuscarCB.Image")));
-            this.Btn_SalirBuscarCB.Location = new System.Drawing.Point(920, 9);
+            this.Btn_SalirBuscarCB.Location = new System.Drawing.Point(1220, 8);
             this.Btn_SalirBuscarCB.Name = "Btn_SalirBuscarCB";
             this.Btn_SalirBuscarCB.Size = new System.Drawing.Size(50, 50);
             this.Btn_SalirBuscarCB.TabIndex = 46;
@@ -90,7 +90,7 @@ namespace Capa_Vista_CB
             // 
             this.Btn_AyudaBC.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_AyudaBC.Image = ((System.Drawing.Image)(resources.GetObject("Btn_AyudaBC.Image")));
-            this.Btn_AyudaBC.Location = new System.Drawing.Point(864, 9);
+            this.Btn_AyudaBC.Location = new System.Drawing.Point(1164, 8);
             this.Btn_AyudaBC.Name = "Btn_AyudaBC";
             this.Btn_AyudaBC.Size = new System.Drawing.Size(50, 50);
             this.Btn_AyudaBC.TabIndex = 47;
@@ -123,7 +123,7 @@ namespace Capa_Vista_CB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 653);
+            this.ClientSize = new System.Drawing.Size(1282, 653);
             this.Controls.Add(this.Btn_EliminarCB);
             this.Controls.Add(this.Btn_ModificarSeleccion);
             this.Controls.Add(this.Btn_AyudaBC);
@@ -133,6 +133,7 @@ namespace Capa_Vista_CB
             this.Controls.Add(this.Lbl_TituloBuscarCB);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Frm_BuscarConciliacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_BuscarConciliacion";
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Conciliaciones)).EndInit();
             this.ResumeLayout(false);
