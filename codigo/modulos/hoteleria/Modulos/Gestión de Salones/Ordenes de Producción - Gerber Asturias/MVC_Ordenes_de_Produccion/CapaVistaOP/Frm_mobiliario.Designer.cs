@@ -31,179 +31,165 @@ namespace CapaVistaOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_mobiliario));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Lbl_Nombre_Huesped = new System.Windows.Forms.Label();
-            this.txt = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtMobiliario = new System.Windows.Forms.TextBox();
-            this.dgvmobiliario = new System.Windows.Forms.DataGridView();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.Lbl_Modulo_Hoteleria = new System.Windows.Forms.Label();
+            this.Lbl_Mobiliario = new System.Windows.Forms.Label();
+            this.Lbl_Id_Mobiliario = new System.Windows.Forms.Label();
+            this.Txt_Id_Mobiliario = new System.Windows.Forms.TextBox();
+            this.Lbl_Mobiliario1 = new System.Windows.Forms.Label();
+            this.Txt_Mobiliario = new System.Windows.Forms.TextBox();
+            this.Dgv_Mobiliario = new System.Windows.Forms.DataGridView();
+            this.Btn_Editar = new System.Windows.Forms.Button();
+            this.Btn_Eliminar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvmobiliario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mobiliario)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.button1);
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Modulo_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
             this.Pnl_Superior.TabIndex = 100;
             // 
-            // button1
+            // Lbl_Modulo_Hoteleria
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(837, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(34, 37);
-            this.button1.TabIndex = 105;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Lbl_Modulo_Hoteleria.AutoSize = true;
+            this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(27, 9);
+            this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
+            this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
+            this.Lbl_Modulo_Hoteleria.TabIndex = 104;
+            this.Lbl_Modulo_Hoteleria.Text = "Módulo hotelería";
             // 
-            // label1
+            // Lbl_Mobiliario
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.label1.Location = new System.Drawing.Point(27, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 35);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Módulo hotelería";
+            this.Lbl_Mobiliario.AutoSize = true;
+            this.Lbl_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Mobiliario.Location = new System.Drawing.Point(29, 68);
+            this.Lbl_Mobiliario.Name = "Lbl_Mobiliario";
+            this.Lbl_Mobiliario.Size = new System.Drawing.Size(120, 21);
+            this.Lbl_Mobiliario.TabIndex = 107;
+            this.Lbl_Mobiliario.Text = "MOBILIARIO";
+            this.Lbl_Mobiliario.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label2
+            // Lbl_Id_Mobiliario
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(120, 21);
-            this.label2.TabIndex = 107;
-            this.label2.Text = "MOBILIARIO";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.Lbl_Id_Mobiliario.AutoSize = true;
+            this.Lbl_Id_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Id_Mobiliario.Location = new System.Drawing.Point(29, 115);
+            this.Lbl_Id_Mobiliario.Name = "Lbl_Id_Mobiliario";
+            this.Lbl_Id_Mobiliario.Size = new System.Drawing.Size(109, 20);
+            this.Lbl_Id_Mobiliario.TabIndex = 118;
+            this.Lbl_Id_Mobiliario.Text = "Id mobiliario";
             // 
-            // Lbl_Nombre_Huesped
+            // Txt_Id_Mobiliario
             // 
-            this.Lbl_Nombre_Huesped.AutoSize = true;
-            this.Lbl_Nombre_Huesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(29, 115);
-            this.Lbl_Nombre_Huesped.Name = "Lbl_Nombre_Huesped";
-            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(109, 20);
-            this.Lbl_Nombre_Huesped.TabIndex = 118;
-            this.Lbl_Nombre_Huesped.Text = "Id mobiliario";
+            this.Txt_Id_Mobiliario.BackColor = System.Drawing.Color.White;
+            this.Txt_Id_Mobiliario.Location = new System.Drawing.Point(179, 115);
+            this.Txt_Id_Mobiliario.Name = "Txt_Id_Mobiliario";
+            this.Txt_Id_Mobiliario.Size = new System.Drawing.Size(200, 22);
+            this.Txt_Id_Mobiliario.TabIndex = 119;
             // 
-            // txt
+            // Lbl_Mobiliario1
             // 
-            this.txt.BackColor = System.Drawing.Color.White;
-            this.txt.Location = new System.Drawing.Point(179, 115);
-            this.txt.Name = "txt";
-            this.txt.Size = new System.Drawing.Size(200, 22);
-            this.txt.TabIndex = 119;
+            this.Lbl_Mobiliario1.AutoSize = true;
+            this.Lbl_Mobiliario1.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Mobiliario1.Location = new System.Drawing.Point(29, 162);
+            this.Lbl_Mobiliario1.Name = "Lbl_Mobiliario1";
+            this.Lbl_Mobiliario1.Size = new System.Drawing.Size(90, 20);
+            this.Lbl_Mobiliario1.TabIndex = 121;
+            this.Lbl_Mobiliario1.Text = "Mobiliario";
             // 
-            // label3
+            // Txt_Mobiliario
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 162);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 20);
-            this.label3.TabIndex = 121;
-            this.label3.Text = "Mobiliario";
+            this.Txt_Mobiliario.BackColor = System.Drawing.Color.White;
+            this.Txt_Mobiliario.Location = new System.Drawing.Point(179, 162);
+            this.Txt_Mobiliario.Name = "Txt_Mobiliario";
+            this.Txt_Mobiliario.Size = new System.Drawing.Size(200, 22);
+            this.Txt_Mobiliario.TabIndex = 122;
             // 
-            // txtMobiliario
+            // Dgv_Mobiliario
             // 
-            this.txtMobiliario.BackColor = System.Drawing.Color.White;
-            this.txtMobiliario.Location = new System.Drawing.Point(179, 162);
-            this.txtMobiliario.Name = "txtMobiliario";
-            this.txtMobiliario.Size = new System.Drawing.Size(200, 22);
-            this.txtMobiliario.TabIndex = 122;
-            // 
-            // dgvmobiliario
-            // 
-            this.dgvmobiliario.AllowUserToAddRows = false;
-            this.dgvmobiliario.AllowUserToDeleteRows = false;
-            this.dgvmobiliario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_Mobiliario.AllowUserToAddRows = false;
+            this.Dgv_Mobiliario.AllowUserToDeleteRows = false;
+            this.Dgv_Mobiliario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvmobiliario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvmobiliario.Location = new System.Drawing.Point(30, 244);
-            this.dgvmobiliario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvmobiliario.Name = "dgvmobiliario";
-            this.dgvmobiliario.ReadOnly = true;
-            this.dgvmobiliario.RowHeadersWidth = 51;
-            this.dgvmobiliario.RowTemplate.Height = 24;
-            this.dgvmobiliario.Size = new System.Drawing.Size(841, 342);
-            this.dgvmobiliario.TabIndex = 123;
-            this.dgvmobiliario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvmobiliario_CellContentClick);
+            this.Dgv_Mobiliario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Mobiliario.Location = new System.Drawing.Point(30, 244);
+            this.Dgv_Mobiliario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dgv_Mobiliario.Name = "Dgv_Mobiliario";
+            this.Dgv_Mobiliario.ReadOnly = true;
+            this.Dgv_Mobiliario.RowHeadersWidth = 51;
+            this.Dgv_Mobiliario.RowTemplate.Height = 24;
+            this.Dgv_Mobiliario.Size = new System.Drawing.Size(841, 342);
+            this.Dgv_Mobiliario.TabIndex = 123;
+            this.Dgv_Mobiliario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvmobiliario_CellContentClick);
             // 
-            // btnEditar
+            // Btn_Editar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.White;
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(809, 68);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(53, 46);
-            this.btnEditar.TabIndex = 130;
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.Btn_Editar.BackColor = System.Drawing.Color.White;
+            this.Btn_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Editar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Editar.Image")));
+            this.Btn_Editar.Location = new System.Drawing.Point(809, 68);
+            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Editar.Name = "Btn_Editar";
+            this.Btn_Editar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Editar.TabIndex = 130;
+            this.Btn_Editar.UseVisualStyleBackColor = false;
+            this.Btn_Editar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnEliminar
+            // Btn_Eliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(750, 68);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(53, 46);
-            this.btnEliminar.TabIndex = 129;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.Btn_Eliminar.BackColor = System.Drawing.Color.White;
+            this.Btn_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.Image")));
+            this.Btn_Eliminar.Location = new System.Drawing.Point(750, 68);
+            this.Btn_Eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Eliminar.Name = "Btn_Eliminar";
+            this.Btn_Eliminar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Eliminar.TabIndex = 129;
+            this.Btn_Eliminar.UseVisualStyleBackColor = false;
+            this.Btn_Eliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnGuardar
+            // Btn_Guardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(691, 68);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(53, 46);
-            this.btnGuardar.TabIndex = 128;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(691, 68);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Guardar.TabIndex = 128;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // Frm_mobiliario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.dgvmobiliario);
-            this.Controls.Add(this.txtMobiliario);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txt);
-            this.Controls.Add(this.Lbl_Nombre_Huesped);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Btn_Editar);
+            this.Controls.Add(this.Btn_Eliminar);
+            this.Controls.Add(this.Btn_Guardar);
+            this.Controls.Add(this.Dgv_Mobiliario);
+            this.Controls.Add(this.Txt_Mobiliario);
+            this.Controls.Add(this.Lbl_Mobiliario1);
+            this.Controls.Add(this.Txt_Id_Mobiliario);
+            this.Controls.Add(this.Lbl_Id_Mobiliario);
+            this.Controls.Add(this.Lbl_Mobiliario);
             this.Controls.Add(this.Pnl_Superior);
             this.Name = "Frm_mobiliario";
             this.Text = "Frm_mobiliario";
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvmobiliario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mobiliario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,16 +198,15 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Lbl_Nombre_Huesped;
-        private System.Windows.Forms.TextBox txt;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMobiliario;
-        private System.Windows.Forms.DataGridView dgvmobiliario;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label Lbl_Modulo_Hoteleria;
+        private System.Windows.Forms.Label Lbl_Mobiliario;
+        private System.Windows.Forms.Label Lbl_Id_Mobiliario;
+        private System.Windows.Forms.TextBox Txt_Id_Mobiliario;
+        private System.Windows.Forms.Label Lbl_Mobiliario1;
+        private System.Windows.Forms.TextBox Txt_Mobiliario;
+        private System.Windows.Forms.DataGridView Dgv_Mobiliario;
+        private System.Windows.Forms.Button Btn_Editar;
+        private System.Windows.Forms.Button Btn_Eliminar;
+        private System.Windows.Forms.Button Btn_Guardar;
     }
 }

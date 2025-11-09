@@ -32,31 +32,32 @@ namespace CapaVistaOP
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_de_menu));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Lbl_Nombre_Huesped = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.Lbl_Modulo_Hoteleria = new System.Windows.Forms.Label();
+            this.Lbl_Detalle_Orden = new System.Windows.Forms.Label();
+            this.Lbl_Ordenes_Menu = new System.Windows.Forms.Label();
+            this.Lbl_Orden_Produccion = new System.Windows.Forms.Label();
+            this.Lbl_Menu = new System.Windows.Forms.Label();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dgvDetalleOrdenmenu = new System.Windows.Forms.DataGridView();
-            this.ss = new System.Windows.Forms.TextBox();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.numCantidad = new System.Windows.Forms.NumericUpDown();
-            this.cmbMenu = new System.Windows.Forms.ComboBox();
-            this.cmbOrdenProduccion = new System.Windows.Forms.ComboBox();
+            this.Lbl_Cantidad_de_Platillos = new System.Windows.Forms.Label();
+            this.Dgv_Detalle_Orden_menu = new System.Windows.Forms.DataGridView();
+            this.Txt_Detalle_Orden = new System.Windows.Forms.TextBox();
+            this.Btn_Editar = new System.Windows.Forms.Button();
+            this.Btn_Eliminar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
+            this.Nud_Cantidad = new System.Windows.Forms.NumericUpDown();
+            this.Cbo_Menu = new System.Windows.Forms.ComboBox();
+            this.Cbo_Orden_Produccion = new System.Windows.Forms.ComboBox();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleOrdenmenu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Orden_menu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_Cantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
             this.Pnl_Superior.Controls.Add(this.button1);
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Modulo_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
@@ -75,55 +76,55 @@ namespace CapaVistaOP
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // Lbl_Modulo_Hoteleria
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.label1.Location = new System.Drawing.Point(27, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 35);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Módulo hotelería";
+            this.Lbl_Modulo_Hoteleria.AutoSize = true;
+            this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(27, 9);
+            this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
+            this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
+            this.Lbl_Modulo_Hoteleria.TabIndex = 104;
+            this.Lbl_Modulo_Hoteleria.Text = "Módulo hotelería";
             // 
-            // Lbl_Nombre_Huesped
+            // Lbl_Detalle_Orden
             // 
-            this.Lbl_Nombre_Huesped.AutoSize = true;
-            this.Lbl_Nombre_Huesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(30, 116);
-            this.Lbl_Nombre_Huesped.Name = "Lbl_Nombre_Huesped";
-            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(116, 20);
-            this.Lbl_Nombre_Huesped.TabIndex = 99;
-            this.Lbl_Nombre_Huesped.Text = "Detalle orden";
+            this.Lbl_Detalle_Orden.AutoSize = true;
+            this.Lbl_Detalle_Orden.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Detalle_Orden.Location = new System.Drawing.Point(30, 116);
+            this.Lbl_Detalle_Orden.Name = "Lbl_Detalle_Orden";
+            this.Lbl_Detalle_Orden.Size = new System.Drawing.Size(116, 20);
+            this.Lbl_Detalle_Orden.TabIndex = 99;
+            this.Lbl_Detalle_Orden.Text = "Detalle orden";
             // 
-            // label2
+            // Lbl_Ordenes_Menu
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(27, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(190, 21);
-            this.label2.TabIndex = 105;
-            this.label2.Text = "ORDENES DE MENU";
+            this.Lbl_Ordenes_Menu.AutoSize = true;
+            this.Lbl_Ordenes_Menu.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Ordenes_Menu.Location = new System.Drawing.Point(27, 69);
+            this.Lbl_Ordenes_Menu.Name = "Lbl_Ordenes_Menu";
+            this.Lbl_Ordenes_Menu.Size = new System.Drawing.Size(190, 21);
+            this.Lbl_Ordenes_Menu.TabIndex = 105;
+            this.Lbl_Ordenes_Menu.Text = "ORDENES DE MENU";
             // 
-            // label3
+            // Lbl_Orden_Produccion
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(30, 151);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 20);
-            this.label3.TabIndex = 107;
-            this.label3.Text = "Orden produccion";
+            this.Lbl_Orden_Produccion.AutoSize = true;
+            this.Lbl_Orden_Produccion.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Orden_Produccion.Location = new System.Drawing.Point(30, 151);
+            this.Lbl_Orden_Produccion.Name = "Lbl_Orden_Produccion";
+            this.Lbl_Orden_Produccion.Size = new System.Drawing.Size(154, 20);
+            this.Lbl_Orden_Produccion.TabIndex = 107;
+            this.Lbl_Orden_Produccion.Text = "Orden produccion";
             // 
-            // label4
+            // Lbl_Menu
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 184);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 20);
-            this.label4.TabIndex = 108;
-            this.label4.Text = "Menu";
+            this.Lbl_Menu.AutoSize = true;
+            this.Lbl_Menu.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Menu.Location = new System.Drawing.Point(30, 184);
+            this.Lbl_Menu.Name = "Lbl_Menu";
+            this.Lbl_Menu.Size = new System.Drawing.Size(54, 20);
+            this.Lbl_Menu.TabIndex = 108;
+            this.Lbl_Menu.Text = "Menu";
             // 
             // Lbl_Titulo
             // 
@@ -134,107 +135,117 @@ namespace CapaVistaOP
             this.Lbl_Titulo.Size = new System.Drawing.Size(0, 29);
             this.Lbl_Titulo.TabIndex = 113;
             // 
-            // label5
+            // Lbl_Cantidad_de_Platillos
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 221);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 20);
-            this.label5.TabIndex = 114;
-            this.label5.Text = "Cantidad de platillos";
+            this.Lbl_Cantidad_de_Platillos.AutoSize = true;
+            this.Lbl_Cantidad_de_Platillos.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Cantidad_de_Platillos.Location = new System.Drawing.Point(28, 221);
+            this.Lbl_Cantidad_de_Platillos.Name = "Lbl_Cantidad_de_Platillos";
+            this.Lbl_Cantidad_de_Platillos.Size = new System.Drawing.Size(170, 20);
+            this.Lbl_Cantidad_de_Platillos.TabIndex = 114;
+            this.Lbl_Cantidad_de_Platillos.Text = "Cantidad de platillos";
             // 
-            // dgvDetalleOrdenmenu
+            // Dgv_Detalle_Orden_menu
             // 
-            this.dgvDetalleOrdenmenu.AllowUserToAddRows = false;
-            this.dgvDetalleOrdenmenu.AllowUserToDeleteRows = false;
-            this.dgvDetalleOrdenmenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_Detalle_Orden_menu.AllowUserToAddRows = false;
+            this.Dgv_Detalle_Orden_menu.AllowUserToDeleteRows = false;
+            this.Dgv_Detalle_Orden_menu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleOrdenmenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleOrdenmenu.Location = new System.Drawing.Point(31, 271);
-            this.dgvDetalleOrdenmenu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvDetalleOrdenmenu.Name = "dgvDetalleOrdenmenu";
-            this.dgvDetalleOrdenmenu.ReadOnly = true;
-            this.dgvDetalleOrdenmenu.RowHeadersWidth = 51;
-            this.dgvDetalleOrdenmenu.RowTemplate.Height = 24;
-            this.dgvDetalleOrdenmenu.Size = new System.Drawing.Size(840, 300);
-            this.dgvDetalleOrdenmenu.TabIndex = 115;
-            this.dgvDetalleOrdenmenu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleOrdenes_CellContentClick);
+            this.Dgv_Detalle_Orden_menu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Detalle_Orden_menu.Location = new System.Drawing.Point(31, 271);
+            this.Dgv_Detalle_Orden_menu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dgv_Detalle_Orden_menu.Name = "Dgv_Detalle_Orden_menu";
+            this.Dgv_Detalle_Orden_menu.ReadOnly = true;
+            this.Dgv_Detalle_Orden_menu.RowHeadersWidth = 51;
+            this.Dgv_Detalle_Orden_menu.RowTemplate.Height = 24;
+            this.Dgv_Detalle_Orden_menu.Size = new System.Drawing.Size(840, 300);
+            this.Dgv_Detalle_Orden_menu.TabIndex = 115;
+            this.Dgv_Detalle_Orden_menu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleOrdenes_CellContentClick);
             // 
-            // ss
+            // Txt_Detalle_Orden
             // 
-            this.ss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.ss.Location = new System.Drawing.Point(252, 116);
-            this.ss.Name = "ss";
-            this.ss.Size = new System.Drawing.Size(181, 22);
-            this.ss.TabIndex = 116;
+            this.Txt_Detalle_Orden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_Detalle_Orden.Location = new System.Drawing.Point(252, 116);
+            this.Txt_Detalle_Orden.Name = "Txt_Detalle_Orden";
+            this.Txt_Detalle_Orden.Size = new System.Drawing.Size(181, 22);
+            this.Txt_Detalle_Orden.TabIndex = 116;
             // 
-            // btnEditar
+            // Btn_Editar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.White;
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(818, 69);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(53, 46);
-            this.btnEditar.TabIndex = 130;
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.Btn_Editar.BackColor = System.Drawing.Color.White;
+            this.Btn_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Editar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Editar.Image")));
+            this.Btn_Editar.Location = new System.Drawing.Point(818, 69);
+            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Editar.Name = "Btn_Editar";
+            this.Btn_Editar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Editar.TabIndex = 130;
+            this.Btn_Editar.UseVisualStyleBackColor = false;
+            this.Btn_Editar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnEliminar
+            // Btn_Eliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(746, 69);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(53, 46);
-            this.btnEliminar.TabIndex = 129;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            this.Btn_Eliminar.BackColor = System.Drawing.Color.White;
+            this.Btn_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.Image")));
+            this.Btn_Eliminar.Location = new System.Drawing.Point(746, 69);
+            this.Btn_Eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Eliminar.Name = "Btn_Eliminar";
+            this.Btn_Eliminar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Eliminar.TabIndex = 129;
+            this.Btn_Eliminar.UseVisualStyleBackColor = false;
+            this.Btn_Eliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // btnGuardar
+            // Btn_Guardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(674, 69);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(53, 46);
-            this.btnGuardar.TabIndex = 128;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(674, 69);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Guardar.TabIndex = 128;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
-            // numCantidad
+            // Nud_Cantidad
             // 
-            this.numCantidad.Location = new System.Drawing.Point(252, 221);
-            this.numCantidad.Name = "numCantidad";
-            this.numCantidad.Size = new System.Drawing.Size(181, 22);
-            this.numCantidad.TabIndex = 131;
+            this.Nud_Cantidad.Location = new System.Drawing.Point(252, 221);
+            this.Nud_Cantidad.Name = "Nud_Cantidad";
+            this.Nud_Cantidad.Size = new System.Drawing.Size(181, 22);
+            this.Nud_Cantidad.TabIndex = 131;
             // 
-            // cmbMenu
+            // Cbo_Menu
             // 
-            this.cmbMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.cmbMenu.FormattingEnabled = true;
-            this.cmbMenu.Location = new System.Drawing.Point(252, 184);
-            this.cmbMenu.Name = "cmbMenu";
-            this.cmbMenu.Size = new System.Drawing.Size(181, 24);
-            this.cmbMenu.TabIndex = 112;
+            this.Cbo_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Cbo_Menu.FormattingEnabled = true;
+            this.Cbo_Menu.Location = new System.Drawing.Point(252, 184);
+            this.Cbo_Menu.Name = "Cbo_Menu";
+            this.Cbo_Menu.Size = new System.Drawing.Size(181, 24);
+            this.Cbo_Menu.TabIndex = 112;
             // 
-            // cmbOrdenProduccion
+            // Cbo_Orden_Produccion
             // 
-            this.cmbOrdenProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.cmbOrdenProduccion.FormattingEnabled = true;
-            this.cmbOrdenProduccion.Location = new System.Drawing.Point(252, 151);
-            this.cmbOrdenProduccion.Name = "cmbOrdenProduccion";
-            this.cmbOrdenProduccion.Size = new System.Drawing.Size(181, 24);
-            this.cmbOrdenProduccion.TabIndex = 111;
-            this.cmbOrdenProduccion.SelectedIndexChanged += new System.EventHandler(this.cbOrdenesProduccion_SelectedIndexChanged);
+            this.Cbo_Orden_Produccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Cbo_Orden_Produccion.FormattingEnabled = true;
+            this.Cbo_Orden_Produccion.Location = new System.Drawing.Point(252, 151);
+            this.Cbo_Orden_Produccion.Name = "Cbo_Orden_Produccion";
+            this.Cbo_Orden_Produccion.Size = new System.Drawing.Size(181, 24);
+            this.Cbo_Orden_Produccion.TabIndex = 111;
+            this.Cbo_Orden_Produccion.SelectedIndexChanged += new System.EventHandler(this.cbOrdenesProduccion_SelectedIndexChanged);
+            // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.Location = new System.Drawing.Point(544, 79);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(107, 30);
+            this.Btn_Reporte.TabIndex = 132;
+            this.Btn_Reporte.Text = "Ver reporte";
+            this.Btn_Reporte.UseVisualStyleBackColor = true;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Frm_Ordenes_de_menu
             // 
@@ -242,28 +253,29 @@ namespace CapaVistaOP
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.numCantidad);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.ss);
-            this.Controls.Add(this.dgvDetalleOrdenmenu);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.Btn_Reporte);
+            this.Controls.Add(this.Nud_Cantidad);
+            this.Controls.Add(this.Btn_Editar);
+            this.Controls.Add(this.Btn_Eliminar);
+            this.Controls.Add(this.Btn_Guardar);
+            this.Controls.Add(this.Txt_Detalle_Orden);
+            this.Controls.Add(this.Dgv_Detalle_Orden_menu);
+            this.Controls.Add(this.Lbl_Cantidad_de_Platillos);
             this.Controls.Add(this.Lbl_Titulo);
-            this.Controls.Add(this.cmbMenu);
-            this.Controls.Add(this.cmbOrdenProduccion);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.Lbl_Nombre_Huesped);
+            this.Controls.Add(this.Cbo_Menu);
+            this.Controls.Add(this.Cbo_Orden_Produccion);
+            this.Controls.Add(this.Lbl_Menu);
+            this.Controls.Add(this.Lbl_Orden_Produccion);
+            this.Controls.Add(this.Lbl_Ordenes_Menu);
+            this.Controls.Add(this.Lbl_Detalle_Orden);
             this.Controls.Add(this.Pnl_Superior);
             this.Name = "Frm_Ordenes_de_menu";
             this.Text = "Frm_Ordenes_de_produccion";
             this.Load += new System.EventHandler(this.Frm_Ordenes_de_produccion_Load);
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleOrdenmenu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle_Orden_menu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_Cantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -272,21 +284,22 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label Lbl_Nombre_Huesped;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Lbl_Modulo_Hoteleria;
+        private System.Windows.Forms.Label Lbl_Detalle_Orden;
+        private System.Windows.Forms.Label Lbl_Ordenes_Menu;
+        private System.Windows.Forms.Label Lbl_Orden_Produccion;
+        private System.Windows.Forms.Label Lbl_Menu;
         private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dgvDetalleOrdenmenu;
-        private System.Windows.Forms.TextBox ss;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.NumericUpDown numCantidad;
-        private System.Windows.Forms.ComboBox cmbMenu;
-        private System.Windows.Forms.ComboBox cmbOrdenProduccion;
+        private System.Windows.Forms.Label Lbl_Cantidad_de_Platillos;
+        private System.Windows.Forms.DataGridView Dgv_Detalle_Orden_menu;
+        private System.Windows.Forms.TextBox Txt_Detalle_Orden;
+        private System.Windows.Forms.Button Btn_Editar;
+        private System.Windows.Forms.Button Btn_Eliminar;
+        private System.Windows.Forms.Button Btn_Guardar;
+        private System.Windows.Forms.NumericUpDown Nud_Cantidad;
+        private System.Windows.Forms.ComboBox Cbo_Menu;
+        private System.Windows.Forms.ComboBox Cbo_Orden_Produccion;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }

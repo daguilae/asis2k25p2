@@ -23,7 +23,7 @@ namespace CapaVistaOP
         }
         private void CargarDatos()
         {
-            dgvmobiliario.DataSource = controlador.MostrarMobiliario();
+            Dgv_Mobiliario.DataSource = controlador.MostrarMobiliario();
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -33,45 +33,57 @@ namespace CapaVistaOP
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrWhiteSpace(txtMobiliario.Text))
-            {
-                controlador.GuardarMobiliario(txtMobiliario.Text);
-                CargarDatos();
-                txtMobiliario.Clear();
-            }
-            else
+            if (string.IsNullOrWhiteSpace(Txt_Mobiliario.Text))
             {
                 MessageBox.Show("Ingrese un nombre de mobiliario.");
+                return;
             }
+
+            controlador.GuardarMobiliario(Txt_Mobiliario.Text.Trim());
+            CargarDatos();
+            Txt_Mobiliario.Clear();
+            MessageBox.Show("Mobiliario guardado con éxito.");
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado > 0)
-            {
-                controlador.ActualizarMobiliario(idSeleccionado, txtMobiliario.Text);
-                CargarDatos();
-                txtMobiliario.Clear();
-                idSeleccionado = 0;
-            }
-            else
+            if (idSeleccionado <= 0)
             {
                 MessageBox.Show("Seleccione un registro para editar.");
+                return;
             }
+
+            if (string.IsNullOrWhiteSpace(Txt_Mobiliario.Text))
+            {
+                MessageBox.Show("El nombre no puede estar vacío.");
+                return;
+            }
+
+            controlador.ActualizarMobiliario(idSeleccionado, Txt_Mobiliario.Text.Trim());
+            CargarDatos();
+            Txt_Mobiliario.Clear();
+            idSeleccionado = 0;
+            MessageBox.Show("Mobiliario actualizado correctamente.");
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (idSeleccionado > 0)
+            if (idSeleccionado <= 0)
+            {
+                MessageBox.Show("Seleccione un registro para eliminar.");
+                return;
+            }
+
+            DialogResult confirmacion = MessageBox.Show("¿Está seguro de que desea eliminar este mobiliario?",
+                "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (confirmacion == DialogResult.Yes)
             {
                 controlador.BorrarMobiliario(idSeleccionado);
                 CargarDatos();
-                txtMobiliario.Clear();
+                Txt_Mobiliario.Clear();
                 idSeleccionado = 0;
-            }
-            else
-            {
-                MessageBox.Show("Seleccione un registro para eliminar.");
+                MessageBox.Show("Mobiliario eliminado con éxito.");
             }
         }
 
@@ -79,8 +91,8 @@ namespace CapaVistaOP
         {
             if (e.RowIndex >= 0)
             {
-                idSeleccionado = Convert.ToInt32(dgvmobiliario.Rows[e.RowIndex].Cells["Pk_Id_Mobiliario"].Value);
-                txtMobiliario.Text = dgvmobiliario.Rows[e.RowIndex].Cells["Cmp_Mobiliario"].Value.ToString();
+                idSeleccionado = Convert.ToInt32(Dgv_Mobiliario.Rows[e.RowIndex].Cells["Pk_Id_Mobiliario"].Value);
+                Txt_Mobiliario.Text = Dgv_Mobiliario.Rows[e.RowIndex].Cells["Cmp_Mobiliario"].Value.ToString();
             }
         }
 
