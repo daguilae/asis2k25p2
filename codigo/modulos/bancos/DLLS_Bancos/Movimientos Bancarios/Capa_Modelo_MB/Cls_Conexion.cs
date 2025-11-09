@@ -5,9 +5,9 @@ namespace Capa_Modelo_MB
 {
     public class Cls_Conexion
     {
-        public OdbcConnection fun_ConexionBD()
+        public OdbcConnection fun_conexion_bd()
         {
-            OdbcConnection odcn_Conn = new OdbcConnection("Dsn=bd_hoteleria");
+            OdbcConnection odcn_Conn = new OdbcConnection("Dsn=Bd_Hoteleria");
             try
             {
                 odcn_Conn.Open();
@@ -20,7 +20,7 @@ namespace Capa_Modelo_MB
             return odcn_Conn;
         }
 
-        public void pro_Desconexion(OdbcConnection odcn_Conn)
+        public void pro_desconexion(OdbcConnection odcn_Conn)
         {
             try
             {
@@ -34,4 +34,3 @@ namespace Capa_Modelo_MB
         }
     }
 }
-

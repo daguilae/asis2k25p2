@@ -44,7 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cls_CalculosTotales.cs" />
     <Compile Include="Cls_Controlador.cs" />
+    <Compile Include="Cls_EditarValidaciones.cs" />
+    <Compile Include="Cls_MovimientoValidaciones.cs" />
+    <Compile Include="Cls_OperacionReglas.cs" />
+    <Compile Include="Cls_ValidacionesAnular.cs" />
+    <Compile Include="Cls_ValidacionesCargarEdicion.cs" />
+    <Compile Include="Cls_ValidacionesCombos.cs" />
+    <Compile Include="Cls_ValidacionesEditar.cs" />
+    <Compile Include="Cls_ValidacionesGrid.cs" />
+    <Compile Include="Cls_ValidacionesGuardar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
