@@ -83,9 +83,11 @@ namespace Capa_Vista_TipoDeCambio
             InitializeComponent();
         }
 
+
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
+
     }
 }

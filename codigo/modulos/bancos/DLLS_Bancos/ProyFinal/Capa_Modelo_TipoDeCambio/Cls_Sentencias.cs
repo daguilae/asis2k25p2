@@ -15,17 +15,21 @@ namespace Capa_Modelo_TipoDeCambio
         public DataTable CargarMonedas()
         {
             string sql = "SELECT Pk_Id_Moneda, Cmp_NombreMoneda FROM Tbl_Monedas WHERE Cmp_Estado = 1;";
+
             OdbcDataAdapter da = new OdbcDataAdapter(sql, cn.conexion());
             DataTable dt = new DataTable();
             da.Fill(dt);
             cn.desconexion(cn.conexion());
+
             return dt;
         }
 
         public void InsertarTipoCambio(string fecha, decimal compra, decimal venta, int idMoneda)
         {
             string sql = "INSERT INTO Tbl_TiposCambio (Fk_Id_Moneda, Cmp_Fecha, Cmp_ValorCompra, Cmp_ValorVenta) " +
+
                          $"VALUES ({idMoneda}, '{fecha}', {compra}, {venta});";
+
 
             OdbcConnection conn = cn.conexion();
             OdbcCommand cmd = new OdbcCommand(sql, conn);
@@ -35,6 +39,7 @@ namespace Capa_Modelo_TipoDeCambio
 
         public DataTable MostrarTiposCambio()
         {
+
             string sql = @"
                 SELECT 
                     T.Pk_Id_TipoCambio,
@@ -148,6 +153,7 @@ namespace Capa_Modelo_TipoDeCambio
 
             return dt;
         }
+
 
     }
 }

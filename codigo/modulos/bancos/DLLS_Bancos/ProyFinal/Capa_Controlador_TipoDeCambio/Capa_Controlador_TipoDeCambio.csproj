@@ -31,7 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+
     <Reference Include="Capa_Modelo_TipoDeCambio">
+
       <HintPath>..\Capa_Modelo_TipoDeCambio\bin\Debug\Capa_Modelo_TipoDeCambio.dll</HintPath>
     </Reference>
     <Reference Include="System" />

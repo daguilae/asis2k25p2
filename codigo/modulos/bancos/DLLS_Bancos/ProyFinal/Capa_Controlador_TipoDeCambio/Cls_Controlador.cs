@@ -31,6 +31,7 @@ namespace Capa_Controlador_TipoDeCambio
         {
             return modelo.BuscarTipoCambio(fecha);
         }
+
         public DataTable MostrarTipoCambioHoy()
         {
             return modelo.MostrarTiposCambioHoy();

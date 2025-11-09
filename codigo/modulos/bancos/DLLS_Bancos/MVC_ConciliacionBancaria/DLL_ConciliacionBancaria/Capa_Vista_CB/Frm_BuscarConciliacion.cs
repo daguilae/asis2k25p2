@@ -16,5 +16,57 @@ namespace Capa_Vista_CB
         {
             InitializeComponent();
         }
+
+        private void Btn_AyudaBC_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_SalirBuscarCB_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            Frm_ConciliacionBancaria frmConciliacionBancaria = new Frm_ConciliacionBancaria();
+            frmConciliacionBancaria.Show();
+        }
+
+        private void Cbo_BancosBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cbo_MesBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Cbo_AnioBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_BuscarCB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_ModificarSeleccion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Btn_EliminarCB_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Dgv_Conciliaciones_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
