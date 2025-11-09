@@ -50,6 +50,8 @@ namespace Capa_Vista_MB
 
             Cbo_Signo.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            Dgv_Detalle_Movimiento.CellFormatting += Dgv_Detalle_Movimiento_CellFormatting;
+
             //lineas divisoras
             Lbl_Division.AutoSize = false;
             Lbl_Division.Height = 2;
@@ -304,12 +306,6 @@ namespace Capa_Vista_MB
                 colEstado.Visible = false;
                 Dgv_Detalle_Movimiento.Columns.Add(colEstado);
 
-                DataGridViewTextBoxColumn colConciliado = new DataGridViewTextBoxColumn();
-                colConciliado.Name = "Cmp_Conciliado";
-                colConciliado.HeaderText = "Conciliado";
-                colConciliado.Visible = false;
-                Dgv_Detalle_Movimiento.Columns.Add(colConciliado);
-
                 // VISIBLES
                 DataGridViewTextBoxColumn colEstadoVisible = new DataGridViewTextBoxColumn();
                 colEstadoVisible.Name = "Estado_Visible";
@@ -377,6 +373,13 @@ namespace Capa_Vista_MB
                 colDocumento.ReadOnly = true;
                 Dgv_Detalle_Movimiento.Columns.Add(colDocumento);
 
+                DataGridViewTextBoxColumn colConciliado = new DataGridViewTextBoxColumn();
+                colConciliado.Name = "Cmp_Conciliado";
+                colConciliado.HeaderText = "Conciliado";
+                colConciliado.FillWeight = 8; // 8% del ancho disponible
+                colConciliado.Visible = true;
+                Dgv_Detalle_Movimiento.Columns.Add(colConciliado);
+
                 Dgv_Detalle_Movimiento.ReadOnly = true;
                 Dgv_Detalle_Movimiento.AllowUserToAddRows = false;
 
@@ -392,6 +395,24 @@ namespace Capa_Vista_MB
                 MessageBox.Show($"Error al configurar grid para visualización: {ex.Message}");
             }
         }
+
+        // para que salsa si o no
+        private void Dgv_Detalle_Movimiento_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (Dgv_Detalle_Movimiento.Columns[e.ColumnIndex].Name == "Cmp_Conciliado")
+            {
+                if (e.Value != null && e.Value != DBNull.Value)
+                {
+                    int v;
+                    if (int.TryParse(e.Value.ToString(), out v))
+                    {
+                        e.Value = (v == 1) ? "Sí" : "No";   // solo se muestra “Sí/No”
+                        e.FormattingApplied = true;  // no cambia el valor real 
+                    }
+                }
+            }
+        }
+
 
         private void pro_configurar_combo_conciliado()
         {
