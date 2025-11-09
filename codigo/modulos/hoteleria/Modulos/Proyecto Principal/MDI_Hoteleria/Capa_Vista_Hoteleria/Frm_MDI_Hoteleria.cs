@@ -18,6 +18,7 @@ using Capa_Vista_MH;
 using CapaVistaOP;
 using CapaVistaProduccion;
 
+
 namespace Capa_Vista_Hoteleria
 {
     public partial class Frm_MDI_Hoteleria : Form
@@ -211,9 +212,9 @@ namespace Capa_Vista_Hoteleria
         private void foliosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
-            Frm_Detalle_Folio folios = new Frm_Detalle_Folio();
-            folios.MdiParent = this;
-            folios.Show();
+            //Frm_Detalle_Folio folios = new Frm_Detalle_Folio();
+            //folios.MdiParent = this;
+            //folios.Show();
         }
     }
 }

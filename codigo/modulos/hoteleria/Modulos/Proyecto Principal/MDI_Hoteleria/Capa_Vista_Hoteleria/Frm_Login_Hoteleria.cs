@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
 using Capa_Vista_Seguridad;
+
 namespace Capa_Vista_Hoteleria
 {
     public partial class Frm_Login_Hoteleria : Form

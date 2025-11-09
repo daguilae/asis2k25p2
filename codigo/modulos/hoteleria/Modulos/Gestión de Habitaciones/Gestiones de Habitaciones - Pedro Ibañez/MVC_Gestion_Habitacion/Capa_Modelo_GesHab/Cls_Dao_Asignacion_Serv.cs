@@ -95,7 +95,7 @@ namespace Capa_Modelo_GesHab
         }
 
         // --- Eliminar asignación habitación-servicio ---
-        public bool EliminarAsignacion(int idHabitacion, int idServicio)
+        public bool EliminarAsignacion(int IidHabitacion, int IidServicio)
         {
             string query = "DELETE FROM Tbl_Asignacion_habitacion_Servicio " +
                            "WHERE Fk_ID_Habitacion = ? AND Fk_Id_Servicio = ?;";
@@ -109,8 +109,8 @@ namespace Capa_Modelo_GesHab
 
                     using (OdbcCommand cmd = new OdbcCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@Fk_ID_Habitacion", idHabitacion);
-                        cmd.Parameters.AddWithValue("@Fk_Id_Servicio", idServicio);
+                        cmd.Parameters.AddWithValue("@Fk_ID_Habitacion", IidHabitacion);
+                        cmd.Parameters.AddWithValue("@Fk_Id_Servicio", IidServicio);
 
                         int filasAfectadas = cmd.ExecuteNonQuery();
                         return filasAfectadas > 0;
