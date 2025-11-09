@@ -14,7 +14,7 @@ namespace Capa_Vista_Produccion
     public partial class Frm_Produccion_Alacarta : Form
     {
         Cls_Controlador_Produccion controlador = new Cls_Controlador_Produccion();
-        private int? idReservaSeleccionada = null; // variable interna para guardar el ID seleccionado
+        private int? idReservaSeleccionada = null; 
 
         public Frm_Produccion_Alacarta()
         {
@@ -34,24 +34,10 @@ namespace Capa_Vista_Produccion
     };
 
             Cbo_Estado.DataSource = estados;
-            Cbo_Estado.DisplayMember = "Value";  // lo que se muestra al usuario
-            Cbo_Estado.ValueMember = "Key";      // el valor real que se guarda en BD
+            Cbo_Estado.DisplayMember = "Value";  
+            Cbo_Estado.ValueMember = "Key";      
             Cbo_Estado.SelectedIndex = -1;
         }
-
-        // Cargar datos de la tabla
-        /* private void CargarTabla()
-         {
-             Dgv_Reservas.DataSource = controlador.MostrarReservas();
-             Dgv_Reservas.Columns["PK_Id_Reserva"].HeaderText = "ID Reserva";
-             Dgv_Reservas.Columns["Fk_Id_Huessed"].HeaderText = "ID Huésped";
-             Dgv_Reservas.Columns["Fk_Id_Habitacion"].HeaderText = "ID Habitación";
-             Dgv_Reservas.Columns["Fk_Id_Salon"].HeaderText = "ID Salón";
-             Dgv_Reservas.Columns["Cmp_Fecha_Reserva"].HeaderText = "Fecha";
-             Dgv_Reservas.Columns["Cmp_Hora_reserva"].HeaderText = "Hora";
-             Dgv_Reservas.Columns["Cmp_Numero_Comensales"].HeaderText = "Comensales";
-             Dgv_Reservas.Columns["Cmp_Estado"].HeaderText = "Estado";
-         }*/
 
         private void CargarTabla()
         {
@@ -86,8 +72,8 @@ namespace Capa_Vista_Produccion
         // GUARDAR nueva reserva
         private void Btn_Guardar_Reserva_Click(object sender, EventArgs e)
         {
-            if (!int.TryParse(Txt_Id_Huesped.Text, out int iHuesped) ||
-                !int.TryParse(Txt_Id_Habitacion.Text, out int iHabitacion) ||
+            if (!int.TryParse(Txt_Id_Huesped.Text, out int iIdHuesped) ||
+                !int.TryParse(Txt_Id_Habitacion.Text, out int iIdHabitacion) ||
                 !int.TryParse(Txt_Cantidad.Text, out int iNumComensales) ||
                 Cbo_Estado.SelectedIndex == -1 ||
                 Cbo_Salon.SelectedIndex == -1)
@@ -96,12 +82,12 @@ namespace Capa_Vista_Produccion
                 return;
             }
 
-            int iSalon = Convert.ToInt32(Cbo_Salon.SelectedValue);
-            DateTime fecha = Dtp_Fecha_Reserva.Value;
-            TimeSpan hora = Dtp_Hora_Reserva.Value.TimeOfDay;
+            int iIdSalon = Convert.ToInt32(Cbo_Salon.SelectedValue);
+            DateTime dFecha = Dtp_Fecha_Reserva.Value;
+            TimeSpan tHora = Dtp_Hora_Reserva.Value.TimeOfDay;
             int estado = Convert.ToInt32(Cbo_Estado.SelectedValue);
 
-            controlador.GuardarReserva(iHuesped, iHabitacion, iSalon, fecha, hora, iNumComensales, estado);
+            controlador.GuardarReserva(iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, estado);
 
             MessageBox.Show("Reserva guardada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarCampos();
@@ -118,9 +104,9 @@ namespace Capa_Vista_Produccion
                 return;
             }
 
-            if (!int.TryParse(Txt_Id_Huesped.Text, out int idHuesped) ||
-                !int.TryParse(Txt_Id_Habitacion.Text, out int idHabitacion) ||
-                !int.TryParse(Txt_Cantidad.Text, out int numComensales) ||
+            if (!int.TryParse(Txt_Id_Huesped.Text, out int iIdHuesped) ||
+                !int.TryParse(Txt_Id_Habitacion.Text, out int iIdHabitacion) ||
+                !int.TryParse(Txt_Cantidad.Text, out int iNumComensales) ||
                 Cbo_Estado.SelectedIndex == -1 ||
                 Cbo_Salon.SelectedIndex == -1)
             {
@@ -128,12 +114,12 @@ namespace Capa_Vista_Produccion
                 return;
             }
 
-            int idSalon = Convert.ToInt32(Cbo_Salon.SelectedValue);
-            DateTime fecha = Dtp_Fecha_Reserva.Value;
-            TimeSpan hora = Dtp_Hora_Reserva.Value.TimeOfDay;
-            int estado = Convert.ToInt32(Cbo_Estado.SelectedValue);
+            int iIdSalon = Convert.ToInt32(Cbo_Salon.SelectedValue);
+            DateTime dFecha = Dtp_Fecha_Reserva.Value;
+            TimeSpan tHora = Dtp_Hora_Reserva.Value.TimeOfDay;
+            int iEstado = Convert.ToInt32(Cbo_Estado.SelectedValue);
 
-            controlador.ActualizarReserva(idReservaSeleccionada.Value, idHuesped, idHabitacion, idSalon, fecha, hora, numComensales, estado);
+            controlador.ActualizarReserva(idReservaSeleccionada.Value, iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
 
             MessageBox.Show("Reserva actualizada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LimpiarCampos();
@@ -159,28 +145,6 @@ namespace Capa_Vista_Produccion
                 CargarTabla();
             }
         }
-
-        // Cargar datos al seleccionar una fila
-        /* private void Dgv_Reservas_CellClick(object sender, DataGridViewCellEventArgs e)
-         {
-             if (e.RowIndex >= 0 && Dgv_Reservas.Rows[e.RowIndex].Cells["PK_Id_Reserva"].Value != null)
-             {
-                 idReservaSeleccionada = Convert.ToInt32(Dgv_Reservas.Rows[e.RowIndex].Cells["PK_Id_Reserva"].Value);
-                 Txt_Id_Huesped.Text = Dgv_Reservas.Rows[e.RowIndex].Cells["Fk_Id_Huessed"].Value.ToString();
-                 Txt_Id_Habitacion.Text = Dgv_Reservas.Rows[e.RowIndex].Cells["Fk_Id_Habitacion"].Value.ToString();
-                 Txt_Id_Salon.Text = Dgv_Reservas.Rows[e.RowIndex].Cells["Fk_Id_Salon"].Value.ToString();
-                 Dtp_Fecha_Reserva.Value = Convert.ToDateTime(Dgv_Reservas.Rows[e.RowIndex].Cells["Cmp_Fecha_Reserva"].Value);
-                 Dtp_Hora_Reserva.Value = DateTime.Today.Add((TimeSpan)Dgv_Reservas.Rows[e.RowIndex].Cells["Cmp_Hora_reserva"].Value);
-                 Txt_Cantidad.Text = Dgv_Reservas.Rows[e.RowIndex].Cells["Cmp_Numero_Comensales"].Value.ToString();
-                 string estadoTexto = Dgv_Reservas.Rows[e.RowIndex].Cells["Cmp_Estado"].Value.ToString();
-                 if (estadoTexto == "Activa")
-                     Cbo_Estado.SelectedValue = 1;
-                 else if (estadoTexto == "Cancelada")
-                     Cbo_Estado.SelectedValue = 0;
-                 else
-                     Cbo_Estado.SelectedIndex = -1;
-             }
-         }*/
 
         private void Dgv_Reservas_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -217,21 +181,6 @@ namespace Capa_Vista_Produccion
             else
                 Cbo_Estado.SelectedIndex = -1;
         }
-
-
-
-        // Limpiar los campos
-        /*private void LimpiarCampos()
-        {
-            idReservaSeleccionada = null;
-            Txt_Id_Huesped.Text = "";
-            Txt_Id_Habitacion.Text = "";
-            Cbo_Salon.SelectedIndex = -1;
-            Txt_Cantidad.Text = "";
-            Dtp_Fecha_Reserva.Value = DateTime.Now;
-            Dtp_Hora_Reserva.Value = DateTime.Now;
-            Cbo_Estado.SelectedIndex = -1;
-        }*/
 
         private void LimpiarCampos()
         {
