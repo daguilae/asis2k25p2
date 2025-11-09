@@ -40,7 +40,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Lbl_Peticiones_Especiales = new System.Windows.Forms.Label();
             this.Txt_Peticiones = new System.Windows.Forms.TextBox();
             this.Lbl_Cant_Huespedes = new System.Windows.Forms.Label();
-            this.Num_Cantidad_Huespedes = new System.Windows.Forms.NumericUpDown();
             this.Dtp_Salida = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Fecha_Salida = new System.Windows.Forms.Label();
             this.Lbl_Fecha_Entrada = new System.Windows.Forms.Label();
@@ -51,7 +50,7 @@ namespace Capa_Vista_Reservas_Hotel
             this.Txt_Buscar_Reserva = new System.Windows.Forms.TextBox();
             this.Lbl_Nombre_Dpi_Pasaporte = new System.Windows.Forms.Label();
             this.Lbl_Modificar_Reservas = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.Num_Cantidad_Huespedes)).BeginInit();
+            this.Txt_Capacidad_Mod = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reservas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,13 +155,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Lbl_Cant_Huespedes.TabIndex = 31;
             this.Lbl_Cant_Huespedes.Text = "Cantidad de Huespedes";
             // 
-            // Num_Cantidad_Huespedes
-            // 
-            this.Num_Cantidad_Huespedes.Location = new System.Drawing.Point(1225, 375);
-            this.Num_Cantidad_Huespedes.Name = "Num_Cantidad_Huespedes";
-            this.Num_Cantidad_Huespedes.Size = new System.Drawing.Size(51, 20);
-            this.Num_Cantidad_Huespedes.TabIndex = 30;
-            // 
             // Dtp_Salida
             // 
             this.Dtp_Salida.Location = new System.Drawing.Point(1141, 314);
@@ -217,7 +209,7 @@ namespace Capa_Vista_Reservas_Hotel
             // 
             this.Dgv_Reservas.AllowUserToAddRows = false;
             this.Dgv_Reservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Reservas.Location = new System.Drawing.Point(28, 232);
+            this.Dgv_Reservas.Location = new System.Drawing.Point(27, 228);
             this.Dgv_Reservas.Name = "Dgv_Reservas";
             this.Dgv_Reservas.ReadOnly = true;
             this.Dgv_Reservas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -253,11 +245,19 @@ namespace Capa_Vista_Reservas_Hotel
             this.Lbl_Modificar_Reservas.TabIndex = 112;
             this.Lbl_Modificar_Reservas.Text = "Modificar reservas";
             // 
+            // Txt_Capacidad_Mod
+            // 
+            this.Txt_Capacidad_Mod.Location = new System.Drawing.Point(1202, 375);
+            this.Txt_Capacidad_Mod.Name = "Txt_Capacidad_Mod";
+            this.Txt_Capacidad_Mod.Size = new System.Drawing.Size(100, 20);
+            this.Txt_Capacidad_Mod.TabIndex = 113;
+            // 
             // Frm_Modificar_Reserva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1411, 816);
+            this.Controls.Add(this.Txt_Capacidad_Mod);
             this.Controls.Add(this.Lbl_Modificar_Reservas);
             this.Controls.Add(this.Lbl_Tarifa);
             this.Controls.Add(this.Txt_Tarifa);
@@ -270,7 +270,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Controls.Add(this.Lbl_Peticiones_Especiales);
             this.Controls.Add(this.Txt_Peticiones);
             this.Controls.Add(this.Lbl_Cant_Huespedes);
-            this.Controls.Add(this.Num_Cantidad_Huespedes);
             this.Controls.Add(this.Dtp_Salida);
             this.Controls.Add(this.Lbl_Fecha_Salida);
             this.Controls.Add(this.Lbl_Fecha_Entrada);
@@ -283,7 +282,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Name = "Frm_Modificar_Reserva";
             this.Text = "Frm_Modificar_Reserva";
             this.Load += new System.EventHandler(this.Frm_Modificar_Reserva_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.Num_Cantidad_Huespedes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reservas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -303,7 +301,6 @@ namespace Capa_Vista_Reservas_Hotel
         private System.Windows.Forms.Label Lbl_Peticiones_Especiales;
         private System.Windows.Forms.TextBox Txt_Peticiones;
         private System.Windows.Forms.Label Lbl_Cant_Huespedes;
-        private System.Windows.Forms.NumericUpDown Num_Cantidad_Huespedes;
         private System.Windows.Forms.DateTimePicker Dtp_Salida;
         private System.Windows.Forms.Label Lbl_Fecha_Salida;
         private System.Windows.Forms.Label Lbl_Fecha_Entrada;
@@ -314,5 +311,6 @@ namespace Capa_Vista_Reservas_Hotel
         private System.Windows.Forms.TextBox Txt_Buscar_Reserva;
         private System.Windows.Forms.Label Lbl_Nombre_Dpi_Pasaporte;
         private System.Windows.Forms.Label Lbl_Modificar_Reservas;
+        private System.Windows.Forms.TextBox Txt_Capacidad_Mod;
     }
 }

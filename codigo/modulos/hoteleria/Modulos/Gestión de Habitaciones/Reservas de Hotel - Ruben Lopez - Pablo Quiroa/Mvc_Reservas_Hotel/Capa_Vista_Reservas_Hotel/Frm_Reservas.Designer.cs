@@ -33,7 +33,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Btn_Nuevo = new System.Windows.Forms.Button();
             this.Gpb_Datos = new System.Windows.Forms.GroupBox();
             this.Btn_Calcular_Total = new System.Windows.Forms.Button();
-            this.Num_Huespedes = new System.Windows.Forms.NumericUpDown();
             this.Txt_Buffet_Descripcion = new System.Windows.Forms.TextBox();
             this.Lbl_Buffet_Incluido = new System.Windows.Forms.Label();
             this.Txt_Total_Reserva = new System.Windows.Forms.TextBox();
@@ -65,8 +64,8 @@ namespace Capa_Vista_Reservas_Hotel
             this.Lbl_Habitacion = new System.Windows.Forms.Label();
             this.Cmb_Tipo_Documento = new System.Windows.Forms.ComboBox();
             this.Lbl_Huesped = new System.Windows.Forms.Label();
+            this.Txt_Capacidad = new System.Windows.Forms.TextBox();
             this.Gpb_Datos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Num_Huespedes)).BeginInit();
             this.Gpb_Informacion_Huesped.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,8 +104,8 @@ namespace Capa_Vista_Reservas_Hotel
             // 
             // Gpb_Datos
             // 
+            this.Gpb_Datos.Controls.Add(this.Txt_Capacidad);
             this.Gpb_Datos.Controls.Add(this.Btn_Calcular_Total);
-            this.Gpb_Datos.Controls.Add(this.Num_Huespedes);
             this.Gpb_Datos.Controls.Add(this.Txt_Buffet_Descripcion);
             this.Gpb_Datos.Controls.Add(this.Lbl_Buffet_Incluido);
             this.Gpb_Datos.Controls.Add(this.Txt_Total_Reserva);
@@ -139,13 +138,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Btn_Calcular_Total.Text = "calcular total";
             this.Btn_Calcular_Total.UseVisualStyleBackColor = true;
             this.Btn_Calcular_Total.Click += new System.EventHandler(this.Btn_Calcular_Total_Click);
-            // 
-            // Num_Huespedes
-            // 
-            this.Num_Huespedes.Location = new System.Drawing.Point(210, 114);
-            this.Num_Huespedes.Name = "Num_Huespedes";
-            this.Num_Huespedes.Size = new System.Drawing.Size(120, 25);
-            this.Num_Huespedes.TabIndex = 30;
             // 
             // Txt_Buffet_Descripcion
             // 
@@ -472,6 +464,15 @@ namespace Capa_Vista_Reservas_Hotel
             this.Lbl_Huesped.TabIndex = 1;
             this.Lbl_Huesped.Text = "Huésped";
             // 
+            // Txt_Capacidad
+            // 
+            this.Txt_Capacidad.Location = new System.Drawing.Point(210, 113);
+            this.Txt_Capacidad.Name = "Txt_Capacidad";
+            this.Txt_Capacidad.ReadOnly = true;
+            this.Txt_Capacidad.Size = new System.Drawing.Size(100, 25);
+            this.Txt_Capacidad.TabIndex = 32;
+            this.Txt_Capacidad.TabStop = false;
+            // 
             // Frm_Reservas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,7 +490,6 @@ namespace Capa_Vista_Reservas_Hotel
             this.Load += new System.EventHandler(this.Frm_Reservas_Load);
             this.Gpb_Datos.ResumeLayout(false);
             this.Gpb_Datos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Num_Huespedes)).EndInit();
             this.Gpb_Informacion_Huesped.ResumeLayout(false);
             this.Gpb_Informacion_Huesped.PerformLayout();
             this.ResumeLayout(false);
@@ -503,7 +503,6 @@ namespace Capa_Vista_Reservas_Hotel
         private System.Windows.Forms.Button Btn_Nuevo;
         private System.Windows.Forms.GroupBox Gpb_Datos;
         private System.Windows.Forms.Button Btn_Calcular_Total;
-        private System.Windows.Forms.NumericUpDown Num_Huespedes;
         private System.Windows.Forms.TextBox Txt_Buffet_Descripcion;
         private System.Windows.Forms.Label Lbl_Buffet_Incluido;
         private System.Windows.Forms.TextBox Txt_Total_Reserva;
@@ -535,5 +534,6 @@ namespace Capa_Vista_Reservas_Hotel
         private System.Windows.Forms.Label Lbl_Habitacion;
         private System.Windows.Forms.ComboBox Cmb_Tipo_Documento;
         private System.Windows.Forms.Label Lbl_Huesped;
+        private System.Windows.Forms.TextBox Txt_Capacidad;
     }
 }
