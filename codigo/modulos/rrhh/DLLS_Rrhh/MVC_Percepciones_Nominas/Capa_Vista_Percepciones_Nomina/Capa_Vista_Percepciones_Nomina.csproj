@@ -52,16 +52,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UC_Percepciones.cs">
+    <Compile Include="Frm_Percepciones_Nomina.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UC_Percepciones.Designer.cs">
-      <DependentUpon>UC_Percepciones.cs</DependentUpon>
+    <Compile Include="Frm_Percepciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Percepciones_Nomina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UC_Percepciones.resx">
-      <DependentUpon>UC_Percepciones.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Percepciones_Nomina.resx">
+      <DependentUpon>Frm_Percepciones_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

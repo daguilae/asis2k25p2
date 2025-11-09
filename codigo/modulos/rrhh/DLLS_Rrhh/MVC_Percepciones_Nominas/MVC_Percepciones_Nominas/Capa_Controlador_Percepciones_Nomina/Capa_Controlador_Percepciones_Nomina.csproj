@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cls_CatalogosControlador.cs" />
-    <Compile Include="Cls_MovimientosControlador.cs" />
+    <Compile Include="CatalogosControlador.cs" />
+    <Compile Include="MovimientosControlador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Cls_UtilControlador.cs" />
+    <Compile Include="UtilControlador.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
