@@ -29,26 +29,6 @@ namespace Capa_Vista_CB
             frmConciliacionBancaria.Show();
         }
 
-        private void Cbo_BancosBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cbo_MesBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Cbo_AnioBuscarCB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Btn_BuscarCB_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Btn_Reporte_Click(object sender, EventArgs e)
         {
 

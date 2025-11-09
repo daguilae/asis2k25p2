@@ -48,26 +48,16 @@ namespace Capa_Vista_CB
             this.Txt_SaldoBanco = new System.Windows.Forms.TextBox();
             this.Txt_Diferencias = new System.Windows.Forms.TextBox();
             this.Txt_Observaciones = new System.Windows.Forms.TextBox();
-            this.Gpb_MovimientoBancario = new System.Windows.Forms.GroupBox();
-            this.Lbl_Movimiento = new System.Windows.Forms.Label();
-            this.Cbo_TipoMovimiento = new System.Windows.Forms.ComboBox();
-            this.Dgv_MovimientoBancario = new System.Windows.Forms.DataGridView();
             this.Btn_LimpiarCampos = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Btn_BuscarConciliacion = new System.Windows.Forms.Button();
             this.Btn_Salir = new System.Windows.Forms.Button();
-            this.Btn_AgregarMovimiento = new System.Windows.Forms.Button();
-            this.Btn_EliminarMovimiento = new System.Windows.Forms.Button();
             this.Btn_Ayuda = new System.Windows.Forms.Button();
             this.Lbl_Cuenta = new System.Windows.Forms.Label();
             this.Cbo_Cuenta = new System.Windows.Forms.ComboBox();
             this.Lbl_Estado = new System.Windows.Forms.Label();
             this.Chk_Estado = new System.Windows.Forms.CheckBox();
-            this.Gpb_ConciliacionesAgregadas = new System.Windows.Forms.GroupBox();
-            this.Dgv_ConciliacionesAgregadas = new System.Windows.Forms.DataGridView();
             this.Gpb_Fin = new System.Windows.Forms.GroupBox();
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_MovimientoBancario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_ConciliacionesAgregadas)).BeginInit();
             this.SuspendLayout();
             // 
             // Lbl_TituloBC
@@ -261,48 +251,6 @@ namespace Capa_Vista_CB
             this.Txt_Observaciones.TabIndex = 18;
             this.Txt_Observaciones.TextChanged += new System.EventHandler(this.Txt_Observaciones_TextChanged);
             // 
-            // Gpb_MovimientoBancario
-            // 
-            this.Gpb_MovimientoBancario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
-            this.Gpb_MovimientoBancario.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_MovimientoBancario.Location = new System.Drawing.Point(12, 406);
-            this.Gpb_MovimientoBancario.Name = "Gpb_MovimientoBancario";
-            this.Gpb_MovimientoBancario.Size = new System.Drawing.Size(1034, 25);
-            this.Gpb_MovimientoBancario.TabIndex = 10;
-            this.Gpb_MovimientoBancario.TabStop = false;
-            this.Gpb_MovimientoBancario.Text = "Movimientos Bancario a Conciliar";
-            // 
-            // Lbl_Movimiento
-            // 
-            this.Lbl_Movimiento.AutoSize = true;
-            this.Lbl_Movimiento.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Movimiento.Location = new System.Drawing.Point(12, 449);
-            this.Lbl_Movimiento.Name = "Lbl_Movimiento";
-            this.Lbl_Movimiento.Size = new System.Drawing.Size(119, 20);
-            this.Lbl_Movimiento.TabIndex = 20;
-            this.Lbl_Movimiento.Text = "Movimiento:";
-            // 
-            // Cbo_TipoMovimiento
-            // 
-            this.Cbo_TipoMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cbo_TipoMovimiento.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_TipoMovimiento.FormattingEnabled = true;
-            this.Cbo_TipoMovimiento.Location = new System.Drawing.Point(134, 446);
-            this.Cbo_TipoMovimiento.Name = "Cbo_TipoMovimiento";
-            this.Cbo_TipoMovimiento.Size = new System.Drawing.Size(614, 28);
-            this.Cbo_TipoMovimiento.TabIndex = 26;
-            this.Cbo_TipoMovimiento.SelectedIndexChanged += new System.EventHandler(this.Cbo_TipoMovimiento_SelectedIndexChanged);
-            // 
-            // Dgv_MovimientoBancario
-            // 
-            this.Dgv_MovimientoBancario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_MovimientoBancario.Location = new System.Drawing.Point(18, 484);
-            this.Dgv_MovimientoBancario.Name = "Dgv_MovimientoBancario";
-            this.Dgv_MovimientoBancario.RowHeadersWidth = 51;
-            this.Dgv_MovimientoBancario.RowTemplate.Height = 24;
-            this.Dgv_MovimientoBancario.Size = new System.Drawing.Size(1140, 174);
-            this.Dgv_MovimientoBancario.TabIndex = 33;
-            // 
             // Btn_LimpiarCampos
             // 
             this.Btn_LimpiarCampos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -346,28 +294,6 @@ namespace Capa_Vista_CB
             this.Btn_Salir.TabIndex = 42;
             this.Btn_Salir.UseVisualStyleBackColor = true;
             this.Btn_Salir.Click += new System.EventHandler(this.Btn_Salir_Click);
-            // 
-            // Btn_AgregarMovimiento
-            // 
-            this.Btn_AgregarMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_AgregarMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_AgregarMovimiento.Image")));
-            this.Btn_AgregarMovimiento.Location = new System.Drawing.Point(1052, 390);
-            this.Btn_AgregarMovimiento.Name = "Btn_AgregarMovimiento";
-            this.Btn_AgregarMovimiento.Size = new System.Drawing.Size(50, 50);
-            this.Btn_AgregarMovimiento.TabIndex = 45;
-            this.Btn_AgregarMovimiento.UseVisualStyleBackColor = true;
-            this.Btn_AgregarMovimiento.Click += new System.EventHandler(this.Btn_AgregarMovimiento_Click);
-            // 
-            // Btn_EliminarMovimiento
-            // 
-            this.Btn_EliminarMovimiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_EliminarMovimiento.Image = ((System.Drawing.Image)(resources.GetObject("Btn_EliminarMovimiento.Image")));
-            this.Btn_EliminarMovimiento.Location = new System.Drawing.Point(1108, 390);
-            this.Btn_EliminarMovimiento.Name = "Btn_EliminarMovimiento";
-            this.Btn_EliminarMovimiento.Size = new System.Drawing.Size(50, 50);
-            this.Btn_EliminarMovimiento.TabIndex = 46;
-            this.Btn_EliminarMovimiento.UseVisualStyleBackColor = true;
-            this.Btn_EliminarMovimiento.Click += new System.EventHandler(this.Btn_EliminarMovimiento_Click);
             // 
             // Btn_Ayuda
             // 
@@ -423,32 +349,11 @@ namespace Capa_Vista_CB
             this.Chk_Estado.UseVisualStyleBackColor = true;
             this.Chk_Estado.CheckedChanged += new System.EventHandler(this.Chk_Estado_CheckedChanged);
             // 
-            // Gpb_ConciliacionesAgregadas
-            // 
-            this.Gpb_ConciliacionesAgregadas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
-            this.Gpb_ConciliacionesAgregadas.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_ConciliacionesAgregadas.Location = new System.Drawing.Point(18, 674);
-            this.Gpb_ConciliacionesAgregadas.Name = "Gpb_ConciliacionesAgregadas";
-            this.Gpb_ConciliacionesAgregadas.Size = new System.Drawing.Size(1140, 25);
-            this.Gpb_ConciliacionesAgregadas.TabIndex = 11;
-            this.Gpb_ConciliacionesAgregadas.TabStop = false;
-            this.Gpb_ConciliacionesAgregadas.Text = "Conciliaciones Agregadas";
-            // 
-            // Dgv_ConciliacionesAgregadas
-            // 
-            this.Dgv_ConciliacionesAgregadas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_ConciliacionesAgregadas.Location = new System.Drawing.Point(18, 705);
-            this.Dgv_ConciliacionesAgregadas.Name = "Dgv_ConciliacionesAgregadas";
-            this.Dgv_ConciliacionesAgregadas.RowHeadersWidth = 51;
-            this.Dgv_ConciliacionesAgregadas.RowTemplate.Height = 24;
-            this.Dgv_ConciliacionesAgregadas.Size = new System.Drawing.Size(1140, 174);
-            this.Dgv_ConciliacionesAgregadas.TabIndex = 49;
-            // 
             // Gpb_Fin
             // 
             this.Gpb_Fin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
             this.Gpb_Fin.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Fin.Location = new System.Drawing.Point(18, 885);
+            this.Gpb_Fin.Location = new System.Drawing.Point(9, 416);
             this.Gpb_Fin.Name = "Gpb_Fin";
             this.Gpb_Fin.Size = new System.Drawing.Size(1140, 25);
             this.Gpb_Fin.TabIndex = 12;
@@ -459,23 +364,15 @@ namespace Capa_Vista_CB
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1182, 942);
+            this.ClientSize = new System.Drawing.Size(1182, 453);
             this.Controls.Add(this.Gpb_Fin);
-            this.Controls.Add(this.Dgv_ConciliacionesAgregadas);
-            this.Controls.Add(this.Gpb_ConciliacionesAgregadas);
             this.Controls.Add(this.Cbo_Cuenta);
             this.Controls.Add(this.Lbl_Cuenta);
-            this.Controls.Add(this.Btn_EliminarMovimiento);
-            this.Controls.Add(this.Btn_AgregarMovimiento);
             this.Controls.Add(this.Btn_Ayuda);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_BuscarConciliacion);
             this.Controls.Add(this.Btn_Guardar);
             this.Controls.Add(this.Btn_LimpiarCampos);
-            this.Controls.Add(this.Dgv_MovimientoBancario);
-            this.Controls.Add(this.Cbo_TipoMovimiento);
-            this.Controls.Add(this.Lbl_Movimiento);
-            this.Controls.Add(this.Gpb_MovimientoBancario);
             this.Controls.Add(this.Chk_Estado);
             this.Controls.Add(this.Txt_Observaciones);
             this.Controls.Add(this.Txt_Diferencias);
@@ -501,8 +398,6 @@ namespace Capa_Vista_CB
             this.Name = "Frm_ConciliacionBancaria";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_ConciliacionBancaria";
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_MovimientoBancario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dgv_ConciliacionesAgregadas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -528,23 +423,15 @@ namespace Capa_Vista_CB
         private System.Windows.Forms.TextBox Txt_SaldoBanco;
         private System.Windows.Forms.TextBox Txt_Diferencias;
         private System.Windows.Forms.TextBox Txt_Observaciones;
-        private System.Windows.Forms.GroupBox Gpb_MovimientoBancario;
-        private System.Windows.Forms.Label Lbl_Movimiento;
-        private System.Windows.Forms.ComboBox Cbo_TipoMovimiento;
-        private System.Windows.Forms.DataGridView Dgv_MovimientoBancario;
         private System.Windows.Forms.Button Btn_LimpiarCampos;
         private System.Windows.Forms.Button Btn_Guardar;
         private System.Windows.Forms.Button Btn_BuscarConciliacion;
         private System.Windows.Forms.Button Btn_Salir;
-        private System.Windows.Forms.Button Btn_AgregarMovimiento;
-        private System.Windows.Forms.Button Btn_EliminarMovimiento;
         private System.Windows.Forms.Button Btn_Ayuda;
         private System.Windows.Forms.Label Lbl_Cuenta;
         private System.Windows.Forms.ComboBox Cbo_Cuenta;
         private System.Windows.Forms.Label Lbl_Estado;
         private System.Windows.Forms.CheckBox Chk_Estado;
-        private System.Windows.Forms.GroupBox Gpb_ConciliacionesAgregadas;
-        private System.Windows.Forms.DataGridView Dgv_ConciliacionesAgregadas;
         private System.Windows.Forms.GroupBox Gpb_Fin;
     }
 }
