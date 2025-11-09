@@ -16,7 +16,7 @@ namespace Exe_Ordenes
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Capa_Vista_Ordenes.Frm_Ordenes());
+            Application.Run(new Capa_Vista_Ordenes.Frm_Ordenes_Compra());
         }
     }
 }

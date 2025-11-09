@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E340AE1A-C2A4-4D6F-8F49-669B9EB86BF0}</ProjectGuid>
+    <ProjectGuid>{1A781FB5-2C17-460C-AE5B-00AD041631EA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capa_Controlador_Ordenes</RootNamespace>
-    <AssemblyName>Capa_Controlador_Ordenes</AssemblyName>
+    <RootNamespace>Capa_Modelo_TipoDeCambio</RootNamespace>
+    <AssemblyName>Capa_Modelo_TipoDeCambio</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Modelo_Ordenes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Capa_Modelo_Ordenes\bin\Debug\Capa_Modelo_Ordenes.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cls_Controlador_Ordenes.cs" />
+    <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_Sentencias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
