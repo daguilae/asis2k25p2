@@ -30,9 +30,7 @@ namespace Capa_Vista_Cheques
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Cheques));
-            this.Txt_planilla = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.Txt_Banco = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.lbl_titulo = new System.Windows.Forms.Label();
@@ -50,16 +48,9 @@ namespace Capa_Vista_Cheques
             this.label7 = new System.Windows.Forms.Label();
             this.Txt_Valor = new System.Windows.Forms.TextBox();
             this.dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
+            this.Cmb_CodigoCuenta = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Txt_planilla
-            // 
-            this.Txt_planilla.Location = new System.Drawing.Point(318, 126);
-            this.Txt_planilla.Name = "Txt_planilla";
-            this.Txt_planilla.Size = new System.Drawing.Size(143, 22);
-            this.Txt_planilla.TabIndex = 109;
-            this.Txt_planilla.TextChanged += new System.EventHandler(this.Txt_planilla_TextChanged);
             // 
             // label3
             // 
@@ -67,24 +58,15 @@ namespace Capa_Vista_Cheques
             this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(27, 126);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 24);
+            this.label3.Size = new System.Drawing.Size(0, 24);
             this.label3.TabIndex = 108;
-            this.label3.Text = "Número de planilla (Lote):";
             this.label3.Click += new System.EventHandler(this.label3_Click);
-            // 
-            // Txt_Banco
-            // 
-            this.Txt_Banco.Location = new System.Drawing.Point(318, 173);
-            this.Txt_Banco.Name = "Txt_Banco";
-            this.Txt_Banco.Size = new System.Drawing.Size(143, 22);
-            this.Txt_Banco.TabIndex = 107;
-            this.Txt_Banco.TextChanged += new System.EventHandler(this.Txt_Banco_TextChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(27, 171);
+            this.label1.Location = new System.Drawing.Point(33, 126);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 24);
             this.label1.TabIndex = 106;
@@ -247,16 +229,25 @@ namespace Capa_Vista_Cheques
             // 
             // dtp_FechaPago
             // 
-            this.dtp_FechaPago.Location = new System.Drawing.Point(318, 80);
+            this.dtp_FechaPago.Location = new System.Drawing.Point(207, 80);
             this.dtp_FechaPago.Name = "dtp_FechaPago";
             this.dtp_FechaPago.Size = new System.Drawing.Size(266, 22);
             this.dtp_FechaPago.TabIndex = 125;
+            // 
+            // Cmb_CodigoCuenta
+            // 
+            this.Cmb_CodigoCuenta.FormattingEnabled = true;
+            this.Cmb_CodigoCuenta.Location = new System.Drawing.Point(207, 128);
+            this.Cmb_CodigoCuenta.Name = "Cmb_CodigoCuenta";
+            this.Cmb_CodigoCuenta.Size = new System.Drawing.Size(554, 24);
+            this.Cmb_CodigoCuenta.TabIndex = 126;
             // 
             // Frm_Cheques
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(907, 575);
+            this.Controls.Add(this.Cmb_CodigoCuenta);
             this.Controls.Add(this.dtp_FechaPago);
             this.Controls.Add(this.Txt_Valor);
             this.Controls.Add(this.label7);
@@ -270,14 +261,13 @@ namespace Capa_Vista_Cheques
             this.Controls.Add(this.btn_Generar_Cheque);
             this.Controls.Add(this.Btn_Cargar);
             this.Controls.Add(this.dgv_Cheques);
-            this.Controls.Add(this.Txt_planilla);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.Txt_Banco);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Lbl_Fecha);
             this.Controls.Add(this.lbl_titulo);
             this.Name = "Frm_Cheques";
             this.Text = "Frm_Cheques";
+            this.Load += new System.EventHandler(this.Frm_Cheques_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -285,9 +275,7 @@ namespace Capa_Vista_Cheques
         }
 
         #endregion
-        private System.Windows.Forms.TextBox Txt_planilla;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Txt_Banco;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Label lbl_titulo;
@@ -305,5 +293,6 @@ namespace Capa_Vista_Cheques
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox Txt_Valor;
         private System.Windows.Forms.DateTimePicker dtp_FechaPago;
+        private System.Windows.Forms.ComboBox Cmb_CodigoCuenta;
     }
 }

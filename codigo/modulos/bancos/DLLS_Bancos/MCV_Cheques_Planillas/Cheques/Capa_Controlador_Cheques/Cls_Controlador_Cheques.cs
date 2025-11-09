@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.Odbc;
 using Capa_Modelo_Cheques;
+//REALIZADO POR ROCIO LOPEZ 
+
 
 namespace Capa_Controlador_Cheques
 {
@@ -39,31 +41,42 @@ namespace Capa_Controlador_Cheques
 
 
         // 🔹 Generar todos los cheques
-        public bool GenerarChequesCompletos(string usuario, int idLote, List<Empleado> empleados)
+        public bool GenerarChequesCompletos(string usuario, int idLote, int idBanco, List<Empleado> empleados)
         {
             try
             {
                 foreach (var emp in empleados)
                 {
-                    sn.InsertarCheque(idLote, emp.NumeroCheque, emp.Nombre, emp.MontoPagar);
+                    sn.InsertarCheque(idLote, emp.NumeroCheque, emp.Nombre, emp.MontoPagar, idBanco);
                 }
 
                 sn.ActualizarTotal(idLote);
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
+                Console.WriteLine("Error GenerarChequesCompletos: " + ex.Message);
                 return false;
             }
         }
-
-
-
-        public int GenerarLoteCheques(string usuario)
+        public DataTable CargarCuentasBancarias()
         {
-            return sn.InsertarLote(usuario);
+            return sn.ObtenerCuentasBancarias();
         }
 
+        public DataTable ObtenerListaBancos()
+        {
+            return sn.ObtenerBancosContabilidad();
+        }
+
+        public bool ProbarInsertCheque()
+        {
+            return sn.InsertarChequePrueba();
+        }
+        public DataTable ObtenerLotes()
+        {
+            return sn.ObtenerLotes();
+        }
 
     }
 }

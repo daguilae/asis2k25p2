@@ -10,7 +10,10 @@ using System.Windows.Forms;
 
 using Capa_Controlador_Cheques;
 using System.Data;
+using System.Data;
+using System.Data.Odbc;
 
+//REALIZADO POR ROCIO LOPEZ 
 
 namespace Capa_Vista_Cheques
 {
@@ -35,6 +38,16 @@ namespace Capa_Vista_Cheques
 
         private void Btn_Cargar_Click(object sender, EventArgs e)
         {
+            //  Validar banco seleccionado ANTES de hacer lote
+            if (Cmb_CodigoCuenta.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un banco antes de cargar los datos.",
+                                "Banco requerido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
             Cls_Controlador_Cheques ctrl = new Cls_Controlador_Cheques();
 
             // Obtener empleados simulados
@@ -88,33 +101,58 @@ namespace Capa_Vista_Cheques
         {
 
         }
-
+//esto solo es una prueba 
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
+              try
+                {
+                    using (OdbcConnection cn = new OdbcConnection("Dsn=Bd_Hoteleria"))
+                    {
+                        cn.Open();
+                        OdbcCommand cmd = new OdbcCommand(
+                            "INSERT INTO Tbl_DetalleLoteCheques (Fk_Id_Lote, Cmp_NumeroCheque, Cmp_NombreEmpleado, Cmp_Monto) " +
+                            "VALUES (1, 9999, 'PRUEBA', 123.45)", cn);
 
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("✅ Insert PRUEBA completado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("❌ ERROR MySQL: " + ex.Message);
+                }
+            
         }
+
 
         private void btn_Generar_Cheque_Click(object sender, EventArgs e)
         {
-            var controlador = new Cls_Controlador_Cheques();
+            // 1. Validar banco seleccionado
+            if (Cmb_CodigoCuenta.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un banco antes de generar los cheques.",
+                                "Banco requerido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // ❌ Bloquea la operación
+            }
 
-            // 1. Obtener empleados (o desde nómina después)
-            List<Empleado> empleados = controlador.ObtenerEmpleadosSimulados();
+            //  Si sí seleccionó banco, seguimos
+            int idBanco = Convert.ToInt32(Cmb_CodigoCuenta.SelectedValue);
 
-            // 2. Crear lote
-            int idLote = controlador.CrearLote("Rocio");
+            Cls_Controlador_Cheques control = new Cls_Controlador_Cheques();
 
-            // 3. Generar cheques
-            controlador.GenerarChequesCompletos("Rocio", idLote, empleados);
+            // empleados simulados
+            List<Empleado> empleados = control.ObtenerEmpleadosSimulados();
 
-            // 4. Mostrar en DataGridView
-            dgv_Cheques.DataSource = empleados;
-
-            MessageBox.Show("✅ Cheques generados correctamente.\nLote ID: " + idLote);
-
-
+            int idLote = control.CrearLote("Rocio");
+            control.GenerarChequesCompletos("Rocio", idLote, idBanco, empleados);
+            MessageBox.Show("✅ Cheques generados");
 
         }
+
+
 
         private void Txt_Valor_TextChanged(object sender, EventArgs e)
         {
@@ -136,20 +174,6 @@ namespace Capa_Vista_Cheques
 
         }
 
-        private void Txt_Moneda_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Lbl_Moneda_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Fecha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void Lbl_Fecha_Click(object sender, EventArgs e)
         {
@@ -159,6 +183,22 @@ namespace Capa_Vista_Cheques
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Frm_Cheques_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable bancos = cn.ObtenerListaBancos();
+                Cmb_CodigoCuenta.DataSource = bancos;
+                Cmb_CodigoCuenta.DisplayMember = "Banco"; // lo que ve el usuario
+                Cmb_CodigoCuenta.ValueMember = "ID";      // valor real
+                Cmb_CodigoCuenta.SelectedIndex = -1;      // nada seleccionado
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los bancos: " + ex.Message);
+            }
         }
     }
 }

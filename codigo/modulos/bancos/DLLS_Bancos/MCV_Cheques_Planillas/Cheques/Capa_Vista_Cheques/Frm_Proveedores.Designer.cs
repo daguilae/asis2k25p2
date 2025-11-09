@@ -41,15 +41,14 @@ namespace Capa_Vista_Cheques
             this.btn_imprimir = new System.Windows.Forms.Button();
             this.btn_Generar_Cheque = new System.Windows.Forms.Button();
             this.Btn_Cargar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Txt_planilla = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.Txt_Banco = new System.Windows.Forms.TextBox();
+            this.dgv_Cheques = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.Txt_Fecha = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Cmb_CodigoCuenta = new System.Windows.Forms.ComboBox();
+            this.dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
+            this.txt_lote = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).BeginInit();
             this.SuspendLayout();
             // 
             // Txt_Valor
@@ -151,6 +150,7 @@ namespace Capa_Vista_Cheques
             this.btn_Generar_Cheque.Size = new System.Drawing.Size(56, 51);
             this.btn_Generar_Cheque.TabIndex = 136;
             this.btn_Generar_Cheque.UseVisualStyleBackColor = true;
+            this.btn_Generar_Cheque.Click += new System.EventHandler(this.btn_Generar_Cheque_Click);
             // 
             // Btn_Cargar
             // 
@@ -161,57 +161,27 @@ namespace Capa_Vista_Cheques
             this.Btn_Cargar.Size = new System.Drawing.Size(56, 51);
             this.Btn_Cargar.TabIndex = 135;
             this.Btn_Cargar.UseVisualStyleBackColor = true;
+            this.Btn_Cargar.Click += new System.EventHandler(this.Btn_Cargar_Click);
             // 
-            // dataGridView1
+            // dgv_Cheques
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 355);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(824, 162);
-            this.dataGridView1.TabIndex = 134;
-            // 
-            // Txt_planilla
-            // 
-            this.Txt_planilla.Location = new System.Drawing.Point(316, 122);
-            this.Txt_planilla.Name = "Txt_planilla";
-            this.Txt_planilla.Size = new System.Drawing.Size(143, 22);
-            this.Txt_planilla.TabIndex = 133;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 122);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(243, 24);
-            this.label3.TabIndex = 132;
-            this.label3.Text = "Número de planilla (Lote):";
-            // 
-            // Txt_Banco
-            // 
-            this.Txt_Banco.Location = new System.Drawing.Point(316, 169);
-            this.Txt_Banco.Name = "Txt_Banco";
-            this.Txt_Banco.Size = new System.Drawing.Size(143, 22);
-            this.Txt_Banco.TabIndex = 131;
+            this.dgv_Cheques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Cheques.Location = new System.Drawing.Point(29, 355);
+            this.dgv_Cheques.Name = "dgv_Cheques";
+            this.dgv_Cheques.RowHeadersWidth = 51;
+            this.dgv_Cheques.RowTemplate.Height = 24;
+            this.dgv_Cheques.Size = new System.Drawing.Size(824, 162);
+            this.dgv_Cheques.TabIndex = 134;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft JhengHei", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 167);
+            this.label1.Location = new System.Drawing.Point(25, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(139, 24);
             this.label1.TabIndex = 130;
             this.label1.Text = "Banco Cuenta:";
-            // 
-            // Txt_Fecha
-            // 
-            this.Txt_Fecha.Location = new System.Drawing.Point(316, 76);
-            this.Txt_Fecha.Name = "Txt_Fecha";
-            this.Txt_Fecha.Size = new System.Drawing.Size(143, 22);
-            this.Txt_Fecha.TabIndex = 127;
             // 
             // Lbl_Fecha
             // 
@@ -233,11 +203,36 @@ namespace Capa_Vista_Cheques
             this.label2.TabIndex = 125;
             this.label2.Text = "Generacion de Cheques Proveedores";
             // 
+            // Cmb_CodigoCuenta
+            // 
+            this.Cmb_CodigoCuenta.FormattingEnabled = true;
+            this.Cmb_CodigoCuenta.Location = new System.Drawing.Point(205, 129);
+            this.Cmb_CodigoCuenta.Name = "Cmb_CodigoCuenta";
+            this.Cmb_CodigoCuenta.Size = new System.Drawing.Size(554, 24);
+            this.Cmb_CodigoCuenta.TabIndex = 146;
+            // 
+            // dtp_FechaPago
+            // 
+            this.dtp_FechaPago.Location = new System.Drawing.Point(205, 76);
+            this.dtp_FechaPago.Name = "dtp_FechaPago";
+            this.dtp_FechaPago.Size = new System.Drawing.Size(266, 22);
+            this.dtp_FechaPago.TabIndex = 147;
+            // 
+            // txt_lote
+            // 
+            this.txt_lote.Location = new System.Drawing.Point(30, 201);
+            this.txt_lote.Name = "txt_lote";
+            this.txt_lote.Size = new System.Drawing.Size(162, 22);
+            this.txt_lote.TabIndex = 148;
+            // 
             // Frm_Proveedores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(904, 567);
+            this.Controls.Add(this.txt_lote);
+            this.Controls.Add(this.dtp_FechaPago);
+            this.Controls.Add(this.Cmb_CodigoCuenta);
             this.Controls.Add(this.Txt_Valor);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -249,17 +244,14 @@ namespace Capa_Vista_Cheques
             this.Controls.Add(this.btn_imprimir);
             this.Controls.Add(this.btn_Generar_Cheque);
             this.Controls.Add(this.Btn_Cargar);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.Txt_planilla);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.Txt_Banco);
+            this.Controls.Add(this.dgv_Cheques);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Txt_Fecha);
             this.Controls.Add(this.Lbl_Fecha);
             this.Controls.Add(this.label2);
             this.Name = "Frm_Proveedores";
             this.Text = "Frm_Proveedores";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Frm_Proveedores_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Cheques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,13 +270,12 @@ namespace Capa_Vista_Cheques
         private System.Windows.Forms.Button btn_imprimir;
         private System.Windows.Forms.Button btn_Generar_Cheque;
         private System.Windows.Forms.Button Btn_Cargar;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox Txt_planilla;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox Txt_Banco;
+        private System.Windows.Forms.DataGridView dgv_Cheques;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox Txt_Fecha;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox Cmb_CodigoCuenta;
+        private System.Windows.Forms.DateTimePicker dtp_FechaPago;
+        private System.Windows.Forms.TextBox txt_lote;
     }
 }
