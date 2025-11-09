@@ -63,14 +63,6 @@ namespace Capa_Vista_Hoteleria
         }
 
         // --- Handlers adaptados para abrir formularios como hijos MDI ---
-        private void seguridadToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            // Mantengo el comportamiento original: ocultar MDI y abrir Frm_Seguridad como diálogo modal
-            this.Hide();
-            Frm_Seguridad seguridad = new Frm_Seguridad();
-            seguridad.ShowDialog();
-            this.Show();
-        }
 
         private void polizaContableToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -214,6 +206,14 @@ namespace Capa_Vista_Hoteleria
             Frm_Pago Pago = new Frm_Pago();
             Pago.MdiParent = this;
             Pago.Show();
+        }
+
+        private void foliosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CerrarFormulariosHijos();
+            Frm_Detalle_Folio folios = new Frm_Detalle_Folio();
+            folios.MdiParent = this;
+            folios.Show();
         }
     }
 }

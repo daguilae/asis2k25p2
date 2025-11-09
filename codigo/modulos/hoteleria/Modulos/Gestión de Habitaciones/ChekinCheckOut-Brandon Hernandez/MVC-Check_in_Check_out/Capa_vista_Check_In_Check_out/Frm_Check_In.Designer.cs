@@ -297,12 +297,13 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.TabIndex = 18;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Frm_Check_In
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1418, 820);
+            this.ClientSize = new System.Drawing.Size(1421, 845);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Btn_Cancelar);
