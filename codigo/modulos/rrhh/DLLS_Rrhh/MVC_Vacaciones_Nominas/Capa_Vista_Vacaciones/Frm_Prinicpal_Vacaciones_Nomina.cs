@@ -1,4 +1,9 @@
-﻿using System;
+﻿// Nombre: Jose Pablo Medina González
+// Carné: 0901-22-2592
+// Fecha de modificación: 2025-11-09
+// Descripción: UserControl principal para búsqueda y CRUD de vacaciones.
+
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Windows.Forms;
@@ -7,11 +12,11 @@ using Capa_Modelo_Vacaciones;
 
 namespace Capa_Vista_Vacaciones
 {
-    public partial class ucVacaciones : UserControl
+    public partial class Frm_Prinicpal_Vacaciones_Nomina : UserControl
     {
-        private readonly Controlador controlador = new Controlador();
+        private readonly Controlador _controlador = new Controlador();
 
-        public ucVacaciones()
+        public Frm_Prinicpal_Vacaciones_Nomina()
         {
             InitializeComponent();
             CargarEmpleados();
@@ -47,43 +52,40 @@ namespace Capa_Vista_Vacaciones
         {
             if (Cbo_NombreE.SelectedValue != null && int.TryParse(Cbo_NombreE.SelectedValue.ToString(), out int id))
             {
-                Dvg_HoraE.DataSource = controlador.BuscarVacaciones(id);
+                Dgv_HoraE.DataSource = _controlador.BuscarVacaciones(id);
                 RenombrarColumnas();
             }
         }
 
         private void RenombrarColumnas()
         {
-            if (Dvg_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
-                Dvg_HoraE.Columns["Cmp_iId_Vacacion"].HeaderText = "ID Vacación";
-            if (Dvg_HoraE.Columns.Contains("Cmp_iId_Empleado"))
-                Dvg_HoraE.Columns["Cmp_iId_Empleado"].HeaderText = "ID Empleado";
-            if (Dvg_HoraE.Columns.Contains("Cmp_dFechaInicio_Vacacion"))
-                Dvg_HoraE.Columns["Cmp_dFechaInicio_Vacacion"].HeaderText = "Fecha Inicio";
-            if (Dvg_HoraE.Columns.Contains("Cmp_dFechaFin_Vacacion"))
-                Dvg_HoraE.Columns["Cmp_dFechaFin_Vacacion"].HeaderText = "Fecha Fin";
-            if (Dvg_HoraE.Columns.Contains("Cmp_iDias_Vacacion"))
-                Dvg_HoraE.Columns["Cmp_iDias_Vacacion"].HeaderText = "Días";
-            if (Dvg_HoraE.Columns.Contains("Cmp_bAprobada_Vacacion"))
-                Dvg_HoraE.Columns["Cmp_bAprobada_Vacacion"].HeaderText = "Aprobada";
+            if (Dgv_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
+                Dgv_HoraE.Columns["Cmp_iId_Vacacion"].HeaderText = "ID Vacación";
+            if (Dgv_HoraE.Columns.Contains("Cmp_iId_Empleado"))
+                Dgv_HoraE.Columns["Cmp_iId_Empleado"].HeaderText = "ID Empleado";
+            if (Dgv_HoraE.Columns.Contains("Cmp_dFechaInicio_Vacacion"))
+                Dgv_HoraE.Columns["Cmp_dFechaInicio_Vacacion"].HeaderText = "Fecha Inicio";
+            if (Dgv_HoraE.Columns.Contains("Cmp_dFechaFin_Vacacion"))
+                Dgv_HoraE.Columns["Cmp_dFechaFin_Vacacion"].HeaderText = "Fecha Fin";
+            if (Dgv_HoraE.Columns.Contains("Cmp_iDias_Vacacion"))
+                Dgv_HoraE.Columns["Cmp_iDias_Vacacion"].HeaderText = "Días";
+            if (Dgv_HoraE.Columns.Contains("Cmp_bAprobada_Vacacion"))
+                Dgv_HoraE.Columns["Cmp_bAprobada_Vacacion"].HeaderText = "Aprobada";
         }
 
-        private void Btn_buscar_Click(object sender, EventArgs e)
-        {
-            RefrescarGridEmpleadoActual();
-        }
+        private void Btn_buscar_Click(object sender, EventArgs e) => RefrescarGridEmpleadoActual();
 
         private void Btn_Soli_Click(object sender, EventArgs e)
         {
-            var formSolicitar = new SolicitarVacaciones();
+            var formSolicitar = new Frm_Solicitar_Vacaciones_Nomina();
             formSolicitar.FormClosed += (s, args) => RefrescarGridEmpleadoActual();
             formSolicitar.Show();
         }
 
         private void Btn_Modificar_Click(object sender, EventArgs e)
         {
-            var row = Dvg_HoraE.CurrentRow ?? (Dvg_HoraE.SelectedRows.Count > 0 ? Dvg_HoraE.SelectedRows[0] : null);
-            if (row == null || !Dvg_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
+            var row = Dgv_HoraE.CurrentRow ?? (Dgv_HoraE.SelectedRows.Count > 0 ? Dgv_HoraE.SelectedRows[0] : null);
+            if (row == null || !Dgv_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
             {
                 MessageBox.Show("Seleccione una vacación válida.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -97,15 +99,15 @@ namespace Capa_Vista_Vacaciones
                 return;
             }
 
-            var formEditar = new EditarVacaciones(idVacacion);
+            var formEditar = new Frm_Editar_Vacaciones_Nomina(idVacacion);
             formEditar.FormClosed += (s, args) => RefrescarGridEmpleadoActual();
             formEditar.Show();
         }
 
         private void Btn_Eliminar_Click(object sender, EventArgs e)
         {
-            var row = Dvg_HoraE.CurrentRow ?? (Dvg_HoraE.SelectedRows.Count > 0 ? Dvg_HoraE.SelectedRows[0] : null);
-            if (row == null || !Dvg_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
+            var row = Dgv_HoraE.CurrentRow ?? (Dgv_HoraE.SelectedRows.Count > 0 ? Dgv_HoraE.SelectedRows[0] : null);
+            if (row == null || !Dgv_HoraE.Columns.Contains("Cmp_iId_Vacacion"))
             {
                 MessageBox.Show("Seleccione una vacación válida.", "Advertencia",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -122,7 +124,7 @@ namespace Capa_Vista_Vacaciones
             if (MessageBox.Show("¿Eliminar esta vacación?", "Confirmar",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                string resultado = controlador.EliminarVacacion(idVacacion);
+                string resultado = _controlador.EliminarVacacion(idVacacion);
                 MessageBox.Show(resultado, "Resultado", MessageBoxButtons.OK,
                     resultado.Contains("correctamente") ? MessageBoxIcon.Information : MessageBoxIcon.Error);
 
@@ -132,6 +134,6 @@ namespace Capa_Vista_Vacaciones
         }
 
         private void ucVacaciones_Load(object sender, EventArgs e) { }
-        private void Dvg_HoraE_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void Dgv_HoraE_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
     }
 }

@@ -50,35 +50,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditarVacaciones.cs">
+    <Compile Include="Frm_Editar_Vacaciones_Nomina.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="EditarVacaciones.Designer.cs">
-      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    <Compile Include="Frm_Editar_Vacaciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Editar_Vacaciones_Nomina.cs</DependentUpon>
     </Compile>
-    <Compile Include="SolicitarVacaciones.cs">
+    <Compile Include="Frm_Solicitar_Vacaciones_Nomina.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SolicitarVacaciones.Designer.cs">
-      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    <Compile Include="Frm_Solicitar_Vacaciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Solicitar_Vacaciones_Nomina.cs</DependentUpon>
     </Compile>
-    <Compile Include="ucVacaciones.cs">
+    <Compile Include="Frm_Prinicpal_Vacaciones_Nomina.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ucVacaciones.Designer.cs">
-      <DependentUpon>ucVacaciones.cs</DependentUpon>
+    <Compile Include="Frm_Prinicpal_Vacaciones_Nomina.Designer.cs">
+      <DependentUpon>Frm_Prinicpal_Vacaciones_Nomina.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="EditarVacaciones.resx">
-      <DependentUpon>EditarVacaciones.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Editar_Vacaciones_Nomina.resx">
+      <DependentUpon>Frm_Editar_Vacaciones_Nomina.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SolicitarVacaciones.resx">
-      <DependentUpon>SolicitarVacaciones.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Solicitar_Vacaciones_Nomina.resx">
+      <DependentUpon>Frm_Solicitar_Vacaciones_Nomina.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucVacaciones.resx">
-      <DependentUpon>ucVacaciones.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_Prinicpal_Vacaciones_Nomina.resx">
+      <DependentUpon>Frm_Prinicpal_Vacaciones_Nomina.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
