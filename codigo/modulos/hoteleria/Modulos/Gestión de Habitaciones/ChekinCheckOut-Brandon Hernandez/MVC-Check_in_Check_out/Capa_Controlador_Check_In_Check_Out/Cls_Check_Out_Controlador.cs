@@ -11,7 +11,46 @@ namespace Capa_Controlador_Check_In_Check_Out
         private readonly Cls_Check_Out_Dao prDao = new Cls_Check_Out_Dao();
         private readonly Cls_Conexion prConexion = new Cls_Conexion();
 
-        // Valida que el Check-Out sea coherente con el Check-In
+  
+        private void CambiarEstadoHabitacion(int iIdHabitacion, OdbcConnection conn)
+        {
+            try
+            {
+                string querySelect = "SELECT Cmp_Estado_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
+                int estadoActual = 0;
+
+                using (OdbcCommand cmdSelect = new OdbcCommand(querySelect, conn))
+                {
+                    cmdSelect.Parameters.AddWithValue("?", iIdHabitacion);
+                    object result = cmdSelect.ExecuteScalar();
+                    if (result == null || result == DBNull.Value)
+                        return;
+
+                    estadoActual = Convert.ToInt32(result);
+                }
+
+                // Si está ocupada (1), la dejamos disponible (0)
+                if (estadoActual == 1)
+                {
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(
+                        "UPDATE Tbl_Habitaciones SET Cmp_Estado_Habitacion = 0 WHERE Pk_Id_Habitaciones = ?;", conn))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("?", iIdHabitacion);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al actualizar el estado de la habitación: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        // VALIDACIÓN DE CHECK-OUT COMPLETO
+      
         public bool fun_Validar_CheckOutCompleto(
             int iIdCheckIn,
             DateTime dFechaCheckOut,
@@ -31,7 +70,6 @@ namespace Capa_Controlador_Check_In_Check_Out
             {
                 using (OdbcConnection conn = prConexion.conexion())
                 {
-                    // Verificar existencia del Check-In
                     string sQueryCheckIn = @"
                         SELECT CI.Cmp_Fecha_Check_In, CI.Fk_Id_Huesped, R.Fk_Id_Habitacion
                         FROM Tbl_Check_In CI
@@ -73,19 +111,17 @@ namespace Capa_Controlador_Check_In_Check_Out
                         iIdFolio = Convert.ToInt32(oResultado);
                     }
 
-                    // Validar fechas
+                    // Validaciones de fecha
                     if (dFechaCheckOut == default)
                     {
                         sMensaje = "Debe ingresar una fecha válida para el Check-Out.";
                         return false;
                     }
-
                     if (dFechaCheckOut < dFechaCheckIn)
                     {
                         sMensaje = $"La fecha de Check-Out ({dFechaCheckOut:dd/MM/yyyy}) no puede ser anterior al Check-In ({dFechaCheckIn:dd/MM/yyyy}).";
                         return false;
                     }
-
                     if (iIdHabitacion <= 0)
                     {
                         sMensaje = "No se encontró una habitación asociada al Check-In.";
@@ -102,6 +138,7 @@ namespace Capa_Controlador_Check_In_Check_Out
             return true;
         }
 
+
         public bool pro_Registrar_CheckOut_Con_Folio(int iIdCheckIn, DateTime dFechaCheckOut)
         {
             if (!fun_Validar_CheckOutCompleto(iIdCheckIn, dFechaCheckOut, out string sMensajeValidacion,
@@ -117,9 +154,9 @@ namespace Capa_Controlador_Check_In_Check_Out
             {
                 try
                 {
-                    // ===================================================
-                    // 1️⃣ Registrar Check-Out
-                    // ===================================================
+                    
+                    // 1️ Registrar Check-Out
+                 
                     var clsCheckOut = new Cls_Check_Out
                     {
                         iFk_Id_CheckIn = iIdCheckIn,
@@ -133,9 +170,9 @@ namespace Capa_Controlador_Check_In_Check_Out
                         return false;
                     }
 
-                    // ===================================================
-                    // 2️⃣ Calcular tarifas por noche
-                    // ===================================================
+                    // 
+                    // 2️ Calcular tarifas por noche
+             
                     double dTarifaNoche = 0;
                     using (OdbcCommand cmd = new OdbcCommand(
                         "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?", conn))
@@ -150,9 +187,8 @@ namespace Capa_Controlador_Check_In_Check_Out
                     if (iTotalDias <= 0) iTotalDias = 1;
                     double dTotalEstadia = dTarifaNoche * iTotalDias;
 
-                    // ===================================================
-                    // 3️⃣ Verificar impuesto turístico
-                    // ===================================================
+                    // 3️ Verificar impuesto turístico
+                    
                     string sPaisHuesped = "";
                     using (OdbcCommand cmd = new OdbcCommand(
                         "SELECT Cmp_Pais FROM Tbl_Huesped WHERE Pk_Id_Huesped = ?", conn))
@@ -167,9 +203,9 @@ namespace Capa_Controlador_Check_In_Check_Out
                         !sPaisHuesped.Equals("Guatemala", StringComparison.OrdinalIgnoreCase))
                         ? dTotalEstadia * 0.10 : 0;
 
-                    // ===================================================
-                    // 4️⃣ Registrar cargos de estadía por noche
-                    // ===================================================
+             
+                    // 4️ Registrar cargos de estadía por noche
+              
                     for (int i = 0; i < iTotalDias; i++)
                     {
                         DateTime dFechaNoche = dFechaCheckIn.AddDays(i);
@@ -204,9 +240,9 @@ namespace Capa_Controlador_Check_In_Check_Out
                         }
                     }
 
-                    // ===================================================
-                    // 5️⃣ Registrar impuesto turístico (si aplica)
-                    // ===================================================
+                   
+                    // 5️ Registrar impuesto turístico (si aplica)
+                   
                     if (dImpuestoTurismo > 0)
                     {
                         string sInsertImpuesto = @"
@@ -232,9 +268,9 @@ namespace Capa_Controlador_Check_In_Check_Out
                         }
                     }
 
-                    // ===================================================
-                    // 6️⃣ Calcular totales REALES desde Tbl_Area
-                    // ===================================================
+                   
+                    // 6️ Calcular totales REALES desde Tbl_Area
+               
                     double dTotalCargos = 0, dTotalAbonos = 0;
                     using (OdbcCommand cmd = new OdbcCommand(@"
                 SELECT 
@@ -256,9 +292,9 @@ namespace Capa_Controlador_Check_In_Check_Out
 
                     double dTotalFinal = dTotalCargos - dTotalAbonos;
 
-                    // ===================================================
-                    // 7️⃣ Actualizar folio (sin duplicar montos)
-                    // ===================================================
+                  
+                    // 7️ Actualizar folio 
+                   
                     string sUpdateFolio = @"
                 UPDATE Tbl_Folio 
                 SET 
@@ -278,9 +314,9 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdFolio.ExecuteNonQuery();
                     }
 
-                    // ===================================================
-                    // 8️⃣ Finalizar Check-In
-                    // ===================================================
+                   
+                    // 8️ Finalizar Check-In
+                
                     string sUpdateCheckIn = @"
                 UPDATE Tbl_Check_In
                 SET Cmp_Estado = 'Finalizado'
@@ -291,9 +327,13 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdUpdate.ExecuteNonQuery();
                     }
 
-                    // ===================================================
-                    // 9️⃣ Mostrar resumen final
-                    // ===================================================
+                   
+                    // 9️ Cambiar estado de la habitación a DISPONIBLE (0)
+               
+                    CambiarEstadoHabitacion(iIdHabitacion, conn);
+
+                    // 10 Mostrar resumen final
+                  
                     string sMensajeFinal = $"Check-Out completado y Check-In finalizado.\n\n" +
                                            $"Folio: #{iIdFolio}\n" +
                                            $"Tarifa/noche: Q{dTarifaNoche:N2}\n" +
@@ -319,9 +359,9 @@ namespace Capa_Controlador_Check_In_Check_Out
         }
 
 
-        // ===================================================
+        
         // MÉTODO AUXILIAR PARA OBTENER ÚLTIMO ID DE ÁREA
-        // ===================================================
+        
         private int fun_ObtenerUltimoIdArea(OdbcConnection conn)
         {
             using (OdbcCommand cmd = new OdbcCommand("SELECT MAX(Pk_Id_Area) FROM Tbl_Area;", conn))
@@ -331,14 +371,9 @@ namespace Capa_Controlador_Check_In_Check_Out
             }
         }
 
-
-        // Muestra datos de Check-In disponibles
         public DataTable fun_Obtener_CheckIn() => prDao.fun_Obtener_CheckIn();
-
-        // Muestra los Check-Out registrados
         public DataTable fun_Mostrar_CheckOut() => prDao.fun_Mostrar_CheckOut();
 
-        // Actualiza un Check-Out existente y sincroniza la fecha en el folio
         public bool bActualizar_CheckOut(int iIdCheckOut, int iFkCheckIn, DateTime dFecha, out string sMensaje)
         {
             if (iIdCheckOut <= 0)
@@ -390,7 +425,6 @@ namespace Capa_Controlador_Check_In_Check_Out
             return bExito;
         }
 
-        // Elimina un registro de Check-Out
         public bool bEliminar_CheckOut(int iIdCheckOut, out string sMensajeError)
         {
             return prDao.bEliminar_CheckOut(iIdCheckOut, out sMensajeError);

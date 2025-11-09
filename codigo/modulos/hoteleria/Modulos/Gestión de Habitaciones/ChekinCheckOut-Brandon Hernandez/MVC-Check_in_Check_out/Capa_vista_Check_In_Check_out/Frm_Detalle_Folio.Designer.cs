@@ -262,18 +262,18 @@ namespace Capa_vista_Check_In_Check_out
             // Dgv_Movimientos
             // 
             this.Dgv_Movimientos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Movimientos.Location = new System.Drawing.Point(46, 428);
+            this.Dgv_Movimientos.Location = new System.Drawing.Point(13, 437);
             this.Dgv_Movimientos.Name = "Dgv_Movimientos";
             this.Dgv_Movimientos.RowHeadersWidth = 51;
             this.Dgv_Movimientos.RowTemplate.Height = 24;
-            this.Dgv_Movimientos.Size = new System.Drawing.Size(1518, 715);
+            this.Dgv_Movimientos.Size = new System.Drawing.Size(1585, 439);
             this.Dgv_Movimientos.TabIndex = 28;
             // 
             // Lbl_Estado
             // 
             this.Lbl_Estado.AutoSize = true;
             this.Lbl_Estado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado.Location = new System.Drawing.Point(28, 1178);
+            this.Lbl_Estado.Location = new System.Drawing.Point(37, 910);
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(67, 20);
             this.Lbl_Estado.TabIndex = 8;
@@ -281,7 +281,7 @@ namespace Capa_vista_Check_In_Check_out
             // 
             // Txt_Estado
             // 
-            this.Txt_Estado.Location = new System.Drawing.Point(132, 1176);
+            this.Txt_Estado.Location = new System.Drawing.Point(157, 908);
             this.Txt_Estado.Name = "Txt_Estado";
             this.Txt_Estado.Size = new System.Drawing.Size(341, 22);
             this.Txt_Estado.TabIndex = 30;
@@ -290,7 +290,7 @@ namespace Capa_vista_Check_In_Check_out
             // 
             this.Lbl_Total.AutoSize = true;
             this.Lbl_Total.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Total.Location = new System.Drawing.Point(1247, 1176);
+            this.Lbl_Total.Location = new System.Drawing.Point(1261, 900);
             this.Lbl_Total.Name = "Lbl_Total";
             this.Lbl_Total.Size = new System.Drawing.Size(48, 20);
             this.Lbl_Total.TabIndex = 31;
@@ -298,7 +298,7 @@ namespace Capa_vista_Check_In_Check_out
             // 
             // Txt_Total
             // 
-            this.Txt_Total.Location = new System.Drawing.Point(1325, 1174);
+            this.Txt_Total.Location = new System.Drawing.Point(1338, 898);
             this.Txt_Total.Name = "Txt_Total";
             this.Txt_Total.Size = new System.Drawing.Size(220, 22);
             this.Txt_Total.TabIndex = 32;
@@ -325,7 +325,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Reporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
-            this.Btn_Reporte.Location = new System.Drawing.Point(1374, 3);
+            this.Btn_Reporte.Location = new System.Drawing.Point(1392, 8);
             this.Btn_Reporte.Name = "Btn_Reporte";
             this.Btn_Reporte.Size = new System.Drawing.Size(76, 68);
             this.Btn_Reporte.TabIndex = 39;
@@ -351,7 +351,7 @@ namespace Capa_vista_Check_In_Check_out
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1627, 1220);
+            this.ClientSize = new System.Drawing.Size(1612, 950);
             this.Controls.Add(this.Btn_Ayuda);
             this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Btn_Salir);
