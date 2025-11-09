@@ -39,7 +39,7 @@ namespace Capa_vista_Check_In_Check_out
                 idUsuario, idAplicacion, idModulo, idPerfil);
 
 
-            // ✅ Validar si todos los permisos son falsos
+           
             if (!permisos.ingresar && !permisos.consultar &&
                 !permisos.modificar && !permisos.eliminar &&
                 !permisos.imprimir)
