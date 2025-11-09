@@ -10,137 +10,230 @@ namespace Capa_Modelo_S
 {
     public class Cls_Sentencias_Reservacion
     {
-        // ==========================
-        // INSERTAR RESERVA
-        // ==========================
-        public void InsertarReservaSalon(int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+     
+        public void InsertarReservaSalon(int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
         {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = @"INSERT INTO Tbl_Reservas_Salones 
+                string sSql = @"INSERT INTO Tbl_Reservas_Salones 
                             (Fk_Id_Huesped, Fk_Id_Salon, Cmp_Fecha_Reserva, Cmp_Hora_Inicio, Cmp_Hora_Fin, Cmp_Cantidad_Personas, Cmp_Monto_Total)
                             VALUES (?,?,?,?,?,?,?)";
 
-                using (OdbcCommand cmd = new OdbcCommand(sql, con))
+                using (OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC))
                 {
-                    cmd.Parameters.Add(new OdbcParameter("", idHuesped));
-                    cmd.Parameters.Add(new OdbcParameter("", idSalon));
-                    cmd.Parameters.Add(new OdbcParameter("", fecha));
-                    cmd.Parameters.Add(new OdbcParameter("", horaInicio));
-                    cmd.Parameters.Add(new OdbcParameter("", horaFin));
-                    cmd.Parameters.Add(new OdbcParameter("", cantidadPersonas));
-                    cmd.Parameters.Add(new OdbcParameter("", montoTotal));
-                    cmd.ExecuteNonQuery();
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdHuesped));
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdSalon));
+                    cCmd.Parameters.Add(new OdbcParameter("", dFecha));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraInicio));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraFin));
+                    cCmd.Parameters.Add(new OdbcParameter("", iCantidadPersonas));
+                    cCmd.Parameters.Add(new OdbcParameter("", deMontoTotal));
+                    cCmd.ExecuteNonQuery();
                 }
             }
         }
 
-        // ==========================
-        // MODIFICAR RESERVA
-        // ==========================
-        public void ModificarReservaSalon(int idReserva, int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+        public void ModificarReservaSalon(int iIdReserva, int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
         {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = @"UPDATE Tbl_Reservas_Salones 
+                string sSql = @"UPDATE Tbl_Reservas_Salones 
                             SET Fk_Id_Huesped=?, Fk_Id_Salon=?, Cmp_Fecha_Reserva=?, Cmp_Hora_Inicio=?, Cmp_Hora_Fin=?, 
                                 Cmp_Cantidad_Personas=?, Cmp_Monto_Total=? 
                             WHERE Pk_Id_Reserva_Salon=?";
 
-                using (OdbcCommand cmd = new OdbcCommand(sql, con))
+                using (OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC))
                 {
-                    cmd.Parameters.Add(new OdbcParameter("", idHuesped));
-                    cmd.Parameters.Add(new OdbcParameter("", idSalon));
-                    cmd.Parameters.Add(new OdbcParameter("", fecha));
-                    cmd.Parameters.Add(new OdbcParameter("", horaInicio));
-                    cmd.Parameters.Add(new OdbcParameter("", horaFin));
-                    cmd.Parameters.Add(new OdbcParameter("", cantidadPersonas));
-                    cmd.Parameters.Add(new OdbcParameter("", montoTotal));
-                    cmd.Parameters.Add(new OdbcParameter("", idReserva));
-                    cmd.ExecuteNonQuery();
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdHuesped));
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdSalon));
+                    cCmd.Parameters.Add(new OdbcParameter("", dFecha));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraInicio));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraFin));
+                    cCmd.Parameters.Add(new OdbcParameter("", iCantidadPersonas));
+                    cCmd.Parameters.Add(new OdbcParameter("", deMontoTotal));
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdReserva));
+                    cCmd.ExecuteNonQuery();
                 }
             }
         }
-
-        // ==========================
-        // ELIMINAR RESERVA
-        // ==========================
-        public void EliminarReservaSalon(int idReserva)
+        public void ModificarFolioSalon(int idReserva, DateTime fechaPago, decimal pagoTotal, string estado, string metodoPago)
         {
             Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
             using (OdbcConnection con = cn.conexion())
             {
-                string sql = "DELETE FROM Tbl_Reservas_Salones WHERE Pk_Id_Reserva_Salon=?";
+                string sql = @"UPDATE Tbl_Folio_Salones 
+                       SET Cmp_Fecha_Pago=?, Cmp_Pago_Total=?, Cmp_Estado=?, Cmp_Metodo_Pago=?
+                       WHERE Fk_Id_Reserva_Salon=?";
+
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
+                    cmd.Parameters.Add(new OdbcParameter("", fechaPago));
+                    cmd.Parameters.Add(new OdbcParameter("", pagoTotal));
+                    cmd.Parameters.Add(new OdbcParameter("", estado));
+                    cmd.Parameters.Add(new OdbcParameter("", metodoPago));
                     cmd.Parameters.Add(new OdbcParameter("", idReserva));
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        // ==========================
-        // CONSULTAR TODAS LAS RESERVAS
-        // ==========================
+        public void EliminarReservaSalon(int iIdReserva)
+        {
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
+            {
+               
+                string sSqlFolio = "DELETE FROM Tbl_Folio_Salones WHERE Fk_Id_Reserva_Salon=?";
+                using (OdbcCommand cCmdFolio = new OdbcCommand(sSqlFolio, cConexionODBC))
+                {
+                    cCmdFolio.Parameters.Add(new OdbcParameter("", iIdReserva));
+                    cCmdFolio.ExecuteNonQuery();
+                }
+
+                
+                string sSqlReserva = "DELETE FROM Tbl_Reservas_Salones WHERE Pk_Id_Reserva_Salon=?";
+                using (OdbcCommand cCmd = new OdbcCommand(sSqlReserva, cConexionODBC))
+                {
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdReserva));
+                    cCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
         public DataTable ObtenerReservasSalones()
         {
-            DataTable tabla = new DataTable();
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            DataTable dTabla = new DataTable();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = @"SELECT 
-                                r.Pk_Id_Reserva_Salon,
-                                r.Fk_Id_Huesped,
-                                r.Fk_Id_Salon,
-                                CONCAT(h.Cmp_Nombre, ' ', h.Cmp_Apellido) AS Cmp_Huesped,
-                                s.Cmp_Nombre_Salon AS Cmp_Salon,
-                                r.Cmp_Fecha_Reserva,
-                                r.Cmp_Hora_Inicio,
-                                r.Cmp_Hora_Fin,
-                                r.Cmp_Cantidad_Personas,
-                                r.Cmp_Monto_Total
-                               FROM Tbl_Reservas_Salones r
-                               INNER JOIN Tbl_Huesped h ON r.Fk_Id_Huesped = h.Pk_Id_Huesped
-                               INNER JOIN Tbl_Salones s ON r.Fk_Id_Salon = s.Pk_Id_Salon";
+                string sSql = @"
+                        SELECT 
+                            r.Pk_Id_Reserva_Salon,
+                            r.Fk_Id_Huesped,
+                            r.Fk_Id_Salon,
+                            r.Fk_Id_Promociones,
+                            CONCAT(h.Cmp_Nombre, ' ', h.Cmp_Apellido) AS Cmp_Huesped,
+                            s.Cmp_Nombre_Salon AS Cmp_Salon,
+                            p.Cmp_Nombre_Promocion AS Cmp_Promocion,
+                            r.Cmp_Fecha_Reserva,
+                            r.Cmp_Hora_Inicio,
+                            r.Cmp_Hora_Fin,
+                            r.Cmp_Cantidad_Personas,
+                            r.Cmp_Monto_Total,
+                            f.Pk_Id_Folio_Salones AS Id_Folio,
+                            f.Cmp_Fecha_Pago,
+                            f.Cmp_Pago_Total,
+                            f.Cmp_Estado,
+                            f.Cmp_Metodo_Pago
+                        FROM Tbl_Reservas_Salones r
+                        INNER JOIN Tbl_Huesped h ON r.Fk_Id_Huesped = h.Pk_Id_Huesped
+                        INNER JOIN Tbl_Salones s ON r.Fk_Id_Salon = s.Pk_Id_Salon
+                        LEFT JOIN Tbl_Promociones p ON r.Fk_Id_Promociones = p.Pk_Id_Promociones
+                        LEFT JOIN Tbl_Folio_Salones f ON r.Pk_Id_Reserva_Salon = f.Fk_Id_Reserva_Salon";
 
-                OdbcDataAdapter da = new OdbcDataAdapter(sql, con);
-                da.Fill(tabla);
+                OdbcDataAdapter cAdapter = new OdbcDataAdapter(sSql, cConexionODBC);
+                cAdapter.Fill(dTabla);
             }
-            return tabla;
+            return dTabla;
         }
 
-        // ==========================
-        // COMBOBOX: HUESPEDES
-        // ==========================
         public DataTable ObtenerHuespedes()
         {
-            DataTable dt = new DataTable();
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            DataTable dTabla = new DataTable();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string query = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS Cmp_Nombre FROM Tbl_Huesped";
-                OdbcDataAdapter adapter = new OdbcDataAdapter(query, con);
-                adapter.Fill(dt);
+                string sQuery = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS Cmp_Nombre FROM Tbl_Huesped";
+                OdbcDataAdapter cAdapter = new OdbcDataAdapter(sQuery, cConexionODBC);
+                cAdapter.Fill(dTabla);
             }
-            return dt;
+            return dTabla;
         }
 
-        // ==========================
-        // COMBOBOX: SALONES DISPONIBLES
-        // ==========================
+       
         public DataTable ObtenerSalonesDisponibles()
         {
-            DataTable tabla = new DataTable();
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            DataTable dTabla = new DataTable();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = "SELECT Pk_Id_Salon, Cmp_Nombre_Salon FROM Tbl_Salones WHERE Cmp_Disponibilidad = 1";
-                OdbcDataAdapter da = new OdbcDataAdapter(sql, con);
-                da.Fill(tabla);
+                string sSql = "SELECT Pk_Id_Salon, Cmp_Nombre_Salon FROM Tbl_Salones WHERE Cmp_Disponibilidad = 1";
+                OdbcDataAdapter cAdapter = new OdbcDataAdapter(sSql, cConexionODBC);
+                cAdapter.Fill(dTabla);
             }
-            return tabla;
+            return dTabla;
+        }
+
+
+        public DataTable ObtenerPromociones()
+        {
+            DataTable dTabla = new DataTable();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
+            {
+                string sQuery = "SELECT Pk_Id_Promociones, Cmp_Nombre_Promocion FROM Tbl_Promociones";
+                OdbcDataAdapter cAdapter = new OdbcDataAdapter(sQuery, cConexionODBC);
+                cAdapter.Fill(dTabla);
+            }
+            return dTabla;
+        }
+
+     
+        public void InsertarFolioSalon(int iIdReserva, DateTime dFechaPago, decimal dePagoTotal, string sEstado, string sMetodoPago)
+        {
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
+            {
+                string sSql = @"INSERT INTO Tbl_Folio_Salones 
+                      (Fk_Id_Reserva_Salon, Cmp_Fecha_Pago, Cmp_Pago_Total, Cmp_Estado, Cmp_Metodo_Pago)
+                      VALUES (?,?,?,?,?)";
+
+                using (OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC))
+                {
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdReserva));
+                    cCmd.Parameters.Add(new OdbcParameter("", dFechaPago));
+                    cCmd.Parameters.Add(new OdbcParameter("", dePagoTotal));
+                    cCmd.Parameters.Add(new OdbcParameter("", sEstado));
+                    cCmd.Parameters.Add(new OdbcParameter("", sMetodoPago));
+                    cCmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public int InsertarReservaSalonYObtenerID(int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
+        {
+            int iNuevoId = 0;
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
+            {
+                string sSql = @"INSERT INTO Tbl_Reservas_Salones 
+                    (Fk_Id_Huesped, Fk_Id_Salon, Cmp_Fecha_Reserva, Cmp_Hora_Inicio, Cmp_Hora_Fin, Cmp_Cantidad_Personas, Cmp_Monto_Total)
+                    VALUES (?,?,?,?,?,?,?)";
+
+                using (OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC))
+                {
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdHuesped));
+                    cCmd.Parameters.Add(new OdbcParameter("", iIdSalon));
+                    cCmd.Parameters.Add(new OdbcParameter("", dFecha));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraInicio));
+                    cCmd.Parameters.Add(new OdbcParameter("", dHoraFin));
+                    cCmd.Parameters.Add(new OdbcParameter("", iCantidadPersonas));
+                    cCmd.Parameters.Add(new OdbcParameter("", deMontoTotal));
+                    cCmd.ExecuteNonQuery();
+                }
+
+                // Obtener el último ID insertado
+                string sSqlId = "SELECT LAST_INSERT_ID()";
+                using (OdbcCommand cCmdId = new OdbcCommand(sSqlId, cConexionODBC))
+                {
+                    object oResult = cCmdId.ExecuteScalar();
+                    if (oResult != null)
+                        iNuevoId = Convert.ToInt32(oResult);
+                }
+            }
+            return iNuevoId;
         }
     }
 }
