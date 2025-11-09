@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using System.Data.Odbc;
 using System.Data;
 
-
+// Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
 namespace Capa_Modelo_Ordenes
 {
-    class Cls_Conexion_Ordenes
+    public class Cls_Conexion_Ordenes
     {
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=bancos2");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bancos2");
             try
             {
                 conn.Open();
@@ -41,3 +41,4 @@ namespace Capa_Modelo_Ordenes
 
     }
 }
+// Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
