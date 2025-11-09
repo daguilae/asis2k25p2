@@ -30,19 +30,19 @@ namespace Capa_Vista_TipoDeCambio
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.Lbl_Banco = new System.Windows.Forms.Label();
-            this.Lbl_TipoDeCuenta = new System.Windows.Forms.Label();
-            this.Cbo_Banco = new System.Windows.Forms.ComboBox();
-            this.Cbo_TipoDeCuenta = new System.Windows.Forms.ComboBox();
-            this.Btn_Buscar = new System.Windows.Forms.Button();
+            this.Txt_NumeroDeCuenta = new System.Windows.Forms.TextBox();
+            this.Lbl_NumeroDeCuenta = new System.Windows.Forms.Label();
             this.Dgv_DisponibilidaadDiaria = new System.Windows.Forms.DataGridView();
             this.Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tipo_De_Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Numero_De_Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Disponibilidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lbl_NumeroDeCuenta = new System.Windows.Forms.Label();
-            this.Txt_NumeroDeCuenta = new System.Windows.Forms.TextBox();
+            this.Btn_Buscar = new System.Windows.Forms.Button();
+            this.Cbo_TipoDeCuenta = new System.Windows.Forms.ComboBox();
+            this.Cbo_Banco = new System.Windows.Forms.ComboBox();
+            this.Lbl_TipoDeCuenta = new System.Windows.Forms.Label();
+            this.Lbl_Banco = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_DisponibilidaadDiaria)).BeginInit();
             this.SuspendLayout();
@@ -63,61 +63,23 @@ namespace Capa_Vista_TipoDeCambio
             this.panel1.Size = new System.Drawing.Size(526, 542);
             this.panel1.TabIndex = 0;
             // 
-            // label1
+            // Txt_NumeroDeCuenta
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(132, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(267, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Disponibilidad Diaria";
+            this.Txt_NumeroDeCuenta.Location = new System.Drawing.Point(176, 138);
+            this.Txt_NumeroDeCuenta.Name = "Txt_NumeroDeCuenta";
+            this.Txt_NumeroDeCuenta.Size = new System.Drawing.Size(157, 20);
+            this.Txt_NumeroDeCuenta.TabIndex = 8;
+            this.Txt_NumeroDeCuenta.TextChanged += new System.EventHandler(this.Txt_NumeroDeCuenta_TextChanged);
             // 
-            // Lbl_Banco
+            // Lbl_NumeroDeCuenta
             // 
-            this.Lbl_Banco.AutoSize = true;
-            this.Lbl_Banco.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Banco.Location = new System.Drawing.Point(115, 63);
-            this.Lbl_Banco.Name = "Lbl_Banco";
-            this.Lbl_Banco.Size = new System.Drawing.Size(55, 17);
-            this.Lbl_Banco.TabIndex = 1;
-            this.Lbl_Banco.Text = "Banco:";
-            // 
-            // Lbl_TipoDeCuenta
-            // 
-            this.Lbl_TipoDeCuenta.AutoSize = true;
-            this.Lbl_TipoDeCuenta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_TipoDeCuenta.Location = new System.Drawing.Point(47, 99);
-            this.Lbl_TipoDeCuenta.Name = "Lbl_TipoDeCuenta";
-            this.Lbl_TipoDeCuenta.Size = new System.Drawing.Size(123, 17);
-            this.Lbl_TipoDeCuenta.TabIndex = 2;
-            this.Lbl_TipoDeCuenta.Text = "Tipo De Cuenta:";
-            // 
-            // Cbo_Banco
-            // 
-            this.Cbo_Banco.FormattingEnabled = true;
-            this.Cbo_Banco.Location = new System.Drawing.Point(176, 63);
-            this.Cbo_Banco.Name = "Cbo_Banco";
-            this.Cbo_Banco.Size = new System.Drawing.Size(157, 21);
-            this.Cbo_Banco.TabIndex = 3;
-            // 
-            // Cbo_TipoDeCuenta
-            // 
-            this.Cbo_TipoDeCuenta.FormattingEnabled = true;
-            this.Cbo_TipoDeCuenta.Location = new System.Drawing.Point(176, 99);
-            this.Cbo_TipoDeCuenta.Name = "Cbo_TipoDeCuenta";
-            this.Cbo_TipoDeCuenta.Size = new System.Drawing.Size(157, 21);
-            this.Cbo_TipoDeCuenta.TabIndex = 4;
-            // 
-            // Btn_Buscar
-            // 
-            this.Btn_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_Buscar.Location = new System.Drawing.Point(373, 85);
-            this.Btn_Buscar.Name = "Btn_Buscar";
-            this.Btn_Buscar.Size = new System.Drawing.Size(113, 46);
-            this.Btn_Buscar.TabIndex = 5;
-            this.Btn_Buscar.Text = "Buscar";
-            this.Btn_Buscar.UseVisualStyleBackColor = true;
+            this.Lbl_NumeroDeCuenta.AutoSize = true;
+            this.Lbl_NumeroDeCuenta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_NumeroDeCuenta.Location = new System.Drawing.Point(27, 138);
+            this.Lbl_NumeroDeCuenta.Name = "Lbl_NumeroDeCuenta";
+            this.Lbl_NumeroDeCuenta.Size = new System.Drawing.Size(143, 17);
+            this.Lbl_NumeroDeCuenta.TabIndex = 7;
+            this.Lbl_NumeroDeCuenta.Text = "Numero de cuenta:";
             // 
             // Dgv_DisponibilidaadDiaria
             // 
@@ -156,22 +118,62 @@ namespace Capa_Vista_TipoDeCambio
             this.Disponibilidad.Name = "Disponibilidad";
             this.Disponibilidad.ReadOnly = true;
             // 
-            // Lbl_NumeroDeCuenta
+            // Btn_Buscar
             // 
-            this.Lbl_NumeroDeCuenta.AutoSize = true;
-            this.Lbl_NumeroDeCuenta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NumeroDeCuenta.Location = new System.Drawing.Point(27, 138);
-            this.Lbl_NumeroDeCuenta.Name = "Lbl_NumeroDeCuenta";
-            this.Lbl_NumeroDeCuenta.Size = new System.Drawing.Size(143, 17);
-            this.Lbl_NumeroDeCuenta.TabIndex = 7;
-            this.Lbl_NumeroDeCuenta.Text = "Numero de cuenta:";
+            this.Btn_Buscar.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Buscar.Location = new System.Drawing.Point(373, 85);
+            this.Btn_Buscar.Name = "Btn_Buscar";
+            this.Btn_Buscar.Size = new System.Drawing.Size(113, 46);
+            this.Btn_Buscar.TabIndex = 5;
+            this.Btn_Buscar.Text = "Buscar";
+            this.Btn_Buscar.UseVisualStyleBackColor = true;
+            this.Btn_Buscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // Txt_NumeroDeCuenta
+            // Cbo_TipoDeCuenta
             // 
-            this.Txt_NumeroDeCuenta.Location = new System.Drawing.Point(176, 138);
-            this.Txt_NumeroDeCuenta.Name = "Txt_NumeroDeCuenta";
-            this.Txt_NumeroDeCuenta.Size = new System.Drawing.Size(157, 20);
-            this.Txt_NumeroDeCuenta.TabIndex = 8;
+            this.Cbo_TipoDeCuenta.FormattingEnabled = true;
+            this.Cbo_TipoDeCuenta.Location = new System.Drawing.Point(176, 99);
+            this.Cbo_TipoDeCuenta.Name = "Cbo_TipoDeCuenta";
+            this.Cbo_TipoDeCuenta.Size = new System.Drawing.Size(157, 21);
+            this.Cbo_TipoDeCuenta.TabIndex = 4;
+            // 
+            // Cbo_Banco
+            // 
+            this.Cbo_Banco.FormattingEnabled = true;
+            this.Cbo_Banco.Location = new System.Drawing.Point(176, 63);
+            this.Cbo_Banco.Name = "Cbo_Banco";
+            this.Cbo_Banco.Size = new System.Drawing.Size(157, 21);
+            this.Cbo_Banco.TabIndex = 3;
+            // 
+            // Lbl_TipoDeCuenta
+            // 
+            this.Lbl_TipoDeCuenta.AutoSize = true;
+            this.Lbl_TipoDeCuenta.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_TipoDeCuenta.Location = new System.Drawing.Point(47, 99);
+            this.Lbl_TipoDeCuenta.Name = "Lbl_TipoDeCuenta";
+            this.Lbl_TipoDeCuenta.Size = new System.Drawing.Size(123, 17);
+            this.Lbl_TipoDeCuenta.TabIndex = 2;
+            this.Lbl_TipoDeCuenta.Text = "Tipo De Cuenta:";
+            // 
+            // Lbl_Banco
+            // 
+            this.Lbl_Banco.AutoSize = true;
+            this.Lbl_Banco.Font = new System.Drawing.Font("Rockwell", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Banco.Location = new System.Drawing.Point(115, 63);
+            this.Lbl_Banco.Name = "Lbl_Banco";
+            this.Lbl_Banco.Size = new System.Drawing.Size(55, 17);
+            this.Lbl_Banco.TabIndex = 1;
+            this.Lbl_Banco.Text = "Banco:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(132, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(267, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Disponibilidad Diaria";
             // 
             // Frm_DisponibilidadDiaria
             // 
@@ -181,6 +183,7 @@ namespace Capa_Vista_TipoDeCambio
             this.Controls.Add(this.panel1);
             this.Name = "Frm_DisponibilidadDiaria";
             this.Text = "Frm_DisponibilidadDiaria";
+            this.Load += new System.EventHandler(this.Frm_DisponibilidadDiaria_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_DisponibilidaadDiaria)).EndInit();

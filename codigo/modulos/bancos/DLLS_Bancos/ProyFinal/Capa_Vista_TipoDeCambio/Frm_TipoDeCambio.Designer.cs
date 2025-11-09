@@ -34,12 +34,12 @@ namespace Capa_Vista_TipoDeCambio
             this.Txt_Fecha = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Dgv_TipoDeCambio = new System.Windows.Forms.DataGridView();
-            this.Lbl_Historico = new System.Windows.Forms.Label();
             this.tipo_cambio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_moneda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valor_compra = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valor_venta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lbl_Historico = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_TipoDeCambio)).BeginInit();
             this.SuspendLayout();
@@ -99,16 +99,6 @@ namespace Capa_Vista_TipoDeCambio
             this.Dgv_TipoDeCambio.Size = new System.Drawing.Size(543, 377);
             this.Dgv_TipoDeCambio.TabIndex = 1;
             // 
-            // Lbl_Historico
-            // 
-            this.Lbl_Historico.AutoSize = true;
-            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Historico.Location = new System.Drawing.Point(150, 11);
-            this.Lbl_Historico.Name = "Lbl_Historico";
-            this.Lbl_Historico.Size = new System.Drawing.Size(301, 27);
-            this.Lbl_Historico.TabIndex = 0;
-            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
-            // 
             // tipo_cambio
             // 
             this.tipo_cambio.HeaderText = "Tipo de cambio";
@@ -138,6 +128,16 @@ namespace Capa_Vista_TipoDeCambio
             this.valor_venta.HeaderText = "Valor Venta";
             this.valor_venta.Name = "valor_venta";
             this.valor_venta.ReadOnly = true;
+            // 
+            // Lbl_Historico
+            // 
+            this.Lbl_Historico.AutoSize = true;
+            this.Lbl_Historico.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Historico.Location = new System.Drawing.Point(144, 11);
+            this.Lbl_Historico.Name = "Lbl_Historico";
+            this.Lbl_Historico.Size = new System.Drawing.Size(318, 29);
+            this.Lbl_Historico.TabIndex = 0;
+            this.Lbl_Historico.Text = "Historico Tipo De Cambio";
             // 
             // Frm_TipoDeCambio
             // 
