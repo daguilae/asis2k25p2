@@ -10,7 +10,10 @@ using System.Windows.Forms;
 
 using Capa_Controlador_Cheques;
 using System.Data;
+using System.Data;
+using System.Data.Odbc;
 
+//REALIZADO POR ROCIO LOPEZ 
 
 namespace Capa_Vista_Cheques
 {
@@ -35,6 +38,16 @@ namespace Capa_Vista_Cheques
 
         private void Btn_Cargar_Click(object sender, EventArgs e)
         {
+            //  Validar banco seleccionado ANTES de hacer lote
+            if (Cmb_CodigoCuenta.SelectedIndex == -1)
+            {
+                MessageBox.Show("Debe seleccionar un banco antes de cargar los datos.",
+                                "Banco requerido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
             Cls_Controlador_Cheques ctrl = new Cls_Controlador_Cheques();
 
             // Obtener empleados simulados
@@ -88,41 +101,58 @@ namespace Capa_Vista_Cheques
         {
 
         }
-
+//esto solo es una prueba 
         private void btn_imprimir_Click(object sender, EventArgs e)
         {
+              try
+                {
+                    using (OdbcConnection cn = new OdbcConnection("Dsn=Bd_Hoteleria"))
+                    {
+                        cn.Open();
+                        OdbcCommand cmd = new OdbcCommand(
+                            "INSERT INTO Tbl_DetalleLoteCheques (Fk_Id_Lote, Cmp_NumeroCheque, Cmp_NombreEmpleado, Cmp_Monto) " +
+                            "VALUES (1, 9999, 'PRUEBA', 123.45)", cn);
 
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("✅ Insert PRUEBA completado");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("❌ ERROR MySQL: " + ex.Message);
+                }
+            
         }
+
 
         private void btn_Generar_Cheque_Click(object sender, EventArgs e)
         {
-            // 1️ Crear instancia del controlador
-            Capa_Controlador_Cheques.Cls_Controlador_Cheques control = new Capa_Controlador_Cheques.Cls_Controlador_Cheques();
-
-            // 2️ Obtener los empleados simulados
-            List<Empleado> empleados = control.ObtenerEmpleadosSimulados();
-
-
-            // 2. Generar el lote y guardar los cheques en la BD
-            bool exito = control.GenerarLoteConCheques("Rocio", empleados);
-
-
-            // 3️ Recorrer cada empleado y generar su cheque
-            int numeroCheque = 1;
-
-            foreach (var emp in empleados)
+            // 1. Validar banco seleccionado
+            if (Cmb_CodigoCuenta.SelectedIndex == -1)
             {
-                // Simular la creación de un cheque
-                string infoCheque = $"Cheque #{numeroCheque}\n" +
-                                    $"Nombre: {emp.Nombre}\n" +
-                                    $"Monto: Q{emp.MontoPagar}\n";
-
-                MessageBox.Show(infoCheque, "Cheque generado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                numeroCheque++;
+                MessageBox.Show("Debe seleccionar un banco antes de generar los cheques.",
+                                "Banco requerido",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return; // ❌ Bloquea la operación
             }
 
+            //  Si sí seleccionó banco, seguimos
+            int idBanco = Convert.ToInt32(Cmb_CodigoCuenta.SelectedValue);
+
+            Cls_Controlador_Cheques control = new Cls_Controlador_Cheques();
+
+            // empleados simulados
+            List<Empleado> empleados = control.ObtenerEmpleadosSimulados();
+
+            int idLote = control.CrearLote("Rocio");
+            control.GenerarChequesCompletos("Rocio", idLote, idBanco, empleados);
+            MessageBox.Show("✅ Cheques generados");
+
         }
+
+
 
         private void Txt_Valor_TextChanged(object sender, EventArgs e)
         {
@@ -144,20 +174,6 @@ namespace Capa_Vista_Cheques
 
         }
 
-        private void Txt_Moneda_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Lbl_Moneda_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Txt_Fecha_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void Lbl_Fecha_Click(object sender, EventArgs e)
         {
@@ -167,6 +183,22 @@ namespace Capa_Vista_Cheques
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Frm_Cheques_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable bancos = cn.ObtenerListaBancos();
+                Cmb_CodigoCuenta.DataSource = bancos;
+                Cmb_CodigoCuenta.DisplayMember = "Banco"; // lo que ve el usuario
+                Cmb_CodigoCuenta.ValueMember = "ID";      // valor real
+                Cmb_CodigoCuenta.SelectedIndex = -1;      // nada seleccionado
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los bancos: " + ex.Message);
+            }
         }
     }
 }

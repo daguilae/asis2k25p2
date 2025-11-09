@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Data.Odbc;
 using System.Data;
 
-
+//REALIZADO POR ROCIO LOPEZ 
 namespace Capa_Modelo_Cheques
 {
    public class Cls_Conexion_Cheque
@@ -15,7 +15,7 @@ namespace Capa_Modelo_Cheques
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=bancos2");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bd_Hoteleria");
             try
             {
                 conn.Open();
