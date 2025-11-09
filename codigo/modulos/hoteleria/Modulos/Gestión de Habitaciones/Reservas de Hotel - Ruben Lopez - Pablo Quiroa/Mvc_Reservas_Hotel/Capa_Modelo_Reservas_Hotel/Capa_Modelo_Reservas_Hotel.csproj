@@ -43,6 +43,11 @@
   <ItemGroup>
     <Compile Include="Cls_Conexion.cs" />
     <Compile Include="Cls_Reservas.cs" />
+    <Compile Include="Cls_Sentencia_Pago.cs" />
+    <Compile Include="Cls_Sentencia_Pago_Cheque.cs" />
+    <Compile Include="Cls_Sentencia_Pago_Efectivo.cs" />
+    <Compile Include="Cls_Sentencia_Pago_Tarjeta.cs" />
+    <Compile Include="Cls_Sentencia_Pago_Transferencia.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

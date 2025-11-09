@@ -43,7 +43,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.navegador1.Name = "navegador1";
             this.navegador1.SAlias = null;
             this.navegador1.SEtiquetas = null;
-            this.navegador1.Size = new System.Drawing.Size(1180, 488);
+            this.navegador1.Size = new System.Drawing.Size(1180, 485);
             this.navegador1.SNombreTabla = null;
             this.navegador1.TabIndex = 0;
             // 
@@ -74,7 +74,6 @@ namespace Capa_Vista_Gestion_Habitacion
             this.ClientSize = new System.Drawing.Size(1179, 528);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.navegador1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Servicios_Cuartos";
             this.Text = "Frm_Servicios_Cuartos";
             this.panel1.ResumeLayout(false);

@@ -10,92 +10,80 @@ namespace Capa_Modelo_S
 {
     public class Cls_Sentencias_Salones
     {
-        // ==========================
-        // MÉTODOS DE CREACIÓN
-        // ==========================
-        public void InsertarSalon(string nombre, string ubicacion, int capacidad, int disponibilidad)
+      
+        public void InsertarSalon(string sNombre, string sUbicacion, int iCapacidad, int iDisponibilidad)
         {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = "INSERT INTO Tbl_Salones (Cmp_Nombre_Salon, Cmp_Ubicacion, Cmp_Capacidad, Cmp_Disponibilidad) VALUES (?,?,?,?)";
-                OdbcCommand cmd = new OdbcCommand(sql, con);
-                cmd.Parameters.AddWithValue("", nombre);
-                cmd.Parameters.AddWithValue("", ubicacion);
-                cmd.Parameters.AddWithValue("", capacidad);
-                cmd.Parameters.AddWithValue("", disponibilidad);
-                cmd.ExecuteNonQuery();
+                string sSql = "INSERT INTO Tbl_Salones (Cmp_Nombre_Salon, Cmp_Ubicacion, Cmp_Capacidad, Cmp_Disponibilidad) VALUES (?,?,?,?)";
+                OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC);
+                cCmd.Parameters.AddWithValue("", sNombre);
+                cCmd.Parameters.AddWithValue("", sUbicacion);
+                cCmd.Parameters.AddWithValue("", iCapacidad);
+                cCmd.Parameters.AddWithValue("", iDisponibilidad);
+                cCmd.ExecuteNonQuery();
             }
         }
 
-        // ==========================
-        // MÉTODOS DE MODIFICACIÓN
-        // ==========================
-
-        public int VerificarSalon(string sNombreSalon)
+           public int VerificarSalon(string sNombreSalon)
         {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
 
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = "SELECT COUNT(*) FROM Tbl_Salones WHERE Cmp_Nombre_Salon = ?";
-                OdbcCommand cmd = new OdbcCommand(sql, con);
-                cmd.Parameters.AddWithValue("", sNombreSalon);
+                string sSql = "SELECT COUNT(*) FROM Tbl_Salones WHERE Cmp_Nombre_Salon = ?";
+                OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC);
+                cCmd.Parameters.AddWithValue("", sNombreSalon);
 
-                int count = Convert.ToInt32(cmd.ExecuteScalar());
-                return count;
-            }
-        }
-        public void ModificarSalon(int id, string nombre, string ubicacion, int capacidad, int disponibilidad)
-        {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
-            {
-                string sql = "UPDATE Tbl_Salones SET Cmp_Nombre_Salon=?, Cmp_Ubicacion=?, Cmp_Capacidad=?, Cmp_Disponibilidad=? WHERE Pk_Id_Salon=?";
-                OdbcCommand cmd = new OdbcCommand(sql, con);
-                cmd.Parameters.AddWithValue("", nombre);
-                cmd.Parameters.AddWithValue("", ubicacion);
-                cmd.Parameters.AddWithValue("", capacidad);
-                cmd.Parameters.AddWithValue("", disponibilidad);
-                cmd.Parameters.AddWithValue("", id);
-                cmd.ExecuteNonQuery();
+                int iCount = Convert.ToInt32(cCmd.ExecuteScalar());
+                return iCount;
             }
         }
 
-        // ==========================
-        // MÉTODOS DE ELIMINACIÓN
-        // ==========================
-        public void EliminarSalon(int id)
+        public void ModificarSalon(int iId, string sNombre, string sUbicacion, int iCapacidad, int iDisponibilidad)
         {
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = "DELETE FROM Tbl_Salones WHERE Pk_Id_Salon=?";
-                OdbcCommand cmd = new OdbcCommand(sql, con);
-                cmd.Parameters.AddWithValue("", id);
-                cmd.ExecuteNonQuery();
+                string sSql = "UPDATE Tbl_Salones SET Cmp_Nombre_Salon=?, Cmp_Ubicacion=?, Cmp_Capacidad=?, Cmp_Disponibilidad=? WHERE Pk_Id_Salon=?";
+                OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC);
+                cCmd.Parameters.AddWithValue("", sNombre);
+                cCmd.Parameters.AddWithValue("", sUbicacion);
+                cCmd.Parameters.AddWithValue("", iCapacidad);
+                cCmd.Parameters.AddWithValue("", iDisponibilidad);
+                cCmd.Parameters.AddWithValue("", iId);
+                cCmd.ExecuteNonQuery();
             }
         }
 
-        // ==========================
-        // MÉTODOS DE CONSULTA
-        // ==========================
+     
+        public void EliminarSalon(int iId)
+        {
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
+            {
+                string sSql = "DELETE FROM Tbl_Salones WHERE Pk_Id_Salon=?";
+                OdbcCommand cCmd = new OdbcCommand(sSql, cConexionODBC);
+                cCmd.Parameters.AddWithValue("", iId);
+                cCmd.ExecuteNonQuery();
+            }
+        }
+
         public DataTable ObtenerSalones()
         {
-            DataTable tabla = new DataTable();
-            Cls_Conexion_Hoteleria cn = new Cls_Conexion_Hoteleria();
-            using (OdbcConnection con = cn.conexion())
+            DataTable dTabla = new DataTable();
+            Cls_Conexion_Hoteleria cConexion = new Cls_Conexion_Hoteleria();
+            using (OdbcConnection cConexionODBC = cConexion.conexion())
             {
-                string sql = "SELECT * FROM Tbl_Salones";
-                OdbcDataAdapter da = new OdbcDataAdapter(sql, con);
-                da.Fill(tabla);
+                string sSql = "SELECT * FROM Tbl_Salones";
+                OdbcDataAdapter cAdapter = new OdbcDataAdapter(sSql, cConexionODBC);
+                cAdapter.Fill(dTabla);
             }
-            return tabla;
+            return dTabla;
         }
 
-        // ==========================
-        // MÉTODOS DE VERIFICACIÓN
-        // ==========================
-        
+    
+
     }
 }

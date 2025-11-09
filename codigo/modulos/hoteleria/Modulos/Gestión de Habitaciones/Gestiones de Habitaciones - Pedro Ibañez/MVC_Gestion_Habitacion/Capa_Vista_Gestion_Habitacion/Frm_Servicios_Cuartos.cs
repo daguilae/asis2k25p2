@@ -28,9 +28,9 @@ namespace Capa_Vista_Gestion_Habitacion
             };
 
                    string[] columnas = {
-                        "Tbl_Service_habitacion",
-                        "PK_ID_Service_habitacion",
-                        "Cmp_Nombre_Service"
+                        "Tbl_Servicios_habitacion",
+                        "PK_ID_Servicio_habitacion",
+                        "Cmp_Nombre_Servicio"
                     };
 
                                 string[] sEtiquetas = {
@@ -39,8 +39,8 @@ namespace Capa_Vista_Gestion_Habitacion
                     };
 
 
-            int id_aplicacion = 100;
-            int id_Modulo = 4;
+            int id_aplicacion = 3044;
+            int id_Modulo = 6;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.configurarDataGridView(config);

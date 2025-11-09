@@ -12,7 +12,7 @@ namespace Capa_Modelo_Reservas_Hotel
         // Devuelve la cadena de conexión ODBC
         public string ObtenerCadenaConexion()
         {
-            return "Dsn=bd_hoteleria";
+            return "Dsn=Bd_Hoteleria";
         }
 
         // Abre y retorna una nueva conexión ODBC

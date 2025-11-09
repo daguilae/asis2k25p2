@@ -30,6 +30,7 @@ namespace Capa_Vista_IE
             Lstv_Receta.Columns.Add("Unidad");
             Lstv_Receta.Columns.Add("Total Necesario");
             Lstv_Receta.Columns.Add("Stock en Inventario");
+            Lstv_Receta.Columns.Add("Conversión");
             Lstv_Receta.Columns.Add("Disponibilidad");
 
             int totalColumnas = Lstv_Receta.Columns.Count;
@@ -120,14 +121,19 @@ namespace Capa_Vista_IE
                 {
                     double cantidadPorPlatillo = Convert.ToDouble(item.SubItems[1].Text);
                     double cantidadNecesaria = cantidadPorPlatillo * cantidadPlatillos;
-                    item.SubItems.Add(cantidadNecesaria.ToString());
+
+                    if (item.SubItems.Count > 3)
+                        item.SubItems[3].Text = cantidadNecesaria.ToString();
+                    else
+                        item.SubItems.Add(cantidadNecesaria.ToString());
                 }
             }
         }
 
+
         private void pro_ConsultarInventario()
         {
-            List<(string sIngrediente, double doStock)> Inventario = controlador.verificarInventario(listaIngrediente);
+            List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> Inventario = controlador.verificarInventario(listaIngrediente);
             try
             {
                 if (Lstv_Receta.Items.Count > 0)
@@ -137,12 +143,30 @@ namespace Capa_Vista_IE
                         for (int i = 0; i < Lstv_Receta.Items.Count; i++)
                         {
                             ListViewItem item = Lstv_Receta.Items[i];
-                            double stock = Inventario[i].doStock;
-                            item.SubItems.Add(stock.ToString());
+                            double doStock = Inventario[i].doStock;
+                            string sUnidadInv = Inventario[i].sUnidad;
+                            int iCodigo = Convert.ToInt32(Inventario[i].sCodigo);
 
+                            item.Tag = iCodigo;
                             double totalNecesario = Convert.ToDouble(item.SubItems[3].Text);
-                            string disponibilidad = stock >= totalNecesario ? "Suficiente" : "Insuficiente";
-                            item.SubItems.Add(disponibilidad);
+
+                            string sUnidadReceta = item.SubItems[2].Text;    
+                            double stockConvertido;
+                            try
+                            {
+                                stockConvertido = Cls_Conversion_Unidad.Convertir(doStock, sUnidadInv, sUnidadReceta);
+                            }
+                            catch (Exception ex)
+                            {
+                                System.Diagnostics.Debug.WriteLine("Error al convertir unidad: " + ex.Message);
+                                stockConvertido = doStock;
+                            }
+
+
+                            string sCantidad = $"{doStock} {sUnidadInv}";
+                            item.SubItems.Add(sCantidad);
+
+                            item.SubItems.Add(stockConvertido.ToString());
                         }
                     }
                 }
@@ -152,27 +176,38 @@ namespace Capa_Vista_IE
                 MessageBox.Show("Error al cargar los datos de inventario " + ex.Message);
             }
         }
-        
-        private void pro_ResultadoInventario()
+
+        private void pro_ResultadoDisponibilidad()
         {
+            bool bDisponibilidad = false;
+
             foreach (ListViewItem item in Lstv_Receta.Items)
             {
-                if (item.SubItems.Count > 5)
+                if (item.SubItems.Count >= 5)
                 {
-                    string disponibilidad = item.SubItems[5].Text.Trim();
-                    if (disponibilidad.Equals("Insuficiente", StringComparison.OrdinalIgnoreCase))
-                    {
-                        Lbl_Resultado.Visible = true;
-                        Btn_OrdenCompra.Visible = true;
-                    }
+                    bool bTotal = double.TryParse(item.SubItems[3].Text, out double doTotalNecesario);
+                    bool bStock = double.TryParse(item.SubItems[5].Text, out double doStockConvertido);
+
+                    if (!bTotal || !bStock)
+                        continue; 
+
+                    string sDisponibilidad = doStockConvertido >= doTotalNecesario ? "Suficiente" : "Insuficiente";
+
+                    if (item.SubItems.Count > 6)
+                        item.SubItems[6].Text = sDisponibilidad;
                     else
-                    {
-                        Lbl_Resultado.Visible = false;
-                        Btn_OrdenCompra.Visible = false;
-                    }
+                        item.SubItems.Add(sDisponibilidad);
+
+                    if (sDisponibilidad == "Insuficiente")
+                        bDisponibilidad = true;
                 }
             }
+
+            Lbl_Resultado.Visible = bDisponibilidad;
+            Btn_OrdenCompra.Visible = bDisponibilidad;
         }
+
+
         private void pro_LimpiarColumnas()
         {
             foreach (ListViewItem item in Lstv_Receta.Items)
@@ -184,8 +219,24 @@ namespace Capa_Vista_IE
             }
         }
 
+        private void pro_LimpiarColumnasCalculo()
+        {
+            foreach (ListViewItem item in Lstv_Receta.Items)
+            {
+                if (item.SubItems.Count > 3)
+                    item.SubItems[3].Text = string.Empty;
+
+                if (item.SubItems.Count > 6)
+                    item.SubItems[6].Text = string.Empty;
+            }
+        }
+
+
+
         private void Cbo_Platillos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Lbl_Resultado.Visible = false;
+            Btn_OrdenCompra.Visible = false;
             try
             {
                 if (Cbo_Platillos.SelectedValue == null) return;
@@ -225,31 +276,44 @@ namespace Capa_Vista_IE
                 MessageBox.Show("La cantidad debe ser mayor que 0.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            pro_LimpiarColumnas();
-            pro_CantidadTotal(cantidad);
-            pro_ConsultarInventario();
-            pro_ResultadoInventario();
+            if (Lstv_Receta.Items.Count > 0 && Lstv_Receta.Items[0].SubItems.Count > 3)
+            {
+                pro_LimpiarColumnasCalculo();
+                pro_CantidadTotal(cantidad);
+                pro_ResultadoDisponibilidad();
+            }
+            else
+            {
+                pro_LimpiarColumnas();
+                pro_CantidadTotal(cantidad);
+                pro_ConsultarInventario();
+                pro_ResultadoDisponibilidad();
+            }
+
         }
 
         private void Btn_OrdenCompra_Click(object sender, EventArgs e)
         {
-            List<(string sIngrediente, double doCantidadFaltante)> listaFaltantes = new List<(string, double)>();
+            List<(int iCodigo, string sIngrediente, double doCantidadFaltante)> listaFaltantes = new List<(int, string, double)>();
 
             foreach (ListViewItem item in Lstv_Receta.Items)
             {
-                if (item.SubItems.Count > 5)
+                if (item.SubItems.Count > 6)
                 {
-                    string sDisponibilidad = item.SubItems[5].Text.Trim();
+                    string sDisponibilidad = item.SubItems[6].Text.Trim();
                     if (sDisponibilidad.Equals("Insuficiente", StringComparison.OrdinalIgnoreCase))
                     {
                         string sIngrediente = item.SubItems[0].Text.Trim();
+                        int iCodigo = (int)item.Tag;
+
                         double doTotalNecesario = Convert.ToDouble(item.SubItems[3].Text);
-                        double doStock = Convert.ToDouble(item.SubItems[4].Text);
+                        string sColumnaStock = item.SubItems[4].Text.Split(' ')[0];
+                        double doStock = Convert.ToDouble(sColumnaStock);
 
                         double doCantidadFaltante = doTotalNecesario - doStock;
-                        if (doCantidadFaltante < 0) doCantidadFaltante = 0; // Evitar negativos
+                        if (doCantidadFaltante < 0) doCantidadFaltante = 0; 
 
-                        listaFaltantes.Add((sIngrediente, doCantidadFaltante));
+                        listaFaltantes.Add((iCodigo,sIngrediente, doCantidadFaltante));
                     }
                 }
             }

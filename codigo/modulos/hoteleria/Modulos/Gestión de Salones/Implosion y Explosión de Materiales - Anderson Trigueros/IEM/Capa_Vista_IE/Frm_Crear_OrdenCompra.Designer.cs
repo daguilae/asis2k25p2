@@ -33,7 +33,7 @@ namespace Capa_Vista_IE
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Dgv_ListadoCompra = new System.Windows.Forms.DataGridView();
             this.Pic_Cancelar = new System.Windows.Forms.PictureBox();
-            this.Btn_guardar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ListadoCompra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pic_Cancelar)).BeginInit();
             this.SuspendLayout();
@@ -70,29 +70,31 @@ namespace Capa_Vista_IE
             this.Pic_Cancelar.TabIndex = 5;
             this.Pic_Cancelar.TabStop = false;
             // 
-            // Btn_guardar
+            // Btn_Guardar
             // 
-            this.Btn_guardar.BackColor = System.Drawing.Color.White;
-            this.Btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_guardar.Image")));
-            this.Btn_guardar.Location = new System.Drawing.Point(568, 11);
-            this.Btn_guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Btn_guardar.Name = "Btn_guardar";
-            this.Btn_guardar.Size = new System.Drawing.Size(53, 46);
-            this.Btn_guardar.TabIndex = 6;
-            this.Btn_guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(568, 11);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Guardar.TabIndex = 6;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
             // 
             // Frm_Crear_OrdenCompra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Btn_guardar);
+            this.Controls.Add(this.Btn_Guardar);
             this.Controls.Add(this.Pic_Cancelar);
             this.Controls.Add(this.Dgv_ListadoCompra);
             this.Controls.Add(this.Lbl_Titulo);
             this.Name = "Frm_Crear_OrdenCompra";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Crear_OrdenCompra";
             this.Load += new System.EventHandler(this.Frm_Crear_OrdenCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_ListadoCompra)).EndInit();
@@ -107,6 +109,6 @@ namespace Capa_Vista_IE
         private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.DataGridView Dgv_ListadoCompra;
         private System.Windows.Forms.PictureBox Pic_Cancelar;
-        private System.Windows.Forms.Button Btn_guardar;
+        private System.Windows.Forms.Button Btn_Guardar;
     }
 }

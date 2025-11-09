@@ -9,81 +9,94 @@ using Capa_Modelo_S;
 
 namespace Capa_Controlador_S
 {
-
     public class Cls_Controlador_S
     {
-
-        // ==========================
-        // Variables globales
-        // ==========================
-        Cls_Sentencias_Salones sentencias = new Cls_Sentencias_Salones();
-        Cls_Sentencias_Reservacion sentenciasReservas = new Cls_Sentencias_Reservacion();
+        Cls_Sentencias_Salones cSentencias = new Cls_Sentencias_Salones();
+        Cls_Sentencias_Reservacion cSentenciasReservas = new Cls_Sentencias_Reservacion();
 
 
-        // ==========================
-        // MÉTODOS PARA TBL_SALONES
-        // ==========================
 
         // Insertar salón
-        public void GuardarSalon(string nombre, string ubicacion, int capacidad, int disponibilidad)
+        public void GuardarSalon(string sNombre, string sUbicacion, int iCapacidad, int iDisponibilidad)
         {
-            sentencias.InsertarSalon(nombre, ubicacion, capacidad, disponibilidad);
-        }
-        public int VerificarSalon(string sNombreSalon)
-        {
-            return sentencias.VerificarSalon(sNombreSalon);
+            cSentencias.InsertarSalon(sNombre, sUbicacion, iCapacidad, iDisponibilidad);
         }
 
+        public int VerificarSalon(string sNombreSalon)
+        {
+            return cSentencias.VerificarSalon(sNombreSalon);
+        }
+
+        // Folio
+        public void GuardarFolioSalon(int iIdReserva, DateTime dFechaPago, decimal dePagoTotal, string sEstado, string sMetodoPago)
+        {
+            cSentenciasReservas.InsertarFolioSalon(iIdReserva, dFechaPago, dePagoTotal, sEstado, sMetodoPago);
+        }
+        //Folio
+        public void ModificarFolioSalon(int idReserva, DateTime fechaPago, decimal pagoTotal, string estado, string metodoPago)
+        {
+            cSentenciasReservas.ModificarFolioSalon(idReserva, fechaPago, pagoTotal, estado, metodoPago);
+        }
+
+
+        public int GuardarReservaSalonYObtenerID(int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
+        {
+            return cSentenciasReservas.InsertarReservaSalonYObtenerID(iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCantidadPersonas, deMontoTotal);
+        }
 
         // Consultar salones
         public DataTable ObtenerSalones()
         {
-            return sentencias.ObtenerSalones();
+            return cSentencias.ObtenerSalones();
         }
 
-        // Modificar salón
-        public void ModificarSalon(int id, string nombre, string ubicacion, int capacidad, int disponibilidad)
+        // Modificar salones
+        public void ModificarSalon(int iId, string sNombre, string sUbicacion, int iCapacidad, int iDisponibilidad)
         {
-            sentencias.ModificarSalon(id, nombre, ubicacion, capacidad, disponibilidad);
+            cSentencias.ModificarSalon(iId, sNombre, sUbicacion, iCapacidad, iDisponibilidad);
         }
 
-        // Eliminar salón
-        public void EliminarSalon(int id)
+        // Eliminar salones
+        public void EliminarSalon(int iId)
         {
-            sentencias.EliminarSalon(id);
+            cSentencias.EliminarSalon(iId);
         }
 
-        // ==========================
-        // MÉTODOS PARA TBL_RESERVAS_SALONES
-        // ==========================
-        public void GuardarReservaSalon(int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+        //Reservaciones 
+        public void GuardarReservaSalon(int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
         {
-            sentenciasReservas.InsertarReservaSalon(idHuesped, idSalon, fecha, horaInicio, horaFin, cantidadPersonas, montoTotal);
+            cSentenciasReservas.InsertarReservaSalon(iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCantidadPersonas, deMontoTotal);
         }
 
-        public void ModificarReservaSalon(int idReserva, int idHuesped, int idSalon, DateTime fecha, TimeSpan horaInicio, TimeSpan horaFin, int cantidadPersonas, decimal montoTotal)
+        public void ModificarReservaSalon(int iIdReserva, int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
         {
-            sentenciasReservas.ModificarReservaSalon(idReserva, idHuesped, idSalon, fecha, horaInicio, horaFin, cantidadPersonas, montoTotal);
+            cSentenciasReservas.ModificarReservaSalon(iIdReserva, iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCantidadPersonas, deMontoTotal);
         }
 
-        public void EliminarReservaSalon(int idReserva)
+        public void EliminarReservaSalon(int iIdReserva)
         {
-            sentenciasReservas.EliminarReservaSalon(idReserva);
+            cSentenciasReservas.EliminarReservaSalon(iIdReserva);
         }
 
         public DataTable ObtenerReservasSalones()
         {
-            return sentenciasReservas.ObtenerReservasSalones();
+            return cSentenciasReservas.ObtenerReservasSalones();
         }
 
         public DataTable ObtenerHuespedes()
         {
-            return sentenciasReservas.ObtenerHuespedes();
+            return cSentenciasReservas.ObtenerHuespedes();
         }
 
         public DataTable ObtenerSalonesDisponibles()
         {
-            return sentenciasReservas.ObtenerSalonesDisponibles();
+            return cSentenciasReservas.ObtenerSalonesDisponibles();
         }
+
+        public DataTable ObtenerPromociones()
+        {
+            return cSentenciasReservas.ObtenerPromociones();
+        }
+
     }
 }

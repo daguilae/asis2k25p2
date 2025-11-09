@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Odbc; // Paula Leonardo
+using System.Data.Odbc;
 
-namespace Capa_Modelo_Produccion
+namespace CapaModeloProduccion
 {
-    class Cls_Conexion_Produccion //Paula Leonardo
+    class Cls_Conexion_Produccion
     {
-        //Método de creación de la conexion via ODBC
 
         public OdbcConnection conexion()
         {
+            //creacion de la conexion via ODBC
             OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
             try
             {
@@ -25,7 +25,7 @@ namespace Capa_Modelo_Produccion
             return conn;
         }
 
-        //Método para cerrar la conexion
+        //metodo para cerrar la conexion
         public void desconexion(OdbcConnection conn)
         {
             try
@@ -37,6 +37,9 @@ namespace Capa_Modelo_Produccion
                 Console.WriteLine("No Conectó");
             }
         }
+
+
+
 
     }
 }

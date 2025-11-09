@@ -74,7 +74,6 @@ namespace Capa_Vista_Gestion_Habitacion
             this.ClientSize = new System.Drawing.Size(1179, 544);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.navegador1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Mantenimiento_Tipo_Habitaciones";
             this.Text = "Frm_Mantenimiento_Tipo_Habitaciones";
             this.panel1.ResumeLayout(false);

@@ -14,33 +14,26 @@ namespace Capa_Vista_S
 {
     public partial class Frm_Salones : Form
     {
-        // ==========================
-        // Variables globales
-        // ==========================
-        Cls_Controlador_S controlador = new Cls_Controlador_S();
+        
+        Cls_Controlador_S cControlador = new Cls_Controlador_S();
         private int iCodigoSalon = -1;
         private string sNombreSalon = "";
         private string sUbicacion = "";
         private int iCapacidad = 0;
         private int iDisponibilidad = 0;
 
-        // ==========================
-        // Constructor
-        // ==========================
+       
         public Frm_Salones()
         {
             InitializeComponent();
             ActualizarGrid();
         }
 
-        // ==========================
-        // Métodos auxiliares
-        // ==========================
-
+       
         private void ActualizarGrid()
         {
-            DataTable tabla = controlador.ObtenerSalones();
-            Dvg_Salones.DataSource = tabla;
+            DataTable dTabla = cControlador.ObtenerSalones();
+            Dvg_Salones.DataSource = dTabla;
 
             if (Dvg_Salones.Columns.Count > 0)
             {
@@ -58,7 +51,6 @@ namespace Capa_Vista_S
             Dvg_Salones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
-
         private void LimpiarCampos()
         {
             Txt_Nombre.Clear();
@@ -70,30 +62,30 @@ namespace Capa_Vista_S
 
         private int VerificarSalonExistente(string sNombreSalon)
         {
-            return controlador.VerificarSalon(sNombreSalon);
+            return cControlador.VerificarSalon(sNombreSalon);
         }
 
         private void GuardarSalon()
         {
-            string nombre = Txt_Nombre.Text.Trim();
-            string ubicacion = Txt_ubicacion.Text.Trim();
-            int capacidad = int.TryParse(Txt_capacidad.Text, out int cap) ? cap : 0;
-            int disponibilidad = Chk_disponibilidad.Checked ? 1 : 0;
+            string sNombre = Txt_Nombre.Text.Trim();
+            string sUbicacion = Txt_ubicacion.Text.Trim();
+            int iCapacidad = int.TryParse(Txt_capacidad.Text, out int iCap) ? iCap : 0;
+            int iDisponibilidad = Chk_disponibilidad.Checked ? 1 : 0;
 
-            if (string.IsNullOrWhiteSpace(nombre))
+            if (string.IsNullOrWhiteSpace(sNombre))
             {
                 MessageBox.Show("Debe ingresar un nombre para el salón.");
                 return;
             }
 
-            int existe = VerificarSalonExistente(nombre);
-            if (existe > 0)
+            int iExiste = VerificarSalonExistente(sNombre);
+            if (iExiste > 0)
             {
                 MessageBox.Show("Ya existe un salón con ese nombre.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            controlador.GuardarSalon(nombre, ubicacion, capacidad, disponibilidad);
+            cControlador.GuardarSalon(sNombre, sUbicacion, iCapacidad, iDisponibilidad);
             MessageBox.Show("Salón guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ActualizarGrid();
             LimpiarCampos();
@@ -107,12 +99,12 @@ namespace Capa_Vista_S
                 return;
             }
 
-            string nombreNuevo = Txt_Nombre.Text.Trim();
-            string ubicacionNueva = Txt_ubicacion.Text.Trim();
-            int capacidadNueva = int.TryParse(Txt_capacidad.Text, out int cap) ? cap : 0;
-            int disponibilidadNueva = Chk_disponibilidad.Checked ? 1 : 0;
+            string sNombreNuevo = Txt_Nombre.Text.Trim();
+            string sUbicacionNueva = Txt_ubicacion.Text.Trim();
+            int iCapacidadNueva = int.TryParse(Txt_capacidad.Text, out int iCap) ? iCap : 0;
+            int iDisponibilidadNueva = Chk_disponibilidad.Checked ? 1 : 0;
 
-            controlador.ModificarSalon(iCodigoSalon, nombreNuevo, ubicacionNueva, capacidadNueva, disponibilidadNueva);
+            cControlador.ModificarSalon(iCodigoSalon, sNombreNuevo, sUbicacionNueva, iCapacidadNueva, iDisponibilidadNueva);
             MessageBox.Show("Salón modificado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ActualizarGrid();
             LimpiarCampos();
@@ -126,20 +118,17 @@ namespace Capa_Vista_S
                 return;
             }
 
-            DialogResult result = MessageBox.Show("¿Desea eliminar este salón?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            DialogResult dResult = MessageBox.Show("¿Desea eliminar este salón?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dResult == DialogResult.Yes)
             {
-                controlador.EliminarSalon(iCodigoSalon);
+                cControlador.EliminarSalon(iCodigoSalon);
                 MessageBox.Show("Salón eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarGrid();
                 LimpiarCampos();
             }
         }
 
-        // ==========================
-        // Eventos
-        // ==========================
-
+    
         private void Frm_Salones_Load(object sender, EventArgs e)
         {
             ActualizarGrid();
@@ -164,31 +153,29 @@ namespace Capa_Vista_S
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow fila = Dvg_Salones.Rows[e.RowIndex];
-                iCodigoSalon = Convert.ToInt32(fila.Cells["Pk_Id_Salon"].Value);
-                Txt_Nombre.Text = fila.Cells["Cmp_Nombre_Salon"].Value.ToString();
-                Txt_ubicacion.Text = fila.Cells["Cmp_Ubicacion"].Value.ToString();
-                Txt_capacidad.Text = fila.Cells["Cmp_Capacidad"].Value.ToString();
-                Chk_disponibilidad.Checked = Convert.ToInt32(fila.Cells["Cmp_Disponibilidad"].Value) == 1;
+                DataGridViewRow dFila = Dvg_Salones.Rows[e.RowIndex];
+                iCodigoSalon = Convert.ToInt32(dFila.Cells["Pk_Id_Salon"].Value);
+                Txt_Nombre.Text = dFila.Cells["Cmp_Nombre_Salon"].Value.ToString();
+                Txt_ubicacion.Text = dFila.Cells["Cmp_Ubicacion"].Value.ToString();
+                Txt_capacidad.Text = dFila.Cells["Cmp_Capacidad"].Value.ToString();
+                Chk_disponibilidad.Checked = Convert.ToInt32(dFila.Cells["Cmp_Disponibilidad"].Value) == 1;
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Frm_Reservaciones formSalones = new Frm_Reservaciones();
-            formSalones.Show();
+            Frm_Reservaciones fFormReservas = new Frm_Reservaciones();
+            fFormReservas.Show();
         }
 
         private void Pnl_Superior_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void salonesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
-            Frm_Reservaciones nuevoFormulario = new Frm_Reservaciones();
-            nuevoFormulario.Show();
+            Frm_Reservaciones fNuevoFormulario = new Frm_Reservaciones();
+            fNuevoFormulario.Show();
         }
     }
 }

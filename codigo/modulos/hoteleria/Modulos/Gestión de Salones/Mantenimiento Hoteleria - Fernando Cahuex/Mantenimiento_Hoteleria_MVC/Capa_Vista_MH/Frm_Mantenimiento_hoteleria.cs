@@ -40,7 +40,7 @@ namespace Capa_Vista_MH
 
                 Cbo_Id_Habitacion.DataSource = controlador.ObtenerHabitaciones();
                 Cbo_Id_Habitacion.DisplayMember = "Nombre_Habitacion";
-                Cbo_Id_Habitacion.ValueMember = "Pk_Id_Habitacion";
+                Cbo_Id_Habitacion.ValueMember = "PK_ID_Habitaciones";
                 Cbo_Id_Habitacion.SelectedIndex = -1;
 
                 Cbo_Id_Empleado.DataSource = controlador.ObtenerEmpleados();
@@ -135,9 +135,9 @@ namespace Capa_Vista_MH
                 Txt_Descripcion_Mantenimiento.Text = fila["Cmp_Descripcion_Mantenimiento"].ToString();
                 Txt_Estado.Text = fila["Cmp_Estado"].ToString();
 
-                if (DateTime.TryParse(fila["Cmp_Fecha_Inicio"].ToString(), out DateTime f1))
+                if (DateTime.TryParse(fila["Cmp_Fecha_Inicio_Mantenimiento"].ToString(), out DateTime f1))
                     Dtp_Fecha_Inicio.Value = f1;
-                if (DateTime.TryParse(fila["Cmp_Fecha_Fin"].ToString(), out DateTime f2))
+                if (DateTime.TryParse(fila["Cmp_Fecha_Fin_Mantenimiento"].ToString(), out DateTime f2))
                     Dtp_Fecha_Fin.Value = f2;
             }
             else

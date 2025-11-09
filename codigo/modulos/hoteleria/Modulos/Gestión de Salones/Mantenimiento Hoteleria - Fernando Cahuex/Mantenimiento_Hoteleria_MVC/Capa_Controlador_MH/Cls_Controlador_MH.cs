@@ -44,11 +44,11 @@ namespace Capa_Controlador_MH
                     estado = "En mantenimiento";
 
                 modelo.InsertarMantenimiento(salon, habitacion, empleado, tipo, descripcion, estado, fechaInicio, fechaFin);
-                return "✅ Registro guardado correctamente.";
+                return "Registro guardado correctamente.";
             }
             catch (Exception ex)
             {
-                return $"❌ Error al guardar: {ex.Message}";
+                return $"Error al guardar: {ex.Message}";
             }
         }
 
@@ -65,11 +65,11 @@ namespace Capa_Controlador_MH
                     return "Debe seleccionar un ID válido para actualizar.";
 
                 modelo.ActualizarMantenimiento(id, salon, habitacion, empleado, tipo, descripcion, estado, fechaInicio, fechaFin);
-                return "✅ Registro actualizado correctamente.";
+                return "Registro actualizado correctamente.";
             }
             catch (Exception ex)
             {
-                return $"❌ Error al actualizar: {ex.Message}";
+                return $"Error al actualizar: {ex.Message}";
             }
         }
 
@@ -84,11 +84,11 @@ namespace Capa_Controlador_MH
                     return "Debe seleccionar un ID válido para eliminar.";
 
                 modelo.EliminarMantenimiento(id);
-                return "🗑️ Registro eliminado correctamente.";
+                return "Registro eliminado correctamente.";
             }
             catch (Exception ex)
             {
-                return $"❌ Error al eliminar: {ex.Message}";
+                return $"Error al eliminar: {ex.Message}";
             }
         }
 

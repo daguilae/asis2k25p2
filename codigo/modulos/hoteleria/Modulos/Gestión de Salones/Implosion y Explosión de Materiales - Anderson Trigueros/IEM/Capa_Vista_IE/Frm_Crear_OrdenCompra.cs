@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Capa_Controlador_IE;
 
 namespace Capa_Vista_IE
 {
     public partial class Frm_Crear_OrdenCompra : Form
     {
-        private List<(string sIngrediente, double doCantidad)> lista;
-
-        public Frm_Crear_OrdenCompra(List<(string sIngrediente, double doCantidad)> Listado)
+        Cls_Controlador_IE controlador = new Cls_Controlador_IE(); 
+        private List<(int iCodigo, string sIngrediente, double doCantidad)> lista;
+        public Frm_Crear_OrdenCompra(List<(int iCodigo, string sIngrediente, double doCantidad)> Listado)
         {
             InitializeComponent();
             lista = Listado;
@@ -34,16 +35,59 @@ namespace Capa_Vista_IE
             mostrarDatos(lista);
         }
 
-        public void mostrarDatos(List<(string sIngrediente, double doCantidad)> Listado)
+        public void mostrarDatos(List<(int iCodigo, string sIngrediente, double doCantidad)> Listado)
         {
             Dgv_ListadoCompra.Rows.Clear();
 
-            foreach (var (sIngrediente, doCantidad) in Listado)
+            foreach (var (iCodigo, sIngrediente, doCantidad) in Listado)
             {
-                Dgv_ListadoCompra.Rows.Add(sIngrediente, doCantidad);
+                int iFila = Dgv_ListadoCompra.Rows.Add(sIngrediente, doCantidad);
+                Dgv_ListadoCompra.Rows[iFila].Tag = iCodigo;
             }
         }
 
+        private void pro_GenerarOrden()
+        {
+            var listaCompra = new List<(int iCodigo, double doCantidad)>();
+            foreach (DataGridViewRow fila in Dgv_ListadoCompra.Rows)
+            {
+                int iCodigo = (int)fila.Tag;
 
+                double doCantidad = 0;
+                double.TryParse(fila.Cells["cantidad"].Value?.ToString(), out doCantidad);
+
+                listaCompra.Add((iCodigo, doCantidad));
+            }
+            try
+            {
+                controlador.GenerarOrdenCompra(listaCompra);
+                MessageBox.Show("Orden de Compra Registrada Correctamente.");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error al ingresar la orden de compra " + ex.Message);
+            }
+
+        }
+
+
+        private void Btn_Guardar_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow fila in Dgv_ListadoCompra.Rows)
+            {
+                if (fila.Cells["cantidad"].Value != null)
+                {
+                    string sValor = fila.Cells["cantidad"].Value.ToString().Trim();
+
+                    if (!double.TryParse(sValor, out double doCantidad))
+                    {
+                        MessageBox.Show($"El valor '{sValor}' no es un número válido.",
+                                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+            }
+            pro_GenerarOrden();
+        }
     }
 }

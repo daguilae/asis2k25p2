@@ -1,56 +1,111 @@
 ﻿using System;
 using System.Data;
-using Capa_Modelo_Produccion;  // Asumo que tu modelo está en este namespace
+using CapaModeloProduccion;  // Asumo que tu modelo está en este namespace
 
-namespace Capa_Controlador_Produccion
+namespace CapaControladorProduccion
 {
     public class Cls_Controlador_Produccion
     {
-        private Cls_Modelo_Produccion modelo = new Cls_Modelo_Produccion();
+        Cls_Sentencias_Produccion sentencias = new Cls_Sentencias_Produccion();
 
-        // Obtener lista de platos para llenar ComboBox
+        public void GuardarRoomService(int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
+        {
+            sentencias.InsertarRoomService(idHuesped, idHabitacion, fechaOrden, estado);
+        }
+
+        // ACTUALIZAR (Editar registro existente)
+        public void ActualizarRoomService(int idRoom, int idHuesped, int idHabitacion, DateTime fechaOrden, string estado)
+        {
+            sentencias.EditarRoomService(idRoom, idHuesped, idHabitacion, fechaOrden, estado);
+        }
+
+        // ELIMINAR
+        public void EliminarRoomService(int idRoom)
+        {
+            sentencias.EliminarRoomService(idRoom);
+        }
+
+        // MOSTRAR TODOS LOS ROOM SERVICES
+        public DataTable MostrarRoomServices()
+        {
+            return sentencias.CargarRoomServices();
+        }
+
+        public void GuardarDetalle(int idRoom, int idMenu, int cantidad)
+        {
+            // Obtenemos el precio desde el modelo automáticamente
+            decimal precioUnitario = sentencias.ObtenerPrecioUnitario(idMenu);
+            sentencias.InsertarDetalle(idRoom, idMenu, cantidad);
+        }
+
+        // ✅ ACTUALIZAR
+        public void ActualizarDetalle(int idDetalle, int idRoom, int idMenu, int cantidad)
+        {
+            decimal precioUnitario = sentencias.ObtenerPrecioUnitario(idMenu);
+            sentencias.EditarDetalle(idDetalle, idRoom, idMenu, cantidad);
+        }
+
+        // ✅ ELIMINAR
+        public void BorrarDetalle(int idDetalle)
+        {
+            sentencias.EliminarDetalle(idDetalle);
+        }
+
+        // ✅ MOSTRAR TODOS LOS DETALLES
+        public DataTable MostrarDetalles()
+        {
+            return sentencias.CargarDetalles();
+        }
+
+        // ✅ MOSTRAR DETALLES POR ROOM SERVICE
+        public DataTable MostrarDetallesPorRoom(int idRoom)
+        {
+            return sentencias.CargarDetallesPorRoom(idRoom);
+        }
+
+        // ✅ OBTENER PRECIO UNITARIO (para llenar automáticamente en la vista)
+        public decimal ObtenerPrecio(int idMenu)
+        {
+            return sentencias.ObtenerPrecioUnitario(idMenu);
+        }
+
         public DataTable ObtenerPlatos()
         {
-            return modelo.ObtenerPlatos();
+            return sentencias.CargarMenu(); // Esto debería traer Id y Nombre del menú
         }
 
-        // Obtener precio de un plato por su id
-        public decimal ObtenerPrecioPlato(int idMenu)
+        public int ObtenerUltimoIdRoomService()
         {
-            return modelo.ObtenerPrecioPlato(idMenu);
+            return sentencias.ObtenerUltimoIdRoomService();
         }
 
-        // Crear Room Service (encabezado) y devolver ID generado
-        public int CrearRoomService(int idHuesped, int idHabitacion, DateTime fecha, string estado)
+        // INSERTAR nueva reserva
+        public void GuardarReserva(int idHuesped, int idHabitacion, int idSalon, DateTime fecha, TimeSpan hora, int numComensales, int estado)
         {
-            return modelo.InsertarRoomService(idHuesped, idHabitacion, fecha, estado);
+            sentencias.InsertarReservaAlacarta(idHuesped, idHabitacion, idSalon, fecha, hora, numComensales, estado);
         }
 
-        // Agregar detalle al Room Service
-        public void AgregarDetalle(int idRoomService, int idMenu, int cantidad, decimal precioUnitario, decimal subtotal)
+        // ACTUALIZAR reserva existente
+        public void ActualizarReserva(int idReserva, int idHuesped, int idHabitacion, int idSalon, DateTime fecha, TimeSpan hora, int numComensales, int estado)
         {
-            modelo.InsertarDetalle(idRoomService, idMenu, cantidad, precioUnitario, subtotal);
+            sentencias.EditarReservaAlacarta(idReserva, idHuesped, idHabitacion, idSalon, fecha, hora, numComensales, estado);
         }
 
-        // Obtener detalle para mostrar en DataGridView
-        public DataTable ObtenerDetalle(int idRoomService)
+        // ELIMINAR reserva
+        public void EliminarReserva(int idReserva)
         {
-            return modelo.ObtenerDetallePorRoomService(idRoomService);
+            sentencias.EliminarReservaAlacarta(idReserva);
         }
 
-        // Eliminar Room Service (encabezado y detalles)
-        public void EliminarRoomService(int idRoomService)
+        // CONSULTAR todas las reservas
+        public DataTable MostrarReservas()
         {
-            modelo.EliminarDetallesRoomService(idRoomService);
-            modelo.EliminarRoomService(idRoomService);
+            return sentencias.CargarReservasAlacarta();
         }
 
-        // Modificar Room Service (encabezado)
-        public void ModificarRoomService(int idRoomService, int idHuesped, int idHabitacion, DateTime fecha, string estado)
-        {
-            modelo.ModificarRoomService(idRoomService, idHuesped, idHabitacion, fecha, estado);
-        }
+
     }
+
 }
 
 

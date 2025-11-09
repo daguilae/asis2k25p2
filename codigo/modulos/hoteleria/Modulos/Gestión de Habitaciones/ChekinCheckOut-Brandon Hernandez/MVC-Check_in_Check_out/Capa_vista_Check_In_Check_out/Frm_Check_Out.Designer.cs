@@ -37,7 +37,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Cbo_Huesped = new System.Windows.Forms.ComboBox();
             this.Txt_Check_out = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Dtp_Fecha_CheckOut = new System.Windows.Forms.DateTimePicker();
             this.Lbl_idreserva = new System.Windows.Forms.Label();
             this.Lbl_IdcheckOut = new System.Windows.Forms.Label();
             this.Lbl_Icheck_in = new System.Windows.Forms.Label();
@@ -49,9 +49,11 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Modificar = new System.Windows.Forms.Button();
             this.Btn_guardar = new System.Windows.Forms.Button();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Check_Out)).BeginInit();
             this.Gbp_Titulo.SuspendLayout();
             this.Gbp_Campos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // Dgv_Check_Out
@@ -91,7 +93,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbp_Campos.Controls.Add(this.Cbo_Huesped);
             this.Gbp_Campos.Controls.Add(this.Txt_Check_out);
             this.Gbp_Campos.Controls.Add(this.Lbl_Fecha);
-            this.Gbp_Campos.Controls.Add(this.dateTimePicker1);
+            this.Gbp_Campos.Controls.Add(this.Dtp_Fecha_CheckOut);
             this.Gbp_Campos.Controls.Add(this.Lbl_idreserva);
             this.Gbp_Campos.Controls.Add(this.Lbl_IdcheckOut);
             this.Gbp_Campos.Controls.Add(this.Lbl_Icheck_in);
@@ -126,12 +128,12 @@ namespace Capa_vista_Check_In_Check_out
             this.Lbl_Fecha.TabIndex = 5;
             this.Lbl_Fecha.Text = "Fecha";
             // 
-            // dateTimePicker1
+            // Dtp_Fecha_CheckOut
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(957, 80);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(257, 22);
-            this.dateTimePicker1.TabIndex = 4;
+            this.Dtp_Fecha_CheckOut.Location = new System.Drawing.Point(957, 80);
+            this.Dtp_Fecha_CheckOut.Name = "Dtp_Fecha_CheckOut";
+            this.Dtp_Fecha_CheckOut.Size = new System.Drawing.Size(257, 22);
+            this.Dtp_Fecha_CheckOut.TabIndex = 4;
             // 
             // Lbl_idreserva
             // 
@@ -190,6 +192,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.TabIndex = 26;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Btn_Ayuda
             // 
@@ -278,12 +281,19 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Cancelar.TabIndex = 27;
             this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Cancelar.UseVisualStyleBackColor = false;
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
             // 
             // Frm_Check_Out
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1372, 788);
+            this.Controls.Add(this.Dgv_Check_Out);
             this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
@@ -292,7 +302,6 @@ namespace Capa_vista_Check_In_Check_out
             this.Controls.Add(this.Btn_Nuevo);
             this.Controls.Add(this.Btn_Modificar);
             this.Controls.Add(this.Btn_guardar);
-            this.Controls.Add(this.Dgv_Check_Out);
             this.Controls.Add(this.Gbp_Titulo);
             this.Controls.Add(this.Gbp_Campos);
             this.Name = "Frm_Check_Out";
@@ -302,6 +311,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbp_Titulo.PerformLayout();
             this.Gbp_Campos.ResumeLayout(false);
             this.Gbp_Campos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,7 +324,7 @@ namespace Capa_vista_Check_In_Check_out
         private System.Windows.Forms.ComboBox Cbo_Huesped;
         private System.Windows.Forms.TextBox Txt_Check_out;
         private System.Windows.Forms.Label Lbl_Fecha;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker Dtp_Fecha_CheckOut;
         private System.Windows.Forms.Label Lbl_idreserva;
         private System.Windows.Forms.Label Lbl_IdcheckOut;
         private System.Windows.Forms.Label Lbl_Icheck_in;
@@ -326,5 +336,6 @@ namespace Capa_vista_Check_In_Check_out
         private System.Windows.Forms.Button Btn_Modificar;
         private System.Windows.Forms.Button Btn_guardar;
         private System.Windows.Forms.Button Btn_Cancelar;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }

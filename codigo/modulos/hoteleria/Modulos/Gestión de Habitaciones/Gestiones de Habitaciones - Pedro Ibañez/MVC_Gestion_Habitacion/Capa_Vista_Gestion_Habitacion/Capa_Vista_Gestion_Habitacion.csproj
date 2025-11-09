@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Frm_Asignacion_Servicio_Cuarto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Asignacion_Servicio_Cuarto.Designer.cs">
+      <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Estadia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,8 +83,16 @@
       <DependentUpon>Frm_Servicios_Cuartos.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Frm_Asignacion_Servicio_Cuarto.resx">
+      <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Estadia.resx">
       <DependentUpon>Frm_Estadia.cs</DependentUpon>
     </EmbeddedResource>
@@ -90,6 +104,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Servicios_Cuartos.resx">
       <DependentUpon>Frm_Servicios_Cuartos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

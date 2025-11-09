@@ -2,27 +2,39 @@
 using System.Data;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
+using Capa_Controlador_Seguridad;
 
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Area : Form
     {
         private readonly Cls_Area_Controlador Controlador = new Cls_Area_Controlador();
+        Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
 
         public Frm_Area()
         {
             InitializeComponent();
-            CargarFolios();
-            CargarTiposMovimiento();
-            CargarAreas();
+            fun_CargarFolios();
+            fun_CargarTiposMovimiento();
+            fun_CargarAreas();
+            fun_configuracion_inicial();
+            fun_LimpiarCampos();
         }
 
+        public void fun_configuracion_inicial()
+        {
+            Btn_Guardar.Enabled = false;
+            Btn_Modificar.Enabled = false;
+            Btn_Eliminar.Enabled = false;
+            Btn_Nuevo.Enabled = true;
+        }
 
-        private void CargarFolios()
+        private void fun_CargarFolios()
         {
             try
             {
-                var dt = Controlador.datObtenerFolio();
+            
+                var dt = Controlador.fun_Obtener_Folios_Abiertos();
                 Cbo_Folios.DataSource = dt;
                 Cbo_Folios.DisplayMember = "DescripcionFolio";
                 Cbo_Folios.ValueMember = "Pk_Id_Folio";
@@ -32,17 +44,17 @@ namespace Capa_vista_Check_In_Check_out
                 else
                 {
                     Cbo_Folios.SelectedIndex = -1;
-                    MessageBox.Show(" No hay folios abiertos disponibles.\nDebe crear o abrir un folio antes de registrar áreas.",
+                    MessageBox.Show("No hay folios abiertos disponibles.\nDebe crear o abrir un folio antes de registrar áreas.",
                                     "Aviso del sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error al cargar folios:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar folios:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void CargarTiposMovimiento()
+        private void fun_CargarTiposMovimiento()
         {
             Cbo_Movimientos.Items.Clear();
             Cbo_Movimientos.Items.Add("Cargo");
@@ -50,11 +62,12 @@ namespace Capa_vista_Check_In_Check_out
             Cbo_Movimientos.SelectedIndex = -1;
         }
 
-        private void CargarAreas()
+        private void fun_CargarAreas()
         {
             try
             {
-                var dt = Controlador.datObtenerAreas();
+                // ✅ Método actualizado
+                var dt = Controlador.fun_Obtener_Areas();
                 Cbo_Areas.DataSource = dt;
                 Cbo_Areas.DisplayMember = "DescripcionArea";
                 Cbo_Areas.ValueMember = "Pk_Id_Area";
@@ -66,9 +79,6 @@ namespace Capa_vista_Check_In_Check_out
             }
         }
 
-        // ===================================================
-        // === BOTÓN GUARDAR ===
-        // ===================================================
         private void Btn_guardar_Click(object sender, EventArgs e)
         {
             try
@@ -79,29 +89,30 @@ namespace Capa_vista_Check_In_Check_out
                     return;
                 }
 
-                int fkFolio = Convert.ToInt32(Cbo_Folios.SelectedValue);
-                string nombre = Txt_Area.Text.Trim();
-                string descripcion = Txt_Descripcion.Text.Trim();
-                string tipo = Cbo_Movimientos.Text.Trim();
-                string montoTexto = Txt_Montos.Text.Trim();
-                DateTime fecha = Dtp_Fecha.Value;
+                int iFkFolio = Convert.ToInt32(Cbo_Folios.SelectedValue);
+                string sNombre = Txt_Area.Text.Trim();
+                string sDescripcion = Txt_Descripcion.Text.Trim();
+                string sTipo = Cbo_Movimientos.Text.Trim();
+                string sMontoTexto = Txt_Montos.Text.Trim();
+                DateTime dFecha = Dtp_Fecha.Value;
 
-                bool ok = Controlador.bInsertarArea(fkFolio, nombre, descripcion, tipo, montoTexto, fecha);
-                if (ok)
+                // Método actualizado
+                bool bOk = Controlador.bInsertar_Area(iFkFolio, sNombre, sDescripcion, sTipo, sMontoTexto, dFecha);
+
+                if (bOk)
                 {
                     MessageBox.Show("Área registrada exitosamente y vinculada al folio seleccionado.",
                                     "Registro exitoso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    LimpiarCampos();
-                    CargarAreas();
+                    fun_LimpiarCampos();
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Guardado: ", true);
+                    fun_configuracion_inicial();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al guardar el registro:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al guardar el registro:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void Btn_Modificar_Click(object sender, EventArgs e)
         {
@@ -119,22 +130,25 @@ namespace Capa_vista_Check_In_Check_out
                     return;
                 }
 
-                int id = int.Parse(Txt_Idarea.Text);
-                int fkFolio = Convert.ToInt32(Cbo_Folios.SelectedValue);
-                string nombre = Txt_Area.Text.Trim();
-                string descripcion = Txt_Descripcion.Text.Trim();
-                string tipo = Cbo_Movimientos.Text.Trim();
-                string montoTexto = Txt_Montos.Text.Trim();
-                DateTime fecha = Dtp_Fecha.Value;
+                int iIdArea = int.Parse(Txt_Idarea.Text);
+                int iFkFolio = Convert.ToInt32(Cbo_Folios.SelectedValue);
+                string sNombre = Txt_Area.Text.Trim();
+                string sDescripcion = Txt_Descripcion.Text.Trim();
+                string sTipo = Cbo_Movimientos.Text.Trim();
+                string sMontoTexto = Txt_Montos.Text.Trim();
+                DateTime dFecha = Dtp_Fecha.Value;
 
-                bool ok = Controlador.bActualizarArea(id, fkFolio, nombre, descripcion, tipo, montoTexto, fecha);
-                if (ok)
+                
+                bool bOk = Controlador.bActualizar_Area(iIdArea, iFkFolio, sNombre, sDescripcion, sTipo, sMontoTexto, dFecha);
+
+                if (bOk)
                 {
                     MessageBox.Show("Registro de área actualizado correctamente.",
                                     "Modificación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    LimpiarCampos();
-                    CargarAreas();
+                    ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Modificado ", true);
+                    fun_LimpiarCampos();
+                    
+                    fun_configuracion_inicial();
                 }
             }
             catch (Exception ex)
@@ -153,33 +167,35 @@ namespace Capa_vista_Check_In_Check_out
                     return;
                 }
 
-                int id = int.Parse(Txt_Idarea.Text);
+                int iIdArea = int.Parse(Txt_Idarea.Text);
 
                 if (MessageBox.Show("¿Confirma eliminar el registro seleccionado?", "Confirmar eliminación",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    bool ok = Controlador.bEliminarArea(id);
-                    if (ok)
+                    //  Método actualizado
+                    bool bOk = Controlador.bEliminar_Area(iIdArea);
+
+                    if (bOk)
                     {
                         MessageBox.Show("Registro eliminado correctamente.",
                                         "Eliminación exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LimpiarCampos();
-                        CargarAreas();
+                        ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3404, $"Movimiento de Area Eliminado: ", true);
+                        fun_LimpiarCampos();
+                        fun_CargarAreas();
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al eliminar el registro:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al eliminar el registro:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
+            Btn_Guardar.Enabled = true;
         }
-
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
         {
@@ -199,28 +215,30 @@ namespace Capa_vista_Check_In_Check_out
                 Cbo_Movimientos.Text = Extraer(row, "Cmp_Tipo_Movimiento");
                 Txt_Montos.Text = Extraer(row, "Cmp_Monto");
 
-                if (DateTime.TryParse(Extraer(row, "Cmp_Fecha_Movimiento"), out DateTime f))
-                    Dtp_Fecha.Value = f;
+                if (DateTime.TryParse(Extraer(row, "Cmp_Fecha_Movimiento"), out DateTime dFecha))
+                    Dtp_Fecha.Value = dFecha;
 
                 if (row.DataView.Table.Columns.Contains("Fk_Id_Folio"))
                     Cbo_Folios.SelectedValue = Convert.ToInt32(row["Fk_Id_Folio"]);
 
-                MessageBox.Show($" Registro cargado correctamente:\nÁrea: {Txt_Area.Text}\nTipo: {Cbo_Movimientos.Text}\nMonto: Q{Txt_Montos.Text}",
+                MessageBox.Show($"Registro cargado correctamente:\nÁrea: {Txt_Area.Text}\nTipo: {Cbo_Movimientos.Text}\nMonto: Q{Txt_Montos.Text}",
                                 "Consulta exitosa", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Btn_Modificar.Enabled = true;
+                Btn_Eliminar.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error al cargar la selección:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar la selección:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private string Extraer(DataRowView row, string col)
         {
             return row.DataView.Table.Columns.Contains(col) ? row[col]?.ToString() ?? "" : "";
         }
 
-        private void LimpiarCampos()
+        private void fun_LimpiarCampos()
         {
             Txt_Idarea.Clear();
             Txt_Area.Clear();
@@ -240,7 +258,51 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Cbo_Areas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Se puede usar para mostrar automáticamente datos del área seleccionada
+            try
+            {
+                if (Cbo_Areas.SelectedIndex == -1 || Cbo_Areas.SelectedValue == null)
+                    return;
+
+                DataRowView row = Cbo_Areas.SelectedItem as DataRowView;
+                if (row == null)
+                    return;
+
+                Txt_Idarea.Text = row["Pk_Id_Area"].ToString();
+                Txt_Area.Text = row["Cmp_Nombre_Area"].ToString();
+                Txt_Descripcion.Text = row["Cmp_Descripcion"].ToString();
+                Cbo_Movimientos.Text = row["Cmp_Tipo_Movimiento"].ToString();
+                Txt_Montos.Text = row["Cmp_Monto"].ToString();
+
+                if (DateTime.TryParse(row["Cmp_Fecha_Movimiento"].ToString(), out DateTime fecha))
+                    Dtp_Fecha.Value = fecha;
+
+                if (row.DataView.Table.Columns.Contains("Fk_Id_Folio"))
+                    Cbo_Folios.SelectedValue = Convert.ToInt32(row["Fk_Id_Folio"]);
+
+                Cbo_Areas.BackColor = System.Drawing.Color.LightYellow;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar datos del área seleccionada:\n" + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Btn_Salir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            fun_configuracion_inicial();
+            fun_LimpiarCampos();
+        }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Area Reporte = new Frm_Reporte_Area();
+            Reporte.Show();
         }
     }
 }

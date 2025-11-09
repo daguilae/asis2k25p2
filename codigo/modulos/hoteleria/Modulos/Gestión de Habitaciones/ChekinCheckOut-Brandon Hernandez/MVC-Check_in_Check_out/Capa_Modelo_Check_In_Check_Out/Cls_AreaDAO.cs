@@ -8,9 +8,10 @@ namespace Capa_Modelo_Check_In_Check_Out
 {
     public class Cls_AreaDAO
     {
-        private readonly Cls_Conexion conexion = new Cls_Conexion();
+        private readonly Cls_Conexion prConexion = new Cls_Conexion();
 
-
+        // CONSULTAS BASE SQL
+      
         private const string SQL_SELECT_ALL = @"
             SELECT 
                 Pk_Id_Area,
@@ -40,10 +41,12 @@ namespace Capa_Modelo_Check_In_Check_Out
 
         private const string SQL_DELETE = "DELETE FROM Tbl_Area WHERE Pk_Id_Area = ?;";
 
-        public DataTable datObtenerFolio()
+        // OBTENER DATOS
+        
+        public DataTable fun_Obtener_Folios()
         {
-            DataTable dt = new DataTable();
-            string sql = @"
+            DataTable dtResultado = new DataTable();
+            string sQuery = @"
                 SELECT 
                     F.Pk_Id_Folio,
                     CONCAT(
@@ -53,33 +56,37 @@ namespace Capa_Modelo_Check_In_Check_Out
                         ' | Fecha Check-In: ', I.Cmp_Fecha_Check_In
                     ) AS DescripcionFolio
                 FROM Tbl_Folio F
-                INNER JOIN Tbl_Check_in I ON F.Fk_Id_Check_In = I.Pk_Id_Check_in
+                INNER JOIN Tbl_Check_In I ON F.Fk_Id_Check_In = I.Pk_Id_Check_in
                 INNER JOIN Tbl_Huesped H ON I.Fk_Id_Huesped = H.Pk_Id_Huesped
                 INNER JOIN Tbl_Habitaciones HA ON F.Fk_Id_Habitacion = HA.Pk_Id_Habitaciones
                 ORDER BY F.Pk_Id_Folio DESC;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
-                using (OdbcDataAdapter da = new OdbcDataAdapter(sql, conn))
+                using (OdbcConnection conn = prConexion.conexion())
+                using (OdbcDataAdapter da = new OdbcDataAdapter(sQuery, conn))
                 {
-                    da.Fill(dt);
+                    da.Fill(dtResultado);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al obtener folios:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener folios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return dt;
+            return dtResultado;
         }
 
-
-        public DataTable datObtenerAreas()
+        public DataTable fun_Obtener_Areas()
         {
-            DataTable dt = new DataTable();
-            string query = @"
+            DataTable dtResultado = new DataTable();
+            string sQuery = @"
                 SELECT 
                     Pk_Id_Area,
+                    Cmp_Nombre_Area,
+                    Cmp_Descripcion,
+                    Cmp_Tipo_Movimiento,
+                    Cmp_Monto,
+                    Cmp_Fecha_Movimiento,
                     CONCAT(
                         'ID: ', Pk_Id_Area,
                         ' | Nombre: ', Cmp_Nombre_Area,
@@ -91,138 +98,121 @@ namespace Capa_Modelo_Check_In_Check_Out
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
-                using (OdbcDataAdapter da = new OdbcDataAdapter(query, conn))
+                using (OdbcConnection conn = prConexion.conexion())
+                using (OdbcDataAdapter da = new OdbcDataAdapter(sQuery, conn))
                 {
-                    da.Fill(dt);
+                    da.Fill(dtResultado);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al obtener áreas:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al obtener áreas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return dt;
+            return dtResultado;
         }
 
-     
-        public DataTable bMostrarAreas()
+        public DataTable fun_Mostrar_Areas()
         {
-            DataTable dt = new DataTable();
+            DataTable dtResultado = new DataTable();
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection conn = prConexion.conexion())
                 using (OdbcDataAdapter da = new OdbcDataAdapter(SQL_SELECT_ALL, conn))
                 {
-                    da.Fill(dt);
+                    da.Fill(dtResultado);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("❌ Error al mostrar áreas:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al mostrar áreas: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            return dt;
+            return dtResultado;
         }
 
 
-        // ======================== CRUD ========================
 
-        // INSERT
-        public bool bInsertarArea(Cls_Area area)
+        public bool bInsertar_Area(Cls_Area clsArea)
         {
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             {
                 try
                 {
                     using (OdbcCommand cmd = new OdbcCommand(SQL_INSERT, conn))
                     {
-                        cmd.Parameters.Add("Fk_Id_Folio", OdbcType.Int).Value = area.iFk_Id_Folio;
-                        cmd.Parameters.Add("Cmp_Nombre_Area", OdbcType.VarChar, 50).Value = area.sCmp_Nombre_Area;
-                        cmd.Parameters.Add("Cmp_Descripcion", OdbcType.VarChar, 50).Value = area.sCmp_Descripcion;
-                        cmd.Parameters.Add("Cmp_Tipo_Movimiento", OdbcType.VarChar, 50).Value = area.sCmp_Tipo_Movimiento;
-                        cmd.Parameters.Add("Cmp_Monto", OdbcType.Double).Value = Convert.ToDouble(area.dCmp_Monto);
-                        cmd.Parameters.Add("Cmp_Fecha_Movimiento", OdbcType.VarChar).Value = area.dCmp_Fecha_Movimiento.ToString("yyyy-MM-dd HH:mm:ss");
+                        cmd.Parameters.Add("Fk_Id_Folio", OdbcType.Int).Value = clsArea.iFk_Id_Folio;
+                        cmd.Parameters.Add("Cmp_Nombre_Area", OdbcType.VarChar, 50).Value = clsArea.sCmp_Nombre_Area;
+                        cmd.Parameters.Add("Cmp_Descripcion", OdbcType.VarChar, 50).Value = clsArea.sCmp_Descripcion;
+                        cmd.Parameters.Add("Cmp_Tipo_Movimiento", OdbcType.VarChar, 50).Value = clsArea.sCmp_Tipo_Movimiento;
+                        cmd.Parameters.Add("Cmp_Monto", OdbcType.Double).Value = clsArea.dCmp_Monto;
+                        cmd.Parameters.Add("Cmp_Fecha_Movimiento", OdbcType.VarChar).Value = clsArea.dCmp_Fecha_Movimiento.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        int filas = cmd.ExecuteNonQuery();
-
-                        if (filas > 0)
-                        {
-                            
-                            return true;
-                        }
-                        else
-                        {
-                           
-                            return false;
-                        }
+                        int iFilas = cmd.ExecuteNonQuery();
+                        return iFilas > 0;
                     }
                 }
                 catch (OdbcException ex)
                 {
-                    
+                    MessageBox.Show(fun_Formatear_Error("INSERT", ex), "Error INSERT", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
 
-        // UPDATE
-        public bool bActualizarArea(Cls_Area area)
+        public bool bActualizar_Area(Cls_Area clsArea)
         {
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             {
                 try
                 {
                     using (OdbcCommand cmd = new OdbcCommand(SQL_UPDATE, conn))
                     {
-                        cmd.Parameters.Add("Fk_Id_Folio", OdbcType.Int).Value = area.iFk_Id_Folio;
-                        cmd.Parameters.Add("Cmp_Nombre_Area", OdbcType.VarChar, 50).Value = area.sCmp_Nombre_Area ?? "";
-                        cmd.Parameters.Add("Cmp_Descripcion", OdbcType.VarChar, 50).Value = area.sCmp_Descripcion ?? "";
-                        cmd.Parameters.Add("Cmp_Tipo_Movimiento", OdbcType.VarChar, 50).Value = area.sCmp_Tipo_Movimiento ?? "";
-                        cmd.Parameters.Add("Cmp_Monto", OdbcType.Double).Value = Convert.ToDouble(area.dCmp_Monto);
-                        cmd.Parameters.Add("Cmp_Fecha_Movimiento", OdbcType.VarChar).Value = area.dCmp_Fecha_Movimiento.ToString("yyyy-MM-dd HH:mm:ss");
-                        cmd.Parameters.Add("Pk_Id_Area", OdbcType.Int).Value = area.iPk_Id_Area;
+                        cmd.Parameters.Add("Fk_Id_Folio", OdbcType.Int).Value = clsArea.iFk_Id_Folio;
+                        cmd.Parameters.Add("Cmp_Nombre_Area", OdbcType.VarChar, 50).Value = clsArea.sCmp_Nombre_Area ?? "";
+                        cmd.Parameters.Add("Cmp_Descripcion", OdbcType.VarChar, 50).Value = clsArea.sCmp_Descripcion ?? "";
+                        cmd.Parameters.Add("Cmp_Tipo_Movimiento", OdbcType.VarChar, 50).Value = clsArea.sCmp_Tipo_Movimiento ?? "";
+                        cmd.Parameters.Add("Cmp_Monto", OdbcType.Double).Value = clsArea.dCmp_Monto;
+                        cmd.Parameters.Add("Cmp_Fecha_Movimiento", OdbcType.VarChar).Value = clsArea.dCmp_Fecha_Movimiento.ToString("yyyy-MM-dd HH:mm:ss");
+                        cmd.Parameters.Add("Pk_Id_Area", OdbcType.Int).Value = clsArea.iPk_Id_Area;
 
-                        int filas = cmd.ExecuteNonQuery();
-                        return filas > 0;
+                        int iFilas = cmd.ExecuteNonQuery();
+                        return iFilas > 0;
                     }
                 }
                 catch (OdbcException ex)
                 {
-                    MessageBox.Show(FormatOdbcError("UPDATE", ex), "Error UPDATE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(fun_Formatear_Error("UPDATE", ex), "Error UPDATE", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
 
-       
-        public bool bEliminarArea(int idArea, out string mensajeError)
+        public bool bEliminar_Area(int iIdArea, out string sMensajeError)
         {
-            mensajeError = "";
-            using (OdbcConnection conn = conexion.conexion())
+            sMensajeError = "";
+            using (OdbcConnection conn = prConexion.conexion())
             {
                 try
                 {
                     using (OdbcCommand cmd = new OdbcCommand(SQL_DELETE, conn))
                     {
-                        cmd.Parameters.Add("Pk_Id_Area", OdbcType.Int).Value = idArea;
-                        int filas = cmd.ExecuteNonQuery();
-                        return filas > 0;
+                        cmd.Parameters.Add("Pk_Id_Area", OdbcType.Int).Value = iIdArea;
+                        int iFilas = cmd.ExecuteNonQuery();
+                        return iFilas > 0;
                     }
                 }
                 catch (OdbcException ex)
                 {
-                    mensajeError = ex.Message;
-                    MessageBox.Show(FormatOdbcError("DELETE", ex), "Error DELETE", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    sMensajeError = ex.Message;
+                    MessageBox.Show(fun_Formatear_Error("DELETE", ex), "Error DELETE", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
 
-
-        private string FormatOdbcError(string operacion, OdbcException ex)
+        private string fun_Formatear_Error(string sOperacion, OdbcException ex)
         {
-            var sb = new StringBuilder();
-            sb.AppendLine($"❌ ERROR {operacion} en Tbl_Area:");
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine($"Error {sOperacion} en Tbl_Area:");
             sb.AppendLine("Mensaje: " + ex.Message);
             if (ex.Errors.Count > 0)
             {

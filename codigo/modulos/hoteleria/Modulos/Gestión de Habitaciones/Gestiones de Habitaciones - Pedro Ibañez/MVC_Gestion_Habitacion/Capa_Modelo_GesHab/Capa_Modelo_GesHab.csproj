@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cls_conexionMYSQL.cs" />
+    <Compile Include="Cls_Dao_Asignacion_Serv.cs" />
+    <Compile Include="Cls_Dao_Estadia.cs" />
     <Compile Include="Cls_Dao_Habitaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

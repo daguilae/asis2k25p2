@@ -8,71 +8,86 @@ namespace Capa_Controlador_Check_In_Check_Out
 {
     public class Cls_Check_In_Controlador
     {
-        private readonly Cls_Check_In_Dao DAO = new Cls_Check_In_Dao();
-        private readonly Cls_Conexion conexion = new Cls_Conexion();
+        private readonly Cls_Check_In_Dao prDao = new Cls_Check_In_Dao();
+        private readonly Cls_Conexion prConexion = new Cls_Conexion();
 
-
-        public int ObtenerHabitacionPorReserva(int idReserva)
+        // Obtiene el id de habitación asociado a una reserva
+        public int fun_Obtener_Habitacion_Por_Reserva(int iIdReserva)
         {
-            return DAO.ObtenerHabitacionPorReserva(idReserva);
+            return prDao.fun_Obtener_Habitacion_Por_Reserva(iIdReserva);
         }
 
-        public DataTable datObtenerHuespedes() => DAO.datObtenerHuespedes();
-        public DataTable datObtenerReservaPorHuesped(int idHuesped) => DAO.datObtenerReservaPorHuesped(idHuesped);
-        public DataTable MostrarCheckIn() => DAO.bMostrarCheckIn();
-        public bool bBorrarCheckIn(int iIdCheckIn, out string sMensajeError) => DAO.bEliminarCheckIn(iIdCheckIn, out sMensajeError);
+        // Retorna los huéspedes para el combo
+        public DataTable fun_Obtener_Huespedes() => prDao.fun_Obtener_Huespedes();
 
-        public bool ValidarCheckIn(int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string mensaje)
+        // Retorna las reservas de un huésped
+        public DataTable fun_Obtener_Reserva_Por_Huesped(int iIdHuesped) =>
+            prDao.fun_Obtener_Reserva_Por_Huesped(iIdHuesped);
+
+        // Retorna las reservas incluyendo la actual en edición
+        public DataTable fun_Obtener_Reserva_Por_Huesped_Edicion(int iIdHuesped, int iIdReservaActual)
+        {
+            return prDao.fun_Obtener_Reserva_Por_Huesped(iIdHuesped, iIdReservaActual);
+        }
+
+        // Muestra todos los Check-In
+        public DataTable fun_Mostrar_CheckIn() => prDao.fun_Mostrar_CheckIn();
+
+        // Elimina un Check-In
+        public bool bEliminar_CheckIn(int iIdCheckIn, out string sMensajeError) =>
+            prDao.bEliminar_CheckIn(iIdCheckIn, out sMensajeError);
+
+        // Valida datos antes de insertar o actualizar un Check-In
+        public bool fun_Validar_CheckIn(int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string sMensaje)
         {
             if (iFkHuesped <= 0 || iFkReserva <= 0)
             {
-                mensaje = "Debe seleccionar un huésped y una reserva válidos.";
+                sMensaje = "Debe seleccionar un huésped y una reserva válidos.";
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(sEstado))
             {
-                mensaje = "Debe especificar un estado para el Check-In.";
+                sMensaje = "Debe especificar un estado para el Check-In.";
                 return false;
             }
 
-            if (dFecha == default(DateTime))
+            if (dFecha == default)
             {
-                mensaje = "Debe ingresar una fecha válida para el Check-In.";
+                sMensaje = "Debe ingresar una fecha válida para el Check-In.";
                 return false;
             }
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection conn = prConexion.conexion())
                 {
-                    // 🔹 Traer las fechas de entrada y salida desde la reserva
-                    string query = "SELECT Cmp_Fecha_Entrada, Cmp_Fecha_Salida FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?";
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    string sQuery = "SELECT Cmp_Fecha_Entrada, Cmp_Fecha_Salida FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?";
+                    using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("?", iFkReserva);
                         using (OdbcDataReader dr = cmd.ExecuteReader())
                         {
                             if (dr.Read())
                             {
-                                DateTime fechaEntrada = Convert.ToDateTime(dr["Cmp_Fecha_Entrada"]);
-                                DateTime fechaSalida = Convert.ToDateTime(dr["Cmp_Fecha_Salida"]);
+                                DateTime dEntrada = Convert.ToDateTime(dr["Cmp_Fecha_Entrada"]);
+                                DateTime dSalida = Convert.ToDateTime(dr["Cmp_Fecha_Salida"]);
 
-                                if (dFecha < fechaEntrada)
+                                if (dFecha < dEntrada)
                                 {
-                                    mensaje = $"La fecha de Check-In ({dFecha:dd/MM/yyyy}) no puede ser antes de la fecha de entrada reservada ({fechaEntrada:dd/MM/yyyy}).";
+                                    sMensaje = $"La fecha de Check-In ({dFecha:dd/MM/yyyy}) no puede ser antes de la fecha de entrada ({dEntrada:dd/MM/yyyy}).";
                                     return false;
                                 }
 
-                                if (dFecha > fechaSalida)
+                                if (dFecha > dSalida)
                                 {
-                                    mensaje = $"La fecha de Check-In ({dFecha:dd/MM/yyyy}) no puede ser después de la fecha de salida reservada ({fechaSalida:dd/MM/yyyy}).";
+                                    sMensaje = $"La fecha de Check-In ({dFecha:dd/MM/yyyy}) no puede ser después de la fecha de salida ({dSalida:dd/MM/yyyy}).";
                                     return false;
                                 }
                             }
                             else
                             {
-                                mensaje = "No se encontró la reserva seleccionada.";
+                                sMensaje = "No se encontró la reserva seleccionada.";
                                 return false;
                             }
                         }
@@ -81,21 +96,21 @@ namespace Capa_Controlador_Check_In_Check_Out
             }
             catch (Exception ex)
             {
-                mensaje = "Error al validar la reserva: " + ex.Message;
+                sMensaje = "Error al validar la reserva: " + ex.Message;
                 return false;
             }
 
-            mensaje = "";
+            sMensaje = "";
             return true;
         }
 
-
-        public bool bInsertarCheckIn(int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string mensaje)
+        // Inserta un nuevo Check-In
+        public bool bInsertar_CheckIn(int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string sMensaje)
         {
-            if (!ValidarCheckIn(iFkHuesped, iFkReserva, dFecha, sEstado, out mensaje))
+            if (!fun_Validar_CheckIn(iFkHuesped, iFkReserva, dFecha, sEstado, out sMensaje))
                 return false;
 
-            var nuevoCheckIn = new Cls_CheckIn
+            var clsCheckIn = new Cls_CheckIn
             {
                 iFk_Id_Huesped = iFkHuesped,
                 iFk_Id_Reserva = iFkReserva,
@@ -103,37 +118,36 @@ namespace Capa_Controlador_Check_In_Check_Out
                 sCmp_Estado = sEstado
             };
 
-            bool exito = DAO.bInsertarCheckIn(nuevoCheckIn);
-            if (!exito) mensaje = "Error al guardar el Check-In en la base de datos.";
-            return exito;
+            bool bExito = prDao.bInsertar_CheckIn(clsCheckIn);
+            if (!bExito) sMensaje = "Error al guardar el Check-In en la base de datos.";
+            return bExito;
         }
 
-
-        public bool bActualizarCheckIn(int iIdCheckIn, int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string mensaje)
+        // Actualiza un Check-In y sincroniza la fecha en el folio si está abierto
+        public bool bActualizar_CheckIn(int iIdCheckIn, int iFkHuesped, int iFkReserva, DateTime dFecha, string sEstado, out string sMensaje)
         {
             if (iIdCheckIn <= 0)
             {
-                mensaje = "El ID del Check-In no es válido.";
+                sMensaje = "El ID del Check-In no es válido.";
                 return false;
             }
 
-            if (!ValidarCheckIn(iFkHuesped, iFkReserva, dFecha, sEstado, out mensaje))
+            if (!fun_Validar_CheckIn(iFkHuesped, iFkReserva, dFecha, sEstado, out sMensaje))
                 return false;
 
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             using (OdbcTransaction tx = conn.BeginTransaction())
             {
                 try
                 {
-                    // 1️ Actualizar Check-In
-                    string updateCheckIn = @"
-                UPDATE Tbl_Check_in
-                SET Fk_Id_Huesped = ?, 
-                    Fk_Id_Reserva = ?, 
-                    Cmp_Fecha_Check_In = ?, 
-                    Cmp_Estado = ?
-                WHERE Pk_Id_Check_in = ?";
-                    using (OdbcCommand cmd = new OdbcCommand(updateCheckIn, conn, tx))
+                    string sUpdateCheckIn = @"
+                        UPDATE Tbl_Check_In
+                        SET Fk_Id_Huesped = ?, 
+                            Fk_Id_Reserva = ?, 
+                            Cmp_Fecha_Check_In = ?, 
+                            Cmp_Estado = ?
+                        WHERE Pk_Id_Check_in = ?";
+                    using (OdbcCommand cmd = new OdbcCommand(sUpdateCheckIn, conn, tx))
                     {
                         cmd.Parameters.AddWithValue("?", iFkHuesped);
                         cmd.Parameters.AddWithValue("?", iFkReserva);
@@ -143,121 +157,119 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmd.ExecuteNonQuery();
                     }
 
-                    // 2️ Sincronizar la fecha en el folio (solo si sigue abierto)
-                    string updateFolio = @"
-                UPDATE Tbl_Folio
-                SET Cmp_Fecha_Creacion = ?
-                WHERE Fk_Id_Check_In = ? 
-                  AND Cmp_Estado = 'Abierto'";
-                    using (OdbcCommand cmdFolio = new OdbcCommand(updateFolio, conn, tx))
+                    string sUpdateFolio = @"
+                        UPDATE Tbl_Folio
+                        SET Cmp_Fecha_Creacion = ?
+                        WHERE Fk_Id_Check_In = ? AND Cmp_Estado = 'Abierto'";
+                    using (OdbcCommand cmdFolio = new OdbcCommand(sUpdateFolio, conn, tx))
                     {
                         cmdFolio.Parameters.AddWithValue("?", dFecha);
                         cmdFolio.Parameters.AddWithValue("?", iIdCheckIn);
                         cmdFolio.ExecuteNonQuery();
                     }
 
-                    // 3️ Confirmar cambios
                     tx.Commit();
-
-                    mensaje = "Check-In y fecha del folio actualizados correctamente.";
+                    sMensaje = "Check-In y folio actualizados correctamente.";
                     return true;
                 }
                 catch (Exception ex)
                 {
                     tx.Rollback();
-                    mensaje = "Error al actualizar el Check-In: " + ex.Message;
+                    sMensaje = "Error al actualizar el Check-In: " + ex.Message;
                     return false;
                 }
             }
         }
 
- 
-        public bool RegistrarCheckInConFolio(int idHuesped, int idReserva, DateTime fecha, string estado, int idHabitacion)
+        // Inserta un Check-In y crea automáticamente su folio vinculado
+        public bool pro_Registrar_CheckIn_Con_Folio(int iIdHuesped, int iIdReserva, DateTime dFecha, string sEstado, int iIdHabitacion)
         {
-         
-            if (idHuesped <= 0 || idReserva <= 0 || idHabitacion <= 0)
+            if (iIdHuesped <= 0 || iIdReserva <= 0 || iIdHabitacion <= 0)
             {
                 MessageBox.Show("Los datos del Check-In no son válidos.");
                 return false;
             }
 
-         
-            if (!ValidarCheckIn(idHuesped, idReserva, fecha, estado, out string mensaje))
+            if (!fun_Validar_CheckIn(iIdHuesped, iIdReserva, dFecha, sEstado, out string sMensaje))
             {
-                MessageBox.Show(mensaje, "Validación de Check-In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(sMensaje, "Validación de Check-In", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
-          
-            var checkIn = new Cls_CheckIn
+            var clsCheckIn = new Cls_CheckIn
             {
-                iFk_Id_Huesped = idHuesped,
-                iFk_Id_Reserva = idReserva,
-                dCmp_Fecha_CheckIn = fecha,
-                sCmp_Estado = estado
+                iFk_Id_Huesped = iIdHuesped,
+                iFk_Id_Reserva = iIdReserva,
+                dCmp_Fecha_CheckIn = dFecha,
+                sCmp_Estado = sEstado
             };
 
-            return EjecutarRegistroCheckInConFolio(checkIn, idHabitacion);
+            return pro_Ejecutar_Registro_CheckIn_Con_Folio(clsCheckIn, iIdHabitacion);
         }
 
-        private bool EjecutarRegistroCheckInConFolio(Cls_CheckIn checkIn, int idHabitacion)
+        // Ejecuta la transacción completa del Check-In con folio
+        private bool pro_Ejecutar_Registro_CheckIn_Con_Folio(Cls_CheckIn clsCheckIn, int iIdHabitacion)
         {
-            using (OdbcConnection conn = conexion.conexion())
+            using (OdbcConnection conn = prConexion.conexion())
             using (OdbcTransaction tx = conn.BeginTransaction())
             {
                 try
                 {
-                    // 1️ Insertar Check-In
-                    string insertCheckIn = @"
-                INSERT INTO Tbl_Check_in 
-                    (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
-                VALUES (?, ?, ?, ?)";
-                    using (OdbcCommand cmdCheckIn = new OdbcCommand(insertCheckIn, conn, tx))
+                    string sInsertCheckIn = @"
+                        INSERT INTO Tbl_Check_In 
+                            (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
+                        VALUES (?, ?, ?, ?)";
+                    using (OdbcCommand cmdCheckIn = new OdbcCommand(sInsertCheckIn, conn, tx))
                     {
-                        cmdCheckIn.Parameters.AddWithValue("?", checkIn.iFk_Id_Huesped);
-                        cmdCheckIn.Parameters.AddWithValue("?", checkIn.iFk_Id_Reserva);
-                        cmdCheckIn.Parameters.AddWithValue("?", checkIn.dCmp_Fecha_CheckIn);
-                        cmdCheckIn.Parameters.AddWithValue("?", checkIn.sCmp_Estado);
+                        cmdCheckIn.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Huesped);
+                        cmdCheckIn.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Reserva);
+                        cmdCheckIn.Parameters.AddWithValue("?", clsCheckIn.dCmp_Fecha_CheckIn);
+                        cmdCheckIn.Parameters.AddWithValue("?", clsCheckIn.sCmp_Estado);
                         cmdCheckIn.ExecuteNonQuery();
                     }
 
-                    // 2️ Obtener ID del nuevo Check-In
-                    int idCheckIn;
+                    int iIdCheckIn;
                     using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", conn, tx))
                     {
-                        idCheckIn = Convert.ToInt32(cmdId.ExecuteScalar());
+                        iIdCheckIn = Convert.ToInt32(cmdId.ExecuteScalar());
                     }
 
-                    // 3️Crear Folio vinculado al Check-In y la Habitación
-                    string insertFolio = @"
-                INSERT INTO Tbl_Folio
-                    (Fk_Id_Check_In, Fk_Id_Habitacion, 
-                     Cmp_Fecha_Creacion, Cmp_Estado,
-                     Cmp_Total_Cargos, Cmp_Total_Abonos, Cmp_Saldo_Final)
-                VALUES (?, ?, NOW(), 'Abierto', 0, 0, 0)";
-                    using (OdbcCommand cmdFolio = new OdbcCommand(insertFolio, conn, tx))
+                    string sInsertFolio = @"
+                        INSERT INTO Tbl_Folio
+                            (Fk_Id_Check_In, Fk_Id_Habitacion, 
+                             Cmp_Fecha_Creacion, Cmp_Estado,
+                             Cmp_Total_Cargos, Cmp_Total_Abonos, Cmp_Saldo_Final)
+                        VALUES (?, ?, NOW(), 'Abierto', 0, 0, 0)";
+                    using (OdbcCommand cmdFolio = new OdbcCommand(sInsertFolio, conn, tx))
                     {
-                        cmdFolio.Parameters.AddWithValue("?", idCheckIn);
-                        cmdFolio.Parameters.AddWithValue("?", idHabitacion);
+                        cmdFolio.Parameters.AddWithValue("?", iIdCheckIn);
+                        cmdFolio.Parameters.AddWithValue("?", iIdHabitacion);
                         cmdFolio.ExecuteNonQuery();
                     }
 
-                    // 4️ Confirmar transacción
+                    string sUpdateReserva = @"
+                        UPDATE Tbl_Reserva
+                        SET Cmp_Estado_Reserva = 'Finalizada'
+                        WHERE Pk_Id_Reserva = ?";
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(sUpdateReserva, conn, tx))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Reserva);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+
                     tx.Commit();
-
-                    MessageBox.Show("Check-In y Folio creados correctamente.",
-                                    "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("Check-In, folio creados y reserva finalizada correctamente.",
+                        "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return true;
                 }
                 catch (Exception ex)
                 {
                     tx.Rollback();
-                    MessageBox.Show("Error en el proceso de Check-In con Folio: " + ex.Message);
+                    MessageBox.Show("Error en el proceso de Check-In con Folio: " + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
             }
         }
-
     }
 }
