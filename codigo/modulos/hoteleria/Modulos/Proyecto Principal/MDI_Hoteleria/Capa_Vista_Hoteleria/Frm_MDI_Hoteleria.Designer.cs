@@ -62,6 +62,7 @@ namespace Capa_Vista_Hoteleria
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cierreDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -312,7 +313,8 @@ namespace Capa_Vista_Hoteleria
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.foliosToolStripMenuItem});
+            this.foliosToolStripMenuItem,
+            this.cierreDiarioToolStripMenuItem});
             this.herramientasToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
@@ -321,7 +323,7 @@ namespace Capa_Vista_Hoteleria
             // foliosToolStripMenuItem
             // 
             this.foliosToolStripMenuItem.Name = "foliosToolStripMenuItem";
-            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
+            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.foliosToolStripMenuItem.Text = "Folios";
             this.foliosToolStripMenuItem.Click += new System.EventHandler(this.foliosToolStripMenuItem_Click);
             // 
@@ -349,6 +351,13 @@ namespace Capa_Vista_Hoteleria
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel.Text = "Estado";
+            // 
+            // cierreDiarioToolStripMenuItem
+            // 
+            this.cierreDiarioToolStripMenuItem.Name = "cierreDiarioToolStripMenuItem";
+            this.cierreDiarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cierreDiarioToolStripMenuItem.Text = "Cierre Diario";
+            this.cierreDiarioToolStripMenuItem.Click += new System.EventHandler(this.cierreDiarioToolStripMenuItem_Click);
             // 
             // Frm_MDI_Hoteleria
             // 
@@ -409,5 +418,6 @@ namespace Capa_Vista_Hoteleria
         private System.Windows.Forms.ToolStripMenuItem reservacionALaCartaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem recetasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordenesDeCompraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cierreDiarioToolStripMenuItem;
     }
 }
