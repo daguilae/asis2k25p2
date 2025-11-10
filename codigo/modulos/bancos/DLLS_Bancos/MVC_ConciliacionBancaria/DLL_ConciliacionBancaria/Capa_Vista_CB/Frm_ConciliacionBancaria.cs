@@ -57,7 +57,7 @@ namespace Capa_Vista_CB
         }
 
         private void Btn_Ayuda_Click(object sender, EventArgs e) {
-            Help.ShowHelp(this, "AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "ConciliacionBancaria_ayuda.html");
+            Help.ShowHelp(this, @"AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "ConciliacionBancaria_ayuda.html");
         
         }
 
