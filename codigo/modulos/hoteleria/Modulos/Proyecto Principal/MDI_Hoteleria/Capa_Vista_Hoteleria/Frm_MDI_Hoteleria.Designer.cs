@@ -53,6 +53,10 @@ namespace Capa_Vista_Hoteleria
             this.areaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservacionDeSalonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservacionALaCartaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordenesDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foliosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -177,7 +181,11 @@ namespace Capa_Vista_Hoteleria
             this.asignacionServiciosAHabitacionToolStripMenuItem,
             this.areaToolStripMenuItem1,
             this.checkOutToolStripMenuItem,
-            this.pagoToolStripMenuItem});
+            this.pagoToolStripMenuItem,
+            this.reservacionDeSalonesToolStripMenuItem,
+            this.reservacionALaCartaToolStripMenuItem,
+            this.recetasToolStripMenuItem,
+            this.ordenesDeCompraToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
@@ -273,6 +281,34 @@ namespace Capa_Vista_Hoteleria
             this.pagoToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.pagoToolStripMenuItem.Text = "Pago";
             this.pagoToolStripMenuItem.Click += new System.EventHandler(this.pagoToolStripMenuItem_Click);
+            // 
+            // reservacionDeSalonesToolStripMenuItem
+            // 
+            this.reservacionDeSalonesToolStripMenuItem.Name = "reservacionDeSalonesToolStripMenuItem";
+            this.reservacionDeSalonesToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.reservacionDeSalonesToolStripMenuItem.Text = "Reservacion de Salones";
+            this.reservacionDeSalonesToolStripMenuItem.Click += new System.EventHandler(this.reservacionDeSalonesToolStripMenuItem_Click);
+            // 
+            // reservacionALaCartaToolStripMenuItem
+            // 
+            this.reservacionALaCartaToolStripMenuItem.Name = "reservacionALaCartaToolStripMenuItem";
+            this.reservacionALaCartaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.reservacionALaCartaToolStripMenuItem.Text = "Reservacion A la Carta";
+            this.reservacionALaCartaToolStripMenuItem.Click += new System.EventHandler(this.reservacionALaCartaToolStripMenuItem_Click);
+            // 
+            // recetasToolStripMenuItem
+            // 
+            this.recetasToolStripMenuItem.Name = "recetasToolStripMenuItem";
+            this.recetasToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.recetasToolStripMenuItem.Text = "Recetas";
+            this.recetasToolStripMenuItem.Click += new System.EventHandler(this.recetasToolStripMenuItem_Click);
+            // 
+            // ordenesDeCompraToolStripMenuItem
+            // 
+            this.ordenesDeCompraToolStripMenuItem.Name = "ordenesDeCompraToolStripMenuItem";
+            this.ordenesDeCompraToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.ordenesDeCompraToolStripMenuItem.Text = "Ordenes de Compra";
+            this.ordenesDeCompraToolStripMenuItem.Click += new System.EventHandler(this.ordenesDeCompraToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -378,6 +414,10 @@ namespace Capa_Vista_Hoteleria
         private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foliosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservacionDeSalonesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservacionALaCartaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recetasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordenesDeCompraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cierreDiarioToolStripMenuItem;
     }
 }

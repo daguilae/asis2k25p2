@@ -16,7 +16,9 @@ using Capa_Vista_S;
 using Capa_Vista_IE;
 using Capa_Vista_MH;
 using CapaVistaOP;
+using Capa_Vista_Receta;
 using CapaVistaProduccion;
+using Capa_Vista_Produccion;
 using Capa_Vista_Cierre;
 
 
@@ -211,6 +213,32 @@ namespace Capa_Vista_Hoteleria
             folios.Show();
         }
 
+        private void reservacionDeSalonesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Reservaciones reservaciones= new Frm_Reservaciones();
+            reservaciones.MdiParent = this;
+            reservaciones.Show();
+        }
+
+        private void reservacionALaCartaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Produccion_Alacarta alacarta = new Frm_Produccion_Alacarta();
+            alacarta.MdiParent = this;
+            alacarta.Show();
+        }
+
+        private void recetasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Receta receta = new Frm_Receta();
+            receta.MdiParent = this;
+            receta.Show();
+        }
+
+        private void ordenesDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Ordenes_Compra ordenes = new Frm_Ordenes_Compra();
+            ordenes.MdiParent = this;
+            ordenes.Show();
         private void cierreDiarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
