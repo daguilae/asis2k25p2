@@ -31,199 +31,197 @@ namespace CapaVistaOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_de_Produccion));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtIdOP = new System.Windows.Forms.TextBox();
-            this.Lbl_Nombre_Huesped = new System.Windows.Forms.Label();
-            this.dgvOP = new System.Windows.Forms.DataGridView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtpSolicitud = new System.Windows.Forms.DateTimePicker();
-            this.dtpRegistro = new System.Windows.Forms.DateTimePicker();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.Lbl_Modulo_Hoteleria = new System.Windows.Forms.Label();
+            this.Lbl_Ordenes_Produccion = new System.Windows.Forms.Label();
+            this.Txt_Id_OP = new System.Windows.Forms.TextBox();
+            this.Lbl_Id_Orden_Produccion = new System.Windows.Forms.Label();
+            this.Dgv_OP = new System.Windows.Forms.DataGridView();
+            this.Lbl_Fecha_Solicitud = new System.Windows.Forms.Label();
+            this.Lbl_Fecha_Registro = new System.Windows.Forms.Label();
+            this.Dtp_Fecha_Solicitud = new System.Windows.Forms.DateTimePicker();
+            this.Dtp_Fecha_Registro = new System.Windows.Forms.DateTimePicker();
+            this.Btn_Editar = new System.Windows.Forms.Button();
+            this.Btn_Eliminar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOP)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_OP)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.button1);
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Modulo_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
             this.Pnl_Superior.TabIndex = 99;
             // 
-            // button1
+            // Lbl_Modulo_Hoteleria
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(790, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(81, 37);
-            this.button1.TabIndex = 105;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Lbl_Modulo_Hoteleria.AutoSize = true;
+            this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(27, 9);
+            this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
+            this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
+            this.Lbl_Modulo_Hoteleria.TabIndex = 104;
+            this.Lbl_Modulo_Hoteleria.Text = "Módulo hotelería";
             // 
-            // label1
+            // Lbl_Ordenes_Produccion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.label1.Location = new System.Drawing.Point(27, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 35);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Módulo hotelería";
+            this.Lbl_Ordenes_Produccion.AutoSize = true;
+            this.Lbl_Ordenes_Produccion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Ordenes_Produccion.Location = new System.Drawing.Point(29, 69);
+            this.Lbl_Ordenes_Produccion.Name = "Lbl_Ordenes_Produccion";
+            this.Lbl_Ordenes_Produccion.Size = new System.Drawing.Size(261, 21);
+            this.Lbl_Ordenes_Produccion.TabIndex = 106;
+            this.Lbl_Ordenes_Produccion.Text = "ORDENES DE PRODUCCIÓN";
+            this.Lbl_Ordenes_Produccion.Click += new System.EventHandler(this.label2_Click);
             // 
-            // label2
+            // Txt_Id_OP
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 69);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(261, 21);
-            this.label2.TabIndex = 106;
-            this.label2.Text = "ORDENES DE PRODUCCIÓN";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
+            this.Txt_Id_OP.BackColor = System.Drawing.Color.White;
+            this.Txt_Id_OP.Location = new System.Drawing.Point(251, 125);
+            this.Txt_Id_OP.Name = "Txt_Id_OP";
+            this.Txt_Id_OP.Size = new System.Drawing.Size(200, 22);
+            this.Txt_Id_OP.TabIndex = 118;
             // 
-            // txtIdOP
+            // Lbl_Id_Orden_Produccion
             // 
-            this.txtIdOP.BackColor = System.Drawing.Color.White;
-            this.txtIdOP.Location = new System.Drawing.Point(251, 125);
-            this.txtIdOP.Name = "txtIdOP";
-            this.txtIdOP.Size = new System.Drawing.Size(200, 22);
-            this.txtIdOP.TabIndex = 118;
+            this.Lbl_Id_Orden_Produccion.AutoSize = true;
+            this.Lbl_Id_Orden_Produccion.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Id_Orden_Produccion.Location = new System.Drawing.Point(29, 125);
+            this.Lbl_Id_Orden_Produccion.Name = "Lbl_Id_Orden_Produccion";
+            this.Lbl_Id_Orden_Produccion.Size = new System.Drawing.Size(193, 20);
+            this.Lbl_Id_Orden_Produccion.TabIndex = 117;
+            this.Lbl_Id_Orden_Produccion.Text = "Id orden de produccion";
             // 
-            // Lbl_Nombre_Huesped
+            // Dgv_OP
             // 
-            this.Lbl_Nombre_Huesped.AutoSize = true;
-            this.Lbl_Nombre_Huesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(29, 125);
-            this.Lbl_Nombre_Huesped.Name = "Lbl_Nombre_Huesped";
-            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(193, 20);
-            this.Lbl_Nombre_Huesped.TabIndex = 117;
-            this.Lbl_Nombre_Huesped.Text = "Id orden de produccion";
-            // 
-            // dgvOP
-            // 
-            this.dgvOP.AllowUserToAddRows = false;
-            this.dgvOP.AllowUserToDeleteRows = false;
-            this.dgvOP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_OP.AllowUserToAddRows = false;
+            this.Dgv_OP.AllowUserToDeleteRows = false;
+            this.Dgv_OP.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvOP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOP.Location = new System.Drawing.Point(33, 282);
-            this.dgvOP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvOP.Name = "dgvOP";
-            this.dgvOP.ReadOnly = true;
-            this.dgvOP.RowHeadersWidth = 51;
-            this.dgvOP.RowTemplate.Height = 24;
-            this.dgvOP.Size = new System.Drawing.Size(823, 295);
-            this.dgvOP.TabIndex = 119;
-            this.dgvOP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOP_CellContentClick);
+            this.Dgv_OP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_OP.Location = new System.Drawing.Point(33, 282);
+            this.Dgv_OP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dgv_OP.Name = "Dgv_OP";
+            this.Dgv_OP.ReadOnly = true;
+            this.Dgv_OP.RowHeadersWidth = 51;
+            this.Dgv_OP.RowTemplate.Height = 24;
+            this.Dgv_OP.Size = new System.Drawing.Size(823, 295);
+            this.Dgv_OP.TabIndex = 119;
+            this.Dgv_OP.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOP_CellContentClick);
             // 
-            // label3
+            // Lbl_Fecha_Solicitud
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 176);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(151, 20);
-            this.label3.TabIndex = 120;
-            this.label3.Text = "Fecha de solicitud";
+            this.Lbl_Fecha_Solicitud.AutoSize = true;
+            this.Lbl_Fecha_Solicitud.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Fecha_Solicitud.Location = new System.Drawing.Point(29, 176);
+            this.Lbl_Fecha_Solicitud.Name = "Lbl_Fecha_Solicitud";
+            this.Lbl_Fecha_Solicitud.Size = new System.Drawing.Size(151, 20);
+            this.Lbl_Fecha_Solicitud.TabIndex = 120;
+            this.Lbl_Fecha_Solicitud.Text = "Fecha de solicitud";
             // 
-            // label4
+            // Lbl_Fecha_Registro
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(29, 219);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(146, 20);
-            this.label4.TabIndex = 122;
-            this.label4.Text = "Fecha de registro";
+            this.Lbl_Fecha_Registro.AutoSize = true;
+            this.Lbl_Fecha_Registro.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Fecha_Registro.Location = new System.Drawing.Point(29, 219);
+            this.Lbl_Fecha_Registro.Name = "Lbl_Fecha_Registro";
+            this.Lbl_Fecha_Registro.Size = new System.Drawing.Size(146, 20);
+            this.Lbl_Fecha_Registro.TabIndex = 122;
+            this.Lbl_Fecha_Registro.Text = "Fecha de registro";
             // 
-            // dtpSolicitud
+            // Dtp_Fecha_Solicitud
             // 
-            this.dtpSolicitud.Location = new System.Drawing.Point(251, 176);
-            this.dtpSolicitud.Name = "dtpSolicitud";
-            this.dtpSolicitud.Size = new System.Drawing.Size(200, 22);
-            this.dtpSolicitud.TabIndex = 123;
+            this.Dtp_Fecha_Solicitud.Location = new System.Drawing.Point(251, 176);
+            this.Dtp_Fecha_Solicitud.Name = "Dtp_Fecha_Solicitud";
+            this.Dtp_Fecha_Solicitud.Size = new System.Drawing.Size(200, 22);
+            this.Dtp_Fecha_Solicitud.TabIndex = 123;
             // 
-            // dtpRegistro
+            // Dtp_Fecha_Registro
             // 
-            this.dtpRegistro.Location = new System.Drawing.Point(251, 219);
-            this.dtpRegistro.Name = "dtpRegistro";
-            this.dtpRegistro.Size = new System.Drawing.Size(200, 22);
-            this.dtpRegistro.TabIndex = 124;
+            this.Dtp_Fecha_Registro.Location = new System.Drawing.Point(251, 219);
+            this.Dtp_Fecha_Registro.Name = "Dtp_Fecha_Registro";
+            this.Dtp_Fecha_Registro.Size = new System.Drawing.Size(200, 22);
+            this.Dtp_Fecha_Registro.TabIndex = 124;
             // 
-            // btnEditar
+            // Btn_Editar
             // 
-            this.btnEditar.BackColor = System.Drawing.Color.White;
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(815, 69);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(53, 46);
-            this.btnEditar.TabIndex = 127;
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
+            this.Btn_Editar.BackColor = System.Drawing.Color.White;
+            this.Btn_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Editar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Editar.Image")));
+            this.Btn_Editar.Location = new System.Drawing.Point(815, 69);
+            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Editar.Name = "Btn_Editar";
+            this.Btn_Editar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Editar.TabIndex = 127;
+            this.Btn_Editar.UseVisualStyleBackColor = false;
+            this.Btn_Editar.Click += new System.EventHandler(this.btnEditar_Click);
             // 
-            // btnEliminar
+            // Btn_Eliminar
             // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(756, 69);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(53, 46);
-            this.btnEliminar.TabIndex = 126;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
+            this.Btn_Eliminar.BackColor = System.Drawing.Color.White;
+            this.Btn_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.Image")));
+            this.Btn_Eliminar.Location = new System.Drawing.Point(756, 69);
+            this.Btn_Eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Eliminar.Name = "Btn_Eliminar";
+            this.Btn_Eliminar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Eliminar.TabIndex = 126;
+            this.Btn_Eliminar.UseVisualStyleBackColor = false;
+            this.Btn_Eliminar.Click += new System.EventHandler(this.btnEliminar_Click_1);
             // 
-            // btnGuardar
+            // Btn_Guardar
             // 
-            this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(697, 69);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(53, 46);
-            this.btnGuardar.TabIndex = 125;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.Btn_guardar_Click);
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(697, 69);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Guardar.TabIndex = 125;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.Btn_guardar_Click);
+            // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.Location = new System.Drawing.Point(572, 79);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(107, 30);
+            this.Btn_Reporte.TabIndex = 128;
+            this.Btn_Reporte.Text = "Ver reporte";
+            this.Btn_Reporte.UseVisualStyleBackColor = true;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Frm_Ordenes_de_Produccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.dtpRegistro);
-            this.Controls.Add(this.dtpSolicitud);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.dgvOP);
-            this.Controls.Add(this.txtIdOP);
-            this.Controls.Add(this.Lbl_Nombre_Huesped);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.Btn_Reporte);
+            this.Controls.Add(this.Btn_Editar);
+            this.Controls.Add(this.Btn_Eliminar);
+            this.Controls.Add(this.Btn_Guardar);
+            this.Controls.Add(this.Dtp_Fecha_Registro);
+            this.Controls.Add(this.Dtp_Fecha_Solicitud);
+            this.Controls.Add(this.Lbl_Fecha_Registro);
+            this.Controls.Add(this.Lbl_Fecha_Solicitud);
+            this.Controls.Add(this.Dgv_OP);
+            this.Controls.Add(this.Txt_Id_OP);
+            this.Controls.Add(this.Lbl_Id_Orden_Produccion);
+            this.Controls.Add(this.Lbl_Ordenes_Produccion);
             this.Controls.Add(this.Pnl_Superior);
             this.Name = "Frm_Ordenes_de_Produccion";
             this.Text = "Frm_Ordenes_de_Produccion";
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOP)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_OP)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -232,18 +230,18 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtIdOP;
-        private System.Windows.Forms.Label Lbl_Nombre_Huesped;
-        private System.Windows.Forms.DataGridView dgvOP;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DateTimePicker dtpSolicitud;
-        private System.Windows.Forms.DateTimePicker dtpRegistro;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label Lbl_Modulo_Hoteleria;
+        private System.Windows.Forms.Label Lbl_Ordenes_Produccion;
+        private System.Windows.Forms.TextBox Txt_Id_OP;
+        private System.Windows.Forms.Label Lbl_Id_Orden_Produccion;
+        private System.Windows.Forms.DataGridView Dgv_OP;
+        private System.Windows.Forms.Label Lbl_Fecha_Solicitud;
+        private System.Windows.Forms.Label Lbl_Fecha_Registro;
+        private System.Windows.Forms.DateTimePicker Dtp_Fecha_Solicitud;
+        private System.Windows.Forms.DateTimePicker Dtp_Fecha_Registro;
+        private System.Windows.Forms.Button Btn_Editar;
+        private System.Windows.Forms.Button Btn_Eliminar;
+        private System.Windows.Forms.Button Btn_Guardar;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }

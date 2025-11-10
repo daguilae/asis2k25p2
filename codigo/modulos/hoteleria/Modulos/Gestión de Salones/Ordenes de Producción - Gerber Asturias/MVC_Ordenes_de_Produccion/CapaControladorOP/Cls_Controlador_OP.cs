@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CapaModeloOP;
 using System.Data;
+using CapaModeloOP;
 
 namespace CapaControladorOP
 {
@@ -12,6 +8,7 @@ namespace CapaControladorOP
     {
         Cls_Sentencias_OP sentencias = new Cls_Sentencias_OP();
 
+        // -------------------- ORDENES DE PRODUCCIÓN --------------------
         public void GuardarOP(DateTime fecha_solicitud, DateTime fecha_registro)
         {
             sentencias.InsertarOP(fecha_solicitud, fecha_registro);
@@ -21,7 +18,7 @@ namespace CapaControladorOP
         {
             sentencias.EditarOP(id, fecha_solicitud, fecha_registro);
         }
-        
+
         public void BorrarOP(int id)
         {
             sentencias.EliminarOP(id);
@@ -32,7 +29,44 @@ namespace CapaControladorOP
             return sentencias.CargarOrdenesProduccion();
         }
 
-        // CONTROLADOR MOBILIARIO
+        public DataTable LlenarComboOrdenesProduccion()
+        {
+            return sentencias.CargarComboOrdenesProduccion();
+        }
+
+        public bool TieneRelaciones(int idOrden)
+        {
+            return sentencias.TieneRelaciones(idOrden);
+        }
+
+
+        // -------------------- MENÚ --------------------
+        public void GuardarMenu(string nombre, string descripcion, decimal precio, int idTipoMenu)
+        {
+            sentencias.InsertarMenu(nombre, descripcion, precio, idTipoMenu);
+        }
+
+        public void ActualizarMenu(int id, string nombre, string descripcion, decimal precio, int idTipoMenu)
+        {
+            sentencias.EditarMenu(id, nombre, descripcion, precio, idTipoMenu);
+        }
+
+        public void BorrarMenu(int id)
+        {
+            sentencias.EliminarMenu(id);
+        }
+
+        public DataTable MostrarMenu()
+        {
+            return sentencias.CargarMenu();
+        }
+
+        public DataTable LlenarComboMenu()
+        {
+            return sentencias.CargarComboMenu();
+        }
+
+        // -------------------- MOBILIARIO --------------------
         public void GuardarMobiliario(string mobiliario)
         {
             sentencias.InsertarMobiliario(mobiliario);
@@ -53,7 +87,12 @@ namespace CapaControladorOP
             return sentencias.CargarMobiliario();
         }
 
-        // DETALLE DE ORDEN DE MENÚ
+        public DataTable LlenarComboMobiliario()
+        {
+            return sentencias.CargarComboMobiliario();
+        }
+
+        // -------------------- DETALLE ORDEN DE MENÚ --------------------
         public void GuardarDetalleOrdenMenu(int idOrdenProduccion, int idMenu, int cantidad)
         {
             sentencias.InsertarDetalleOrdenMenu(idOrdenProduccion, idMenu, cantidad);
@@ -74,17 +113,7 @@ namespace CapaControladorOP
             return sentencias.CargarDetalleOrdenMenu();
         }
 
-        public DataTable LlenarComboOrdenesProduccion()
-        {
-            return sentencias.CargarComboOrdenesProduccion();
-        }
-
-        public DataTable LlenarComboMenu()
-        {
-            return sentencias.CargarComboMenu();
-        }
-
-        // DETALLE DE ORDEN DE MOBILIARIO
+        // -------------------- DETALLE ORDEN DE MOBILIARIO --------------------
         public void GuardarDetalleOrdenMobiliario(int idOrdenProduccion, int idMobiliario, int cantidad)
         {
             sentencias.InsertarDetalleOrdenMobiliario(idOrdenProduccion, idMobiliario, cantidad);
@@ -105,16 +134,5 @@ namespace CapaControladorOP
             return sentencias.CargarDetalleOrdenMobiliario();
         }
 
-        public DataTable LlenarComboMobiliario()
-        {
-            return sentencias.CargarComboMobiliario();
-        }
-
-
-
-
-
-
     }
-
 }
