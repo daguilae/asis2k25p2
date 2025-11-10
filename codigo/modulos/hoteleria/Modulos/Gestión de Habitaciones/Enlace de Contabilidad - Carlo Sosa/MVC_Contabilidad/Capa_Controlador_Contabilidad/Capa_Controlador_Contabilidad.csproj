@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_Polizas">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\..\Downloads\Polizas Locales\Polizas Locales\Polizas_LocalesMVC\Capa_Controlador_Polizas\bin\Debug\Capa_Controlador_Polizas.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Modelo_Contabilidad">
       <HintPath>..\Capa_Modelo_Contabilidad\bin\Debug\Capa_Modelo_Contabilidad.dll</HintPath>
     </Reference>
@@ -44,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ctr_CuentasTurismo.cs.cs" />
     <Compile Include="Ctr_Poliza_Turismo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

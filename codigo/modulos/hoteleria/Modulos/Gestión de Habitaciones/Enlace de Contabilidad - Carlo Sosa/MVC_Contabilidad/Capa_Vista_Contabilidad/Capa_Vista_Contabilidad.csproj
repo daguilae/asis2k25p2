@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Cuenta_Turismo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Frm_Cuenta_Turismo.Designer.cs">
-      <DependentUpon>Frm_Cuenta_Turismo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Frm_Poliza_Turismo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,9 +60,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Cuenta_Turismo.resx">
-      <DependentUpon>Frm_Cuenta_Turismo.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Poliza_Turismo.resx">
       <DependentUpon>Frm_Poliza_Turismo.cs</DependentUpon>
     </EmbeddedResource>
