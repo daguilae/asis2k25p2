@@ -45,6 +45,7 @@ namespace Capa_Vista_Receta
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Lbl_Unidad = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Receta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -208,11 +209,27 @@ namespace Capa_Vista_Receta
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos";
             // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.BackColor = System.Drawing.Color.White;
+            this.Btn_Reporte.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Reporte.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Reporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(708, 12);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(56, 46);
+            this.Btn_Reporte.TabIndex = 161;
+            this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Reporte.UseVisualStyleBackColor = false;
+            this.Btn_Reporte.Click += new System.EventHandler(this.pro_Btn_Reporte_Click);
+            // 
             // Frm_Receta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 615);
+            this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.Btn_Modificar);
@@ -255,5 +272,6 @@ namespace Capa_Vista_Receta
         private System.Windows.Forms.Label Lbl_Cantidad;
         private System.Windows.Forms.Label Lbl_Unidad;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }
