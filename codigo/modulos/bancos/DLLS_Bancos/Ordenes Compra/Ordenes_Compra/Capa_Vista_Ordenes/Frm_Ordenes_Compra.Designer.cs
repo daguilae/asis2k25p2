@@ -32,7 +32,6 @@ namespace Capa_Vista_Ordenes
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_Compra));
             this.Btn_Agregar_Autorizacion = new System.Windows.Forms.Button();
             this.Btn_Ayuda_Autorizacion = new System.Windows.Forms.Button();
-            this.Btn_Imprimir_Autorizacion = new System.Windows.Forms.Button();
             this.Btn_Eliminar_Autorizacion = new System.Windows.Forms.Button();
             this.Btn_Actualizar_Autorizacion = new System.Windows.Forms.Button();
             this.Lbl_Titulo_Ordenes = new System.Windows.Forms.Label();
@@ -62,7 +61,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Agregar_Autorizacion
             // 
             this.Btn_Agregar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Autorizacion.Image")));
-            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(628, 19);
+            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(684, 19);
             this.Btn_Agregar_Autorizacion.Name = "Btn_Agregar_Autorizacion";
             this.Btn_Agregar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Agregar_Autorizacion.TabIndex = 36;
@@ -79,20 +78,10 @@ namespace Capa_Vista_Ordenes
             this.Btn_Ayuda_Autorizacion.UseVisualStyleBackColor = true;
             this.Btn_Ayuda_Autorizacion.Click += new System.EventHandler(this.Btn_Ayuda_Autorizacion_Click);
             // 
-            // Btn_Imprimir_Autorizacion
-            // 
-            this.Btn_Imprimir_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Imprimir_Autorizacion.Image")));
-            this.Btn_Imprimir_Autorizacion.Location = new System.Drawing.Point(852, 18);
-            this.Btn_Imprimir_Autorizacion.Name = "Btn_Imprimir_Autorizacion";
-            this.Btn_Imprimir_Autorizacion.Size = new System.Drawing.Size(50, 45);
-            this.Btn_Imprimir_Autorizacion.TabIndex = 34;
-            this.Btn_Imprimir_Autorizacion.UseVisualStyleBackColor = true;
-            this.Btn_Imprimir_Autorizacion.Click += new System.EventHandler(this.Btn_Imprimir_Autorizacion_Click);
-            // 
             // Btn_Eliminar_Autorizacion
             // 
             this.Btn_Eliminar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar_Autorizacion.Image")));
-            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(740, 18);
+            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(796, 18);
             this.Btn_Eliminar_Autorizacion.Name = "Btn_Eliminar_Autorizacion";
             this.Btn_Eliminar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Eliminar_Autorizacion.TabIndex = 33;
@@ -102,7 +91,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Actualizar_Autorizacion
             // 
             this.Btn_Actualizar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Actualizar_Autorizacion.Image")));
-            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(684, 18);
+            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(740, 18);
             this.Btn_Actualizar_Autorizacion.Name = "Btn_Actualizar_Autorizacion";
             this.Btn_Actualizar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Actualizar_Autorizacion.TabIndex = 32;
@@ -292,7 +281,7 @@ namespace Capa_Vista_Ordenes
             // Btn_Limpiar
             // 
             this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
-            this.Btn_Limpiar.Location = new System.Drawing.Point(796, 19);
+            this.Btn_Limpiar.Location = new System.Drawing.Point(852, 19);
             this.Btn_Limpiar.Name = "Btn_Limpiar";
             this.Btn_Limpiar.Size = new System.Drawing.Size(50, 45);
             this.Btn_Limpiar.TabIndex = 55;
@@ -325,7 +314,6 @@ namespace Capa_Vista_Ordenes
             this.Controls.Add(this.Cbo_Id_Orden);
             this.Controls.Add(this.Btn_Agregar_Autorizacion);
             this.Controls.Add(this.Btn_Ayuda_Autorizacion);
-            this.Controls.Add(this.Btn_Imprimir_Autorizacion);
             this.Controls.Add(this.Btn_Eliminar_Autorizacion);
             this.Controls.Add(this.Btn_Actualizar_Autorizacion);
             this.Controls.Add(this.Lbl_Titulo_Ordenes);
@@ -343,7 +331,6 @@ namespace Capa_Vista_Ordenes
 
         private System.Windows.Forms.Button Btn_Agregar_Autorizacion;
         private System.Windows.Forms.Button Btn_Ayuda_Autorizacion;
-        private System.Windows.Forms.Button Btn_Imprimir_Autorizacion;
         private System.Windows.Forms.Button Btn_Eliminar_Autorizacion;
         private System.Windows.Forms.Button Btn_Actualizar_Autorizacion;
         private System.Windows.Forms.Label Lbl_Titulo_Ordenes;

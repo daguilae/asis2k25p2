@@ -315,8 +315,7 @@ namespace Capa_Vista_Ordenes
 
         private void Btn_Imprimir_Autorizacion_Click(object sender, EventArgs e)
         {
-            Frm_Reporte frm = new Frm_Reporte();
-            frm.Show();
+            
         }
 
         private void Btn_Ayuda_Autorizacion_Click(object sender, EventArgs e)
