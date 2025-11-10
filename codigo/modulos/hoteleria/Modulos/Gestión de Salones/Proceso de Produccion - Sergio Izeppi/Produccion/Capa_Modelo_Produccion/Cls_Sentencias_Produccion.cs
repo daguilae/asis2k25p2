@@ -290,12 +290,12 @@ namespace CapaModeloProduccion
 
             using (OdbcConnection pCon = pCn.conexion())
             {
-                string sSql = "INSERT INTO Tbl_Reservas_Alacarta (Fk_Id_Huessed, Fk_Id_Habitacion, Fk_Id_Salon, Cmp_Fecha_Reserva, Cmp_Hora_reserva, Cmp_Numero_Comensales, Cmp_Estado) " +
+                string sSql = "INSERT INTO Tbl_Reservas_Alacarta (Fk_Id_Huesped, Fk_Id_Habitacion, Fk_Id_Salon, Cmp_Fecha_Reserva, Cmp_Hora_reserva, Cmp_Numero_Comensales, Cmp_Estado) " +
                              "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
                 using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
                 {
-                    pCmd.Parameters.AddWithValue("@Fk_Id_Huessed", iIdHuesped);
+                    pCmd.Parameters.AddWithValue("@Fk_Id_Huesped", iIdHuesped);
                     pCmd.Parameters.AddWithValue("@Fk_Id_Habitacion", iIdHabitacion);
                     pCmd.Parameters.AddWithValue("@Fk_Id_Salon", iIdSalon);
                     pCmd.Parameters.AddWithValue("@Cmp_Fecha_Reserva", dFechaReserva);
@@ -315,12 +315,12 @@ namespace CapaModeloProduccion
             using (OdbcConnection pCon = pCn.conexion())
             {
                 string sSql = "UPDATE Tbl_Reservas_Alacarta SET " +
-                             "Fk_Id_Huessed = ?, Fk_Id_Habitacion = ?, Fk_Id_Salon = ?, Cmp_Fecha_Reserva = ?, Cmp_Hora_reserva = ?, Cmp_Numero_Comensales = ?, Cmp_Estado = ? " +
+                             "Fk_Id_Huesped = ?, Fk_Id_Habitacion = ?, Fk_Id_Salon = ?, Cmp_Fecha_Reserva = ?, Cmp_Hora_reserva = ?, Cmp_Numero_Comensales = ?, Cmp_Estado = ? " +
                              "WHERE PK_Id_Reserva = ?";
 
                 using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
                 {
-                    pCmd.Parameters.AddWithValue("@Fk_Id_Huessed", iIdHuesped);
+                    pCmd.Parameters.AddWithValue("@Fk_Id_Huesped", iIdHuesped);
                     pCmd.Parameters.AddWithValue("@Fk_Id_Habitacion", iIdHabitacion);
                     pCmd.Parameters.AddWithValue("@Fk_Id_Salon", iIdSalon);
                     pCmd.Parameters.AddWithValue("@Cmp_Fecha_Reserva", dFechaReserva);
@@ -361,7 +361,7 @@ namespace CapaModeloProduccion
                 string sSql = @"
             SELECT 
                 r.PK_Id_Reserva,
-                r.Fk_Id_Huessed,
+                r.Fk_Id_Huesped,
                 r.Fk_Id_Habitacion,
                 s.Cmp_Nombre_Salon AS SalonNombre,
                 r.Cmp_Fecha_Reserva,

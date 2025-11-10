@@ -46,8 +46,8 @@ namespace Capa_Vista_Produccion
             if (Dgv_Reservas.Columns.Contains("PK_Id_Reserva"))
                 Dgv_Reservas.Columns["PK_Id_Reserva"].HeaderText = "ID Reserva";
 
-            if (Dgv_Reservas.Columns.Contains("Fk_Id_Huessed"))
-                Dgv_Reservas.Columns["Fk_Id_Huessed"].HeaderText = "ID Huésped";
+            if (Dgv_Reservas.Columns.Contains("Fk_Id_Huesped"))
+                Dgv_Reservas.Columns["Fk_Id_Huesped"].HeaderText = "ID Huésped";
 
             if (Dgv_Reservas.Columns.Contains("Fk_Id_Habitacion"))
                 Dgv_Reservas.Columns["Fk_Id_Habitacion"].HeaderText = "ID Habitación";
@@ -155,7 +155,7 @@ namespace Capa_Vista_Produccion
 
             idReservaSeleccionada = Convert.ToInt32(row.Cells["PK_Id_Reserva"].Value);
 
-            Txt_Id_Huesped.Text = row.Cells["Fk_Id_Huessed"].Value.ToString();
+            Txt_Id_Huesped.Text = row.Cells["Fk_Id_Huesped"].Value.ToString();
             Txt_Id_Habitacion.Text = row.Cells["Fk_Id_Habitacion"].Value.ToString();
 
             // Para el combo de salón

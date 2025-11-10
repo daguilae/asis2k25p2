@@ -37,7 +37,7 @@ namespace CapaVistaProduccion
             this.Dtp_Fecha = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Estado = new System.Windows.Forms.Label();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.Lbl_Monto = new System.Windows.Forms.Label();
+            this.Lbl_Habitacion = new System.Windows.Forms.Label();
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Lbl_Id_Menu = new System.Windows.Forms.Label();
@@ -52,6 +52,7 @@ namespace CapaVistaProduccion
             this.Txt_Cantidad = new System.Windows.Forms.TextBox();
             this.Txt_Id_Huesped = new System.Windows.Forms.TextBox();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
+            this.Btn_Cambio = new System.Windows.Forms.Button();
             this.Lbl_Precio = new System.Windows.Forms.Label();
             this.Txt_PrecioUni = new System.Windows.Forms.TextBox();
             this.Lbl_Subtotal = new System.Windows.Forms.Label();
@@ -60,7 +61,6 @@ namespace CapaVistaProduccion
             this.Btn_Guardar_Plato = new System.Windows.Forms.Button();
             this.Btn_eliminar_Plato = new System.Windows.Forms.Button();
             this.Btn_editar_plato = new System.Windows.Forms.Button();
-            this.Btn_Cambio = new System.Windows.Forms.Button();
             this.Btn_Reporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Room_Service)).BeginInit();
@@ -142,17 +142,17 @@ namespace CapaVistaProduccion
             this.Lbl_Titulo.TabIndex = 2;
             this.Lbl_Titulo.Text = "MODULO HOTELERIA";
             // 
-            // Lbl_Monto
+            // Lbl_Habitacion
             // 
-            this.Lbl_Monto.AutoSize = true;
-            this.Lbl_Monto.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Lbl_Monto.Location = new System.Drawing.Point(13, 272);
-            this.Lbl_Monto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Lbl_Monto.Name = "Lbl_Monto";
-            this.Lbl_Monto.Size = new System.Drawing.Size(104, 21);
-            this.Lbl_Monto.TabIndex = 135;
-            this.Lbl_Monto.Text = "ID Pedido:";
+            this.Lbl_Habitacion.AutoSize = true;
+            this.Lbl_Habitacion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Habitacion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Lbl_Habitacion.Location = new System.Drawing.Point(13, 272);
+            this.Lbl_Habitacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_Habitacion.Name = "Lbl_Habitacion";
+            this.Lbl_Habitacion.Size = new System.Drawing.Size(136, 21);
+            this.Lbl_Habitacion.TabIndex = 135;
+            this.Lbl_Habitacion.Text = "ID Habitacion:";
             // 
             // Lbl_Cantidad
             // 
@@ -321,6 +321,16 @@ namespace CapaVistaProduccion
             this.Pnl_Superior.Size = new System.Drawing.Size(1437, 64);
             this.Pnl_Superior.TabIndex = 121;
             // 
+            // Btn_Cambio
+            // 
+            this.Btn_Cambio.Location = new System.Drawing.Point(1245, 10);
+            this.Btn_Cambio.Name = "Btn_Cambio";
+            this.Btn_Cambio.Size = new System.Drawing.Size(132, 44);
+            this.Btn_Cambio.TabIndex = 150;
+            this.Btn_Cambio.Text = "Reservas a la Carta";
+            this.Btn_Cambio.UseVisualStyleBackColor = true;
+            this.Btn_Cambio.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Lbl_Precio
             // 
             this.Lbl_Precio.AutoSize = true;
@@ -420,16 +430,6 @@ namespace CapaVistaProduccion
             this.Btn_editar_plato.UseVisualStyleBackColor = false;
             this.Btn_editar_plato.Click += new System.EventHandler(this.Btn_editar_plato_Click);
             // 
-            // Btn_Cambio
-            // 
-            this.Btn_Cambio.Location = new System.Drawing.Point(1245, 10);
-            this.Btn_Cambio.Name = "Btn_Cambio";
-            this.Btn_Cambio.Size = new System.Drawing.Size(132, 44);
-            this.Btn_Cambio.TabIndex = 150;
-            this.Btn_Cambio.Text = "Reservas a la Carta";
-            this.Btn_Cambio.UseVisualStyleBackColor = true;
-            this.Btn_Cambio.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Btn_Reporte
             // 
             this.Btn_Reporte.BackColor = System.Drawing.Color.White;
@@ -465,7 +465,7 @@ namespace CapaVistaProduccion
             this.Controls.Add(this.Cbo_Estado);
             this.Controls.Add(this.Dtp_Fecha);
             this.Controls.Add(this.Lbl_Estado);
-            this.Controls.Add(this.Lbl_Monto);
+            this.Controls.Add(this.Lbl_Habitacion);
             this.Controls.Add(this.Lbl_Cantidad);
             this.Controls.Add(this.Lbl_Fecha);
             this.Controls.Add(this.Lbl_Id_Menu);
@@ -502,7 +502,7 @@ namespace CapaVistaProduccion
         private System.Windows.Forms.DateTimePicker Dtp_Fecha;
         private System.Windows.Forms.Label Lbl_Estado;
         private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.Label Lbl_Monto;
+        private System.Windows.Forms.Label Lbl_Habitacion;
         private System.Windows.Forms.Label Lbl_Cantidad;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Label Lbl_Id_Menu;
