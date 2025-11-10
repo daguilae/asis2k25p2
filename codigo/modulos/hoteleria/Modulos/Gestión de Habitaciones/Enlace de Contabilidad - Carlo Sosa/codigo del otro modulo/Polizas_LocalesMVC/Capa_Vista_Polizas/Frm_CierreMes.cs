@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace CapaVistaOP
+namespace Capa_Vista_Polizas
 {
-    public partial class Frm_Reporte_Ordenes_Menu : Form
+    public partial class Frm_CierreMes : Form
     {
-        public Frm_Reporte_Ordenes_Menu()
+        public Frm_CierreMes()
         {
             InitializeComponent();
         }

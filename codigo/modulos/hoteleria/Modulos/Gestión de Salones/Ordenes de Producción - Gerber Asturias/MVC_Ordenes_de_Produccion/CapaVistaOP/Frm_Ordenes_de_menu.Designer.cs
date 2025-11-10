@@ -165,7 +165,7 @@ namespace CapaVistaOP
             // 
             // Txt_Detalle_Orden
             // 
-            this.Txt_Detalle_Orden.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_Detalle_Orden.BackColor = System.Drawing.Color.White;
             this.Txt_Detalle_Orden.Location = new System.Drawing.Point(252, 116);
             this.Txt_Detalle_Orden.Name = "Txt_Detalle_Orden";
             this.Txt_Detalle_Orden.Size = new System.Drawing.Size(181, 22);
@@ -220,7 +220,7 @@ namespace CapaVistaOP
             // 
             // Cbo_Menu
             // 
-            this.Cbo_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Cbo_Menu.BackColor = System.Drawing.Color.White;
             this.Cbo_Menu.FormattingEnabled = true;
             this.Cbo_Menu.Location = new System.Drawing.Point(252, 184);
             this.Cbo_Menu.Name = "Cbo_Menu";
@@ -229,7 +229,7 @@ namespace CapaVistaOP
             // 
             // Cbo_Orden_Produccion
             // 
-            this.Cbo_Orden_Produccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Cbo_Orden_Produccion.BackColor = System.Drawing.Color.White;
             this.Cbo_Orden_Produccion.FormattingEnabled = true;
             this.Cbo_Orden_Produccion.Location = new System.Drawing.Point(252, 151);
             this.Cbo_Orden_Produccion.Name = "Cbo_Orden_Produccion";
@@ -239,11 +239,11 @@ namespace CapaVistaOP
             // 
             // Btn_Reporte
             // 
-            this.Btn_Reporte.Location = new System.Drawing.Point(544, 79);
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(604, 69);
             this.Btn_Reporte.Name = "Btn_Reporte";
-            this.Btn_Reporte.Size = new System.Drawing.Size(107, 30);
+            this.Btn_Reporte.Size = new System.Drawing.Size(55, 46);
             this.Btn_Reporte.TabIndex = 132;
-            this.Btn_Reporte.Text = "Ver reporte";
             this.Btn_Reporte.UseVisualStyleBackColor = true;
             this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
@@ -251,7 +251,7 @@ namespace CapaVistaOP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(895, 597);
             this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Nud_Cantidad);

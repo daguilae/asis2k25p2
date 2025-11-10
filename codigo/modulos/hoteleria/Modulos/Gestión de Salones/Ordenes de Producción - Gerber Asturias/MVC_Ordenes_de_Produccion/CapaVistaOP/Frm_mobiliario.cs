@@ -100,5 +100,11 @@ namespace CapaVistaOP
         {
             this.Close();
         }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Mobiliario frm = new Frm_Reporte_Mobiliario();
+            frm.Show();
+        }
     }
 }

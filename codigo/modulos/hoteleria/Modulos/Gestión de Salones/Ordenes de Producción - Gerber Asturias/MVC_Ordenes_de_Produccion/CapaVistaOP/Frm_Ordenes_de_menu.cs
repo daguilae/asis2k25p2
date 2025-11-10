@@ -192,7 +192,7 @@ namespace CapaVistaOP
 
         private void Btn_Reporte_Click(object sender, EventArgs e)
         {
-            Frm_Reporte_Ordenes_Menu frm = new Frm_Reporte_Ordenes_Menu();
+            Frm_Reporte_Orden_Menu frm = new Frm_Reporte_Orden_Menu();
             frm.Show();
         }
     }
