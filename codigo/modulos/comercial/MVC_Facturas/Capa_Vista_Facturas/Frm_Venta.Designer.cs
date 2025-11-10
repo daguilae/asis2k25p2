@@ -56,8 +56,11 @@ namespace Capa_Vista_Facturas
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Btn_Vender = new System.Windows.Forms.Button();
             this.Lbl_Factura = new System.Windows.Forms.Label();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.listadoDeFacturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Producto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Lista)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Pnl_Producto
@@ -341,6 +344,24 @@ namespace Capa_Vista_Facturas
             this.Lbl_Factura.TabIndex = 2;
             this.Lbl_Factura.Text = "FACTURA";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.listadoDeFacturaToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(641, 28);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // listadoDeFacturaToolStripMenuItem
+            // 
+            this.listadoDeFacturaToolStripMenuItem.Name = "listadoDeFacturaToolStripMenuItem";
+            this.listadoDeFacturaToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
+            this.listadoDeFacturaToolStripMenuItem.Text = "Listado de Factura";
+            this.listadoDeFacturaToolStripMenuItem.Click += new System.EventHandler(this.listadoDeFacturaToolStripMenuItem_Click_1);
+            // 
             // Frm_Venta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -350,7 +371,9 @@ namespace Capa_Vista_Facturas
             this.Controls.Add(this.Lbl_Factura);
             this.Controls.Add(this.Btn_Vender);
             this.Controls.Add(this.Pnl_Producto);
+            this.Controls.Add(this.menuStrip1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Frm_Venta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hotel San Carlos";
@@ -358,6 +381,8 @@ namespace Capa_Vista_Facturas
             this.Pnl_Producto.ResumeLayout(false);
             this.Pnl_Producto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Lista)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,6 +417,8 @@ namespace Capa_Vista_Facturas
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem listadoDeFacturaToolStripMenuItem;
     }
 }
 

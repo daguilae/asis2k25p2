@@ -1,171 +1,216 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Drawing.Printing;
+using System.Drawing;              
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Capa_Vista_Facturas
+
+        // Juan Carlos Sandoval Quej 0901-22-4170 09/11/2025
 {
     public partial class Frm_FacturaCrear : Form
     {
-        // Recibe desde Frm_Venta
-        public DataTable DetalleFactura { get; set; } // columnas: Codigo, Producto, Cantidad, Precio, Subtotal
+        // ====== Datos que recibe desde Frm_Venta ======
+        public DataTable DetalleFactura { get; set; }
         public decimal Total { get; set; }
-        public int? FacturaId { get; private set; }   // correlativo visual para la factura
+        public int? FacturaId { get; private set; }
+
+        // ====== Carpeta ÚNICA para cabeceras+detalles ======
+        internal static readonly string BaseDir =
+            Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Facturas");
+
+        // Guard de clic doble/Enter/AcceptButton (evita duplicar)
+        private bool _yaGuardado = false;
 
         public Frm_FacturaCrear()
         {
             InitializeComponent();
+
+            Load += Frm_FacturaCrear_Load;
+
+            Cbo_TipoDoc.SelectedIndexChanged += Cbo_TipoDoc_SelectedIndexChanged;
+            Btn_Guardar.Click += Btn_Guardar_Click;
+            Btn_Imprimir.Click += Btn_Imprimir_Click;
+            Btn_Cancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+
+            printDocument1.PrintPage += printDocument1_PrintPage;
         }
 
         private void Frm_FacturaCrear_Load(object sender, EventArgs e)
         {
+            Directory.CreateDirectory(BaseDir);
+
             if (Cbo_TipoDoc.Items.Count == 0)
             {
                 Cbo_TipoDoc.Items.Add("NIT");
                 Cbo_TipoDoc.Items.Add("CF");
             }
-            Cbo_TipoDoc.SelectedIndex = 0;
+            Cbo_TipoDoc.SelectedIndex = 1; // CF por defecto
 
             Txt_Total.Text = Total.ToString("0.00");
 
             Dgv_Detalle.AutoGenerateColumns = true;
             Dgv_Detalle.ReadOnly = true;
-            Dgv_Detalle.DataSource = null; // lo llenamos al Guardar
-        }
+            Dgv_Detalle.DataSource = DetalleFactura ?? new DataTable();
 
-        private void PrepararColumnasGrid()
-        {
-            Dgv_Detalle.AutoGenerateColumns = false;
-            Dgv_Detalle.Columns.Clear();
+            if (Dgv_Detalle.Columns.Contains("Precio"))
+                Dgv_Detalle.Columns["Precio"].DefaultCellStyle.Format = "N2";
+            if (Dgv_Detalle.Columns.Contains("Subtotal"))
+                Dgv_Detalle.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
 
-            var colCod = new DataGridViewTextBoxColumn { HeaderText = "Codigo", DataPropertyName = "Codigo", ReadOnly = true };
-            var colProd = new DataGridViewTextBoxColumn { HeaderText = "Producto", DataPropertyName = "Producto", ReadOnly = true, Width = 240 };
-            var colCant = new DataGridViewTextBoxColumn { HeaderText = "Cantidad", DataPropertyName = "Cantidad", ReadOnly = true };
-            var colPrecio = new DataGridViewTextBoxColumn { HeaderText = "Precio", DataPropertyName = "Precio", ReadOnly = true };
-            colPrecio.DefaultCellStyle.Format = "N2";
-            var colSub = new DataGridViewTextBoxColumn { HeaderText = "Subtotal", DataPropertyName = "Subtotal", ReadOnly = true };
-            colSub.DefaultCellStyle.Format = "N2";
-
-            Dgv_Detalle.Columns.AddRange(colCod, colProd, colCant, colPrecio, colSub);
+            _yaGuardado = false;        // reset guard
+            Btn_Guardar.Enabled = true; // por si viene reabierto
         }
 
         private void Cbo_TipoDoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Cbo_TipoDoc.SelectedItem?.ToString() == "CF")
-            {
-                Txt_Documento.Text = "CF";
-                Txt_Documento.ReadOnly = true;
-                Txt_Documento.BackColor = SystemColors.ControlLight;
-            }
-            else
-            {
-                if (Txt_Documento.Text == "CF") Txt_Documento.Clear();
-                Txt_Documento.ReadOnly = false;
-                Txt_Documento.BackColor = SystemColors.Window;
-            }
+            bool esCF = (Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "CF";
+            if (esCF) Txt_Documento.Text = "CF";
+            Txt_Documento.ReadOnly = esCF;
+            Txt_Documento.BackColor = esCF
+                ? SystemColors.ControlLight
+                : SystemColors.Window;
         }
 
+        // ================== GUARDAR ==================
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
+            // 1) guard anti-doble-click/enter
+            if (_yaGuardado) return;
+
+            // 2) validaciones
             if (!Validar()) return;
 
-            // 1) Mostrar DETALLE en el grid (pre-visualización en pantalla)
-            Dgv_Detalle.DataSource = null;
-            Dgv_Detalle.DataSource = DetalleFactura;
-
-            // 2) “Guardar” la FACTURA en el listado del formulario (en memoria)
-            int idVenta = (this.Tag is int v) ? v : 0; // viene desde Frm_Venta
-            int numero = Frm_Listado_Facturas.TablaFacturas.Rows.Count + 1;
-
-            Frm_Listado_Facturas.TablaFacturas.Rows.Add(
-                numero,
-                idVenta,
-                Txt_Nombre.Text.Trim(),
-                Txt_Apellido.Text.Trim(),
-                Txt_Documento.Text.Trim(),
-                Dtp_Fecha.Value,
-                DetalleFactura?.Rows.Count ?? 0,
-                Total
-            );
-
-            this.FacturaId = numero; // para que Frm_Venta muestre el número
-
-            // 3) Abrir PREVIEW tipo PDF (antes de imprimir) — blindado
-            EnsurePreviewInitialized();
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.UseAntiAlias = true;
-            printPreviewDialog1.ShowDialog();
-
-            // devolvemos OK para que Frm_Venta pueda limpiar
-            this.DialogResult = DialogResult.OK;
-        }
-
-        private void CargarDetalleEnGrid()
-        {
-            if (DetalleFactura == null || DetalleFactura.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No hay detalle para mostrar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                Directory.CreateDirectory(BaseDir);
+
+                // correlativo a partir de los archivos existentes
+                int numero = SiguienteNumero();
+
+                // ===== Cabecera =====
+                var cab = new DataTable("Cabecera");
+                cab.Columns.Add("Numero", typeof(int));
+                cab.Columns.Add("IdVenta", typeof(int));
+                cab.Columns.Add("TipoDoc", typeof(string));
+                cab.Columns.Add("Documento", typeof(string));
+                cab.Columns.Add("Nombre", typeof(string));
+                cab.Columns.Add("Apellido", typeof(string));
+                cab.Columns.Add("Fecha", typeof(DateTime));
+                cab.Columns.Add("Total", typeof(decimal));
+
+                cab.Rows.Add(
+                    numero,
+                    (int)Tag, // IdVenta en Tag
+                    Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF",
+                    ((Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "CF") ? "CF" : Txt_Documento.Text.Trim(),
+                    Txt_Nombre.Text.Trim(),
+                    Txt_Apellido.Text.Trim(),
+                    Dtp_Fecha.Value,
+                    Total
+                );
+
+                // ===== Detalle =====
+                var det = (DetalleFactura?.Copy()) ?? new DataTable();
+                if (string.IsNullOrWhiteSpace(det.TableName)) det.TableName = "Detalle";
+                if (det.Columns.Count == 0)
+                {
+                    det.Columns.Add("Codigo", typeof(string));
+                    det.Columns.Add("Producto", typeof(string));
+                    det.Columns.Add("Cantidad", typeof(int));
+                    det.Columns.Add("Precio", typeof(decimal));
+                    det.Columns.Add("Subtotal", typeof(decimal));
+                }
+
+                // ===== Persistir en un solo XML =====
+                var ds = new DataSet("Factura");
+                ds.Tables.Add(cab);
+                ds.Tables.Add(det);
+
+                string fileXml = Path.Combine(BaseDir, $"F{numero:000000}.xml");
+                ds.WriteXml(fileXml, XmlWriteMode.WriteSchema);
+
+                FacturaId = numero;
+
+                _yaGuardado = true;
+                Btn_Guardar.Enabled = false;  // seguridad extra
+
+                MessageBox.Show($"Factura #{numero} guardada.", "OK",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Señal al que llamó para refrescar el listado
+                DialogResult = DialogResult.OK;
+                Close();
             }
-
-            // Recalcular total por si acaso y reflejarlo
-            decimal suma = 0m;
-            foreach (DataRow r in DetalleFactura.Rows)
-                suma += Convert.ToDecimal(r["Subtotal"]);
-
-            Txt_Total.Text = suma.ToString("0.00");
-            Total = suma;
-
-            Dgv_Detalle.DataSource = null;
-            Dgv_Detalle.DataSource = DetalleFactura;
-
-            // evitar edición
-            Dgv_Detalle.ReadOnly = true;
-            Dgv_Detalle.AllowUserToAddRows = false;
-            Dgv_Detalle.AllowUserToDeleteRows = false;
-            Dgv_Detalle.ClearSelection();
-        }
-
-        private void Btn_Imprimir_Click(object sender, EventArgs e)
-        {
-            if (FacturaId == null)
+            catch (Exception ex)
             {
-                MessageBox.Show("Primero guarde la factura.", "Información",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                MessageBox.Show("No se pudo guardar la factura.\n" + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                _yaGuardado = false;
+                Btn_Guardar.Enabled = true;
             }
-            printDocument1.Print(); // Elige "Microsoft Print to PDF" si quieres archivo PDF
         }
 
-        private void Btn_Cancelar_Click(object sender, EventArgs e)
+        private static int SiguienteNumero()
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            int max = 0;
+            foreach (var f in Directory.GetFiles(BaseDir, "F*.xml"))
+            {
+                var name = Path.GetFileNameWithoutExtension(f); // F000123
+                if (name?.Length > 1 && int.TryParse(name.Substring(1), out int n))
+                    if (n > max) max = n;
+            }
+            return max + 1;
         }
 
         private bool Validar()
         {
+            if (!(Tag is int))
+            {
+                MessageBox.Show("No se recibió el Id de la venta.");
+                return false;
+            }
             if (string.IsNullOrWhiteSpace(Txt_Nombre.Text))
-            { MessageBox.Show("Ingrese el nombre del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning); Txt_Nombre.Focus(); return false; }
-
-            if (string.IsNullOrWhiteSpace(Txt_Apellido.Text))
-            { MessageBox.Show("Ingrese el apellido del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning); Txt_Apellido.Focus(); return false; }
-
-            if (Cbo_TipoDoc.SelectedItem?.ToString() == "NIT" && string.IsNullOrWhiteSpace(Txt_Documento.Text))
-            { MessageBox.Show("Ingrese el NIT del cliente.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning); Txt_Documento.Focus(); return false; }
-
+            {
+                MessageBox.Show("Ingrese el nombre del cliente.");
+                return false;
+            }
+            if ((Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "NIT" &&
+                string.IsNullOrWhiteSpace(Txt_Documento.Text))
+            {
+                MessageBox.Show("Ingrese el NIT.");
+                return false;
+            }
             if (Total <= 0)
-            { MessageBox.Show("El total debe ser mayor a 0.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning); return false; }
-
+            {
+                MessageBox.Show("El total debe ser mayor a 0.");
+                return false;
+            }
             return true;
         }
 
-        // “PDF”/Ticket
-        private void printDocument1_PrintPage(object sender, PrintPageEventArgs e)
+        // ================== IMPRIMIR ==================
+        private void Btn_Imprimir_Click(object sender, EventArgs e)
         {
-            float y = 40;
+            if (!FacturaId.HasValue)
+            {
+                MessageBox.Show("Guarda la factura antes de imprimir.");
+                return;
+            }
+
+            // Asignación mínima y sin icono de recursos (evita MissingManifestResourceException)
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Icon = null;               // <- evita la excepción de recursos
+            printPreviewDialog1.UseAntiAlias = true;
+            printPreviewDialog1.ShowDialog(this);
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Dibujo simple (puedes mantener tu bloque original si ya lo tenías)
             var g = e.Graphics;
+            float y = 40;
             var font = new Font("Segoe UI", 9);
             var bold = new Font("Segoe UI", 9, FontStyle.Bold);
 
@@ -179,7 +224,6 @@ namespace Capa_Vista_Facturas
 
             y += 6;
             g.DrawString("Detalle", bold, Brushes.Black, 40, y); y += 16;
-
             g.DrawString("Producto", bold, Brushes.Black, 40, y);
             g.DrawString("Cant.", bold, Brushes.Black, 320, y);
             g.DrawString("Precio", bold, Brushes.Black, 380, y);
@@ -208,26 +252,6 @@ namespace Capa_Vista_Facturas
             y += 8;
             g.DrawLine(Pens.Black, 40, y, e.PageBounds.Width - 40, y); y += 10;
             g.DrawString($"TOTAL: Q {Total:0.00}", new Font("Segoe UI", 11, FontStyle.Bold), Brushes.Black, 460, y);
-        }
-
-        // ====== Blindaje para el Preview (evita NullReference si el diseñador no lo instanció)
-        private void EnsurePreviewInitialized()
-        {
-            if (printDocument1 == null)
-            {
-                printDocument1 = new PrintDocument();
-                printDocument1.PrintPage += printDocument1_PrintPage;
-            }
-
-            if (printPreviewDialog1 == null)
-            {
-                printPreviewDialog1 = new PrintPreviewDialog
-                {
-                    ClientSize = new Size(900, 700),
-                    UseAntiAlias = true,
-                    Name = "printPreviewDialog1"
-                };
-            }
         }
     }
 }

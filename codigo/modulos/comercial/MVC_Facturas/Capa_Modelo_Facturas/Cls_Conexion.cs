@@ -7,13 +7,15 @@ using System.Data.Odbc;
 
 
 namespace Capa_Modelo_Facturas
+
+        // Juan Carlos Sandoval Quej 0901-22-4170 09/11/2025
 {
     public class Cls_Conexion
     {
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=Bd_hoteleria_prueba");
+            OdbcConnection conn = new OdbcConnection("Dsn=Bd_hoteleria");
             try
             {
                 conn.Open();
