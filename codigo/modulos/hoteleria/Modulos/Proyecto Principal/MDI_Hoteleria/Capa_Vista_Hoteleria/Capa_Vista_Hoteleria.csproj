@@ -56,6 +56,9 @@
     <Reference Include="Capa_Vista_Produccion">
       <HintPath>..\..\..\Gestión de Salones\Proceso de Produccion - Sergio Izeppi\Produccion\Capa_Vista_Produccion\bin\Debug\Capa_Vista_Produccion.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Receta">
+      <HintPath>..\..\..\Gestión de Salones\Recetas - Anderson Trigueros\Receta\Capa_Vista_Receta\bin\Debug\Capa_Vista_Receta.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Reservas_Hotel">
       <HintPath>..\..\..\Gestión de Habitaciones\Reservas de Hotel - Ruben Lopez - Pablo Quiroa\Mvc_Reservas_Hotel\Capa_Vista_Reservas_Hotel\bin\Debug\Capa_Vista_Reservas_Hotel.dll</HintPath>
     </Reference>
