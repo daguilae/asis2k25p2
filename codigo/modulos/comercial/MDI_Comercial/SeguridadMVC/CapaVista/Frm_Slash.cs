@@ -15,7 +15,7 @@ namespace Capa_Vista_Comercial
         private void Frm_Slash_Load(object sender, EventArgs e)
         {
             // ===== Configuración general =====
-            this.BackColor = Color.FromArgb(240, 240, 240);
+            this.BackColor = Color.FromArgb(192, 192, 0);
             this.FormBorderStyle = FormBorderStyle.None;
             this.StartPosition = FormStartPosition.CenterScreen;
 
