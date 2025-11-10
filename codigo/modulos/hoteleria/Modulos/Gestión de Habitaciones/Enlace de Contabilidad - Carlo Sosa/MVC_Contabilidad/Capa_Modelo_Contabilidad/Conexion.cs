@@ -12,7 +12,7 @@ namespace Capa_Modelo_Contabilidad
 {
     public class Conexion
     {
-        private string Cadena => "Dsn=Bd_Hoteleria";
+        private string Cadena => "Dsn=bd_hoteleria";
 
         public OdbcConnection Abrir()
         {
