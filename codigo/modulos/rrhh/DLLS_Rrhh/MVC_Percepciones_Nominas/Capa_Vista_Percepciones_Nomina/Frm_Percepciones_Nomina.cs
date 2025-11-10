@@ -157,9 +157,11 @@ namespace Capa_Vista_Percepciones_Nomina
         // Btn_Guardar_Click: valida entradas e inserta un movimiento de nómina.
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (Cbo_NoNomina.SelectedValue == null || Cbo_ConceptoNomina.SelectedValue == null)
+            if (Cbo_NoNomina.SelectedValue == null ||
+                Cbo_ConceptoNomina.SelectedValue == null ||
+                Cbo_Empleado.SelectedValue == null)
             {
-                MessageBox.Show("Selecciona Nómina y Concepto.", "Validación",
+                MessageBox.Show("Selecciona Nómina, Empleado y Concepto.", "Validación",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -171,25 +173,27 @@ namespace Capa_Vista_Percepciones_Nomina
             }
 
             int iIdNomina = Convert.ToInt32(Cbo_NoNomina.SelectedValue);
+            int iIdEmpleado = Convert.ToInt32(Cbo_Empleado.SelectedValue);
             int iIdConcepto = Convert.ToInt32(Cbo_ConceptoNomina.SelectedValue);
 
             try
             {
-                // Inserta vía controlador (el modelo ya hace el reset si está vacía)
-                int iNuevoIdMovimiento = _controlador.funInsertarMovimiento(iIdNomina, iIdConcepto, deMonto);
+                int iNuevoIdMovimiento = _controlador.funInsertarMovimiento(
+                    iIdNomina, iIdEmpleado, iIdConcepto, deMonto);
 
                 proCargarDgvMovimientos(iIdNomina);
                 proSeleccionarFilaPorMovimiento(iNuevoIdMovimiento);
 
-                MessageBox.Show("Movimiento registrado.", "Éxito",
-                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Movimiento registrado correctamente.",
+                                "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al insertar: " + ex.Message, "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al insertar: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Btn_Eliminar_Click: elimina el movimiento seleccionado y recarga el grid.
         private void Btn_Eliminar_Click(object sender, EventArgs e)
