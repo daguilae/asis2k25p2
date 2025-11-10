@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace Capa_Modelo_MB
                         string signo = fun_obtener_signo_operacion(mov.iFk_Id_operacion, cn, tx);
                         decimal factor = (signo == "+") ? 1m : -1m;
 
-                        // 2Consecutivo por (cuenta/operación)
+                        // Consecutivo por (cuenta/operación)
                         int pkMov = fun_obtener_proximo_id_movimiento(mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, cn, tx);
 
                         // Actualizar saldos de la cuenta bancaria (tabla Tbl_CuentasBancarias)
@@ -89,7 +89,6 @@ namespace Capa_Modelo_MB
 
                             mov.iPk_Id_movimiento = pkMov;
                         }
-
                         // Detalles (coincidir NOMBRES de propiedades con tu botón)
                         if (lst_Detalles.Count == 0)
                         {
