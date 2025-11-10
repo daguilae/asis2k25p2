@@ -18,7 +18,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string sql = @"
-                        INSERT INTO tbl_pago_efectivo
+                        INSERT INTO Tbl_Pago_Efectivo
                         (Fk_Id_Pago, Cmp_Numero_Recibo, Cmp_Observaciones)
                         VALUES (?, ?, ?);";
 

@@ -56,7 +56,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string insertSql = @"
-                        INSERT INTO tbl_pago
+                        INSERT INTO Tbl_Pago
                         (Fk_Id_Folio, Cmp_Metodo_Pago, Cmp_Fecha_Pago, Cmp_Monto_Total, Cmp_Estado_Pago)
                         VALUES (?, ?, ?, ?, ?);";
 
