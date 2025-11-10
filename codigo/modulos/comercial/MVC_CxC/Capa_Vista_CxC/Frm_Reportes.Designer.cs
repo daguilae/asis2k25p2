@@ -69,13 +69,13 @@ namespace Capa_Vista_CxC
             // mnuReportes
             // 
             this.mnuReportes.Name = "mnuReportes";
-            this.mnuReportes.Size = new System.Drawing.Size(65, 20);
+            this.mnuReportes.Size = new System.Drawing.Size(72, 20);
             this.mnuReportes.Text = "Reportes";
             // 
             // mnuSalir
             // 
             this.mnuSalir.Name = "mnuSalir";
-            this.mnuSalir.Size = new System.Drawing.Size(41, 20);
+            this.mnuSalir.Size = new System.Drawing.Size(45, 20);
             this.mnuSalir.Text = "Salir";
             // 
             // gpParams

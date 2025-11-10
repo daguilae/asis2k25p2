@@ -43,7 +43,8 @@
   <ItemGroup>
     <Compile Include="Cls_Conexion.cs" />
     <Compile Include="Cls_Entidades.cs" />
-    <Compile Include="Cls_RepositorioMemoriaCxC.cs" />
+    <Compile Include="Cls_IRepositorioCxC.cs" />
+    <Compile Include="Cls_RepositorioSqlCxC.cs" />
     <Compile Include="Cls_Sentencias_SQL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

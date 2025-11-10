@@ -34,17 +34,30 @@ namespace Capa_Vista_CxC
             dtpCorte.Value = DateTime.Today;
             dtpFechaCaja.Value = DateTime.Today;
 
-            // Clientes
-            cboCliente.Items.Clear();
-            cboCliente.Items.Add("(Todos)");
+            // Obtener clientes como DataTable
             var clientes = _ctrl.ObtenerClientes();
-            for (int i = 0; i < clientes.Count; i++) cboCliente.Items.Add(clientes[i]);
+
+            // Determinar columnas (ajusta si tus nombres son otros)
+            string colId = clientes.Columns.Contains("Cmp_Id_Cliente") ? "Cmp_Id_Cliente"
+                           : clientes.Columns.Contains("IdCliente") ? "IdCliente"
+                           : clientes.Columns[0].ColumnName;
+
+            string colName = clientes.Columns.Contains("Cmp_Nombre_Cliente") ? "Cmp_Nombre_Cliente"
+                           : clientes.Columns.Contains("Cliente") ? "Cliente"
+                           : clientes.Columns[1].ColumnName;
+
+            // Insertar opción "(Todos)" al inicio
+            var filaTodos = clientes.NewRow();
+            filaTodos[colId] = 0;
+            filaTodos[colName] = "(Todos)";
+            clientes.Rows.InsertAt(filaTodos, 0);
+
+            // Enlazar combo
+            cboCliente.DataSource = clientes;
+            cboCliente.DisplayMember = colName;
+            cboCliente.ValueMember = colId;
             cboCliente.SelectedIndex = 0;
 
-            // Grid
-            gridReporte.AutoGenerateColumns = true;
-
-            ToggleParametros();
         }
 
         private void ToggleParametros()

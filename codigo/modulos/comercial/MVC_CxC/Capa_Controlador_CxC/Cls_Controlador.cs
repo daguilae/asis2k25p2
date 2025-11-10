@@ -1,38 +1,50 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Data;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
 using Capa_Modelo_CxC;
 
 namespace Capa_Controlador_CxC
 {
     public class Cls_Controlador
     {
-        private readonly IRepositorioCxC _repo;
+        // ==== REPO ====
+        private readonly Cls_IRepositorioCxC _repo;
 
-        public Cls_Controlador() : this(new RepositorioMemoriaCxC()) { }
-        public Cls_Controlador(IRepositorioCxC repo) { _repo = repo; }
+        // Ajusta este new ... si tu clase repo tiene otro nombre
+        public Cls_Controlador() : this(new Cls_RepositorioSqlCxC()) { }
+        public Cls_Controlador(Cls_IRepositorioCxC repo) { _repo = repo; }
 
-        // ---------- FACTURAS (DataTable) ----------
+        // =========================================================================================
+        //  FACTURAS -> DataTable para Vista (filtro por cliente y rango de fechas)
+        // =========================================================================================
         public DataTable ObtenerFacturasDT(string cliente, DateTime? desde, DateTime? hasta)
         {
             BindingList<FacturaPendiente> list = _repo.ListarFacturas(cliente, desde, hasta);
+
             var dt = new DataTable();
             dt.Columns.Add("Factura", typeof(string));
             dt.Columns.Add("Fecha", typeof(DateTime));
             dt.Columns.Add("Cliente", typeof(string));
             dt.Columns.Add("Total", typeof(decimal));
             dt.Columns.Add("Saldo", typeof(decimal));
+            dt.Columns.Add("IdCliente", typeof(int));
+            dt.Columns.Add("IdDocumento", typeof(int));
 
             foreach (var f in list)
-                dt.Rows.Add(f.Numero, f.Fecha, f.Cliente, f.Total, f.Saldo);
+                dt.Rows.Add(f.Numero, f.Fecha, f.Cliente, f.Total, f.Saldo, f.IdCliente, f.Id);
 
             return dt;
         }
 
-        // ---------- RECIBOS (DataTable) ----------
+        // =========================================================================================
+        //  RECIBOS -> DataTable para Vista (lista lateral)
+        // =========================================================================================
         public DataTable ObtenerRecibosDT()
         {
             BindingList<Recibo> list = _repo.ListarRecibos();
+
             var dt = new DataTable();
             dt.Columns.Add("Recibo", typeof(int));
             dt.Columns.Add("Fecha", typeof(DateTime));
@@ -41,261 +53,219 @@ namespace Capa_Controlador_CxC
             dt.Columns.Add("Observaciones", typeof(string));
 
             foreach (var r in list)
-                dt.Rows.Add(r.Id, r.Fecha, r.Cliente, r.Monto, r.Observaciones ?? "");
+                dt.Rows.Add(r.Id, r.Fecha, r.Cliente ?? "", r.Monto, r.Observaciones ?? "");
 
             return dt;
         }
 
-        // ---------- CRUD RECIBO ----------
-        public int CrearRecibo(DateTime fecha, string cliente, decimal monto, string obs)
+        public DataTable ObtenerAntiguedadDT(DateTime corte, string cli)
         {
-            if (string.IsNullOrWhiteSpace(cliente)) throw new ArgumentException("Cliente requerido");
-            if (monto <= 0) throw new ArgumentException("Monto debe ser mayor a 0");
-
-            var r = _repo.CrearRecibo(new Recibo
-            {
-                Fecha = fecha,
-                Cliente = cliente.Trim(),
-                Monto = monto,
-                Observaciones = (obs ?? "").Trim()
-            });
-            return r.Id;
+            throw new NotImplementedException();
         }
 
-        public void EditarRecibo(int id, DateTime fecha, string cliente, decimal monto, string obs)
+        // =========================================================================================
+        //  BUFFER "APLICAR PAGO" (vive mientras viva esta instancia del controlador en el form)
+        // =========================================================================================
+        private class PagoDetalleVM
         {
-            if (id <= 0) throw new ArgumentException("Id inválido");
-            if (string.IsNullOrWhiteSpace(cliente)) throw new ArgumentException("Cliente requerido");
-            if (monto <= 0) throw new ArgumentException("Monto debe ser mayor a 0");
+            public string Factura { get; set; }
+            public string Cliente { get; set; }
+            public decimal Saldo { get; set; }
+            public decimal Monto { get; set; }
+            public int IdMetodo { get; set; }
+            public string Metodo { get; set; }
+            public string Referencia { get; set; }
+            public int IdDocumento { get; set; }
+            public int IdCliente { get; set; }
+        }
 
-            _repo.EditarRecibo(new Recibo
+        private readonly BindingList<PagoDetalleVM> _bufferPago = new BindingList<PagoDetalleVM>();
+
+        public DataTable ObtenerLineasPagoDT()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("Factura", typeof(string));
+            dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("Saldo", typeof(decimal));
+            dt.Columns.Add("Monto", typeof(decimal));
+            dt.Columns.Add("Metodo", typeof(string));
+            dt.Columns.Add("Referencia", typeof(string));
+            dt.Columns.Add("IdDocumento", typeof(int));
+            dt.Columns.Add("IdCliente", typeof(int));
+            dt.Columns.Add("IdMetodo", typeof(int));
+
+            foreach (var x in _bufferPago)
+                dt.Rows.Add(x.Factura, x.Cliente, x.Saldo, x.Monto, x.Metodo, x.Referencia, x.IdDocumento, x.IdCliente, x.IdMetodo);
+
+            return dt;
+        }
+
+        public int CrearRecibo(DateTime date, string cliente, decimal monto, string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        public decimal TotalLineasPago()
+        {
+            return _bufferPago.Sum(x => x.Monto);
+        }
+
+        // Firma completa (con 'referencia')
+        public void AgregarLineaPago(string factura, string cliente, decimal saldo, decimal monto,
+                                     int idMetodo, string metodo, string referencia,
+                                     int idDocumento, int idCliente)
+        {
+            if (monto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
+            if (monto > saldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
+            if (idDocumento <= 0) throw new ArgumentException("Documento inválido.");
+            if (idCliente <= 0) throw new ArgumentException("Cliente inválido.");
+
+            _bufferPago.Add(new PagoDetalleVM
             {
-                Id = id,
-                Fecha = fecha,
-                Cliente = cliente.Trim(),
+                Factura = factura ?? "",
+                Cliente = cliente ?? "",
+                Saldo = saldo,
                 Monto = monto,
-                Observaciones = (obs ?? "").Trim()
+                IdMetodo = idMetodo,
+                Metodo = metodo ?? "",
+                Referencia = referencia ?? "",
+                IdDocumento = idDocumento,
+                IdCliente = idCliente
             });
+        }
+
+        public void AgregarLineaPago(string factura, string cliente, decimal saldo, decimal monto, string metodo, string referencia)
+        {
+            throw new NotImplementedException();
+        }
+
+        // Overload que usan a veces en la vista (sin 'referencia')
+        public void AgregarLineaPago(string factura, string cliente, decimal saldo, decimal monto,
+                                     int idMetodo, string metodo, int idDocumento, int idCliente)
+        {
+            AgregarLineaPago(factura, cliente, saldo, monto, idMetodo, metodo, null, idDocumento, idCliente);
+        }
+
+        // Edición "real"
+        public void EditarLineaPago(int index, decimal nuevoMonto, int idMetodo, string metodo, string referencia)
+        {
+            if (index < 0 || index >= _bufferPago.Count) throw new ArgumentOutOfRangeException("Índice inválido.");
+            if (nuevoMonto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
+            var row = _bufferPago[index];
+            if (nuevoMonto > row.Saldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
+
+            row.Monto = nuevoMonto;
+            row.IdMetodo = idMetodo;
+            row.Metodo = metodo ?? "";
+            row.Referencia = referencia ?? "";
+        }
+
+        public void EditarRecibo(int id, DateTime date, string nuevoCliente, decimal nuevoMonto, string nuevasObs)
+        {
+            throw new NotImplementedException();
+        }
+
+        // Overload de compatibilidad (firma que suele venir desde la Vista)
+        public void EditarLineaPago(int index,
+                                    string factura, string cliente, decimal saldo,
+                                    decimal nuevoMonto, int idMetodo, string metodo)
+        {
+            if (nuevoMonto > saldo) throw new ArgumentException("El monto no puede superar el saldo del documento.");
+            EditarLineaPago(index, nuevoMonto, idMetodo, metodo, null);
+        }
+
+        public void EditarLineaPago(int id, string factura, string cliente, decimal nSaldo, decimal nMonto, string metodo, string referencia)
+        {
+            throw new NotImplementedException();
         }
 
         public void AnularRecibo(int id)
         {
-            if (id <= 0) throw new ArgumentException("Seleccione un recibo válido");
-            _repo.AnularRecibo(id);
+            throw new NotImplementedException();
         }
-        // =======================================================
-        // ===============  APLICAR PAGO (BUFFER)  ===============
-        // =======================================================
 
-        #region AplicarPago (buffer local en memoria)
-        // Buffer de líneas de pago (en memoria, sin tocar el Modelo aún)
-        private DataTable _bufferLineasPago;
-        private int _seqLineaPago = 0;
-
-        private void EnsureBuffer()
+        public void EliminarLineaPago(int index)
         {
-            if (_bufferLineasPago != null) return;
-
-            _bufferLineasPago = new DataTable("BufferLineasPago");
-            _bufferLineasPago.Columns.Add("Id", typeof(int));          // ocultable en la Vista
-            _bufferLineasPago.Columns.Add("Factura", typeof(string));
-            _bufferLineasPago.Columns.Add("Cliente", typeof(string));
-            _bufferLineasPago.Columns.Add("Saldo", typeof(decimal));
-            _bufferLineasPago.Columns.Add("Monto", typeof(decimal));
-            _bufferLineasPago.Columns.Add("Método", typeof(string));
-            _bufferLineasPago.Columns.Add("Referencia", typeof(string));
+            if (index < 0 || index >= _bufferPago.Count) throw new ArgumentOutOfRangeException("Índice inválido.");
+            _bufferPago.RemoveAt(index);
         }
 
-        // Devuelve el DataTable que consume la Vista (grilla)
-        public DataTable ObtenerLineasPagoDT()
-        {
-            EnsureBuffer();
-            return _bufferLineasPago;
-        }
-
-        // Agregar línea
-        public int AgregarLineaPago(string factura, string cliente, decimal saldo, decimal monto, string metodo, string referencia)
-        {
-            if (string.IsNullOrWhiteSpace(cliente))
-                throw new ArgumentException("Cliente requerido.");
-            if (monto <= 0)
-                throw new ArgumentException("El monto debe ser mayor a 0.");
-
-            EnsureBuffer();
-
-            _seqLineaPago++;
-            _bufferLineasPago.Rows.Add(
-                _seqLineaPago,
-                string.IsNullOrWhiteSpace(factura) ? "SIN-FACTURA" : factura.Trim(),
-                cliente.Trim(),
-                saldo < 0 ? 0m : saldo,
-                monto,
-                (metodo ?? "").Trim(),
-                (referencia ?? "").Trim()
-            );
-
-            return _seqLineaPago;
-        }
-
-        // Editar línea (por Id)
-        public void EditarLineaPago(int id, string factura, string cliente, decimal saldo, decimal monto, string metodo, string referencia)
-        {
-            if (id <= 0) throw new ArgumentException("Id de línea inválido.");
-            if (string.IsNullOrWhiteSpace(cliente)) throw new ArgumentException("Cliente requerido.");
-            if (monto <= 0) throw new ArgumentException("El monto debe ser mayor a 0.");
-
-            EnsureBuffer();
-
-            DataRow target = null;
-            foreach (DataRow r in _bufferLineasPago.Rows)
-                if (Convert.ToInt32(r["Id"]) == id) { target = r; break; }
-
-            if (target == null) throw new ArgumentException("Línea no encontrada.");
-
-            target["Factura"] = string.IsNullOrWhiteSpace(factura) ? "SIN-FACTURA" : factura.Trim();
-            target["Cliente"] = cliente.Trim();
-            target["Saldo"] = saldo < 0 ? 0m : saldo;
-            target["Monto"] = monto;
-            target["Método"] = (metodo ?? "").Trim();
-            target["Referencia"] = (referencia ?? "").Trim();
-        }
-
-        // Eliminar línea (por Id)
-        public void EliminarLineaPago(int id)
-        {
-            if (id <= 0) throw new ArgumentException("Id de línea inválido");
-
-            EnsureBuffer();
-
-            DataRow target = null;
-            foreach (DataRow r in _bufferLineasPago.Rows)
-                if (Convert.ToInt32(r["Id"]) == id) { target = r; break; }
-
-            if (target != null) _bufferLineasPago.Rows.Remove(target);
-        }
-
-        // Limpiar todas las líneas
         public void LimpiarLineasPago()
         {
-            EnsureBuffer();
-            _bufferLineasPago.Clear();
-            _seqLineaPago = 0;
+            _bufferPago.Clear();
         }
 
-        // Total del pago (suma de Monto)
-        public decimal TotalLineasPago()
+        /// <summary>
+        /// Guarda el pago: crea RECIBO (Tbl_Recibo), inserta detalles (Tbl_Recibo_Det)
+        /// y aplica a documentos (Tbl_Recibo_Aplicacion).
+        /// </summary>
+        public int GuardarPagoAplicado(DateTime fecha, int idCliente, string observaciones)
         {
-            EnsureBuffer();
-            decimal total = 0m;
-            foreach (DataRow r in _bufferLineasPago.Rows)
-                total += Convert.ToDecimal(r["Monto"]);
-            return total;
-        }
+            if (_bufferPago.Count == 0)
+                throw new InvalidOperationException("No hay líneas de pago.");
 
-        // Guardar pago: genera Recibo usando el total y limpia buffer
-        public int GuardarPagoAplicado(DateTime fecha, string cliente, string metodo, string referencia)
-        {
-            EnsureBuffer();
+            var clientes = _bufferPago.Select(x => x.IdCliente).Distinct().ToList();
+            if (clientes.Count != 1 || clientes[0] != idCliente)
+                throw new InvalidOperationException("Todas las líneas deben pertenecer al mismo cliente seleccionado.");
 
-            if (_bufferLineasPago.Rows.Count == 0)
-                throw new ArgumentException("No hay líneas de pago para guardar.");
+            var total = _bufferPago.Sum(x => x.Monto);
 
-            if (string.IsNullOrWhiteSpace(cliente))
-                throw new ArgumentException("Cliente requerido.");
-
-            decimal total = TotalLineasPago();
-
-            // Persistimos solo el encabezado de recibo usando el repositorio existente:
-            int nuevoId = CrearRecibo(fecha, cliente.Trim(), total, "Pago aplicado. " + (referencia ?? "").Trim());
-
-            // (Más adelante, cuando movamos esto al Modelo, aquí guardaremos el detalle y afectaremos saldos)
-            LimpiarLineasPago();
-            return nuevoId;
-        }
-        #endregion
-        // ==================== REPORTES UNIFICADOS ====================
-
-        // Antigüedad por cliente: buckets 0–30, 31–60, 61–90, >90
-        public System.Data.DataTable ObtenerAntiguedadDT(System.DateTime corte, string clienteFiltro)
-        {
-            var fact = _repo.ListarFacturas(string.IsNullOrWhiteSpace(clienteFiltro) ? null : clienteFiltro, null, null);
-
-            var dt = new System.Data.DataTable();
-            dt.Columns.Add("Cliente", typeof(string));
-            dt.Columns.Add("0_30", typeof(decimal));
-            dt.Columns.Add("31_60", typeof(decimal));
-            dt.Columns.Add("61_90", typeof(decimal));
-            dt.Columns.Add("Mas_90", typeof(decimal));
-            dt.Columns.Add("Total", typeof(decimal));
-
-            for (int i = 0; i < fact.Count; i++)
+            var r = new Recibo
             {
-                var f = fact[i];
-                decimal saldo = f.Saldo;
-                if (saldo <= 0) continue;
+                Fecha = fecha,
+                IdCliente = idCliente,
+                Cliente = _bufferPago.First().Cliente, // informativo
+                Monto = total,
+                Observaciones = (observaciones ?? "").Trim(),
+                IdUsuario = 1 // TODO: setear usuario real si aplica
+            };
 
-                string cli = string.IsNullOrEmpty(f.Cliente) ? "(Sin nombre)" : f.Cliente;
-                int dias = (int)(corte.Date - f.Fecha.Date).TotalDays; if (dias < 0) dias = 0;
+            // NOTA: Ajusta nombres de propiedades según tus DTO del Modelo
+            var detalles = _bufferPago.Select(x => new LineaPago
+            {
+                IdMetodoPago = x.IdMetodo,
+                Monto = x.Monto
+            }).ToArray();
 
-                System.Data.DataRow row = null;
-                for (int r = 0; r < dt.Rows.Count; r++)
-                {
-                    if (System.Convert.ToString(dt.Rows[r]["Cliente"]) == cli) { row = dt.Rows[r]; break; }
-                }
-                if (row == null)
-                {
-                    row = dt.NewRow();
-                    row["Cliente"] = cli;
-                    row["0_30"] = 0m; row["31_60"] = 0m; row["61_90"] = 0m; row["Mas_90"] = 0m; row["Total"] = 0m;
-                    dt.Rows.Add(row);
-                }
+            var apps = _bufferPago.Select(x => new AplicacionPago
+            {
+                IdDocumento = x.IdDocumento,
+                MontoAplicado = x.Monto
+            }).ToArray();
 
-                if (dias <= 30) row["0_30"] = System.Convert.ToDecimal(row["0_30"]) + saldo;
-                else if (dias <= 60) row["31_60"] = System.Convert.ToDecimal(row["31_60"]) + saldo;
-                else if (dias <= 90) row["61_90"] = System.Convert.ToDecimal(row["61_90"]) + saldo;
-                else row["Mas_90"] = System.Convert.ToDecimal(row["Mas_90"]) + saldo;
+            var creado = _repo.CrearRecibo(r, detalles, apps);
 
-                row["Total"] = System.Convert.ToDecimal(row["Total"]) + saldo;
-            }
-            return dt;
+            _bufferPago.Clear();
+            return creado.Id;
         }
 
-        // Cierre de caja: recibos del día + total
-        public System.Data.DataTable ObtenerCajaDiaDT(System.DateTime fecha, out decimal total)
+        public int GuardarPagoAplicado(DateTime date, string cliente, string metodo, string referencia)
         {
-            var list = _repo.ListarRecibos();
-            var dt = new System.Data.DataTable();
-            dt.Columns.Add("Recibo", typeof(int));
-            dt.Columns.Add("Hora", typeof(string));
-            dt.Columns.Add("Cliente", typeof(string));
-            dt.Columns.Add("Metodo", typeof(string)); // si tu Recibo no guarda método, deja "-"
-            dt.Columns.Add("Monto", typeof(decimal));
-
-            total = 0m;
-            for (int i = 0; i < list.Count; i++)
-            {
-                var r = list[i];
-                if (r.Fecha.Date != fecha.Date) continue;
-
-                total += r.Monto;
-                dt.Rows.Add(r.Id, r.Fecha.ToString("HH:mm"), r.Cliente ?? "", "-", r.Monto);
-            }
-            return dt;
+            throw new NotImplementedException();
         }
 
-        // (Opcional) listado simple de clientes para el combo
-        public System.ComponentModel.BindingList<string> ObtenerClientes()
+        // Overload de compatibilidad si la Vista manda (fecha, idCliente, totalIgnorado, obs)
+        public int GuardarPagoAplicado(DateTime fecha, int idCliente, decimal totalIgnorado, string observaciones)
         {
-            var fact = _repo.ListarFacturas(null, null, null);
-            var list = new System.ComponentModel.BindingList<string>();
-            for (int i = 0; i < fact.Count; i++)
-            {
-                string c = fact[i].Cliente ?? "";
-                bool existe = false;
-                for (int j = 0; j < list.Count; j++) if (list[j] == c) { existe = true; break; }
-                if (!existe && !string.IsNullOrEmpty(c)) list.Add(c);
-            }
-            return list;
+            return GuardarPagoAplicado(fecha, idCliente, observaciones);
+        }
+
+        // =========================================================================================
+        //  REPORTES
+        // =========================================================================================
+        public DataTable ObtenerClientes()
+        {
+            return _repo.ClientesDT();
+        }
+
+        public DataTable ObtenerAntiguedadDT(DateTime fechaCorte, int? idCliente)
+        {
+            return _repo.AntiguedadDT(fechaCorte, idCliente);
+        }
+
+        public DataTable ObtenerCajaDiaDT(DateTime fecha, out decimal totalDia)
+        {
+            return _repo.CajaDiaDT(fecha, out totalDia);
         }
     }
 }
