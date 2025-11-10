@@ -13,7 +13,7 @@ namespace Capa_Modelo_CxP
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
-            OdbcConnection conn = new OdbcConnection("Dsn=Bd_hoteleria_prueba");
+            OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
             try
             {
                 conn.Open();

@@ -46,11 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_CxP_Gestiòn.cs">
+    <Compile Include="Frm_CxP_Gestion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_CxP_Gestiòn.Designer.cs">
-      <DependentUpon>Frm_CxP_Gestiòn.cs</DependentUpon>
+    <Compile Include="Frm_CxP_Gestion.Designer.cs">
+      <DependentUpon>Frm_CxP_Gestion.cs</DependentUpon>
     </Compile>
     <Compile Include="Frm_CxP_Pagos.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_CxP_Gestiòn.resx">
-      <DependentUpon>Frm_CxP_Gestiòn.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_CxP_Gestion.resx">
+      <DependentUpon>Frm_CxP_Gestion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_CxP_Pagos.resx">
       <DependentUpon>Frm_CxP_Pagos.cs</DependentUpon>

@@ -144,7 +144,7 @@ namespace Capa_Vista_CxP
             // chkHasta
             // 
             this.chkHasta.AutoSize = true;
-            this.chkHasta.Location = new System.Drawing.Point(805, 26);
+            this.chkHasta.Location = new System.Drawing.Point(835, 33);
             this.chkHasta.Name = "chkHasta";
             this.chkHasta.Size = new System.Drawing.Size(18, 17);
             this.chkHasta.TabIndex = 5;
@@ -153,7 +153,7 @@ namespace Capa_Vista_CxP
             // chkDesde
             // 
             this.chkDesde.AutoSize = true;
-            this.chkDesde.Location = new System.Drawing.Point(410, 22);
+            this.chkDesde.Location = new System.Drawing.Point(422, 29);
             this.chkDesde.Name = "chkDesde";
             this.chkDesde.Size = new System.Drawing.Size(18, 17);
             this.chkDesde.TabIndex = 2;
@@ -162,7 +162,7 @@ namespace Capa_Vista_CxP
             // lblHasta
             // 
             this.lblHasta.AutoSize = true;
-            this.lblHasta.Location = new System.Drawing.Point(475, 23);
+            this.lblHasta.Location = new System.Drawing.Point(478, 31);
             this.lblHasta.Name = "lblHasta";
             this.lblHasta.Size = new System.Drawing.Size(106, 20);
             this.lblHasta.TabIndex = 3;
@@ -171,7 +171,7 @@ namespace Capa_Vista_CxP
             // lblDesde
             // 
             this.lblDesde.AutoSize = true;
-            this.lblDesde.Location = new System.Drawing.Point(76, 23);
+            this.lblDesde.Location = new System.Drawing.Point(57, 30);
             this.lblDesde.Name = "lblDesde";
             this.lblDesde.Size = new System.Drawing.Size(113, 20);
             this.lblDesde.TabIndex = 0;
@@ -181,7 +181,7 @@ namespace Capa_Vista_CxP
             // 
             this.dtpHasta.CustomFormat = "dddd, dd MMMM yyyy";
             this.dtpHasta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpHasta.Location = new System.Drawing.Point(571, 23);
+            this.dtpHasta.Location = new System.Drawing.Point(590, 27);
             this.dtpHasta.Name = "dtpHasta";
             this.dtpHasta.Size = new System.Drawing.Size(228, 27);
             this.dtpHasta.TabIndex = 4;
@@ -190,7 +190,7 @@ namespace Capa_Vista_CxP
             // 
             this.dtpDesde.CustomFormat = "dddd, dd MMMM yyyy";
             this.dtpDesde.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDesde.Location = new System.Drawing.Point(176, 20);
+            this.dtpDesde.Location = new System.Drawing.Point(188, 26);
             this.dtpDesde.Name = "dtpDesde";
             this.dtpDesde.Size = new System.Drawing.Size(228, 27);
             this.dtpDesde.TabIndex = 1;

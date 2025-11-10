@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_CxP
 {
-    partial class Frm_CxP_Gestiòn
+    partial class Frm_CxP_Gestion
     {
         /// <summary>
         /// Required designer variable.

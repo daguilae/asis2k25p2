@@ -17,7 +17,7 @@ namespace Ejecutable_CxP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_CxP_Gestiòn());
+            Application.Run(new Frm_CxP_Gestion());
         }
     }
 }
