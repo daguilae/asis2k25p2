@@ -179,5 +179,11 @@ namespace Capa_Vista_IE
             Txt_Producto.Clear();
             Txt_Cantidad.Clear();
         }
+
+        private void pro_Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_IE reporte = new Frm_Reporte_IE();
+            reporte.Show();
+        }
     }
 }

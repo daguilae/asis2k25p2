@@ -41,6 +41,7 @@ namespace Capa_Vista_IE
             this.Btn_Modificar = new System.Windows.Forms.Button();
             this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Limpiar = new System.Windows.Forms.Button();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ordenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@ namespace Capa_Vista_IE
             this.Lbl_Titulo.AutoSize = true;
             this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Titulo.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.Lbl_Titulo.Location = new System.Drawing.Point(321, 23);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(323, 41);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
             this.Lbl_Titulo.Size = new System.Drawing.Size(314, 38);
             this.Lbl_Titulo.TabIndex = 3;
@@ -58,7 +59,7 @@ namespace Capa_Vista_IE
             // Dgv_Ordenes
             // 
             this.Dgv_Ordenes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Ordenes.Location = new System.Drawing.Point(28, 169);
+            this.Dgv_Ordenes.Location = new System.Drawing.Point(28, 185);
             this.Dgv_Ordenes.Name = "Dgv_Ordenes";
             this.Dgv_Ordenes.RowHeadersWidth = 51;
             this.Dgv_Ordenes.RowTemplate.Height = 24;
@@ -68,7 +69,7 @@ namespace Capa_Vista_IE
             // 
             // Txt_Orden
             // 
-            this.Txt_Orden.Location = new System.Drawing.Point(210, 111);
+            this.Txt_Orden.Location = new System.Drawing.Point(210, 127);
             this.Txt_Orden.Name = "Txt_Orden";
             this.Txt_Orden.ReadOnly = true;
             this.Txt_Orden.Size = new System.Drawing.Size(150, 22);
@@ -76,7 +77,7 @@ namespace Capa_Vista_IE
             // 
             // Txt_Producto
             // 
-            this.Txt_Producto.Location = new System.Drawing.Point(390, 111);
+            this.Txt_Producto.Location = new System.Drawing.Point(390, 127);
             this.Txt_Producto.Name = "Txt_Producto";
             this.Txt_Producto.ReadOnly = true;
             this.Txt_Producto.Size = new System.Drawing.Size(235, 22);
@@ -84,7 +85,7 @@ namespace Capa_Vista_IE
             // 
             // Txt_Cantidad
             // 
-            this.Txt_Cantidad.Location = new System.Drawing.Point(642, 111);
+            this.Txt_Cantidad.Location = new System.Drawing.Point(642, 127);
             this.Txt_Cantidad.Name = "Txt_Cantidad";
             this.Txt_Cantidad.Size = new System.Drawing.Size(161, 22);
             this.Txt_Cantidad.TabIndex = 7;
@@ -93,7 +94,7 @@ namespace Capa_Vista_IE
             // 
             this.Lbl_NoOrden.AutoSize = true;
             this.Lbl_NoOrden.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_NoOrden.Location = new System.Drawing.Point(206, 88);
+            this.Lbl_NoOrden.Location = new System.Drawing.Point(206, 104);
             this.Lbl_NoOrden.Name = "Lbl_NoOrden";
             this.Lbl_NoOrden.Size = new System.Drawing.Size(91, 20);
             this.Lbl_NoOrden.TabIndex = 9;
@@ -103,7 +104,7 @@ namespace Capa_Vista_IE
             // 
             this.Lbl_Producto.AutoSize = true;
             this.Lbl_Producto.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Producto.Location = new System.Drawing.Point(386, 88);
+            this.Lbl_Producto.Location = new System.Drawing.Point(386, 104);
             this.Lbl_Producto.Name = "Lbl_Producto";
             this.Lbl_Producto.Size = new System.Drawing.Size(80, 20);
             this.Lbl_Producto.TabIndex = 10;
@@ -113,7 +114,7 @@ namespace Capa_Vista_IE
             // 
             this.Lbl_Cantidad.AutoSize = true;
             this.Lbl_Cantidad.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Cantidad.Location = new System.Drawing.Point(652, 88);
+            this.Lbl_Cantidad.Location = new System.Drawing.Point(652, 104);
             this.Lbl_Cantidad.Name = "Lbl_Cantidad";
             this.Lbl_Cantidad.Size = new System.Drawing.Size(80, 20);
             this.Lbl_Cantidad.TabIndex = 11;
@@ -156,11 +157,27 @@ namespace Capa_Vista_IE
             this.Btn_Limpiar.UseVisualStyleBackColor = false;
             this.Btn_Limpiar.Click += new System.EventHandler(this.pro_Btn_Limpiar_Click);
             // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.BackColor = System.Drawing.Color.White;
+            this.Btn_Reporte.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Reporte.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Reporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(727, 23);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(56, 46);
+            this.Btn_Reporte.TabIndex = 162;
+            this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Reporte.UseVisualStyleBackColor = false;
+            this.Btn_Reporte.Click += new System.EventHandler(this.pro_Btn_Reporte_Click);
+            // 
             // Frm_Ordenes_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(995, 547);
+            this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.Btn_Modificar);
@@ -195,5 +212,6 @@ namespace Capa_Vista_IE
         private System.Windows.Forms.Button Btn_Modificar;
         private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.Button Btn_Limpiar;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }

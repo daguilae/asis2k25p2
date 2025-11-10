@@ -335,5 +335,11 @@ namespace Capa_Vista_Receta
             Txt_Cantidad.Clear();
             iCodigoReceta = -1;
         }
+
+        private void pro_Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte reporte = new Frm_Reporte();
+            reporte.Show();
+        }
     }
 }
