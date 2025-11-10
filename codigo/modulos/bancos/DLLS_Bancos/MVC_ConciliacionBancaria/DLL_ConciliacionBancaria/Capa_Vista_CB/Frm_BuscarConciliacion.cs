@@ -19,7 +19,7 @@ namespace Capa_Vista_CB
         private void Frm_BuscarConciliacion_Load(object sender, EventArgs e) => ActualizarGrid();
 
         private void Btn_AyudaBC_Click(object sender, EventArgs e) {
-            Help.ShowHelp(this, "AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "BuscarConciliacion_ayuda.html");
+            Help.ShowHelp(this, @"AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "BuscarConciliacion_ayuda.html");
         }
 
         private void Btn_SalirBuscarCB_Click(object sender, EventArgs e)
