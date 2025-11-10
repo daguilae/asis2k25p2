@@ -238,5 +238,13 @@ namespace Capa_Vista_CxC
             frm.ShowDialog();
             this.Show();
         }
+
+        private void mnuReportes_Click(object sender, EventArgs e)
+        {
+            Frm_Reportes repo = new Frm_Reportes();
+            this.Hide();
+            repo.ShowDialog();
+            this.Show();
+        }
     }
 }

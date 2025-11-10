@@ -16,9 +16,7 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.mnuRecibos = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuAplicarPago = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuAntiguedad = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReportes = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCierre = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSalir = new System.Windows.Forms.ToolStripMenuItem();
             this.splitRecibos = new System.Windows.Forms.SplitContainer();
             this.Dgv_Facturas = new System.Windows.Forms.DataGridView();
@@ -71,9 +69,7 @@
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRecibos,
             this.mnuAplicarPago,
-            this.mnuAntiguedad,
             this.mnuReportes,
-            this.mnuCierre,
             this.mnuSalir});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
@@ -93,23 +89,12 @@
             this.mnuAplicarPago.Text = "Aplicar Pago";
             this.mnuAplicarPago.Click += new System.EventHandler(this.mnuAplicarPago_Click);
             // 
-            // mnuAntiguedad
-            // 
-            this.mnuAntiguedad.Name = "mnuAntiguedad";
-            this.mnuAntiguedad.Size = new System.Drawing.Size(88, 20);
-            this.mnuAntiguedad.Text = "Antigüedad";
-            // 
             // mnuReportes
             // 
             this.mnuReportes.Name = "mnuReportes";
             this.mnuReportes.Size = new System.Drawing.Size(72, 20);
             this.mnuReportes.Text = "Reportes";
-            // 
-            // mnuCierre
-            // 
-            this.mnuCierre.Name = "mnuCierre";
-            this.mnuCierre.Size = new System.Drawing.Size(105, 20);
-            this.mnuCierre.Text = "Cierre de Caja";
+            this.mnuReportes.Click += new System.EventHandler(this.mnuReportes_Click);
             // 
             // mnuSalir
             // 
@@ -466,9 +451,7 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem mnuRecibos;
         private System.Windows.Forms.ToolStripMenuItem mnuAplicarPago;
-        private System.Windows.Forms.ToolStripMenuItem mnuAntiguedad;
         private System.Windows.Forms.ToolStripMenuItem mnuReportes;
-        private System.Windows.Forms.ToolStripMenuItem mnuCierre;
         private System.Windows.Forms.ToolStripMenuItem mnuSalir;
 
         private System.Windows.Forms.SplitContainer splitRecibos;

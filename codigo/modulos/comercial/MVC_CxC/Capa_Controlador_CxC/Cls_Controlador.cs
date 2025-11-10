@@ -213,6 +213,89 @@ namespace Capa_Controlador_CxC
             return nuevoId;
         }
         #endregion
+        // ==================== REPORTES UNIFICADOS ====================
 
+        // Antigüedad por cliente: buckets 0–30, 31–60, 61–90, >90
+        public System.Data.DataTable ObtenerAntiguedadDT(System.DateTime corte, string clienteFiltro)
+        {
+            var fact = _repo.ListarFacturas(string.IsNullOrWhiteSpace(clienteFiltro) ? null : clienteFiltro, null, null);
+
+            var dt = new System.Data.DataTable();
+            dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("0_30", typeof(decimal));
+            dt.Columns.Add("31_60", typeof(decimal));
+            dt.Columns.Add("61_90", typeof(decimal));
+            dt.Columns.Add("Mas_90", typeof(decimal));
+            dt.Columns.Add("Total", typeof(decimal));
+
+            for (int i = 0; i < fact.Count; i++)
+            {
+                var f = fact[i];
+                decimal saldo = f.Saldo;
+                if (saldo <= 0) continue;
+
+                string cli = string.IsNullOrEmpty(f.Cliente) ? "(Sin nombre)" : f.Cliente;
+                int dias = (int)(corte.Date - f.Fecha.Date).TotalDays; if (dias < 0) dias = 0;
+
+                System.Data.DataRow row = null;
+                for (int r = 0; r < dt.Rows.Count; r++)
+                {
+                    if (System.Convert.ToString(dt.Rows[r]["Cliente"]) == cli) { row = dt.Rows[r]; break; }
+                }
+                if (row == null)
+                {
+                    row = dt.NewRow();
+                    row["Cliente"] = cli;
+                    row["0_30"] = 0m; row["31_60"] = 0m; row["61_90"] = 0m; row["Mas_90"] = 0m; row["Total"] = 0m;
+                    dt.Rows.Add(row);
+                }
+
+                if (dias <= 30) row["0_30"] = System.Convert.ToDecimal(row["0_30"]) + saldo;
+                else if (dias <= 60) row["31_60"] = System.Convert.ToDecimal(row["31_60"]) + saldo;
+                else if (dias <= 90) row["61_90"] = System.Convert.ToDecimal(row["61_90"]) + saldo;
+                else row["Mas_90"] = System.Convert.ToDecimal(row["Mas_90"]) + saldo;
+
+                row["Total"] = System.Convert.ToDecimal(row["Total"]) + saldo;
+            }
+            return dt;
+        }
+
+        // Cierre de caja: recibos del día + total
+        public System.Data.DataTable ObtenerCajaDiaDT(System.DateTime fecha, out decimal total)
+        {
+            var list = _repo.ListarRecibos();
+            var dt = new System.Data.DataTable();
+            dt.Columns.Add("Recibo", typeof(int));
+            dt.Columns.Add("Hora", typeof(string));
+            dt.Columns.Add("Cliente", typeof(string));
+            dt.Columns.Add("Metodo", typeof(string)); // si tu Recibo no guarda método, deja "-"
+            dt.Columns.Add("Monto", typeof(decimal));
+
+            total = 0m;
+            for (int i = 0; i < list.Count; i++)
+            {
+                var r = list[i];
+                if (r.Fecha.Date != fecha.Date) continue;
+
+                total += r.Monto;
+                dt.Rows.Add(r.Id, r.Fecha.ToString("HH:mm"), r.Cliente ?? "", "-", r.Monto);
+            }
+            return dt;
+        }
+
+        // (Opcional) listado simple de clientes para el combo
+        public System.ComponentModel.BindingList<string> ObtenerClientes()
+        {
+            var fact = _repo.ListarFacturas(null, null, null);
+            var list = new System.ComponentModel.BindingList<string>();
+            for (int i = 0; i < fact.Count; i++)
+            {
+                string c = fact[i].Cliente ?? "";
+                bool existe = false;
+                for (int j = 0; j < list.Count; j++) if (list[j] == c) { existe = true; break; }
+                if (!existe && !string.IsNullOrEmpty(c)) list.Add(c);
+            }
+            return list;
+        }
     }
 }
