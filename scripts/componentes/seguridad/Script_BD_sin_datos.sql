@@ -1,4 +1,3 @@
-drop database Bd_Hoteleria;
 CREATE DATABASE Bd_Hoteleria;
 USE Bd_Hoteleria;
 
@@ -26,10 +25,10 @@ CREATE TABLE Tbl_Perfil (
 );
 
 CREATE TABLE Tbl_Reportes (
-   Pk_Id_Reporte INT NOT NULL AUTO_INCREMENT,
-   Cmp_Titulo_Reporte VARCHAR(50),
-   Cmp_Ruta_Reporte VARCHAR(500),
-   Cmp_Fecha_Reporte DATE,
+   Pk_Id_Reporte   INT NOT NULL,
+   Cmp_Titulo_Reporte      VARCHAR(50),
+   Cmp_Ruta_Reporte       VARCHAR(50),
+   Cmp_Fecha_Reporte       DATE,
    PRIMARY KEY (Pk_Id_Reporte)
 );
 
@@ -157,21 +156,25 @@ CREATE TABLE Tbl_Salario_Empleado (
        REFERENCES Tbl_Empleado (Pk_Id_Empleado)
 );
 
+-- Tabla actual de bitacora
 CREATE TABLE Tbl_Bitacora (
-   Pk_Id_Bitacora       INT NOT NULL AUTO_INCREMENT,
-   Fk_Id_Usuario        INT,
-   Fk_Id_Aplicacion     INT,
-   Cmp_Fecha            DATETIME,
-   Cmp_Accion           VARCHAR(50),
-   Cmp_Ip               VARCHAR(50),
-   Cmp_Nombre_Pc         VARCHAR(50),
-   Cmp_Login_Estado      BIT(1),
-   PRIMARY KEY (Pk_Id_Bitacora),
-   CONSTRAINT Fk_Bitacora_Usuario FOREIGN KEY (Fk_Id_Usuario)
-       REFERENCES Tbl_Usuario (Pk_Id_Usuario),
-   CONSTRAINT Fk_Bitacora_Aplicacion FOREIGN KEY (Fk_Id_Aplicacion)
-       REFERENCES Tbl_Aplicacion (Pk_Id_Aplicacion)
+    Pk_Id_Bitacora INT NOT NULL AUTO_INCREMENT,
+    Fk_Id_Usuario INT NULL,
+    Fk_Id_Aplicacion INT NULL,
+    Cmp_Fecha DATETIME NULL,
+    Cmp_Accion VARCHAR(255) NULL,
+    Cmp_Ip VARCHAR(50) NULL,
+    Cmp_Nombre_Pc VARCHAR(50) NULL,
+    Cmp_Login_Estado BIT(1) NULL,
+    PRIMARY KEY (Pk_Id_Bitacora),
+    CONSTRAINT Fk_Bitacora_Usuario FOREIGN KEY (Fk_Id_Usuario)
+        REFERENCES Tbl_Usuario (Pk_Id_Usuario),
+    CONSTRAINT Fk_Bitacora_Aplicacion FOREIGN KEY (Fk_Id_Aplicacion)
+        REFERENCES Tbl_Aplicacion (Pk_Id_Aplicacion)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 );
+
 
 CREATE TABLE Tbl_Bloqueo_Usuario (
    Pk_Id_Bloqueo    INT NOT NULL AUTO_INCREMENT,
@@ -228,32 +231,5 @@ CREATE TABLE Tbl_Numero_Cliente (
 );
 
 
--- DATOS DE PRUEBA PARA REPORTES
-USE Bd_Hoteleria;
-
-SELECT *  FROM Tbl_Empleado;
 
 
-INSERT INTO Tbl_Empleado 
-(Cmp_Nombres_Empleado, Cmp_Apellidos_Empleado, Cmp_Dpi_Empleado, Cmp_Nit_Empleado, 
- Cmp_Correo_Empleado, Cmp_Telefono_Empleado, Cmp_Genero_Empleado, 
- Cmp_Fecha_Nacimiento_Empleado, Cmp_Fecha_Contratacion__Empleado)
-VALUES
-('Paula', 'Leonardo', 3050123456789, 987654321, 'paula.leonardo@example.com', '50212345678', 0, '1995-04-12', '2022-06-15'),
-
-('Maria', 'Morales', 3045123987654, 112233445, 'maria.morales@example.com', '50287654321', 0, '1992-09-25', '2021-03-01'),
-
-('Barbara', 'Salguero', 3011987654321, 556677889, 'barbara.salguero@example.com', '50233445566', 0, '1998-01-30', '2023-01-10'),
-
-('Kevin', 'Natareno', 3098765432123, 223344556, 'kevin.natareno@example.com', '50299887766', 1, '1994-07-18', '2020-11-20'),
-
-('Anderson', 'Trigeros', 1234567890123, 235694786, 'Anderson.Trigeros@example.com', '48573876', 1, '1996-04-11', '2021-05-24');
-
-
-
-INSERT INTO Tbl_Empleado -- PRUEBA DE JUEVES
-(Cmp_Nombres_Empleado, Cmp_Apellidos_Empleado, Cmp_Dpi_Empleado, Cmp_Nit_Empleado, 
- Cmp_Correo_Empleado, Cmp_Telefono_Empleado, Cmp_Genero_Empleado, 
- Cmp_Fecha_Nacimiento_Empleado, Cmp_Fecha_Contratacion__Empleado)
-VALUES
-('Esduardo', 'Del Aguila', 9999999999999, 123456786, 'EdelA@example.com', '30623363', 1, '1990-04-11', '2025-09-25');
