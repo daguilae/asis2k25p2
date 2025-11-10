@@ -41,6 +41,7 @@ namespace CapaVistaOP
             this.Btn_Editar = new System.Windows.Forms.Button();
             this.Btn_Eliminar = new System.Windows.Forms.Button();
             this.Btn_Guardar = new System.Windows.Forms.Button();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Mobiliario)).BeginInit();
             this.SuspendLayout();
@@ -170,11 +171,22 @@ namespace CapaVistaOP
             this.Btn_Guardar.UseVisualStyleBackColor = false;
             this.Btn_Guardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(632, 70);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Reporte.TabIndex = 131;
+            this.Btn_Reporte.UseVisualStyleBackColor = true;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
+            // 
             // Frm_mobiliario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 597);
+            this.Controls.Add(this.Btn_Reporte);
             this.Controls.Add(this.Btn_Editar);
             this.Controls.Add(this.Btn_Eliminar);
             this.Controls.Add(this.Btn_Guardar);
@@ -208,5 +220,6 @@ namespace CapaVistaOP
         private System.Windows.Forms.Button Btn_Editar;
         private System.Windows.Forms.Button Btn_Eliminar;
         private System.Windows.Forms.Button Btn_Guardar;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }

@@ -30,83 +30,83 @@ namespace CapaVistaOP
         private void InitializeComponent()
         {
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.ss = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.Lbl_Modulo_Hoteleria = new System.Windows.Forms.Label();
+            this.Btn_Ordenes_Menu = new System.Windows.Forms.Button();
+            this.Btn_Mobiliario = new System.Windows.Forms.Button();
+            this.Btn_Ordenes_Produccion = new System.Windows.Forms.Button();
+            this.Btn_Ordenes_Mobiliario = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
             this.SuspendLayout();
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Modulo_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
+            this.Pnl_Superior.Size = new System.Drawing.Size(746, 111);
             this.Pnl_Superior.TabIndex = 100;
             // 
-            // label1
+            // Lbl_Modulo_Hoteleria
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.label1.Location = new System.Drawing.Point(27, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 35);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Módulo hotelería";
+            this.Lbl_Modulo_Hoteleria.AutoSize = true;
+            this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(231, 41);
+            this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
+            this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
+            this.Lbl_Modulo_Hoteleria.TabIndex = 104;
+            this.Lbl_Modulo_Hoteleria.Text = "Módulo hotelería";
             // 
-            // ss
+            // Btn_Ordenes_Menu
             // 
-            this.ss.Location = new System.Drawing.Point(165, 244);
-            this.ss.Name = "ss";
-            this.ss.Size = new System.Drawing.Size(102, 46);
-            this.ss.TabIndex = 101;
-            this.ss.Text = "Ordenes de menu";
-            this.ss.UseVisualStyleBackColor = true;
-            this.ss.Click += new System.EventHandler(this.ss_Click);
+            this.Btn_Ordenes_Menu.Location = new System.Drawing.Point(78, 218);
+            this.Btn_Ordenes_Menu.Name = "Btn_Ordenes_Menu";
+            this.Btn_Ordenes_Menu.Size = new System.Drawing.Size(102, 46);
+            this.Btn_Ordenes_Menu.TabIndex = 101;
+            this.Btn_Ordenes_Menu.Text = "Ordenes de menu";
+            this.Btn_Ordenes_Menu.UseVisualStyleBackColor = true;
+            this.Btn_Ordenes_Menu.Click += new System.EventHandler(this.ss_Click);
             // 
-            // button1
+            // Btn_Mobiliario
             // 
-            this.button1.Location = new System.Drawing.Point(289, 244);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(102, 46);
-            this.button1.TabIndex = 102;
-            this.button1.Text = "Mobiliario";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_Mobiliario.Location = new System.Drawing.Point(220, 218);
+            this.Btn_Mobiliario.Name = "Btn_Mobiliario";
+            this.Btn_Mobiliario.Size = new System.Drawing.Size(102, 46);
+            this.Btn_Mobiliario.TabIndex = 102;
+            this.Btn_Mobiliario.Text = "Mobiliario";
+            this.Btn_Mobiliario.UseVisualStyleBackColor = true;
+            this.Btn_Mobiliario.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // Btn_Ordenes_Produccion
             // 
-            this.button2.Location = new System.Drawing.Point(409, 244);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(102, 46);
-            this.button2.TabIndex = 103;
-            this.button2.Text = "Ordenes de producción";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Btn_Ordenes_Produccion.Location = new System.Drawing.Point(377, 218);
+            this.Btn_Ordenes_Produccion.Name = "Btn_Ordenes_Produccion";
+            this.Btn_Ordenes_Produccion.Size = new System.Drawing.Size(106, 46);
+            this.Btn_Ordenes_Produccion.TabIndex = 103;
+            this.Btn_Ordenes_Produccion.Text = "Ordenes de producción";
+            this.Btn_Ordenes_Produccion.UseVisualStyleBackColor = true;
+            this.Btn_Ordenes_Produccion.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button3
+            // Btn_Ordenes_Mobiliario
             // 
-            this.button3.Location = new System.Drawing.Point(548, 244);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(102, 46);
-            this.button3.TabIndex = 104;
-            this.button3.Text = "Ordenes de mobiliario";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.Btn_Ordenes_Mobiliario.Location = new System.Drawing.Point(529, 218);
+            this.Btn_Ordenes_Mobiliario.Name = "Btn_Ordenes_Mobiliario";
+            this.Btn_Ordenes_Mobiliario.Size = new System.Drawing.Size(101, 46);
+            this.Btn_Ordenes_Mobiliario.TabIndex = 104;
+            this.Btn_Ordenes_Mobiliario.Text = "Ordenes de mobiliario";
+            this.Btn_Ordenes_Mobiliario.UseVisualStyleBackColor = true;
+            this.Btn_Ordenes_Mobiliario.Click += new System.EventHandler(this.button3_Click);
             // 
             // Frm_menu_ordenes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.ss);
+            this.ClientSize = new System.Drawing.Size(746, 471);
+            this.Controls.Add(this.Btn_Ordenes_Mobiliario);
+            this.Controls.Add(this.Btn_Ordenes_Produccion);
+            this.Controls.Add(this.Btn_Mobiliario);
+            this.Controls.Add(this.Btn_Ordenes_Menu);
             this.Controls.Add(this.Pnl_Superior);
             this.Name = "Frm_menu_ordenes";
             this.Text = "Frm_menu_ordenes";
@@ -119,10 +119,10 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button ss;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label Lbl_Modulo_Hoteleria;
+        private System.Windows.Forms.Button Btn_Ordenes_Menu;
+        private System.Windows.Forms.Button Btn_Mobiliario;
+        private System.Windows.Forms.Button Btn_Ordenes_Produccion;
+        private System.Windows.Forms.Button Btn_Ordenes_Mobiliario;
     }
 }

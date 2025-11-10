@@ -210,11 +210,11 @@ namespace CapaVistaOP
             // 
             // Btn_Reporte
             // 
-            this.Btn_Reporte.Location = new System.Drawing.Point(566, 81);
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(618, 71);
             this.Btn_Reporte.Name = "Btn_Reporte";
-            this.Btn_Reporte.Size = new System.Drawing.Size(107, 30);
+            this.Btn_Reporte.Size = new System.Drawing.Size(55, 46);
             this.Btn_Reporte.TabIndex = 133;
-            this.Btn_Reporte.Text = "Ver reporte";
             this.Btn_Reporte.UseVisualStyleBackColor = true;
             this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
