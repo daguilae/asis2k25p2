@@ -41,6 +41,9 @@
     <Reference Include="Capa_vista_Check_In_Check_out">
       <HintPath>..\..\..\Gestión de Habitaciones\ChekinCheckOut-Brandon Hernandez\MVC-Check_in_Check_out\Capa_vista_Check_In_Check_out\bin\Debug\Capa_vista_Check_In_Check_out.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Cierre">
+      <HintPath>..\..\..\Gestión de Habitaciones\Cierre de Produccion y Reportes - Ernesto Samayoa\MVC_Cierre\Capa_Vista_Cierre\bin\Debug\Capa_Vista_Cierre.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Contabilidad">
       <HintPath>..\..\..\Gestión de Habitaciones\Enlace de Contabilidad - Carlo Sosa\MVC_Contabilidad\Capa_Vista_Contabilidad\bin\Debug\Capa_Vista_Contabilidad.dll</HintPath>
     </Reference>
