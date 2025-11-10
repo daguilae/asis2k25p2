@@ -1,9 +1,31 @@
-﻿
-namespace Capa_Vista_Facturas
+﻿namespace Capa_Vista_Facturas
 {
     partial class Frm_Detalle_Factura
     {
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Numero;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Lbl_Fecha;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label Lbl_Cliente;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label Lbl_Documento;
+
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.DataGridView Dgv_Detalle;
+
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Lbl_Total;
+
+        private System.Windows.Forms.Panel panelBotones;
+        private System.Windows.Forms.Button Btn_Imprimir;
+        private System.Windows.Forms.Button Btn_Cerrar;
+
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
 
         protected override void Dispose(bool disposing)
         {
@@ -11,338 +33,249 @@ namespace Capa_Vista_Facturas
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
-            this.grpEncabezado = new System.Windows.Forms.GroupBox();
-            this.lblEstadoV = new System.Windows.Forms.Label();
-            this.lblTotalV = new System.Windows.Forms.Label();
-            this.lblMonedaV = new System.Windows.Forms.Label();
-            this.lblNitV = new System.Windows.Forms.Label();
-            this.lblClienteV = new System.Windows.Forms.Label();
-            this.lblFechaV = new System.Windows.Forms.Label();
-            this.lblNumeroV = new System.Windows.Forms.Label();
-            this.lblSerieV = new System.Windows.Forms.Label();
-            this.lblEstado = new System.Windows.Forms.Label();
-            this.lblTotal = new System.Windows.Forms.Label();
-            this.lblMoneda = new System.Windows.Forms.Label();
-            this.lblNit = new System.Windows.Forms.Label();
-            this.lblCliente = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.lblNumero = new System.Windows.Forms.Label();
-            this.lblSerie = new System.Windows.Forms.Label();
-            this.dgvDetalle = new System.Windows.Forms.DataGridView();
-            this.colCodigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.grpEncabezado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).BeginInit();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Detalle_Factura));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_Numero = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.Lbl_Fecha = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.Lbl_Cliente = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.Lbl_Documento = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Dgv_Detalle = new System.Windows.Forms.DataGridView();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Lbl_Total = new System.Windows.Forms.Label();
+            this.panelBotones = new System.Windows.Forms.Panel();
+            this.Btn_Imprimir = new System.Windows.Forms.Button();
+            this.Btn_Cerrar = new System.Windows.Forms.Button();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.panelBotones.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grpEncabezado
+            // groupBox1
             // 
-            this.grpEncabezado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpEncabezado.Controls.Add(this.lblEstadoV);
-            this.grpEncabezado.Controls.Add(this.lblTotalV);
-            this.grpEncabezado.Controls.Add(this.lblMonedaV);
-            this.grpEncabezado.Controls.Add(this.lblNitV);
-            this.grpEncabezado.Controls.Add(this.lblClienteV);
-            this.grpEncabezado.Controls.Add(this.lblFechaV);
-            this.grpEncabezado.Controls.Add(this.lblNumeroV);
-            this.grpEncabezado.Controls.Add(this.lblSerieV);
-            this.grpEncabezado.Controls.Add(this.lblEstado);
-            this.grpEncabezado.Controls.Add(this.lblTotal);
-            this.grpEncabezado.Controls.Add(this.lblMoneda);
-            this.grpEncabezado.Controls.Add(this.lblNit);
-            this.grpEncabezado.Controls.Add(this.lblCliente);
-            this.grpEncabezado.Controls.Add(this.lblFecha);
-            this.grpEncabezado.Controls.Add(this.lblNumero);
-            this.grpEncabezado.Controls.Add(this.lblSerie);
-            this.grpEncabezado.Location = new System.Drawing.Point(16, 15);
-            this.grpEncabezado.Margin = new System.Windows.Forms.Padding(4);
-            this.grpEncabezado.Name = "grpEncabezado";
-            this.grpEncabezado.Padding = new System.Windows.Forms.Padding(4);
-            this.grpEncabezado.Size = new System.Drawing.Size(1013, 145);
-            this.grpEncabezado.TabIndex = 0;
-            this.grpEncabezado.TabStop = false;
-            this.grpEncabezado.Text = "Encabezado";
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.Lbl_Numero);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.Lbl_Fecha);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.Lbl_Cliente);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.Lbl_Documento);
+            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(1176, 100);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Encabezado";
             // 
-            // lblEstadoV
+            // label1
             // 
-            this.lblEstadoV.AutoSize = true;
-            this.lblEstadoV.Location = new System.Drawing.Point(573, 112);
-            this.lblEstadoV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEstadoV.Name = "lblEstadoV";
-            this.lblEstadoV.Size = new System.Drawing.Size(13, 17);
-            this.lblEstadoV.TabIndex = 0;
-            this.lblEstadoV.Text = "-";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Número:";
             // 
-            // lblTotalV
+            // Lbl_Numero
             // 
-            this.lblTotalV.AutoSize = true;
-            this.lblTotalV.Location = new System.Drawing.Point(573, 84);
-            this.lblTotalV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalV.Name = "lblTotalV";
-            this.lblTotalV.Size = new System.Drawing.Size(13, 17);
-            this.lblTotalV.TabIndex = 1;
-            this.lblTotalV.Text = "-";
+            this.Lbl_Numero.AutoSize = true;
+            this.Lbl_Numero.Location = new System.Drawing.Point(80, 26);
+            this.Lbl_Numero.Name = "Lbl_Numero";
+            this.Lbl_Numero.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Numero.TabIndex = 1;
+            this.Lbl_Numero.Text = "-";
             // 
-            // lblMonedaV
+            // label2
             // 
-            this.lblMonedaV.AutoSize = true;
-            this.lblMonedaV.Location = new System.Drawing.Point(573, 55);
-            this.lblMonedaV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMonedaV.Name = "lblMonedaV";
-            this.lblMonedaV.Size = new System.Drawing.Size(13, 17);
-            this.lblMonedaV.TabIndex = 2;
-            this.lblMonedaV.Text = "-";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(620, 26);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 17);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Fecha:";
             // 
-            // lblNitV
+            // Lbl_Fecha
             // 
-            this.lblNitV.AutoSize = true;
-            this.lblNitV.Location = new System.Drawing.Point(573, 27);
-            this.lblNitV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNitV.Name = "lblNitV";
-            this.lblNitV.Size = new System.Drawing.Size(13, 17);
-            this.lblNitV.TabIndex = 3;
-            this.lblNitV.Text = "-";
+            this.Lbl_Fecha.AutoSize = true;
+            this.Lbl_Fecha.Location = new System.Drawing.Point(670, 26);
+            this.Lbl_Fecha.Name = "Lbl_Fecha";
+            this.Lbl_Fecha.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Fecha.TabIndex = 3;
+            this.Lbl_Fecha.Text = "-";
             // 
-            // lblClienteV
+            // label3
             // 
-            this.lblClienteV.AutoSize = true;
-            this.lblClienteV.Location = new System.Drawing.Point(120, 112);
-            this.lblClienteV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblClienteV.Name = "lblClienteV";
-            this.lblClienteV.Size = new System.Drawing.Size(13, 17);
-            this.lblClienteV.TabIndex = 4;
-            this.lblClienteV.Text = "-";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(16, 60);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Cliente:";
             // 
-            // lblFechaV
+            // Lbl_Cliente
             // 
-            this.lblFechaV.AutoSize = true;
-            this.lblFechaV.Location = new System.Drawing.Point(120, 84);
-            this.lblFechaV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFechaV.Name = "lblFechaV";
-            this.lblFechaV.Size = new System.Drawing.Size(13, 17);
-            this.lblFechaV.TabIndex = 5;
-            this.lblFechaV.Text = "-";
+            this.Lbl_Cliente.AutoSize = true;
+            this.Lbl_Cliente.Location = new System.Drawing.Point(80, 60);
+            this.Lbl_Cliente.Name = "Lbl_Cliente";
+            this.Lbl_Cliente.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Cliente.TabIndex = 5;
+            this.Lbl_Cliente.Text = "-";
             // 
-            // lblNumeroV
+            // label4
             // 
-            this.lblNumeroV.AutoSize = true;
-            this.lblNumeroV.Location = new System.Drawing.Point(120, 55);
-            this.lblNumeroV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNumeroV.Name = "lblNumeroV";
-            this.lblNumeroV.Size = new System.Drawing.Size(13, 17);
-            this.lblNumeroV.TabIndex = 6;
-            this.lblNumeroV.Text = "-";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(620, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Documento:";
             // 
-            // lblSerieV
+            // Lbl_Documento
             // 
-            this.lblSerieV.AutoSize = true;
-            this.lblSerieV.Location = new System.Drawing.Point(120, 27);
-            this.lblSerieV.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSerieV.Name = "lblSerieV";
-            this.lblSerieV.Size = new System.Drawing.Size(13, 17);
-            this.lblSerieV.TabIndex = 7;
-            this.lblSerieV.Text = "-";
+            this.Lbl_Documento.AutoSize = true;
+            this.Lbl_Documento.Location = new System.Drawing.Point(700, 60);
+            this.Lbl_Documento.Name = "Lbl_Documento";
+            this.Lbl_Documento.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Documento.TabIndex = 7;
+            this.Lbl_Documento.Text = "-";
             // 
-            // lblEstado
+            // groupBox2
             // 
-            this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(480, 112);
-            this.lblEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(56, 17);
-            this.lblEstado.TabIndex = 8;
-            this.lblEstado.Text = "Estado:";
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.AutoSize = true;
-            this.lblTotal.Location = new System.Drawing.Point(480, 84);
-            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(44, 17);
-            this.lblTotal.TabIndex = 9;
-            this.lblTotal.Text = "Total:";
-            // 
-            // lblMoneda
-            // 
-            this.lblMoneda.AutoSize = true;
-            this.lblMoneda.Location = new System.Drawing.Point(480, 55);
-            this.lblMoneda.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMoneda.Name = "lblMoneda";
-            this.lblMoneda.Size = new System.Drawing.Size(63, 17);
-            this.lblMoneda.TabIndex = 10;
-            this.lblMoneda.Text = "Moneda:";
-            // 
-            // lblNit
-            // 
-            this.lblNit.AutoSize = true;
-            this.lblNit.Location = new System.Drawing.Point(480, 27);
-            this.lblNit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNit.Name = "lblNit";
-            this.lblNit.Size = new System.Drawing.Size(34, 17);
-            this.lblNit.TabIndex = 11;
-            this.lblNit.Text = "NIT:";
-            // 
-            // lblCliente
-            // 
-            this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(21, 112);
-            this.lblCliente.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(55, 17);
-            this.lblCliente.TabIndex = 12;
-            this.lblCliente.Text = "Cliente:";
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(21, 84);
-            this.lblFecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(51, 17);
-            this.lblFecha.TabIndex = 13;
-            this.lblFecha.Text = "Fecha:";
-            // 
-            // lblNumero
-            // 
-            this.lblNumero.AutoSize = true;
-            this.lblNumero.Location = new System.Drawing.Point(21, 55);
-            this.lblNumero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblNumero.Name = "lblNumero";
-            this.lblNumero.Size = new System.Drawing.Size(62, 17);
-            this.lblNumero.TabIndex = 14;
-            this.lblNumero.Text = "Número:";
-            // 
-            // lblSerie
-            // 
-            this.lblSerie.AutoSize = true;
-            this.lblSerie.Location = new System.Drawing.Point(21, 27);
-            this.lblSerie.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSerie.Name = "lblSerie";
-            this.lblSerie.Size = new System.Drawing.Size(45, 17);
-            this.lblSerie.TabIndex = 15;
-            this.lblSerie.Text = "Serie:";
-            // 
-            // dgvDetalle
-            // 
-            this.dgvDetalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalle.BackgroundColor = System.Drawing.Color.White;
-            this.dgvDetalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colCodigo,
-            this.colProducto,
-            this.colCantidad,
-            this.colPrecio,
-            this.colTotal});
-            this.dgvDetalle.Location = new System.Drawing.Point(16, 180);
-            this.dgvDetalle.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvDetalle.Name = "dgvDetalle";
-            this.dgvDetalle.ReadOnly = true;
-            this.dgvDetalle.RowHeadersVisible = false;
-            this.dgvDetalle.RowHeadersWidth = 51;
-            this.dgvDetalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDetalle.Size = new System.Drawing.Size(1013, 437);
-            this.dgvDetalle.TabIndex = 1;
+            this.groupBox2.Controls.Add(this.Dgv_Detalle);
+            this.groupBox2.Location = new System.Drawing.Point(12, 118);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1176, 420);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Detalle";
             // 
-            // colCodigo
+            // Dgv_Detalle
             // 
-            this.colCodigo.HeaderText = "Código";
-            this.colCodigo.MinimumWidth = 6;
-            this.colCodigo.Name = "colCodigo";
-            this.colCodigo.ReadOnly = true;
-            this.colCodigo.Width = 90;
+            this.Dgv_Detalle.AllowUserToAddRows = false;
+            this.Dgv_Detalle.AllowUserToDeleteRows = false;
+            this.Dgv_Detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Dgv_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dgv_Detalle.ColumnHeadersHeight = 29;
+            this.Dgv_Detalle.Location = new System.Drawing.Point(12, 22);
+            this.Dgv_Detalle.Name = "Dgv_Detalle";
+            this.Dgv_Detalle.ReadOnly = true;
+            this.Dgv_Detalle.RowHeadersVisible = false;
+            this.Dgv_Detalle.RowHeadersWidth = 51;
+            this.Dgv_Detalle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_Detalle.Size = new System.Drawing.Size(1152, 386);
+            this.Dgv_Detalle.TabIndex = 0;
             // 
-            // colProducto
+            // groupBox3
             // 
-            this.colProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colProducto.HeaderText = "Producto";
-            this.colProducto.MinimumWidth = 6;
-            this.colProducto.Name = "colProducto";
-            this.colProducto.ReadOnly = true;
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.label5);
+            this.groupBox3.Controls.Add(this.Lbl_Total);
+            this.groupBox3.Location = new System.Drawing.Point(12, 544);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(840, 80);
+            this.groupBox3.TabIndex = 2;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Totales";
             // 
-            // colCantidad
+            // label5
             // 
-            this.colCantidad.HeaderText = "Cantidad";
-            this.colCantidad.MinimumWidth = 6;
-            this.colCantidad.Name = "colCantidad";
-            this.colCantidad.ReadOnly = true;
-            this.colCantidad.Width = 90;
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.label5.Location = new System.Drawing.Point(20, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(77, 28);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "TOTAL:";
             // 
-            // colPrecio
+            // Lbl_Total
             // 
-            this.colPrecio.HeaderText = "Precio";
-            this.colPrecio.MinimumWidth = 6;
-            this.colPrecio.Name = "colPrecio";
-            this.colPrecio.ReadOnly = true;
-            this.colPrecio.Width = 90;
+            this.Lbl_Total.AutoSize = true;
+            this.Lbl_Total.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.Lbl_Total.ForeColor = System.Drawing.Color.ForestGreen;
+            this.Lbl_Total.Location = new System.Drawing.Point(110, 29);
+            this.Lbl_Total.Name = "Lbl_Total";
+            this.Lbl_Total.Size = new System.Drawing.Size(64, 32);
+            this.Lbl_Total.TabIndex = 1;
+            this.Lbl_Total.Text = "0.00";
             // 
-            // colTotal
+            // panelBotones
             // 
-            this.colTotal.HeaderText = "Total";
-            this.colTotal.MinimumWidth = 6;
-            this.colTotal.Name = "colTotal";
-            this.colTotal.ReadOnly = true;
-            this.colTotal.Width = 90;
+            this.panelBotones.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBotones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBotones.Controls.Add(this.Btn_Imprimir);
+            this.panelBotones.Controls.Add(this.Btn_Cerrar);
+            this.panelBotones.Location = new System.Drawing.Point(858, 544);
+            this.panelBotones.Name = "panelBotones";
+            this.panelBotones.Size = new System.Drawing.Size(330, 80);
+            this.panelBotones.TabIndex = 3;
             // 
-            // btnCerrar
+            // Btn_Imprimir
             // 
-            this.btnCerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCerrar.Location = new System.Drawing.Point(896, 628);
-            this.btnCerrar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(133, 32);
-            this.btnCerrar.TabIndex = 2;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.Btn_Imprimir.Location = new System.Drawing.Point(24, 23);
+            this.Btn_Imprimir.Name = "Btn_Imprimir";
+            this.Btn_Imprimir.Size = new System.Drawing.Size(120, 34);
+            this.Btn_Imprimir.TabIndex = 0;
+            this.Btn_Imprimir.Text = "Imprimir";
+            // 
+            // Btn_Cerrar
+            // 
+            this.Btn_Cerrar.Location = new System.Drawing.Point(170, 23);
+            this.Btn_Cerrar.Name = "Btn_Cerrar";
+            this.Btn_Cerrar.Size = new System.Drawing.Size(120, 34);
+            this.Btn_Cerrar.TabIndex = 1;
+            this.Btn_Cerrar.Text = "Cerrar";
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Frm_Detalle_Factura
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(1045, 674);
-            this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.dgvDetalle);
-            this.Controls.Add(this.grpEncabezado);
-            this.Margin = new System.Windows.Forms.Padding(4);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(954, 543);
+            this.ClientSize = new System.Drawing.Size(1200, 650);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.panelBotones);
             this.Name = "Frm_Detalle_Factura";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle de Factura";
-            this.grpEncabezado.ResumeLayout(false);
-            this.grpEncabezado.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalle)).EndInit();
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Detalle)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.panelBotones.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
-
-        #endregion
-
-        private System.Windows.Forms.GroupBox grpEncabezado;
-        private System.Windows.Forms.Label lblSerie; private System.Windows.Forms.Label lblNumero; private System.Windows.Forms.Label lblFecha; private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.Label lblNit; private System.Windows.Forms.Label lblMoneda; private System.Windows.Forms.Label lblTotal; private System.Windows.Forms.Label lblEstado;
-
-        internal System.Windows.Forms.Label lblSerieV; internal System.Windows.Forms.Label lblNumeroV; internal System.Windows.Forms.Label lblFechaV; internal System.Windows.Forms.Label lblClienteV;
-        internal System.Windows.Forms.Label lblNitV; internal System.Windows.Forms.Label lblMonedaV; internal System.Windows.Forms.Label lblTotalV; internal System.Windows.Forms.Label lblEstadoV;
-
-        internal System.Windows.Forms.DataGridView dgvDetalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCodigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPrecio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
-        internal System.Windows.Forms.Button btnCerrar;
     }
 }
