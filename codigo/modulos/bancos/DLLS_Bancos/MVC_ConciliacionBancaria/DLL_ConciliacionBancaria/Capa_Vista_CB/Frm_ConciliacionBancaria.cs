@@ -23,7 +23,7 @@ namespace Capa_Vista_CB
         public Frm_ConciliacionBancaria()
         {
             InitializeComponent();
-            WireEvents(); // Solo Load y combos para evitar duplicados de botones
+            WireEvents();
         }
 
         private void WireEvents()
@@ -56,7 +56,10 @@ namespace Capa_Vista_CB
             finally { bCargando = false; }
         }
 
-        private void Btn_Ayuda_Click(object sender, EventArgs e) { /* pendiente */ }
+        private void Btn_Ayuda_Click(object sender, EventArgs e) {
+            Help.ShowHelp(this, "AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "ConciliacionBancaria_ayuda.html");
+        
+        }
 
         private void Btn_Salir_Click(object sender, EventArgs e) => Close();
 
