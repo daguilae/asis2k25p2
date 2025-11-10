@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -412,7 +412,6 @@ namespace Capa_Vista_MB
                 }
             }
         }
-
 
         private void pro_configurar_combo_conciliado()
         {
