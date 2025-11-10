@@ -413,7 +413,6 @@ namespace Capa_Vista_MB
             }
         }
 
-
         private void pro_configurar_combo_conciliado()
         {
             if (Cbo_Conciliado == null)
