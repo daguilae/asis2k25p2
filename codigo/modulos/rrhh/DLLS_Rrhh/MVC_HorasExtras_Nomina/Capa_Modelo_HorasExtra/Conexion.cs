@@ -10,7 +10,7 @@ namespace Capa_Modelo_HorasExtra
     public class Conexion
     {
         // USANDO TU DSN CONFIGURADO
-        private string connectionString = "DSN=bd_nomina;";
+        private string connectionString = "DSN=bd_hoteleria";
 
         private OdbcConnection conexion;
 

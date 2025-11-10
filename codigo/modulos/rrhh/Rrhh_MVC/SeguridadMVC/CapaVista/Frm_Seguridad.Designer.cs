@@ -186,6 +186,7 @@
             this.departamentosToolStripMenuItem.Name = "departamentosToolStripMenuItem";
             this.departamentosToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.departamentosToolStripMenuItem.Text = "Departamentos";
+            this.departamentosToolStripMenuItem.Click += new System.EventHandler(this.departamentosToolStripMenuItem_Click);
             // 
             // conceptosDeNominaToolStripMenuItem
             // 
@@ -233,6 +234,7 @@
             this.horasExtraToolStripMenuItem.Name = "horasExtraToolStripMenuItem";
             this.horasExtraToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.horasExtraToolStripMenuItem.Text = "Horas Extra";
+            this.horasExtraToolStripMenuItem.Click += new System.EventHandler(this.horasExtraToolStripMenuItem_Click);
             // 
             // anticiposToolStripMenuItem
             // 
