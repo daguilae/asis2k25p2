@@ -72,6 +72,7 @@
             // Frm_Slash
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(820, 420);
             this.Controls.Add(this.Pic_Logo_Empresa);
             this.Controls.Add(this.Lbl_Porcentaje);
