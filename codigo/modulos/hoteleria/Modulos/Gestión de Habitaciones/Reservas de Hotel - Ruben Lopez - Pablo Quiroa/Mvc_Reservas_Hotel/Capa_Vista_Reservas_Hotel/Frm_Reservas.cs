@@ -104,7 +104,7 @@ namespace Capa_Vista_Reservas_Hotel
             }
         }
 
-        // ==================== BLOQUEO VISUAL: POPUP MONTHCALENDAR ====================
+        // ==================== BLOQUEO VISUAL POPUP MONTHCALENDAR ====================
         private void InicializarPopupCalendario()
         {
             _popupPanel = new Panel

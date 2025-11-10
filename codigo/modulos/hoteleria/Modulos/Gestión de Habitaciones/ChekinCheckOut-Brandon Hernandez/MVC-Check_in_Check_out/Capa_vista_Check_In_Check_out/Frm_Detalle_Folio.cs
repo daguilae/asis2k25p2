@@ -1,40 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
-using CrystalDecisions.CrystalReports.Engine;
+using Capa_Controlador_Seguridad;
 
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Detalle_Folio : Form
     {
         private readonly Cls_Detalle_Folio_Controlador Controlador = new Cls_Detalle_Folio_Controlador();
-        
+        private bool _canConsultar, _canImprimir;
+
         public Frm_Detalle_Folio()
         {
             InitializeComponent();
+            fun_AplicarPermisos();
             fun_CargarFolios();
             fun_ConfigInicial();
         }
-        private void fun_ConfigInicial()
-        {
-            Txt_Nombre.Enabled = false;
-            Txt_Numero_Habitaciones.Enabled = false;
-            Txt_Numero_Documentos.Enabled = false;
-            Txt_Fecha_Creacion.Enabled = false;
-            Txt_Estado.Enabled = false;
-            Txt_Total.Enabled = false;
 
-            Dgv_Movimientos.ReadOnly = true;
-            Dgv_Movimientos.AllowUserToAddRows = false;
-            Dgv_Movimientos.AllowUserToDeleteRows = false;
-        }
         private void fun_CargarFolios()
         {
             try
@@ -50,7 +34,59 @@ namespace Capa_vista_Check_In_Check_out
                 MessageBox.Show("Error al cargar folios: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void fun_AplicarPermisos()
+        {
+            try
+            {
+                int idUsuario = Cls_Usuario_Conectado.iIdUsuario;
+                var usuarioCtrl = new Cls_Usuario_Controlador();
+                var permisoUsuario = new Cls_Permiso_Usuario_Controlador();
 
+                // Identificación de módulo y aplicación
+                int idAplicacion = permisoUsuario.ObtenerIdAplicacionPorNombre("Detalle Folio");
+                if (idAplicacion <= 0) idAplicacion = 3405; // ID estándar para Detalle Folio
+                int idModulo = permisoUsuario.ObtenerIdModuloPorNombre("Hoteleria");
+                int idPerfil = usuarioCtrl.ObtenerIdPerfilDeUsuario(idUsuario);
+
+                var permisos = Cls_Aplicacion_Permisos.ObtenerPermisosCombinados(
+                    idUsuario, idAplicacion, idModulo, idPerfil);
+
+                // Validación: si el usuario no tiene acceso
+                if (!permisos.consultar && !permisos.imprimir)
+                {
+                    MessageBox.Show("El usuario no tiene permisos para consultar ni imprimir en esta aplicación.",
+                                    "Permisos insuficientes", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Asignar permisos
+                _canConsultar = permisos.consultar;
+                _canImprimir = permisos.imprimir;
+
+                // Aplicar a controles
+               
+                if (Btn_Reporte != null) Btn_Reporte.Enabled = _canImprimir;
+                if (Cbo_Folios != null) Cbo_Folios.Enabled = _canConsultar;
+                Dgv_Movimientos.Enabled = _canConsultar;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al aplicar permisos: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void fun_ConfigInicial()
+        {
+            Txt_Nombre.Enabled = false;
+            Txt_Numero_Habitaciones.Enabled = false;
+            Txt_Numero_Documentos.Enabled = false;
+            Txt_Fecha_Creacion.Enabled = false;
+            Txt_Estado.Enabled = false;
+            Txt_Total.Enabled = false;
+            Cbo_Folios.Enabled = _canConsultar;
+            Dgv_Movimientos.ReadOnly = true;
+            Dgv_Movimientos.AllowUserToAddRows = false;
+            Dgv_Movimientos.AllowUserToDeleteRows = false;
+        }
         private void Cbo_Folios_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Cbo_Folios.SelectedValue == null || Cbo_Folios.SelectedIndex == -1)
@@ -155,6 +191,11 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_Reporte_Click(object sender, EventArgs e)
         {
+            if (!_canImprimir)
+            {
+                MessageBox.Show("No tiene permiso para generar reportes.", "Permiso denegado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Frm_Reporte_Folio Reporte = new Frm_Reporte_Folio();
             Reporte.Show();
         }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using Capa_Modelo_Check_In_Check_Out;
   namespace Capa_Controlador_Check_In_Check_Out
@@ -62,9 +58,9 @@ using Capa_Modelo_Check_In_Check_Out;
             }
         }
 
-        // ======================================================
-        // 5) Calcular total final como decimal (solo saldo)
-        // ======================================================
+      
+         //Calcular total final como decimal (solo saldo)
+      
         public decimal fun_CalcularSaldo(int iIdFolio)
         {
             try

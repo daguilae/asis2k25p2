@@ -11,22 +11,70 @@ namespace Capa_vista_Check_In_Check_out
     {
         private readonly Cls_Check_Out_Controlador Controlador = new Cls_Check_Out_Controlador();
         Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
+        private bool _canIngresar, _canConsultar, _canModificar, _canEliminar, _canImprimir;
 
         public Frm_Check_Out()
         {
             InitializeComponent();
+            fun_AplicarPermisos();
             fun_CargarCombos();
             fun_CargarDatos();
             fun_ConfigurarDataGrid();
             fun_configuracion_inicial();
         }
+        private void fun_AplicarPermisos()
+        {
+            int idUsuario = Cls_Usuario_Conectado.iIdUsuario;
+            var usuarioCtrl = new Cls_Usuario_Controlador();
+            var permisoUsuario = new Cls_Permiso_Usuario_Controlador();
 
+            // Identificadores específicos
+            int idAplicacion = permisoUsuario.ObtenerIdAplicacionPorNombre("Check Out");
+            if (idAplicacion <= 0) idAplicacion = 3403;
+            int idModulo = permisoUsuario.ObtenerIdModuloPorNombre("Hoteleria");
+            int idPerfil = usuarioCtrl.ObtenerIdPerfilDeUsuario(idUsuario);
+
+            var permisos = Cls_Aplicacion_Permisos.ObtenerPermisosCombinados(idUsuario, idAplicacion, idModulo, idPerfil);
+
+            // Validar si el usuario no tiene permisos
+            if (!permisos.ingresar && !permisos.consultar &&
+                !permisos.modificar && !permisos.eliminar &&
+                !permisos.imprimir)
+            {
+                MessageBox.Show("El usuario no tiene permisos asignados para esta aplicación.",
+                                "Permisos", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Asignar permisos
+            _canIngresar = permisos.ingresar;
+            _canConsultar = permisos.consultar;
+            _canModificar = permisos.modificar;
+            _canEliminar = permisos.eliminar;
+            _canImprimir = permisos.imprimir;
+
+            // Aplicar permisos a los controles
+            if (Btn_Nuevo != null) Btn_Nuevo.Enabled = _canIngresar;
+            if (Btn_Guardar != null) Btn_Guardar.Enabled = _canIngresar;
+            if (Btn_Modificar != null) Btn_Modificar.Enabled = _canModificar;
+            if (Btn_Eliminar != null) Btn_Eliminar.Enabled = _canEliminar;
+            if (Btn_Reporte != null) Btn_Reporte.Enabled = _canImprimir;
+
+            // Tabla y combos según permiso de consulta
+            Dgv_Check_Out.Enabled = _canConsultar;
+            Cbo_Huesped.Enabled = _canConsultar || _canIngresar || _canModificar;
+            Dtp_Fecha_CheckOut.Enabled = _canIngresar || _canModificar;
+        }
         public void fun_configuracion_inicial()
         {
-            Btn_guardar.Enabled = false;
+            Cbo_Huesped.Enabled = false;
+            Txt_Check_out.Enabled = false;
+            Dtp_Fecha_CheckOut.Enabled = false;
+            Btn_Guardar.Enabled = false;
             Btn_Modificar.Enabled = false;
             Btn_Eliminar.Enabled = false;
-            Btn_Nuevo.Enabled = true;
+            Btn_Nuevo.Enabled = _canIngresar;
+            Btn_Reporte.Enabled = _canImprimir;
         }
 
         private void fun_ConfigurarDataGrid()
@@ -91,9 +139,22 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
+            if (!_canIngresar)
+            {
+                MessageBox.Show("No tiene permiso para crear nuevos Check-Outs.");
+                return;
+            }
+
             fun_LimpiarCampos();
-            Btn_guardar.Enabled = true;
+            Btn_Guardar.Enabled = true;
+            Btn_Modificar.Enabled = false;
+            Btn_Eliminar.Enabled = false;
+            Cbo_Huesped.Enabled = true;
+            Txt_Check_out.Enabled = false;
+            Dtp_Fecha_CheckOut.Enabled = true;
         }
+
+    
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
@@ -223,8 +284,14 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Dgv_Check_Out_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Btn_Modificar.Enabled = true;
-            Btn_Eliminar.Enabled = true;
+            if (!_canConsultar) return;
+
+            Btn_Modificar.Enabled = _canModificar;
+            Btn_Eliminar.Enabled = _canEliminar;
+            Btn_Guardar.Enabled = false;
+            Cbo_Huesped.Enabled = true;
+            Txt_Check_out.Enabled = false;
+            Dtp_Fecha_CheckOut.Enabled = true;
 
             if (e.RowIndex >= 0)
             {
@@ -281,6 +348,11 @@ namespace Capa_vista_Check_In_Check_out
 
         private void Btn_Reporte_Click(object sender, EventArgs e)
         {
+            if (!_canImprimir)
+            {
+                MessageBox.Show("No tiene permiso para generar reportes.");
+                return;
+            }
             Frm_Reporte_Check_Out Reporte = new Frm_Reporte_Check_Out();
             Reporte.Show();
         }

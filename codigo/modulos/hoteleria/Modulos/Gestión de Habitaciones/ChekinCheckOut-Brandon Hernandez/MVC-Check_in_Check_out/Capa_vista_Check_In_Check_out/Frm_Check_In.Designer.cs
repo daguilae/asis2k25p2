@@ -34,7 +34,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Nuevo = new System.Windows.Forms.Button();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
             this.Btn_Modificar = new System.Windows.Forms.Button();
-            this.Btn_guardar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
             this.Dgv_Check_In = new System.Windows.Forms.DataGridView();
             this.Gbp_Titulo = new System.Windows.Forms.GroupBox();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
@@ -116,20 +116,20 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Modificar.UseVisualStyleBackColor = false;
             this.Btn_Modificar.Click += new System.EventHandler(this.Btn_modificar_Click);
             // 
-            // Btn_guardar
+            // Btn_Guardar
             // 
-            this.Btn_guardar.BackColor = System.Drawing.Color.White;
-            this.Btn_guardar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Btn_guardar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_guardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_guardar.Image")));
-            this.Btn_guardar.Location = new System.Drawing.Point(925, 18);
-            this.Btn_guardar.Name = "Btn_guardar";
-            this.Btn_guardar.Size = new System.Drawing.Size(50, 54);
-            this.Btn_guardar.TabIndex = 0;
-            this.Btn_guardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_guardar.UseVisualStyleBackColor = false;
-            this.Btn_guardar.Click += new System.EventHandler(this.Btn_guardar_Click);
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Btn_Guardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(925, 18);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(50, 54);
+            this.Btn_Guardar.TabIndex = 0;
+            this.Btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.Btn_guardar_Click);
             // 
             // Dgv_Check_In
             // 
@@ -312,7 +312,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Controls.Add(this.Btn_Nuevo);
             this.Controls.Add(this.Btn_Modificar);
             this.Controls.Add(this.Gbp_Titulo);
-            this.Controls.Add(this.Btn_guardar);
+            this.Controls.Add(this.Btn_Guardar);
             this.Controls.Add(this.Gbp_Campos);
             this.Name = "Frm_Check_In";
             this.Text = "Frm_Check_In";
@@ -330,7 +330,7 @@ namespace Capa_vista_Check_In_Check_out
         private System.Windows.Forms.Button Btn_Nuevo;
         private System.Windows.Forms.Button Btn_Cancelar;
         private System.Windows.Forms.Button Btn_Modificar;
-        private System.Windows.Forms.Button Btn_guardar;
+        private System.Windows.Forms.Button Btn_Guardar;
         private System.Windows.Forms.DataGridView Dgv_Check_In;
         private System.Windows.Forms.GroupBox Gbp_Titulo;
         private System.Windows.Forms.Label Lbl_Titulo;

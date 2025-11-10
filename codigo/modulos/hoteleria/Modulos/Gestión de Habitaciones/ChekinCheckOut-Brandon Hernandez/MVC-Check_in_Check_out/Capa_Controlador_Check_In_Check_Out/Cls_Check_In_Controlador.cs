@@ -180,8 +180,58 @@ namespace Capa_Controlador_Check_In_Check_Out
                 }
             }
         }
+       
+        // CAMBIA EL ESTADO DE UNA HABITACIÓN (0 = Disponible, 1 = Ocupada)
+       
+        public void CambiarEstadoHabitacion(int iIdHabitacion, OdbcConnection conn, OdbcTransaction tx)
+        {
+            try
+            {
+                // 1️⃣ Obtener el estado actual (0 = disponible, 1 = ocupada)
+                string querySelect = "SELECT Cmp_Estado_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
+                int estadoActual = 0;
 
-        // Inserta un Check-In y crea automáticamente su folio vinculado
+                using (OdbcCommand cmdSelect = new OdbcCommand(querySelect, conn, tx))
+                {
+                    cmdSelect.Parameters.AddWithValue("?", iIdHabitacion);
+                    object result = cmdSelect.ExecuteScalar();
+
+                    if (result == null || result == DBNull.Value)
+                    {
+                        MessageBox.Show($"No se encontró la habitación con ID {iIdHabitacion}.",
+                            "Habitación no encontrada", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    estadoActual = Convert.ToInt32(result);
+                }
+
+                // 2️⃣ Si está disponible (0), cambiar a ocupada (1)
+                if (estadoActual == 0)
+                {
+                    string queryUpdate = "UPDATE Tbl_Habitaciones SET Cmp_Estado_Habitacion = 1 WHERE Pk_Id_Habitaciones = ?;";
+                    using (OdbcCommand cmdUpdate = new OdbcCommand(queryUpdate, conn, tx))
+                    {
+                        cmdUpdate.Parameters.AddWithValue("?", iIdHabitacion);
+                        cmdUpdate.ExecuteNonQuery();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"La habitación {iIdHabitacion} ya se encuentra ocupada.",
+                        "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cambiar el estado de la habitación: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
+        
         public bool pro_Registrar_CheckIn_Con_Folio(int iIdHuesped, int iIdReserva, DateTime dFecha, string sEstado, int iIdHabitacion)
         {
             if (iIdHuesped <= 0 || iIdReserva <= 0 || iIdHabitacion <= 0)
@@ -215,10 +265,11 @@ namespace Capa_Controlador_Check_In_Check_Out
             {
                 try
                 {
+                    // 1️ Insertar Check-In
                     string sInsertCheckIn = @"
-                        INSERT INTO Tbl_Check_In 
-                            (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
-                        VALUES (?, ?, ?, ?)";
+                INSERT INTO Tbl_Check_In 
+                    (Fk_Id_Huesped, Fk_Id_Reserva, Cmp_Fecha_Check_In, Cmp_Estado)
+                VALUES (?, ?, ?, ?)";
                     using (OdbcCommand cmdCheckIn = new OdbcCommand(sInsertCheckIn, conn, tx))
                     {
                         cmdCheckIn.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Huesped);
@@ -228,18 +279,20 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdCheckIn.ExecuteNonQuery();
                     }
 
+                    // 2️ Obtener ID del nuevo Check-In
                     int iIdCheckIn;
                     using (OdbcCommand cmdId = new OdbcCommand("SELECT LAST_INSERT_ID()", conn, tx))
                     {
                         iIdCheckIn = Convert.ToInt32(cmdId.ExecuteScalar());
                     }
 
+                    // 3️ Insertar Folio vinculado
                     string sInsertFolio = @"
-                        INSERT INTO Tbl_Folio
-                            (Fk_Id_Check_In, Fk_Id_Habitacion, 
-                             Cmp_Fecha_Creacion, Cmp_Estado,
-                             Cmp_Total_Cargos, Cmp_Total_Abonos, Cmp_Saldo_Final)
-                        VALUES (?, ?, NOW(), 'Abierto', 0, 0, 0)";
+                INSERT INTO Tbl_Folio
+                    (Fk_Id_Check_In, Fk_Id_Habitacion, 
+                     Cmp_Fecha_Creacion, Cmp_Estado,
+                     Cmp_Total_Cargos, Cmp_Total_Abonos, Cmp_Saldo_Final)
+                VALUES (?, ?, NOW(), 'Abierto', 0, 0, 0)";
                     using (OdbcCommand cmdFolio = new OdbcCommand(sInsertFolio, conn, tx))
                     {
                         cmdFolio.Parameters.AddWithValue("?", iIdCheckIn);
@@ -247,19 +300,26 @@ namespace Capa_Controlador_Check_In_Check_Out
                         cmdFolio.ExecuteNonQuery();
                     }
 
+                    // 4️ Actualizar reserva como finalizada
                     string sUpdateReserva = @"
-                        UPDATE Tbl_Reserva
-                        SET Cmp_Estado_Reserva = 'Finalizada'
-                        WHERE Pk_Id_Reserva = ?";
+                UPDATE Tbl_Reserva
+                SET Cmp_Estado_Reserva = 'Finalizada'
+                WHERE Pk_Id_Reserva = ?";
                     using (OdbcCommand cmdUpdate = new OdbcCommand(sUpdateReserva, conn, tx))
                     {
                         cmdUpdate.Parameters.AddWithValue("?", clsCheckIn.iFk_Id_Reserva);
                         cmdUpdate.ExecuteNonQuery();
                     }
 
+                    // 5️ Marcar habitación como OCUPADA (usa la conexión + transacción actual)
+                    CambiarEstadoHabitacion(iIdHabitacion, conn, tx);
+
+                    // 6️ Confirmar todo
                     tx.Commit();
-                    MessageBox.Show("Check-In, folio creados y reserva finalizada correctamente.",
+
+                    MessageBox.Show("Check-In, folio creados, habitación marcada como ocupada y reserva finalizada correctamente.",
                         "Proceso completado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     return true;
                 }
                 catch (Exception ex)
@@ -271,5 +331,6 @@ namespace Capa_Controlador_Check_In_Check_Out
                 }
             }
         }
+
     }
 }

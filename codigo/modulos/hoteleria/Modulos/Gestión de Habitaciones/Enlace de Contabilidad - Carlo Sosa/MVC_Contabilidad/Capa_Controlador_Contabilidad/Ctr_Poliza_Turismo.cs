@@ -1,52 +1,52 @@
-﻿using System;
+﻿using Capa_Modelo_Contabilidad;
+using Capa_Controlador_Polizas;
+using System;
 using System.Collections.Generic;
-using Capa_Modelo_Contabilidad;
+using System.Data;
 //inicio del codigo- Carlo Sosa 0901-22-1106- Fecha: 01/11/2025
 
 namespace Capa_Controlador_Contabilidad
 {
     public class Ctr_Poliza_Turismo
     {
-        readonly Dao_Estadia _daoE = new Dao_Estadia();
-        readonly Dao_CuentasTurismo _daoCfg = new Dao_CuentasTurismo();
+        Dao_Estadia cEstadia = new Dao_Estadia();
+        Cls_PolizaControlador cPolizaCtrl = new Cls_PolizaControlador();
 
-        public (bool ok, string msg) GenerarSiguiente(DateTime desde, DateTime hasta, DateTime fechaPoliza, string conceptoBase)
+        public int ObtenerSiguienteId(DateTime fecha)
         {
-            var cfg = _daoCfg.ObtenerConfig();
-            if (cfg.Debe == 0 || cfg.Haber == 0) return (false, "Configura las cuentas de turismo.");
+            return cPolizaCtrl.ObtenerSiguienteIdEncabezado(fecha);
+        }
 
-            var lista = _daoE.ListarEnRango(desde, hasta);
-            lista.Sort((a, b) =>
+        public int ContarEstadias(DateTime fechaInicio, DateTime fechaFin)
+        {
+            DataTable dtEstadias = cEstadia.ObtenerEstadiasPorRango(fechaInicio, fechaFin);
+            return dtEstadias.Rows.Count;
+        }
+
+        public bool TrasladarPolizaTurismo(DateTime fechaInicio, DateTime fechaFin, DateTime fechaPoliza, string concepto)
+        {
+            DataTable dtEstadias = cEstadia.ObtenerEstadiasPorRango(fechaInicio, fechaFin);
+            if (dtEstadias.Rows.Count == 0) return false;
+
+            decimal total = 0;
+            foreach (DataRow row in dtEstadias.Rows)
+                total += Convert.ToDecimal(row["Cmp_Monto_Total_Pago"]);
+
+            decimal impuesto = total * 0.10m;
+
+            var detalles = new List<(string sCodigoCuenta, bool bTipo, decimal dValor)>
             {
-                int c = a.CheckOut.CompareTo(b.CheckOut);
-                return c != 0 ? c : a.Id.CompareTo(b.Id);
-            });
+                ("1.2.1", true, impuesto),
+                ("2.5.1", false, impuesto)
+            };
 
-            foreach (var e in lista)
-            {
-                if (_daoE.ExistePolizaParaEstadia(e.Id)) continue;
-
-                var impuesto = Math.Round(e.Monto * 0.10m, 2, MidpointRounding.AwayFromZero);
-
-                string concepto = string.IsNullOrWhiteSpace(conceptoBase)
-                    ? "Turismo Estadia " + e.Id
-                    : conceptoBase.Trim() + " - Turismo Estadia " + e.Id;
-
-                int encId = _daoE.InsertarPoliza(fechaPoliza, concepto, impuesto, cfg.Debe, cfg.Haber);
-                return (true, "Póliza " + encId + " creada para estadía " + e.Id);
-            }
-
-            return (false, "Ya no hay más pólizas por trasladar en ese rango.");
+            return cPolizaCtrl.InsertarPoliza(fechaPoliza, concepto, detalles);
         }
     }
 }
 
+
 //Fin del codigo- Carlo Sosa 0901-22-1106- Fecha: 01/11/2025
-
-
-
-
-
 
 
 

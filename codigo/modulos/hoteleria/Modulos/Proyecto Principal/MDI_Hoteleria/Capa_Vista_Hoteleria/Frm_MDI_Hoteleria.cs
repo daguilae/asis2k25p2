@@ -18,6 +18,7 @@ using Capa_Vista_MH;
 using CapaVistaOP;
 using CapaVistaProduccion;
 
+
 namespace Capa_Vista_Hoteleria
 {
     public partial class Frm_MDI_Hoteleria : Form
@@ -192,13 +193,6 @@ namespace Capa_Vista_Hoteleria
             check_out.Show();
         }
 
-        private void cuentaTurismoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            CerrarFormulariosHijos();
-            Frm_Cuenta_Turismo cuenta_Turismo = new Frm_Cuenta_Turismo();
-            cuenta_Turismo.MdiParent = this;
-            cuenta_Turismo.Show();
-        }
 
         private void pagoToolStripMenuItem_Click(object sender, EventArgs e)
         {

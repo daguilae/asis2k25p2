@@ -61,7 +61,7 @@ namespace Capa_Vista_IE
             this.Cbo_Platillos.Name = "Cbo_Platillos";
             this.Cbo_Platillos.Size = new System.Drawing.Size(359, 28);
             this.Cbo_Platillos.TabIndex = 2;
-            this.Cbo_Platillos.SelectedIndexChanged += new System.EventHandler(this.Cbo_Platillos_SelectedIndexChanged);
+            this.Cbo_Platillos.SelectedIndexChanged += new System.EventHandler(this.pro_Cbo_Platillos_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -102,12 +102,12 @@ namespace Capa_Vista_IE
             this.Btn_Consulta.TabIndex = 7;
             this.Btn_Consulta.Text = "Consultar";
             this.Btn_Consulta.UseVisualStyleBackColor = false;
-            this.Btn_Consulta.Click += new System.EventHandler(this.Btn_Consulta_Click);
+            this.Btn_Consulta.Click += new System.EventHandler(this.pro_Btn_Consulta_Click);
             // 
             // Lstv_Receta
             // 
             this.Lstv_Receta.HideSelection = false;
-            this.Lstv_Receta.Location = new System.Drawing.Point(26, 192);
+            this.Lstv_Receta.Location = new System.Drawing.Point(26, 196);
             this.Lstv_Receta.Name = "Lstv_Receta";
             this.Lstv_Receta.Size = new System.Drawing.Size(987, 267);
             this.Lstv_Receta.TabIndex = 8;
@@ -116,11 +116,11 @@ namespace Capa_Vista_IE
             // Lbl_Titulo
             // 
             this.Lbl_Titulo.AutoSize = true;
-            this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Titulo.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.Lbl_Titulo.Location = new System.Drawing.Point(21, 9);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(19, 9);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
-            this.Lbl_Titulo.Size = new System.Drawing.Size(443, 29);
+            this.Lbl_Titulo.Size = new System.Drawing.Size(560, 38);
             this.Lbl_Titulo.TabIndex = 1;
             this.Lbl_Titulo.Text = "Implosión y Explosión de Materiales";
             // 
@@ -133,7 +133,7 @@ namespace Capa_Vista_IE
             this.Gpb_Filtros.Controls.Add(this.Cbo_Platillos);
             this.Gpb_Filtros.Controls.Add(this.Lbl_Platillo);
             this.Gpb_Filtros.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gpb_Filtros.Location = new System.Drawing.Point(26, 61);
+            this.Gpb_Filtros.Location = new System.Drawing.Point(26, 65);
             this.Gpb_Filtros.Name = "Gpb_Filtros";
             this.Gpb_Filtros.Size = new System.Drawing.Size(987, 114);
             this.Gpb_Filtros.TabIndex = 9;
@@ -143,10 +143,10 @@ namespace Capa_Vista_IE
             // Lbl_Resultado
             // 
             this.Lbl_Resultado.AutoSize = true;
-            this.Lbl_Resultado.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Resultado.Location = new System.Drawing.Point(237, 473);
+            this.Lbl_Resultado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Resultado.Location = new System.Drawing.Point(205, 487);
             this.Lbl_Resultado.Name = "Lbl_Resultado";
-            this.Lbl_Resultado.Size = new System.Drawing.Size(538, 17);
+            this.Lbl_Resultado.Size = new System.Drawing.Size(588, 20);
             this.Lbl_Resultado.TabIndex = 10;
             this.Lbl_Resultado.Text = "El inventario es insuficiente para producir la cantidad de platillos indicada";
             // 
@@ -154,14 +154,14 @@ namespace Capa_Vista_IE
             // 
             this.Btn_OrdenCompra.BackColor = System.Drawing.SystemColors.HighlightText;
             this.Btn_OrdenCompra.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_OrdenCompra.Font = new System.Drawing.Font("Rockwell", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Btn_OrdenCompra.Location = new System.Drawing.Point(346, 505);
+            this.Btn_OrdenCompra.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_OrdenCompra.Location = new System.Drawing.Point(342, 520);
             this.Btn_OrdenCompra.Name = "Btn_OrdenCompra";
-            this.Btn_OrdenCompra.Size = new System.Drawing.Size(251, 29);
+            this.Btn_OrdenCompra.Size = new System.Drawing.Size(265, 38);
             this.Btn_OrdenCompra.TabIndex = 11;
             this.Btn_OrdenCompra.Text = "Generar Orden de Compra";
             this.Btn_OrdenCompra.UseVisualStyleBackColor = false;
-            this.Btn_OrdenCompra.Click += new System.EventHandler(this.Btn_OrdenCompra_Click);
+            this.Btn_OrdenCompra.Click += new System.EventHandler(this.pro_Btn_OrdenCompra_Click);
             // 
             // Frm_Implosion
             // 
@@ -176,7 +176,7 @@ namespace Capa_Vista_IE
             this.Name = "Frm_Implosion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_Implosion";
-            this.Load += new System.EventHandler(this.Frm_Implosion_Load);
+            this.Load += new System.EventHandler(this.pro_Frm_Implosion_Load);
             this.Gpb_Filtros.ResumeLayout(false);
             this.Gpb_Filtros.PerformLayout();
             this.ResumeLayout(false);

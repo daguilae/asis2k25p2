@@ -60,7 +60,7 @@ namespace CapaVistaProduccion
             this.Btn_Guardar_Plato = new System.Windows.Forms.Button();
             this.Btn_eliminar_Plato = new System.Windows.Forms.Button();
             this.Btn_editar_plato = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Btn_Cambio = new System.Windows.Forms.Button();
             this.Btn_Reporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Room_Service)).BeginInit();
@@ -312,6 +312,7 @@ namespace CapaVistaProduccion
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
             this.Pnl_Superior.Controls.Add(this.Lbl_Titulo);
+            this.Pnl_Superior.Controls.Add(this.Btn_Cambio);
             this.Pnl_Superior.Controls.Add(this.pictureBox1);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
@@ -419,15 +420,15 @@ namespace CapaVistaProduccion
             this.Btn_editar_plato.UseVisualStyleBackColor = false;
             this.Btn_editar_plato.Click += new System.EventHandler(this.Btn_editar_plato_Click);
             // 
-            // button1
+            // Btn_Cambio
             // 
-            this.button1.Location = new System.Drawing.Point(430, 86);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 150;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_Cambio.Location = new System.Drawing.Point(1245, 10);
+            this.Btn_Cambio.Name = "Btn_Cambio";
+            this.Btn_Cambio.Size = new System.Drawing.Size(132, 44);
+            this.Btn_Cambio.TabIndex = 150;
+            this.Btn_Cambio.Text = "Reservas a la Carta";
+            this.Btn_Cambio.UseVisualStyleBackColor = true;
+            this.Btn_Cambio.Click += new System.EventHandler(this.button1_Click);
             // 
             // Btn_Reporte
             // 
@@ -451,7 +452,6 @@ namespace CapaVistaProduccion
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1437, 647);
             this.Controls.Add(this.Btn_Reporte);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.Btn_editar_plato);
             this.Controls.Add(this.Btn_eliminar_Plato);
             this.Controls.Add(this.Btn_Guardar_Plato);
@@ -525,7 +525,7 @@ namespace CapaVistaProduccion
         private System.Windows.Forms.Button Btn_Guardar_Plato;
         private System.Windows.Forms.Button Btn_eliminar_Plato;
         private System.Windows.Forms.Button Btn_editar_plato;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Btn_Cambio;
         private System.Windows.Forms.Button Btn_Reporte;
     }
 }

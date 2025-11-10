@@ -18,7 +18,7 @@ namespace Capa_Vista_IE
         {
             InitializeComponent();
         }
-        private void Frm_Implosion_Load(object sender, EventArgs e)
+        private void pro_Frm_Implosion_Load(object sender, EventArgs e)
         {
             pro_CargarDatos();
             Lstv_Receta.View = View.Details;           
@@ -33,14 +33,14 @@ namespace Capa_Vista_IE
             Lstv_Receta.Columns.Add("Conversión");
             Lstv_Receta.Columns.Add("Disponibilidad");
 
-            int totalColumnas = Lstv_Receta.Columns.Count;
-            int anchoDisponible = Lstv_Receta.ClientSize.Width; 
+            int iTotalColumnas = Lstv_Receta.Columns.Count;
+            int iAnchoDisponible = Lstv_Receta.ClientSize.Width; 
 
-            int anchoPorColumna = anchoDisponible / totalColumnas;
+            int iAnchoPorColumna = iAnchoDisponible / iTotalColumnas;
 
             foreach (ColumnHeader col in Lstv_Receta.Columns)
             {
-                col.Width = anchoPorColumna;
+                col.Width = iAnchoPorColumna;
             }
 
             Lbl_Resultado.Visible = false;
@@ -53,7 +53,7 @@ namespace Capa_Vista_IE
 
             try
             {
-                DataTable datos = controlador.DatosMenu();
+                DataTable datos = controlador.fun_DatosMenu();
                 if (datos.Rows.Count > 0)
                 {
                     DataRow fila = datos.NewRow();
@@ -85,7 +85,7 @@ namespace Capa_Vista_IE
         {
             try
             {
-                DataTable receta = controlador.DatosReceta(codigoMenu);
+                DataTable receta = controlador.fun_DatosReceta(codigoMenu);
                 Lstv_Receta.Items.Clear();
                 listaIngrediente.Clear();
                 if (receta.Rows.Count == 0)
@@ -119,13 +119,13 @@ namespace Capa_Vista_IE
             {
                 foreach (ListViewItem item in Lstv_Receta.Items)
                 {
-                    double cantidadPorPlatillo = Convert.ToDouble(item.SubItems[1].Text);
-                    double cantidadNecesaria = cantidadPorPlatillo * cantidadPlatillos;
+                    double doCantidadPorPlatillo = Convert.ToDouble(item.SubItems[1].Text);
+                    double doCantidadNecesaria = doCantidadPorPlatillo * cantidadPlatillos;
 
                     if (item.SubItems.Count > 3)
-                        item.SubItems[3].Text = cantidadNecesaria.ToString();
+                        item.SubItems[3].Text = doCantidadNecesaria.ToString();
                     else
-                        item.SubItems.Add(cantidadNecesaria.ToString());
+                        item.SubItems.Add(doCantidadNecesaria.ToString());
                 }
             }
         }
@@ -133,7 +133,7 @@ namespace Capa_Vista_IE
 
         private void pro_ConsultarInventario()
         {
-            List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> Inventario = controlador.verificarInventario(listaIngrediente);
+            List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> Inventario = controlador.fun_verificarInventario(listaIngrediente);
             try
             {
                 if (Lstv_Receta.Items.Count > 0)
@@ -145,28 +145,28 @@ namespace Capa_Vista_IE
                             ListViewItem item = Lstv_Receta.Items[i];
                             double doStock = Inventario[i].doStock;
                             string sUnidadInv = Inventario[i].sUnidad;
-                            int iCodigo = Convert.ToInt32(Inventario[i].sCodigo);
+                            int.TryParse(Inventario[i].sCodigo, out int iCodigo);
 
                             item.Tag = iCodigo;
-                            double totalNecesario = Convert.ToDouble(item.SubItems[3].Text);
+                            double doTotalNecesario = Convert.ToDouble(item.SubItems[3].Text);
 
                             string sUnidadReceta = item.SubItems[2].Text;    
-                            double stockConvertido;
+                            double doStockConvertido;
                             try
                             {
-                                stockConvertido = Cls_Conversion_Unidad.Convertir(doStock, sUnidadInv, sUnidadReceta);
+                                doStockConvertido = Cls_Conversion_Unidad.Convertir(doStock, sUnidadInv, sUnidadReceta);
                             }
                             catch (Exception ex)
                             {
                                 System.Diagnostics.Debug.WriteLine("Error al convertir unidad: " + ex.Message);
-                                stockConvertido = doStock;
+                                doStockConvertido = doStock;
                             }
 
 
                             string sCantidad = $"{doStock} {sUnidadInv}";
                             item.SubItems.Add(sCantidad);
 
-                            item.SubItems.Add(stockConvertido.ToString());
+                            item.SubItems.Add(doStockConvertido.ToString());
                         }
                     }
                 }
@@ -233,7 +233,7 @@ namespace Capa_Vista_IE
 
 
 
-        private void Cbo_Platillos_SelectedIndexChanged(object sender, EventArgs e)
+        private void pro_Cbo_Platillos_SelectedIndexChanged(object sender, EventArgs e)
         {
             Lbl_Resultado.Visible = false;
             Btn_OrdenCompra.Visible = false;
@@ -259,7 +259,7 @@ namespace Capa_Vista_IE
             }
         }
 
-        private void Btn_Consulta_Click(object sender, EventArgs e)
+        private void pro_Btn_Consulta_Click(object sender, EventArgs e)
         {
             if (Cbo_Platillos.SelectedValue == null || (int)Cbo_Platillos.SelectedValue == 0)
             {
@@ -292,34 +292,63 @@ namespace Capa_Vista_IE
 
         }
 
-        private void Btn_OrdenCompra_Click(object sender, EventArgs e)
+        private void pro_Btn_OrdenCompra_Click(object sender, EventArgs e)
         {
-            List<(int iCodigo, string sIngrediente, double doCantidadFaltante)> listaFaltantes = new List<(int, string, double)>();
+            List<(int iCodigo, string sIngrediente, double doCantidadFaltante)> listaFaltantes
+                = new List<(int, string, double)>();
+
+            List<string> listaNoRegistrados = new List<string>();
 
             foreach (ListViewItem item in Lstv_Receta.Items)
             {
                 if (item.SubItems.Count > 6)
                 {
                     string sDisponibilidad = item.SubItems[6].Text.Trim();
+
                     if (sDisponibilidad.Equals("Insuficiente", StringComparison.OrdinalIgnoreCase))
                     {
                         string sIngrediente = item.SubItems[0].Text.Trim();
                         int iCodigo = (int)item.Tag;
+
+                        if (iCodigo == 0)
+                        {
+                            listaNoRegistrados.Add(sIngrediente);
+                            continue;
+                        }
 
                         double doTotalNecesario = Convert.ToDouble(item.SubItems[3].Text);
                         string sColumnaStock = item.SubItems[4].Text.Split(' ')[0];
                         double doStock = Convert.ToDouble(sColumnaStock);
 
                         double doCantidadFaltante = doTotalNecesario - doStock;
-                        if (doCantidadFaltante < 0) doCantidadFaltante = 0; 
+                        if (doCantidadFaltante < 0)
+                            doCantidadFaltante = 0;
 
-                        listaFaltantes.Add((iCodigo,sIngrediente, doCantidadFaltante));
+                        listaFaltantes.Add((iCodigo, sIngrediente, doCantidadFaltante));
                     }
                 }
             }
+            // Si no hay productos registrados, indicar mensaje
+            if (listaNoRegistrados.Count > 0)
+            {
+                string sMensaje = "Debe registrar los siguientes productos antes de generar la orden de compra:\n\n" +
+                                 string.Join("\n", listaNoRegistrados);
+
+                MessageBox.Show(sMensaje, "Productos no registrados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            // Si no hay productos validos para generar compra
+            if (listaFaltantes.Count == 0)
+            {
+                MessageBox.Show("No hay productos válidos para generar orden de compra.",
+                                "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             Frm_Crear_OrdenCompra formulario = new Frm_Crear_OrdenCompra(listaFaltantes);
             formulario.Show();
         }
+
     }
 }
 

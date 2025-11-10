@@ -10,42 +10,44 @@ namespace Capa_Modelo_GesHab
 {
     public class Cls_Dao_Estadia
     {
-        Cls_conexionMYSQL conexion = new Cls_conexionMYSQL();
+        private Cls_conexionMYSQL oConexion = new Cls_conexionMYSQL();
 
+        // ==========================================================================================
+        // Insertar una nueva estadía
         public bool InsertarEstadia(
-            int idHabitacion,
-            int idHuesped,
-            int numHuespedes,
-            bool tieneReserva,
-            DateTime fechaCheckIn,
-            DateTime fechaActual,
-            decimal montoTotal)
+            int iIdHabitacion,
+            int iIdHuesped,
+            int iNumHuespedes,
+            bool bTieneReserva,
+            DateTime dFechaCheckIn,
+            DateTime dFechaActual,
+            decimal deMontoTotal)
         {
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
+                    oConn.Open();
 
-                    string query = "INSERT INTO Tbl_Estadia " +
+                    string sQuery = "INSERT INTO Tbl_Estadia " +
                                    "(Fk_Id_Habitaciones, Fk_Id_Huesped_Checkin, Cmp_Num_Huespedes, " +
                                    "Cmp_Fecha_Check_In, Cmp_Fecha_Check_Out, Cmp_Tiene_Reservacion, Cmp_Monto_Total_Pago) " +
                                    "VALUES (?,?,?,?,?,?,?)";
 
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", idHabitacion);             // int
-                        cmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", idHuesped);             // int
-                        cmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", numHuespedes);              // int
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", fechaCheckIn);             // date
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", fechaActual);             // date
-                        cmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", tieneReserva ? 1 : 0);  // tinyint(1)
-                        cmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", montoTotal);             // decimal(10,2)
+                        oCmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", iIdHabitacion);
+                        oCmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", iIdHuesped);
+                        oCmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", iNumHuespedes);
+                        oCmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", dFechaCheckIn);
+                        oCmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", dFechaActual);
+                        oCmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", bTieneReserva ? 1 : 0);
+                        oCmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", deMontoTotal);
 
-                        cmd.ExecuteNonQuery();
+                        oCmd.ExecuteNonQuery();
                     }
 
-                    conn.Close();
+                    oConn.Close();
                     return true;
                 }
             }
@@ -56,23 +58,25 @@ namespace Capa_Modelo_GesHab
             }
         }
 
-        public bool EliminarEstadia(int idEstadia)
+        // ==========================================================================================
+        // Eliminar una estadía existente
+        public bool EliminarEstadia(int iIdEstadia)
         {
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
+                    oConn.Open();
 
-                    string query = "DELETE FROM Tbl_Estadia WHERE Pk_Id_Estadia = ?";
+                    string sQuery = "DELETE FROM Tbl_Estadia WHERE Pk_Id_Estadia = ?";
 
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@Pk_Id_Estadia", idEstadia);
-                        int filasAfectadas = cmd.ExecuteNonQuery();
+                        oCmd.Parameters.AddWithValue("@Pk_Id_Estadia", iIdEstadia);
+                        int iFilasAfectadas = oCmd.ExecuteNonQuery();
 
-                        conn.Close();
-                        return filasAfectadas > 0;
+                        oConn.Close();
+                        return iFilasAfectadas > 0;
                     }
                 }
             }
@@ -83,23 +87,25 @@ namespace Capa_Modelo_GesHab
             }
         }
 
+        // ==========================================================================================
+        // Modificar una estadía existente
         public bool ModificarEstadia(
-            int idEstadia,
-            int idHabitacion,
-            int idHuesped,
-            int numHuespedes,
-            bool tieneReserva,
-            DateTime fechaCheckIn,
-            DateTime fechaActual,
-            decimal montoTotal)
+            int iIdEstadia,
+            int iIdHabitacion,
+            int iIdHuesped,
+            int iNumHuespedes,
+            bool bTieneReserva,
+            DateTime dFechaCheckIn,
+            DateTime dFechaActual,
+            decimal deMontoTotal)
         {
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
+                    oConn.Open();
 
-                    string query = "UPDATE Tbl_Estadia SET " +
+                    string sQuery = "UPDATE Tbl_Estadia SET " +
                                    "Fk_Id_Habitaciones = ?, " +
                                    "Fk_Id_Huesped_Checkin = ?, " +
                                    "Cmp_Num_Huespedes = ?, " +
@@ -109,21 +115,21 @@ namespace Capa_Modelo_GesHab
                                    "Cmp_Monto_Total_Pago = ? " +
                                    "WHERE Pk_Id_Estadia = ?";
 
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", idHabitacion);
-                        cmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", idHuesped);
-                        cmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", numHuespedes);
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", fechaCheckIn);
-                        cmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", fechaActual);
-                        cmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", tieneReserva ? 1 : 0);
-                        cmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", montoTotal);
-                        cmd.Parameters.AddWithValue("@Pk_Id_Estadia", idEstadia);
+                        oCmd.Parameters.AddWithValue("@Fk_Id_Habitaciones", iIdHabitacion);
+                        oCmd.Parameters.AddWithValue("@Fk_Id_Huesped_Checkin", iIdHuesped);
+                        oCmd.Parameters.AddWithValue("@Cmp_Num_Huespedes", iNumHuespedes);
+                        oCmd.Parameters.AddWithValue("@Cmp_Fecha_Check_In", dFechaCheckIn);
+                        oCmd.Parameters.AddWithValue("@Cmp_Fecha_Check_Out", dFechaActual);
+                        oCmd.Parameters.AddWithValue("@Cmp_Tiene_Reservacion", bTieneReserva ? 1 : 0);
+                        oCmd.Parameters.AddWithValue("@Cmp_Monto_Total_Pago", deMontoTotal);
+                        oCmd.Parameters.AddWithValue("@Pk_Id_Estadia", iIdEstadia);
 
-                        int filasAfectadas = cmd.ExecuteNonQuery();
-                        conn.Close();
+                        int iFilasAfectadas = oCmd.ExecuteNonQuery();
+                        oConn.Close();
 
-                        return filasAfectadas > 0;
+                        return iFilasAfectadas > 0;
                     }
                 }
             }
@@ -134,21 +140,22 @@ namespace Capa_Modelo_GesHab
             }
         }
 
-        // --- Obtener IDs de estadías ---
+        // ==========================================================================================
+        // Obtener IDs de estadías
         public DataTable ObtenerIdsEstadia()
         {
-            DataTable dt = new DataTable();
-            string query = "SELECT Pk_Id_Estadia FROM Tbl_Estadia;";
+            DataTable dtResultado = new DataTable();
+            string sQuery = "SELECT Pk_Id_Estadia FROM Tbl_Estadia;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
                     {
-                        da.Fill(dt);
+                        oDa.Fill(dtResultado);
                     }
                 }
             }
@@ -157,24 +164,25 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener los IDs de estadía: " + ex.Message);
             }
 
-            return dt;
+            return dtResultado;
         }
 
-        // --- Obtener IDs de habitaciones disponibles ---
+        // ==========================================================================================
+        // Obtener habitaciones disponibles
         public DataTable ObtenerHabitaciones()
         {
-            DataTable dt = new DataTable();
-            string query = "SELECT Pk_Id_Habitaciones FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 1;";
+            DataTable dtResultado = new DataTable();
+            string sQuery = "SELECT PK_Id_Habitaciones FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 1;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
                     {
-                        da.Fill(dt);
+                        oDa.Fill(dtResultado);
                     }
                 }
             }
@@ -183,24 +191,25 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener habitaciones: " + ex.Message);
             }
 
-            return dt;
+            return dtResultado;
         }
 
-        // --- Obtener IDs y nombres de huéspedes ---
+        // ==========================================================================================
+        // Obtener huéspedes (ID y nombre completo)
         public DataTable ObtenerHuespedes()
         {
-            DataTable dt = new DataTable();
-            string query = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto FROM Tbl_Huesped;";
+            DataTable dtResultado = new DataTable();
+            string sQuery = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto FROM Tbl_Huesped;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
-                    using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
                     {
-                        da.Fill(dt);
+                        oDa.Fill(dtResultado);
                     }
                 }
             }
@@ -209,28 +218,29 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener huéspedes: " + ex.Message);
             }
 
-            return dt;
+            return dtResultado;
         }
 
-        // --- Obtener tarifa por noche de una habitación ---
-        public double ObtenerTarifaPorNoche(int idHabitacion)
+        // ==========================================================================================
+        // Obtener tarifa por noche
+        public double ObtenerTarifaPorNoche(int iIdHabitacion)
         {
-            double tarifa = 0.0;
-            string query = "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
+            double doTarifa = 0.0;
+            string sQuery = "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@id", idHabitacion);
+                        oCmd.Parameters.AddWithValue("@id", iIdHabitacion);
 
-                        object result = cmd.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
+                        object oResult = oCmd.ExecuteScalar();
+                        if (oResult != null && oResult != DBNull.Value)
                         {
-                            tarifa = Convert.ToDouble(result);
+                            doTarifa = Convert.ToDouble(oResult);
                         }
                     }
                 }
@@ -240,28 +250,29 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener tarifa por noche: " + ex.Message);
             }
 
-            return tarifa;
+            return doTarifa;
         }
 
-        // --- Obtener capacidad de una habitación ---
-        public int ObtenerCapacidadHabitacion(int idHabitacion)
+        // ==========================================================================================
+        // Obtener capacidad de habitación
+        public int ObtenerCapacidadHabitacion(int iIdHabitacion)
         {
-            int capacidad = 0;
-            string query = "SELECT Cmp_Capacidad_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
+            int iCapacidad = 0;
+            string sQuery = "SELECT Cmp_Capacidad_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@id", idHabitacion);
+                        oCmd.Parameters.AddWithValue("@id", iIdHabitacion);
 
-                        object result = cmd.ExecuteScalar();
-                        if (result != null && result != DBNull.Value)
+                        object oResult = oCmd.ExecuteScalar();
+                        if (oResult != null && oResult != DBNull.Value)
                         {
-                            capacidad = Convert.ToInt32(result);
+                            iCapacidad = Convert.ToInt32(oResult);
                         }
                     }
                 }
@@ -271,14 +282,15 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener capacidad de habitación: " + ex.Message);
             }
 
-            return capacidad;
+            return iCapacidad;
         }
 
-        // --- Obtener una estadía por su ID ---
-        public DataTable ObtenerEstadiaPorId(int idEstadia)
+        // ==========================================================================================
+        // Obtener una estadía específica por ID
+        public DataTable ObtenerEstadiaPorId(int iIdEstadia)
         {
-            DataTable dt = new DataTable();
-            string query = @"
+            DataTable dtResultado = new DataTable();
+            string sQuery = @"
                 SELECT 
                     E.Pk_Id_Estadia,
                     E.Fk_Id_Habitaciones,
@@ -293,15 +305,15 @@ namespace Capa_Modelo_GesHab
 
             try
             {
-                using (OdbcConnection conn = conexion.conexion())
+                using (OdbcConnection oConn = oConexion.conexion())
                 {
-                    conn.Open();
-                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
                     {
-                        cmd.Parameters.AddWithValue("@id", idEstadia);
-                        using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
+                        oCmd.Parameters.AddWithValue("@id", iIdEstadia);
+                        using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
                         {
-                            da.Fill(dt);
+                            oDa.Fill(dtResultado);
                         }
                     }
                 }
@@ -311,7 +323,7 @@ namespace Capa_Modelo_GesHab
                 Console.WriteLine("Error al obtener estadía: " + ex.Message);
             }
 
-            return dt;
+            return dtResultado;
         }
     }
 }
