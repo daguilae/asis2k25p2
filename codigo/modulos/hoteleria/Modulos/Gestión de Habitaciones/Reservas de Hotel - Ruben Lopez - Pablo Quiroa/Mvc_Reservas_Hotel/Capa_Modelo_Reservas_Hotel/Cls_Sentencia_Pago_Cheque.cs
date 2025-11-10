@@ -19,7 +19,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string sql = @"
-                        INSERT INTO tbl_pago_cheque
+                        INSERT INTO Tbl_Pago_Cheque
                         (Fk_Id_Pago, Cmp_Numero_Cheque, Cmp_Banco_Emisor, Cmp_Nombre_Titular,
                          Cmp_Fecha_Emision, Cmp_Fecha_Cobro, Cmp_Estado_Cheque)
                         VALUES (?, ?, ?, ?, ?, ?, ?);";

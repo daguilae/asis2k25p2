@@ -18,7 +18,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string sql = @"
-                        INSERT INTO tbl_pago_transferencia
+                        INSERT INTO Tbl_Pago_Transferencia
                         (Fk_Id_Pago, Cmp_Numero_Transferencia, Cmp_Banco_Origen, Cmp_Cuenta_Origen)
                         VALUES (?, ?, ?, ?);";
 

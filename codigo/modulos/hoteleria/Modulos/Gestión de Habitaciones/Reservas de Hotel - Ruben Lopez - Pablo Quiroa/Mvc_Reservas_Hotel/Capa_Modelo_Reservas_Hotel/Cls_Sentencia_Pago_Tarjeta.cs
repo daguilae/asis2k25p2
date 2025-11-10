@@ -20,7 +20,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string sql = @"
-                        INSERT INTO tbl_pago
+                        INSERT INTO Tbl_Pago
                         (Fk_Id_Folio, Cmp_Metodo_Pago, Cmp_Fecha_Pago, Cmp_Monto_Total, Cmp_Estado_Pago)
                         VALUES (?, ?, ?, ?, ?);";
 
@@ -65,7 +65,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 try
                 {
                     string sql = @"
-                        INSERT INTO tbl_pago_tarjeta
+                        INSERT INTO Tbl_Pago_Tarjeta
                         (Fk_Id_Pago, Cmp_Nombre_Titular, Cmp_Numero_Tarjeta, Cmp_Fecha_Vencimiento, Cmp_CVC, Cmp_Codigo_Postal)
                         VALUES (?, ?, ?, ?, ?, ?);";
 
