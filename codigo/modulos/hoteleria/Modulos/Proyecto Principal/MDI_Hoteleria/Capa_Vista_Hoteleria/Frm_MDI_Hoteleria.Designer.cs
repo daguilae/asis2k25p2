@@ -58,6 +58,7 @@ namespace Capa_Vista_Hoteleria
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.cierreDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -82,7 +83,7 @@ namespace Capa_Vista_Hoteleria
             this.label1.Location = new System.Drawing.Point(28, 14);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(223, 23);
+            this.label1.Size = new System.Drawing.Size(288, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = "MODULO HOTELERIA";
             // 
@@ -102,7 +103,7 @@ namespace Capa_Vista_Hoteleria
             this.menuStrip1.MaximumSize = new System.Drawing.Size(0, 503);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 1069, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1560, 25);
+            this.menuStrip1.Size = new System.Drawing.Size(1668, 28);
             this.menuStrip1.TabIndex = 98;
             this.menuStrip1.Text = "MenuStrip";
             // 
@@ -112,13 +113,13 @@ namespace Capa_Vista_Hoteleria
             this.cerrarSesiónToolStripMenuItem});
             this.archivoToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
-            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(55, 21);
+            this.archivoToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.archivoToolStripMenuItem.Text = "Inicio";
             // 
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Salir";
             // 
             // catálogosToolStripMenuItem
@@ -130,34 +131,34 @@ namespace Capa_Vista_Hoteleria
             this.huespedesToolStripMenuItem});
             this.catálogosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
-            this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
             this.catálogosToolStripMenuItem.Text = "Catálogos";
             // 
             // mantenimientoHabitacionesToolStripMenuItem
             // 
             this.mantenimientoHabitacionesToolStripMenuItem.Name = "mantenimientoHabitacionesToolStripMenuItem";
-            this.mantenimientoHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.mantenimientoHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
             this.mantenimientoHabitacionesToolStripMenuItem.Text = "Mantenimiento Habitaciones";
             this.mantenimientoHabitacionesToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoHabitacionesToolStripMenuItem_Click);
             // 
             // tipoHabitacionesToolStripMenuItem
             // 
             this.tipoHabitacionesToolStripMenuItem.Name = "tipoHabitacionesToolStripMenuItem";
-            this.tipoHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.tipoHabitacionesToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
             this.tipoHabitacionesToolStripMenuItem.Text = "Tipo Habitaciones";
             this.tipoHabitacionesToolStripMenuItem.Click += new System.EventHandler(this.tipoHabitacionesToolStripMenuItem_Click);
             // 
             // serviciosCuartosToolStripMenuItem
             // 
             this.serviciosCuartosToolStripMenuItem.Name = "serviciosCuartosToolStripMenuItem";
-            this.serviciosCuartosToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.serviciosCuartosToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
             this.serviciosCuartosToolStripMenuItem.Text = "Servicios Cuartos";
             this.serviciosCuartosToolStripMenuItem.Click += new System.EventHandler(this.serviciosCuartosToolStripMenuItem_Click);
             // 
             // huespedesToolStripMenuItem
             // 
             this.huespedesToolStripMenuItem.Name = "huespedesToolStripMenuItem";
-            this.huespedesToolStripMenuItem.Size = new System.Drawing.Size(257, 22);
+            this.huespedesToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
             this.huespedesToolStripMenuItem.Text = "Huespedes ";
             this.huespedesToolStripMenuItem.Click += new System.EventHandler(this.huespedesToolStripMenuItem_Click);
             // 
@@ -179,113 +180,114 @@ namespace Capa_Vista_Hoteleria
             this.pagoToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
-            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
+            this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
             this.procesosToolStripMenuItem.Text = "Procesos";
             // 
             // polizaContableToolStripMenuItem
             // 
             this.polizaContableToolStripMenuItem.Name = "polizaContableToolStripMenuItem";
-            this.polizaContableToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.polizaContableToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.polizaContableToolStripMenuItem.Text = "Poliza Contable";
             this.polizaContableToolStripMenuItem.Click += new System.EventHandler(this.polizaContableToolStripMenuItem_Click);
             // 
             // reservaToolStripMenuItem
             // 
             this.reservaToolStripMenuItem.Name = "reservaToolStripMenuItem";
-            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.reservaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.reservaToolStripMenuItem.Text = "Reserva";
             this.reservaToolStripMenuItem.Click += new System.EventHandler(this.reservaToolStripMenuItem_Click);
             // 
             // checkInToolStripMenuItem
             // 
             this.checkInToolStripMenuItem.Name = "checkInToolStripMenuItem";
-            this.checkInToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.checkInToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.checkInToolStripMenuItem.Text = "Check In";
             this.checkInToolStripMenuItem.Click += new System.EventHandler(this.checkInToolStripMenuItem_Click_1);
             // 
             // salonesToolStripMenuItem
             // 
             this.salonesToolStripMenuItem.Name = "salonesToolStripMenuItem";
-            this.salonesToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.salonesToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.salonesToolStripMenuItem.Text = "Salones";
             this.salonesToolStripMenuItem.Click += new System.EventHandler(this.salonesToolStripMenuItem_Click);
             // 
             // implosionYExplosionToolStripMenuItem
             // 
             this.implosionYExplosionToolStripMenuItem.Name = "implosionYExplosionToolStripMenuItem";
-            this.implosionYExplosionToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.implosionYExplosionToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.implosionYExplosionToolStripMenuItem.Text = "Implosion y explosion";
             this.implosionYExplosionToolStripMenuItem.Click += new System.EventHandler(this.implosionYExplosionToolStripMenuItem_Click);
             // 
             // mantenimientoHoteleriaToolStripMenuItem
             // 
             this.mantenimientoHoteleriaToolStripMenuItem.Name = "mantenimientoHoteleriaToolStripMenuItem";
-            this.mantenimientoHoteleriaToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.mantenimientoHoteleriaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.mantenimientoHoteleriaToolStripMenuItem.Text = "Mantenimiento Hoteleria ";
             this.mantenimientoHoteleriaToolStripMenuItem.Click += new System.EventHandler(this.mantenimientoHoteleriaToolStripMenuItem_Click);
             // 
             // ordenDeProduccionToolStripMenuItem
             // 
             this.ordenDeProduccionToolStripMenuItem.Name = "ordenDeProduccionToolStripMenuItem";
-            this.ordenDeProduccionToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.ordenDeProduccionToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.ordenDeProduccionToolStripMenuItem.Text = "Orden de Produccion";
             this.ordenDeProduccionToolStripMenuItem.Click += new System.EventHandler(this.ordenDeProduccionToolStripMenuItem_Click);
             // 
             // produccionHoteleriaToolStripMenuItem
             // 
             this.produccionHoteleriaToolStripMenuItem.Name = "produccionHoteleriaToolStripMenuItem";
-            this.produccionHoteleriaToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.produccionHoteleriaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.produccionHoteleriaToolStripMenuItem.Text = "Produccion Hoteleria";
             this.produccionHoteleriaToolStripMenuItem.Click += new System.EventHandler(this.produccionHoteleriaToolStripMenuItem_Click);
             // 
             // actualizaciónEstadiaToolStripMenuItem
             // 
             this.actualizaciónEstadiaToolStripMenuItem.Name = "actualizaciónEstadiaToolStripMenuItem";
-            this.actualizaciónEstadiaToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.actualizaciónEstadiaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.actualizaciónEstadiaToolStripMenuItem.Text = "Actualización Estadia";
             this.actualizaciónEstadiaToolStripMenuItem.Click += new System.EventHandler(this.actualizaciónEstadiaToolStripMenuItem_Click);
             // 
             // asignacionServiciosAHabitacionToolStripMenuItem
             // 
             this.asignacionServiciosAHabitacionToolStripMenuItem.Name = "asignacionServiciosAHabitacionToolStripMenuItem";
-            this.asignacionServiciosAHabitacionToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.asignacionServiciosAHabitacionToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.asignacionServiciosAHabitacionToolStripMenuItem.Text = "Asignacion Servicios a Habitacion";
             this.asignacionServiciosAHabitacionToolStripMenuItem.Click += new System.EventHandler(this.asignacionServiciosAHabitacionToolStripMenuItem_Click);
             // 
             // areaToolStripMenuItem1
             // 
             this.areaToolStripMenuItem1.Name = "areaToolStripMenuItem1";
-            this.areaToolStripMenuItem1.Size = new System.Drawing.Size(292, 22);
+            this.areaToolStripMenuItem1.Size = new System.Drawing.Size(357, 26);
             this.areaToolStripMenuItem1.Text = "Area";
             this.areaToolStripMenuItem1.Click += new System.EventHandler(this.areaToolStripMenuItem1_Click);
             // 
             // checkOutToolStripMenuItem
             // 
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.checkOutToolStripMenuItem.Text = "Check out";
             this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
             // 
             // pagoToolStripMenuItem
             // 
             this.pagoToolStripMenuItem.Name = "pagoToolStripMenuItem";
-            this.pagoToolStripMenuItem.Size = new System.Drawing.Size(292, 22);
+            this.pagoToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
             this.pagoToolStripMenuItem.Text = "Pago";
             this.pagoToolStripMenuItem.Click += new System.EventHandler(this.pagoToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.foliosToolStripMenuItem});
+            this.foliosToolStripMenuItem,
+            this.cierreDiarioToolStripMenuItem});
             this.herramientasToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
-            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(77, 21);
+            this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.herramientasToolStripMenuItem.Text = "Reportes";
             // 
             // foliosToolStripMenuItem
             // 
             this.foliosToolStripMenuItem.Name = "foliosToolStripMenuItem";
-            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.foliosToolStripMenuItem.Text = "Folios";
             this.foliosToolStripMenuItem.Click += new System.EventHandler(this.foliosToolStripMenuItem_Click);
             // 
@@ -293,7 +295,7 @@ namespace Capa_Vista_Hoteleria
             // 
             this.asignacionesToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.asignacionesToolStripMenuItem.Name = "asignacionesToolStripMenuItem";
-            this.asignacionesToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
+            this.asignacionesToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
             this.asignacionesToolStripMenuItem.Text = "Ayudas";
             // 
             // statusStrip
@@ -301,18 +303,25 @@ namespace Capa_Vista_Hoteleria
             this.statusStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel});
-            this.statusStrip.Location = new System.Drawing.Point(0, 532);
+            this.statusStrip.Location = new System.Drawing.Point(0, 528);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Padding = new System.Windows.Forms.Padding(3, 0, 19, 0);
-            this.statusStrip.Size = new System.Drawing.Size(1067, 22);
+            this.statusStrip.Size = new System.Drawing.Size(1067, 26);
             this.statusStrip.TabIndex = 99;
             this.statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
-            this.toolStripStatusLabel.Size = new System.Drawing.Size(42, 17);
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel.Text = "Estado";
+            // 
+            // cierreDiarioToolStripMenuItem
+            // 
+            this.cierreDiarioToolStripMenuItem.Name = "cierreDiarioToolStripMenuItem";
+            this.cierreDiarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cierreDiarioToolStripMenuItem.Text = "Cierre Diario";
+            this.cierreDiarioToolStripMenuItem.Click += new System.EventHandler(this.cierreDiarioToolStripMenuItem_Click);
             // 
             // Frm_MDI_Hoteleria
             // 
@@ -369,5 +378,6 @@ namespace Capa_Vista_Hoteleria
         private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foliosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cierreDiarioToolStripMenuItem;
     }
 }
