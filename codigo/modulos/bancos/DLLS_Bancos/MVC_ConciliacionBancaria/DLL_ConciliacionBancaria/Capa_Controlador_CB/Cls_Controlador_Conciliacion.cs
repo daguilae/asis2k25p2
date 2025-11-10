@@ -1,182 +1,145 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Data;
-using System.Data.Odbc;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using Capa_Modelo_CB;
-
-// ==========================================================
-// Capa Controlador: Cls_Controlador_Conciliacion
-// AUTORA: Paula Daniela Leonardo Paredes
-// ==========================================================
 
 namespace Capa_Controlador_CB
 {
+    // ==========================================================
+    // Capa Controlador: Cls_Controlador_Conciliacion
+    // Autora: Paula Daniela Leonardo Paredes
+    // ==========================================================
     public class Cls_Controlador_Conciliacion
     {
-        // Instancia de la capa modelo
-        Cls_Sentencias_Conciliacion gSentencias = new Cls_Sentencias_Conciliacion();
+        private readonly Cls_Sentencias_Conciliacion gSentencias = new Cls_Sentencias_Conciliacion();
 
-        // ==========================================================
-        // fun_cargar_bancos:
-        // Retorna los bancos activos para llenar el ComboBox.
-        // ==========================================================
-        public DataTable fun_cargar_bancos()
+        // ------------------ CRUD ------------------
+
+        public int GuardarConciliacion(int iAnio, int iMes, DateTime dFecha,
+                                       int iIdBanco, int iIdCuenta,
+                                       decimal deSaldoBanco, decimal deSaldoSistema,
+                                       string sObservaciones, bool bActiva)
         {
-            OdbcDataAdapter data = gSentencias.fun_obtener_bancos();
-            DataTable dtBancos = new DataTable();
-            data.Fill(dtBancos);
-            return dtBancos;
+            if (iAnio < 1900 || iAnio > 2100) throw new Exception("Año inválido.");
+            if (iMes < 1 || iMes > 12) throw new Exception("Mes inválido.");
+            if (iIdBanco <= 0) throw new Exception("Seleccione un banco válido.");
+            if (iIdCuenta <= 0) throw new Exception("Seleccione una cuenta válida.");
+
+            if (gSentencias.ExisteConciliacionPeriodoCuenta(iAnio, iMes, iIdCuenta))
+                throw new Exception("Ya existe una conciliación para ese período y cuenta.");
+
+            return gSentencias.InsertarConciliacion(iAnio, iMes, dFecha,
+                                                    iIdBanco, iIdCuenta,
+                                                    deSaldoBanco, deSaldoSistema,
+                                                    sObservaciones, bActiva);
         }
 
-        // ==========================================================
-        // fun_cargar_cuentas:
-        // Retorna las cuentas asociadas a un banco.
-        // ==========================================================
-        public DataTable fun_cargar_cuentas(int iIdBanco)
+        public void ModificarConciliacion(int iIdConciliacion,
+                                          int iAnio, int iMes, DateTime dFecha,
+                                          int iIdBanco, int iIdCuenta,
+                                          decimal deSaldoBanco, decimal deSaldoSistema,
+                                          string sObservaciones, bool bActiva)
         {
-            OdbcDataAdapter data = gSentencias.fun_obtener_cuentas(iIdBanco);
-            DataTable dtCuentas = new DataTable();
-            data.Fill(dtCuentas);
-            return dtCuentas;
+            if (iIdConciliacion <= 0) throw new Exception("ID de conciliación inválido.");
+            if (iAnio < 1900 || iAnio > 2100) throw new Exception("Año inválido.");
+            if (iMes < 1 || iMes > 12) throw new Exception("Mes inválido.");
+            if (iIdBanco <= 0) throw new Exception("Seleccione un banco válido.");
+            if (iIdCuenta <= 0) throw new Exception("Seleccione una cuenta válida.");
+
+            if (gSentencias.ExisteConciliacionPeriodoCuentaExceptoId(iAnio, iMes, iIdCuenta, iIdConciliacion))
+                throw new Exception("Ya existe una conciliación para ese período y cuenta.");
+
+            gSentencias.ActualizarConciliacion(iIdConciliacion,
+                                               iAnio, iMes, dFecha,
+                                               iIdBanco, iIdCuenta,
+                                               deSaldoBanco, deSaldoSistema,
+                                               sObservaciones, bActiva);
         }
 
-        // ==========================================================
-        // fun_cargar_movimientos:
-        // Retorna los movimientos bancarios disponibles (no conciliados).
-        // ==========================================================
-        public DataTable fun_cargar_movimientos(int iIdCuenta)
+        public void EliminarConciliacion(int iIdConciliacion)
         {
-            OdbcDataAdapter data = gSentencias.fun_obtener_movimientos(iIdCuenta);
-            DataTable dtMov = new DataTable();
-            data.Fill(dtMov);
-            return dtMov;
+            if (iIdConciliacion <= 0) throw new Exception("ID de conciliación inválido.");
+            gSentencias.EliminarConciliacion(iIdConciliacion);
         }
 
-        // ==========================================================
-        // fun_cargar_conciliaciones:
-        // Retorna todas las conciliaciones registradas.
-        // ==========================================================
-        public DataTable fun_cargar_conciliaciones()
+        // ------------------ Consultas ------------------
+
+        public DataTable ObtenerConciliaciones() => gSentencias.ObtenerConciliaciones();
+
+        public DataTable ObtenerConciliacionPorId(int iIdConciliacion)
         {
-            OdbcDataAdapter data = gSentencias.fun_mostrar_conciliaciones();
-            DataTable dtConciliaciones = new DataTable();
-            data.Fill(dtConciliaciones);
-            return dtConciliaciones;
+            if (iIdConciliacion <= 0) throw new Exception("ID de conciliación inválido.");
+            return gSentencias.ObtenerConciliacionPorId(iIdConciliacion);
         }
 
-        // ==========================================================
-        // pro_guardar_conciliacion:
-        // Valida los datos e inserta una nueva conciliación bancaria.
-        // ==========================================================
-        public string pro_guardar_conciliacion(
-            int iAnio,
-            int iMes,
-            int iCuenta,
-            string dFecha,
-            decimal deSaldoBanco,
-            decimal deSaldoSistema,
-            string sObservaciones,
-            int bEstado)
+        // ------------------ Catálogos ------------------
+
+        public DataTable ObtenerBancos() => gSentencias.ObtenerBancos();
+
+        public DataTable ObtenerCuentasPorBanco(int iIdBanco)
         {
-            try
-            {
-                // ===== VALIDACIONES =====
-                if (iCuenta <= 0)
-                    return "⚠️ Debe seleccionar una cuenta bancaria.";
-
-                if (deSaldoBanco < 0 || deSaldoSistema < 0)
-                    return "⚠️ Los saldos no pueden ser negativos.";
-
-                if (string.IsNullOrWhiteSpace(dFecha))
-                    return "⚠️ La fecha de conciliación es obligatoria.";
-
-                // ===== INSERCIÓN =====
-                gSentencias.pro_insertar_conciliacion(
-                    iAnio, iMes, iCuenta, dFecha, deSaldoBanco, deSaldoSistema, sObservaciones, bEstado);
-
-                return "✅ Conciliación guardada correctamente.";
-            }
-            catch (Exception ex)
-            {
-                return "❌ Error al guardar conciliación: " + ex.Message;
-            }
+            if (iIdBanco <= 0) throw new Exception("Banco inválido.");
+            return gSentencias.ObtenerCuentasPorBanco(iIdBanco);
         }
 
-        // ==========================================================
-        // pro_actualizar_conciliacion:
-        // Valida y actualiza una conciliación existente.
-        // ==========================================================
-        public string pro_actualizar_conciliacion(
-            int iIdConciliacion,
-            int iAnio,
-            int iMes,
-            string dFecha,
-            decimal deSaldoBanco,
-            decimal deSaldoSistema,
-            string sObservaciones,
-            int bEstado)
+        // ------------------ Util ------------------
+
+        public decimal CalcularDiferencia(decimal deSaldoBanco, decimal deSaldoSistema)
+            => deSaldoBanco - deSaldoSistema;
+
+        // ------------------ Validaciones (centralizadas) ------------------
+
+        private string NormalizarMonto(string sValor) => (sValor ?? string.Empty).Trim().Replace(',', '.');
+
+        public bool EsMontoCon2Dec(string sValor)
         {
-            try
-            {
-                if (iIdConciliacion <= 0)
-                    return "⚠️ Debe seleccionar una conciliación para modificar.";
-
-                if (deSaldoBanco < 0 || deSaldoSistema < 0)
-                    return "⚠️ Los saldos no pueden ser negativos.";
-
-                gSentencias.pro_actualizar_conciliacion(
-                    iIdConciliacion, iAnio, iMes, dFecha, deSaldoBanco, deSaldoSistema, sObservaciones, bEstado);
-
-                return "✅ Conciliación actualizada correctamente.";
-            }
-            catch (Exception ex)
-            {
-                return "❌ Error al actualizar conciliación: " + ex.Message;
-            }
+            string s = NormalizarMonto(sValor);
+            return Regex.IsMatch(s, @"^\d+(\.\d{1,2})?$");
         }
 
-        // ==========================================================
-        // pro_eliminar_conciliacion:
-        // Elimina una conciliación seleccionada.
-        // ==========================================================
-        public string pro_eliminar_conciliacion(int iIdConciliacion)
+        public decimal? TryParseMonto2Dec(string sValor)
         {
-            try
-            {
-                if (iIdConciliacion <= 0)
-                    return "⚠️ Debe seleccionar una conciliación válida.";
+            string s = NormalizarMonto(sValor);
+            if (!EsMontoCon2Dec(s)) return null;
 
-                gSentencias.pro_eliminar_conciliacion(iIdConciliacion);
-                return "️Conciliación eliminada correctamente.";
-            }
-            catch (Exception ex)
-            {
-                return "❌ Error al eliminar conciliación: " + ex.Message;
-            }
+            decimal de;
+            if (decimal.TryParse(s, NumberStyles.Number, CultureInfo.InvariantCulture, out de))
+                return de;
+
+            return null;
         }
 
-        // ==========================================================
-        // fun_calcular_diferencia:
-        // Calcula la diferencia entre el saldo del banco y el del sistema.
-        // ==========================================================
-        public decimal fun_calcular_diferencia(decimal deSaldoBanco, decimal deSaldoSistema)
+
+        public decimal ParseMonto2DecOrThrow(string sValor, string sNombreCampo)
         {
-            return deSaldoBanco - deSaldoSistema;
+            string s = NormalizarMonto(sValor);
+            if (!EsMontoCon2Dec(s))
+                throw new Exception($"{sNombreCampo}: solamente se pueden poner números y dos decimales (ej. 1234.56).");
+            return decimal.Parse(s, CultureInfo.InvariantCulture);
         }
 
-        // ==========================================================
-        // fun_validar_campos_vacios:
-        // Revisa si hay campos obligatorios vacíos.
-        // ==========================================================
-        public bool fun_validar_campos_vacios(string sBanco, string sCuenta, string sFecha)
+        public (decimal deBanco, decimal deLibros) ValidarYParsearSaldosOrThrow(string sBanco, string sLibros)
         {
-            return !(string.IsNullOrWhiteSpace(sBanco) ||
-                     string.IsNullOrWhiteSpace(sCuenta) ||
-                     string.IsNullOrWhiteSpace(sFecha));
+            var deBanco = ParseMonto2DecOrThrow(sBanco, "Saldo de banco");
+            var deLibros = ParseMonto2DecOrThrow(sLibros, "Saldo de libros");
+            return (deBanco, deLibros);
+        }
+
+        // Observaciones: solo texto y puntuación básica, sin ';' ni palabras SQL comunes.
+        private static readonly Regex reObsSeguro = new Regex(
+            @"^(?!.*\b(drop|delete|truncate|alter|create|update|insert|exec|execute|call|union|select)\b)[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s\.,:¡!¿\?""'\-\(\)]+$",
+            RegexOptions.Compiled | RegexOptions.IgnoreCase
+        );
+
+        public string ValidarObservacionesSoloTextoOrThrow(string sObs, int iMaxLen = 500)
+        {
+            if (string.IsNullOrWhiteSpace(sObs)) return null;
+            string s = sObs.Trim();
+            if (s.Length > iMaxLen) throw new Exception($"Observaciones: máximo {iMaxLen} caracteres.");
+            if (!reObsSeguro.IsMatch(s))
+                throw new Exception("Observaciones: solo texto y puntuación básica (sin punto y coma ni palabras SQL).");
+            return s;
         }
     }
 }
