@@ -386,5 +386,17 @@ namespace Capa_Vista_Seguridad
             Frm_Vacaciones_Nomina frm_Vacaciones_Nomina = new Frm_Vacaciones_Nomina();
             frm_Vacaciones_Nomina.ShowDialog();
         }
+
+        private void departamentosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Mantenimiento_Departamentos_Nomina frm_Mantenimiento_Departamentos = new Frm_Mantenimiento_Departamentos_Nomina();
+            frm_Mantenimiento_Departamentos.ShowDialog();
+        }
+
+        private void horasExtraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Horas_Extra_Nomina frm_Horas_Extra_Nomina = new Frm_Horas_Extra_Nomina();
+            frm_Horas_Extra_Nomina.ShowDialog();
+        }
     }
 }

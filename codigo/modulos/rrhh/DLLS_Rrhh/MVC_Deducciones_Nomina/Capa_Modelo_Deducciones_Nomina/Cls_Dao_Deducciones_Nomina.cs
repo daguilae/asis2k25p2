@@ -287,18 +287,23 @@ namespace Capa_Modelo_Deducciones_Nomina
                 {
                     cnConexion.Open();
                     string sSql = @"
-                        SELECT mn.Cmp_iId_MovimientoNomina,
-                               mn.Cmp_deMonto_MovimientoNomina,
-                               c.Cmp_sNombre_ConceptoNomina AS NombreConcepto,
-                               c.Cmp_sTipo_ConceptoNomina AS TipoConcepto,
-                               e.Cmp_sNombre_Empleado AS NombreEmpleado,
-                               e.Cmp_sApellido_Empleado AS ApellidoEmpleado
-                        FROM Tbl_MovimientosNomina mn
-                        INNER JOIN Tbl_DetallesNomina dn ON mn.Cmp_iId_Nomina = dn.Cmp_iId_Nomina
-                        INNER JOIN Tbl_ConceptosNomina c ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
-                        INNER JOIN Tbl_Empleados e ON dn.Cmp_iId_Empleado = e.Cmp_iId_Empleado
-                        WHERE mn.Cmp_iId_Nomina = ? AND dn.Cmp_iId_Empleado = ?
-                        ORDER BY c.Cmp_sTipo_ConceptoNomina ASC";
+                SELECT 
+                    mn.Cmp_iId_MovimientoNomina,
+                    mn.Cmp_iId_Nomina,
+                    mn.Cmp_deMonto_MovimientoNomina,
+                    c.Cmp_sNombre_ConceptoNomina AS NombreConcepto,
+                    c.Cmp_sTipo_ConceptoNomina AS TipoConcepto,
+                    c.Fk_Codigo_Cuenta AS CodigoCuenta,
+                    e.Cmp_sNombre_Empleado AS NombreEmpleado,
+                    e.Cmp_sApellido_Empleado AS ApellidoEmpleado
+                FROM Tbl_MovimientosNomina mn
+                LEFT JOIN Tbl_ConceptosNomina c 
+                    ON mn.Cmp_iId_ConceptoNomina = c.Cmp_iId_ConceptoNomina
+                INNER JOIN Tbl_Empleados e 
+                    ON mn.Cmp_iId_Empleado = e.Cmp_iId_Empleado
+                WHERE mn.Cmp_iId_Nomina = ? AND mn.Cmp_iId_Empleado = ?
+                ORDER BY c.Cmp_sTipo_ConceptoNomina ASC";
+
                     using (OdbcCommand cmd = new OdbcCommand(sSql, cnConexion))
                     {
                         cmd.Parameters.AddWithValue("", iIdNomina);
@@ -318,6 +323,7 @@ namespace Capa_Modelo_Deducciones_Nomina
             }
             return dtsMovimientos;
         }
+
 
         // ==========================================================
         // MÉTODO: SUMAR MOVIMIENTOS POR TIPO DE CONCEPTO

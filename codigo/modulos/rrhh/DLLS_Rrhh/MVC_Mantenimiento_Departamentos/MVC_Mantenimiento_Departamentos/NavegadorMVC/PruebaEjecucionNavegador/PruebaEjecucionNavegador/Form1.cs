@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Mantenimiento_Puestos
+namespace PruebaEjecucionNavegador
 {
-    public partial class Frm_Mantenimiento_Puestos : UserControl
+    public partial class Form1 : Form
     {
-        public Frm_Mantenimiento_Puestos()
+        public Form1()
         {
             InitializeComponent();
+            //parametros para navegador
             Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView config = new Capa_Controlador_Navegador.Cls_ConfiguracionDataGridView
             {
                 Ancho = 1100,
@@ -51,5 +52,6 @@ namespace Mantenimiento_Puestos
             navegador1.SEtiquetas = sEtiquetas;
             navegador1.mostrarDatos();
         }
+
     }
 }
