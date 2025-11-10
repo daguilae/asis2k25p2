@@ -115,21 +115,27 @@ namespace Capa_Modelo_CB
             using (OdbcConnection oCon = gConexion.conexion())
             {
                 const string sSql = @"
-                    SELECT Pk_Id_Conciliacion,
-                           Fk_Id_Banco,
-                           Fk_Id_CuentaBancaria,
-                           Cmp_AnioConciliacion,
-                           Cmp_MesConciliacion,
-                           Cmp_FechaConciliacion,
-                           Cmp_SaldoBanco,
-                           Cmp_SaldoSistema,
-                           Cmp_Diferencia,
-                           Cmp_Observaciones,
-                           Cmp_EstadoConciliacion
-                      FROM Tbl_ConciliacionBancaria
-                  ORDER BY Cmp_AnioConciliacion DESC,
-                           Cmp_MesConciliacion DESC,
-                           Pk_Id_Conciliacion DESC";
+            SELECT cb.Pk_Id_Conciliacion,
+                   cb.Fk_Id_Banco,
+                   b.Cmp_NombreBanco     AS Banco,
+                   cb.Fk_Id_CuentaBancaria,
+                   c.Cmp_NumeroCuenta    AS Cuenta,
+                   cb.Cmp_AnioConciliacion,
+                   cb.Cmp_MesConciliacion,
+                   cb.Cmp_FechaConciliacion,
+                   cb.Cmp_SaldoBanco,
+                   cb.Cmp_SaldoSistema,
+                   cb.Cmp_Diferencia,
+                   cb.Cmp_Observaciones,
+                   cb.Cmp_EstadoConciliacion
+              FROM Tbl_ConciliacionBancaria cb
+         LEFT JOIN Tbl_Bancos b
+                ON b.Pk_Id_Banco = cb.Fk_Id_Banco
+         LEFT JOIN Tbl_CuentasBancarias c
+                ON c.Pk_Id_CuentaBancaria = cb.Fk_Id_CuentaBancaria
+          ORDER BY cb.Cmp_AnioConciliacion DESC,
+                   cb.Cmp_MesConciliacion  DESC,
+                   cb.Pk_Id_Conciliacion   DESC";
                 using (var oDa = new OdbcDataAdapter(sSql, oCon))
                 {
                     oDa.Fill(dt);
@@ -145,19 +151,25 @@ namespace Capa_Modelo_CB
             using (OdbcConnection oCon = gConexion.conexion())
             {
                 const string sSql = @"
-                    SELECT Pk_Id_Conciliacion,
-                           Fk_Id_Banco,
-                           Fk_Id_CuentaBancaria,
-                           Cmp_AnioConciliacion,
-                           Cmp_MesConciliacion,
-                           Cmp_FechaConciliacion,
-                           Cmp_SaldoBanco,
-                           Cmp_SaldoSistema,
-                           Cmp_Diferencia,
-                           Cmp_Observaciones,
-                           Cmp_EstadoConciliacion
-                      FROM Tbl_ConciliacionBancaria
-                     WHERE Pk_Id_Conciliacion = ?";
+            SELECT cb.Pk_Id_Conciliacion,
+                   cb.Fk_Id_Banco,
+                   b.Cmp_NombreBanco     AS Banco,
+                   cb.Fk_Id_CuentaBancaria,
+                   c.Cmp_NumeroCuenta    AS Cuenta,
+                   cb.Cmp_AnioConciliacion,
+                   cb.Cmp_MesConciliacion,
+                   cb.Cmp_FechaConciliacion,
+                   cb.Cmp_SaldoBanco,
+                   cb.Cmp_SaldoSistema,
+                   cb.Cmp_Diferencia,
+                   cb.Cmp_Observaciones,
+                   cb.Cmp_EstadoConciliacion
+              FROM Tbl_ConciliacionBancaria cb
+         LEFT JOIN Tbl_Bancos b
+                ON b.Pk_Id_Banco = cb.Fk_Id_Banco
+         LEFT JOIN Tbl_CuentasBancarias c
+                ON c.Pk_Id_CuentaBancaria = cb.Fk_Id_CuentaBancaria
+             WHERE cb.Pk_Id_Conciliacion = ?";
                 using (var oDa = new OdbcDataAdapter(sSql, oCon))
                 {
                     oDa.SelectCommand.Parameters.AddWithValue("", iIdConciliacion);
@@ -166,6 +178,7 @@ namespace Capa_Modelo_CB
             }
             return dt;
         }
+
 
         // Duplicados
         public bool ExisteConciliacionPeriodoCuenta(int iAnio, int iMes, int iIdCuentaBancaria)

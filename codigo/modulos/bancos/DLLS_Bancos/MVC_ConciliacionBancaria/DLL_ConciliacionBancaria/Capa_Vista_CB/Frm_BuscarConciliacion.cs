@@ -81,9 +81,10 @@ namespace Capa_Vista_CB
 
                 if (Dgv_Conciliaciones.Columns.Count > 0)
                 {
+                    // Encabezados amigables
                     SetHeader("Pk_Id_Conciliacion", "ID");
-                    SetHeader("Fk_Id_Banco", "Banco (Id)");
-                    SetHeader("Fk_Id_CuentaBancaria", "Cuenta (Id)");
+                    SetHeader("Banco", "Banco");
+                    SetHeader("Cuenta", "Cuenta");
                     SetHeader("Cmp_AnioConciliacion", "Año");
                     SetHeader("Cmp_MesConciliacion", "Mes");
                     SetHeader("Cmp_FechaConciliacion", "Fecha");
@@ -92,6 +93,10 @@ namespace Capa_Vista_CB
                     SetHeader("Cmp_Diferencia", "Diferencia");
                     SetHeader("Cmp_Observaciones", "Observaciones");
                     SetHeader("Cmp_EstadoConciliacion", "Estado");
+
+                    // Oculta FKs (ya mostramos nombres)
+                    HideColumn("Fk_Id_Banco");
+                    HideColumn("Fk_Id_CuentaBancaria");
                 }
 
                 Dgv_Conciliaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -113,6 +118,12 @@ namespace Capa_Vista_CB
                 Dgv_Conciliaciones.Columns[sColName].HeaderText = sHeader;
         }
 
+        private void HideColumn(string sColName)
+        {
+            if (Dgv_Conciliaciones.Columns.Contains(sColName))
+                Dgv_Conciliaciones.Columns[sColName].Visible = false;
+        }
+
         private int ObtenerIdSeleccionado()
         {
             if (Dgv_Conciliaciones.CurrentRow == null) return 0;
@@ -120,5 +131,6 @@ namespace Capa_Vista_CB
             if (cell?.Value == null || cell.Value == DBNull.Value) return 0;
             return int.TryParse(cell.Value.ToString(), out int id) ? id : 0;
         }
+
     }
 }
