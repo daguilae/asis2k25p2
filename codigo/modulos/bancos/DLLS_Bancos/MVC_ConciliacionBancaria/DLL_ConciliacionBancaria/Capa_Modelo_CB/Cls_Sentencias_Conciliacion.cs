@@ -10,10 +10,10 @@ namespace Capa_Modelo_CB
     // ==========================================================
     public class Cls_Sentencias_Conciliacion
     {
-        // INSERT
+        // INSERT (NO usa Fk_Id_Banco porque no existe en la tabla)
         public int InsertarConciliacion(
             int iAnio, int iMes, DateTime dFechaConciliacion,
-            int iIdBanco, int iIdCuentaBancaria,
+            int iIdBanco /*no usado*/, int iIdCuentaBancaria,
             decimal deSaldoBanco, decimal deSaldoSistema,
             string sObservaciones, bool bActiva)
         {
@@ -22,16 +22,14 @@ namespace Capa_Modelo_CB
             {
                 const string sSql = @"
                     INSERT INTO Tbl_ConciliacionBancaria
-                        (Fk_Id_Banco,
-                         Fk_Id_CuentaBancaria,
+                        (Fk_Id_CuentaBancaria,
                          Cmp_AnioConciliacion, Cmp_MesConciliacion, Cmp_FechaConciliacion,
                          Cmp_SaldoBanco, Cmp_SaldoSistema,
                          Cmp_Observaciones, Cmp_EstadoConciliacion)
-                    VALUES (?,?,?,?,?,?,?,?,?)";
+                    VALUES (?,?,?,?,?,?,?,?)";
 
                 using (var oCmd = new OdbcCommand(sSql, oCon))
                 {
-                    oCmd.Parameters.AddWithValue("", iIdBanco);
                     oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
                     oCmd.Parameters.AddWithValue("", iAnio);
                     oCmd.Parameters.AddWithValue("", iMes);
@@ -51,11 +49,11 @@ namespace Capa_Modelo_CB
             }
         }
 
-        // UPDATE
+        // UPDATE (NO toca Fk_Id_Banco porque no existe en la tabla)
         public void ActualizarConciliacion(
             int iIdConciliacion,
             int iAnio, int iMes, DateTime dFechaConciliacion,
-            int iIdBanco, int iIdCuentaBancaria,
+            int iIdBanco /*no usado*/, int iIdCuentaBancaria,
             decimal deSaldoBanco, decimal deSaldoSistema,
             string sObservaciones, bool bActiva)
         {
@@ -64,8 +62,7 @@ namespace Capa_Modelo_CB
             {
                 const string sSql = @"
                     UPDATE Tbl_ConciliacionBancaria
-                       SET Fk_Id_Banco = ?,
-                           Fk_Id_CuentaBancaria = ?,
+                       SET Fk_Id_CuentaBancaria = ?,
                            Cmp_AnioConciliacion = ?,
                            Cmp_MesConciliacion  = ?,
                            Cmp_FechaConciliacion = ?,
@@ -77,7 +74,6 @@ namespace Capa_Modelo_CB
 
                 using (var oCmd = new OdbcCommand(sSql, oCon))
                 {
-                    oCmd.Parameters.AddWithValue("", iIdBanco);
                     oCmd.Parameters.AddWithValue("", iIdCuentaBancaria);
                     oCmd.Parameters.AddWithValue("", iAnio);
                     oCmd.Parameters.AddWithValue("", iMes);
@@ -107,7 +103,7 @@ namespace Capa_Modelo_CB
             }
         }
 
-        // QUERIES
+        // QUERIES (unimos por Cuenta -> Banco para obtener nombres)
         public DataTable ObtenerConciliaciones()
         {
             var dt = new DataTable();
@@ -116,7 +112,7 @@ namespace Capa_Modelo_CB
             {
                 const string sSql = @"
             SELECT cb.Pk_Id_Conciliacion,
-                   cb.Fk_Id_Banco,
+                   c.Fk_Id_Banco,
                    b.Cmp_NombreBanco     AS Banco,
                    cb.Fk_Id_CuentaBancaria,
                    c.Cmp_NumeroCuenta    AS Cuenta,
@@ -129,10 +125,10 @@ namespace Capa_Modelo_CB
                    cb.Cmp_Observaciones,
                    cb.Cmp_EstadoConciliacion
               FROM Tbl_ConciliacionBancaria cb
-         LEFT JOIN Tbl_Bancos b
-                ON b.Pk_Id_Banco = cb.Fk_Id_Banco
-         LEFT JOIN Tbl_CuentasBancarias c
+        INNER JOIN Tbl_CuentasBancarias c
                 ON c.Pk_Id_CuentaBancaria = cb.Fk_Id_CuentaBancaria
+        INNER JOIN Tbl_Bancos b
+                ON b.Pk_Id_Banco = c.Fk_Id_Banco
           ORDER BY cb.Cmp_AnioConciliacion DESC,
                    cb.Cmp_MesConciliacion  DESC,
                    cb.Pk_Id_Conciliacion   DESC";
@@ -152,7 +148,7 @@ namespace Capa_Modelo_CB
             {
                 const string sSql = @"
             SELECT cb.Pk_Id_Conciliacion,
-                   cb.Fk_Id_Banco,
+                   c.Fk_Id_Banco,
                    b.Cmp_NombreBanco     AS Banco,
                    cb.Fk_Id_CuentaBancaria,
                    c.Cmp_NumeroCuenta    AS Cuenta,
@@ -165,10 +161,10 @@ namespace Capa_Modelo_CB
                    cb.Cmp_Observaciones,
                    cb.Cmp_EstadoConciliacion
               FROM Tbl_ConciliacionBancaria cb
-         LEFT JOIN Tbl_Bancos b
-                ON b.Pk_Id_Banco = cb.Fk_Id_Banco
-         LEFT JOIN Tbl_CuentasBancarias c
+        INNER JOIN Tbl_CuentasBancarias c
                 ON c.Pk_Id_CuentaBancaria = cb.Fk_Id_CuentaBancaria
+        INNER JOIN Tbl_Bancos b
+                ON b.Pk_Id_Banco = c.Fk_Id_Banco
              WHERE cb.Pk_Id_Conciliacion = ?";
                 using (var oDa = new OdbcDataAdapter(sSql, oCon))
                 {
@@ -179,8 +175,7 @@ namespace Capa_Modelo_CB
             return dt;
         }
 
-
-        // Duplicados
+        // Duplicados (por período + cuenta)
         public bool ExisteConciliacionPeriodoCuenta(int iAnio, int iMes, int iIdCuentaBancaria)
         {
             var gConexion = new Cls_Conexion();
@@ -204,7 +199,8 @@ namespace Capa_Modelo_CB
             }
         }
 
-        public bool ExisteConciliacionPeriodoCuentaExceptoId(int iAnio, int iMes, int iIdCuentaBancaria, int iIdExcluir)
+        public bool ExisteConciliacionPeriodoCuentaExceptoId(
+            int iAnio, int iMes, int iIdCuentaBancaria, int iIdExcluir)
         {
             var gConexion = new Cls_Conexion();
             using (OdbcConnection oCon = gConexion.conexion())
