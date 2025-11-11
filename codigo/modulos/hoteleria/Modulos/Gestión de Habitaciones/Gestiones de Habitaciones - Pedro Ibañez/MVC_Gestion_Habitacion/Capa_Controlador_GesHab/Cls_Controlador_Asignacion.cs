@@ -17,25 +17,25 @@ namespace Capa_Controlador_GesHab
         private Cls_BitacoraControlador oCtrlBitacora = new Cls_BitacoraControlador();
 
         // Cargar servicios
-        public DataTable CargarServicios()
+        public DataTable fun_CargarServicios()
         {
-            return oDaoAsignacion.ObtenerServicios();
+            return oDaoAsignacion.fun_ObtenerServicios();
         }
 
         // Cargar habitaciones
-        public DataTable CargarHabitaciones()
+        public DataTable fun_CargarHabitaciones()
         {
-            return oDaoAsignacion.ObtenerHabitaciones();
+            return oDaoAsignacion.fun_ObtenerHabitaciones();
         }
 
         // Mostrar asignaciones existentes
-        public DataTable MostrarAsignaciones()
+        public DataTable pro_MostrarAsignaciones()
         {
-            return oDaoAsignacion.ObtenerAsignaciones();
+            return oDaoAsignacion.fun_ObtenerAsignaciones();
         }
 
         // Insertar asignación de servicio a habitación
-        public bool InsertarAsigancionServicios(
+        public bool pro_InsertarAsigancionServicios(
             int iIdHabitacion,
             int iIdServicio,
             out string sMensaje)
@@ -56,7 +56,7 @@ namespace Capa_Controlador_GesHab
             }
 
             // Realizar inserción
-            bool bExito = oDaoAsignacion.InsertarAsignacionServ(
+            bool bExito = oDaoAsignacion.pro_InsertarAsignacionServ(
                 iIdHabitacion,
                 iIdServicio
             );
@@ -77,7 +77,7 @@ namespace Capa_Controlador_GesHab
         }
 
         // Buscar asignaciones por habitación
-        public DataTable BuscarAsignacion(int iIdHabitacion, out string sMensaje)
+        public DataTable fun_BuscarAsignacion(int iIdHabitacion, out string sMensaje)
         {
             sMensaje = "";
 
@@ -89,7 +89,7 @@ namespace Capa_Controlador_GesHab
 
             try
             {
-                DataTable dtResultado = oDaoAsignacion.BuscarAsignaciones(iIdHabitacion);
+                DataTable dtResultado = oDaoAsignacion.fun_BuscarAsignaciones(iIdHabitacion);
 
                 if (dtResultado != null && dtResultado.Rows.Count > 0)
                 {
@@ -110,7 +110,7 @@ namespace Capa_Controlador_GesHab
         }
 
         // Eliminar asignación existente
-        public bool EliminarAsignacion(int iIdHabitacion, int iIdServicio, out string sMensaje)
+        public bool pro_EliminarAsignacion(int iIdHabitacion, int iIdServicio, out string sMensaje)
         {
             sMensaje = "";
 
@@ -126,7 +126,7 @@ namespace Capa_Controlador_GesHab
                 return false;
             }
 
-            bool bExito = oDaoAsignacion.EliminarAsignacion(iIdHabitacion, iIdServicio);
+            bool bExito = oDaoAsignacion.pro_EliminarAsignacion(iIdHabitacion, iIdServicio);
 
             sMensaje = bExito
                 ? "Asignación eliminada correctamente."

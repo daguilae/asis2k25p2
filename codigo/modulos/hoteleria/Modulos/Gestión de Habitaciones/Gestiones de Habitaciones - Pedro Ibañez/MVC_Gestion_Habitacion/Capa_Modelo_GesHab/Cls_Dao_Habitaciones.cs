@@ -12,17 +12,17 @@ namespace Capa_Modelo_GesHab
     {
         Cls_conexionMYSQL conexion = new Cls_conexionMYSQL();
 
-        public void CambiarEstadoHabitacion(int idHabitacion)
+        public void pro_CambiarEstadoHabitacion(int idHabitacion)
         {
             using (OdbcConnection conn = conexion.conexion())
             {
                 conn.Open();
 
                 // Primero obtenemos el estado actual
-                string querySelect = "SELECT Cmp_Estado_Habitacion FROM Tbl_Habitaciones WHERE PK_ID_Habitaciones = ?;";
+                string sQuerySelect = "SELECT Cmp_Estado_Habitacion FROM Tbl_Habitaciones WHERE PK_ID_Habitaciones = ?;";
                 bool estadoActual;
 
-                using (OdbcCommand cmdSelect = new OdbcCommand(querySelect, conn))
+                using (OdbcCommand cmdSelect = new OdbcCommand(sQuerySelect, conn))
                 {
                     cmdSelect.Parameters.AddWithValue("@id", idHabitacion);
                     object result = cmdSelect.ExecuteScalar();
@@ -40,8 +40,8 @@ namespace Capa_Modelo_GesHab
                 bool nuevoEstado = !estadoActual;
 
                 // Luego actualizamos el campo con el nuevo estado
-                string queryUpdate = "UPDATE Tbl_Habitaciones SET Cmp_Estado_Habitacion = ? WHERE PK_ID_Habitaciones = ?;";
-                using (OdbcCommand cmdUpdate = new OdbcCommand(queryUpdate, conn))
+                string sQueryUpdate = "UPDATE Tbl_Habitaciones SET Cmp_Estado_Habitacion = ? WHERE PK_ID_Habitaciones = ?;";
+                using (OdbcCommand cmdUpdate = new OdbcCommand(sQueryUpdate, conn))
                 {
                     cmdUpdate.Parameters.AddWithValue("@estado", nuevoEstado);
                     cmdUpdate.Parameters.AddWithValue("@id", idHabitacion);
@@ -63,7 +63,7 @@ namespace Capa_Modelo_GesHab
         }
 
         // Método que obtiene todas las habitaciones con estado 0 y devuelve un DataTable
-        public DataTable ObtenerHabitacionesDisponibles()
+        public DataTable fun_ObtenerHabitacionesDisponibles()
         {
             DataTable dtHabitaciones = new DataTable();
 
@@ -71,9 +71,9 @@ namespace Capa_Modelo_GesHab
             {
                 conn.Open();
 
-                string query = "SELECT * FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 0;";
+                string sQuery = "SELECT * FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 0;";
 
-                using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                using (OdbcCommand cmd = new OdbcCommand(sQuery, conn))
                 using (OdbcDataAdapter da = new OdbcDataAdapter(cmd))
                 {
                     da.Fill(dtHabitaciones);
