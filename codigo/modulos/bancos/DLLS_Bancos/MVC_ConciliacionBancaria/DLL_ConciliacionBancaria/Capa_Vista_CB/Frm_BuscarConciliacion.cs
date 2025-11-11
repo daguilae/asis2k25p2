@@ -18,9 +18,28 @@ namespace Capa_Vista_CB
 
         private void Frm_BuscarConciliacion_Load(object sender, EventArgs e) => ActualizarGrid();
 
-        private void Btn_AyudaBC_Click(object sender, EventArgs e) {
-            Help.ShowHelp(this, @"AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "BuscarConciliacion_ayuda.html");
+        private void Btn_AyudaBC_Click(object sender, EventArgs e)
+        {
+            string helpPath = System.IO.Path.Combine(
+                Application.StartupPath,
+                "AyudasConciliacionBancaria",
+                "AyudasConciliacionBancaria.chm"
+            );
+
+            if (!System.IO.File.Exists(helpPath))
+            {
+                MessageBox.Show(
+                    "No se encontró el archivo de ayuda:\n" + helpPath,
+                    "Ayuda no disponible",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            Help.ShowHelp(this, helpPath, HelpNavigator.Topic, "BuscarConciliacion_ayuda.html");
         }
+
 
         private void Btn_SalirBuscarCB_Click(object sender, EventArgs e)
         {
