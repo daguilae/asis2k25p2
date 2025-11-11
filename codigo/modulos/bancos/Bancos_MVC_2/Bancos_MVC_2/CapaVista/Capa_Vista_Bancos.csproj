@@ -70,6 +70,9 @@
     <Reference Include="Capa_Vista_Poliza">
       <HintPath>..\..\..\DLLS_Bancos\MVC_Poliza\DLL_Poliza\Capa_Vista_Poliza\bin\Debug\Capa_Vista_Poliza.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_ReportesBancarios">
+      <HintPath>..\..\..\..\..\..\..\..\Modulo_Bancos\asis2k25p2\codigo\modulos\bancos\DLLS_Bancos\MVC_ReportesBancarios\MVC_ReportesBancarios\Capa_Vista_ReportesBancarios\bin\Debug\Capa_Vista_ReportesBancarios.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_TipoDeCambio">
       <HintPath>..\..\..\DLLS_Bancos\ProyFinal\Capa_Vista_TipoDeCambio\bin\Debug\Capa_Vista_TipoDeCambio.dll</HintPath>
     </Reference>
