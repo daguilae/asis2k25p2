@@ -1,0 +1,115 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #ffffff;
+  color: #000;
+  line-height: 1.5;
+}
+
+/* ===== Contenedores generales ===== */
+.container {
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.seccion,
+.descripcion,
+.descripcion-formulario {
+  width: min(1100px, 92%);
+  margin: 0 auto 24px auto;
+}
+
+/* ===== Encabezados ===== */
+h1 {
+  color: #000000;
+  text-align: center;
+  font-size: 45px;
+  font-weight: 700;
+}
+
+h2 {
+  color: #f00000;            
+  text-align: center;
+  font-size: 30px;
+  margin: 16px 0 8px 0;
+}
+
+h3 {
+  font-size: 22px;
+  margin: 14px 0 6px 0;
+  text-align: left;
+}
+
+/* ===== Texto ===== */
+p {
+  font-size: 20px;
+  text-align: justify;
+  padding: 20px;
+}
+
+ul, ol {
+  margin: 10px 24px 12px 40px;
+  font-size: 18px;
+}
+
+.lista-campos li {
+  margin-bottom: 6px;
+}
+
+/* ===== Imágenes ===== */
+img {
+  width: 500px;   
+  height: auto;
+  display: block;
+  margin: 8px auto;
+  border-radius: 6px;
+}
+
+.formulario {
+  width: min(900px, 95%);
+}
+
+
+
+/* ===== Header de la página ===== */
+.header {
+  width: 100%;
+  padding: 16px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 12px;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
+
+/* ===== Tarjetas/Secciones suaves ===== */
+.seccion, .descripcion, .descripcion-formulario {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px 18px;
+}
+
+/* ===== Tips de accesibilidad/énfasis ===== */
+strong { font-weight: 700; }
+em     { font-style: italic; }
+
+/* ===== Resaltado verde de tu identidad (RGB 78,167,76) para bullets o acentos opcionales ===== */
+.resaltado-verde {
+  color: rgb(78, 167, 76);
+}
+
