@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayudas - Autorizaciones</title>
+    <link rel="stylesheet" href="ayuda_auto.css">
+</head>
+<body>
+    <div class="header">
+        <img src="img/logo_bancos.png" alt="Logo Bancos" class="logo">
+        <h1>Ayudas - Autorizaciones Órdenes de Compra</h1>
+    </div>
+
+    <div class="descripcion">
+        <h2>Objetivo</h2>
+        <p>
+            Registrar, modificar, eliminar e imprimir <strong>autorizaciones</strong> de órdenes de compra, 
+            validando que el <strong>banco</strong> tenga fondos suficientes cuando la autorización se marca como <em>Aprobada</em>.
+        </p>
+    </div>
+
+    <img src="img/formulario_auto.png" alt="Formulario de Autorización" class="formulario">
+
+    <div class="descripcion-formulario">
+        <h2>Pantalla principal</h2>
+        <ul class="lista-campos">
+            <li><strong>ID de Autorización:</strong> se llena automáticamente al guardar (solo lectura).</li>
+            <li><strong>ID de Orden de Compra:</strong> al elegir una orden, el <em>Monto Autorizado</em> se completa automáticamente con el monto solicitado.</li>
+            <li><strong>Nombre de Banco:</strong> banco que financiará la orden.</li>
+            <li><strong>Nombre de Empleado:</strong> autorizador; puede quedar en <em>(Sin asignar)</em>.</li>
+            <li><strong>Fecha de Autorización:</strong> fecha del registro.</li>
+            <li><strong>Monto Autorizado:</strong> autocompletado por la orden; el sistema valida contra el saldo del banco.</li>
+            <li><strong>Estado de Orden:</strong> <em>Pendiente</em>, <em>Aprobada</em> o <em>Rechazada</em>.</li>
+            <li><strong>Observaciones:</strong> comentarios opcionales.</li>
+            <li><strong>Detalle Autorizaciones (tabla):</strong> lista registros; al hacer clic en una fila, los datos suben al formulario para edición.</li>
+        </ul>
+    </div>
+
+    <section class="seccion botones">
+        <h2>Botones</h2>
+        <ul>
+            <li> <strong>Agregar:</strong> crea una nueva autorización con los datos del formulario.</li>
+            <li> <strong>Actualizar:</strong> guarda cambios del registro seleccionado.</li>
+            <li> <strong>Eliminar:</strong> borra el registro seleccionado (pide confirmación).</li>
+            <li> <strong>Limpiar:</strong> reinicia el formulario.</li>
+            <li> <strong>Ayuda:</strong> muestra esta guía.</li>
+        </ul>
+    </section>
+
+    <section class="seccion pasos">
+        <h2>Cómo usar</h2>
+        <h3>1) Crear una autorización</h3>
+        <ol>
+            <li>Selecciona <strong>ID de Orden de Compra</strong> → el <em>Monto Autorizado</em> se rellena solo.</li>
+            <li>Elige <strong>Banco</strong> y, si aplica, <strong>Empleado</strong>.</li>
+            <li>Selecciona <strong>Estado</strong>:
+                <ul>
+                    <li><em>Aprobada</em>: se verifica que el banco tenga <strong>saldo disponible ≥ monto</strong>. Si no, no permite guardar.</li>
+                    <li><em>Rechazada</em>: permite guardar aunque no haya fondos.</li>
+                    <li><em>Pendiente</em>: guarda sin validar fondos.</li>
+                </ul>
+            </li>
+            <li>Opcional: escribe <strong>Observaciones</strong>.</li>
+            <li>Presiona <strong>Agregar</strong> para guardar.</li>
+        </ol>
+
+        <h3>2) Modificar una autorización</h3>
+        <ol>
+            <li>Haz clic en la fila del <strong>Detalle Autorizaciones</strong>.</li>
+            <li>Edita los campos necesarios.</li>
+            <li>Presiona <strong>Actualizar</strong>.</li>
+        </ol>
+
+        <h3>3) Eliminar una autorización</h3>
+        <ol>
+            <li>Selecciona la fila en la tabla.</li>
+            <li>Presiona <strong>Eliminar</strong> y confirma.</li>
+        </ol>
+
+        <h3>4) Imprimir</h3>
+        <p>Presiona <strong>Imprimir</strong> para abrir el reporte de autorizaciones.</p>
+    </section>
+
+    <section class="seccion mensajes">
+        <h2>Mensajes del sistema</h2>
+        <ul>
+            <li><strong>Autorización agregada/modificada/eliminada correctamente</strong>: operación exitosa.</li>
+            <li><strong>Banco sin fondos suficientes</strong>: no se puede <em>Aprobar</em> porque el saldo es menor al monto.</li>
+            <li><strong>No hubo cambios</strong>: intentaste actualizar con los mismos datos.</li>
+            <li><strong>Seleccione un registro</strong>: intentaste actualizar/eliminar sin elegir fila.</li>
+        </ul>
+    </section>
+
+    <section class="seccion tips">
+        <h2>Consejos</h2>
+        <ul>
+            <li>La fila con un <strong>asterisco</strong> en la tabla es solo para edición rápida; el sistema la ignora.</li>
+            <li>Al maximizar la ventana, los controles y la tabla se ajustan automáticamente.</li>
+            <li>Puedes ordenar la tabla por columna desde el encabezado para encontrar registros más rápido.</li>
+        </ul>
+    </section>
+</body>
+</html>
