@@ -40,21 +40,21 @@ namespace Capa_Vista_Ordenes
             this.Cbo_Id_Empleado = new System.Windows.Forms.ComboBox();
             this.Cbo_Id_Estado = new System.Windows.Forms.ComboBox();
             this.Txt_Id_Autorizacion = new System.Windows.Forms.TextBox();
-            this.Dtp_Fecha_Autorizacion = new System.Windows.Forms.DateTimePicker();
-            this.Nud_Monto_Autorizado = new System.Windows.Forms.NumericUpDown();
-            this.Txt_Observaciones = new System.Windows.Forms.TextBox();
+            this.Dtp_dFecha_Autorizacion = new System.Windows.Forms.DateTimePicker();
+            this.Nud_deMonto_Autorizado = new System.Windows.Forms.NumericUpDown();
+            this.Txt_sObservaciones = new System.Windows.Forms.TextBox();
             this.Lbl_Id_Autorizacion = new System.Windows.Forms.Label();
             this.Lbl_Id_Orden = new System.Windows.Forms.Label();
             this.Lbl_Banco = new System.Windows.Forms.Label();
             this.Lbl_Empleado = new System.Windows.Forms.Label();
-            this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.Lbl_Monto = new System.Windows.Forms.Label();
+            this.Lbl_dFecha = new System.Windows.Forms.Label();
+            this.Lbl_deMonto = new System.Windows.Forms.Label();
             this.Lbl_Estado = new System.Windows.Forms.Label();
-            this.Lbl_Observaciones = new System.Windows.Forms.Label();
+            this.Lbl_sObservaciones = new System.Windows.Forms.Label();
             this.Dgv_Auto_Ordenes = new System.Windows.Forms.DataGridView();
             this.Lbl_Detalle = new System.Windows.Forms.Label();
             this.Btn_Limpiar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Nud_Monto_Autorizado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_deMonto_Autorizado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,30 +153,30 @@ namespace Capa_Vista_Ordenes
             this.Txt_Id_Autorizacion.Size = new System.Drawing.Size(185, 29);
             this.Txt_Id_Autorizacion.TabIndex = 41;
             // 
-            // Dtp_Fecha_Autorizacion
+            // Dtp_dFecha_Autorizacion
             // 
-            this.Dtp_Fecha_Autorizacion.CalendarFont = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dtp_Fecha_Autorizacion.Location = new System.Drawing.Point(774, 178);
-            this.Dtp_Fecha_Autorizacion.Name = "Dtp_Fecha_Autorizacion";
-            this.Dtp_Fecha_Autorizacion.Size = new System.Drawing.Size(185, 22);
-            this.Dtp_Fecha_Autorizacion.TabIndex = 42;
+            this.Dtp_dFecha_Autorizacion.CalendarFont = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dtp_dFecha_Autorizacion.Location = new System.Drawing.Point(774, 178);
+            this.Dtp_dFecha_Autorizacion.Name = "Dtp_dFecha_Autorizacion";
+            this.Dtp_dFecha_Autorizacion.Size = new System.Drawing.Size(185, 22);
+            this.Dtp_dFecha_Autorizacion.TabIndex = 42;
             // 
-            // Nud_Monto_Autorizado
+            // Nud_deMonto_Autorizado
             // 
-            this.Nud_Monto_Autorizado.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nud_Monto_Autorizado.Location = new System.Drawing.Point(774, 242);
-            this.Nud_Monto_Autorizado.Name = "Nud_Monto_Autorizado";
-            this.Nud_Monto_Autorizado.Size = new System.Drawing.Size(185, 29);
-            this.Nud_Monto_Autorizado.TabIndex = 43;
+            this.Nud_deMonto_Autorizado.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Nud_deMonto_Autorizado.Location = new System.Drawing.Point(774, 242);
+            this.Nud_deMonto_Autorizado.Name = "Nud_deMonto_Autorizado";
+            this.Nud_deMonto_Autorizado.Size = new System.Drawing.Size(185, 29);
+            this.Nud_deMonto_Autorizado.TabIndex = 43;
             // 
-            // Txt_Observaciones
+            // Txt_sObservaciones
             // 
-            this.Txt_Observaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txt_Observaciones.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Observaciones.Location = new System.Drawing.Point(774, 309);
-            this.Txt_Observaciones.Name = "Txt_Observaciones";
-            this.Txt_Observaciones.Size = new System.Drawing.Size(185, 29);
-            this.Txt_Observaciones.TabIndex = 44;
+            this.Txt_sObservaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_sObservaciones.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Txt_sObservaciones.Location = new System.Drawing.Point(774, 309);
+            this.Txt_sObservaciones.Name = "Txt_sObservaciones";
+            this.Txt_sObservaciones.Size = new System.Drawing.Size(185, 29);
+            this.Txt_sObservaciones.TabIndex = 44;
             // 
             // Lbl_Id_Autorizacion
             // 
@@ -218,25 +218,25 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Empleado.TabIndex = 48;
             this.Lbl_Empleado.Text = "Nombre de Empleado:";
             // 
-            // Lbl_Fecha
+            // Lbl_dFecha
             // 
-            this.Lbl_Fecha.AutoSize = true;
-            this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(505, 173);
-            this.Lbl_Fecha.Name = "Lbl_Fecha";
-            this.Lbl_Fecha.Size = new System.Drawing.Size(218, 22);
-            this.Lbl_Fecha.TabIndex = 49;
-            this.Lbl_Fecha.Text = "Fecha de Autorizacion:";
+            this.Lbl_dFecha.AutoSize = true;
+            this.Lbl_dFecha.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_dFecha.Location = new System.Drawing.Point(505, 173);
+            this.Lbl_dFecha.Name = "Lbl_dFecha";
+            this.Lbl_dFecha.Size = new System.Drawing.Size(218, 22);
+            this.Lbl_dFecha.TabIndex = 49;
+            this.Lbl_dFecha.Text = "Fecha de Autorizacion:";
             // 
-            // Lbl_Monto
+            // Lbl_deMonto
             // 
-            this.Lbl_Monto.AutoSize = true;
-            this.Lbl_Monto.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.Location = new System.Drawing.Point(505, 243);
-            this.Lbl_Monto.Name = "Lbl_Monto";
-            this.Lbl_Monto.Size = new System.Drawing.Size(178, 22);
-            this.Lbl_Monto.TabIndex = 50;
-            this.Lbl_Monto.Text = "Monto Autorizado:";
+            this.Lbl_deMonto.AutoSize = true;
+            this.Lbl_deMonto.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_deMonto.Location = new System.Drawing.Point(505, 243);
+            this.Lbl_deMonto.Name = "Lbl_deMonto";
+            this.Lbl_deMonto.Size = new System.Drawing.Size(178, 22);
+            this.Lbl_deMonto.TabIndex = 50;
+            this.Lbl_deMonto.Text = "Monto Autorizado:";
             // 
             // Lbl_Estado
             // 
@@ -248,15 +248,15 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Estado.TabIndex = 51;
             this.Lbl_Estado.Text = "Estado de Orden:";
             // 
-            // Lbl_Observaciones
+            // Lbl_sObservaciones
             // 
-            this.Lbl_Observaciones.AutoSize = true;
-            this.Lbl_Observaciones.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Observaciones.Location = new System.Drawing.Point(505, 306);
-            this.Lbl_Observaciones.Name = "Lbl_Observaciones";
-            this.Lbl_Observaciones.Size = new System.Drawing.Size(153, 22);
-            this.Lbl_Observaciones.TabIndex = 52;
-            this.Lbl_Observaciones.Text = "Observaciones:";
+            this.Lbl_sObservaciones.AutoSize = true;
+            this.Lbl_sObservaciones.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_sObservaciones.Location = new System.Drawing.Point(505, 306);
+            this.Lbl_sObservaciones.Name = "Lbl_sObservaciones";
+            this.Lbl_sObservaciones.Size = new System.Drawing.Size(153, 22);
+            this.Lbl_sObservaciones.TabIndex = 52;
+            this.Lbl_sObservaciones.Text = "Observaciones:";
             // 
             // Dgv_Auto_Ordenes
             // 
@@ -296,17 +296,17 @@ namespace Capa_Vista_Ordenes
             this.Controls.Add(this.Btn_Limpiar);
             this.Controls.Add(this.Lbl_Detalle);
             this.Controls.Add(this.Dgv_Auto_Ordenes);
-            this.Controls.Add(this.Lbl_Observaciones);
+            this.Controls.Add(this.Lbl_sObservaciones);
             this.Controls.Add(this.Lbl_Estado);
-            this.Controls.Add(this.Lbl_Monto);
-            this.Controls.Add(this.Lbl_Fecha);
+            this.Controls.Add(this.Lbl_deMonto);
+            this.Controls.Add(this.Lbl_dFecha);
             this.Controls.Add(this.Lbl_Empleado);
             this.Controls.Add(this.Lbl_Banco);
             this.Controls.Add(this.Lbl_Id_Orden);
             this.Controls.Add(this.Lbl_Id_Autorizacion);
-            this.Controls.Add(this.Txt_Observaciones);
-            this.Controls.Add(this.Nud_Monto_Autorizado);
-            this.Controls.Add(this.Dtp_Fecha_Autorizacion);
+            this.Controls.Add(this.Txt_sObservaciones);
+            this.Controls.Add(this.Nud_deMonto_Autorizado);
+            this.Controls.Add(this.Dtp_dFecha_Autorizacion);
             this.Controls.Add(this.Txt_Id_Autorizacion);
             this.Controls.Add(this.Cbo_Id_Estado);
             this.Controls.Add(this.Cbo_Id_Empleado);
@@ -320,7 +320,7 @@ namespace Capa_Vista_Ordenes
             this.Name = "Frm_Ordenes_Compra";
             this.Text = "Frm_Ordenes_Compra";
             this.Load += new System.EventHandler(this.Frm_Ordenes_Compra_Load_1);
-            ((System.ComponentModel.ISupportInitialize)(this.Nud_Monto_Autorizado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_deMonto_Autorizado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -339,17 +339,17 @@ namespace Capa_Vista_Ordenes
         private System.Windows.Forms.ComboBox Cbo_Id_Empleado;
         private System.Windows.Forms.ComboBox Cbo_Id_Estado;
         private System.Windows.Forms.TextBox Txt_Id_Autorizacion;
-        private System.Windows.Forms.DateTimePicker Dtp_Fecha_Autorizacion;
-        private System.Windows.Forms.NumericUpDown Nud_Monto_Autorizado;
-        private System.Windows.Forms.TextBox Txt_Observaciones;
+        private System.Windows.Forms.DateTimePicker Dtp_dFecha_Autorizacion;
+        private System.Windows.Forms.NumericUpDown Nud_deMonto_Autorizado;
+        private System.Windows.Forms.TextBox Txt_sObservaciones;
         private System.Windows.Forms.Label Lbl_Id_Autorizacion;
         private System.Windows.Forms.Label Lbl_Id_Orden;
         private System.Windows.Forms.Label Lbl_Banco;
         private System.Windows.Forms.Label Lbl_Empleado;
-        private System.Windows.Forms.Label Lbl_Fecha;
-        private System.Windows.Forms.Label Lbl_Monto;
+        private System.Windows.Forms.Label Lbl_dFecha;
+        private System.Windows.Forms.Label Lbl_deMonto;
         private System.Windows.Forms.Label Lbl_Estado;
-        private System.Windows.Forms.Label Lbl_Observaciones;
+        private System.Windows.Forms.Label Lbl_sObservaciones;
         private System.Windows.Forms.DataGridView Dgv_Auto_Ordenes;
         private System.Windows.Forms.Label Lbl_Detalle;
         private System.Windows.Forms.Button Btn_Limpiar;
