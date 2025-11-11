@@ -1,64 +1,116 @@
 ﻿using System;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using Capa_Modelo_Reservas_Hotel;
 
 namespace Capa_Controlador_Reservas_Hotel
 {
     public class Cls_Pago_Tarjeta_Controlador
     {
-        private readonly Cls_Sentencia_Pago_Tarjeta modelo = new Cls_Sentencia_Pago_Tarjeta();
+        private readonly Cls_Sentencia_Pago_Tarjeta gModelo = new Cls_Sentencia_Pago_Tarjeta();
 
-        // 
-        //  MÉTODO PARA VALIDAR Y PARSEAR FECHA DE VENC. 
-        // 
-        private bool TryParseFechaVencimiento(string input, out DateTime fecha)
+        
+        // VALIDADORES INTERNOS 
+        
+
+        // Validar letras y espacios
+        private bool funValidarSoloLetras(string sTexto)
         {
-            fecha = DateTime.MinValue;
-            if (string.IsNullOrWhiteSpace(input)) return false;
-
-            string[] formatos = { "MM/yy", "M/yy", "MM/yyyy", "M/yyyy", "yyyy-MM-dd", "yyyy/MM/dd" };
-            return DateTime.TryParseExact(input.Trim(), formatos, CultureInfo.InvariantCulture, DateTimeStyles.None, out fecha);
+            return Regex.IsMatch(sTexto, @"^[a-zA-ZÁÉÍÓÚáéíóúÑñ ]+$");
         }
 
-        // 
-        // === REGISTRAR DETALLE DE PAGO CON TARJETA =========
-        // 
-        public (bool exito, string mensaje) InsertarPagoTarjeta(int idPago, decimal monto,
-                                                                string nombreTitular, string numeroTarjeta,
-                                                                string fechaVencimientoTexto, string cvc, string codigoPostal)
+        // Validar números únicamente
+        private bool funValidarSoloNumeros(string sTexto)
+        {
+            return Regex.IsMatch(sTexto, @"^[0-9]+$");
+        }
+
+        // Validar fecha de vencimiento
+        private bool funTryParseFecha(string sInput, out DateTime dFecha)
+        {
+            dFecha = DateTime.MinValue;
+            if (string.IsNullOrWhiteSpace(sInput)) return false;
+
+            string[] formatos =
+            {
+                "MM/yy", "M/yy",
+                "MM/yyyy", "M/yyyy",
+                "yyyy-MM-dd",
+                "yyyy/MM/dd"
+            };
+
+            return DateTime.TryParseExact(
+                sInput.Trim(),
+                formatos,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out dFecha
+            );
+        }
+
+       
+        // INSERTAR PAGO TARJETA (validado)
+        
+        public (bool exito, string mensaje) funInsertarPagoTarjeta(int iIdPago, decimal deMonto,
+                                                                  string sTitular, string sNumTarjeta,
+                                                                  string sFechaVenc, string sCvc,
+                                                                  string sCodPostal)
         {
             try
             {
-                // Validaciones básicas 
-                if (idPago <= 0)
+                // Validación de ID
+                if (iIdPago <= 0)
                     return (false, "El ID del pago principal no es válido.");
 
-                if (string.IsNullOrWhiteSpace(nombreTitular))
-                    return (false, "Ingrese el nombre del titular.");
+                // Validación Nombre Titular
+                if (string.IsNullOrWhiteSpace(sTitular))
+                    return (false, "Debe ingresar el nombre del titular.");
 
-                if (string.IsNullOrWhiteSpace(numeroTarjeta))
-                    return (false, "Ingrese el número de tarjeta.");
+                if (!funValidarSoloLetras(sTitular))
+                    return (false, "El nombre del titular solo puede contener letras y espacios.");
 
-                if (!TryParseFechaVencimiento(fechaVencimientoTexto, out DateTime fechaVenc))
-                    return (false, "Fecha de vencimiento inválida. Formatos válidos: MM/YY, MM/YYYY o YYYY-MM-DD.");
+                // Validación Número tarjeta
+                if (!funValidarSoloNumeros(sNumTarjeta))
+                    return (false, "El número de tarjeta solo puede contener dígitos.");
 
-                if (!int.TryParse(cvc, out int iCvc) || iCvc <= 0)
-                    return (false, "Ingrese un CVC válido (solo números).");
+                if (sNumTarjeta.Length < 13 || sNumTarjeta.Length > 19)
+                    return (false, "El número de tarjeta debe contener entre 13 y 19 dígitos.");
 
-                if (!int.TryParse(codigoPostal, out int iCodigoPostal) || iCodigoPostal <= 0)
-                    return (false, "Ingrese un código postal válido.");
+                //  Validación CVC
+                if (!funValidarSoloNumeros(sCvc))
+                    return (false, "El CVC solo puede contener números.");
 
-                // Guardar detalle en Tbl_Pago_Tarjeta 
-                bool ok = modelo.InsertarDetalleTarjeta(idPago, nombreTitular.Trim(), numeroTarjeta.Trim(), fechaVenc, iCvc, iCodigoPostal);
+                if (sCvc.Length < 3 || sCvc.Length > 4)
+                    return (false, "El CVC debe tener 3 o 4 dígitos.");
 
-                if (ok)
-                    return (true, "Pago con tarjeta registrado correctamente.");
-                else
-                    return (false, "Error al guardar los datos de la tarjeta.");
+                // Validación Código postal
+                if (!funValidarSoloNumeros(sCodPostal))
+                    return (false, "El código postal solo puede contener números.");
+
+                // Fecha vencimiento
+                if (!funTryParseFecha(sFechaVenc, out DateTime dFechaVenc))
+                    return (false, "Fecha de vencimiento inválida. Use MM/YY o MM/YYYY.");
+
+                if (dFechaVenc < DateTime.Now.Date)
+                    return (false, "La tarjeta está vencida.");
+
+               
+                bool lOK = gModelo.InsertarDetalleTarjeta(
+                    iIdPago,
+                    sTitular.Trim(),
+                    sNumTarjeta.Trim(),
+                    dFechaVenc,
+                    Convert.ToInt32(sCvc),
+                    Convert.ToInt32(sCodPostal)
+                );
+
+                return lOK
+                    ? (true, "Pago con tarjeta registrado correctamente.")
+                    : (false, "Ocurrió un error al guardar los datos del pago.");
             }
             catch (Exception ex)
             {
-                return (false, "Error inesperado al registrar el pago con tarjeta: " + ex.Message);
+                return (false, "Error inesperado: " + ex.Message);
             }
         }
     }
