@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.Odbc;
 
-namespace CapaModeloProduccion
+namespace Capa_Modelo_Produccion
 {
     public class Cls_Sentencias_Produccion
     {
-        // Insertar un Room Service usando el Cmp_Numero_Documento del huésped
-        public void InsertarRoomService(int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
+        // ✅ PROCEDIMIENTOS (void) - ROOM SERVICE
+        public void pro_InsertarRoomService(int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -31,8 +31,7 @@ namespace CapaModeloProduccion
             }
         }
 
-        // Editar un Room Service existente
-        public void EditarRoomService(int iIdRoom, int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
+        public void pro_EditarRoomService(int iIdRoom, int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -55,8 +54,7 @@ namespace CapaModeloProduccion
             }
         }
 
-        // Eliminar un Room Service
-        public void EliminarRoomService(int iIdRoom)
+        public void pro_EliminarRoomService(int iIdRoom)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -72,29 +70,11 @@ namespace CapaModeloProduccion
             }
         }
 
-        // Consultar todos los Room Services
-        public DataTable CargarRoomServices()
+        // ✅ PROCEDIMIENTOS (void) - DETALLES
+        public void pro_InsertarDetalle(int iIdRoom, int iIdMenu, int iCantidad)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            DataTable dTabla = new DataTable();
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                string sSql = "SELECT Pk_Id_Room, FK_Id_Huesped, Fk_Id_Habitacion, Cmp_Fecha_Orden, Cmp_Estado FROM Tbl_Room_Service";
-
-                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
-                {
-                    pDa.Fill(dTabla);
-                }
-            }
-            return dTabla;
-        }
-
-        // ✅ Insertar detalle
-        public void InsertarDetalle(int iIdRoom, int iIdMenu, int iCantidad)
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            decimal dePrecioUnitario = ObtenerPrecioUnitario(iIdMenu);
+            decimal dePrecioUnitario = fun_ObtenerPrecioUnitario(iIdMenu);
             decimal deSubtotal = iCantidad * dePrecioUnitario;
 
             string sSql = "INSERT INTO Tbl_Room_Service_Detalle (FK_Id_Room, FK_Id_Menu, Cmp_Cantidad, Cmp_Precio_Unitario, Cmp_Subtotal) " +
@@ -115,11 +95,10 @@ namespace CapaModeloProduccion
             }
         }
 
-        // ✅ Actualizar detalle
-        public void EditarDetalle(int iIdDetalle, int iIdRoom, int iIdMenu, int iCantidad)
+        public void pro_EditarDetalle(int iIdDetalle, int iIdRoom, int iIdMenu, int iCantidad)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            decimal dePrecioUnitario = ObtenerPrecioUnitario(iIdMenu);
+            decimal dePrecioUnitario = fun_ObtenerPrecioUnitario(iIdMenu);
             decimal deSubtotal = iCantidad * dePrecioUnitario;
 
             string sSql = "UPDATE Tbl_Room_Service_Detalle SET FK_Id_Room=?, FK_Id_Menu=?, Cmp_Cantidad=?, " +
@@ -141,8 +120,7 @@ namespace CapaModeloProduccion
             }
         }
 
-        // ✅ Eliminar detalle
-        public void EliminarDetalle(int iIdDetalle)
+        public void pro_EliminarDetalle(int iIdDetalle)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
             string sSql = "DELETE FROM Tbl_Room_Service_Detalle WHERE Pk_Id_Detalle=?";
@@ -158,133 +136,8 @@ namespace CapaModeloProduccion
             }
         }
 
-        // ✅ Obtener detalles (con nombre del plato)
-        public DataTable CargarDetalles()
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            DataTable dTabla = new DataTable();
-            string sSql = "SELECT d.Pk_Id_Detalle, d.FK_Id_Room, m.Cmp_Nombre_Platillo AS Plato, " +
-                         "d.Cmp_Cantidad, d.Cmp_Precio_Unitario, d.Cmp_Subtotal " +
-                         "FROM Tbl_Room_Service_Detalle d " +
-                         "INNER JOIN Tbl_Menu m ON d.FK_Id_Menu = m.Pk_Id_Menu";
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
-                {
-                    pDa.Fill(dTabla);
-                }
-                pCn.desconexion(pCon);
-            }
-            return dTabla;
-        }
-
-        // ✅ Obtener detalles filtrados por un Room específico
-        public DataTable CargarDetallesPorRoom(int iIdRoom)
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            DataTable dTabla = new DataTable();
-            string sSql = "SELECT d.Pk_Id_Detalle, m.Cmp_Nombre_Platillo, " +
-             "d.Cmp_Cantidad, d.Cmp_Precio_Unitario, d.Cmp_Subtotal " +
-             "FROM Tbl_Room_Service_Detalle d " +
-             "INNER JOIN Tbl_Menu m ON d.FK_Id_Menu = m.Pk_Id_Menu " +
-             "WHERE d.FK_Id_Room = ?";
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
-                {
-                    pCmd.Parameters.AddWithValue("@FK_Id_Room", iIdRoom);
-                    OdbcDataAdapter pDa = new OdbcDataAdapter(pCmd);
-                    pDa.Fill(dTabla);
-                }
-                pCn.desconexion(pCon);
-            }
-            return dTabla;
-        }
-
-        // ✅ Obtener precio de un menú
-        public decimal ObtenerPrecioUnitario(int iIdMenu)
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            decimal dePrecio = 0;
-            string sSql = "SELECT Cmp_Precio FROM Tbl_Menu WHERE Pk_Id_Menu=?";
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
-                {
-                    pCmd.Parameters.AddWithValue("@Pk_Id_Menu", iIdMenu);
-                    object oResult = pCmd.ExecuteScalar();
-                    if (oResult != null && oResult != DBNull.Value)
-                        dePrecio = Convert.ToDecimal(oResult);
-                }
-                pCn.desconexion(pCon);
-            }
-            return dePrecio;
-        }
-
-        // ✅ Obtener total general por Room
-        public decimal ObtenerTotalPorRoom(int iIdRoom)
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            decimal deTotal = 0;
-            string sSql = "SELECT SUM(Cmp_Subtotal) FROM Tbl_Room_Service_Detalle WHERE FK_Id_Room=?";
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
-                {
-                    pCmd.Parameters.AddWithValue("@FK_Id_Room", iIdRoom);
-                    object oResult = pCmd.ExecuteScalar();
-                    if (oResult != null && oResult != DBNull.Value)
-                        deTotal = Convert.ToDecimal(oResult);
-                }
-                pCn.desconexion(pCon);
-            }
-            return deTotal;
-        }
-
-        public DataTable CargarMenu()
-        {
-            DataTable dTabla = new DataTable();
-            string sSql = "SELECT Pk_Id_Menu, Cmp_Nombre_Platillo FROM Tbl_Menu";
-
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
-                {
-                    pDa.Fill(dTabla);
-                }
-            }
-            return dTabla;
-        }
-
-        public int ObtenerUltimoIdRoomService()
-        {
-            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
-            int iUltimoId = 0;
-
-            using (OdbcConnection pCon = pCn.conexion())
-            {
-                string sSql = "SELECT MAX(Pk_Id_Room) AS Ultimo FROM Tbl_Room_Service";
-
-                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
-                {
-                    object oResult = pCmd.ExecuteScalar();
-                    if (oResult != null && oResult != DBNull.Value)
-                        iUltimoId = Convert.ToInt32(oResult);
-                }
-
-                pCn.desconexion(pCon);
-            }
-
-            return iUltimoId;
-        }
-
-        // INSERTAR nueva reserva
-        public void InsertarReservaAlacarta(int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFechaReserva, TimeSpan tHoraReserva, int iNumComensales, int iEstado)
+        // ✅ PROCEDIMIENTOS (void) - RESERVAS A LA CARTA
+        public void pro_InsertarReservaAlacarta(int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFechaReserva, TimeSpan tHoraReserva, int iNumComensales, int iEstado)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -307,8 +160,7 @@ namespace CapaModeloProduccion
             }
         }
 
-        // EDITAR reserva existente
-        public void EditarReservaAlacarta(int iIdReserva, int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFechaReserva, TimeSpan tHoraReserva, int iNumComensales, int iEstado)
+        public void pro_EditarReservaAlacarta(int iIdReserva, int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFechaReserva, TimeSpan tHoraReserva, int iNumComensales, int iEstado)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -333,8 +185,7 @@ namespace CapaModeloProduccion
             }
         }
 
-        // ELIMINAR reserva
-        public void EliminarReservaAlacarta(int iIdReserva)
+        public void pro_EliminarReservaAlacarta(int iIdReserva)
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
 
@@ -350,8 +201,84 @@ namespace CapaModeloProduccion
             }
         }
 
-        // CARGAR todas las reservas
-        public DataTable CargarReservasAlacarta()
+        // ✅ FUNCIONES (retornan valores) - CONSULTAS
+        public DataTable fun_CargarRoomServices()
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            DataTable dTabla = new DataTable();
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                string sSql = "SELECT Pk_Id_Room, FK_Id_Huesped, Fk_Id_Habitacion, Cmp_Fecha_Orden, Cmp_Estado FROM Tbl_Room_Service";
+
+                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
+                {
+                    pDa.Fill(dTabla);
+                }
+            }
+            return dTabla;
+        }
+
+        public DataTable fun_CargarDetalles()
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            DataTable dTabla = new DataTable();
+            string sSql = "SELECT d.Pk_Id_Detalle, d.FK_Id_Room, m.Cmp_Nombre_Platillo AS Plato, " +
+                         "d.Cmp_Cantidad, d.Cmp_Precio_Unitario, d.Cmp_Subtotal " +
+                         "FROM Tbl_Room_Service_Detalle d " +
+                         "INNER JOIN Tbl_Menu m ON d.FK_Id_Menu = m.Pk_Id_Menu";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
+                {
+                    pDa.Fill(dTabla);
+                }
+                pCn.desconexion(pCon);
+            }
+            return dTabla;
+        }
+
+        public DataTable fun_CargarDetallesPorRoom(int iIdRoom)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            DataTable dTabla = new DataTable();
+            string sSql = "SELECT d.Pk_Id_Detalle, m.Cmp_Nombre_Platillo, " +
+             "d.Cmp_Cantidad, d.Cmp_Precio_Unitario, d.Cmp_Subtotal " +
+             "FROM Tbl_Room_Service_Detalle d " +
+             "INNER JOIN Tbl_Menu m ON d.FK_Id_Menu = m.Pk_Id_Menu " +
+             "WHERE d.FK_Id_Room = ?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@FK_Id_Room", iIdRoom);
+                    OdbcDataAdapter pDa = new OdbcDataAdapter(pCmd);
+                    pDa.Fill(dTabla);
+                }
+                pCn.desconexion(pCon);
+            }
+            return dTabla;
+        }
+
+        public DataTable fun_CargarMenu()
+        {
+            DataTable dTabla = new DataTable();
+            string sSql = "SELECT Pk_Id_Menu, Cmp_Nombre_Platillo FROM Tbl_Menu";
+
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcDataAdapter pDa = new OdbcDataAdapter(sSql, pCon))
+                {
+                    pDa.Fill(dTabla);
+                }
+            }
+            return dTabla;
+        }
+
+        public DataTable fun_CargarReservasAlacarta()
         {
             Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
             DataTable dTabla = new DataTable();
@@ -384,7 +311,7 @@ namespace CapaModeloProduccion
             return dTabla;
         }
 
-        public DataTable CargarSalones()
+        public DataTable fun_CargarSalones()
         {
             DataTable dTabla = new DataTable();
             string sSql = "SELECT Pk_Id_Salon, Cmp_Nombre_Salon FROM Tbl_Salones";
@@ -400,10 +327,130 @@ namespace CapaModeloProduccion
             return dTabla;
         }
 
+        // ✅ FUNCIONES (retornan valores) - OBTENER DATOS ESPECÍFICOS
+        public decimal fun_ObtenerPrecioUnitario(int iIdMenu)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            decimal dePrecio = 0;
+            string sSql = "SELECT Cmp_Precio FROM Tbl_Menu WHERE Pk_Id_Menu=?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@Pk_Id_Menu", iIdMenu);
+                    object oResult = pCmd.ExecuteScalar();
+                    if (oResult != null && oResult != DBNull.Value)
+                        dePrecio = Convert.ToDecimal(oResult);
+                }
+                pCn.desconexion(pCon);
+            }
+            return dePrecio;
+        }
+
+        public decimal fun_ObtenerTotalPorRoom(int iIdRoom)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            decimal deTotal = 0;
+            string sSql = "SELECT SUM(Cmp_Subtotal) FROM Tbl_Room_Service_Detalle WHERE FK_Id_Room=?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@FK_Id_Room", iIdRoom);
+                    object oResult = pCmd.ExecuteScalar();
+                    if (oResult != null && oResult != DBNull.Value)
+                        deTotal = Convert.ToDecimal(oResult);
+                }
+                pCn.desconexion(pCon);
+            }
+            return deTotal;
+        }
+
+        public int fun_ObtenerUltimoIdRoomService()
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            int iUltimoId = 0;
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                string sSql = "SELECT MAX(Pk_Id_Room) AS Ultimo FROM Tbl_Room_Service";
+
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    object oResult = pCmd.ExecuteScalar();
+                    if (oResult != null && oResult != DBNull.Value)
+                        iUltimoId = Convert.ToInt32(oResult);
+                }
+
+                pCn.desconexion(pCon);
+            }
+
+            return iUltimoId;
+        }
+
+        public bool fun_ExisteHuesped(int idHuesped)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            bool existe = false;
+            string sSql = "SELECT COUNT(*) FROM Tbl_Huesped WHERE Pk_Id_Huesped = ?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@Pk_Id_Huesped", idHuesped);
+                    int count = Convert.ToInt32(pCmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+                pCn.desconexion(pCon);
+            }
+            return existe;
+        }
+
+
+        public bool fun_ExisteHabitacion(int idHabitacion)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            bool existe = false;
+            string sSql = "SELECT COUNT(*) FROM Tbl_Habitaciones WHERE Pk_ID_Habitaciones = ?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@Pk_ID_Habitaciones", idHabitacion);
+                    int count = Convert.ToInt32(pCmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+                pCn.desconexion(pCon);
+            }
+
+            return existe;
+        }
+
+        public bool fun_ExisteSalon(int idSalon)
+        {
+            Cls_Conexion_Produccion pCn = new Cls_Conexion_Produccion();
+            bool existe = false;
+            string sSql = "SELECT COUNT(*) FROM Tbl_Salon WHERE Pk_Id_Salon = ?";
+
+            using (OdbcConnection pCon = pCn.conexion())
+            {
+                using (OdbcCommand pCmd = new OdbcCommand(sSql, pCon))
+                {
+                    pCmd.Parameters.AddWithValue("@Pk_Id_Salon", idSalon);
+                    int count = Convert.ToInt32(pCmd.ExecuteScalar());
+                    existe = count > 0;
+                }
+                pCn.desconexion(pCon);
+            }
+
+            return existe;
+        }
 
     }
-
-
 }
 
 
