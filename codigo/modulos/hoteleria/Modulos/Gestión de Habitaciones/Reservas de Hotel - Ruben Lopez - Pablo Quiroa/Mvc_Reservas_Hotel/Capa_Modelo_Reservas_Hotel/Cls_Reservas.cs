@@ -16,14 +16,14 @@ namespace Capa_Modelo_Reservas_Hotel
         public DataTable ObtenerHabitaciones()
         {
             string sSql = @"
-                SELECT 
-                    PK_ID_Habitaciones AS IdHabitacion,
-                    Cmp_Descripcion_Habitacion AS Descripcion,
-                    Cmp_Tarifa_Noche AS Tarifa,
-                    Cmp_Capacidad_Habitacion AS Capacidad
-                FROM `Tbl_Habitaciones`
-                WHERE Cmp_Estado_Habitacion = 1
-                ORDER BY PK_ID_Habitaciones;";
+        SELECT 
+            PK_ID_Habitaciones AS IdHabitacion,
+            Cmp_Descripcion_Habitacion AS Descripcion,
+            Cmp_Tarifa_Noche AS Tarifa,
+            Cmp_Capacidad_Habitacion AS Capacidad
+        FROM `Tbl_Habitaciones`
+        WHERE Cmp_Estado_Habitacion = 0
+        ORDER BY PK_ID_Habitaciones;";
 
             using (var conn = conexion.conexion())
             using (var da = new OdbcDataAdapter(sSql, conn))
@@ -33,6 +33,8 @@ namespace Capa_Modelo_Reservas_Hotel
                 return dt;
             }
         }
+
+
 
         public DataTable ObtenerBuffetData()
         {
