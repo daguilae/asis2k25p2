@@ -56,10 +56,28 @@ namespace Capa_Vista_CB
             finally { bCargando = false; }
         }
 
-        private void Btn_Ayuda_Click(object sender, EventArgs e) {
-            Help.ShowHelp(this, @"AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "ConciliacionBancaria_ayuda.html");
-        
+        private void Btn_Ayuda_Click(object sender, EventArgs e)
+        {
+            string helpPath = System.IO.Path.Combine(
+                Application.StartupPath,
+                "AyudasConciliacionBancaria",
+                "AyudasConciliacionBancaria.chm"
+            );
+
+            if (!System.IO.File.Exists(helpPath))
+            {
+                MessageBox.Show(
+                    "No se encontró el archivo de ayuda:\n" + helpPath,
+                    "Ayuda no disponible",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return;
+            }
+
+            Help.ShowHelp(this, helpPath, HelpNavigator.Topic, "ConciliacionBancaria_ayuda.html");
         }
+
 
         private void Btn_Salir_Click(object sender, EventArgs e) => Close();
 
