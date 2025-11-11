@@ -239,6 +239,8 @@ namespace Capa_Vista_Hoteleria
             Frm_Ordenes_Compra ordenes = new Frm_Ordenes_Compra();
             ordenes.MdiParent = this;
             ordenes.Show();
+        }
+
         private void cierreDiarioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
