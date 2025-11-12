@@ -10,76 +10,76 @@ namespace CapaModeloOP
         // ORDENES DE PRODUCCIÓN
         // -----------------------------------------------------------
 
-        public void InsertarOP(DateTime fecha_solicitud, DateTime fecha_registro)
+        public void pro_insertarOP(DateTime dFecha_solicitud, DateTime dFecha_registro)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "INSERT INTO Tbl_Ordenes_Produccion (Cmp_Fecha_Solicitud, Cmp_Fecha_Registro) VALUES (?, ?)";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("fecha_solicitud", fecha_solicitud);
-                    cmd.Parameters.AddWithValue("fecha_registro", fecha_registro);
+                    cmd.Parameters.AddWithValue("fecha_solicitud", dFecha_solicitud);
+                    cmd.Parameters.AddWithValue("fecha_registro", dFecha_registro);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EditarOP(int id, DateTime fecha_solicitud, DateTime fecha_registro)
+        public void pro_editarOP(int iId, DateTime dFecha_solicitud, DateTime dFecha_registro)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "UPDATE Tbl_Ordenes_Produccion SET Cmp_Fecha_Solicitud=?, Cmp_Fecha_Registro=? WHERE Pk_Id_Orden_Produccion=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("fecha_solicitud", fecha_solicitud);
-                    cmd.Parameters.AddWithValue("fecha_registro", fecha_registro);
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("fecha_solicitud", dFecha_solicitud);
+                    cmd.Parameters.AddWithValue("fecha_registro", dFecha_registro);
+                    cmd.Parameters.AddWithValue("id", iId);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable CargarMenu()
+        public DataTable fun_CargarMenu()
         {
             throw new NotImplementedException();
         }
 
-        public void EliminarMenu(int id)
+        public void fun_eliminarMenu(int iId)
         {
             throw new NotImplementedException();
         }
 
-        public void EditarMenu(int id, string nombre, string descripcion, decimal precio, int idTipoMenu)
+        public void fun_editarMenu(int iId, string sNombre, string sDescripcion, decimal dePrecio, int iIdTipoMenu)
         {
             throw new NotImplementedException();
         }
 
-        public void InsertarMenu(string nombre, string descripcion, decimal precio, int idTipoMenu)
+        public void fun_insertarMenu(string sNombre, string sDescripcion, decimal dePrecio, int iIdTipoMenu)
         {
             throw new NotImplementedException();
         }
 
-        public void EliminarOP(int id)
+        public void pro_eliminarOP(int iId)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "DELETE FROM Tbl_Ordenes_Produccion WHERE Pk_Id_Orden_Produccion=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("id", iId);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable CargarOrdenesProduccion()
+        public DataTable fun_cargarOrdenesProduccion()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "SELECT * FROM Tbl_Ordenes_Produccion";
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
@@ -90,10 +90,10 @@ namespace CapaModeloOP
             return tabla;
         }
 
-        public bool TieneRelaciones(int idOrden)
+        public bool fun_tieneRelaciones(int iIdOrden)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = @"
             SELECT COUNT(*) 
@@ -104,8 +104,8 @@ namespace CapaModeloOP
             ) AS relaciones";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("id1", idOrden);
-                    cmd.Parameters.AddWithValue("id2", idOrden);
+                    cmd.Parameters.AddWithValue("id1", iIdOrden);
+                    cmd.Parameters.AddWithValue("id2", iIdOrden);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     return count > 0;
                 }
@@ -117,54 +117,54 @@ namespace CapaModeloOP
         // MOBILIARIO
         // -----------------------------------------------------------
 
-        public void InsertarMobiliario(string mobiliario)
+        public void pro_insertarMobiliario(string sMobiliario)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "INSERT INTO Tbl_Mobiliario (Cmp_Mobiliario) VALUES (?)";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("mobiliario", mobiliario);
+                    cmd.Parameters.AddWithValue("mobiliario", sMobiliario);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EditarMobiliario(int id, string mobiliario)
+        public void pro_editarMobiliario(int iId, string sMobiliario)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "UPDATE Tbl_Mobiliario SET Cmp_Mobiliario=? WHERE Pk_Id_Mobiliario=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("mobiliario", mobiliario);
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("mobiliario", sMobiliario);
+                    cmd.Parameters.AddWithValue("id", iId);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EliminarMobiliario(int id)
+        public void pro_eliminarMobiliario(int iId)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "DELETE FROM Tbl_Mobiliario WHERE Pk_Id_Mobiliario=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("id", id);
+                    cmd.Parameters.AddWithValue("id", iId);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable CargarMobiliario()
+        public DataTable fun_cargarMobiliario()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "SELECT * FROM Tbl_Mobiliario";
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
@@ -179,58 +179,58 @@ namespace CapaModeloOP
         // DETALLE ORDEN MENÚ
         // -----------------------------------------------------------
 
-        public void InsertarDetalleOrdenMenu(int idOrdenProduccion, int idMenu, int cantidad)
+        public void pro_insertarDetalleOrdenMenu(int iIdOrdenProduccion, int iIdMenu, int iCantidad)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "INSERT INTO Tbl_Detalle_Ordenes_Menu (Fk_Id_Orden_Produccion, Fk_Id_Menu, Cmp_Cantidad_Platillos) VALUES (?, ?, ?)";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idOrdenProduccion", idOrdenProduccion);
-                    cmd.Parameters.AddWithValue("idMenu", idMenu);
-                    cmd.Parameters.AddWithValue("cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("idOrdenProduccion", iIdOrdenProduccion);
+                    cmd.Parameters.AddWithValue("idMenu", iIdMenu);
+                    cmd.Parameters.AddWithValue("cantidad", iCantidad);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EditarDetalleOrdenMenu(int idDetalle, int idOrdenProduccion, int idMenu, int cantidad)
+        public void pro_editarDetalleOrdenMenu(int iIdDetalle, int iIdOrdenProduccion, int iIdMenu, int iCantidad)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "UPDATE Tbl_Detalle_Ordenes_Menu SET Fk_Id_Orden_Produccion=?, Fk_Id_Menu=?, Cmp_Cantidad_Platillos=? WHERE Pk_Id_Detalle_Orden=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idOrdenProduccion", idOrdenProduccion);
-                    cmd.Parameters.AddWithValue("idMenu", idMenu);
-                    cmd.Parameters.AddWithValue("cantidad", cantidad);
-                    cmd.Parameters.AddWithValue("idDetalle", idDetalle);
+                    cmd.Parameters.AddWithValue("idOrdenProduccion", iIdOrdenProduccion);
+                    cmd.Parameters.AddWithValue("idMenu", iIdMenu);
+                    cmd.Parameters.AddWithValue("cantidad", iCantidad);
+                    cmd.Parameters.AddWithValue("idDetalle", iIdDetalle);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EliminarDetalleOrdenMenu(int idDetalle)
+        public void pro_eliminarDetalleOrdenMenu(int iIdDetalle)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "DELETE FROM Tbl_Detalle_Ordenes_Menu WHERE Pk_Id_Detalle_Orden=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idDetalle", idDetalle);
+                    cmd.Parameters.AddWithValue("idDetalle", iIdDetalle);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable CargarDetalleOrdenMenu()
+        public DataTable fun_cargarDetalleOrdenMenu()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = @"SELECT d.Pk_Id_Detalle_Orden,
                                       d.Fk_Id_Orden_Produccion,
@@ -251,11 +251,11 @@ namespace CapaModeloOP
         // COMBOS
         // -----------------------------------------------------------
 
-        public DataTable CargarComboOrdenesProduccion()
+        public DataTable fun_cargarComboOrdenesProduccion()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "SELECT Pk_Id_Orden_Produccion FROM Tbl_Ordenes_Produccion";
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
@@ -266,11 +266,11 @@ namespace CapaModeloOP
             return tabla;
         }
 
-        public DataTable CargarComboMenu()
+        public DataTable fun_cargarComboMenu()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "SELECT Pk_Id_Menu, Cmp_Nombre_Platillo FROM Tbl_Menu";
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))
@@ -285,58 +285,58 @@ namespace CapaModeloOP
         // DETALLE ORDEN MOBILIARIO
         // -----------------------------------------------------------
 
-        public void InsertarDetalleOrdenMobiliario(int idOrden, int idMobiliario, int cantidad)
+        public void pro_insertarDetalleOrdenMobiliario(int iIdOrden, int iIdMobiliario, int iCantidad)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "INSERT INTO Tbl_Detalle_Ordenes_Mobiliario (Fk_Id_Orden_Produccion, Fk_Id_Mobiliario, Cmp_Cantidad_Mobiliario) VALUES (?, ?, ?)";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idOrden", idOrden);
-                    cmd.Parameters.AddWithValue("idMobiliario", idMobiliario);
-                    cmd.Parameters.AddWithValue("cantidad", cantidad);
+                    cmd.Parameters.AddWithValue("idOrden", iIdOrden);
+                    cmd.Parameters.AddWithValue("idMobiliario", iIdMobiliario);
+                    cmd.Parameters.AddWithValue("cantidad", iCantidad);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EditarDetalleOrdenMobiliario(int idDetalle, int idOrden, int idMobiliario, int cantidad)
+        public void pro_editarDetalleOrdenMobiliario(int iIdDetalle, int iIdOrden, int iIdMobiliario, int iCantidad)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "UPDATE Tbl_Detalle_Ordenes_Mobiliario SET Fk_Id_Orden_Produccion=?, Fk_Id_Mobiliario=?, Cmp_Cantidad_Mobiliario=? WHERE Pk_Id_Detalle_Orden_Mobiliario=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idOrden", idOrden);
-                    cmd.Parameters.AddWithValue("idMobiliario", idMobiliario);
-                    cmd.Parameters.AddWithValue("cantidad", cantidad);
-                    cmd.Parameters.AddWithValue("idDetalle", idDetalle);
+                    cmd.Parameters.AddWithValue("idOrden", iIdOrden);
+                    cmd.Parameters.AddWithValue("idMobiliario", iIdMobiliario);
+                    cmd.Parameters.AddWithValue("cantidad", iCantidad);
+                    cmd.Parameters.AddWithValue("idDetalle", iIdDetalle);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void EliminarDetalleOrdenMobiliario(int idDetalle)
+        public void pro_eliminarDetalleOrdenMobiliario(int iIdDetalle)
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "DELETE FROM Tbl_Detalle_Ordenes_Mobiliario WHERE Pk_Id_Detalle_Orden_Mobiliario=?";
                 using (OdbcCommand cmd = new OdbcCommand(sql, con))
                 {
-                    cmd.Parameters.AddWithValue("idDetalle", idDetalle);
+                    cmd.Parameters.AddWithValue("idDetalle", iIdDetalle);
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public DataTable CargarDetalleOrdenMobiliario()
+        public DataTable fun_cargarDetalleOrdenMobiliario()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = @"SELECT d.Pk_Id_Detalle_Orden_Mobiliario,
                                       d.Fk_Id_Orden_Produccion,
@@ -353,11 +353,11 @@ namespace CapaModeloOP
             return tabla;
         }
 
-        public DataTable CargarComboMobiliario()
+        public DataTable fun_cargarComboMobiliario()
         {
             Cls_Conexion_OP cn = new Cls_Conexion_OP();
             DataTable tabla = new DataTable();
-            using (OdbcConnection con = cn.conexion())
+            using (OdbcConnection con = cn.fun_conexion())
             {
                 string sql = "SELECT Pk_Id_Mobiliario, Cmp_Mobiliario FROM Tbl_Mobiliario";
                 using (OdbcDataAdapter da = new OdbcDataAdapter(sql, con))

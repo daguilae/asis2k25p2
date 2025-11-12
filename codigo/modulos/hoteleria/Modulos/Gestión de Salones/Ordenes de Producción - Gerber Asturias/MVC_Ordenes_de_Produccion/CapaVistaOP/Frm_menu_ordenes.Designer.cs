@@ -52,7 +52,7 @@ namespace CapaVistaOP
             // 
             this.Lbl_Modulo_Hoteleria.AutoSize = true;
             this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(231, 41);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(231, 46);
             this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
             this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
             this.Lbl_Modulo_Hoteleria.TabIndex = 104;
@@ -60,9 +60,10 @@ namespace CapaVistaOP
             // 
             // Btn_Ordenes_Menu
             // 
-            this.Btn_Ordenes_Menu.Location = new System.Drawing.Point(78, 218);
+            this.Btn_Ordenes_Menu.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Ordenes_Menu.Location = new System.Drawing.Point(41, 218);
             this.Btn_Ordenes_Menu.Name = "Btn_Ordenes_Menu";
-            this.Btn_Ordenes_Menu.Size = new System.Drawing.Size(102, 46);
+            this.Btn_Ordenes_Menu.Size = new System.Drawing.Size(140, 57);
             this.Btn_Ordenes_Menu.TabIndex = 101;
             this.Btn_Ordenes_Menu.Text = "Ordenes de menu";
             this.Btn_Ordenes_Menu.UseVisualStyleBackColor = true;
@@ -70,9 +71,10 @@ namespace CapaVistaOP
             // 
             // Btn_Mobiliario
             // 
-            this.Btn_Mobiliario.Location = new System.Drawing.Point(220, 218);
+            this.Btn_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Mobiliario.Location = new System.Drawing.Point(207, 218);
             this.Btn_Mobiliario.Name = "Btn_Mobiliario";
-            this.Btn_Mobiliario.Size = new System.Drawing.Size(102, 46);
+            this.Btn_Mobiliario.Size = new System.Drawing.Size(119, 57);
             this.Btn_Mobiliario.TabIndex = 102;
             this.Btn_Mobiliario.Text = "Mobiliario";
             this.Btn_Mobiliario.UseVisualStyleBackColor = true;
@@ -80,9 +82,10 @@ namespace CapaVistaOP
             // 
             // Btn_Ordenes_Produccion
             // 
-            this.Btn_Ordenes_Produccion.Location = new System.Drawing.Point(377, 218);
+            this.Btn_Ordenes_Produccion.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Ordenes_Produccion.Location = new System.Drawing.Point(346, 218);
             this.Btn_Ordenes_Produccion.Name = "Btn_Ordenes_Produccion";
-            this.Btn_Ordenes_Produccion.Size = new System.Drawing.Size(106, 46);
+            this.Btn_Ordenes_Produccion.Size = new System.Drawing.Size(145, 57);
             this.Btn_Ordenes_Produccion.TabIndex = 103;
             this.Btn_Ordenes_Produccion.Text = "Ordenes de producción";
             this.Btn_Ordenes_Produccion.UseVisualStyleBackColor = true;
@@ -90,9 +93,10 @@ namespace CapaVistaOP
             // 
             // Btn_Ordenes_Mobiliario
             // 
-            this.Btn_Ordenes_Mobiliario.Location = new System.Drawing.Point(529, 218);
+            this.Btn_Ordenes_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Ordenes_Mobiliario.Location = new System.Drawing.Point(517, 218);
             this.Btn_Ordenes_Mobiliario.Name = "Btn_Ordenes_Mobiliario";
-            this.Btn_Ordenes_Mobiliario.Size = new System.Drawing.Size(101, 46);
+            this.Btn_Ordenes_Mobiliario.Size = new System.Drawing.Size(149, 57);
             this.Btn_Ordenes_Mobiliario.TabIndex = 104;
             this.Btn_Ordenes_Mobiliario.Text = "Ordenes de mobiliario";
             this.Btn_Ordenes_Mobiliario.UseVisualStyleBackColor = true;
