@@ -59,6 +59,12 @@
     <Compile Include="Frm_Mantenimiento_hoteleria.Designer.cs">
       <DependentUpon>Frm_Mantenimiento_hoteleria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_ObjetosPerdidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_ObjetosPerdidos.Designer.cs">
+      <DependentUpon>Frm_ObjetosPerdidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Reporte_MHOT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Mantenimiento_hoteleria.resx">
       <DependentUpon>Frm_Mantenimiento_hoteleria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_ObjetosPerdidos.resx">
+      <DependentUpon>Frm_ObjetosPerdidos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Reporte_MHOT.resx">
       <DependentUpon>Frm_Reporte_MHOT.cs</DependentUpon>
