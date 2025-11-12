@@ -10,26 +10,23 @@ using System.Data.Odbc;
 
 namespace Capa_Modelo_Contabilidad
 {
-    public class Conexion
+    public class Cls_Conexion
     {
-        private string Cadena => "Dsn=bd_hoteleria";
+        private readonly string sCadena = "Dsn=bd_hoteleria";
 
-        public OdbcConnection Abrir()
+        public OdbcConnection fun_AbrirConexion()
         {
-            var c = new OdbcConnection(Cadena);
+            var c = new OdbcConnection(sCadena);
             c.Open();
             return c;
         }
 
-        public void Cerrar(OdbcConnection c)
+        public void fun_CerrarConexion(OdbcConnection c)
         {
             if (c != null && c.State != ConnectionState.Closed)
-            {
                 c.Close();
-            }
         }
     }
 }
-
 
 //Fin del codigo- Carlo Sosa 0901-22-1106- Fecha: 01/11/2025
