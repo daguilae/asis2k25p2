@@ -39,7 +39,7 @@ namespace Capa_Vista_S
             this.Lbl_Ubicacion = new System.Windows.Forms.Label();
             this.Lbl_Nombre = new System.Windows.Forms.Label();
             this.Txt_Nombre = new System.Windows.Forms.TextBox();
-            this.Lbl_Consulta = new System.Windows.Forms.Label();
+            this.Lbl_Salones = new System.Windows.Forms.Label();
             this.Dvg_Salones = new System.Windows.Forms.DataGridView();
             this.Lbl_Disponibilidad = new System.Windows.Forms.Label();
             this.Chk_disponibilidad = new System.Windows.Forms.CheckBox();
@@ -161,16 +161,16 @@ namespace Capa_Vista_S
             this.Txt_Nombre.Size = new System.Drawing.Size(178, 23);
             this.Txt_Nombre.TabIndex = 103;
             // 
-            // Lbl_Consulta
+            // Lbl_Salones
             // 
-            this.Lbl_Consulta.AutoSize = true;
-            this.Lbl_Consulta.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_Consulta.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.Lbl_Consulta.Location = new System.Drawing.Point(19, 93);
-            this.Lbl_Consulta.Name = "Lbl_Consulta";
-            this.Lbl_Consulta.Size = new System.Drawing.Size(184, 27);
-            this.Lbl_Consulta.TabIndex = 102;
-            this.Lbl_Consulta.Text = "Datos del Salon";
+            this.Lbl_Salones.AutoSize = true;
+            this.Lbl_Salones.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Lbl_Salones.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Salones.Location = new System.Drawing.Point(19, 93);
+            this.Lbl_Salones.Name = "Lbl_Salones";
+            this.Lbl_Salones.Size = new System.Drawing.Size(184, 27);
+            this.Lbl_Salones.TabIndex = 102;
+            this.Lbl_Salones.Text = "Datos del Salon";
             // 
             // Dvg_Salones
             // 
@@ -236,7 +236,7 @@ namespace Capa_Vista_S
             this.Msp_Menu.Name = "Msp_Menu";
             this.Msp_Menu.Size = new System.Drawing.Size(1011, 24);
             this.Msp_Menu.TabIndex = 141;
-            this.Msp_Menu.Text = "menuStrip1";
+            this.Msp_Menu.Text = "Msp_Menu";
             // 
             // salonesToolStripMenuItem
             // 
@@ -263,7 +263,7 @@ namespace Capa_Vista_S
             this.Controls.Add(this.Lbl_Ubicacion);
             this.Controls.Add(this.Lbl_Nombre);
             this.Controls.Add(this.Txt_Nombre);
-            this.Controls.Add(this.Lbl_Consulta);
+            this.Controls.Add(this.Lbl_Salones);
             this.Controls.Add(this.Dvg_Salones);
             this.Name = "Frm_Salones";
             this.Text = "Frm_Salones";
@@ -287,7 +287,7 @@ namespace Capa_Vista_S
         private System.Windows.Forms.Label Lbl_Ubicacion;
         private System.Windows.Forms.Label Lbl_Nombre;
         private System.Windows.Forms.TextBox Txt_Nombre;
-        private System.Windows.Forms.Label Lbl_Consulta;
+        private System.Windows.Forms.Label Lbl_Salones;
         private System.Windows.Forms.DataGridView Dvg_Salones;
         private System.Windows.Forms.Label Lbl_Disponibilidad;
         private System.Windows.Forms.CheckBox Chk_disponibilidad;
