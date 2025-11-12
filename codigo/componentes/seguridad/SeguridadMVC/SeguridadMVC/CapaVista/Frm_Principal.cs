@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
 
 
+
 namespace Capa_Vista_Seguridad
 {
     public partial class Frm_Principal : Form
@@ -184,6 +185,8 @@ namespace Capa_Vista_Seguridad
         {
             this.Close();
         }
+
+
     }
 
 }
