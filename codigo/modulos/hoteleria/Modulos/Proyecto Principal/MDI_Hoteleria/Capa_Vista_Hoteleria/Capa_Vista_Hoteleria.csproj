@@ -41,6 +41,9 @@
     <Reference Include="Capa_vista_Check_In_Check_out">
       <HintPath>..\..\..\Gestión de Habitaciones\ChekinCheckOut-Brandon Hernandez\MVC-Check_in_Check_out\Capa_vista_Check_In_Check_out\bin\Debug\Capa_vista_Check_In_Check_out.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Cierre">
+      <HintPath>..\..\..\Gestión de Habitaciones\Cierre de Produccion y Reportes - Ernesto Samayoa\MVC_Cierre\Capa_Vista_Cierre\bin\Debug\Capa_Vista_Cierre.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Contabilidad">
       <HintPath>..\..\..\Gestión de Habitaciones\Enlace de Contabilidad - Carlo Sosa\MVC_Contabilidad\Capa_Vista_Contabilidad\bin\Debug\Capa_Vista_Contabilidad.dll</HintPath>
     </Reference>
@@ -55,6 +58,9 @@
     </Reference>
     <Reference Include="Capa_Vista_Produccion">
       <HintPath>..\..\..\Gestión de Salones\Proceso de Produccion - Sergio Izeppi\Produccion\Capa_Vista_Produccion\bin\Debug\Capa_Vista_Produccion.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Receta">
+      <HintPath>..\..\..\Gestión de Salones\Recetas - Anderson Trigueros\Receta\Capa_Vista_Receta\bin\Debug\Capa_Vista_Receta.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Reservas_Hotel">
       <HintPath>..\..\..\Gestión de Habitaciones\Reservas de Hotel - Ruben Lopez - Pablo Quiroa\Mvc_Reservas_Hotel\Capa_Vista_Reservas_Hotel\bin\Debug\Capa_Vista_Reservas_Hotel.dll</HintPath>

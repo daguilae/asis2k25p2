@@ -11,21 +11,19 @@ namespace Capa_Modelo_Reservas_Hotel
 
         private const int PUNTOS_POR_RESERVA = 15;
 
-        // =========================================================
         // ===============   FORM RESERVA (REGISTRO)   =============
-        // =========================================================
 
         public DataTable ObtenerHabitaciones()
         {
             string sSql = @"
-                SELECT 
-                    PK_ID_Habitaciones AS IdHabitacion,
-                    Cmp_Descripcion_Habitacion AS Descripcion,
-                    Cmp_Tarifa_Noche AS Tarifa,
-                    Cmp_Capacidad_Habitacion AS Capacidad
-                FROM `Tbl_Habitaciones`
-                WHERE Cmp_Estado_Habitacion = 1
-                ORDER BY PK_ID_Habitaciones;";
+        SELECT 
+            PK_ID_Habitaciones AS IdHabitacion,
+            Cmp_Descripcion_Habitacion AS Descripcion,
+            Cmp_Tarifa_Noche AS Tarifa,
+            Cmp_Capacidad_Habitacion AS Capacidad
+        FROM `Tbl_Habitaciones`
+        WHERE Cmp_Estado_Habitacion = 0
+        ORDER BY PK_ID_Habitaciones;";
 
             using (var conn = conexion.conexion())
             using (var da = new OdbcDataAdapter(sSql, conn))
@@ -35,6 +33,8 @@ namespace Capa_Modelo_Reservas_Hotel
                 return dt;
             }
         }
+
+
 
         public DataTable ObtenerBuffetData()
         {
@@ -102,11 +102,6 @@ namespace Capa_Modelo_Reservas_Hotel
             }
         }
 
-        /// <summary>
-        /// Inserta una reserva. Por requerimiento actual:
-        /// - Fk_Id_Promociones se envía SIEMPRE NULL
-        /// - Si el estado inicial es Confirmada, se acreditan +15 puntos
-        /// </summary>
         public void InsertarReserva(int iDHuesped, int iDHabitacion, int iDBuffet, int iNumHuespedes,
                                     DateTime dFechaEntrada, DateTime dFechaSalida,
                                     string sPeticiones, string sEstado, decimal dTotal)
@@ -122,21 +117,18 @@ namespace Capa_Modelo_Reservas_Hotel
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sSql, conn))
             {
-                // IMPORTANTE: el orden de parámetros debe coincidir EXACTO con los ? del INSERT
-                cmd.Parameters.Add(null, OdbcType.Int).Value = iDHuesped;                    // 1
-                cmd.Parameters.Add(null, OdbcType.Int).Value = iDHabitacion;                 // 2
-                // 3 => NULL (Fk_Id_Promociones)
-                cmd.Parameters.Add(null, OdbcType.Int).Value = iDBuffet;                     // 4
-                cmd.Parameters.Add(null, OdbcType.Date).Value = DateTime.Now.Date;           // 5 Cmp_Fecha_Reserva
-                cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaEntrada.Date;          // 6
-                cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaSalida.Date;           // 7
-                cmd.Parameters.Add(null, OdbcType.Int).Value = iNumHuespedes;                // 8
-                cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones ?? "";   // 9
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iDHuesped;                   
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iDHabitacion;                 
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iDBuffet;                     
+                cmd.Parameters.Add(null, OdbcType.Date).Value = DateTime.Now.Date;           
+                cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaEntrada.Date;          
+                cmd.Parameters.Add(null, OdbcType.Date).Value = dFechaSalida.Date;          
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iNumHuespedes;               
+                cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones ?? "";  
                 cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value =
-                    string.IsNullOrWhiteSpace(sEstado) ? "Pendiente" : sEstado;              // 10
+                    string.IsNullOrWhiteSpace(sEstado) ? "Pendiente" : sEstado;              
 
-                // Con ODBC: usar Double para DECIMAL/NUMERIC evita errores de conversión
-                cmd.Parameters.Add(null, OdbcType.Double).Value = Convert.ToDouble(dTotal);  // 11
+                cmd.Parameters.Add(null, OdbcType.Double).Value = Convert.ToDouble(dTotal);  
 
                 cmd.ExecuteNonQuery();
             }
@@ -166,9 +158,7 @@ namespace Capa_Modelo_Reservas_Hotel
             }
         }
 
-        // =========================================================
         // ===============   FORM MODIFICAR RESERVA   ==============
-        // =========================================================
 
         public DataTable BuscarReservas(string sFiltro)
         {
@@ -222,11 +212,6 @@ namespace Capa_Modelo_Reservas_Hotel
             }
         }
 
-        /// <summary>
-        /// Actualiza la reserva. Si el estado cambia:
-        /// - De Confirmada → (Pendiente/Cancelada): resta 15
-        /// - De (Pendiente/Cancelada) → Confirmada: suma 15
-        /// </summary>
         public void ActualizarReserva(int iDReserva, int iDHabitacion, DateTime dEntrada, DateTime dSalida,
                                       string sPeticiones, string sEstado, decimal dTotal,
                                       string estadoAnterior, int idHuesped)
@@ -250,7 +235,7 @@ namespace Capa_Modelo_Reservas_Hotel
                 cmd.Parameters.Add(null, OdbcType.VarChar, 255).Value = sPeticiones ?? "";
                 cmd.Parameters.Add(null, OdbcType.VarChar, 20).Value = sEstado;
 
-                // Igual que en INSERT: usar Double para DECIMAL
+                // Double para DECIMAL
                 cmd.Parameters.Add(null, OdbcType.Double).Value = Convert.ToDouble(dTotal);
 
                 cmd.Parameters.Add(null, OdbcType.Int).Value = iDReserva;
@@ -258,6 +243,7 @@ namespace Capa_Modelo_Reservas_Hotel
             }
 
             // ==== CONTROL DE PUNTOS POR CAMBIO DE ESTADO ====
+
             if (!estadoAnterior.Equals(sEstado, StringComparison.OrdinalIgnoreCase))
             {
                 if (estadoAnterior == "Confirmada" && sEstado != "Confirmada")
@@ -266,19 +252,12 @@ namespace Capa_Modelo_Reservas_Hotel
                     AgregarPuntosHuesped(idHuesped);
             }
         }
-
-        // =========================================================
         // ==================   SISTEMA DE PUNTOS   =================
-        // =========================================================
 
-        /// <summary>
-        /// Suma +15 puntos al huésped.
-        /// Requiere que Tbl_Puntos_Huesped tenga UNIQUE(Fk_Id_Huesped).
-        /// </summary>
-        public void AgregarPuntosHuesped(int idHuesped)
+        public void AgregarPuntosHuesped(int iIdHuesped)
         {
-            int puntosActuales = ObtenerPuntosHuesped(idHuesped);
-            int nuevos = puntosActuales + PUNTOS_POR_RESERVA;
+            int iPuntosActuales = ObtenerPuntosHuesped(iIdHuesped);
+            int iNuevos = iPuntosActuales + PUNTOS_POR_RESERVA;
 
             string sql = @"
                 INSERT INTO Tbl_Puntos_Huesped 
@@ -292,21 +271,18 @@ namespace Capa_Modelo_Reservas_Hotel
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = idHuesped;
-                cmd.Parameters.Add(null, OdbcType.Int).Value = nuevos;                 // Acumulados (nuevo total)
-                cmd.Parameters.Add(null, OdbcType.Int).Value = PUNTOS_POR_RESERVA;     // Obtenidos (+15)
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iIdHuesped;
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iNuevos;                 
+                cmd.Parameters.Add(null, OdbcType.Int).Value = PUNTOS_POR_RESERVA;     
                 cmd.Parameters.Add(null, OdbcType.Date).Value = DateTime.Today;
                 cmd.ExecuteNonQuery();
             }
         }
 
-        /// <summary>
-        /// Resta 15 puntos al huésped, sin bajar de 0, y suma a "Canjeados".
-        /// </summary>
         public void RestarPuntosHuesped(int idHuesped)
         {
-            int puntosActuales = ObtenerPuntosHuesped(idHuesped);
-            int nuevos = Math.Max(0, puntosActuales - PUNTOS_POR_RESERVA);
+            int iPuntosActuales = ObtenerPuntosHuesped(idHuesped);
+            int iNuevos = Math.Max(0, iPuntosActuales - PUNTOS_POR_RESERVA);
 
             string sql = @"
                 UPDATE Tbl_Puntos_Huesped
@@ -318,7 +294,7 @@ namespace Capa_Modelo_Reservas_Hotel
             using (var conn = conexion.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = nuevos;
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iNuevos;
                 cmd.Parameters.Add(null, OdbcType.Int).Value = PUNTOS_POR_RESERVA;
                 cmd.Parameters.Add(null, OdbcType.Date).Value = DateTime.Today;
                 cmd.Parameters.Add(null, OdbcType.Int).Value = idHuesped;
@@ -326,11 +302,9 @@ namespace Capa_Modelo_Reservas_Hotel
             }
         }
 
-        // =========================================================
         // =======   RANGOS CONFIRMADOS / FECHAS OCUPADAS   ========
-        // =========================================================
 
-        public DataTable ObtenerRangosReservadosConfirmados(int idHabitacion)
+        public DataTable ObtenerRangosReservadosConfirmados(int iIdHabitacion)
         {
             string sql = @"
                 SELECT Cmp_Fecha_Entrada, Cmp_Fecha_Salida
@@ -343,7 +317,7 @@ namespace Capa_Modelo_Reservas_Hotel
             using (var cmd = new OdbcCommand(sql, conn))
             using (var da = new OdbcDataAdapter(cmd))
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = idHabitacion;
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iIdHabitacion;
 
                 var dt = new DataTable();
                 da.Fill(dt);
@@ -351,9 +325,9 @@ namespace Capa_Modelo_Reservas_Hotel
             }
         }
 
-        public HashSet<DateTime> ExpandirFechasOcupadas(int idHabitacion)
+        public HashSet<DateTime> ExpandirFechasOcupadas(int iIdHabitacion)
         {
-            string sql = @"
+            string sSql = @"
                 SELECT Cmp_Fecha_Entrada, Cmp_Fecha_Salida
                 FROM Tbl_Reserva
                 WHERE Fk_Id_Habitacion = ?
@@ -362,9 +336,9 @@ namespace Capa_Modelo_Reservas_Hotel
             var set = new HashSet<DateTime>();
 
             using (var conn = conexion.conexion())
-            using (var cmd = new OdbcCommand(sql, conn))
+            using (var cmd = new OdbcCommand(sSql, conn))
             {
-                cmd.Parameters.Add(null, OdbcType.Int).Value = idHabitacion;
+                cmd.Parameters.Add(null, OdbcType.Int).Value = iIdHabitacion;
 
                 using (var rd = cmd.ExecuteReader())
                 {
@@ -373,7 +347,6 @@ namespace Capa_Modelo_Reservas_Hotel
                         DateTime ini = rd.GetDateTime(0).Date;
                         DateTime fin = rd.GetDateTime(1).Date;
 
-                        // Ocupamos [ini, fin) por noche (de entrada a la víspera de salida)
                         for (DateTime d = ini; d < fin; d = d.AddDays(1))
                             set.Add(d);
                     }

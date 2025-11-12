@@ -12,7 +12,7 @@ namespace Capa_Modelo_MH
         private readonly string ConexionODBC = "Dsn=bd_hoteleria"; // DSN de odbc
 
   
-        public OdbcConnection conexion()
+        public OdbcConnection fun_Conexion()
         {
             return new OdbcConnection(ConexionODBC);
         }

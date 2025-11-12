@@ -29,28 +29,28 @@ namespace CapaVistaOP
             CargarDetalleOrdenesMenu();
 
             // Eventos del DataGridView
-            dgvDetalleOrdenmenu.CellClick += dgvDetalleOrdenes_CellContentClick;
+            Dgv_Detalle_Orden_menu.CellClick += dgvDetalleOrdenes_CellContentClick;
 
             // Eventos botones
-            btnGuardar.Click += btnGuardar_Click;
-            btnEditar.Click += btnEditar_Click;
-            btnEliminar.Click += btnEliminar_Click;
+            Btn_Guardar.Click += btnGuardar_Click;
+            Btn_Editar.Click += btnEditar_Click;
+            Btn_Eliminar.Click += btnEliminar_Click;
 
         }
         private void CargarComboOrdenesProduccion()
         {
-            cmbOrdenProduccion.DataSource = controlador.LlenarComboOrdenesProduccion();
-            cmbOrdenProduccion.DisplayMember = "Pk_Id_Orden_Produccion";
-            cmbOrdenProduccion.ValueMember = "Pk_Id_Orden_Produccion";
-            cmbOrdenProduccion.SelectedIndex = -1;
+            Cbo_Orden_Produccion.DataSource = controlador.LlenarComboOrdenesProduccion();
+            Cbo_Orden_Produccion.DisplayMember = "Pk_Id_Orden_Produccion";
+            Cbo_Orden_Produccion.ValueMember = "Pk_Id_Orden_Produccion";
+            Cbo_Orden_Produccion.SelectedIndex = -1;
         }
 
         private void CargarComboMenu()
         {
-            cmbMenu.DataSource = controlador.LlenarComboMenu();
-            cmbMenu.DisplayMember = "Cmp_Nombre_Platillo";
-            cmbMenu.ValueMember = "Pk_Id_Menu";
-            cmbMenu.SelectedIndex = -1;
+            Cbo_Menu.DataSource = controlador.LlenarComboMenu();
+            Cbo_Menu.DisplayMember = "Cmp_Nombre_Platillo";
+            Cbo_Menu.ValueMember = "Pk_Id_Menu";
+            Cbo_Menu.SelectedIndex = -1;
         }
 
         private void Frm_Ordenes_de_produccion_Load(object sender, EventArgs e)
@@ -60,70 +60,80 @@ namespace CapaVistaOP
 
         private void CargarDetalleOrdenesMenu()
         {
-            dgvDetalleOrdenmenu.DataSource = controlador.MostrarDetalleOrdenMenu();
+            Dgv_Detalle_Orden_menu.DataSource = controlador.MostrarDetalleOrdenMenu();
         }
+
+
 
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if (cmbOrdenProduccion.SelectedIndex >= 0 && cmbMenu.SelectedIndex >= 0)
-            {
-                controlador.GuardarDetalleOrdenMenu(
-                    Convert.ToInt32(cmbOrdenProduccion.SelectedValue),
-                    Convert.ToInt32(cmbMenu.SelectedValue),
-                    (int)numCantidad.Value
-                );
-                CargarDetalleOrdenesMenu();
-                LimpiarControles();
-            }
-            else
-            {
-                MessageBox.Show("Seleccione una Orden y un Menú.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            if (!ValidarCampos()) return;
+
+            controlador.GuardarDetalleOrdenMenu(
+                Convert.ToInt32(Cbo_Orden_Produccion.SelectedValue),
+                Convert.ToInt32(Cbo_Menu.SelectedValue),
+                (int)Nud_Cantidad.Value
+            );
+
+            CargarDetalleOrdenesMenu();
+            LimpiarControles();
+            MessageBox.Show("Registro guardado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            if (idDetalleSeleccionado > 0)
+            if (idDetalleSeleccionado <= 0)
             {
-                controlador.BorrarDetalleOrdenMenu(idDetalleSeleccionado);
-                CargarDetalleOrdenesMenu();
-                LimpiarControles();
+                MessageBox.Show("Seleccione un registro válido para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            controlador.BorrarDetalleOrdenMenu(idDetalleSeleccionado);
+            CargarDetalleOrdenesMenu();
+            LimpiarControles();
+            MessageBox.Show("Registro eliminado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (idDetalleSeleccionado > 0)
+            if (idDetalleSeleccionado <= 0)
             {
-                controlador.ActualizarDetalleOrdenMenu(
-                    idDetalleSeleccionado,
-                    Convert.ToInt32(cmbOrdenProduccion.SelectedValue),
-                    Convert.ToInt32(cmbMenu.SelectedValue),
-                    (int)numCantidad.Value
-                );
-                CargarDetalleOrdenesMenu();
-                LimpiarControles();
+                MessageBox.Show("Seleccione un registro válido para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            if (!ValidarCampos()) return;
+
+            controlador.ActualizarDetalleOrdenMenu(
+                idDetalleSeleccionado,
+                Convert.ToInt32(Cbo_Orden_Produccion.SelectedValue),
+                Convert.ToInt32(Cbo_Menu.SelectedValue),
+                (int)Nud_Cantidad.Value
+            );
+
+            CargarDetalleOrdenesMenu();
+            LimpiarControles();
+            MessageBox.Show("Registro actualizado correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void dgvDetalleOrdenes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                idDetalleSeleccionado = Convert.ToInt32(dgvDetalleOrdenmenu.Rows[e.RowIndex].Cells["Pk_Id_Detalle_Orden"].Value);
-                cmbOrdenProduccion.SelectedValue = Convert.ToInt32(dgvDetalleOrdenmenu.Rows[e.RowIndex].Cells["Fk_Id_Orden_Produccion"].Value);
-                cmbMenu.SelectedValue = Convert.ToInt32(dgvDetalleOrdenmenu.Rows[e.RowIndex].Cells["Fk_Id_Menu"].Value);
-                numCantidad.Value = Convert.ToInt32(dgvDetalleOrdenmenu.Rows[e.RowIndex].Cells["Cmp_Cantidad_Platillos"].Value);
+                idDetalleSeleccionado = Convert.ToInt32(Dgv_Detalle_Orden_menu.Rows[e.RowIndex].Cells["Pk_Id_Detalle_Orden"].Value);
+                Cbo_Orden_Produccion.SelectedValue = Convert.ToInt32(Dgv_Detalle_Orden_menu.Rows[e.RowIndex].Cells["Fk_Id_Orden_Produccion"].Value);
+                Cbo_Menu.SelectedValue = Convert.ToInt32(Dgv_Detalle_Orden_menu.Rows[e.RowIndex].Cells["Fk_Id_Menu"].Value);
+                Nud_Cantidad.Value = Convert.ToInt32(Dgv_Detalle_Orden_menu.Rows[e.RowIndex].Cells["Cmp_Cantidad_Platillos"].Value);
             }
 
         }
         private void LimpiarControles()
         {
             idDetalleSeleccionado = 0;
-            cmbOrdenProduccion.SelectedIndex = -1;
-            cmbMenu.SelectedIndex = -1;
-            numCantidad.Value = 1;
+            Cbo_Orden_Produccion.SelectedIndex = -1;
+            Cbo_Menu.SelectedIndex = -1;
+            Nud_Cantidad.Value = 1;
         }
 
         private void cbOrdenesProduccion_SelectedIndexChanged(object sender, EventArgs e)
@@ -134,6 +144,56 @@ namespace CapaVistaOP
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private bool ValidarCampos()
+        {
+            // Validar selección de Orden
+            if (Cbo_Orden_Produccion.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione una Orden de Producción.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar selección de Menú
+            if (Cbo_Menu.SelectedIndex < 0)
+            {
+                MessageBox.Show("Seleccione un Menú.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar cantidad
+            if (Nud_Cantidad.Value <= 0)
+            {
+                MessageBox.Show("La cantidad debe ser mayor a cero.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            // Validar duplicados en la misma orden
+            foreach (DataGridViewRow row in Dgv_Detalle_Orden_menu.Rows)
+            {
+                if (row.Cells["Fk_Id_Orden_Produccion"].Value != null && row.Cells["Fk_Id_Menu"].Value != null)
+                {
+                    int orden = Convert.ToInt32(Cbo_Orden_Produccion.SelectedValue);
+                    int menu = Convert.ToInt32(Cbo_Menu.SelectedValue);
+
+                    if (orden == Convert.ToInt32(row.Cells["Fk_Id_Orden_Produccion"].Value) &&
+                        menu == Convert.ToInt32(row.Cells["Fk_Id_Menu"].Value) &&
+                        idDetalleSeleccionado != Convert.ToInt32(row.Cells["Pk_Id_Detalle_Orden"].Value))
+                    {
+                        MessageBox.Show("Este Menú ya está registrado para la Orden seleccionada.", "Duplicado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        private void Btn_Reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte_Orden_Menu frm = new Frm_Reporte_Orden_Menu();
+            frm.Show();
         }
     }
 }

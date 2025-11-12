@@ -13,28 +13,28 @@ namespace Capa_Vista_Gestion_Habitacion
 {
     public partial class Frm_Asignacion_Servicio_Cuarto : Form
     {
-        Cls_Controlador_Asignacion ctrlAsig = new Cls_Controlador_Asignacion();
+        Cls_Controlador_Asignacion oCtrlAsignacion = new Cls_Controlador_Asignacion();
 
         public Frm_Asignacion_Servicio_Cuarto()
         {
             InitializeComponent();
-            CargarCombos();
-            MostrarAsignaciones();
+            fun_CargarCombos();
+            fun_MostrarAsignaciones();
             this.DGV_Asignaciones.CellClick += new DataGridViewCellEventHandler(this.Dgv_Asignaciones_CellClick);
-
         }
 
-        private void CargarCombos()
+        private void fun_CargarCombos()
         {
             // --- ComboBox Habitaciones ---
-            DataTable dtHabitaciones = ctrlAsig.CargarHabitaciones();
+            DataTable dtHabitaciones = oCtrlAsignacion.fun_CargarHabitaciones();
             Cbo_NumHabitaciones.DataSource = dtHabitaciones;
             Cbo_NumHabitaciones.DisplayMember = "PK_ID_Habitaciones";
             Cbo_NumHabitaciones.ValueMember = "PK_ID_Habitaciones";
             Cbo_NumHabitaciones.SelectedIndex = -1;
 
-            DataTable dt = ctrlAsig.CargarServicios();
-            Cbo_Servicios.DataSource = dt;
+            // --- ComboBox Servicios ---
+            DataTable dtServicios = oCtrlAsignacion.fun_CargarServicios();
+            Cbo_Servicios.DataSource = dtServicios;
             Cbo_Servicios.DisplayMember = "Cmp_Nombre_Servicio";
             Cbo_Servicios.ValueMember = "PK_ID_Servicio_habitacion";
             Cbo_Servicios.SelectedIndex = -1;
@@ -42,43 +42,44 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private void btn_Asignar_Click(object sender, EventArgs e)
         {
-            Capa_Controlador_GesHab.Cls_Controlador_Asignacion controlador = new Capa_Controlador_GesHab.Cls_Controlador_Asignacion();
+            Cls_Controlador_Asignacion oControlador = new Cls_Controlador_Asignacion();
 
-            int IidHabitacion = 0;
-            int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out IidHabitacion);
-            int IidServicio = 0;
-            int.TryParse(Cbo_Servicios.SelectedValue?.ToString(), out IidServicio);
+            int iIdHabitacion = 0;
+            int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out iIdHabitacion);
 
-            string mensaje;
+            int iIdServicio = 0;
+            int.TryParse(Cbo_Servicios.SelectedValue?.ToString(), out iIdServicio);
+
+            string sMensaje;
 
             // Llamar al método del controlador
-            bool exito = controlador.InsertarAsigancionServicios(IidHabitacion, IidServicio, out mensaje);
+            bool bExito = oControlador.pro_InsertarAsigancionServicios(iIdHabitacion, iIdServicio, out sMensaje);
 
             // Mostrar mensaje al usuario
-            if (exito)
+            if (bExito)
             {
-                MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarAsignaciones();
-                LimpiarCombos();
+                MessageBox.Show(sMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fun_MostrarAsignaciones();
+                fun_LimpiarCombos();
             }
             else
             {
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(sMensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
-        private void MostrarAsignaciones()
+        private void fun_MostrarAsignaciones()
         {
-            DataTable dt = ctrlAsig.MostrarAsignaciones();
-            DGV_Asignaciones.DataSource = dt;
+            DataTable dtAsignaciones = oCtrlAsignacion.pro_MostrarAsignaciones();
+            DGV_Asignaciones.DataSource = dtAsignaciones;
 
-            // Opcional: ajustar el estilo visual
+            // Estilo visual del DataGridView
             DGV_Asignaciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DGV_Asignaciones.ReadOnly = true;
             DGV_Asignaciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        private void LimpiarCombos()
+        private void fun_LimpiarCombos()
         {
             Cbo_NumHabitaciones.SelectedItem = null;
             Cbo_Servicios.SelectedItem = null;
@@ -86,24 +87,24 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
+            int iIdHabitacion = 0;
+            int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out iIdHabitacion);
 
-            int IidHabitacion = 0;
-            int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out IidHabitacion);
-            int IidServicio = 0;
-            int.TryParse(Cbo_Servicios.SelectedValue?.ToString(), out IidServicio);
+            int iIdServicio = 0;
+            int.TryParse(Cbo_Servicios.SelectedValue?.ToString(), out iIdServicio);
 
-            string mensaje;
-            bool exito = ctrlAsig.EliminarAsignacion(IidHabitacion, IidServicio, out mensaje);
+            string sMensaje;
+            bool bExito = oCtrlAsignacion.pro_EliminarAsignacion(iIdHabitacion, iIdServicio, out sMensaje);
 
-            if (exito)
+            if (bExito)
             {
-                MessageBox.Show(mensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarAsignaciones();
-                LimpiarCombos();
+                MessageBox.Show(sMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                fun_MostrarAsignaciones();
+                fun_LimpiarCombos();
             }
             else
             {
-                MessageBox.Show(mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(sMensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -111,19 +112,18 @@ namespace Capa_Vista_Gestion_Habitacion
         {
             try
             {
-                if (e.RowIndex >= 0) // Para evitar el header
+                if (e.RowIndex >= 0) // Evita seleccionar el encabezado
                 {
                     // Obtener la fila seleccionada
-                    DataGridViewRow fila = DGV_Asignaciones.Rows[e.RowIndex];
+                    DataGridViewRow oFila = DGV_Asignaciones.Rows[e.RowIndex];
 
-                    // Asegúrate de que tus columnas tengan estos alias en el SQL:
-                    // Habitacion | IdServicio
-                    int idHabitacion = Convert.ToInt32(fila.Cells["Habitacion"].Value);
-                    int idServicio = Convert.ToInt32(fila.Cells["IdServicio"].Value);
+                    // Asegúrate de que tus columnas tengan estos alias en el SQL: Habitacion | IdServicio
+                    int iIdHabitacion = Convert.ToInt32(oFila.Cells["Habitacion"].Value);
+                    int iIdServicio = Convert.ToInt32(oFila.Cells["IdServicio"].Value);
 
                     // Asignar los valores a los ComboBox
-                    Cbo_NumHabitaciones.SelectedValue = idHabitacion;
-                    Cbo_Servicios.SelectedValue = idServicio;
+                    Cbo_NumHabitaciones.SelectedValue = iIdHabitacion;
+                    Cbo_Servicios.SelectedValue = iIdServicio;
                 }
             }
             catch (Exception ex)
@@ -135,36 +135,49 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private void btn_salir_Click(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             try
             {
-                int idHabitacion = Convert.ToInt32(Cbo_NumHabitaciones.SelectedValue);
+                int iIdHabitacion = 0;
+                int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out iIdHabitacion);
 
-                string mensaje;
-                DataTable datos = ctrlAsig.BuscarAsignacion(idHabitacion, out mensaje);
+                string sMensaje;
+                DataTable dtDatos = oCtrlAsignacion.fun_BuscarAsignacion(iIdHabitacion, out sMensaje);
 
-                MessageBox.Show(mensaje, "Resultado de búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(sMensaje, "Resultado de búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                if (datos != null)
-                    DGV_Asignaciones.DataSource = datos;
+                if (dtDatos != null)
+                    DGV_Asignaciones.DataSource = dtDatos;
                 else
                     DGV_Asignaciones.DataSource = null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al buscar asignaciones: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al buscar asignaciones: " + ex.Message,
+                                "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btn_recargar_Click(object sender, EventArgs e)
         {
-            LimpiarCombos();
-            MostrarAsignaciones();
-            CargarCombos();
+            fun_LimpiarCombos();
+            fun_MostrarAsignaciones();
+            fun_CargarCombos();
+        }
+
+        private void btn_salir_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btn_reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Asig_Serv_hab rpt = new Frm_Asig_Serv_hab();
+            rpt.Show();
         }
     }
 }

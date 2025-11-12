@@ -7,24 +7,35 @@ namespace Capa_Vista_Reservas_Hotel
 {
     public partial class Frm_Pago : Form
     {
-        private readonly Cls_Pago_Controlador Controlador = new Cls_Pago_Controlador();
+        private readonly Cls_Pago_Controlador gControlador = new Cls_Pago_Controlador();
 
         public Frm_Pago()
         {
             InitializeComponent();
-            CargarFolios();
-            CargarMetodosPago();
-            CargarEstadosPago();
+
+            fun_CargarFolios();
+            fun_CargarMetodosPago();
+            fun_CargarEstadosPago();
+
+            // Bloquear escritura (Vista)
+            Cbo_Folio.DropDownStyle = ComboBoxStyle.DropDownList;
+            Cbo_MetodoPago.DropDownStyle = ComboBoxStyle.DropDownList;
+            Cbo_Estado.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            Cbo_Folio.KeyPress += (s, e) => e.Handled = true;
+            Cbo_MetodoPago.KeyPress += (s, e) => e.Handled = true;
+            Cbo_Estado.KeyPress += (s, e) => e.Handled = true;
+
+            Txt_Monto.ReadOnly = true;
+            Txt_Monto.KeyPress += (s, e) => e.Handled = true;
         }
 
-    
-        // === MÉTODOS DE APOYO ===
-    
-        private void CargarFolios()
+
+        private void fun_CargarFolios()
         {
             try
             {
-                DataTable dt = Controlador.datObtenerFolios();
+                DataTable dt = gControlador.funObtenerFolios();
                 Cbo_Folio.DataSource = dt;
                 Cbo_Folio.DisplayMember = "DescripcionFolio";
                 Cbo_Folio.ValueMember = "Pk_Id_Folio";
@@ -37,7 +48,7 @@ namespace Capa_Vista_Reservas_Hotel
             }
         }
 
-        private void CargarMetodosPago()
+        private void fun_CargarMetodosPago()
         {
             Cbo_MetodoPago.Items.Clear();
             Cbo_MetodoPago.Items.Add("Tarjeta");
@@ -47,7 +58,7 @@ namespace Capa_Vista_Reservas_Hotel
             Cbo_MetodoPago.SelectedIndex = -1;
         }
 
-        private void CargarEstadosPago()
+        private void fun_CargarEstadosPago()
         {
             Cbo_Estado.Items.Clear();
             Cbo_Estado.Items.Add("Pendiente");
@@ -56,7 +67,7 @@ namespace Capa_Vista_Reservas_Hotel
             Cbo_Estado.SelectedIndex = -1;
         }
 
-        private void LimpiarCampos()
+        private void fun_LimpiarCampos()
         {
             Cbo_Folio.SelectedIndex = -1;
             Cbo_MetodoPago.SelectedIndex = -1;
@@ -68,55 +79,32 @@ namespace Capa_Vista_Reservas_Hotel
        
         private void Btn_Nuevo_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
         }
 
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Cbo_Folio.SelectedValue == null)
+                int iFolio = (Cbo_Folio.SelectedValue != null) ? Convert.ToInt32(Cbo_Folio.SelectedValue) : 0;
+                string sMet = Cbo_MetodoPago.SelectedItem?.ToString();
+                string sEst = Cbo_Estado.SelectedItem?.ToString();
+                string sMon = Txt_Monto.Text.Trim();
+                DateTime dF = Dtp_Fecha_Pago.Value;
+
+                var r = gControlador.funInsertarPagoValidado(iFolio, sMet, dF, sMon, sEst);
+
+                if (!r.exito)
                 {
-                    MessageBox.Show("Debe seleccionar un folio asociado.", "Advertencia",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (Cbo_MetodoPago.SelectedItem == null)
-                {
-                    MessageBox.Show("Debe seleccionar un método de pago.", "Advertencia",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                if (Cbo_Estado.SelectedItem == null)
-                {
-                    MessageBox.Show("Debe seleccionar un estado del pago.", "Advertencia",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                int idFolio = Convert.ToInt32(Cbo_Folio.SelectedValue);
-                string metodo = Cbo_MetodoPago.SelectedItem.ToString();
-                string estado = Cbo_Estado.SelectedItem.ToString();
-                DateTime fecha = Dtp_Fecha_Pago.Value;
-                decimal monto = decimal.TryParse(Txt_Monto.Text, out decimal val) ? val : 0;
-
-               
-                int idPago = Controlador.funInsertarPago(idFolio, metodo, fecha, monto, estado);
-
-                if (idPago <= 0)
-                {
-                    MessageBox.Show("No se pudo registrar el pago principal.", "Error",
-                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(r.mensaje, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
                 MessageBox.Show("Pago registrado correctamente. Complete los detalles en el subformulario.",
                                 "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
-                AbrirSubformulario(metodo, idPago, monto);
+                // Abre subformulario con el ID del PAGO y el monto
+                AbrirSubformulario(sMet, r.idPago, Convert.ToDecimal(sMon));
             }
             catch (Exception ex)
             {
@@ -133,7 +121,7 @@ namespace Capa_Vista_Reservas_Hotel
 
         private void Btn_Limpiar_Click(object sender, EventArgs e)
         {
-            LimpiarCampos();
+            fun_LimpiarCampos();
         }
 
         private void Cbo_Folio_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,47 +140,29 @@ namespace Capa_Vista_Reservas_Hotel
             }
         }
 
-        private void Cbo_Estado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Validación dentro de cada subformulario
-        }
+        private void Cbo_Estado_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Cbo_MetodoPago_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void Dtp_Fecha_Pago_ValueChanged(object sender, EventArgs e) { }
+        private void Txt_Monto_TextChanged(object sender, EventArgs e) { }
 
-        private void Cbo_MetodoPago_SelectedIndexChanged(object sender, EventArgs e)
+        // =======================
+        // Subformularios
+        // =======================
+        private void AbrirSubformulario(string sMetodo, int iIdPago, decimal deMonto)
         {
-            // Ya no abrimos el subformulario aquí, solo lo hacemos después de guardar
-        }
-
-        private void Dtp_Fecha_Pago_ValueChanged(object sender, EventArgs e)
-        {
-            // Sin lógica adicional
-        }
-
-        private void Txt_Monto_TextChanged(object sender, EventArgs e)
-        {
-            // Sin validación adicional
-        }
-
-     
-        // === MÉTODO: ABRIR SUBFORMULARIOS (con monto)
-        
-        private void AbrirSubformulario(string metodo, int idPago, decimal monto)
-        {
-            switch (metodo)
+            switch (sMetodo)
             {
                 case "Tarjeta":
-                    new Frm_Pago_Tarjeta(idPago, monto).ShowDialog();
+                    new Frm_Pago_Tarjeta(iIdPago, deMonto).ShowDialog();
                     break;
-
                 case "Efectivo":
-                    new Frm_Pago_Efectivo(idPago, monto).ShowDialog();
+                    new Frm_Pago_Efectivo(iIdPago, deMonto).ShowDialog();
                     break;
-
                 case "Transferencia":
-                    new Frm_Pago_Transferencia(idPago, monto).ShowDialog();
+                    new Frm_Pago_Transferencia(iIdPago, deMonto).ShowDialog();
                     break;
-
                 case "Cheque":
-                    new Frm_Pago_Cheque(idPago, monto).ShowDialog();
+                    new Frm_Pago_Cheque(iIdPago, deMonto).ShowDialog();
                     break;
             }
         }

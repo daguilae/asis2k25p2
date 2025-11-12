@@ -52,13 +52,17 @@ namespace Capa_Vista_Hoteleria
             this.asignacionServiciosAHabitacionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.areaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.checkOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cuentaTurismoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservacionDeSalonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reservacionALaCartaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.recetasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordenesDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.foliosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.foliosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cierreDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -119,7 +123,7 @@ namespace Capa_Vista_Hoteleria
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Salir";
             // 
             // catálogosToolStripMenuItem
@@ -177,8 +181,11 @@ namespace Capa_Vista_Hoteleria
             this.asignacionServiciosAHabitacionToolStripMenuItem,
             this.areaToolStripMenuItem1,
             this.checkOutToolStripMenuItem,
-            this.cuentaTurismoToolStripMenuItem,
-            this.pagoToolStripMenuItem});
+            this.pagoToolStripMenuItem,
+            this.reservacionDeSalonesToolStripMenuItem,
+            this.reservacionALaCartaToolStripMenuItem,
+            this.recetasToolStripMenuItem,
+            this.ordenesDeCompraToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
@@ -268,13 +275,6 @@ namespace Capa_Vista_Hoteleria
             this.checkOutToolStripMenuItem.Text = "Check out";
             this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
             // 
-            // cuentaTurismoToolStripMenuItem
-            // 
-            this.cuentaTurismoToolStripMenuItem.Name = "cuentaTurismoToolStripMenuItem";
-            this.cuentaTurismoToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
-            this.cuentaTurismoToolStripMenuItem.Text = "Cuenta Turismo";
-            this.cuentaTurismoToolStripMenuItem.Click += new System.EventHandler(this.cuentaTurismoToolStripMenuItem_Click);
-            // 
             // pagoToolStripMenuItem
             // 
             this.pagoToolStripMenuItem.Name = "pagoToolStripMenuItem";
@@ -282,14 +282,50 @@ namespace Capa_Vista_Hoteleria
             this.pagoToolStripMenuItem.Text = "Pago";
             this.pagoToolStripMenuItem.Click += new System.EventHandler(this.pagoToolStripMenuItem_Click);
             // 
+            // reservacionDeSalonesToolStripMenuItem
+            // 
+            this.reservacionDeSalonesToolStripMenuItem.Name = "reservacionDeSalonesToolStripMenuItem";
+            this.reservacionDeSalonesToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.reservacionDeSalonesToolStripMenuItem.Text = "Reservacion de Salones";
+            this.reservacionDeSalonesToolStripMenuItem.Click += new System.EventHandler(this.reservacionDeSalonesToolStripMenuItem_Click);
+            // 
+            // reservacionALaCartaToolStripMenuItem
+            // 
+            this.reservacionALaCartaToolStripMenuItem.Name = "reservacionALaCartaToolStripMenuItem";
+            this.reservacionALaCartaToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.reservacionALaCartaToolStripMenuItem.Text = "Reservacion A la Carta";
+            this.reservacionALaCartaToolStripMenuItem.Click += new System.EventHandler(this.reservacionALaCartaToolStripMenuItem_Click);
+            // 
+            // recetasToolStripMenuItem
+            // 
+            this.recetasToolStripMenuItem.Name = "recetasToolStripMenuItem";
+            this.recetasToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.recetasToolStripMenuItem.Text = "Recetas";
+            this.recetasToolStripMenuItem.Click += new System.EventHandler(this.recetasToolStripMenuItem_Click);
+            // 
+            // ordenesDeCompraToolStripMenuItem
+            // 
+            this.ordenesDeCompraToolStripMenuItem.Name = "ordenesDeCompraToolStripMenuItem";
+            this.ordenesDeCompraToolStripMenuItem.Size = new System.Drawing.Size(357, 26);
+            this.ordenesDeCompraToolStripMenuItem.Text = "Ordenes de Compra";
+            this.ordenesDeCompraToolStripMenuItem.Click += new System.EventHandler(this.ordenesDeCompraToolStripMenuItem_Click);
+            // 
             // herramientasToolStripMenuItem
             // 
             this.herramientasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.foliosToolStripMenuItem});
+            this.foliosToolStripMenuItem,
+            this.cierreDiarioToolStripMenuItem});
             this.herramientasToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.herramientasToolStripMenuItem.Name = "herramientasToolStripMenuItem";
             this.herramientasToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.herramientasToolStripMenuItem.Text = "Reportes";
+            // 
+            // foliosToolStripMenuItem
+            // 
+            this.foliosToolStripMenuItem.Name = "foliosToolStripMenuItem";
+            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.foliosToolStripMenuItem.Text = "Folios";
+            this.foliosToolStripMenuItem.Click += new System.EventHandler(this.foliosToolStripMenuItem_Click);
             // 
             // asignacionesToolStripMenuItem
             // 
@@ -316,12 +352,12 @@ namespace Capa_Vista_Hoteleria
             this.toolStripStatusLabel.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel.Text = "Estado";
             // 
-            // foliosToolStripMenuItem
+            // cierreDiarioToolStripMenuItem
             // 
-            this.foliosToolStripMenuItem.Name = "foliosToolStripMenuItem";
-            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.foliosToolStripMenuItem.Text = "Folios";
-            this.foliosToolStripMenuItem.Click += new System.EventHandler(this.foliosToolStripMenuItem_Click);
+            this.cierreDiarioToolStripMenuItem.Name = "cierreDiarioToolStripMenuItem";
+            this.cierreDiarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cierreDiarioToolStripMenuItem.Text = "Cierre Diario";
+            this.cierreDiarioToolStripMenuItem.Click += new System.EventHandler(this.cierreDiarioToolStripMenuItem_Click);
             // 
             // Frm_MDI_Hoteleria
             // 
@@ -376,8 +412,12 @@ namespace Capa_Vista_Hoteleria
         private System.Windows.Forms.ToolStripMenuItem asignacionServiciosAHabitacionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem areaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem cuentaTurismoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem foliosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservacionDeSalonesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reservacionALaCartaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem recetasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordenesDeCompraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cierreDiarioToolStripMenuItem;
     }
 }

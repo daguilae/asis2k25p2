@@ -31,222 +31,219 @@ namespace CapaVistaOP
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Ordenes_mobiliario));
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numCantidad = new System.Windows.Forms.NumericUpDown();
-            this.ss = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.cmbMobiliario = new System.Windows.Forms.ComboBox();
-            this.cmbOrdenProduccion = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Lbl_Nombre_Huesped = new System.Windows.Forms.Label();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
-            this.dgvDetalleOrdenmobiliario = new System.Windows.Forms.DataGridView();
+            this.Lbl_Modulo_Hoteleria = new System.Windows.Forms.Label();
+            this.Lbl_Ordenes_Mobiliario = new System.Windows.Forms.Label();
+            this.Lbl_Orden_Mobiliario = new System.Windows.Forms.Label();
+            this.Lbl_Orden_Produccion = new System.Windows.Forms.Label();
+            this.Lbl_Mobiliario = new System.Windows.Forms.Label();
+            this.Lbl_Cantidad_Mobiliario = new System.Windows.Forms.Label();
+            this.Txt_Orden_Mobiliario = new System.Windows.Forms.TextBox();
+            this.Cbo_Orden_Produccion = new System.Windows.Forms.ComboBox();
+            this.Cbo_Mobiliario = new System.Windows.Forms.ComboBox();
+            this.Nud_Cantidad_Mobiliario = new System.Windows.Forms.NumericUpDown();
+            this.Dgv_Ordenes_Mobiliario = new System.Windows.Forms.DataGridView();
+            this.Btn_Editar = new System.Windows.Forms.Button();
+            this.Btn_Eliminar = new System.Windows.Forms.Button();
+            this.Btn_Guardar = new System.Windows.Forms.Button();
+            this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Pnl_Superior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleOrdenmobiliario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_Cantidad_Mobiliario)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ordenes_Mobiliario)).BeginInit();
             this.SuspendLayout();
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Modulo_Hoteleria);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(895, 50);
-            this.Pnl_Superior.TabIndex = 99;
+            this.Pnl_Superior.TabIndex = 100;
             // 
-            // label1
+            // Lbl_Modulo_Hoteleria
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.label1.Location = new System.Drawing.Point(27, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(252, 35);
-            this.label1.TabIndex = 104;
-            this.label1.Text = "Módulo hotelería";
+            this.Lbl_Modulo_Hoteleria.AutoSize = true;
+            this.Lbl_Modulo_Hoteleria.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Modulo_Hoteleria.Location = new System.Drawing.Point(27, 9);
+            this.Lbl_Modulo_Hoteleria.Name = "Lbl_Modulo_Hoteleria";
+            this.Lbl_Modulo_Hoteleria.Size = new System.Drawing.Size(252, 35);
+            this.Lbl_Modulo_Hoteleria.TabIndex = 104;
+            this.Lbl_Modulo_Hoteleria.Text = "Módulo hotelería";
             // 
-            // numCantidad
+            // Lbl_Ordenes_Mobiliario
             // 
-            this.numCantidad.Location = new System.Drawing.Point(254, 217);
-            this.numCantidad.Name = "numCantidad";
-            this.numCantidad.Size = new System.Drawing.Size(181, 22);
-            this.numCantidad.TabIndex = 141;
+            this.Lbl_Ordenes_Mobiliario.AutoSize = true;
+            this.Lbl_Ordenes_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Ordenes_Mobiliario.Location = new System.Drawing.Point(29, 71);
+            this.Lbl_Ordenes_Mobiliario.Name = "Lbl_Ordenes_Mobiliario";
+            this.Lbl_Ordenes_Mobiliario.Size = new System.Drawing.Size(244, 21);
+            this.Lbl_Ordenes_Mobiliario.TabIndex = 107;
+            this.Lbl_Ordenes_Mobiliario.Text = "ORDENES DE MOBILIARIO";
             // 
-            // ss
+            // Lbl_Orden_Mobiliario
             // 
-            this.ss.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.ss.Location = new System.Drawing.Point(254, 112);
-            this.ss.Name = "ss";
-            this.ss.Size = new System.Drawing.Size(181, 22);
-            this.ss.TabIndex = 140;
+            this.Lbl_Orden_Mobiliario.AutoSize = true;
+            this.Lbl_Orden_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Orden_Mobiliario.Location = new System.Drawing.Point(29, 119);
+            this.Lbl_Orden_Mobiliario.Name = "Lbl_Orden_Mobiliario";
+            this.Lbl_Orden_Mobiliario.Size = new System.Drawing.Size(145, 20);
+            this.Lbl_Orden_Mobiliario.TabIndex = 118;
+            this.Lbl_Orden_Mobiliario.Text = "Orden Mobiliario";
             // 
-            // label5
+            // Lbl_Orden_Produccion
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(30, 217);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(170, 20);
-            this.label5.TabIndex = 139;
-            this.label5.Text = "Cantidad de platillos";
+            this.Lbl_Orden_Produccion.AutoSize = true;
+            this.Lbl_Orden_Produccion.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Orden_Produccion.Location = new System.Drawing.Point(29, 165);
+            this.Lbl_Orden_Produccion.Name = "Lbl_Orden_Produccion";
+            this.Lbl_Orden_Produccion.Size = new System.Drawing.Size(154, 20);
+            this.Lbl_Orden_Produccion.TabIndex = 119;
+            this.Lbl_Orden_Produccion.Text = "Orden Produccion";
             // 
-            // Lbl_Titulo
+            // Lbl_Mobiliario
             // 
-            this.Lbl_Titulo.AutoSize = true;
-            this.Lbl_Titulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo.Location = new System.Drawing.Point(44, 220);
-            this.Lbl_Titulo.Name = "Lbl_Titulo";
-            this.Lbl_Titulo.Size = new System.Drawing.Size(0, 29);
-            this.Lbl_Titulo.TabIndex = 138;
+            this.Lbl_Mobiliario.AutoSize = true;
+            this.Lbl_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Mobiliario.Location = new System.Drawing.Point(29, 213);
+            this.Lbl_Mobiliario.Name = "Lbl_Mobiliario";
+            this.Lbl_Mobiliario.Size = new System.Drawing.Size(90, 20);
+            this.Lbl_Mobiliario.TabIndex = 120;
+            this.Lbl_Mobiliario.Text = "Mobiliario";
             // 
-            // cmbMobiliario
+            // Lbl_Cantidad_Mobiliario
             // 
-            this.cmbMobiliario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.cmbMobiliario.FormattingEnabled = true;
-            this.cmbMobiliario.Location = new System.Drawing.Point(254, 180);
-            this.cmbMobiliario.Name = "cmbMobiliario";
-            this.cmbMobiliario.Size = new System.Drawing.Size(181, 24);
-            this.cmbMobiliario.TabIndex = 137;
+            this.Lbl_Cantidad_Mobiliario.AutoSize = true;
+            this.Lbl_Cantidad_Mobiliario.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Cantidad_Mobiliario.Location = new System.Drawing.Point(29, 254);
+            this.Lbl_Cantidad_Mobiliario.Name = "Lbl_Cantidad_Mobiliario";
+            this.Lbl_Cantidad_Mobiliario.Size = new System.Drawing.Size(165, 20);
+            this.Lbl_Cantidad_Mobiliario.TabIndex = 121;
+            this.Lbl_Cantidad_Mobiliario.Text = "Cantidad Mobiliario";
             // 
-            // cmbOrdenProduccion
+            // Txt_Orden_Mobiliario
             // 
-            this.cmbOrdenProduccion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
-            this.cmbOrdenProduccion.FormattingEnabled = true;
-            this.cmbOrdenProduccion.Location = new System.Drawing.Point(254, 147);
-            this.cmbOrdenProduccion.Name = "cmbOrdenProduccion";
-            this.cmbOrdenProduccion.Size = new System.Drawing.Size(181, 24);
-            this.cmbOrdenProduccion.TabIndex = 136;
+            this.Txt_Orden_Mobiliario.Location = new System.Drawing.Point(241, 119);
+            this.Txt_Orden_Mobiliario.Name = "Txt_Orden_Mobiliario";
+            this.Txt_Orden_Mobiliario.Size = new System.Drawing.Size(223, 22);
+            this.Txt_Orden_Mobiliario.TabIndex = 122;
             // 
-            // label4
+            // Cbo_Orden_Produccion
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(32, 180);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(90, 20);
-            this.label4.TabIndex = 135;
-            this.label4.Text = "Mobiliario";
+            this.Cbo_Orden_Produccion.FormattingEnabled = true;
+            this.Cbo_Orden_Produccion.Location = new System.Drawing.Point(241, 165);
+            this.Cbo_Orden_Produccion.Name = "Cbo_Orden_Produccion";
+            this.Cbo_Orden_Produccion.Size = new System.Drawing.Size(223, 24);
+            this.Cbo_Orden_Produccion.TabIndex = 123;
             // 
-            // label3
+            // Cbo_Mobiliario
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(32, 147);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(154, 20);
-            this.label3.TabIndex = 134;
-            this.label3.Text = "Orden produccion";
+            this.Cbo_Mobiliario.FormattingEnabled = true;
+            this.Cbo_Mobiliario.Location = new System.Drawing.Point(241, 209);
+            this.Cbo_Mobiliario.Name = "Cbo_Mobiliario";
+            this.Cbo_Mobiliario.Size = new System.Drawing.Size(223, 24);
+            this.Cbo_Mobiliario.TabIndex = 124;
             // 
-            // label2
+            // Nud_Cantidad_Mobiliario
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 65);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(244, 21);
-            this.label2.TabIndex = 133;
-            this.label2.Text = "ORDENES DE MOBILIARIO";
+            this.Nud_Cantidad_Mobiliario.Location = new System.Drawing.Point(241, 255);
+            this.Nud_Cantidad_Mobiliario.Name = "Nud_Cantidad_Mobiliario";
+            this.Nud_Cantidad_Mobiliario.Size = new System.Drawing.Size(223, 22);
+            this.Nud_Cantidad_Mobiliario.TabIndex = 125;
             // 
-            // Lbl_Nombre_Huesped
+            // Dgv_Ordenes_Mobiliario
             // 
-            this.Lbl_Nombre_Huesped.AutoSize = true;
-            this.Lbl_Nombre_Huesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Nombre_Huesped.Location = new System.Drawing.Point(32, 112);
-            this.Lbl_Nombre_Huesped.Name = "Lbl_Nombre_Huesped";
-            this.Lbl_Nombre_Huesped.Size = new System.Drawing.Size(145, 20);
-            this.Lbl_Nombre_Huesped.TabIndex = 132;
-            this.Lbl_Nombre_Huesped.Text = "Orden Mobiliario";
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.BackColor = System.Drawing.Color.White;
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Image = ((System.Drawing.Image)(resources.GetObject("btnEditar.Image")));
-            this.btnEditar.Location = new System.Drawing.Point(817, 65);
-            this.btnEditar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(53, 46);
-            this.btnEditar.TabIndex = 144;
-            this.btnEditar.UseVisualStyleBackColor = false;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.White;
-            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminar.Image = ((System.Drawing.Image)(resources.GetObject("btnEliminar.Image")));
-            this.btnEliminar.Location = new System.Drawing.Point(758, 65);
-            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(53, 46);
-            this.btnEliminar.TabIndex = 143;
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnGuardar.Image = ((System.Drawing.Image)(resources.GetObject("btnGuardar.Image")));
-            this.btnGuardar.Location = new System.Drawing.Point(699, 65);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(53, 46);
-            this.btnGuardar.TabIndex = 142;
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // dgvDetalleOrdenmobiliario
-            // 
-            this.dgvDetalleOrdenmobiliario.AllowUserToAddRows = false;
-            this.dgvDetalleOrdenmobiliario.AllowUserToDeleteRows = false;
-            this.dgvDetalleOrdenmobiliario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Dgv_Ordenes_Mobiliario.AllowUserToAddRows = false;
+            this.Dgv_Ordenes_Mobiliario.AllowUserToDeleteRows = false;
+            this.Dgv_Ordenes_Mobiliario.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDetalleOrdenmobiliario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDetalleOrdenmobiliario.Location = new System.Drawing.Point(24, 268);
-            this.dgvDetalleOrdenmobiliario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.dgvDetalleOrdenmobiliario.Name = "dgvDetalleOrdenmobiliario";
-            this.dgvDetalleOrdenmobiliario.ReadOnly = true;
-            this.dgvDetalleOrdenmobiliario.RowHeadersWidth = 51;
-            this.dgvDetalleOrdenmobiliario.RowTemplate.Height = 24;
-            this.dgvDetalleOrdenmobiliario.Size = new System.Drawing.Size(848, 301);
-            this.dgvDetalleOrdenmobiliario.TabIndex = 145;
-            this.dgvDetalleOrdenmobiliario.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDetalleOrdenmobiliario_CellContentClick);
+            this.Dgv_Ordenes_Mobiliario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Ordenes_Mobiliario.Location = new System.Drawing.Point(25, 286);
+            this.Dgv_Ordenes_Mobiliario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Dgv_Ordenes_Mobiliario.Name = "Dgv_Ordenes_Mobiliario";
+            this.Dgv_Ordenes_Mobiliario.ReadOnly = true;
+            this.Dgv_Ordenes_Mobiliario.RowHeadersWidth = 51;
+            this.Dgv_Ordenes_Mobiliario.RowTemplate.Height = 24;
+            this.Dgv_Ordenes_Mobiliario.Size = new System.Drawing.Size(839, 300);
+            this.Dgv_Ordenes_Mobiliario.TabIndex = 126;
+            // 
+            // Btn_Editar
+            // 
+            this.Btn_Editar.BackColor = System.Drawing.Color.White;
+            this.Btn_Editar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Editar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Editar.Image")));
+            this.Btn_Editar.Location = new System.Drawing.Point(797, 71);
+            this.Btn_Editar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Editar.Name = "Btn_Editar";
+            this.Btn_Editar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Editar.TabIndex = 130;
+            this.Btn_Editar.UseVisualStyleBackColor = false;
+            this.Btn_Editar.Click += new System.EventHandler(this.Btn_Editar_Click);
+            // 
+            // Btn_Eliminar
+            // 
+            this.Btn_Eliminar.BackColor = System.Drawing.Color.White;
+            this.Btn_Eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar.Image")));
+            this.Btn_Eliminar.Location = new System.Drawing.Point(738, 71);
+            this.Btn_Eliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Eliminar.Name = "Btn_Eliminar";
+            this.Btn_Eliminar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Eliminar.TabIndex = 129;
+            this.Btn_Eliminar.UseVisualStyleBackColor = false;
+            this.Btn_Eliminar.Click += new System.EventHandler(this.Btn_Eliminar_Click);
+            // 
+            // Btn_Guardar
+            // 
+            this.Btn_Guardar.BackColor = System.Drawing.Color.White;
+            this.Btn_Guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Btn_Guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
+            this.Btn_Guardar.Location = new System.Drawing.Point(679, 71);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Btn_Guardar.Name = "Btn_Guardar";
+            this.Btn_Guardar.Size = new System.Drawing.Size(53, 46);
+            this.Btn_Guardar.TabIndex = 128;
+            this.Btn_Guardar.UseVisualStyleBackColor = false;
+            this.Btn_Guardar.Click += new System.EventHandler(this.Btn_Guardar_Click);
+            // 
+            // Btn_Reporte
+            // 
+            this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
+            this.Btn_Reporte.Location = new System.Drawing.Point(618, 71);
+            this.Btn_Reporte.Name = "Btn_Reporte";
+            this.Btn_Reporte.Size = new System.Drawing.Size(55, 46);
+            this.Btn_Reporte.TabIndex = 133;
+            this.Btn_Reporte.UseVisualStyleBackColor = true;
+            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
             // 
             // Frm_Ordenes_mobiliario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(895, 597);
-            this.Controls.Add(this.dgvDetalleOrdenmobiliario);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.btnGuardar);
-            this.Controls.Add(this.numCantidad);
-            this.Controls.Add(this.ss);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.Lbl_Titulo);
-            this.Controls.Add(this.cmbMobiliario);
-            this.Controls.Add(this.cmbOrdenProduccion);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.Lbl_Nombre_Huesped);
+            this.Controls.Add(this.Btn_Reporte);
+            this.Controls.Add(this.Btn_Editar);
+            this.Controls.Add(this.Btn_Eliminar);
+            this.Controls.Add(this.Btn_Guardar);
+            this.Controls.Add(this.Dgv_Ordenes_Mobiliario);
+            this.Controls.Add(this.Nud_Cantidad_Mobiliario);
+            this.Controls.Add(this.Cbo_Mobiliario);
+            this.Controls.Add(this.Cbo_Orden_Produccion);
+            this.Controls.Add(this.Txt_Orden_Mobiliario);
+            this.Controls.Add(this.Lbl_Cantidad_Mobiliario);
+            this.Controls.Add(this.Lbl_Mobiliario);
+            this.Controls.Add(this.Lbl_Orden_Produccion);
+            this.Controls.Add(this.Lbl_Orden_Mobiliario);
+            this.Controls.Add(this.Lbl_Ordenes_Mobiliario);
             this.Controls.Add(this.Pnl_Superior);
             this.Name = "Frm_Ordenes_mobiliario";
-            this.Text = "Frm_ordenes_mobiliario";
+            this.Text = "Frm_Ordenes_mobiliario";
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDetalleOrdenmobiliario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Nud_Cantidad_Mobiliario)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Dgv_Ordenes_Mobiliario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,20 +252,20 @@ namespace CapaVistaOP
         #endregion
 
         private System.Windows.Forms.Panel Pnl_Superior;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numCantidad;
-        private System.Windows.Forms.TextBox ss;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.ComboBox cmbMobiliario;
-        private System.Windows.Forms.ComboBox cmbOrdenProduccion;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label Lbl_Nombre_Huesped;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.DataGridView dgvDetalleOrdenmobiliario;
+        private System.Windows.Forms.Label Lbl_Modulo_Hoteleria;
+        private System.Windows.Forms.Label Lbl_Ordenes_Mobiliario;
+        private System.Windows.Forms.Label Lbl_Orden_Mobiliario;
+        private System.Windows.Forms.Label Lbl_Orden_Produccion;
+        private System.Windows.Forms.Label Lbl_Mobiliario;
+        private System.Windows.Forms.Label Lbl_Cantidad_Mobiliario;
+        private System.Windows.Forms.TextBox Txt_Orden_Mobiliario;
+        private System.Windows.Forms.ComboBox Cbo_Orden_Produccion;
+        private System.Windows.Forms.ComboBox Cbo_Mobiliario;
+        private System.Windows.Forms.NumericUpDown Nud_Cantidad_Mobiliario;
+        private System.Windows.Forms.DataGridView Dgv_Ordenes_Mobiliario;
+        private System.Windows.Forms.Button Btn_Editar;
+        private System.Windows.Forms.Button Btn_Eliminar;
+        private System.Windows.Forms.Button Btn_Guardar;
+        private System.Windows.Forms.Button Btn_Reporte;
     }
 }

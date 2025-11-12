@@ -117,8 +117,8 @@ namespace Capa_Controlador_IE
             while (sUnidadM.Contains("  ")) sUnidadM = sUnidadM.Replace("  ", " ");
 
             // Comprobar la unidad en el diccionario
-            if (normalizacionUnidades.TryGetValue(sUnidadM, out string norm))
-                return norm;
+            if (normalizacionUnidades.TryGetValue(sUnidadM, out string sUnidadNormalizada))
+                return sUnidadNormalizada;
 
             throw new Exception($"No se reconoce la unidad : '{sUnidad}' -> '{sUnidadM}'");
         }

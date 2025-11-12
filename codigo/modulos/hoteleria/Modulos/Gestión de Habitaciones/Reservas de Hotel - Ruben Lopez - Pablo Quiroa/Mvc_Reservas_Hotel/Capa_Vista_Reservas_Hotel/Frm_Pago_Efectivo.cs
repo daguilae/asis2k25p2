@@ -6,42 +6,35 @@ namespace Capa_Vista_Reservas_Hotel
 {
     public partial class Frm_Pago_Efectivo : Form
     {
-        private readonly Cls_Pago_Efectivo_Controlador Controlador = new Cls_Pago_Efectivo_Controlador();
+        private readonly Cls_Pago_Efectivo_Controlador gControlador = new Cls_Pago_Efectivo_Controlador();
 
-        private int idPago;
-        private decimal montoPago;
+        private int gIdPago;
+        private decimal gMontoPago;
 
-      
-        // CONSTRUCTOR QUE RECIBE ID DEL PAGO Y MONTO
-       
+ 
         public Frm_Pago_Efectivo(int idPagoPrincipal, decimal monto)
         {
             InitializeComponent();
-            idPago = idPagoPrincipal;
-            montoPago = monto;
+            gIdPago = idPagoPrincipal;
+            gMontoPago = monto;
         }
 
-        
-        // === LIMPIAR CAMPOS ===
-        
-        private void LimpiarCampos()
+ 
+        private void fun_LimpiarCampos()
         {
             Txt_Numero_Recibo.Clear();
             Txt_Observaciones.Clear();
         }
 
-       
-        // === EVENTO GUARDAR ===
-        
+     
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
             try
             {
-                string numeroRecibo = Txt_Numero_Recibo.Text.Trim();
-                string observaciones = Txt_Observaciones.Text.Trim();
+                string sRecibo = Txt_Numero_Recibo.Text.Trim();
+                string sObs = Txt_Observaciones.Text.Trim();
 
-               
-                var r = Controlador.InsertarPagoEfectivo(idPago, montoPago, numeroRecibo, observaciones);
+                var r = gControlador.funInsertarPagoEfectivo(gIdPago, gMontoPago, sRecibo, sObs);
 
                 MessageBox.Show(r.mensaje,
                                 r.exito ? "Éxito" : "Error",
@@ -50,7 +43,7 @@ namespace Capa_Vista_Reservas_Hotel
 
                 if (r.exito)
                 {
-                    LimpiarCampos();
+                    fun_LimpiarCampos();
                     this.Close();
                 }
             }
@@ -61,10 +54,7 @@ namespace Capa_Vista_Reservas_Hotel
             }
         }
 
-        private void Btn_Nuevo_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
+        private void Btn_Nuevo_Click(object sender, EventArgs e) => fun_LimpiarCampos();
 
         private void Btn_Modificar_Click(object sender, EventArgs e)
         {
@@ -72,12 +62,8 @@ namespace Capa_Vista_Reservas_Hotel
                             "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void Btn_Limpiar_Click(object sender, EventArgs e)
-        {
-            LimpiarCampos();
-        }
+        private void Btn_Limpiar_Click(object sender, EventArgs e) => fun_LimpiarCampos();
 
-       
         private void Txt_Numero_Recibo_TextChanged(object sender, EventArgs e) { }
         private void Txt_Observaciones_TextChanged(object sender, EventArgs e) { }
     }

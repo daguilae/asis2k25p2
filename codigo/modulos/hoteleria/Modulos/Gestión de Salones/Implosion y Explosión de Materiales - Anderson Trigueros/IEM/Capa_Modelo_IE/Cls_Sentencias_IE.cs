@@ -57,7 +57,7 @@ namespace Capa_Modelo_IE
             return tabla;
         }
 
-        public List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> ConsultarInventario(List<string> Ingredientes)
+        public List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> fun_ConsultarInventario(List<string> Ingredientes)
         {
             Cls_Conexion_IE conexion = new Cls_Conexion_IE();
             List<(string sCodigo, string sIngrediente, double doStock, string sUnidad)> resultado =
@@ -93,7 +93,22 @@ namespace Capa_Modelo_IE
                         {
                             string sNombre = reader["Producto"].ToString();
                             string sCodigo = reader["Codigo"].ToString();
-                            double doCantidad = Convert.ToDouble(reader["Cantidad"]);
+                            double doCantidad = 0;
+
+                            if (reader["Cantidad"] != DBNull.Value)
+                            {
+                                string sCantidad = reader["Cantidad"]?.ToString();
+                                if (!double.TryParse(sCantidad, System.Globalization.NumberStyles.Any,
+                                                     System.Globalization.CultureInfo.InvariantCulture,
+                                                     out doCantidad))
+                                {
+                                    doCantidad = 0;
+                                }
+                            }
+                            else
+                            {
+                                doCantidad = 0;
+                            }
                             string sUnidad = reader["Unidad"].ToString();
 
                             datos[sNombre] = (sCodigo, doCantidad, sUnidad);
@@ -122,7 +137,7 @@ namespace Capa_Modelo_IE
         }
 
 
-        public void GuardarOrdenCompra(List<(int iCodigo, double doCantidad)> Listado)
+        public void pro_GuardarOrdenCompra(List<(int iCodigo, double doCantidad)> Listado)
         {
             Cls_Conexion_IE conexion = new Cls_Conexion_IE();
             try
@@ -167,6 +182,73 @@ namespace Capa_Modelo_IE
             catch (Exception ex)
             {
                 throw new Exception("Error al registrar la orden de compra." + ex.Message, ex);
+            }
+        }
+
+        public DataTable fun_ObtenerOrdenes()
+        {
+            Cls_Conexion_IE conexion = new Cls_Conexion_IE();
+            DataTable tabla = new DataTable();
+            try
+            {
+                using (OdbcConnection con = conexion.conexion())
+                {
+                    string sConsultaOrdenes = @"SELECT d.Cmp_Id_OC_Det as codigo,
+                                                d.Cmp_Id_OC as CodigoOrden, p.Cmp_Nombre_Producto AS producto,
+                                                o.Cmp_Fecha_OC as Fecha, d.Cmp_Cantidad as Cantidad
+                                                FROM Tbl_OC_Det d
+                                                JOIN Tbl_OC o ON d.Cmp_Id_OC = o.Cmp_Id_OC
+                                                JOIN Tbl_Producto p ON d.Cmp_Id_Producto = p.Cmp_Id_Producto
+                                                ORDER BY o.Cmp_Fecha_OC DESC";
+                    OdbcCommand cmd = new OdbcCommand(sConsultaOrdenes, con);
+                    OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                    da.Fill(tabla);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener las ordenes de compra: " + ex.Message, ex);
+            }
+            return tabla;
+        }
+
+        public void pro_ActualizarCantidad(int iCodigoDetalle, double doCantidad)
+        {
+            Cls_Conexion_IE conexion = new Cls_Conexion_IE();
+            try
+            {
+                using(OdbcConnection con = conexion.conexion())
+                {
+                    string sActualizar = @"UPDATE Tbl_OC_Det d 
+                                           SET d.Cmp_Cantidad = ? WHERE d.Cmp_Id_OC_Det = ?";
+                    OdbcCommand cmd = new OdbcCommand(sActualizar, con);
+                    cmd.Parameters.AddWithValue("", doCantidad);
+                    cmd.Parameters.AddWithValue("", iCodigoDetalle);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al actualizar: " + ex.Message, ex);
+            }
+        }
+        public void pro_EliminarOrden(int iCodigoDetalle)
+        {
+            Cls_Conexion_IE conexion = new Cls_Conexion_IE();
+            try
+            {
+                using (OdbcConnection con = conexion.conexion())
+                {
+                    string sActualizar = @"DELETE FROM Tbl_OC_Det d 
+                                           WHERE d.Cmp_Id_OC_Det = ?";
+                    OdbcCommand cmd = new OdbcCommand(sActualizar, con);
+                    cmd.Parameters.AddWithValue("", iCodigoDetalle);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al eliminar: " + ex.Message, ex);
             }
         }
     }

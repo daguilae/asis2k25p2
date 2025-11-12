@@ -38,7 +38,7 @@ namespace Capa_Vista_S
             this.Lbl_Hora_Fin = new System.Windows.Forms.Label();
             this.Lbl_Hora_inicio = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
-            this.Lbl_Consulta = new System.Windows.Forms.Label();
+            this.Lbl_Reservaciones = new System.Windows.Forms.Label();
             this.Dvg_Reservaciones = new System.Windows.Forms.DataGridView();
             this.Dtp_Fecha = new System.Windows.Forms.DateTimePicker();
             this.Dtp_Inicio = new System.Windows.Forms.DateTimePicker();
@@ -52,22 +52,20 @@ namespace Capa_Vista_S
             this.Lbl_FechaR = new System.Windows.Forms.Label();
             this.Lbl_Monto = new System.Windows.Forms.Label();
             this.Txt_Monto = new System.Windows.Forms.TextBox();
-            this.Msp_Menu1 = new System.Windows.Forms.MenuStrip();
+            this.Msp_Menu = new System.Windows.Forms.MenuStrip();
             this.salonesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Lbl_Promocion = new System.Windows.Forms.Label();
             this.Cbo_Promocion = new System.Windows.Forms.ComboBox();
-            this.Lbl_Fechapago = new System.Windows.Forms.Label();
-            this.Dtp_FechaPago = new System.Windows.Forms.DateTimePicker();
-            this.Lbl_Pagototal = new System.Windows.Forms.Label();
-            this.Txt_PagoTotal = new System.Windows.Forms.TextBox();
-            this.Lbl_EstadoPago = new System.Windows.Forms.Label();
-            this.Txt_Estadopago = new System.Windows.Forms.TextBox();
-            this.Lbl_MetodoPago = new System.Windows.Forms.Label();
-            this.Txt_MetodoPago = new System.Windows.Forms.TextBox();
             this.Btn_Reportes = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_Menu = new System.Windows.Forms.Label();
+            this.Cbo_Menu = new System.Windows.Forms.ComboBox();
+            this.Lbl_Cantidad = new System.Windows.Forms.Label();
+            this.Txt_Cantidad = new System.Windows.Forms.TextBox();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Reservaciones)).BeginInit();
-            this.Msp_Menu1.SuspendLayout();
+            this.Msp_Menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // Pnl_Superior
@@ -78,9 +76,8 @@ namespace Capa_Vista_S
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 24);
             this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2);
             this.Pnl_Superior.Name = "Pnl_Superior";
-            this.Pnl_Superior.Size = new System.Drawing.Size(1301, 52);
+            this.Pnl_Superior.Size = new System.Drawing.Size(1339, 52);
             this.Pnl_Superior.TabIndex = 99;
-            this.Pnl_Superior.Paint += new System.Windows.Forms.PaintEventHandler(this.Pnl_Superior_Paint);
             // 
             // Lbl_Hotel
             // 
@@ -100,7 +97,7 @@ namespace Capa_Vista_S
             this.Btn_modificar.BackColor = System.Drawing.Color.White;
             this.Btn_modificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_modificar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_modificar.Image")));
-            this.Btn_modificar.Location = new System.Drawing.Point(1157, 86);
+            this.Btn_modificar.Location = new System.Drawing.Point(1244, 86);
             this.Btn_modificar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_modificar.Name = "Btn_modificar";
             this.Btn_modificar.Size = new System.Drawing.Size(40, 37);
@@ -114,7 +111,7 @@ namespace Capa_Vista_S
             this.Btn_eliminar.BackColor = System.Drawing.Color.White;
             this.Btn_eliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_eliminar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_eliminar.Image")));
-            this.Btn_eliminar.Location = new System.Drawing.Point(1113, 86);
+            this.Btn_eliminar.Location = new System.Drawing.Point(1200, 86);
             this.Btn_eliminar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_eliminar.Name = "Btn_eliminar";
             this.Btn_eliminar.Size = new System.Drawing.Size(40, 37);
@@ -129,7 +126,7 @@ namespace Capa_Vista_S
             this.Btn_guardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_guardar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Btn_guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_guardar.Image")));
-            this.Btn_guardar.Location = new System.Drawing.Point(1069, 86);
+            this.Btn_guardar.Location = new System.Drawing.Point(1156, 86);
             this.Btn_guardar.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_guardar.Name = "Btn_guardar";
             this.Btn_guardar.Size = new System.Drawing.Size(40, 37);
@@ -175,16 +172,16 @@ namespace Capa_Vista_S
             this.Lbl_Fecha.Size = new System.Drawing.Size(0, 17);
             this.Lbl_Fecha.TabIndex = 117;
             // 
-            // Lbl_Consulta
+            // Lbl_Reservaciones
             // 
-            this.Lbl_Consulta.AutoSize = true;
-            this.Lbl_Consulta.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_Consulta.Font = new System.Drawing.Font("Rockwell", 18F);
-            this.Lbl_Consulta.Location = new System.Drawing.Point(20, 86);
-            this.Lbl_Consulta.Name = "Lbl_Consulta";
-            this.Lbl_Consulta.Size = new System.Drawing.Size(184, 27);
-            this.Lbl_Consulta.TabIndex = 115;
-            this.Lbl_Consulta.Text = "Datos del Salon";
+            this.Lbl_Reservaciones.AutoSize = true;
+            this.Lbl_Reservaciones.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Lbl_Reservaciones.Font = new System.Drawing.Font("Rockwell", 18F);
+            this.Lbl_Reservaciones.Location = new System.Drawing.Point(20, 86);
+            this.Lbl_Reservaciones.Name = "Lbl_Reservaciones";
+            this.Lbl_Reservaciones.Size = new System.Drawing.Size(282, 27);
+            this.Lbl_Reservaciones.TabIndex = 115;
+            this.Lbl_Reservaciones.Text = "Datos De Reservaciones";
             // 
             // Dvg_Reservaciones
             // 
@@ -195,7 +192,7 @@ namespace Capa_Vista_S
             this.Dvg_Reservaciones.Location = new System.Drawing.Point(15, 340);
             this.Dvg_Reservaciones.Name = "Dvg_Reservaciones";
             this.Dvg_Reservaciones.RowHeadersWidth = 51;
-            this.Dvg_Reservaciones.Size = new System.Drawing.Size(1277, 343);
+            this.Dvg_Reservaciones.Size = new System.Drawing.Size(1315, 343);
             this.Dvg_Reservaciones.TabIndex = 101;
             this.Dvg_Reservaciones.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dvg_Reservaciones_CellClick);
             // 
@@ -250,9 +247,9 @@ namespace Capa_Vista_S
             this.Lbl_Capacidad.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Lbl_Capacidad.Location = new System.Drawing.Point(446, 230);
             this.Lbl_Capacidad.Name = "Lbl_Capacidad";
-            this.Lbl_Capacidad.Size = new System.Drawing.Size(165, 17);
+            this.Lbl_Capacidad.Size = new System.Drawing.Size(150, 17);
             this.Lbl_Capacidad.TabIndex = 130;
-            this.Lbl_Capacidad.Text = "Capacidad de personas ";
+            this.Lbl_Capacidad.Text = "Cantidad De Personas";
             this.Lbl_Capacidad.Click += new System.EventHandler(this.Lbl_Capacidad_Click);
             // 
             // Cbo_Huesped
@@ -334,16 +331,17 @@ namespace Capa_Vista_S
             this.Txt_Monto.Size = new System.Drawing.Size(200, 23);
             this.Txt_Monto.TabIndex = 138;
             // 
-            // Msp_Menu1
+            // Msp_Menu
             // 
-            this.Msp_Menu1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.Msp_Menu1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salonesToolStripMenuItem});
-            this.Msp_Menu1.Location = new System.Drawing.Point(0, 0);
-            this.Msp_Menu1.Name = "Msp_Menu1";
-            this.Msp_Menu1.Size = new System.Drawing.Size(1301, 24);
-            this.Msp_Menu1.TabIndex = 139;
-            this.Msp_Menu1.Text = "Msp_Menu";
+            this.Msp_Menu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
+            this.Msp_Menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.salonesToolStripMenuItem,
+            this.folioToolStripMenuItem});
+            this.Msp_Menu.Location = new System.Drawing.Point(0, 0);
+            this.Msp_Menu.Name = "Msp_Menu";
+            this.Msp_Menu.Size = new System.Drawing.Size(1339, 24);
+            this.Msp_Menu.TabIndex = 139;
+            this.Msp_Menu.Text = "Msp_Menu";
             // 
             // salonesToolStripMenuItem
             // 
@@ -351,6 +349,13 @@ namespace Capa_Vista_S
             this.salonesToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.salonesToolStripMenuItem.Text = "Salones";
             this.salonesToolStripMenuItem.Click += new System.EventHandler(this.salonesToolStripMenuItem_Click);
+            // 
+            // folioToolStripMenuItem
+            // 
+            this.folioToolStripMenuItem.Name = "folioToolStripMenuItem";
+            this.folioToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.folioToolStripMenuItem.Text = "Folio";
+            this.folioToolStripMenuItem.Click += new System.EventHandler(this.folioToolStripMenuItem_Click);
             // 
             // Lbl_Promocion
             // 
@@ -373,100 +378,6 @@ namespace Capa_Vista_S
             this.Cbo_Promocion.Size = new System.Drawing.Size(200, 21);
             this.Cbo_Promocion.TabIndex = 141;
             // 
-            // Lbl_Fechapago
-            // 
-            this.Lbl_Fechapago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_Fechapago.AutoSize = true;
-            this.Lbl_Fechapago.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_Fechapago.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Lbl_Fechapago.Location = new System.Drawing.Point(900, 140);
-            this.Lbl_Fechapago.Name = "Lbl_Fechapago";
-            this.Lbl_Fechapago.Size = new System.Drawing.Size(104, 17);
-            this.Lbl_Fechapago.TabIndex = 142;
-            this.Lbl_Fechapago.Text = "Fecha De Pago";
-            // 
-            // Dtp_FechaPago
-            // 
-            this.Dtp_FechaPago.Checked = false;
-            this.Dtp_FechaPago.Location = new System.Drawing.Point(1048, 140);
-            this.Dtp_FechaPago.Name = "Dtp_FechaPago";
-            this.Dtp_FechaPago.Size = new System.Drawing.Size(200, 20);
-            this.Dtp_FechaPago.TabIndex = 143;
-            this.Dtp_FechaPago.Value = new System.DateTime(2025, 10, 31, 19, 11, 16, 0);
-            // 
-            // Lbl_Pagototal
-            // 
-            this.Lbl_Pagototal.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_Pagototal.AutoSize = true;
-            this.Lbl_Pagototal.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_Pagototal.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Lbl_Pagototal.Location = new System.Drawing.Point(900, 185);
-            this.Lbl_Pagototal.Name = "Lbl_Pagototal";
-            this.Lbl_Pagototal.Size = new System.Drawing.Size(75, 17);
-            this.Lbl_Pagototal.TabIndex = 144;
-            this.Lbl_Pagototal.Text = "Pago Total";
-            // 
-            // Txt_PagoTotal
-            // 
-            this.Txt_PagoTotal.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txt_PagoTotal.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Txt_PagoTotal.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Txt_PagoTotal.Location = new System.Drawing.Point(1048, 179);
-            this.Txt_PagoTotal.Margin = new System.Windows.Forms.Padding(2);
-            this.Txt_PagoTotal.Name = "Txt_PagoTotal";
-            this.Txt_PagoTotal.Size = new System.Drawing.Size(200, 23);
-            this.Txt_PagoTotal.TabIndex = 145;
-            // 
-            // Lbl_EstadoPago
-            // 
-            this.Lbl_EstadoPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_EstadoPago.AutoSize = true;
-            this.Lbl_EstadoPago.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_EstadoPago.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Lbl_EstadoPago.Location = new System.Drawing.Point(900, 230);
-            this.Lbl_EstadoPago.Name = "Lbl_EstadoPago";
-            this.Lbl_EstadoPago.Size = new System.Drawing.Size(113, 17);
-            this.Lbl_EstadoPago.TabIndex = 146;
-            this.Lbl_EstadoPago.Text = "Estado Del Pago";
-            // 
-            // Txt_Estadopago
-            // 
-            this.Txt_Estadopago.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txt_Estadopago.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Txt_Estadopago.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Txt_Estadopago.Location = new System.Drawing.Point(1048, 230);
-            this.Txt_Estadopago.Margin = new System.Windows.Forms.Padding(2);
-            this.Txt_Estadopago.Name = "Txt_Estadopago";
-            this.Txt_Estadopago.Size = new System.Drawing.Size(200, 23);
-            this.Txt_Estadopago.TabIndex = 147;
-            // 
-            // Lbl_MetodoPago
-            // 
-            this.Lbl_MetodoPago.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Lbl_MetodoPago.AutoSize = true;
-            this.Lbl_MetodoPago.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Lbl_MetodoPago.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Lbl_MetodoPago.Location = new System.Drawing.Point(898, 268);
-            this.Lbl_MetodoPago.Name = "Lbl_MetodoPago";
-            this.Lbl_MetodoPago.Size = new System.Drawing.Size(115, 17);
-            this.Lbl_MetodoPago.TabIndex = 148;
-            this.Lbl_MetodoPago.Text = "Metodo De Pago";
-            // 
-            // Txt_MetodoPago
-            // 
-            this.Txt_MetodoPago.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Txt_MetodoPago.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.Txt_MetodoPago.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Txt_MetodoPago.Location = new System.Drawing.Point(1048, 266);
-            this.Txt_MetodoPago.Margin = new System.Windows.Forms.Padding(2);
-            this.Txt_MetodoPago.Name = "Txt_MetodoPago";
-            this.Txt_MetodoPago.Size = new System.Drawing.Size(200, 23);
-            this.Txt_MetodoPago.TabIndex = 149;
-            // 
             // Btn_Reportes
             // 
             this.Btn_Reportes.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -474,7 +385,7 @@ namespace Capa_Vista_S
             this.Btn_Reportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Btn_Reportes.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.Btn_Reportes.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reportes.Image")));
-            this.Btn_Reportes.Location = new System.Drawing.Point(1201, 86);
+            this.Btn_Reportes.Location = new System.Drawing.Point(1288, 86);
             this.Btn_Reportes.Margin = new System.Windows.Forms.Padding(2);
             this.Btn_Reportes.Name = "Btn_Reportes";
             this.Btn_Reportes.Size = new System.Drawing.Size(40, 37);
@@ -482,20 +393,74 @@ namespace Capa_Vista_S
             this.Btn_Reportes.UseVisualStyleBackColor = false;
             this.Btn_Reportes.Click += new System.EventHandler(this.Btn_Reportes_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.label1.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.label1.Location = new System.Drawing.Point(901, 144);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(0, 17);
+            this.label1.TabIndex = 152;
+            // 
+            // Lbl_Menu
+            // 
+            this.Lbl_Menu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_Menu.AutoSize = true;
+            this.Lbl_Menu.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Lbl_Menu.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Lbl_Menu.Location = new System.Drawing.Point(870, 143);
+            this.Lbl_Menu.Name = "Lbl_Menu";
+            this.Lbl_Menu.Size = new System.Drawing.Size(130, 17);
+            this.Lbl_Menu.TabIndex = 153;
+            this.Lbl_Menu.Text = "Menus Disponibles";
+            // 
+            // Cbo_Menu
+            // 
+            this.Cbo_Menu.FormattingEnabled = true;
+            this.Cbo_Menu.Location = new System.Drawing.Point(1027, 143);
+            this.Cbo_Menu.Name = "Cbo_Menu";
+            this.Cbo_Menu.Size = new System.Drawing.Size(200, 21);
+            this.Cbo_Menu.TabIndex = 154;
+            // 
+            // Lbl_Cantidad
+            // 
+            this.Lbl_Cantidad.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Lbl_Cantidad.AutoSize = true;
+            this.Lbl_Cantidad.Cursor = System.Windows.Forms.Cursors.Default;
+            this.Lbl_Cantidad.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Lbl_Cantidad.Location = new System.Drawing.Point(868, 186);
+            this.Lbl_Cantidad.Name = "Lbl_Cantidad";
+            this.Lbl_Cantidad.Size = new System.Drawing.Size(142, 17);
+            this.Lbl_Cantidad.TabIndex = 155;
+            this.Lbl_Cantidad.Text = "Cantidad De Platillos";
+            // 
+            // Txt_Cantidad
+            // 
+            this.Txt_Cantidad.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Txt_Cantidad.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.Txt_Cantidad.Font = new System.Drawing.Font("Rockwell", 10F);
+            this.Txt_Cantidad.Location = new System.Drawing.Point(1027, 181);
+            this.Txt_Cantidad.Margin = new System.Windows.Forms.Padding(2);
+            this.Txt_Cantidad.Name = "Txt_Cantidad";
+            this.Txt_Cantidad.Size = new System.Drawing.Size(200, 23);
+            this.Txt_Cantidad.TabIndex = 156;
+            // 
             // Frm_Reservaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1301, 684);
+            this.ClientSize = new System.Drawing.Size(1339, 684);
+            this.Controls.Add(this.Txt_Cantidad);
+            this.Controls.Add(this.Lbl_Cantidad);
+            this.Controls.Add(this.Cbo_Menu);
+            this.Controls.Add(this.Lbl_Menu);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.Btn_Reportes);
-            this.Controls.Add(this.Txt_MetodoPago);
-            this.Controls.Add(this.Lbl_MetodoPago);
-            this.Controls.Add(this.Txt_Estadopago);
-            this.Controls.Add(this.Lbl_EstadoPago);
-            this.Controls.Add(this.Txt_PagoTotal);
-            this.Controls.Add(this.Lbl_Pagototal);
-            this.Controls.Add(this.Dtp_FechaPago);
-            this.Controls.Add(this.Lbl_Fechapago);
             this.Controls.Add(this.Cbo_Promocion);
             this.Controls.Add(this.Lbl_Promocion);
             this.Controls.Add(this.Txt_Monto);
@@ -516,19 +481,19 @@ namespace Capa_Vista_S
             this.Controls.Add(this.Lbl_Hora_Fin);
             this.Controls.Add(this.Lbl_Hora_inicio);
             this.Controls.Add(this.Lbl_Fecha);
-            this.Controls.Add(this.Lbl_Consulta);
+            this.Controls.Add(this.Lbl_Reservaciones);
             this.Controls.Add(this.Dvg_Reservaciones);
             this.Controls.Add(this.Pnl_Superior);
-            this.Controls.Add(this.Msp_Menu1);
-            this.MainMenuStrip = this.Msp_Menu1;
+            this.Controls.Add(this.Msp_Menu);
+            this.MainMenuStrip = this.Msp_Menu;
             this.Name = "Frm_Reservaciones";
             this.Text = "Frm_Reservaciones";
-            this.Load += new System.EventHandler(this.Frm_Reservaciones_Load_1);
+          
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dvg_Reservaciones)).EndInit();
-            this.Msp_Menu1.ResumeLayout(false);
-            this.Msp_Menu1.PerformLayout();
+            this.Msp_Menu.ResumeLayout(false);
+            this.Msp_Menu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -544,7 +509,7 @@ namespace Capa_Vista_S
         private System.Windows.Forms.Label Lbl_Hora_Fin;
         private System.Windows.Forms.Label Lbl_Hora_inicio;
         private System.Windows.Forms.Label Lbl_Fecha;
-        private System.Windows.Forms.Label Lbl_Consulta;
+        private System.Windows.Forms.Label Lbl_Reservaciones;
         private System.Windows.Forms.DataGridView Dvg_Reservaciones;
         private System.Windows.Forms.DateTimePicker Dtp_Fecha;
         private System.Windows.Forms.DateTimePicker Dtp_Inicio;
@@ -558,18 +523,16 @@ namespace Capa_Vista_S
         private System.Windows.Forms.Label Lbl_FechaR;
         private System.Windows.Forms.Label Lbl_Monto;
         private System.Windows.Forms.TextBox Txt_Monto;
-        private System.Windows.Forms.MenuStrip Msp_Menu1;
+        private System.Windows.Forms.MenuStrip Msp_Menu;
         private System.Windows.Forms.ToolStripMenuItem salonesToolStripMenuItem;
         private System.Windows.Forms.Label Lbl_Promocion;
         private System.Windows.Forms.ComboBox Cbo_Promocion;
-        private System.Windows.Forms.Label Lbl_Fechapago;
-        private System.Windows.Forms.DateTimePicker Dtp_FechaPago;
-        private System.Windows.Forms.Label Lbl_Pagototal;
-        private System.Windows.Forms.TextBox Txt_PagoTotal;
-        private System.Windows.Forms.Label Lbl_EstadoPago;
-        private System.Windows.Forms.TextBox Txt_Estadopago;
-        private System.Windows.Forms.Label Lbl_MetodoPago;
-        private System.Windows.Forms.TextBox Txt_MetodoPago;
         private System.Windows.Forms.Button Btn_Reportes;
+        private System.Windows.Forms.ToolStripMenuItem folioToolStripMenuItem;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Menu;
+        private System.Windows.Forms.ComboBox Cbo_Menu;
+        private System.Windows.Forms.Label Lbl_Cantidad;
+        private System.Windows.Forms.TextBox Txt_Cantidad;
     }
 } 

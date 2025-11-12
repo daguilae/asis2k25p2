@@ -5,213 +5,246 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Capa_Modelo_GesHab;
-
+using Capa_Controlador_Seguridad;
 
 namespace Capa_Controlador_GesHab
 {
-
     public class Cls_Controlador_GesHab
     {
-        Cls_Dao_Estadia Dao = new Cls_Dao_Estadia();
+        private Cls_Dao_Estadia oDaoEstadia = new Cls_Dao_Estadia();
+        private Cls_BitacoraControlador oCtrlBitacora = new Cls_BitacoraControlador();
 
-        public bool InsertarEstadiaVerificada(
-    int idHabitacion,
-    int idHuesped,
-    int numHuespedes,
-    bool tieneReserva,
-    DateTime fechaCheckIn,
-    DateTime fechaActual,
-    decimal montoTotal,
-    out string mensaje)
+        // ==========================================================================================
+        // Insertar estadía verificada
+        public bool pro_InsertarEstadiaVerificada(
+            int iIdHabitacion,
+            int iIdHuesped,
+            int iNumHuespedes,
+            bool bTieneReserva,
+            DateTime dFechaCheckIn,
+            DateTime dFechaActual,
+            decimal deMontoTotal,
+            out string sMensaje)
         {
-            mensaje = "";
-            int ICapacidadHabitacion = Dao.ObtenerCapacidadHabitacion(idHabitacion);
-      
-            //Validaciones con mensajes personalizados
-            if (idHabitacion <= 0)
+            sMensaje = "";
+
+            int iCapacidadHabitacion = oDaoEstadia.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
+
+            // Validaciones con mensajes personalizados
+            if (iIdHabitacion <= 0)
             {
-                mensaje = "Debe seleccionar una habitación válida.";
+                sMensaje = "Debe seleccionar una habitación válida.";
                 return false;
             }
 
-            if (idHuesped <= 0)
+            if (iIdHuesped <= 0)
             {
-                mensaje = "Debe seleccionar un huésped válido.";
+                sMensaje = "Debe seleccionar un huésped válido.";
                 return false;
             }
 
-            if (numHuespedes <= 0)
+            if (iNumHuespedes <= 0)
             {
-                mensaje = "Debe ingresar un número válido de huéspedes.";
+                sMensaje = "Debe ingresar un número válido de huéspedes.";
                 return false;
             }
 
-            if (numHuespedes > ICapacidadHabitacion)
+            if (iNumHuespedes > iCapacidadHabitacion)
             {
-                mensaje = "Debe ingresar un número de huéspedes menor a la capacidad maxima del cuarto.";
+                sMensaje = "Debe ingresar un número de huéspedes menor a la capacidad máxima del cuarto.";
                 return false;
             }
 
-
-            if (montoTotal <= 0)
+            if (deMontoTotal <= 0)
             {
-                mensaje = "El monto total debe ser mayor que 0. Verifique las fechas o la habitación seleccionada.";
+                sMensaje = "El monto total debe ser mayor que 0. Verifique las fechas o la habitación seleccionada.";
                 return false;
             }
 
-            if (fechaActual < fechaCheckIn)
+            if (dFechaActual < dFechaCheckIn)
             {
-                mensaje = "La fecha de salida no puede ser anterior a la fecha de entrada.";
+                sMensaje = "La fecha de salida no puede ser anterior a la fecha de entrada.";
                 return false;
             }
 
             // Si todo está correcto, realizar inserción
-            bool exito = Dao.InsertarEstadia(
-                idHabitacion,
-                idHuesped,
-                numHuespedes,
-                tieneReserva,
-                fechaCheckIn,
-                fechaActual,
-                montoTotal
+            bool bExito = oDaoEstadia.pro_InsertarEstadia(
+                iIdHabitacion,
+                iIdHuesped,
+                iNumHuespedes,
+                bTieneReserva,
+                dFechaCheckIn,
+                dFechaActual,
+                deMontoTotal
             );
 
-            mensaje = exito ? "Nuevo Registro de Estadía registrado correctamente." : "Ocurrió un error al registrar la estadía.";
-            return exito;
-        }
-
-
-        public bool ModificarEstadiaVerificada(
-            int idEstadia,
-            int idHabitacion,
-            int idHuesped,
-            int numHuespedes,
-            bool tieneReserva,
-            DateTime fechaCheckIn,
-            DateTime fechaActual,
-            decimal montoTotal,
-            out string mensaje)
-        {
-            mensaje = "";
-            int ICapacidadHabitacion = Dao.ObtenerCapacidadHabitacion(idHabitacion);
-
-            if (idEstadia <= 0)
-            {
-                mensaje = "Debe seleccionar una estadía existente para modificar.";
-                return false;
-            }
-
-            if (idHabitacion <= 0)
-            {
-                mensaje = "Debe seleccionar una habitación válida.";
-                return false;
-            }
-
-            if (idHuesped <= 0)
-            {
-                mensaje = "Debe seleccionar un huésped válido.";
-                return false;
-            }
-
-            if (numHuespedes <= 0)
-            {
-                mensaje = "Debe ingresar un número válido de huéspedes.";
-                return false;
-            }
-
-            if (numHuespedes > ICapacidadHabitacion)
-            {
-                mensaje = "Debe ingresar un número de huéspedes menor a la capacidad maxima del cuarto.";
-                return false;
-            }
-            if (montoTotal <= 0)
-            {
-                mensaje = "El monto total debe ser mayor que 0.";
-                return false;
-            }
-
-            if (fechaActual < fechaCheckIn)
-            {
-                mensaje = "La fecha de salida no puede ser anterior a la de entrada.";
-                return false;
-            }
-
-            bool exito = Dao.ModificarEstadia(
-                idEstadia,
-                idHabitacion,
-                idHuesped,
-                numHuespedes,
-                tieneReserva,
-                fechaCheckIn,
-                fechaActual,
-                montoTotal
+            // Registrar en bitácora
+            oCtrlBitacora.RegistrarAccion(
+                Cls_Usuario_Conectado.iIdUsuario,
+                3045,
+                $"Insertó un nuevo registro en la tabla 'Tbl_Estadia' para la habitación '{iIdHabitacion}' y el huésped '{iIdHuesped}'",
+                true
             );
 
-            mensaje = exito ? "Registro actualizado correctamente." : "No se pudo actualizar la estadía.";
-            return exito;
+            sMensaje = bExito
+                ? "Nuevo registro de estadía guardado correctamente."
+                : "Ocurrió un error al registrar la estadía.";
+
+            return bExito;
         }
 
-
-
-        public bool EliminarEstadia(int idEstadia)
+        // ==========================================================================================
+        // Modificar estadía verificada
+        public bool pro_ModificarEstadiaVerificada(
+            int iIdEstadia,
+            int iIdHabitacion,
+            int iIdHuesped,
+            int iNumHuespedes,
+            bool bTieneReserva,
+            DateTime dFechaCheckIn,
+            DateTime dFechaActual,
+            decimal deMontoTotal,
+            out string sMensaje)
         {
-            // Validación básica
-            if (idEstadia <= 0)
+            sMensaje = "";
+
+            int iCapacidadHabitacion = oDaoEstadia.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
+
+            if (iIdEstadia <= 0)
+            {
+                sMensaje = "Debe seleccionar una estadía existente para modificar.";
+                return false;
+            }
+
+            if (iIdHabitacion <= 0)
+            {
+                sMensaje = "Debe seleccionar una habitación válida.";
+                return false;
+            }
+
+            if (iIdHuesped <= 0)
+            {
+                sMensaje = "Debe seleccionar un huésped válido.";
+                return false;
+            }
+
+            if (iNumHuespedes <= 0)
+            {
+                sMensaje = "Debe ingresar un número válido de huéspedes.";
+                return false;
+            }
+
+            if (iNumHuespedes > iCapacidadHabitacion)
+            {
+                sMensaje = "Debe ingresar un número de huéspedes menor a la capacidad máxima del cuarto.";
+                return false;
+            }
+
+            if (deMontoTotal <= 0)
+            {
+                sMensaje = "El monto total debe ser mayor que 0.";
+                return false;
+            }
+
+            if (dFechaActual < dFechaCheckIn)
+            {
+                sMensaje = "La fecha de salida no puede ser anterior a la fecha de entrada.";
+                return false;
+            }
+
+            bool bExito = oDaoEstadia.pro_ModificarEstadia(
+                iIdEstadia,
+                iIdHabitacion,
+                iIdHuesped,
+                iNumHuespedes,
+                bTieneReserva,
+                dFechaCheckIn,
+                dFechaActual,
+                deMontoTotal
+            );
+
+            oCtrlBitacora.RegistrarAccion(
+                Cls_Usuario_Conectado.iIdUsuario,
+                3045,
+                $"Modificó en la tabla 'Tbl_Estadia' el registro con llave '{iIdEstadia}'",
+                true
+            );
+
+            sMensaje = bExito
+                ? "Registro actualizado correctamente."
+                : "No se pudo actualizar la estadía.";
+
+            return bExito;
+        }
+
+        // ==========================================================================================
+        // Eliminar estadía
+        public bool pro_EliminarEstadia(int iIdEstadia)
+        {
+            if (iIdEstadia <= 0)
                 return false;
 
-            // Llamada directa al DAO
-            return Dao.EliminarEstadia(idEstadia);
+            oCtrlBitacora.RegistrarAccion(
+                Cls_Usuario_Conectado.iIdUsuario,
+                3045,
+                $"Eliminó en la tabla 'Tbl_Estadia' el registro con llave '{iIdEstadia}'",
+                true
+            );
+
+            return oDaoEstadia.pro_EliminarEstadia(iIdEstadia);
         }
 
-        Cls_Dao_Estadia daoEstadia = new Cls_Dao_Estadia();
+        // ==========================================================================================
+        // Métodos auxiliares para combos y consultas
+        private Cls_Dao_Estadia oDaoAuxiliar = new Cls_Dao_Estadia();
 
-        public DataTable CargarIdsEstadia()
+        public DataTable fun_CargarIdsEstadia()
         {
-            return daoEstadia.ObtenerIdsEstadia();
+            return oDaoAuxiliar.fun_ObtenerIdsEstadia();
         }
 
-        public DataTable CargarHabitaciones()
+        public DataTable fun_CargarHabitaciones()
         {
-            return daoEstadia.ObtenerHabitaciones();
+            return oDaoAuxiliar.fun_ObtenerHabitaciones();
         }
 
-        public DataTable CargarHuespedes()
+        public DataTable fun_CargarHuespedes()
         {
-            return daoEstadia.ObtenerHuespedes();
+            return oDaoAuxiliar.fun_ObtenerHuespedes();
         }
 
-        public double ObtenerTarifaHabitacion(int idHabitacion)
+        public double fun_ObtenerTarifaHabitacion(int iIdHabitacion)
         {
-            return daoEstadia.ObtenerTarifaPorNoche(idHabitacion);
+            return oDaoAuxiliar.fun_ObtenerTarifaPorNoche(iIdHabitacion);
         }
 
-        public int ObtenerCapacidadHabitacion(int idHabitacion)
+        public int fun_ObtenerCapacidadHabitacion(int iIdHabitacion)
         {
-            return daoEstadia.ObtenerCapacidadHabitacion(idHabitacion);
+            return oDaoAuxiliar.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
         }
 
-        public DataTable BuscarEstadiaPorIdVerificada(int idEstadia, out string mensaje)
+        // ==========================================================================================
+        // Buscar estadía por ID
+        public DataTable fun_BuscarEstadiaPorIdVerificada(int iIdEstadia, out string sMensaje)
         {
-            mensaje = "";
+            sMensaje = "";
 
-            if (idEstadia <= 0)
+            if (iIdEstadia <= 0)
             {
-                mensaje = "Debe seleccionar un ID de estadía válido.";
+                sMensaje = "Debe seleccionar un ID de estadía válido.";
                 return null;
             }
 
-            DataTable dt = daoEstadia.ObtenerEstadiaPorId(idEstadia);
+            DataTable dtResultado = oDaoAuxiliar.fun_ObtenerEstadiaPorId(iIdEstadia);
 
-            if (dt == null || dt.Rows.Count == 0)
+            if (dtResultado == null || dtResultado.Rows.Count == 0)
             {
-                mensaje = "No se encontró ninguna estadía con el ID especificado.";
+                sMensaje = "No se encontró ninguna estadía con el ID especificado.";
                 return null;
             }
 
-            mensaje = "Datos de estadía cargados correctamente.";
-            return dt;
+            sMensaje = "Datos de estadía cargados correctamente.";
+            return dtResultado;
         }
-
-
     }
 }
