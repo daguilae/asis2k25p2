@@ -535,3 +535,95 @@ CREATE TABLE tbl_historico_catalogo_cuentas (
         ON UPDATE CASCADE
         ON DELETE RESTRICT
 );
+
+
+INSERT INTO Tbl_PeriodosContables
+(Cmp_Anio, Cmp_Mes, Cmp_FechaInicio, Cmp_FechaFin, Cmp_Estado, Cmp_ModoActualizacion)
+VALUES
+(2025, 1, '2025-01-01', '2025-01-31', 0, 0),
+(2025, 2, '2025-02-01', '2025-02-28', 0, 0),
+(2025, 3, '2025-03-01', '2025-03-31', 0, 0),
+(2025, 4, '2025-04-01', '2025-04-30', 0, 0),
+(2025, 5, '2025-05-01', '2025-05-31', 0, 0),
+(2025, 6, '2025-06-01', '2025-06-30', 0, 0),
+(2025,12, '2025-12-01', '2025-12-31', 1, 0);
+
+-- Encabezados de pólizas (1 por mes)
+INSERT INTO Tbl_EncabezadoPoliza 
+(Pk_EncCodigo_Poliza, Pk_Fecha_Poliza, Cmp_Concepto_Poliza, Cmp_Valor_Poliza, Cmp_Estado_Poliza)
+VALUES
+(1, '2025-01-31', 'Ventas enero', 15000, 1),
+(2, '2025-02-28', 'Pago proveedores febrero', 6000, 1),
+(3, '2025-03-31', 'Pago de sueldos marzo', 4000, 1),
+(4, '2025-04-30', 'Compra de mobiliario', 3500, 1),
+(5, '2025-05-31', 'Pago préstamo bancario', 2000, 1),
+(6, '2025-06-30', 'Depreciación semestral', 1200, 1),
+(7, '2025-07-31', 'Ventas julio', 18000, 1),
+(8, '2025-08-31', 'Compra mercadería agosto', 9000, 1),
+(9, '2025-09-30', 'Gasto publicidad septiembre', 1200, 1),
+(10, '2025-10-31', 'Pago ISR octubre', 1100, 1),
+(11, '2025-11-30', 'Ingreso por intereses noviembre', 300, 1),
+(12, '2025-12-31', 'Cierre anual diciembre', 0, 1);
+
+-- Enero: ventas al contado
+INSERT INTO Tbl_DetallePoliza VALUES
+(1, '2025-01-31', '1.2.1', 1, 15000),  -- Banco G&T (cargo)
+(1, '2025-01-31', '4.1.1', 0, 15000);  -- Ventas nacionales (abono)
+
+-- Febrero: pago a proveedores
+INSERT INTO Tbl_DetallePoliza VALUES
+(2, '2025-02-28', '2.1.1', 1, 6000),   -- Proveedores locales (cargo)
+(2, '2025-02-28', '1.2.1', 0, 6000);   -- Banco G&T (abono)
+
+-- Marzo: sueldos
+INSERT INTO Tbl_DetallePoliza VALUES
+(3, '2025-03-31', '6.1.1', 1, 4000),   -- Sueldos (cargo)
+(3, '2025-03-31', '1.2.1', 0, 4000);   -- Banco G&T (abono)
+
+-- Abril: compra mobiliario
+INSERT INTO Tbl_DetallePoliza VALUES
+(4, '2025-04-30', '1.5.1', 1, 3500),   -- Mobiliario y equipo (cargo)
+(4, '2025-04-30', '1.2.1', 0, 3500);   -- Banco G&T (abono)
+
+-- Mayo: pago préstamo
+INSERT INTO Tbl_DetallePoliza VALUES
+(5, '2025-05-31', '2.2.1', 1, 2000),   -- Préstamo Banco G&T (cargo)
+(5, '2025-05-31', '1.2.1', 0, 2000);   -- Banco G&T (abono)
+
+-- Junio: depreciación
+INSERT INTO Tbl_DetallePoliza VALUES
+(6, '2025-06-30', '6.1.5', 1, 1200),   -- Gasto depreciación (cargo)
+(6, '2025-06-30', '1.6.1', 0, 1200);   -- Dep. acumulada mobiliario (abono)
+
+-- Julio: ventas
+INSERT INTO Tbl_DetallePoliza VALUES
+(7, '2025-07-31', '1.2.1', 1, 18000),  -- Banco (cargo)
+(7, '2025-07-31', '4.1.1', 0, 18000);  -- Ventas (abono)
+
+-- Agosto: compra mercadería
+INSERT INTO Tbl_DetallePoliza VALUES
+(8, '2025-08-31', '1.4.1', 1, 9000),   -- Mercadería (cargo)
+(8, '2025-08-31', '2.1.1', 0, 9000);   -- Proveedores (abono)
+
+-- Septiembre: gasto publicidad
+INSERT INTO Tbl_DetallePoliza VALUES
+(9, '2025-09-30', '6.1.4', 1, 1200),   -- Publicidad (cargo)
+(9, '2025-09-30', '1.2.1', 0, 1200);   -- Banco (abono)
+
+-- Octubre: pago ISR
+INSERT INTO Tbl_DetallePoliza VALUES
+(10, '2025-10-31', '2.3.2', 1, 1100),  -- ISR por pagar (cargo)
+(10, '2025-10-31', '1.2.1', 0, 1100);  -- Banco (abono)
+
+-- Noviembre: intereses ganados
+INSERT INTO Tbl_DetallePoliza VALUES
+(11, '2025-11-30', '1.2.1', 1, 300),   -- Banco (cargo)
+(11, '2025-11-30', '4.2.2', 0, 300);   -- Intereses ganados (abono)
+
+-- Diciembre: cierre (traslado utilidades)
+INSERT INTO Tbl_DetallePoliza VALUES
+(12, '2025-12-31', '4.1.1', 1, 20000), -- Ventas (cargo)
+(12, '2025-12-31', '6.1.1', 0, 4000),  -- Sueldos (abono)
+(12, '2025-12-31', '6.1.4', 0, 1200),  -- Publicidad (abono)
+(12, '2025-12-31', '5.1.1', 0, 18000), -- Costo ventas (abono)
+(12, '2025-12-31', '3.2.2', 1, 4800);  -- Utilidad neta (cargo)
