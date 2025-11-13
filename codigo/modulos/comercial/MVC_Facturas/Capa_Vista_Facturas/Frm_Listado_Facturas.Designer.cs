@@ -23,6 +23,24 @@
             this.pnlTop.SuspendLayout();
             this.SuspendLayout();
             // 
+            // Dgv_Facturas
+            // 
+            this.Dgv_Facturas.AllowUserToAddRows = false;
+            this.Dgv_Facturas.AllowUserToDeleteRows = false;
+            this.Dgv_Facturas.AllowUserToOrderColumns = true;
+            this.Dgv_Facturas.BackgroundColor = System.Drawing.Color.White;
+            this.Dgv_Facturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dgv_Facturas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Dgv_Facturas.Location = new System.Drawing.Point(0, 56);
+            this.Dgv_Facturas.MultiSelect = false;
+            this.Dgv_Facturas.Name = "Dgv_Facturas";
+            this.Dgv_Facturas.ReadOnly = true;
+            this.Dgv_Facturas.RowHeadersVisible = false;
+            this.Dgv_Facturas.RowHeadersWidth = 51;
+            this.Dgv_Facturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dgv_Facturas.Size = new System.Drawing.Size(1184, 605);
+            this.Dgv_Facturas.TabIndex = 0;
+            // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Gainsboro;
@@ -31,6 +49,7 @@
             this.pnlTop.Controls.Add(this.Txt_Buscar);
             this.pnlTop.Controls.Add(this.Lbl_Buscar);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.Size = new System.Drawing.Size(1184, 56);
@@ -58,11 +77,11 @@
             // 
             // Txt_Buscar
             // 
-            this.Txt_Buscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.Txt_Buscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Txt_Buscar.Location = new System.Drawing.Point(79, 16);
             this.Txt_Buscar.Name = "Txt_Buscar";
-            this.Txt_Buscar.Size = new System.Drawing.Size(800, 22);
+            this.Txt_Buscar.Size = new System.Drawing.Size(800, 27);
             this.Txt_Buscar.TabIndex = 1;
             // 
             // Lbl_Buscar
@@ -70,26 +89,9 @@
             this.Lbl_Buscar.AutoSize = true;
             this.Lbl_Buscar.Location = new System.Drawing.Point(18, 19);
             this.Lbl_Buscar.Name = "Lbl_Buscar";
-            this.Lbl_Buscar.Size = new System.Drawing.Size(55, 16);
+            this.Lbl_Buscar.Size = new System.Drawing.Size(71, 20);
             this.Lbl_Buscar.TabIndex = 0;
             this.Lbl_Buscar.Text = "Buscar :";
-            // 
-            // Dgv_Facturas
-            // 
-            this.Dgv_Facturas.AllowUserToAddRows = false;
-            this.Dgv_Facturas.AllowUserToDeleteRows = false;
-            this.Dgv_Facturas.AllowUserToOrderColumns = true;
-            this.Dgv_Facturas.BackgroundColor = System.Drawing.Color.White;
-            this.Dgv_Facturas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Facturas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Dgv_Facturas.Location = new System.Drawing.Point(0, 56);
-            this.Dgv_Facturas.MultiSelect = false;
-            this.Dgv_Facturas.Name = "Dgv_Facturas";
-            this.Dgv_Facturas.ReadOnly = true;
-            this.Dgv_Facturas.RowHeadersVisible = false;
-            this.Dgv_Facturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.Dgv_Facturas.Size = new System.Drawing.Size(1184, 605);
-            this.Dgv_Facturas.TabIndex = 0;
             // 
             // Frm_Listado_Facturas
             // 
@@ -107,6 +109,7 @@
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         #endregion
