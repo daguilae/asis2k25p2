@@ -1,257 +1,173 @@
-﻿using System;
+﻿// Capa_Vista_Facturas/Frm_FacturaCrear.cs
+using System;
 using System.Data;
-using System.Drawing;              
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Capa_Controlador_Facturas;
 
 namespace Capa_Vista_Facturas
-
-        // Juan Carlos Sandoval Quej 0901-22-4170 09/11/2025
 {
+    // Formulario para crear la factura a partir de una venta
     public partial class Frm_FacturaCrear : Form
     {
-        // ====== Datos que recibe desde Frm_Venta ======
-        public DataTable DetalleFactura { get; set; }
-        public decimal Total { get; set; }
-        public int? FacturaId { get; private set; }
+        // Evento opcional para notificar que se guardó la factura (si algún form quiere escuchar)
+        public event Action<int, decimal> FacturaGuardada;
 
-        // ====== Carpeta ÚNICA para cabeceras+detalles ======
+        // Datos recibidos desde Frm_Venta
+        public DataTable DetalleFactura { get; set; }   // lineas de productos
+        public decimal Total { get; set; }              // total calculado de la venta
+        public int? FacturaId { get; private set; }     // id de factura en BD (luego de guardar)
+
+        // Carpeta base si algún día guardas también XML (no obligatorio)
         internal static readonly string BaseDir =
             Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "Facturas");
 
-        // Guard de clic doble/Enter/AcceptButton (evita duplicar)
+        // Estado interno para evitar doble guardado
         private bool _yaGuardado = false;
+
+        // Controlador para hablar con la capa modelo/BD
+        private readonly Cls_Controlador _ctrl = new Cls_Controlador();
 
         public Frm_FacturaCrear()
         {
             InitializeComponent();
 
+            // Eventos del ciclo de vida y botones
             Load += Frm_FacturaCrear_Load;
-
             Cbo_TipoDoc.SelectedIndexChanged += Cbo_TipoDoc_SelectedIndexChanged;
             Btn_Guardar.Click += Btn_Guardar_Click;
             Btn_Imprimir.Click += Btn_Imprimir_Click;
             Btn_Cancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
 
+            // Evento de impresión
             printDocument1.PrintPage += printDocument1_PrintPage;
         }
 
         private void Frm_FacturaCrear_Load(object sender, EventArgs e)
         {
-            Directory.CreateDirectory(BaseDir);
-
+            // Cargar opciones del tipo de documento (NIT/CF) una sola vez
             if (Cbo_TipoDoc.Items.Count == 0)
             {
                 Cbo_TipoDoc.Items.Add("NIT");
                 Cbo_TipoDoc.Items.Add("CF");
             }
-            Cbo_TipoDoc.SelectedIndex = 1; // CF por defecto
+            Cbo_TipoDoc.SelectedIndex = 1; // por defecto CF
 
+            // Mostrar total
             Txt_Total.Text = Total.ToString("0.00");
 
+            // Preparar grid con el detalle que viene de la venta
             Dgv_Detalle.AutoGenerateColumns = true;
             Dgv_Detalle.ReadOnly = true;
-            Dgv_Detalle.DataSource = DetalleFactura ?? new DataTable();
+            Dgv_Detalle.DataSource = DetalleFactura;
 
+            // Formatos si existen esas columnas
             if (Dgv_Detalle.Columns.Contains("Precio"))
                 Dgv_Detalle.Columns["Precio"].DefaultCellStyle.Format = "N2";
             if (Dgv_Detalle.Columns.Contains("Subtotal"))
                 Dgv_Detalle.Columns["Subtotal"].DefaultCellStyle.Format = "N2";
-
-            _yaGuardado = false;        // reset guard
-            Btn_Guardar.Enabled = true; // por si viene reabierto
         }
 
         private void Cbo_TipoDoc_SelectedIndexChanged(object sender, EventArgs e)
         {
+            // Si es CF, se bloquea el campo de documento y se pone "CF"
             bool esCF = (Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "CF";
-            if (esCF) Txt_Documento.Text = "CF";
+            Txt_Documento.Text = esCF ? "CF" : Txt_Documento.Text;
             Txt_Documento.ReadOnly = esCF;
-            Txt_Documento.BackColor = esCF
-                ? SystemColors.ControlLight
-                : SystemColors.Window;
+            Txt_Documento.BackColor = esCF ? SystemColors.ControlLight : SystemColors.Window;
         }
 
-        // ================== GUARDAR ==================
+        // Validaciones básicas de campos
+        private bool Validar()
+        {
+            // Se requiere el IdVenta (viene en Tag)
+            if (!(Tag is int)) { MessageBox.Show("No se recibió el Id de la venta."); return false; }
+
+            // Nombre del cliente obligatorio
+            if (string.IsNullOrWhiteSpace(Txt_Nombre.Text)) { MessageBox.Show("Ingrese el nombre del cliente."); return false; }
+
+            // Si el tipo es NIT, el documento no puede estar vacío
+            if ((Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "NIT" && string.IsNullOrWhiteSpace(Txt_Documento.Text))
+            { MessageBox.Show("Ingrese el NIT."); return false; }
+
+            // Total debe ser mayor a 0
+            if (Total <= 0) { MessageBox.Show("El total debe ser mayor a 0."); return false; }
+
+            return true;
+        }
+
         private void Btn_Guardar_Click(object sender, EventArgs e)
         {
-            // 1) guard anti-doble-click/enter
+            // Evita doble clic/duplicar factura
             if (_yaGuardado) return;
 
-            // 2) validaciones
+            // Validaciones
             if (!Validar()) return;
+
+            // Datos para guardar en BD
+            int idVenta = (int)this.Tag;                // viene de Frm_Venta al abrir este form
+            string tipo = (Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF");
+            string documento = tipo == "CF" ? "CF" : Txt_Documento.Text.Trim();
+            string nombre = Txt_Nombre.Text.Trim();
+            string apellido = Txt_Apellido.Text.Trim();
+            DateTime fecha = Dtp_Fecha.Value;
 
             try
             {
-                Directory.CreateDirectory(BaseDir);
+                // Solo guardamos en BD 
+                _ctrl.PersistenciaFactura = Cls_Controlador.ModoFactura.SoloBD;
 
-                // correlativo a partir de los archivos existentes
-                int numero = SiguienteNumero();
-
-                // ===== Cabecera =====
-                var cab = new DataTable("Cabecera");
-                cab.Columns.Add("Numero", typeof(int));
-                cab.Columns.Add("IdVenta", typeof(int));
-                cab.Columns.Add("TipoDoc", typeof(string));
-                cab.Columns.Add("Documento", typeof(string));
-                cab.Columns.Add("Nombre", typeof(string));
-                cab.Columns.Add("Apellido", typeof(string));
-                cab.Columns.Add("Fecha", typeof(DateTime));
-                cab.Columns.Add("Total", typeof(decimal));
-
-                cab.Rows.Add(
-                    numero,
-                    (int)Tag, // IdVenta en Tag
-                    Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF",
-                    ((Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "CF") ? "CF" : Txt_Documento.Text.Trim(),
-                    Txt_Nombre.Text.Trim(),
-                    Txt_Apellido.Text.Trim(),
-                    Dtp_Fecha.Value,
-                    Total
+                // Guardar factura en BD -> retorna Id de Tbl_Factura
+                int idFactura = _ctrl.GuardarFacturaEnBD(
+                    idVenta, tipo, documento, nombre, apellido, fecha, Total,
+                    tambienLocalXml: _ctrl.PersistenciaFactura == Cls_Controlador.ModoFactura.Mixta
                 );
 
-                // ===== Detalle =====
-                var det = (DetalleFactura?.Copy()) ?? new DataTable();
-                if (string.IsNullOrWhiteSpace(det.TableName)) det.TableName = "Detalle";
-                if (det.Columns.Count == 0)
+                // Guardado OK: actualizamos estado
+                FacturaId = idFactura;
+                _yaGuardado = true;
+                Btn_Guardar.Enabled = false;
+
+                // Refrescar un Listado_Facturas que ya esté abierto (si existe)
+                var listadoAbierto = Application.OpenForms
+                    .OfType<Frm_Listado_Facturas>()
+                    .FirstOrDefault();
+
+                if (listadoAbierto != null)
                 {
-                    det.Columns.Add("Codigo", typeof(string));
-                    det.Columns.Add("Producto", typeof(string));
-                    det.Columns.Add("Cantidad", typeof(int));
-                    det.Columns.Add("Precio", typeof(decimal));
-                    det.Columns.Add("Subtotal", typeof(decimal));
+                    // Recargar datos desde BD y traer al frente
+                    listadoAbierto.Recargar();
+                    listadoAbierto.BringToFront();
                 }
 
-                // ===== Persistir en un solo XML =====
-                var ds = new DataSet("Factura");
-                ds.Tables.Add(cab);
-                ds.Tables.Add(det);
-
-                string fileXml = Path.Combine(BaseDir, $"F{numero:000000}.xml");
-                ds.WriteXml(fileXml, XmlWriteMode.WriteSchema);
-
-                FacturaId = numero;
-
-                _yaGuardado = true;
-                Btn_Guardar.Enabled = false;  // seguridad extra
-
-                MessageBox.Show($"Factura #{numero} guardada.", "OK",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                // Señal al que llamó para refrescar el listado
+                // Cerrar para saber que todo salió bien
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo guardar la factura.\n" + ex.Message,
+                // Mensaje de error si algo falla al guardar
+                MessageBox.Show("Error al guardar factura en BD:\n\n" + ex,
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _yaGuardado = false;
-                Btn_Guardar.Enabled = true;
             }
         }
 
-        private static int SiguienteNumero()
-        {
-            int max = 0;
-            foreach (var f in Directory.GetFiles(BaseDir, "F*.xml"))
-            {
-                var name = Path.GetFileNameWithoutExtension(f); // F000123
-                if (name?.Length > 1 && int.TryParse(name.Substring(1), out int n))
-                    if (n > max) max = n;
-            }
-            return max + 1;
-        }
-
-        private bool Validar()
-        {
-            if (!(Tag is int))
-            {
-                MessageBox.Show("No se recibió el Id de la venta.");
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(Txt_Nombre.Text))
-            {
-                MessageBox.Show("Ingrese el nombre del cliente.");
-                return false;
-            }
-            if ((Cbo_TipoDoc.SelectedItem?.ToString() ?? "CF") == "NIT" &&
-                string.IsNullOrWhiteSpace(Txt_Documento.Text))
-            {
-                MessageBox.Show("Ingrese el NIT.");
-                return false;
-            }
-            if (Total <= 0)
-            {
-                MessageBox.Show("El total debe ser mayor a 0.");
-                return false;
-            }
-            return true;
-        }
-
-        // ================== IMPRIMIR ==================
         private void Btn_Imprimir_Click(object sender, EventArgs e)
         {
-            if (!FacturaId.HasValue)
-            {
-                MessageBox.Show("Guarda la factura antes de imprimir.");
-                return;
-            }
+            // Para imprimir primero debe existir una factura guardada
+            if (!FacturaId.HasValue) { MessageBox.Show("Guarda la factura antes de imprimir."); return; }
 
-            // Asignación mínima y sin icono de recursos (evita MissingManifestResourceException)
+            // Previsualización de impresión
             printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.Icon = null;               // <- evita la excepción de recursos
             printPreviewDialog1.UseAntiAlias = true;
-            printPreviewDialog1.ShowDialog(this);
+            printPreviewDialog1.ShowDialog();
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            // Dibujo simple (puedes mantener tu bloque original si ya lo tenías)
-            var g = e.Graphics;
-            float y = 40;
-            var font = new Font("Segoe UI", 9);
-            var bold = new Font("Segoe UI", 9, FontStyle.Bold);
-
-            g.DrawString("HOTEL SAN CARLOS — FACTURA", new Font("Segoe UI", 13, FontStyle.Bold), Brushes.Black, 40, y); y += 26;
-            g.DrawLine(Pens.Black, 40, y, e.PageBounds.Width - 40, y); y += 10;
-
-            g.DrawString($"Factura #: {FacturaId}", bold, Brushes.Black, 40, y); y += 18;
-            g.DrawString($"Fecha: {Dtp_Fecha.Value:dd/MM/yyyy HH:mm}", font, Brushes.Black, 40, y); y += 18;
-            g.DrawString($"Cliente: {Txt_Nombre.Text.Trim()} {Txt_Apellido.Text.Trim()}", font, Brushes.Black, 40, y); y += 18;
-            g.DrawString($"Documento: {Txt_Documento.Text.Trim()}", font, Brushes.Black, 40, y); y += 18;
-
-            y += 6;
-            g.DrawString("Detalle", bold, Brushes.Black, 40, y); y += 16;
-            g.DrawString("Producto", bold, Brushes.Black, 40, y);
-            g.DrawString("Cant.", bold, Brushes.Black, 320, y);
-            g.DrawString("Precio", bold, Brushes.Black, 380, y);
-            g.DrawString("Subt.", bold, Brushes.Black, 460, y);
-            y += 15;
-
-            if (DetalleFactura != null)
-            {
-                foreach (DataRow row in DetalleFactura.Rows)
-                {
-                    string producto = Convert.ToString(row["Producto"]);
-                    string cant = Convert.ToDecimal(row["Cantidad"]).ToString("0.##");
-                    string precio = Convert.ToDecimal(row["Precio"]).ToString("0.00");
-                    string sub = Convert.ToDecimal(row["Subtotal"]).ToString("0.00");
-
-                    g.DrawString(producto, font, Brushes.Black, 40, y);
-                    g.DrawString(cant, font, Brushes.Black, 320, y);
-                    g.DrawString(precio, font, Brushes.Black, 380, y);
-                    g.DrawString(sub, font, Brushes.Black, 460, y);
-                    y += 15;
-
-                    if (y > e.MarginBounds.Bottom - 80) { e.HasMorePages = true; return; }
-                }
-            }
-
-            y += 8;
-            g.DrawLine(Pens.Black, 40, y, e.PageBounds.Width - 40, y); y += 10;
-            g.DrawString($"TOTAL: Q {Total:0.00}", new Font("Segoe UI", 11, FontStyle.Bold), Brushes.Black, 460, y);
+            // (encabezado, detalle, total, etc.)
         }
     }
 }

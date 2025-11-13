@@ -1,115 +1,212 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using Capa_Controlador_Facturas;
 
 namespace Capa_Vista_Facturas
-
-        // Juan Carlos Sandoval Quej 0901-22-4170 09/11/2025
 {
+    // Juan Carlos Sandoval Quej 0901-22-4170 12/11/2025
     public partial class Frm_Listado_Facturas : Form
     {
-        private static readonly string BaseDir = Frm_FacturaCrear.BaseDir;
+        // Controlador general para obtener datos de la BD
+        private readonly Cls_Controlador _ctrl = new Cls_Controlador();
 
         public Frm_Listado_Facturas()
         {
             InitializeComponent();
 
-            Load += (s, e) => Recargar();
-            Activated += (s, e) => Recargar();     // “tiempo real” al volver a enfocarse
-            Btn_Buscar.Click += (s, e) => Recargar();
-            Btn_VerDetalle.Click += Btn_VerDetalle_Click;
+            // Evento cuando carga el formulario
+            Load += Frm_Listado_Facturas_Load;
 
-            Dgv_Facturas.AutoGenerateColumns = true;
-            Dgv_Facturas.CellDoubleClick += (s, e) => { if (e.RowIndex >= 0) AbrirFila(e.RowIndex); };
+            // === Configuración de búsqueda ===
+            // Botón buscar
+            Btn_Buscar.Click += (s, e) => Recargar();
+
+            // Presionar Enter en el cuadro de texto también busca
+            Txt_Buscar.KeyDown += (s, e) =>
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    Recargar();
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            };
+
+            // Buscar “en vivo” al escribir
+            Txt_Buscar.TextChanged += (s, e) => Recargar();
+
+            // Doble clic en una fila abre el detalle
+            Dgv_Facturas.CellDoubleClick += (s, e) =>
+            {
+                if (e.RowIndex >= 0) AbrirFila(e.RowIndex);
+            };
+
+            // Botón “Ver Detalle”
+            Btn_VerDetalle.Click += (s, e) =>
+            {
+                if (Dgv_Facturas.CurrentRow != null)
+                    AbrirFila(Dgv_Facturas.CurrentRow.Index);
+            };
+
+            // === “FacturaGuardada” 
+            Cls_Controlador.FacturaGuardada += OnFacturaGuardada;
+
+            // Cuando se cierre este form, se desuscribe para evitar duplicados
+            this.FormClosed += (s, e) => Cls_Controlador.FacturaGuardada -= OnFacturaGuardada;
         }
 
-        private void Recargar()
+        // EVENTO: Se ejecuta cuando se crea una nueva factura (en BD)
+        private void OnFacturaGuardada(int idFactura, int idVenta)
         {
-            Directory.CreateDirectory(BaseDir);
-            string filtro = (Txt_Buscar.Text ?? "").Trim().ToUpperInvariant();
-
-            var dt = new DataTable();
-            dt.Columns.Add("Numero", typeof(int));
-            dt.Columns.Add("Cliente", typeof(string));
-            dt.Columns.Add("Documento", typeof(string));
-            dt.Columns.Add("Fecha", typeof(DateTime));
-            dt.Columns.Add("Total", typeof(decimal));
-            dt.Columns.Add("Archivo", typeof(string)); // oculto para abrir detalle
-
-            foreach (var file in Directory.GetFiles(BaseDir, "F*.xml"))
-            {
-                var ds = new DataSet();
-                ds.ReadXml(file);
-                var cab = ds.Tables["Cabecera"]?.Rows.Cast<DataRow>().FirstOrDefault();
-                if (cab == null) continue;
-
-                int numero = Convert.ToInt32(cab["Numero"]);
-                string nombre = Convert.ToString(cab["Nombre"]);
-                string apellido = Convert.ToString(cab["Apellido"]);
-                string doc = Convert.ToString(cab["Documento"]);
-                DateTime fecha = Convert.ToDateTime(cab["Fecha"]);
-                decimal total = Convert.ToDecimal(cab["Total"]);
-
-                string cliente = $"{nombre} {apellido}".Trim();
-
-                if (string.IsNullOrWhiteSpace(filtro) ||
-                    cliente.ToUpperInvariant().Contains(filtro) ||
-                    doc.ToUpperInvariant().Contains(filtro) ||
-                    numero.ToString().Contains(filtro))
+            // Solo si el form sigue activo
+            if (IsHandleCreated)
+                BeginInvoke(new Action(() =>
                 {
-                    dt.Rows.Add(numero, cliente, doc, fecha, total, file);
+                    Recargar();              // Actualiza listado
+                    SeleccionarPorIdVenta(idVenta); // Marca la nueva venta
+                }));
+        }
+
+        // CARGA INICIAL DEL FORMULARIO
+        private void Frm_Listado_Facturas_Load(object sender, EventArgs e)
+        {
+            ConfigurarGridSiHaceFalta();
+            Recargar();  // carga inicial
+        }
+
+        // CONFIGURA LAS COLUMNAS DEL DATAGRID (solo la primera vez)
+        private void ConfigurarGridSiHaceFalta()
+        {
+            Dgv_Facturas.AutoGenerateColumns = false;
+
+            // Evita duplicar columnas
+            if (Dgv_Facturas.Columns.Count > 0) return;
+
+            Dgv_Facturas.Columns.Clear();
+
+            // Agrega las columnas manualmente con formato
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Numero",
+                HeaderText = "Número",
+                DataPropertyName = "Numero",
+                Width = 70
+            });
+
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "IdVenta",
+                HeaderText = "IdVenta",
+                DataPropertyName = "IdVenta",
+                Width = 70
+            });
+
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Documento",
+                HeaderText = "Documento",
+                DataPropertyName = "Documento",
+                Width = 110
+            });
+
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Cliente",
+                HeaderText = "Cliente",
+                DataPropertyName = "Cliente",
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Fecha",
+                HeaderText = "Fecha",
+                DataPropertyName = "Fecha",
+                Width = 110,
+                DefaultCellStyle = { Format = "dd/MM/yyyy" }
+            });
+
+            Dgv_Facturas.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "Total",
+                HeaderText = "Total (Q)",
+                DataPropertyName = "Total",
+                Width = 110,
+                DefaultCellStyle =
+                {
+                    Format = "N2",
+                    Alignment = DataGridViewContentAlignment.MiddleRight
+                }
+            });
+        }
+
+
+        // RECARGAR DATOS
+
+        public void Recargar()
+        {
+            var filtro = (Txt_Buscar.Text ?? "").Trim();
+
+            // Pide los datos filtrados al controlador
+            var dt = _ctrl.ListadoFacturasBD(filtro);
+
+            // Ordena de mayor a menor por número de factura
+            var ordered = dt.AsEnumerable().OrderByDescending(r => r.Field<int>("Numero"));
+
+            // Si hay filas, las copia al DataTable; si no, deja la estructura vacía
+            Dgv_Facturas.DataSource = ordered.Any() ? ordered.CopyToDataTable() : dt.Clone();
+        }
+
+        // SELECCIONAR AUTOMÁTICAMENTE UNA FILA POR ID DE VENTA
+        private void SeleccionarPorIdVenta(int idVenta)
+        {
+            foreach (DataGridViewRow row in Dgv_Facturas.Rows)
+            {
+                if (row.Cells["IdVenta"]?.Value is int v && v == idVenta)
+                {
+                    row.Selected = true;
+                    Dgv_Facturas.CurrentCell = row.Cells["Numero"];
+                    // Centra la fila en la vista
+                    Dgv_Facturas.FirstDisplayedScrollingRowIndex = Math.Max(0, row.Index - 2);
+                    break;
                 }
             }
-
-            // Si no hay filas, evita CopyToDataTable()
-            if (dt.Rows.Count == 0)
-            {
-                Dgv_Facturas.DataSource = dt;
-            }
-            else
-            {
-                var dtOrden = dt.AsEnumerable()
-                                .OrderByDescending(r => r.Field<int>("Numero"))
-                                .CopyToDataTable();
-                Dgv_Facturas.DataSource = dtOrden;
-            }
-
-            if (Dgv_Facturas.Columns.Contains("Total"))
-                Dgv_Facturas.Columns["Total"].DefaultCellStyle.Format = "N2";
-            if (Dgv_Facturas.Columns.Contains("Archivo"))
-                Dgv_Facturas.Columns["Archivo"].Visible = false;
         }
 
-        private void Btn_VerDetalle_Click(object sender, EventArgs e)
-        {
-            if (Dgv_Facturas.CurrentRow == null)
-            {
-                // Si no seleccionó, abre el último (comodidad para demo)
-                var files = Directory.GetFiles(BaseDir, "F*.xml");
-                if (files.Length == 0) return;
-                string ultimo = files.OrderByDescending(f =>
-                {
-                    var n = Path.GetFileNameWithoutExtension(f);
-                    return int.TryParse(n.Substring(1), out var v) ? v : 0;
-                }).First();
-                new Frm_Detalle_Factura(ultimo).ShowDialog(this);
-                return;
-            }
-            AbrirFila(Dgv_Facturas.CurrentRow.Index);
-        }
-
+        // ABRIR FORMULARIO DE DETALLE AL HACER DOBLE CLIC
         private void AbrirFila(int rowIndex)
         {
             if (rowIndex < 0) return;
-            var archivo = Convert.ToString(Dgv_Facturas.Rows[rowIndex].Cells["Archivo"].Value);
-            if (string.IsNullOrWhiteSpace(archivo) || !File.Exists(archivo))
+
+            // Obtiene el idVenta de la fila seleccionada
+            int idVenta = Convert.ToInt32(Dgv_Facturas.Rows[rowIndex].Cells["IdVenta"].Value);
+
+            // Abre el detalle en un formulario modal
+            using (var det = new Frm_Detalle_Factura(idVenta))
             {
-                MessageBox.Show("Archivo de factura no encontrado.");
-                return;
+                det.StartPosition = FormStartPosition.CenterParent;
+                det.ShowDialog(this);
             }
-            new Frm_Detalle_Factura(archivo).ShowDialog(this);
+        }
+
+        // MÉTODO OPCIONAL PARA SELECCIONAR UNA FACTURA POR NÚMERO
+        public void SelectFactura(int numero)
+        {
+            if (Dgv_Facturas.DataSource is DataTable dt && dt.Columns.Contains("Numero"))
+            {
+                foreach (DataGridViewRow row in Dgv_Facturas.Rows)
+                {
+                    if (row.DataBoundItem is DataRowView rv && Convert.ToInt32(rv.Row["Numero"]) == numero)
+                    {
+                        row.Selected = true;
+                        Dgv_Facturas.CurrentCell = row.Cells[0];
+                        Dgv_Facturas.FirstDisplayedScrollingRowIndex = row.Index;
+                        break;
+                    }
+                }
+            }
         }
     }
 }
