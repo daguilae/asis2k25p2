@@ -653,11 +653,11 @@ namespace Capa_Modelo_MB
             int iNuevaOperacion,
             string sNumeroDocumento,
             DateTime dFecha,
-            string sConcepto,      
+            string sConcepto,
             decimal deMontoNuevo,
             int? iTipoPago,
             int? iCuentaDestinoNueva,
-            string sBeneficiario,    
+            string sBeneficiario,
             string sUsuario,
             int iCuentaOrigenOriginal,
             int iOperacionOriginal,
@@ -760,7 +760,7 @@ namespace Capa_Modelo_MB
                             cmdUpd.Parameters.AddWithValue("@CtaOriNueva", iNuevaCuentaOrigen);
                             cmdUpd.Parameters.AddWithValue("@OpNueva", iNuevaOperacion);
                             cmdUpd.Parameters.AddWithValue("@Estado", sEstado ?? "ACTIVO");
-                            cmdUpd.Parameters.AddWithValue("@Conciliado", iConciliado); 
+                            cmdUpd.Parameters.AddWithValue("@Conciliado", iConciliado);
                             cmdUpd.Parameters.AddWithValue("@Usuario", sUsuario);
                             cmdUpd.Parameters.AddWithValue("@Mov", iIdMovimiento);
                             cmdUpd.Parameters.AddWithValue("@CtaOriOld", iCuentaOrigenOriginal);
