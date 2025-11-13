@@ -18,22 +18,22 @@ namespace Capa_Vista_Gestion_Habitacion
         public Frm_Asignacion_Servicio_Cuarto()
         {
             InitializeComponent();
-            CargarCombos();
-            MostrarAsignaciones();
+            fun_CargarCombos();
+            fun_MostrarAsignaciones();
             this.DGV_Asignaciones.CellClick += new DataGridViewCellEventHandler(this.Dgv_Asignaciones_CellClick);
         }
 
-        private void CargarCombos()
+        private void fun_CargarCombos()
         {
             // --- ComboBox Habitaciones ---
-            DataTable dtHabitaciones = oCtrlAsignacion.CargarHabitaciones();
+            DataTable dtHabitaciones = oCtrlAsignacion.fun_CargarHabitaciones();
             Cbo_NumHabitaciones.DataSource = dtHabitaciones;
             Cbo_NumHabitaciones.DisplayMember = "PK_ID_Habitaciones";
             Cbo_NumHabitaciones.ValueMember = "PK_ID_Habitaciones";
             Cbo_NumHabitaciones.SelectedIndex = -1;
 
             // --- ComboBox Servicios ---
-            DataTable dtServicios = oCtrlAsignacion.CargarServicios();
+            DataTable dtServicios = oCtrlAsignacion.fun_CargarServicios();
             Cbo_Servicios.DataSource = dtServicios;
             Cbo_Servicios.DisplayMember = "Cmp_Nombre_Servicio";
             Cbo_Servicios.ValueMember = "PK_ID_Servicio_habitacion";
@@ -53,14 +53,14 @@ namespace Capa_Vista_Gestion_Habitacion
             string sMensaje;
 
             // Llamar al método del controlador
-            bool bExito = oControlador.InsertarAsigancionServicios(iIdHabitacion, iIdServicio, out sMensaje);
+            bool bExito = oControlador.pro_InsertarAsigancionServicios(iIdHabitacion, iIdServicio, out sMensaje);
 
             // Mostrar mensaje al usuario
             if (bExito)
             {
                 MessageBox.Show(sMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarAsignaciones();
-                LimpiarCombos();
+                fun_MostrarAsignaciones();
+                fun_LimpiarCombos();
             }
             else
             {
@@ -68,9 +68,9 @@ namespace Capa_Vista_Gestion_Habitacion
             }
         }
 
-        private void MostrarAsignaciones()
+        private void fun_MostrarAsignaciones()
         {
-            DataTable dtAsignaciones = oCtrlAsignacion.MostrarAsignaciones();
+            DataTable dtAsignaciones = oCtrlAsignacion.pro_MostrarAsignaciones();
             DGV_Asignaciones.DataSource = dtAsignaciones;
 
             // Estilo visual del DataGridView
@@ -79,7 +79,7 @@ namespace Capa_Vista_Gestion_Habitacion
             DGV_Asignaciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
-        private void LimpiarCombos()
+        private void fun_LimpiarCombos()
         {
             Cbo_NumHabitaciones.SelectedItem = null;
             Cbo_Servicios.SelectedItem = null;
@@ -94,13 +94,13 @@ namespace Capa_Vista_Gestion_Habitacion
             int.TryParse(Cbo_Servicios.SelectedValue?.ToString(), out iIdServicio);
 
             string sMensaje;
-            bool bExito = oCtrlAsignacion.EliminarAsignacion(iIdHabitacion, iIdServicio, out sMensaje);
+            bool bExito = oCtrlAsignacion.pro_EliminarAsignacion(iIdHabitacion, iIdServicio, out sMensaje);
 
             if (bExito)
             {
                 MessageBox.Show(sMensaje, "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MostrarAsignaciones();
-                LimpiarCombos();
+                fun_MostrarAsignaciones();
+                fun_LimpiarCombos();
             }
             else
             {
@@ -146,7 +146,7 @@ namespace Capa_Vista_Gestion_Habitacion
                 int.TryParse(Cbo_NumHabitaciones.SelectedValue?.ToString(), out iIdHabitacion);
 
                 string sMensaje;
-                DataTable dtDatos = oCtrlAsignacion.BuscarAsignacion(iIdHabitacion, out sMensaje);
+                DataTable dtDatos = oCtrlAsignacion.fun_BuscarAsignacion(iIdHabitacion, out sMensaje);
 
                 MessageBox.Show(sMensaje, "Resultado de búsqueda", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -164,14 +164,20 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private void btn_recargar_Click(object sender, EventArgs e)
         {
-            LimpiarCombos();
-            MostrarAsignaciones();
-            CargarCombos();
+            fun_LimpiarCombos();
+            fun_MostrarAsignaciones();
+            fun_CargarCombos();
         }
 
         private void btn_salir_Click_1(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_reporte_Click(object sender, EventArgs e)
+        {
+            Frm_Asig_Serv_hab rpt = new Frm_Asig_Serv_hab();
+            rpt.Show();
         }
     }
 }

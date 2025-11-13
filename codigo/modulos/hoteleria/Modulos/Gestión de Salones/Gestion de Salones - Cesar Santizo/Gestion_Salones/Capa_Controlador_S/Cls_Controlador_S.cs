@@ -26,6 +26,27 @@ namespace Capa_Controlador_S
         {
             return cSentencias.VerificarSalon(sNombreSalon);
         }
+     //menu
+        public void GuardarPedidoMenu(int iIdReserva, int iIdMenu, int iCantidadPlatillos)
+        {
+            cSentenciasReservas.InsertarPedidoMenu(iIdReserva, iIdMenu, iCantidadPlatillos);
+        }
+
+        public void ModificarPedidoMenu(int iIdReserva, int iIdMenu, int iCantidad)
+        {
+            cSentenciasReservas.ModificarPedidoMenu(iIdReserva, iIdMenu, iCantidad);
+        }
+
+        public void EliminarPedidoMenu(int iIdReserva)
+        {
+            cSentenciasReservas.EliminarPedidoMenu(iIdReserva);
+        }
+
+        public DataTable ObtenerMenusDisponibles()
+        {
+            return cSentenciasReservas.ObtenerMenusDisponibles();
+        }
+
 
         // Folio
         public void GuardarFolioSalon(int iIdReserva, DateTime dFechaPago, decimal dePagoTotal, string sEstado, string sMetodoPago)
@@ -33,11 +54,26 @@ namespace Capa_Controlador_S
             cSentenciasReservas.InsertarFolioSalon(iIdReserva, dFechaPago, dePagoTotal, sEstado, sMetodoPago);
         }
         //Folio
-        public void ModificarFolioSalon(int idReserva, DateTime fechaPago, decimal pagoTotal, string estado, string metodoPago)
+        public void ModificarFolioSalon(int iIdFolio, DateTime dFechaPago, decimal dePagoTotal, string sEstado, string sMetodoPago)
         {
-            cSentenciasReservas.ModificarFolioSalon(idReserva, fechaPago, pagoTotal, estado, metodoPago);
+            cSentenciasReservas.ModificarFolioSalon(iIdFolio, dFechaPago, dePagoTotal, sEstado, sMetodoPago);
         }
 
+
+        public DataTable ObtenerFoliosSalones()
+        {
+            return cSentenciasReservas.ObtenerFoliosSalones();
+        }
+
+        public void EliminarFolioSalon(int iIdFolio)
+        {
+            cSentenciasReservas.EliminarFolioSalon(iIdFolio);
+        }
+
+        public decimal ObtenerMontoReserva(int iIdReserva)
+        {
+            return cSentenciasReservas.ObtenerMontoReserva(iIdReserva);
+        }
 
         public int GuardarReservaSalonYObtenerID(int iIdHuesped, int iIdSalon, DateTime dFecha, TimeSpan dHoraInicio, TimeSpan dHoraFin, int iCantidadPersonas, decimal deMontoTotal)
         {
@@ -97,6 +133,11 @@ namespace Capa_Controlador_S
         {
             return cSentenciasReservas.ObtenerPromociones();
         }
+
+
+
+
+
 
     }
 }

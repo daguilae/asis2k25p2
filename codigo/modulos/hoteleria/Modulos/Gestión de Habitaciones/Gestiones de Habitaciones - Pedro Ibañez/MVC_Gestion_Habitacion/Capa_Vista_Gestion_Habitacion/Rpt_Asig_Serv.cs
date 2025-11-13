@@ -16,14 +16,14 @@ namespace Capa_Vista_Gestion_Habitacion {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class Rpt_Asignacion_Servicio : ReportClass {
+    public class Rpt_Asig_Serv : ReportClass {
         
-        public Rpt_Asignacion_Servicio() {
+        public Rpt_Asig_Serv() {
         }
         
         public override string ResourceName {
             get {
-                return "Rpt_Asignacion_Servicio.rpt";
+                return "Rpt_Asig_Serv.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Capa_Vista_Gestion_Habitacion {
         
         public override string FullResourceName {
             get {
-                return "Capa_Vista_Gestion_Habitacion.Rpt_Asignacion_Servicio.rpt";
+                return "Capa_Vista_Gestion_Habitacion.Rpt_Asig_Serv.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Capa_Vista_Gestion_Habitacion {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedRpt_Asignacion_Servicio : Component, ICachedReport {
+    public class CachedRpt_Asig_Serv : Component, ICachedReport {
         
-        public CachedRpt_Asignacion_Servicio() {
+        public CachedRpt_Asig_Serv() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Capa_Vista_Gestion_Habitacion {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            Rpt_Asignacion_Servicio rpt = new Rpt_Asignacion_Servicio();
+            Rpt_Asig_Serv rpt = new Rpt_Asig_Serv();
             rpt.Site = this.Site;
             return rpt;
         }

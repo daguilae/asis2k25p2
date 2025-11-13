@@ -31,7 +31,7 @@ namespace Capa_Vista_Gestion_Habitacion
         {
             this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_titulo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,22 +50,22 @@ namespace Capa_Vista_Gestion_Habitacion
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
-            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.lbl_titulo);
             this.panel1.Location = new System.Drawing.Point(0, 1);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1177, 44);
             this.panel1.TabIndex = 3;
             // 
-            // label1
+            // lbl_titulo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(12, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(539, 23);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "MODULO HOTELERIA - Mantenimiento Tipo Habitación";
+            this.lbl_titulo.AutoSize = true;
+            this.lbl_titulo.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_titulo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_titulo.Location = new System.Drawing.Point(12, 8);
+            this.lbl_titulo.Name = "lbl_titulo";
+            this.lbl_titulo.Size = new System.Drawing.Size(539, 23);
+            this.lbl_titulo.TabIndex = 6;
+            this.lbl_titulo.Text = "MODULO HOTELERIA - Mantenimiento Tipo Habitación";
             // 
             // Frm_Mantenimiento_Tipo_Habitaciones
             // 
@@ -86,6 +86,6 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private Capa_Vista_Navegador.Navegador navegador1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_titulo;
     }
 }

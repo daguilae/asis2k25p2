@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Gestion_Habitacion
 {
-    public partial class Frm_Reporte_Asignacion : Form
+    public partial class Frm_Asig_Serv_hab : Form
     {
-        public Frm_Reporte_Asignacion()
+        public Frm_Asig_Serv_hab()
         {
             InitializeComponent();
         }

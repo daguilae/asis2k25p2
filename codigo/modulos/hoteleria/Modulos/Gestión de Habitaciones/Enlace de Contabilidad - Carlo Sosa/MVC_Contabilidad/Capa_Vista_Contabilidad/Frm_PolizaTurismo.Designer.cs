@@ -1,17 +1,10 @@
 ﻿
 namespace Capa_Vista_Contabilidad
 {
-    partial class Frm_Poliza_Turismo
+    partial class Frm_PolizaTurismo
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,10 +16,6 @@ namespace Capa_Vista_Contabilidad
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             this.Gpb_Rangos = new System.Windows.Forms.GroupBox();
@@ -51,7 +40,7 @@ namespace Capa_Vista_Contabilidad
             this.Gpb_Rangos.Controls.Add(this.Txt_Fecha_Rango2);
             this.Gpb_Rangos.Controls.Add(this.Txt_fecha_Rango);
             this.Gpb_Rangos.Controls.Add(this.Lbl_fecha_rango);
-            this.Gpb_Rangos.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Gpb_Rangos.Font = new System.Drawing.Font("Rockwell", 10.2F);
             this.Gpb_Rangos.Location = new System.Drawing.Point(135, 126);
             this.Gpb_Rangos.Name = "Gpb_Rangos";
             this.Gpb_Rangos.Size = new System.Drawing.Size(566, 109);
@@ -61,7 +50,7 @@ namespace Capa_Vista_Contabilidad
             // 
             // Txt_Fecha_Rango2
             // 
-            this.Txt_Fecha_Rango2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_Fecha_Rango2.BackColor = System.Drawing.Color.FromArgb(235, 236, 238);
             this.Txt_Fecha_Rango2.Location = new System.Drawing.Point(314, 49);
             this.Txt_Fecha_Rango2.Name = "Txt_Fecha_Rango2";
             this.Txt_Fecha_Rango2.Size = new System.Drawing.Size(183, 27);
@@ -69,7 +58,7 @@ namespace Capa_Vista_Contabilidad
             // 
             // Txt_fecha_Rango
             // 
-            this.Txt_fecha_Rango.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_fecha_Rango.BackColor = System.Drawing.Color.FromArgb(235, 236, 238);
             this.Txt_fecha_Rango.Location = new System.Drawing.Point(125, 49);
             this.Txt_fecha_Rango.Name = "Txt_fecha_Rango";
             this.Txt_fecha_Rango.Size = new System.Drawing.Size(183, 27);
@@ -91,7 +80,7 @@ namespace Capa_Vista_Contabilidad
             this.Gpb_Generales.Controls.Add(this.Txt_ID_Poliza);
             this.Gpb_Generales.Controls.Add(this.Txt_Fecha_Generales);
             this.Gpb_Generales.Controls.Add(this.Lbl_Fecha_Generales);
-            this.Gpb_Generales.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Gpb_Generales.Font = new System.Drawing.Font("Rockwell", 10.2F);
             this.Gpb_Generales.Location = new System.Drawing.Point(135, 257);
             this.Gpb_Generales.Name = "Gpb_Generales";
             this.Gpb_Generales.Size = new System.Drawing.Size(566, 159);
@@ -101,7 +90,7 @@ namespace Capa_Vista_Contabilidad
             // 
             // Txt_Concepto
             // 
-            this.Txt_Concepto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_Concepto.BackColor = System.Drawing.Color.FromArgb(235, 236, 238);
             this.Txt_Concepto.Location = new System.Drawing.Point(125, 94);
             this.Txt_Concepto.Name = "Txt_Concepto";
             this.Txt_Concepto.Size = new System.Drawing.Size(397, 27);
@@ -118,7 +107,7 @@ namespace Capa_Vista_Contabilidad
             // 
             // Txt_ID_Poliza
             // 
-            this.Txt_ID_Poliza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_ID_Poliza.BackColor = System.Drawing.Color.FromArgb(235, 236, 238);
             this.Txt_ID_Poliza.Location = new System.Drawing.Point(339, 49);
             this.Txt_ID_Poliza.Name = "Txt_ID_Poliza";
             this.Txt_ID_Poliza.Size = new System.Drawing.Size(183, 27);
@@ -126,7 +115,7 @@ namespace Capa_Vista_Contabilidad
             // 
             // Txt_Fecha_Generales
             // 
-            this.Txt_Fecha_Generales.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
+            this.Txt_Fecha_Generales.BackColor = System.Drawing.Color.FromArgb(235, 236, 238);
             this.Txt_Fecha_Generales.Location = new System.Drawing.Point(125, 49);
             this.Txt_Fecha_Generales.Name = "Txt_Fecha_Generales";
             this.Txt_Fecha_Generales.Size = new System.Drawing.Size(183, 27);
@@ -143,70 +132,66 @@ namespace Capa_Vista_Contabilidad
             // 
             // Btn_Aceptar
             // 
-            this.Btn_Aceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
-            this.Btn_Aceptar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Aceptar.BackColor = System.Drawing.Color.FromArgb(61, 78, 88);
             this.Btn_Aceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_Aceptar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Aceptar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_Aceptar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btn_Aceptar.ForeColor = System.Drawing.Color.FromArgb(201, 214, 221);
             this.Btn_Aceptar.Location = new System.Drawing.Point(281, 437);
             this.Btn_Aceptar.Name = "Btn_Aceptar";
             this.Btn_Aceptar.Size = new System.Drawing.Size(143, 54);
             this.Btn_Aceptar.TabIndex = 99;
             this.Btn_Aceptar.Text = "Aceptar";
-            this.Btn_Aceptar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Aceptar.UseVisualStyleBackColor = false;
             // 
             // Btn_Cancelar
             // 
-            this.Btn_Cancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
-            this.Btn_Cancelar.FlatAppearance.BorderColor = System.Drawing.SystemColors.ButtonShadow;
+            this.Btn_Cancelar.BackColor = System.Drawing.Color.FromArgb(61, 78, 88);
             this.Btn_Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
-            this.Btn_Cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.Btn_Cancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Btn_Cancelar.ForeColor = System.Drawing.Color.FromArgb(201, 214, 221);
             this.Btn_Cancelar.Location = new System.Drawing.Point(474, 437);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(143, 54);
             this.Btn_Cancelar.TabIndex = 100;
             this.Btn_Cancelar.Text = "Cancelar";
-            this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Cancelar.UseVisualStyleBackColor = false;
             // 
             // Lbl_Poliza
             // 
             this.Lbl_Poliza.AutoSize = true;
-            this.Lbl_Poliza.Font = new System.Drawing.Font("Rockwell", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Poliza.Font = new System.Drawing.Font("Rockwell", 18F);
             this.Lbl_Poliza.Location = new System.Drawing.Point(242, 61);
-            this.Lbl_Poliza.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Lbl_Poliza.Name = "Lbl_Poliza";
             this.Lbl_Poliza.Size = new System.Drawing.Size(390, 35);
             this.Lbl_Poliza.TabIndex = 101;
             this.Lbl_Poliza.Text = "Traslado de Poliza Turismo";
             // 
-            // Frm_Poliza_Turismo
+            // Frm_PolizaTurismo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.BackColor = System.Drawing.Color.FromArgb(185, 185, 185);
             this.ClientSize = new System.Drawing.Size(832, 503);
             this.Controls.Add(this.Lbl_Poliza);
             this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Aceptar);
             this.Controls.Add(this.Gpb_Generales);
             this.Controls.Add(this.Gpb_Rangos);
-            this.Name = "Frm_Poliza_Turismo";
-            this.Text = "Frm_Poliza_Turismo";
+            this.Name = "Frm_PolizaTurismo";
+            this.Text = "Frm_PolizaTurismo";
+            this.Btn_Aceptar.Click += new System.EventHandler(this.Btn_Aceptar_Click);
+            this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
+            this.Load += new System.EventHandler(this.Frm_PolizaTurismo_Load);
             this.Gpb_Rangos.ResumeLayout(false);
             this.Gpb_Rangos.PerformLayout();
             this.Gpb_Generales.ResumeLayout(false);
             this.Gpb_Generales.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
+
         private System.Windows.Forms.GroupBox Gpb_Rangos;
         private System.Windows.Forms.TextBox Txt_Fecha_Rango2;
         private System.Windows.Forms.TextBox Txt_fecha_Rango;

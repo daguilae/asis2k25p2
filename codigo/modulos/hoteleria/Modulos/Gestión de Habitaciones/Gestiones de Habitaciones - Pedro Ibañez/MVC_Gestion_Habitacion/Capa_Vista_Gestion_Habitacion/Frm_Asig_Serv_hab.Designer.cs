@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_Gestion_Habitacion
 {
-    partial class Frm_Reporte_Asignacion
+    partial class Frm_Asig_Serv_hab
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@ namespace Capa_Vista_Gestion_Habitacion
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.Rpt_Asignacion_Servicio1 = new Capa_Vista_Gestion_Habitacion.Rpt_Asignacion_Servicio();
+            this.Rpt_Asig_Serv1 = new Capa_Vista_Gestion_Habitacion.Rpt_Asig_Serv();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -41,18 +41,18 @@ namespace Capa_Vista_Gestion_Habitacion
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.Rpt_Asignacion_Servicio1;
-            this.crystalReportViewer1.Size = new System.Drawing.Size(801, 444);
+            this.crystalReportViewer1.ReportSource = this.Rpt_Asig_Serv1;
+            this.crystalReportViewer1.Size = new System.Drawing.Size(1051, 450);
             this.crystalReportViewer1.TabIndex = 0;
             // 
-            // Frm_Reporte_Asignacion
+            // Frm_Asig_Serv_hab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 444);
+            this.ClientSize = new System.Drawing.Size(1051, 450);
             this.Controls.Add(this.crystalReportViewer1);
-            this.Name = "Frm_Reporte_Asignacion";
-            this.Text = "Frm_Reporte_Asignacion";
+            this.Name = "Frm_Asig_Serv_hab";
+            this.Text = "Frm_Asig_Serv_hab";
             this.ResumeLayout(false);
 
         }
@@ -60,6 +60,6 @@ namespace Capa_Vista_Gestion_Habitacion
         #endregion
 
         private CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private Rpt_Asignacion_Servicio Rpt_Asignacion_Servicio1;
+        private Rpt_Asig_Serv Rpt_Asig_Serv1;
     }
 }
