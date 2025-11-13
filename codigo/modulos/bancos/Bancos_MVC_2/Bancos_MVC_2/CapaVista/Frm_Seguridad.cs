@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
 using Capa_Vista_CB;
-using Capa_Vista;
 using Capa_Vista_Ordenes;
 using Capa_Vista_Cheques;
 using Capa_Vista_MB;
 using Capa_Vista_Mantenimientos;
 using Capa_Vista_TipoDeCambio;
+using Capa_Vista;
 
 
 namespace Capa_Vista_Bancos
@@ -352,8 +352,8 @@ namespace Capa_Vista_Bancos
 
         private void generaciónDePólizaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_Poliza PL = new Frm_Poliza();
-            PL.ShowDialog();
+            Frm_GenerarPoliza PL = new Frm_GenerarPoliza();
+           PL.ShowDialog();
         }
 
         private void autorizaciónOrdenesDeComprasToolStripMenuItem_Click(object sender, EventArgs e)

@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista
 {
-    partial class Frm_Poliza
+    partial class Frm_GenerarPoliza
     {
         /// <summary>
         /// Required designer variable.
@@ -30,26 +30,22 @@ namespace Capa_Vista
         private void InitializeComponent()
         {
             this.Gpb_Rangos = new System.Windows.Forms.GroupBox();
+            this.Dtp_Fecha_Fin = new System.Windows.Forms.DateTimePicker();
+            this.Dtp_Fecha_Ini = new System.Windows.Forms.DateTimePicker();
+            this.Cbo_Documento = new System.Windows.Forms.ComboBox();
+            this.Cbo_Tipo = new System.Windows.Forms.ComboBox();
+            this.Cbo_Banco = new System.Windows.Forms.ComboBox();
             this.Lbl_Fechas = new System.Windows.Forms.Label();
             this.Lbl_Documento = new System.Windows.Forms.Label();
             this.Lbl_Tipo = new System.Windows.Forms.Label();
             this.Lbl_Banco = new System.Windows.Forms.Label();
             this.Gpb_Generales = new System.Windows.Forms.GroupBox();
+            this.Dtp_Fecha_Poliza = new System.Windows.Forms.DateTimePicker();
             this.Txt_Concepto = new System.Windows.Forms.TextBox();
             this.Lbl_Concepto = new System.Windows.Forms.Label();
-            this.Txt_Fecha2 = new System.Windows.Forms.TextBox();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Btn_Aceptar = new System.Windows.Forms.Button();
             this.Btn_Cancelar = new System.Windows.Forms.Button();
-            this.Cbo_Banco = new System.Windows.Forms.ComboBox();
-            this.Cbo_Tipo = new System.Windows.Forms.ComboBox();
-            this.Cbo_Documento = new System.Windows.Forms.ComboBox();
-            this.Cbo_Documento_Fin = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.Dtp_Fecha_Ini = new System.Windows.Forms.DateTimePicker();
-            this.Dtp_Fecha_Fin = new System.Windows.Forms.DateTimePicker();
-            this.Dtp_Fecha_Poliza = new System.Windows.Forms.DateTimePicker();
             this.Gpb_Rangos.SuspendLayout();
             this.Gpb_Generales.SuspendLayout();
             this.SuspendLayout();
@@ -58,9 +54,6 @@ namespace Capa_Vista
             // 
             this.Gpb_Rangos.Controls.Add(this.Dtp_Fecha_Fin);
             this.Gpb_Rangos.Controls.Add(this.Dtp_Fecha_Ini);
-            this.Gpb_Rangos.Controls.Add(this.Cbo_Documento_Fin);
-            this.Gpb_Rangos.Controls.Add(this.comboBox7);
-            this.Gpb_Rangos.Controls.Add(this.comboBox8);
             this.Gpb_Rangos.Controls.Add(this.Cbo_Documento);
             this.Gpb_Rangos.Controls.Add(this.Cbo_Tipo);
             this.Gpb_Rangos.Controls.Add(this.Cbo_Banco);
@@ -75,6 +68,50 @@ namespace Capa_Vista
             this.Gpb_Rangos.TabIndex = 0;
             this.Gpb_Rangos.TabStop = false;
             this.Gpb_Rangos.Text = "Rangos";
+            // 
+            // Dtp_Fecha_Fin
+            // 
+            this.Dtp_Fecha_Fin.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dtp_Fecha_Fin.Location = new System.Drawing.Point(326, 208);
+            this.Dtp_Fecha_Fin.Name = "Dtp_Fecha_Fin";
+            this.Dtp_Fecha_Fin.Size = new System.Drawing.Size(171, 29);
+            this.Dtp_Fecha_Fin.TabIndex = 21;
+            // 
+            // Dtp_Fecha_Ini
+            // 
+            this.Dtp_Fecha_Ini.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dtp_Fecha_Ini.Location = new System.Drawing.Point(141, 208);
+            this.Dtp_Fecha_Ini.Name = "Dtp_Fecha_Ini";
+            this.Dtp_Fecha_Ini.Size = new System.Drawing.Size(171, 29);
+            this.Dtp_Fecha_Ini.TabIndex = 20;
+            // 
+            // Cbo_Documento
+            // 
+            this.Cbo_Documento.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_Documento.FormattingEnabled = true;
+            this.Cbo_Documento.Location = new System.Drawing.Point(171, 148);
+            this.Cbo_Documento.Name = "Cbo_Documento";
+            this.Cbo_Documento.Size = new System.Drawing.Size(356, 29);
+            this.Cbo_Documento.TabIndex = 14;
+            // 
+            // Cbo_Tipo
+            // 
+            this.Cbo_Tipo.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_Tipo.FormattingEnabled = true;
+            this.Cbo_Tipo.Location = new System.Drawing.Point(171, 88);
+            this.Cbo_Tipo.Name = "Cbo_Tipo";
+            this.Cbo_Tipo.Size = new System.Drawing.Size(356, 29);
+            this.Cbo_Tipo.TabIndex = 13;
+            // 
+            // Cbo_Banco
+            // 
+            this.Cbo_Banco.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cbo_Banco.FormattingEnabled = true;
+            this.Cbo_Banco.Location = new System.Drawing.Point(171, 39);
+            this.Cbo_Banco.Name = "Cbo_Banco";
+            this.Cbo_Banco.Size = new System.Drawing.Size(356, 29);
+            this.Cbo_Banco.TabIndex = 12;
+            this.Cbo_Banco.SelectedIndexChanged += new System.EventHandler(this.Cbo_Banco_SelectedIndexChanged);
             // 
             // Lbl_Fechas
             // 
@@ -100,12 +137,11 @@ namespace Capa_Vista
             // 
             this.Lbl_Tipo.AutoSize = true;
             this.Lbl_Tipo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Tipo.Location = new System.Drawing.Point(15, 88);
+            this.Lbl_Tipo.Location = new System.Drawing.Point(15, 92);
             this.Lbl_Tipo.Name = "Lbl_Tipo";
-            this.Lbl_Tipo.Size = new System.Drawing.Size(50, 21);
+            this.Lbl_Tipo.Size = new System.Drawing.Size(154, 21);
             this.Lbl_Tipo.TabIndex = 3;
-            this.Lbl_Tipo.Text = "Tipo";
-            this.Lbl_Tipo.Click += new System.EventHandler(this.label2_Click);
+            this.Lbl_Tipo.Text = "Cuenta Bancaria";
             // 
             // Lbl_Banco
             // 
@@ -122,7 +158,6 @@ namespace Capa_Vista
             this.Gpb_Generales.Controls.Add(this.Dtp_Fecha_Poliza);
             this.Gpb_Generales.Controls.Add(this.Txt_Concepto);
             this.Gpb_Generales.Controls.Add(this.Lbl_Concepto);
-            this.Gpb_Generales.Controls.Add(this.Txt_Fecha2);
             this.Gpb_Generales.Controls.Add(this.Lbl_Fecha);
             this.Gpb_Generales.Font = new System.Drawing.Font("Rockwell Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gpb_Generales.Location = new System.Drawing.Point(36, 319);
@@ -131,6 +166,14 @@ namespace Capa_Vista
             this.Gpb_Generales.TabIndex = 1;
             this.Gpb_Generales.TabStop = false;
             this.Gpb_Generales.Text = "Generales de Poliza";
+            // 
+            // Dtp_Fecha_Poliza
+            // 
+            this.Dtp_Fecha_Poliza.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Dtp_Fecha_Poliza.Location = new System.Drawing.Point(141, 60);
+            this.Dtp_Fecha_Poliza.Name = "Dtp_Fecha_Poliza";
+            this.Dtp_Fecha_Poliza.Size = new System.Drawing.Size(356, 29);
+            this.Dtp_Fecha_Poliza.TabIndex = 22;
             // 
             // Txt_Concepto
             // 
@@ -149,14 +192,6 @@ namespace Capa_Vista
             this.Lbl_Concepto.Size = new System.Drawing.Size(96, 21);
             this.Lbl_Concepto.TabIndex = 12;
             this.Lbl_Concepto.Text = "Concepto";
-            // 
-            // Txt_Fecha2
-            // 
-            this.Txt_Fecha2.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Fecha2.Location = new System.Drawing.Point(326, 64);
-            this.Txt_Fecha2.Name = "Txt_Fecha2";
-            this.Txt_Fecha2.Size = new System.Drawing.Size(176, 29);
-            this.Txt_Fecha2.TabIndex = 11;
             // 
             // Lbl_Fecha
             // 
@@ -188,86 +223,7 @@ namespace Capa_Vista
             this.Btn_Cancelar.UseVisualStyleBackColor = true;
             this.Btn_Cancelar.Click += new System.EventHandler(this.Btn_Cancelar_Click);
             // 
-            // Cbo_Banco
-            // 
-            this.Cbo_Banco.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Banco.FormattingEnabled = true;
-            this.Cbo_Banco.Location = new System.Drawing.Point(141, 39);
-            this.Cbo_Banco.Name = "Cbo_Banco";
-            this.Cbo_Banco.Size = new System.Drawing.Size(171, 29);
-            this.Cbo_Banco.TabIndex = 12;
-            this.Cbo_Banco.SelectedIndexChanged += new System.EventHandler(this.Cbo_Banco_SelectedIndexChanged);
-            // 
-            // Cbo_Tipo
-            // 
-            this.Cbo_Tipo.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Tipo.FormattingEnabled = true;
-            this.Cbo_Tipo.Location = new System.Drawing.Point(141, 88);
-            this.Cbo_Tipo.Name = "Cbo_Tipo";
-            this.Cbo_Tipo.Size = new System.Drawing.Size(171, 29);
-            this.Cbo_Tipo.TabIndex = 13;
-            // 
-            // Cbo_Documento
-            // 
-            this.Cbo_Documento.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Documento.FormattingEnabled = true;
-            this.Cbo_Documento.Location = new System.Drawing.Point(141, 148);
-            this.Cbo_Documento.Name = "Cbo_Documento";
-            this.Cbo_Documento.Size = new System.Drawing.Size(171, 29);
-            this.Cbo_Documento.TabIndex = 14;
-            // 
-            // Cbo_Documento_Fin
-            // 
-            this.Cbo_Documento_Fin.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cbo_Documento_Fin.FormattingEnabled = true;
-            this.Cbo_Documento_Fin.Location = new System.Drawing.Point(326, 148);
-            this.Cbo_Documento_Fin.Name = "Cbo_Documento_Fin";
-            this.Cbo_Documento_Fin.Size = new System.Drawing.Size(171, 29);
-            this.Cbo_Documento_Fin.TabIndex = 18;
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Location = new System.Drawing.Point(326, 92);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(171, 29);
-            this.comboBox7.TabIndex = 17;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Location = new System.Drawing.Point(326, 39);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(171, 29);
-            this.comboBox8.TabIndex = 16;
-            // 
-            // Dtp_Fecha_Ini
-            // 
-            this.Dtp_Fecha_Ini.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dtp_Fecha_Ini.Location = new System.Drawing.Point(141, 208);
-            this.Dtp_Fecha_Ini.Name = "Dtp_Fecha_Ini";
-            this.Dtp_Fecha_Ini.Size = new System.Drawing.Size(171, 29);
-            this.Dtp_Fecha_Ini.TabIndex = 20;
-            // 
-            // Dtp_Fecha_Fin
-            // 
-            this.Dtp_Fecha_Fin.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dtp_Fecha_Fin.Location = new System.Drawing.Point(326, 208);
-            this.Dtp_Fecha_Fin.Name = "Dtp_Fecha_Fin";
-            this.Dtp_Fecha_Fin.Size = new System.Drawing.Size(171, 29);
-            this.Dtp_Fecha_Fin.TabIndex = 21;
-            // 
-            // Dtp_Fecha_Poliza
-            // 
-            this.Dtp_Fecha_Poliza.Font = new System.Drawing.Font("Rockwell Condensed", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dtp_Fecha_Poliza.Location = new System.Drawing.Point(141, 60);
-            this.Dtp_Fecha_Poliza.Name = "Dtp_Fecha_Poliza";
-            this.Dtp_Fecha_Poliza.Size = new System.Drawing.Size(171, 29);
-            this.Dtp_Fecha_Poliza.TabIndex = 22;
-            // 
-            // Frm_Poliza
+            // Frm_GenerarPoliza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -276,7 +232,7 @@ namespace Capa_Vista
             this.Controls.Add(this.Btn_Aceptar);
             this.Controls.Add(this.Gpb_Generales);
             this.Controls.Add(this.Gpb_Rangos);
-            this.Name = "Frm_Poliza";
+            this.Name = "Frm_GenerarPoliza";
             this.Text = "Frm_Poliza";
             this.Gpb_Rangos.ResumeLayout(false);
             this.Gpb_Rangos.PerformLayout();
@@ -296,13 +252,9 @@ namespace Capa_Vista
         private System.Windows.Forms.GroupBox Gpb_Generales;
         private System.Windows.Forms.TextBox Txt_Concepto;
         private System.Windows.Forms.Label Lbl_Concepto;
-        private System.Windows.Forms.TextBox Txt_Fecha2;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Button Btn_Aceptar;
         private System.Windows.Forms.Button Btn_Cancelar;
-        private System.Windows.Forms.ComboBox Cbo_Documento_Fin;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox8;
         private System.Windows.Forms.ComboBox Cbo_Documento;
         private System.Windows.Forms.ComboBox Cbo_Tipo;
         private System.Windows.Forms.ComboBox Cbo_Banco;

@@ -30,6 +30,7 @@
             this.perfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Aplicacion = new System.Windows.Forms.ToolStripMenuItem();
+            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Bitacora = new System.Windows.Forms.ToolStripMenuItem();
             this.movimientosBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,9 +51,8 @@
             this.asignacionPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionDeAplicacionAPerfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Lbl_Bancos = new System.Windows.Forms.Label();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
-            this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -113,7 +113,7 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Salir";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
@@ -165,6 +165,13 @@
             this.Btn_Aplicacion.Size = new System.Drawing.Size(326, 26);
             this.Btn_Aplicacion.Text = "Operaciones o Transacciones";
             this.Btn_Aplicacion.Click += new System.EventHandler(this.Btn_Aplicacion_Click_1);
+            // 
+            // pruebaToolStripMenuItem
+            // 
+            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
+            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
+            this.pruebaToolStripMenuItem.Text = "Prueba";
+            this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // procesosToolStripMenuItem
             // 
@@ -317,7 +324,7 @@
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(167)))), ((int)(((byte)(76)))));
-            this.Pnl_Superior.Controls.Add(this.label1);
+            this.Pnl_Superior.Controls.Add(this.Lbl_Bancos);
             this.Pnl_Superior.Controls.Add(this.Pic_Cerrar);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
@@ -326,16 +333,16 @@
             this.Pnl_Superior.Size = new System.Drawing.Size(1069, 44);
             this.Pnl_Superior.TabIndex = 96;
             // 
-            // label1
+            // Lbl_Bancos
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(4, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(80, 35);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Bancos";
+            this.Lbl_Bancos.AutoSize = true;
+            this.Lbl_Bancos.Font = new System.Drawing.Font("Rockwell Condensed", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Bancos.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Lbl_Bancos.Location = new System.Drawing.Point(4, 4);
+            this.Lbl_Bancos.Name = "Lbl_Bancos";
+            this.Lbl_Bancos.Size = new System.Drawing.Size(80, 35);
+            this.Lbl_Bancos.TabIndex = 2;
+            this.Lbl_Bancos.Text = "Bancos";
             // 
             // Pic_Cerrar
             // 
@@ -350,13 +357,6 @@
             this.Pic_Cerrar.TabIndex = 0;
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
-            // 
-            // pruebaToolStripMenuItem
-            // 
-            this.pruebaToolStripMenuItem.Name = "pruebaToolStripMenuItem";
-            this.pruebaToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
-            this.pruebaToolStripMenuItem.Text = "Prueba";
-            this.pruebaToolStripMenuItem.Click += new System.EventHandler(this.pruebaToolStripMenuItem_Click);
             // 
             // Frm_Seguridad
             // 
@@ -416,7 +416,7 @@
         private System.Windows.Forms.ToolStripMenuItem autorizaciónOrdenesDeComprasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chequesDePlanillaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reportesBancariosToolStripMenuItem;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Lbl_Bancos;
         private System.Windows.Forms.ToolStripMenuItem cierreBancarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiposDeCambioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ingresoTipoCambioToolStripMenuItem;
