@@ -29,6 +29,7 @@ namespace Capa_Vista_Creacion_Nomina
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Principal_Nomina));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,31 +46,34 @@ namespace Capa_Vista_Creacion_Nomina
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(712, 37);
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button1.Location = new System.Drawing.Point(764, 40);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 35);
+            this.button1.Size = new System.Drawing.Size(48, 45);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Crear Nomina";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button2_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(586, 37);
+            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button2.Location = new System.Drawing.Point(696, 40);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 35);
+            this.button2.Size = new System.Drawing.Size(46, 45);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Generar Nomina";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(459, 37);
+            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.button3.Location = new System.Drawing.Point(630, 40);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 35);
+            this.button3.Size = new System.Drawing.Size(46, 45);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Ver Movimientos";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -125,9 +129,9 @@ namespace Capa_Vista_Creacion_Nomina
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(39, 48);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 24);
+            this.label1.Size = new System.Drawing.Size(180, 24);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Nominas";
+            this.label1.Text = "Manejo de Nóminas";
             // 
             // Frm_Principal_Nomina
             // 

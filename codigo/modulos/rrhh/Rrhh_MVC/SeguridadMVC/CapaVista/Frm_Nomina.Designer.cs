@@ -34,7 +34,7 @@ namespace Capa_Vista_Seguridad
             // 
             // frm_Principal_Nomina1
             // 
-            this.frm_Principal_Nomina1.Location = new System.Drawing.Point(12, 54);
+            this.frm_Principal_Nomina1.Location = new System.Drawing.Point(1, 12);
             this.frm_Principal_Nomina1.Name = "frm_Principal_Nomina1";
             this.frm_Principal_Nomina1.Size = new System.Drawing.Size(848, 399);
             this.frm_Principal_Nomina1.TabIndex = 0;

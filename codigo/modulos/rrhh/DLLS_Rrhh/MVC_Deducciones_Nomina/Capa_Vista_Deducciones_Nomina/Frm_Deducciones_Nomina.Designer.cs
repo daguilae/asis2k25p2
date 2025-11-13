@@ -43,6 +43,7 @@ namespace Capa_Vista_Deducciones_Nomina
             this.id_nomina = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -167,10 +168,21 @@ namespace Capa_Vista_Deducciones_Nomina
             this.monto.HeaderText = "Monto";
             this.monto.Name = "monto";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(29, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(215, 24);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Ingreso de deducciones";
+            // 
             // Frm_Deducciones_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.dgvDatos);
             this.Controls.Add(this.txtValor);
             this.Controls.Add(this.cboConcepto);
@@ -206,5 +218,6 @@ namespace Capa_Vista_Deducciones_Nomina
         private System.Windows.Forms.DataGridViewTextBoxColumn id_nomina;
         private System.Windows.Forms.DataGridViewTextBoxColumn concepto;
         private System.Windows.Forms.DataGridViewTextBoxColumn monto;
+        private System.Windows.Forms.Label label5;
     }
 }
