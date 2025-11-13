@@ -64,7 +64,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.Lbl_Numero);
@@ -86,7 +86,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(16, 26);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 17);
+            this.label1.Size = new System.Drawing.Size(78, 20);
             this.label1.TabIndex = 0;
             this.label1.Text = "Número:";
             // 
@@ -95,7 +95,7 @@
             this.Lbl_Numero.AutoSize = true;
             this.Lbl_Numero.Location = new System.Drawing.Point(80, 26);
             this.Lbl_Numero.Name = "Lbl_Numero";
-            this.Lbl_Numero.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Numero.Size = new System.Drawing.Size(15, 20);
             this.Lbl_Numero.TabIndex = 1;
             this.Lbl_Numero.Text = "-";
             // 
@@ -104,7 +104,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(620, 26);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 17);
+            this.label2.Size = new System.Drawing.Size(61, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Fecha:";
             // 
@@ -113,7 +113,7 @@
             this.Lbl_Fecha.AutoSize = true;
             this.Lbl_Fecha.Location = new System.Drawing.Point(670, 26);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
-            this.Lbl_Fecha.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Fecha.Size = new System.Drawing.Size(15, 20);
             this.Lbl_Fecha.TabIndex = 3;
             this.Lbl_Fecha.Text = "-";
             // 
@@ -122,7 +122,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(16, 60);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 17);
+            this.label3.Size = new System.Drawing.Size(72, 20);
             this.label3.TabIndex = 4;
             this.label3.Text = "Cliente:";
             // 
@@ -131,7 +131,7 @@
             this.Lbl_Cliente.AutoSize = true;
             this.Lbl_Cliente.Location = new System.Drawing.Point(80, 60);
             this.Lbl_Cliente.Name = "Lbl_Cliente";
-            this.Lbl_Cliente.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Cliente.Size = new System.Drawing.Size(15, 20);
             this.Lbl_Cliente.TabIndex = 5;
             this.Lbl_Cliente.Text = "-";
             // 
@@ -140,7 +140,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(620, 60);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 17);
+            this.label4.Size = new System.Drawing.Size(105, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Documento:";
             // 
@@ -149,14 +149,14 @@
             this.Lbl_Documento.AutoSize = true;
             this.Lbl_Documento.Location = new System.Drawing.Point(700, 60);
             this.Lbl_Documento.Name = "Lbl_Documento";
-            this.Lbl_Documento.Size = new System.Drawing.Size(13, 17);
+            this.Lbl_Documento.Size = new System.Drawing.Size(15, 20);
             this.Lbl_Documento.TabIndex = 7;
             this.Lbl_Documento.Text = "-";
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.Dgv_Detalle);
             this.groupBox2.Location = new System.Drawing.Point(12, 118);
@@ -170,8 +170,8 @@
             // 
             this.Dgv_Detalle.AllowUserToAddRows = false;
             this.Dgv_Detalle.AllowUserToDeleteRows = false;
-            this.Dgv_Detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.Dgv_Detalle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Detalle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.Dgv_Detalle.ColumnHeadersHeight = 29;
@@ -186,7 +186,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Controls.Add(this.Lbl_Total);
@@ -263,6 +263,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.panelBotones);
+            this.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Frm_Detalle_Factura";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle de Factura";

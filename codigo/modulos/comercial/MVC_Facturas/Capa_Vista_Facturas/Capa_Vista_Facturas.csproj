@@ -76,6 +76,9 @@
     <EmbeddedResource Include="Frm_Detalle_Factura.resx">
       <DependentUpon>Frm_Detalle_Factura.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_FacturaCrear.resx">
+      <DependentUpon>Frm_FacturaCrear.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Listado_Facturas.resx">
       <DependentUpon>Frm_Listado_Facturas.cs</DependentUpon>
     </EmbeddedResource>
