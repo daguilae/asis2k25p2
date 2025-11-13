@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Capa_Controlador_S;
+using Capa_Controlador_S;   
+
 
 namespace Capa_Vista_S
 {
@@ -22,6 +23,8 @@ namespace Capa_Vista_S
             CargarCombos();
             ActualizarGrid();
         }
+      
+
 
         private void CargarCombos()
         {
@@ -44,6 +47,14 @@ namespace Capa_Vista_S
                 Cbo_Promocion.DisplayMember = "Cmp_Nombre_Promocion";
                 Cbo_Promocion.ValueMember = "Pk_Id_Promociones";
                 Cbo_Promocion.SelectedIndex = -1;
+
+               
+                DataTable dtMenu = cControlador.ObtenerMenusDisponibles();
+                Cbo_Menu.DataSource = dtMenu;
+                Cbo_Menu.DisplayMember = "Cmp_Nombre_Platillo";
+                Cbo_Menu.ValueMember = "Pk_Id_Menu";
+                Cbo_Menu.SelectedIndex = -1;
+
             }
             catch (Exception ex)
             {
@@ -78,17 +89,12 @@ namespace Capa_Vista_S
                     if (Dvg_Reservaciones.Columns.Contains("Cmp_Promocion"))
                         Dvg_Reservaciones.Columns["Cmp_Promocion"].HeaderText = "Promoción";
 
-                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Fecha_Pago"))
-                        Dvg_Reservaciones.Columns["Cmp_Fecha_Pago"].HeaderText = "Fecha Pago";
+                  
+                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Menu"))
+                        Dvg_Reservaciones.Columns["Cmp_Menu"].HeaderText = "Menú";
 
-                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Pago_Total"))
-                        Dvg_Reservaciones.Columns["Cmp_Pago_Total"].HeaderText = "Pago Total (Q)";
-
-                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Estado"))
-                        Dvg_Reservaciones.Columns["Cmp_Estado"].HeaderText = "Estado del Pago";
-
-                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Metodo_Pago"))
-                        Dvg_Reservaciones.Columns["Cmp_Metodo_Pago"].HeaderText = "Método de Pago";
+                    if (Dvg_Reservaciones.Columns.Contains("Cmp_Cantidad_Platillos"))
+                        Dvg_Reservaciones.Columns["Cmp_Cantidad_Platillos"].HeaderText = "Cantidad Platillos";
                 }
 
                 Dvg_Reservaciones.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -103,6 +109,7 @@ namespace Capa_Vista_S
             }
         }
 
+
         private void LimpiarCampos()
         {
             Cbo_Huesped.SelectedIndex = -1;
@@ -115,19 +122,6 @@ namespace Capa_Vista_S
             Dtp_Fin.Value = DateTime.Now;
             Txt_capacidad.Clear();
             Txt_Monto.Clear();
-
-            if (Dtp_FechaPago != null)
-                Dtp_FechaPago.Value = DateTime.Now;
-
-            if (Txt_PagoTotal != null)
-                Txt_PagoTotal.Clear();
-
-            if (Txt_Estadopago != null)
-                Txt_Estadopago.Clear();
-
-            if (Txt_MetodoPago != null)
-                Txt_MetodoPago.Clear();
-
             iCodigoReserva = -1;
         }
 
@@ -170,26 +164,28 @@ namespace Capa_Vista_S
                 int iCapacidad = Convert.ToInt32(Txt_capacidad.Text);
                 decimal deMonto = Convert.ToDecimal(Txt_Monto.Text);
 
-                int iIdReservaGenerado = cControlador.GuardarReservaSalonYObtenerID(iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCapacidad, deMonto);
+                // 🔹 Guardar la reservación y obtener el ID
+                int iIdReservaGenerado = cControlador.GuardarReservaSalonYObtenerID(
+                    iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCapacidad, deMonto
+                );
 
-                DateTime dFechaPago = Dtp_FechaPago.Value;
-                decimal dePagoTotal = Convert.ToDecimal(Txt_PagoTotal.Text);
-                string sEstado = Txt_Estadopago.Text;
-                string sMetodoPago = Txt_MetodoPago.Text;
+                if (Cbo_Menu.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(Txt_Cantidad.Text))
+                {
+                    int iIdMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
+                    int iCantidad = Convert.ToInt32(Txt_Cantidad.Text);
+                    cControlador.GuardarPedidoMenu(iIdReservaGenerado, iIdMenu, iCantidad);
+                }
 
-                cControlador.GuardarFolioSalon(iIdReservaGenerado, dFechaPago, dePagoTotal, sEstado, sMetodoPago);
 
-                MessageBox.Show(" Reservación y folio guardados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show("Reservación y pedido guardados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarGrid();
                 LimpiarCampos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al guardar la reserva y el folio: " + ex.Message);
+                MessageBox.Show("Error al guardar la reserva: " + ex.Message);
             }
         }
-
         private void ModificarReserva()
         {
             try
@@ -200,42 +196,27 @@ namespace Capa_Vista_S
                     return;
                 }
 
-                if (!bValidarCampos())
-                {
-                    MessageBox.Show("Complete todos los campos antes de modificar la reserva.");
-                    return;
-                }
+                if (!bValidarCampos()) return;
 
-                if (Cbo_Huesped.SelectedValue == null || Cbo_Salon.SelectedValue == null)
-                {
-                    MessageBox.Show("Seleccione un huésped y un salón válidos.");
-                    return;
-                }
-
-               
                 int iIdHuesped = Convert.ToInt32(Cbo_Huesped.SelectedValue);
                 int iIdSalon = Convert.ToInt32(Cbo_Salon.SelectedValue);
-                DateTime dFecha = Dtp_Fecha.Value.Date;
+                DateTime dFecha = Dtp_Fecha.Value;
                 TimeSpan dHoraInicio = Dtp_Inicio.Value.TimeOfDay;
                 TimeSpan dHoraFin = Dtp_Fin.Value.TimeOfDay;
-                int iCapacidad = int.TryParse(Txt_capacidad.Text, out int iCap) ? iCap : 0;
-                decimal deMonto = decimal.TryParse(Txt_Monto.Text, out decimal deM) ? deM : 0;
+                int iCapacidad = Convert.ToInt32(Txt_capacidad.Text);
+                decimal deMonto = Convert.ToDecimal(Txt_Monto.Text);
 
-                
-                cControlador.ModificarReservaSalon(
-                    iCodigoReserva, iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCapacidad, deMonto
-                );
+                cControlador.ModificarReservaSalon(iCodigoReserva, iIdHuesped, iIdSalon, dFecha, dHoraInicio, dHoraFin, iCapacidad, deMonto);
 
-                DateTime dFechaPago = Dtp_FechaPago.Value;
-                decimal dePagoTotal = decimal.TryParse(Txt_PagoTotal.Text, out decimal dPago) ? dPago : 0;
-                string sEstado = Txt_Estadopago.Text;
-                string sMetodoPago = Txt_MetodoPago.Text;
+                // 🔹 Actualizar pedido del menú
+                if (Cbo_Menu.SelectedIndex != -1 && !string.IsNullOrWhiteSpace(Txt_Cantidad.Text))
+                {
+                    int iIdMenu = Convert.ToInt32(Cbo_Menu.SelectedValue);
+                    int iCantidad = Convert.ToInt32(Txt_Cantidad.Text);
+                    cControlador.ModificarPedidoMenu(iCodigoReserva, iIdMenu, iCantidad);
+                }
 
-                
-                cControlador.ModificarFolioSalon(iCodigoReserva, dFechaPago, dePagoTotal, sEstado, sMetodoPago);
-
-                MessageBox.Show("Reservación y folio modificados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                MessageBox.Show("Reservación y pedido actualizados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ActualizarGrid();
                 LimpiarCampos();
             }
@@ -256,11 +237,12 @@ namespace Capa_Vista_S
                     return;
                 }
 
-                DialogResult drResult = MessageBox.Show("¿Desea eliminar esta reservación?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (drResult == DialogResult.Yes)
+                DialogResult dr = MessageBox.Show("¿Desea eliminar esta reservación y su pedido?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dr == DialogResult.Yes)
                 {
+                    cControlador.EliminarPedidoMenu(iCodigoReserva);
                     cControlador.EliminarReservaSalon(iCodigoReserva);
-                    MessageBox.Show(" Reservación eliminada correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Reservación y pedido eliminados correctamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ActualizarGrid();
                     LimpiarCampos();
                 }
@@ -271,11 +253,7 @@ namespace Capa_Vista_S
             }
         }
 
-        private void Frm_Reservaciones_Load(object sender, EventArgs e)
-        {
-            CargarCombos();
-            ActualizarGrid();
-        }
+
 
         private void Dvg_Reservaciones_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -285,77 +263,33 @@ namespace Capa_Vista_S
 
                 DataGridViewRow drFila = Dvg_Reservaciones.Rows[e.RowIndex];
 
-                if (!Dvg_Reservaciones.Columns.Contains("Pk_Id_Reserva_Salon") ||
-                    drFila.Cells["Pk_Id_Reserva_Salon"].Value == null)
-                {
-                    MessageBox.Show(" No se pudo obtener el ID de la reserva.");
-                    return;
-                }
-
                 iCodigoReserva = Convert.ToInt32(drFila.Cells["Pk_Id_Reserva_Salon"].Value);
-
-                if (Dvg_Reservaciones.Columns.Contains("Fk_Id_Huesped"))
-                    Cbo_Huesped.SelectedValue = drFila.Cells["Fk_Id_Huesped"].Value ?? -1;
-
-                if (Dvg_Reservaciones.Columns.Contains("Fk_Id_Salon"))
-                    Cbo_Salon.SelectedValue = drFila.Cells["Fk_Id_Salon"].Value ?? -1;
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Fecha_Reserva") &&
-                    drFila.Cells["Cmp_Fecha_Reserva"].Value != DBNull.Value)
-                    Dtp_Fecha.Value = Convert.ToDateTime(drFila.Cells["Cmp_Fecha_Reserva"].Value);
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Hora_Inicio") &&
-                    drFila.Cells["Cmp_Hora_Inicio"].Value != DBNull.Value)
-                {
-                    var dHoraInicio = drFila.Cells["Cmp_Hora_Inicio"].Value;
-                    Dtp_Inicio.Value = dHoraInicio is TimeSpan tsIni
-                        ? DateTime.Today.Add(tsIni)
-                        : Convert.ToDateTime(dHoraInicio);
-                }
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Hora_Fin") &&
-                    drFila.Cells["Cmp_Hora_Fin"].Value != DBNull.Value)
-                {
-                    var dHoraFin = drFila.Cells["Cmp_Hora_Fin"].Value;
-                    Dtp_Fin.Value = dHoraFin is TimeSpan tsFin
-                        ? DateTime.Today.Add(tsFin)
-                        : Convert.ToDateTime(dHoraFin);
-                }
-
+                Cbo_Huesped.SelectedValue = drFila.Cells["Fk_Id_Huesped"].Value ?? -1;
+                Cbo_Salon.SelectedValue = drFila.Cells["Fk_Id_Salon"].Value ?? -1;
+                Dtp_Fecha.Value = Convert.ToDateTime(drFila.Cells["Cmp_Fecha_Reserva"].Value);
+                Dtp_Inicio.Value = DateTime.Today.Add(TimeSpan.Parse(drFila.Cells["Cmp_Hora_Inicio"].Value.ToString()));
+                Dtp_Fin.Value = DateTime.Today.Add(TimeSpan.Parse(drFila.Cells["Cmp_Hora_Fin"].Value.ToString()));
                 Txt_capacidad.Text = drFila.Cells["Cmp_Cantidad_Personas"].Value?.ToString() ?? "";
                 Txt_Monto.Text = drFila.Cells["Cmp_Monto_Total"].Value?.ToString() ?? "";
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Fecha_Pago") &&
-                    drFila.Cells["Cmp_Fecha_Pago"].Value != DBNull.Value)
-                    Dtp_FechaPago.Value = Convert.ToDateTime(drFila.Cells["Cmp_Fecha_Pago"].Value);
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Pago_Total"))
-                    Txt_PagoTotal.Text = drFila.Cells["Cmp_Pago_Total"].Value?.ToString() ?? "";
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Estado"))
-                    Txt_Estadopago.Text = drFila.Cells["Cmp_Estado"].Value?.ToString() ?? "";
-
-                if (Dvg_Reservaciones.Columns.Contains("Cmp_Metodo_Pago"))
-                    Txt_MetodoPago.Text = drFila.Cells["Cmp_Metodo_Pago"].Value?.ToString() ?? "";
-
-                if (Dvg_Reservaciones.Columns.Contains("Fk_Id_Promociones") &&
-                    drFila.Cells["Fk_Id_Promociones"].Value != DBNull.Value)
-                {
-                    Cbo_Promocion.SelectedValue = drFila.Cells["Fk_Id_Promociones"].Value;
-                }
-                else if (Dvg_Reservaciones.Columns.Contains("Cmp_Promocion"))
-                {
-                    Cbo_Promocion.Text = drFila.Cells["Cmp_Promocion"].Value?.ToString() ?? "";
-                }
+                if (Dvg_Reservaciones.Columns.Contains("Fk_Id_Promociones"))
+                    Cbo_Promocion.SelectedValue = drFila.Cells["Fk_Id_Promociones"].Value ?? -1;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(" Error al seleccionar la fila: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al seleccionar la fila: " + ex.Message);
             }
         }
 
+        
+
+        private void folioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_FolioRes fNuevoFormulario = new Frm_FolioRes();
+            fNuevoFormulario.Show();
+        }
+
         private void Btn_guardar_Click_1(object sender, EventArgs e)
-        { 
+        {
             GuardarReserva();
         }
 
@@ -369,6 +303,12 @@ namespace Capa_Vista_S
             ModificarReserva();
         }
 
+        private void Btn_Reportes_Click(object sender, EventArgs e)
+        {
+            Frm_Reportes_Reservacion nuevo = new Frm_Reportes_Reservacion();
+            nuevo.Show();
+        }
+
         private void salonesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_Salones fNuevoFormulario = new Frm_Salones();
@@ -380,20 +320,8 @@ namespace Capa_Vista_S
 
         }
 
-        private void Pnl_Superior_Paint(object sender, PaintEventArgs e)
-        {
+     
+        
 
-        }
-
-        private void Frm_Reservaciones_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Btn_Reportes_Click(object sender, EventArgs e)
-        {
-            Frm_Reportes_Reservacion fNuevoFormulario = new Frm_Reportes_Reservacion();
-            fNuevoFormulario.Show();
-        }
     }
 }
