@@ -395,5 +395,44 @@ namespace Capa_Modelo_GesHab
 
             return tabla;
         }
+
+        public decimal fun_ObtenerDescuentoPromocion(DateTime fechaCheckIn, DateTime fechaActual)
+        {
+            decimal descuento = 0m;
+
+            string query = @"
+        SELECT Cmp_Porcentaje_Descuento
+        FROM Tbl_Promociones
+        WHERE 
+            ( ? BETWEEN Cmp_Fecha_Inicio AND Cmp_Fecha_Final )
+            OR
+            ( ? BETWEEN Cmp_Fecha_Inicio AND Cmp_Fecha_Final )
+        LIMIT 1;";
+
+            try
+            {
+                using (OdbcConnection conn = oConexion.conexion())
+                {
+                    conn.Open();
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fechaCheckIn", fechaCheckIn);
+                        cmd.Parameters.AddWithValue("@fechaActual", fechaActual);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            descuento = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener descuento de promoción: " + ex.Message);
+            }
+
+            return descuento;
+        }
     }
 }

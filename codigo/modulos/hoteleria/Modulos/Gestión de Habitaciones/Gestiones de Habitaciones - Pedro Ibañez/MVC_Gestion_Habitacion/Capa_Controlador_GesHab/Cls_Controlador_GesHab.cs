@@ -272,5 +272,11 @@ namespace Capa_Controlador_GesHab
 
             return dt;
         }
+
+        public decimal fun_ObtenerDescuentoPorPromocion(DateTime fechaCheckIn, DateTime fechaActual)
+        {
+            return oDaoAuxiliar.fun_ObtenerDescuentoPromocion(fechaCheckIn, fechaActual);
+        }
+
     }
 }

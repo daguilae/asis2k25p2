@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.Odbc;
 using System.Windows.Forms;
 using Capa_Modelo_Check_In_Check_Out;
+using Capa_Controlador_GesHab;
 
 namespace Capa_Controlador_Check_In_Check_Out
 {
@@ -10,8 +11,8 @@ namespace Capa_Controlador_Check_In_Check_Out
     {
         private readonly Cls_Check_Out_Dao prDao = new Cls_Check_Out_Dao();
         private readonly Cls_Conexion prConexion = new Cls_Conexion();
+        private readonly Cls_Controlador_GesHab Ctrl_Estadia = new Cls_Controlador_GesHab();
 
-  
         private void CambiarEstadoHabitacion(int iIdHabitacion, OdbcConnection conn)
         {
             try
@@ -172,23 +173,41 @@ namespace Capa_Controlador_Check_In_Check_Out
 
                     // 
                     // 2️ Calcular tarifas por noche
-             
+
                     double dTarifaNoche = 0;
+
+                    // Obtener tarifa por noche
                     using (OdbcCommand cmd = new OdbcCommand(
                         "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?", conn))
                     {
                         cmd.Parameters.AddWithValue("?", iIdHabitacion);
                         object oResultado = cmd.ExecuteScalar();
+
                         if (oResultado != null && oResultado != DBNull.Value)
                             dTarifaNoche = Convert.ToDouble(oResultado);
                     }
 
+                    // Calcular días
                     int iTotalDias = (dFechaCheckOut.Date - dFechaCheckIn.Date).Days;
                     if (iTotalDias <= 0) iTotalDias = 1;
-                    double dTotalEstadia = dTarifaNoche * iTotalDias;
+
+                    // Calcular tarifa con promoción
+                    decimal descuento = Ctrl_Estadia.fun_ObtenerDescuentoPorPromocion(dFechaCheckIn, dFechaCheckOut);
+
+                    double dTarifaFinalPorNoche = dTarifaNoche; // valor por defecto
+
+                    if (descuento > 0)
+                    {
+                        double porcentaje = (double)descuento / 100.0;
+                        dTarifaFinalPorNoche = dTarifaNoche - (dTarifaNoche * porcentaje);
+                    }
+
+                    // Calcular total de estadía
+                    double dTotalEstadia = dTarifaFinalPorNoche * iTotalDias;
+
 
                     // 3️ Verificar impuesto turístico
-                    
+
                     string sPaisHuesped = "";
                     using (OdbcCommand cmd = new OdbcCommand(
                         "SELECT Cmp_Pais FROM Tbl_Huesped WHERE Pk_Id_Huesped = ?", conn))
@@ -220,7 +239,7 @@ namespace Capa_Controlador_Check_In_Check_Out
                         {
                             cmdInsert.Parameters.AddWithValue("?", iIdFolio);
                             cmdInsert.Parameters.AddWithValue("?", $"Cobro de estadía - Noche {i + 1}");
-                            cmdInsert.Parameters.AddWithValue("?", dTarifaNoche);
+                            cmdInsert.Parameters.AddWithValue("?", dTarifaFinalPorNoche);
                             cmdInsert.Parameters.AddWithValue("?", dFechaNoche.ToString("yyyy-MM-dd"));
                             cmdInsert.ExecuteNonQuery();
                         }
@@ -336,7 +355,7 @@ namespace Capa_Controlador_Check_In_Check_Out
                   
                     string sMensajeFinal = $"Check-Out completado y Check-In finalizado.\n\n" +
                                            $"Folio: #{iIdFolio}\n" +
-                                           $"Tarifa/noche: Q{dTarifaNoche:N2}\n" +
+                                           $"Tarifa/noche: Q{dTarifaFinalPorNoche:N2}\n" +
                                            $"Noches: {iTotalDias}\n" +
                                            $"Hospedaje total: Q{dTotalEstadia:N2}\n" +
                                            (dImpuestoTurismo > 0 ? $"Impuesto turista: Q{dImpuestoTurismo:N2}\n" : "") +
