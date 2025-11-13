@@ -55,6 +55,7 @@
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ingresoDePolizasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -95,7 +96,7 @@
             this.menuStrip1.MaximumSize = new System.Drawing.Size(0, 409);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 20, 802, 20);
-            this.menuStrip1.Size = new System.Drawing.Size(1248, 61);
+            this.menuStrip1.Size = new System.Drawing.Size(1368, 61);
             this.menuStrip1.TabIndex = 24;
             this.menuStrip1.Text = "MenuStrip";
             // 
@@ -206,7 +207,8 @@
             this.horasExtraToolStripMenuItem,
             this.anticiposToolStripMenuItem,
             this.nominaToolStripMenuItem,
-            this.reporteriaToolStripMenuItem});
+            this.reporteriaToolStripMenuItem,
+            this.ingresoDePolizasToolStripMenuItem});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.procesosToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
@@ -216,34 +218,34 @@
             // Btn_Bitacora
             // 
             this.Btn_Bitacora.Name = "Btn_Bitacora";
-            this.Btn_Bitacora.Size = new System.Drawing.Size(150, 22);
+            this.Btn_Bitacora.Size = new System.Drawing.Size(191, 22);
             this.Btn_Bitacora.Text = "Bitacora";
             this.Btn_Bitacora.Click += new System.EventHandler(this.Btn_Bitacora_Click);
             // 
             // asistenciaToolStripMenuItem
             // 
             this.asistenciaToolStripMenuItem.Name = "asistenciaToolStripMenuItem";
-            this.asistenciaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.asistenciaToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.asistenciaToolStripMenuItem.Text = "Asistencia";
             // 
             // vacacionesToolStripMenuItem
             // 
             this.vacacionesToolStripMenuItem.Name = "vacacionesToolStripMenuItem";
-            this.vacacionesToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.vacacionesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.vacacionesToolStripMenuItem.Text = "Vacaciones";
             this.vacacionesToolStripMenuItem.Click += new System.EventHandler(this.vacacionesToolStripMenuItem_Click);
             // 
             // horasExtraToolStripMenuItem
             // 
             this.horasExtraToolStripMenuItem.Name = "horasExtraToolStripMenuItem";
-            this.horasExtraToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.horasExtraToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.horasExtraToolStripMenuItem.Text = "Horas Extra";
             this.horasExtraToolStripMenuItem.Click += new System.EventHandler(this.horasExtraToolStripMenuItem_Click);
             // 
             // anticiposToolStripMenuItem
             // 
             this.anticiposToolStripMenuItem.Name = "anticiposToolStripMenuItem";
-            this.anticiposToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.anticiposToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.anticiposToolStripMenuItem.Text = "Anticipos";
             this.anticiposToolStripMenuItem.Click += new System.EventHandler(this.anticiposToolStripMenuItem_Click);
             // 
@@ -254,7 +256,7 @@
             this.ingresoDeduccionesToolStripMenuItem,
             this.generacionDeNominaToolStripMenuItem});
             this.nominaToolStripMenuItem.Name = "nominaToolStripMenuItem";
-            this.nominaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.nominaToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.nominaToolStripMenuItem.Text = "Nomina";
             // 
             // ingresoPercepcionesToolStripMenuItem
@@ -281,7 +283,7 @@
             // reporteriaToolStripMenuItem
             // 
             this.reporteriaToolStripMenuItem.Name = "reporteriaToolStripMenuItem";
-            this.reporteriaToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.reporteriaToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.reporteriaToolStripMenuItem.Text = "Reporteria";
             // 
             // herramientasToolStripMenuItem
@@ -379,6 +381,13 @@
             this.label1.Text = "Modulo de Nóminas";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // ingresoDePolizasToolStripMenuItem
+            // 
+            this.ingresoDePolizasToolStripMenuItem.Name = "ingresoDePolizasToolStripMenuItem";
+            this.ingresoDePolizasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.ingresoDePolizasToolStripMenuItem.Text = "Ingreso de polizas";
+            this.ingresoDePolizasToolStripMenuItem.Click += new System.EventHandler(this.ingresoDePolizasToolStripMenuItem_Click);
+            // 
             // Frm_Seguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,5 +451,6 @@
         private System.Windows.Forms.ToolStripMenuItem generacionDeNominaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteriaToolStripMenuItem;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripMenuItem ingresoDePolizasToolStripMenuItem;
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Seguridad;
+using MVC_Poliza_Nomina;
 
 namespace Capa_Vista_Seguridad
 {
@@ -403,6 +404,12 @@ namespace Capa_Vista_Seguridad
         {
             Frm_Mantenimiento_Conceptos_Nomina frm_Mantenimiento_Conceptos_Nomina = new Frm_Mantenimiento_Conceptos_Nomina();
             frm_Mantenimiento_Conceptos_Nomina.ShowDialog();
+        }
+
+        private void ingresoDePolizasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_PolizaNomina frm_PolizaNomina = new Frm_PolizaNomina();
+            frm_PolizaNomina.ShowDialog();
         }
     }
 }

@@ -63,6 +63,10 @@
     <Reference Include="Capa_Vista_Percepciones_Nomina">
       <HintPath>..\..\..\DLLS_Rrhh\MVC_Percepciones_Nominas\Capa_Vista_Percepciones_Nomina\bin\Debug\Capa_Vista_Percepciones_Nomina.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Poliza, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Poliza_Nomina\Capa_Vista_Poliza\bin\Debug\Capa_Vista_Poliza.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Vacaciones">
       <HintPath>..\..\..\DLLS_Rrhh\MVC_Vacaciones_Nominas\Capa_Vista_Vacaciones\bin\Debug\Capa_Vista_Vacaciones.dll</HintPath>
     </Reference>
