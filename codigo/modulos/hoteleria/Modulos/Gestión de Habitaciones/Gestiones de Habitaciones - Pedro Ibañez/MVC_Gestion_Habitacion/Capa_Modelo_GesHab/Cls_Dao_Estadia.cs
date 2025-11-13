@@ -14,7 +14,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Insertar una nueva estadía
-        public bool InsertarEstadia(
+        public bool pro_InsertarEstadia(
             int iIdHabitacion,
             int iIdHuesped,
             int iNumHuespedes,
@@ -60,7 +60,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Eliminar una estadía existente
-        public bool EliminarEstadia(int iIdEstadia)
+        public bool pro_EliminarEstadia(int iIdEstadia)
         {
             try
             {
@@ -89,7 +89,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Modificar una estadía existente
-        public bool ModificarEstadia(
+        public bool pro_ModificarEstadia(
             int iIdEstadia,
             int iIdHabitacion,
             int iIdHuesped,
@@ -142,7 +142,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener IDs de estadías
-        public DataTable ObtenerIdsEstadia()
+        public DataTable fun_ObtenerIdsEstadia()
         {
             DataTable dtResultado = new DataTable();
             string sQuery = "SELECT Pk_Id_Estadia FROM Tbl_Estadia;";
@@ -169,7 +169,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener habitaciones disponibles
-        public DataTable ObtenerHabitaciones()
+        public DataTable fun_ObtenerHabitaciones()
         {
             DataTable dtResultado = new DataTable();
             string sQuery = "SELECT PK_Id_Habitaciones FROM Tbl_Habitaciones WHERE Cmp_Estado_Habitacion = 1;";
@@ -196,7 +196,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener huéspedes (ID y nombre completo)
-        public DataTable ObtenerHuespedes()
+        public DataTable fun_ObtenerHuespedes()
         {
             DataTable dtResultado = new DataTable();
             string sQuery = "SELECT Pk_Id_Huesped, CONCAT(Cmp_Nombre, ' ', Cmp_Apellido) AS NombreCompleto FROM Tbl_Huesped;";
@@ -223,7 +223,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener tarifa por noche
-        public double ObtenerTarifaPorNoche(int iIdHabitacion)
+        public double fun_ObtenerTarifaPorNoche(int iIdHabitacion)
         {
             double doTarifa = 0.0;
             string sQuery = "SELECT Cmp_Tarifa_Noche FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
@@ -255,7 +255,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener capacidad de habitación
-        public int ObtenerCapacidadHabitacion(int iIdHabitacion)
+        public int fun_ObtenerCapacidadHabitacion(int iIdHabitacion)
         {
             int iCapacidad = 0;
             string sQuery = "SELECT Cmp_Capacidad_Habitacion FROM Tbl_Habitaciones WHERE Pk_Id_Habitaciones = ?;";
@@ -287,7 +287,7 @@ namespace Capa_Modelo_GesHab
 
         // ==========================================================================================
         // Obtener una estadía específica por ID
-        public DataTable ObtenerEstadiaPorId(int iIdEstadia)
+        public DataTable fun_ObtenerEstadiaPorId(int iIdEstadia)
         {
             DataTable dtResultado = new DataTable();
             string sQuery = @"
@@ -324,6 +324,115 @@ namespace Capa_Modelo_GesHab
             }
 
             return dtResultado;
+        }
+        // ==========================================================================================
+        // Obtener una Reserva específica por ID
+        public DataTable fun_ObtenerIdsReserva()
+        {
+            DataTable dtResultado = new DataTable();
+            string sQuery = "SELECT Pk_Id_Reserva FROM Tbl_Reserva;";
+
+            try
+            {
+                using (OdbcConnection oConn = oConexion.conexion())
+                {
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
+                    {
+                        oDa.Fill(dtResultado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener los IDs de estadía: " + ex.Message);
+            }
+
+            return dtResultado;
+        }
+        // ==========================================================================================
+        // Obtener num Huespedes específica por ID
+        public DataTable BuscarReservaPorId(int idReserva)
+        {
+            string query = @"
+                SELECT 
+                    Pk_Id_Reserva,
+                    Fk_Id_Huesped,
+                    Fk_Id_Habitacion,
+                    Fk_Id_Promociones,
+                    Fk_Id_Buffet,
+                    Cmp_Fecha_Reserva,
+                    Cmp_Fecha_Entrada,
+                    Cmp_Fecha_Salida,
+                    Cmp_Num_Huespedes,
+                    Cmp_Peticiones_Especiales,
+                    Cmp_Estado_Reserva,
+                    Cmp_Total_Reserva
+                FROM Tbl_Reserva
+                WHERE Pk_Id_Reserva = ?;";
+
+            DataTable tabla = new DataTable();
+            OdbcConnection conn = oConexion.conexion();
+
+            try
+            {
+                conn.Open();
+                OdbcCommand cmd = new OdbcCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idReserva);
+                OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                da.Fill(tabla);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                oConexion.desconexion(conn);
+            }
+
+            return tabla;
+        }
+
+        public decimal fun_ObtenerDescuentoPromocion(DateTime fechaCheckIn, DateTime fechaActual)
+        {
+            decimal descuento = 0m;
+
+            string query = @"
+        SELECT Cmp_Porcentaje_Descuento
+        FROM Tbl_Promociones
+        WHERE 
+            ( ? BETWEEN Cmp_Fecha_Inicio AND Cmp_Fecha_Final )
+            OR
+            ( ? BETWEEN Cmp_Fecha_Inicio AND Cmp_Fecha_Final )
+        LIMIT 1;";
+
+            try
+            {
+                using (OdbcConnection conn = oConexion.conexion())
+                {
+                    conn.Open();
+                    using (OdbcCommand cmd = new OdbcCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fechaCheckIn", fechaCheckIn);
+                        cmd.Parameters.AddWithValue("@fechaActual", fechaActual);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            descuento = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener descuento de promoción: " + ex.Message);
+            }
+
+            return descuento;
         }
     }
 }

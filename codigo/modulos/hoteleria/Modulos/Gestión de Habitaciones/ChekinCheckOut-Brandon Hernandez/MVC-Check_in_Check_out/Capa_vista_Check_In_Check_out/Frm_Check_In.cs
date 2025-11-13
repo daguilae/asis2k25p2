@@ -3,13 +3,14 @@ using System.Data;
 using System.Windows.Forms;
 using Capa_Controlador_Check_In_Check_Out;
 using Capa_Controlador_Seguridad;
-
+using Capa_Modelo_GesHab;
 namespace Capa_vista_Check_In_Check_out
 {
     public partial class Frm_Check_In : Form
     {
         private readonly Cls_Check_In_Controlador Controlador = new Cls_Check_In_Controlador();
         Cls_BitacoraControlador ctrlBitacora = new Cls_BitacoraControlador();
+        Cls_Dao_Estadia Estadia = new Cls_Dao_Estadia();
         private int idHabitacionSeleccionada = 0;
         private bool _canIngresar, _canConsultar, _canModificar, _canEliminar, _canImprimir;
 
@@ -231,6 +232,9 @@ namespace Capa_vista_Check_In_Check_out
                 DateTime fecha = Dtp_Fecha.Value;
                 string estado = Cbo_Estado.SelectedItem.ToString();
 
+                int idHabitacion = Controlador.fun_Obtener_Habitacion_Por_Reserva(idReserva);
+                int num_huespedes = Controlador.fun_ObtenerNumHuespedesPorReserva(idReserva);
+
                 if (idHabitacionSeleccionada == 0)
                 {
                     MessageBox.Show("No se encontró una habitación asociada a esta reserva.",
@@ -249,6 +253,7 @@ namespace Capa_vista_Check_In_Check_out
 
                 if (exito)
                 {
+                    Estadia.pro_InsertarEstadia(idHabitacion,idHuesped,num_huespedes,true,fecha,fecha,0); ;
                     ctrlBitacora.RegistrarAccion(Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario, 3402, $"Check In Guardado ", true);
                     fun_CargarTabla();
                     fun_LimpiarCampos();

@@ -1,118 +1,126 @@
 ﻿using System;
 using System.Data;
-using CapaModeloProduccion; 
+using Capa_Modelo_Produccion;
 
-namespace CapaControladorProduccion
+namespace Capa_Controlador_Produccion
 {
     public class Cls_Controlador_Produccion
     {
         Cls_Sentencias_Produccion sentencias = new Cls_Sentencias_Produccion();
 
-        // GUARDAR (Insertar registro nuevo)
-        public void GuardarRoomService(int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
+        // ✅ ROOM SERVICE - PROCEDIMIENTOS (void)
+        public void pro_GuardarRoomService(int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
-            sentencias.InsertarRoomService(iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
+            Cls_Sentencias_Produccion sentencias = new Cls_Sentencias_Produccion();
+
+            if (!sentencias.fun_ExisteHuesped(iIdHuesped))
+                throw new Exception($"El huésped con ID {iIdHuesped} no existe.");
+
+            if (!sentencias.fun_ExisteHabitacion(iIdHabitacion))
+                throw new Exception($"La habitación con ID {iIdHabitacion} no existe.");
+
+            sentencias.pro_InsertarRoomService(iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
         }
 
-        // ACTUALIZAR (Editar registro existente)
-        public void ActualizarRoomService(int iIdRoom, int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
+
+        public void pro_ActualizarRoomService(int iIdRoom, int iIdHuesped, int iIdHabitacion, DateTime dFechaOrden, string sEstado)
         {
-            sentencias.EditarRoomService(iIdRoom, iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
+            sentencias.pro_EditarRoomService(iIdRoom, iIdHuesped, iIdHabitacion, dFechaOrden, sEstado);
         }
 
-        // ELIMINAR
-        public void EliminarRoomService(int iIdRoom)
+        public void pro_EliminarRoomService(int iIdRoom)
         {
-            sentencias.EliminarRoomService(iIdRoom);
+            sentencias.pro_EliminarRoomService(iIdRoom);
         }
 
-        // MOSTRAR TODOS LOS ROOM SERVICES
-        public DataTable MostrarRoomServices()
+        // ✅ DETALLES ROOM SERVICE - PROCEDIMIENTOS (void)
+        public void pro_GuardarDetalle(int iIdRoom, int iIdMenu, int iCantidad)
         {
-            return sentencias.CargarRoomServices();
+            decimal dePrecioUnitario = sentencias.fun_ObtenerPrecioUnitario(iIdMenu);
+            sentencias.pro_InsertarDetalle(iIdRoom, iIdMenu, iCantidad);
         }
 
-        public void GuardarDetalle(int iIdRoom, int iIdMenu, int iCantidad)
+        public void pro_ActualizarDetalle(int iIdDetalle, int iIdRoom, int iIdMenu, int iCantidad)
         {
-            // Obtenemos el precio desde el modelo automáticamente
-            decimal dePrecioUnitario = sentencias.ObtenerPrecioUnitario(iIdMenu);
-            sentencias.InsertarDetalle(iIdRoom, iIdMenu, iCantidad);
+            decimal dePrecioUnitario = sentencias.fun_ObtenerPrecioUnitario(iIdMenu);
+            sentencias.pro_EditarDetalle(iIdDetalle, iIdRoom, iIdMenu, iCantidad);
         }
 
-        // ✅ ACTUALIZAR
-        public void ActualizarDetalle(int iIdDetalle, int iIdRoom, int iIdMenu, int iCantidad)
+        public void pro_BorrarDetalle(int iIdDetalle)
         {
-            decimal dePrecioUnitario = sentencias.ObtenerPrecioUnitario(iIdMenu);
-            sentencias.EditarDetalle(iIdDetalle, iIdRoom, iIdMenu, iCantidad);
+            sentencias.pro_EliminarDetalle(iIdDetalle);
         }
 
-        // ✅ ELIMINAR
-        public void BorrarDetalle(int iIdDetalle)
+        // ✅ RESERVAS A LA CARTA - PROCEDIMIENTOS (void)
+        public void pro_GuardarReserva(int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
         {
-            sentencias.EliminarDetalle(iIdDetalle);
+            if (!sentencias.fun_ExisteHuesped(iIdHuesped))
+                throw new Exception($"El huésped con ID {iIdHuesped} no existe.");
+
+            if (!sentencias.fun_ExisteHabitacion(iIdHabitacion))
+                throw new Exception($"La habitación con ID {iIdHabitacion} no existe.");
+
+            if (!sentencias.fun_ExisteSalon(iIdSalon))
+                throw new Exception($"El salón con ID {iIdSalon} no existe.");
+
+            sentencias.pro_InsertarReservaAlacarta(iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
         }
 
-        // ✅ MOSTRAR TODOS LOS DETALLES
-        public DataTable MostrarDetalles()
+
+        public void pro_ActualizarReserva(int iIdReserva, int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
         {
-            return sentencias.CargarDetalles();
+            sentencias.pro_EditarReservaAlacarta(iIdReserva, iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
         }
 
-        // ✅ MOSTRAR DETALLES POR ROOM SERVICE
-        public DataTable MostrarDetallesPorRoom(int iIdRoom)
+        public void pro_EliminarReserva(int iIdReserva)
         {
-            return sentencias.CargarDetallesPorRoom(iIdRoom);
+            sentencias.pro_EliminarReservaAlacarta(iIdReserva);
         }
 
-        // ✅ OBTENER PRECIO UNITARIO (para llenar automáticamente en la vista)
-        public decimal ObtenerPrecio(int iIdMenu)
+        // ✅ FUNCIONES QUE RETORNAN VALORES (DataTable)
+        public DataTable fun_MostrarRoomServices()
         {
-            return sentencias.ObtenerPrecioUnitario(iIdMenu);
+            return sentencias.fun_CargarRoomServices();
         }
 
-        public DataTable ObtenerPlatos()
+        public DataTable fun_MostrarDetalles()
         {
-            return sentencias.CargarMenu(); // Esto debería traer Id y Nombre del menú
+            return sentencias.fun_CargarDetalles();
         }
 
-        public int ObtenerUltimoIdRoomService()
+        public DataTable fun_MostrarDetallesPorRoom(int iIdRoom)
         {
-            return sentencias.ObtenerUltimoIdRoomService();
+            return sentencias.fun_CargarDetallesPorRoom(iIdRoom);
         }
 
-        // INSERTAR nueva reserva
-        public void GuardarReserva(int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
+        public DataTable fun_MostrarReservas()
         {
-            sentencias.InsertarReservaAlacarta(iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
+            return sentencias.fun_CargarReservasAlacarta();
         }
 
-        // ACTUALIZAR reserva existente
-        public void ActualizarReserva(int iIdReserva, int iIdHuesped, int iIdHabitacion, int iIdSalon, DateTime dFecha, TimeSpan tHora, int iNumComensales, int iEstado)
+        public DataTable fun_ObtenerPlatos()
         {
-            sentencias.EditarReservaAlacarta(iIdReserva, iIdHuesped, iIdHabitacion, iIdSalon, dFecha, tHora, iNumComensales, iEstado);
+            return sentencias.fun_CargarMenu();
         }
 
-        // ELIMINAR reserva
-        public void EliminarReserva(int iIdReserva)
+        public DataTable fun_ObtenerSalones()
         {
-            sentencias.EliminarReservaAlacarta(iIdReserva);
+            return sentencias.fun_CargarSalones();
         }
 
-        // CONSULTAR todas las reservas
-        public DataTable MostrarReservas()
+        // ✅ FUNCIONES QUE RETORNAN VALORES (otros tipos)
+        public decimal fun_ObtenerPrecio(int iIdMenu)
         {
-            return sentencias.CargarReservasAlacarta();
+            return sentencias.fun_ObtenerPrecioUnitario(iIdMenu);
         }
 
-        public DataTable ObtenerSalones()
+        public int fun_ObtenerUltimoIdRoomService()
         {
-            return sentencias.CargarSalones();
+            return sentencias.fun_ObtenerUltimoIdRoomService();
         }
 
     }
-
 }
-
 
 
 

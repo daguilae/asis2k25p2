@@ -16,7 +16,7 @@ namespace Ejecucion
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CapaVistaProduccion.Frm_Produccion_Hoteleria());
+            Application.Run(new Capa_Vista_Produccion.Frm_Produccion_Hoteleria());
         }
     }
 }

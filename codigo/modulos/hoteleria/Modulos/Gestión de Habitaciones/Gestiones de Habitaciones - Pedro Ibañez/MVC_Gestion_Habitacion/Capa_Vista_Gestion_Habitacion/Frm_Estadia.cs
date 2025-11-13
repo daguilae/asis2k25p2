@@ -19,7 +19,7 @@ namespace Capa_Vista_Gestion_Habitacion
         public Frm_Estadia()
         {
             InitializeComponent();
-            CargarCombos();
+            fun_CargarCombos();
             cbo_fk_id_Habitacion.SelectedValueChanged += cbo_fk_id_Habitacion_SelectedValueChanged;
 
             // Asociar eventos a los DateTimePicker
@@ -28,24 +28,30 @@ namespace Capa_Vista_Gestion_Habitacion
             cbo_fk_id_Habitacion.SelectedValueChanged += new EventHandler(CalcularMontoTotal);
         }
 
-        private void CargarCombos()
+        private void fun_CargarCombos()
         {
+            // --- ComboBox de Reserva ---
+            DataTable dtReserva = oControlador.fun_CargarIdsReserva();
+            cbo_Reserva.DataSource = dtReserva;
+            cbo_Reserva.DisplayMember = "Pk_Id_Reserva";
+            cbo_Reserva.ValueMember = "Pk_Id_Reserva";
+            cbo_Reserva.SelectedIndex = -1;
             // --- ComboBox de Estadías ---
-            DataTable dtEstadias = oControlador.CargarIdsEstadia();
+            DataTable dtEstadias = oControlador.fun_CargarIdsEstadia();
             Cbo_PK_Id_Estadia.DataSource = dtEstadias;
             Cbo_PK_Id_Estadia.DisplayMember = "Pk_Id_Estadia";
             Cbo_PK_Id_Estadia.ValueMember = "Pk_Id_Estadia";
             Cbo_PK_Id_Estadia.SelectedIndex = -1;
 
             // --- ComboBox Habitaciones ---
-            DataTable dtHabitaciones = oControlador.CargarHabitaciones();
+            DataTable dtHabitaciones = oControlador.fun_CargarHabitaciones();
             cbo_fk_id_Habitacion.DataSource = dtHabitaciones;
             cbo_fk_id_Habitacion.DisplayMember = "PK_ID_Habitaciones";
             cbo_fk_id_Habitacion.ValueMember = "PK_ID_Habitaciones";
             cbo_fk_id_Habitacion.SelectedIndex = -1;
 
             // --- ComboBox Huéspedes ---
-            DataTable dtHuespedes = oControlador.CargarHuespedes();
+            DataTable dtHuespedes = oControlador.fun_CargarHuespedes();
             cbo_Fk_Id_Huesped.DataSource = dtHuespedes;
             cbo_Fk_Id_Huesped.DisplayMember = "NombreCompleto";
             cbo_Fk_Id_Huesped.ValueMember = "Pk_Id_Huesped";
@@ -59,7 +65,7 @@ namespace Capa_Vista_Gestion_Habitacion
                 if (cbo_fk_id_Habitacion.SelectedValue != null &&
                     int.TryParse(cbo_fk_id_Habitacion.SelectedValue.ToString(), out int iIdHabitacion))
                 {
-                    int iCapacidad = oControlador.ObtenerCapacidadHabitacion(iIdHabitacion);
+                    int iCapacidad = oControlador.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
                     lbl_maxima_capacidad.Text = $"Capacidad Máx: {iCapacidad} Persona/s";
                 }
                 else
@@ -94,11 +100,25 @@ namespace Capa_Vista_Gestion_Habitacion
                 if (cbo_fk_id_Habitacion.SelectedValue != null &&
                     int.TryParse(cbo_fk_id_Habitacion.SelectedValue.ToString(), out int iIdHabitacion))
                 {
-                    double doTarifaPorNoche = oControlador.ObtenerTarifaHabitacion(iIdHabitacion);
-                    double doMontoTotal = iDiasEstadia * doTarifaPorNoche;
+                    double tarifaOriginal = oControlador.fun_ObtenerTarifaHabitacion(iIdHabitacion);
 
-                    lbl_Precio_Unitario.Text = $"Q {doTarifaPorNoche:N2}";
-                    lbl_montoTotal.Text = $"Q {doMontoTotal:N2}";
+                    //Obtener el porcentaje de descuento
+                    decimal descuento = oControlador.fun_ObtenerDescuentoPorPromocion(dFechaCheckIn, dFechaCheckOut);
+
+                    double tarifaFinal = tarifaOriginal;
+
+                    if (descuento > 0)
+                    {
+                        tarifaFinal = tarifaOriginal - (tarifaOriginal * ((double)descuento / 100));
+                        lbl_Precio_Unitario.Text = $"Q {tarifaFinal:N2} (Promo -{descuento}%)";
+                    }
+                    else
+                    {
+                        lbl_Precio_Unitario.Text = $"Q {tarifaOriginal:N2}";
+                    }
+
+                    double montoTotal = tarifaFinal * iDiasEstadia;
+                    lbl_montoTotal.Text = $"Q {montoTotal:N2}";
                 }
             }
             catch (Exception ex)
@@ -133,7 +153,7 @@ namespace Capa_Vista_Gestion_Habitacion
 
             if (iEstadoCrud == 1)
             {
-                bExito = oControlador.InsertarEstadiaVerificada(
+                bExito = oControlador.pro_InsertarEstadiaVerificada(
                     iIdHabitacion,
                     iIdHuesped,
                     iNumHuespedes,
@@ -146,7 +166,7 @@ namespace Capa_Vista_Gestion_Habitacion
             }
             else
             {
-                bExito = oControlador.ModificarEstadiaVerificada(
+                bExito = oControlador.pro_ModificarEstadiaVerificada(
                     iIdEstadia,
                     iIdHabitacion,
                     iIdHuesped,
@@ -164,10 +184,10 @@ namespace Capa_Vista_Gestion_Habitacion
 
             if (bExito)
             {
-                limpiar_controles();
+                fun_limpiar_controles();
                 iEstadoCrud = 1;
                 btn_modificar.Enabled = true;
-                CargarCombos();
+                fun_CargarCombos();
             }
         }
 
@@ -191,13 +211,13 @@ namespace Capa_Vista_Gestion_Habitacion
 
             if (drConfirmacion == DialogResult.Yes)
             {
-                bool bExito = oControlador.EliminarEstadia(iIdEstadia);
+                bool bExito = oControlador.pro_EliminarEstadia(iIdEstadia);
 
                 if (bExito)
                 {
                     MessageBox.Show("Registro eliminado correctamente.", "Éxito");
-                    limpiar_controles();
-                    CargarCombos();
+                    fun_limpiar_controles();
+                    fun_CargarCombos();
                 }
                 else
                 {
@@ -211,22 +231,23 @@ namespace Capa_Vista_Gestion_Habitacion
             //this.Close();
         }
 
-        void limpiar_controles()
+        void fun_limpiar_controles()
         {
             Cbo_PK_Id_Estadia.SelectedItem = null;
             cbo_fk_id_Habitacion.SelectedItem = null;
             cbo_Fk_Id_Huesped.SelectedItem = null;
-            txt_Num_Huespedes.Text = "";
+            txt_Num_Huespedes.Text = "----";
             Chk_TieneReservación.Checked = false;
             DTP_Check_in.Value = DateTime.Today;
             DTP_CheckOut.Value = DateTime.Today;
             lbl_montoTotal.Text = "----";
+            lbl_Precio_Unitario.Text = "----";
         }
 
         private void btn_limpiar_Click(object sender, EventArgs e)
         {
-            limpiar_controles();
-            CargarCombos();
+            fun_limpiar_controles();
+            fun_CargarCombos();
             btn_modificar.Enabled = true;
             lbl_maxima_capacidad.Text ="";
             lbl_montoTotal.Text = "";
@@ -240,7 +261,7 @@ namespace Capa_Vista_Gestion_Habitacion
             int.TryParse(Cbo_PK_Id_Estadia.SelectedValue?.ToString(), out iIdEstadia);
 
             string sMensaje;
-            DataTable dtResultado = oControlador.BuscarEstadiaPorIdVerificada(iIdEstadia, out sMensaje);
+            DataTable dtResultado = oControlador.fun_BuscarEstadiaPorIdVerificada(iIdEstadia, out sMensaje);
 
             if (dtResultado == null)
             {
@@ -263,20 +284,50 @@ namespace Capa_Vista_Gestion_Habitacion
 
             if (int.TryParse(drFila["Fk_Id_Habitaciones"].ToString(), out int iIdHabitacion))
             {
-                double doTarifa = oControlador.ObtenerTarifaHabitacion(iIdHabitacion);
+                double doTarifa = oControlador.fun_ObtenerTarifaHabitacion(iIdHabitacion);
                 lbl_Precio_Unitario.Text = $"Q {doTarifa:N2}";
             }
-        }
-
-        private void btn_Reportes_Click(object sender, EventArgs e)
-        {
-            Frm_Reportes_Estadia frmRpt = new Frm_Reportes_Estadia();
-            frmRpt.Show();
         }
 
         private void btn_Cerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+        private void btn_Reportes_Click_1(object sender, EventArgs e)
+        {
+            Frm_Reportes_Estadia frmRpt = new Frm_Reportes_Estadia();
+            frmRpt.Show();
+        }
+
+        private void btn_buscar_reserva_Click(object sender, EventArgs e)
+        {
+            int idReserva = 0;
+            int.TryParse(cbo_Reserva.SelectedValue?.ToString(), out idReserva);
+
+            string mensaje;
+            DataTable dt = oControlador.fun_BuscarReservaVerificada(idReserva, out mensaje);
+
+            if (dt == null)
+            {
+                MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            CargarDatosDeReserva(dt.Rows[0]);
+        }
+
+        private void CargarDatosDeReserva(DataRow dr)
+        {
+            cbo_fk_id_Habitacion.SelectedValue = dr["Fk_Id_Habitacion"].ToString();
+            cbo_Fk_Id_Huesped.SelectedValue = dr["Fk_Id_Huesped"].ToString();
+
+            txt_Num_Huespedes.Text = dr["Cmp_Num_Huespedes"].ToString();
+
+            DTP_Check_in.Value = Convert.ToDateTime(dr["Cmp_Fecha_Entrada"]);
+            DTP_CheckOut.Value = DateTime.Now;
+
+        }
+
     }
 }

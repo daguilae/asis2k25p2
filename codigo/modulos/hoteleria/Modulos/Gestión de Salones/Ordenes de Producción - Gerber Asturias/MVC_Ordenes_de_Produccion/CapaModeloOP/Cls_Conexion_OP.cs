@@ -10,7 +10,7 @@ namespace CapaModeloOP
     class Cls_Conexion_OP
     {
 
-        public OdbcConnection conexion()
+        public OdbcConnection fun_conexion()
         {
             //creacion de la conexion via ODBC
             OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
@@ -26,7 +26,7 @@ namespace CapaModeloOP
         }
 
         //metodo para cerrar la conexion
-        public void desconexion(OdbcConnection conn)
+        public void pro_desconexion(OdbcConnection conn)
         {
             try
             {

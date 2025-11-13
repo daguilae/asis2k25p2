@@ -30,11 +30,11 @@ namespace Capa_Vista_Gestion_Habitacion
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Asignacion_Servicio_Cuarto));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbl_idHabitacion = new System.Windows.Forms.Label();
             this.lbl_titulo = new System.Windows.Forms.Label();
             this.Cbo_NumHabitaciones = new System.Windows.Forms.ComboBox();
             this.Cbo_Servicios = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lbl_servicio = new System.Windows.Forms.Label();
             this.btn_Asignar = new System.Windows.Forms.Button();
             this.DGV_Asignaciones = new System.Windows.Forms.DataGridView();
             this.btn_eliminar = new System.Windows.Forms.Button();
@@ -45,15 +45,15 @@ namespace Capa_Vista_Gestion_Habitacion
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Asignaciones)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lbl_idHabitacion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(144, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(105, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Num.Habitación:";
+            this.lbl_idHabitacion.AutoSize = true;
+            this.lbl_idHabitacion.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_idHabitacion.Location = new System.Drawing.Point(144, 116);
+            this.lbl_idHabitacion.Name = "lbl_idHabitacion";
+            this.lbl_idHabitacion.Size = new System.Drawing.Size(105, 16);
+            this.lbl_idHabitacion.TabIndex = 0;
+            this.lbl_idHabitacion.Text = "Num.Habitación:";
             // 
             // lbl_titulo
             // 
@@ -87,15 +87,15 @@ namespace Capa_Vista_Gestion_Habitacion
             this.Cbo_Servicios.Size = new System.Drawing.Size(220, 24);
             this.Cbo_Servicios.TabIndex = 5;
             // 
-            // label3
+            // lbl_servicio
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(569, 117);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(60, 16);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Servicios";
+            this.lbl_servicio.AutoSize = true;
+            this.lbl_servicio.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_servicio.Location = new System.Drawing.Point(569, 117);
+            this.lbl_servicio.Name = "lbl_servicio";
+            this.lbl_servicio.Size = new System.Drawing.Size(60, 16);
+            this.lbl_servicio.TabIndex = 4;
+            this.lbl_servicio.Text = "Servicios";
             // 
             // btn_Asignar
             // 
@@ -155,6 +155,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_reporte.Text = "REPORTE";
             this.btn_reporte.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_reporte.UseVisualStyleBackColor = true;
+            this.btn_reporte.Click += new System.EventHandler(this.btn_reporte_Click);
             // 
             // btn_recargar
             // 
@@ -196,9 +197,9 @@ namespace Capa_Vista_Gestion_Habitacion
             this.Controls.Add(this.DGV_Asignaciones);
             this.Controls.Add(this.btn_Asignar);
             this.Controls.Add(this.Cbo_Servicios);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbl_servicio);
             this.Controls.Add(this.Cbo_NumHabitaciones);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbl_idHabitacion);
             this.Name = "Frm_Asignacion_Servicio_Cuarto";
             this.Text = "Frm_Asignacion_Servicio_Cuarto";
             ((System.ComponentModel.ISupportInitialize)(this.DGV_Asignaciones)).EndInit();
@@ -209,11 +210,11 @@ namespace Capa_Vista_Gestion_Habitacion
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbl_idHabitacion;
         private System.Windows.Forms.Label lbl_titulo;
         private System.Windows.Forms.ComboBox Cbo_NumHabitaciones;
         private System.Windows.Forms.ComboBox Cbo_Servicios;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbl_servicio;
         private System.Windows.Forms.Button btn_Asignar;
         private System.Windows.Forms.DataGridView DGV_Asignaciones;
         private System.Windows.Forms.Button btn_eliminar;

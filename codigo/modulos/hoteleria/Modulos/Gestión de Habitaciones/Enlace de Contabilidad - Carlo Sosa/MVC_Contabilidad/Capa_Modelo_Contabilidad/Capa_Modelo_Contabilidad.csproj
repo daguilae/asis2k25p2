@@ -41,12 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conexion.cs" />
-    <Compile Include="Dao_Contabilidad.cs" />
-    <Compile Include="Dao_Estadia.cs" />
-    <Compile Include="Ent_EstadiaBase.cs" />
-    <Compile Include="Ent_Poliza_Turismo .cs" />
-    <Compile Include="Ent_RangoFechas.cs" />
+    <Compile Include="Cls_Conexion.cs" />
+    <Compile Include="Cls_ContabilidadDao.cs" />
+    <Compile Include="Cls_EstadiaDao.cs" />
+    <Compile Include="Cls_EstadiaBase.cs" />
+    <Compile Include="Cls_PolizaTurismo .cs" />
+    <Compile Include="Cls_RangoFechas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

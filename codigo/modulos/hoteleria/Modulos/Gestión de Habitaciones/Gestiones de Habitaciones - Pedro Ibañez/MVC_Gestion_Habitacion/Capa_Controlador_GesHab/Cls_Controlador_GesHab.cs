@@ -16,7 +16,7 @@ namespace Capa_Controlador_GesHab
 
         // ==========================================================================================
         // Insertar estadía verificada
-        public bool InsertarEstadiaVerificada(
+        public bool pro_InsertarEstadiaVerificada(
             int iIdHabitacion,
             int iIdHuesped,
             int iNumHuespedes,
@@ -28,7 +28,7 @@ namespace Capa_Controlador_GesHab
         {
             sMensaje = "";
 
-            int iCapacidadHabitacion = oDaoEstadia.ObtenerCapacidadHabitacion(iIdHabitacion);
+            int iCapacidadHabitacion = oDaoEstadia.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
 
             // Validaciones con mensajes personalizados
             if (iIdHabitacion <= 0)
@@ -68,7 +68,7 @@ namespace Capa_Controlador_GesHab
             }
 
             // Si todo está correcto, realizar inserción
-            bool bExito = oDaoEstadia.InsertarEstadia(
+            bool bExito = oDaoEstadia.pro_InsertarEstadia(
                 iIdHabitacion,
                 iIdHuesped,
                 iNumHuespedes,
@@ -95,7 +95,7 @@ namespace Capa_Controlador_GesHab
 
         // ==========================================================================================
         // Modificar estadía verificada
-        public bool ModificarEstadiaVerificada(
+        public bool pro_ModificarEstadiaVerificada(
             int iIdEstadia,
             int iIdHabitacion,
             int iIdHuesped,
@@ -108,7 +108,7 @@ namespace Capa_Controlador_GesHab
         {
             sMensaje = "";
 
-            int iCapacidadHabitacion = oDaoEstadia.ObtenerCapacidadHabitacion(iIdHabitacion);
+            int iCapacidadHabitacion = oDaoEstadia.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
 
             if (iIdEstadia <= 0)
             {
@@ -152,7 +152,7 @@ namespace Capa_Controlador_GesHab
                 return false;
             }
 
-            bool bExito = oDaoEstadia.ModificarEstadia(
+            bool bExito = oDaoEstadia.pro_ModificarEstadia(
                 iIdEstadia,
                 iIdHabitacion,
                 iIdHuesped,
@@ -179,7 +179,7 @@ namespace Capa_Controlador_GesHab
 
         // ==========================================================================================
         // Eliminar estadía
-        public bool EliminarEstadia(int iIdEstadia)
+        public bool pro_EliminarEstadia(int iIdEstadia)
         {
             if (iIdEstadia <= 0)
                 return false;
@@ -191,41 +191,46 @@ namespace Capa_Controlador_GesHab
                 true
             );
 
-            return oDaoEstadia.EliminarEstadia(iIdEstadia);
+            return oDaoEstadia.pro_EliminarEstadia(iIdEstadia);
         }
 
         // ==========================================================================================
         // Métodos auxiliares para combos y consultas
         private Cls_Dao_Estadia oDaoAuxiliar = new Cls_Dao_Estadia();
 
-        public DataTable CargarIdsEstadia()
+        public DataTable fun_CargarIdsEstadia()
         {
-            return oDaoAuxiliar.ObtenerIdsEstadia();
+            return oDaoAuxiliar.fun_ObtenerIdsEstadia();
         }
 
-        public DataTable CargarHabitaciones()
+        public DataTable fun_CargarIdsReserva()
         {
-            return oDaoAuxiliar.ObtenerHabitaciones();
+            return oDaoAuxiliar.fun_ObtenerIdsReserva();
         }
 
-        public DataTable CargarHuespedes()
+        public DataTable fun_CargarHabitaciones()
         {
-            return oDaoAuxiliar.ObtenerHuespedes();
+            return oDaoAuxiliar.fun_ObtenerHabitaciones();
         }
 
-        public double ObtenerTarifaHabitacion(int iIdHabitacion)
+        public DataTable fun_CargarHuespedes()
         {
-            return oDaoAuxiliar.ObtenerTarifaPorNoche(iIdHabitacion);
+            return oDaoAuxiliar.fun_ObtenerHuespedes();
         }
 
-        public int ObtenerCapacidadHabitacion(int iIdHabitacion)
+        public double fun_ObtenerTarifaHabitacion(int iIdHabitacion)
         {
-            return oDaoAuxiliar.ObtenerCapacidadHabitacion(iIdHabitacion);
+            return oDaoAuxiliar.fun_ObtenerTarifaPorNoche(iIdHabitacion);
+        }
+
+        public int fun_ObtenerCapacidadHabitacion(int iIdHabitacion)
+        {
+            return oDaoAuxiliar.fun_ObtenerCapacidadHabitacion(iIdHabitacion);
         }
 
         // ==========================================================================================
         // Buscar estadía por ID
-        public DataTable BuscarEstadiaPorIdVerificada(int iIdEstadia, out string sMensaje)
+        public DataTable fun_BuscarEstadiaPorIdVerificada(int iIdEstadia, out string sMensaje)
         {
             sMensaje = "";
 
@@ -235,7 +240,7 @@ namespace Capa_Controlador_GesHab
                 return null;
             }
 
-            DataTable dtResultado = oDaoAuxiliar.ObtenerEstadiaPorId(iIdEstadia);
+            DataTable dtResultado = oDaoAuxiliar.fun_ObtenerEstadiaPorId(iIdEstadia);
 
             if (dtResultado == null || dtResultado.Rows.Count == 0)
             {
@@ -246,5 +251,32 @@ namespace Capa_Controlador_GesHab
             sMensaje = "Datos de estadía cargados correctamente.";
             return dtResultado;
         }
+
+        public DataTable fun_BuscarReservaVerificada(int iIdReserva, out string sMensaje)
+        {
+            sMensaje = "";
+
+            if (iIdReserva <= 0)
+            {
+                sMensaje = "Debe seleccionar un ID de reserva válido.";
+                return null;
+            }
+
+            DataTable dt = oDaoAuxiliar.BuscarReservaPorId(iIdReserva);
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                sMensaje = "No se encontró la reserva solicitada.";
+                return null;
+            }
+
+            return dt;
+        }
+
+        public decimal fun_ObtenerDescuentoPorPromocion(DateTime fechaCheckIn, DateTime fechaActual)
+        {
+            return oDaoAuxiliar.fun_ObtenerDescuentoPromocion(fechaCheckIn, fechaActual);
+        }
+
     }
 }

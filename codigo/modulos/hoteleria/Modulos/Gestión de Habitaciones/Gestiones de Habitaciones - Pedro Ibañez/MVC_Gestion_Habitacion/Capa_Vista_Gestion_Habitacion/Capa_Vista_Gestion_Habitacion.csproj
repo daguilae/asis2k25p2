@@ -65,6 +65,12 @@
     <Compile Include="Frm_Asignacion_Servicio_Cuarto.Designer.cs">
       <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Asig_Serv_hab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Asig_Serv_hab.Designer.cs">
+      <DependentUpon>Frm_Asig_Serv_hab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Estadia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Rpt_Asig_Serv.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_Asig_Serv.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Rpt_Estadia.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -111,6 +123,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Frm_Asignacion_Servicio_Cuarto.resx">
       <DependentUpon>Frm_Asignacion_Servicio_Cuarto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Asig_Serv_hab.resx">
+      <DependentUpon>Frm_Asig_Serv_hab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Estadia.resx">
       <DependentUpon>Frm_Estadia.cs</DependentUpon>
@@ -130,6 +145,10 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Rpt_Asig_Serv.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_Asig_Serv.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Rpt_Estadia.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
