@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Capa_Controlador_GesHab">
+      <HintPath>..\..\..\Gestiones de Habitaciones - Pedro Ibañez\MVC_Gestion_Habitacion\Capa_Controlador_GesHab\bin\Debug\Capa_Controlador_GesHab.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Modelo_Check_In_Check_Out">
       <HintPath>..\Capa_Modelo_Check_In_Check_Out\bin\Debug\Capa_Modelo_Check_In_Check_Out.dll</HintPath>
     </Reference>
