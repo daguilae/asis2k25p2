@@ -8,15 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Ordenes;
+
 using System.Data.Odbc;
 
 
+
 // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025
+
 namespace Capa_Vista_Ordenes
 {
     public partial class Frm_Ordenes_Compra : Form
     {
+
         // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 08/11/2025
+
         private void AlertOk(string text)
         {
             MessageBox.Show(this, text, "Autorizaciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -35,6 +40,7 @@ namespace Capa_Vista_Ordenes
                    == DialogResult.Yes;
         }
         // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 08/11/2025
+
 
 
 
@@ -178,6 +184,7 @@ namespace Capa_Vista_Ordenes
 
         private void Btn_Agregar_Autorizacion_Click(object sender, EventArgs e)
         {
+
             try
             {
                 var iOrden = Convert.ToInt32(Cbo_Id_Orden.SelectedValue);
@@ -214,9 +221,11 @@ namespace Capa_Vista_Ordenes
 
 
 
+
         private void Btn_Actualizar_Autorizacion_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Txt_Id_Autorizacion.Text)) return;
+
 
             try
             {
@@ -252,11 +261,13 @@ namespace Capa_Vista_Ordenes
             }
             catch (OdbcException ex) { AlertErr("Error de base de datos al modificar: " + ex.Message); }
             catch (Exception ex) { AlertErr("Error al modificar: " + ex.Message); }
+
         }
 
         private void Btn_Eliminar_Autorizacion_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Txt_Id_Autorizacion.Text)) return;
+
             var idAut = Convert.ToInt32(Txt_Id_Autorizacion.Text);
 
             // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 08/11/2025
@@ -275,6 +286,7 @@ namespace Capa_Vista_Ordenes
             catch (Exception ex) { AlertErr("Error al eliminar: " + ex.Message); }
         }
         // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 08/11/2025
+
 
         private void Dgv_Auto_Ordenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -404,4 +416,6 @@ namespace Capa_Vista_Ordenes
         }
     }
 }
+
 // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025
+

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BDD6439-E6AE-49E1-B289-03398DDDACD6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Capa_Vista_Mantenimientos</RootNamespace>
+    <AssemblyName>Capa_Vista_Mantenimientos</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Capa_Controlador_Mantenimientos">
+      <HintPath>..\Capa_Controlador_Mantenimientos\bin\Debug\Capa_Controlador_Mantenimientos.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Controlador_Navegador">
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Navegador">
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Frm_M_Bancos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_Bancos.Designer.cs">
+      <DependentUpon>Frm_M_Bancos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_CuentasBancarias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_CuentasBancarias.Designer.cs">
+      <DependentUpon>Frm_M_CuentasBancarias.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_Monedas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_Monedas.Designer.cs">
+      <DependentUpon>Frm_M_Monedas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_TipoPagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_TipoPagos.Designer.cs">
+      <DependentUpon>Frm_M_TipoPagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_M_Transacciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_M_Transacciones.Designer.cs">
+      <DependentUpon>Frm_M_Transacciones.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Frm_M_Bancos.resx">
+      <DependentUpon>Frm_M_Bancos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_CuentasBancarias.resx">
+      <DependentUpon>Frm_M_CuentasBancarias.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_Monedas.resx">
+      <DependentUpon>Frm_M_Monedas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_TipoPagos.resx">
+      <DependentUpon>Frm_M_TipoPagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_M_Transacciones.resx">
+      <DependentUpon>Frm_M_Transacciones.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
