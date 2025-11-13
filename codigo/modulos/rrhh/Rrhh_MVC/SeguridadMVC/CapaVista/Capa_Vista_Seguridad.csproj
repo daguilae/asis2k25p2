@@ -37,10 +37,13 @@
       <HintPath>..\..\..\DLLS_Rrhh\MVC_Creacion_Nomina\Ejec_Creacion_Nomina\Ejec_Creacion_Nomina\bin\Debug\Capa_Controlador_Creacion_Nomina.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Controlador_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaControladorNavegador\bin\Debug\Capa_Controlador_Navegador.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Controlador_Seguridad">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Controlador_Vacaciones">
+      <HintPath>..\..\..\DLLS_Rrhh\MVC_Vacaciones_Nominas\Capa_Controlador_Vacaciones\bin\Debug\Capa_Controlador_Vacaciones.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Anticipos_Nomina">
       <HintPath>..\..\..\DLLS_Rrhh\MVC_anticipos_nomina\Capa_Vista_Anticipos_Nomina\bin\Debug\Capa_Vista_Anticipos_Nomina.dll</HintPath>
@@ -55,7 +58,7 @@
       <HintPath>..\..\..\DLLS_Rrhh\MVC_HorasExtras_Nomina\Capa_Vista_HorasExtra\bin\Debug\Capa_Vista_HorasExtra.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Navegador">
-      <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
+      <HintPath>..\..\..\..\..\componentes\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
     </Reference>
     <Reference Include="Capa_Vista_Percepciones_Nomina">
       <HintPath>..\..\..\DLLS_Rrhh\MVC_Percepciones_Nominas\Capa_Vista_Percepciones_Nomina\bin\Debug\Capa_Vista_Percepciones_Nomina.dll</HintPath>

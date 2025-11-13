@@ -3,7 +3,7 @@
  * Carné: 0901-22-10245
  * Fecha de modificación: 8/11/2025
  * Archivo: Cls_Conexion.cs
- * Descripción: COnexión a la base de datos
+ * Descripción: COnexión a la base de datos de nómina
  */
 using System;
 using System.Data.Odbc;
@@ -19,7 +19,7 @@ namespace Capa_Modelo_Percepciones_Nomina
             try
             {
                 // Nombre del DSN configurado en el ODBC
-                string dsn = "DSN=bd_hoteleria";
+                string dsn = "DSN=bd_nomina";
                 conexion = new OdbcConnection(dsn);
                 conexion.Open();
                 Console.WriteLine("Conexión exitosa a la base de datos.");
