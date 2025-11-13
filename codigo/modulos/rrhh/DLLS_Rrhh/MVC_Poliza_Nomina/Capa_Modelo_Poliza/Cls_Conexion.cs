@@ -12,7 +12,7 @@ using System.Data.Odbc;
 public static class Cls_Conexion
 {
     // Cadena de conexión ODBC configurada en el sistema (DSN debe existir en el Administrador ODBC)
-    private const string sCadena = "DSN=bd_nomina;";
+    private const string sCadena = "DSN=bd_hoteleria;";
 
     /// <summary>
     /// Método que abre y devuelve una conexión ODBC lista para ejecutar comandos SQL.
