@@ -100,11 +100,25 @@ namespace Capa_Vista_Gestion_Habitacion
                 if (cbo_fk_id_Habitacion.SelectedValue != null &&
                     int.TryParse(cbo_fk_id_Habitacion.SelectedValue.ToString(), out int iIdHabitacion))
                 {
-                    double doTarifaPorNoche = oControlador.fun_ObtenerTarifaHabitacion(iIdHabitacion);
-                    double doMontoTotal = iDiasEstadia * doTarifaPorNoche;
+                    double tarifaOriginal = oControlador.fun_ObtenerTarifaHabitacion(iIdHabitacion);
 
-                    lbl_Precio_Unitario.Text = $"Q {doTarifaPorNoche:N2}";
-                    lbl_montoTotal.Text = $"Q {doMontoTotal:N2}";
+                    //Obtener el porcentaje de descuento
+                    decimal descuento = oControlador.fun_ObtenerDescuentoPorPromocion(dFechaCheckIn, dFechaCheckOut);
+
+                    double tarifaFinal = tarifaOriginal;
+
+                    if (descuento > 0)
+                    {
+                        tarifaFinal = tarifaOriginal - (tarifaOriginal * ((double)descuento / 100));
+                        lbl_Precio_Unitario.Text = $"Q {tarifaFinal:N2} (Promo -{descuento}%)";
+                    }
+                    else
+                    {
+                        lbl_Precio_Unitario.Text = $"Q {tarifaOriginal:N2}";
+                    }
+
+                    double montoTotal = tarifaFinal * iDiasEstadia;
+                    lbl_montoTotal.Text = $"Q {montoTotal:N2}";
                 }
             }
             catch (Exception ex)

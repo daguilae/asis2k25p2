@@ -70,9 +70,9 @@ namespace Capa_Vista_Hoteleria
         private void polizaContableToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
-            Frm_Poliza_Turismo poliza = new Frm_Poliza_Turismo();
-            poliza.MdiParent = this;
-            poliza.Show();
+            //Frm_Poliza_Turismo poliza = new Frm_Poliza_Turismo();
+            //poliza.MdiParent = this;
+            //poliza.Show();
         }
 
         private void mantenimientoHabitacionesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,9 +158,9 @@ namespace Capa_Vista_Hoteleria
         private void produccionHoteleriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CerrarFormulariosHijos();
-            Frm_Produccion_Hoteleria formularioP = new Frm_Produccion_Hoteleria();
-            formularioP.MdiParent = this;
-            formularioP.Show();
+            //Frm_Produccion_Hoteleria formularioP = new Frm_Produccion_Hoteleria();
+            //formularioP.MdiParent = this;
+            //formularioP.Show();
         }
 
         private void actualizaciónEstadiaToolStripMenuItem_Click(object sender, EventArgs e)
