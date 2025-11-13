@@ -1,7 +1,7 @@
 ﻿// Pablo Jose Quiroa Martínez - 0901-22-2929
 using System;
 using System.Data.Odbc;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 
 namespace Capa_Controlador_Bancos
 {

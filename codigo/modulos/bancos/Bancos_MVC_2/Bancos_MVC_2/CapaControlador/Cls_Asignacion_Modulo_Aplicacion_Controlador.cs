@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 
 namespace Capa_Controlador_Bancos
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Windows.Forms;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 
 // Nombre: Danilo Mazariegos Codigo:0901-19-25059
 namespace Capa_Controlador_Bancos

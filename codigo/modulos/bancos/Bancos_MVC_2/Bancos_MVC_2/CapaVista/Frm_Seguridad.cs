@@ -83,7 +83,7 @@ namespace Capa_Vista_Bancos
                 { MenuOpciones.Procesos, procesosToolStripMenuItem },
                 { MenuOpciones.Herramientas, herramientasToolStripMenuItem },
                 { MenuOpciones.Asignaciones, asignacionesToolStripMenuItem },
-                { MenuOpciones.Modulos, modulosToolStripMenuItem }
+                { MenuOpciones.Modulos, TipoPagoToolStripMenuItem }
             };
         }
 
@@ -111,16 +111,17 @@ namespace Capa_Vista_Bancos
             // Diccionarios de idAplicacion -> submenú
             Dictionary<int, ToolStripMenuItem> mapaCatalogos = new Dictionary<int, ToolStripMenuItem>
             {
-                {301, empleadosToolStripMenuItem1},
-                {302, usuariosToolStripMenuItem},
-                {303, perfilesToolStripMenuItem},
-                {304, modulosToolStripMenuItem},
-                {305, Btn_Aplicacion}
+                {301, BancosToolStripMenuItem1},
+                {302, MonedasToolStripMenuItem},
+                {303, CuentasToolStripMenuItem},
+                {304, TipoPagoToolStripMenuItem},
+                {305, Transacciones}
             };
 
             Dictionary<int, ToolStripMenuItem> mapaProcesos = new Dictionary<int, ToolStripMenuItem>
             {
-                {309, procesosToolStripMenuItem }
+                {309, procesosToolStripMenuItem },
+                {1402, movimientosBancariosToolStripMenuItem }
             };
 
             Dictionary<int, ToolStripMenuItem> mapaAsignaciones = new Dictionary<int, ToolStripMenuItem>

@@ -25,11 +25,11 @@
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cerrarSesiónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catálogosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.empleadosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.usuariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.perfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.modulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Btn_Aplicacion = new System.Windows.Forms.ToolStripMenuItem();
+            this.BancosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MonedasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CuentasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TipoPagoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Transacciones = new System.Windows.Forms.ToolStripMenuItem();
             this.pruebaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.procesosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Btn_Bitacora = new System.Windows.Forms.ToolStripMenuItem();
@@ -113,58 +113,58 @@
             // cerrarSesiónToolStripMenuItem
             // 
             this.cerrarSesiónToolStripMenuItem.Name = "cerrarSesiónToolStripMenuItem";
-            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cerrarSesiónToolStripMenuItem.Size = new System.Drawing.Size(127, 26);
             this.cerrarSesiónToolStripMenuItem.Text = "Salir";
             this.cerrarSesiónToolStripMenuItem.Click += new System.EventHandler(this.cerrarSesiónToolStripMenuItem_Click);
             // 
             // catálogosToolStripMenuItem
             // 
             this.catálogosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.empleadosToolStripMenuItem1,
-            this.usuariosToolStripMenuItem,
-            this.perfilesToolStripMenuItem,
-            this.modulosToolStripMenuItem,
-            this.Btn_Aplicacion,
+            this.BancosToolStripMenuItem1,
+            this.MonedasToolStripMenuItem,
+            this.CuentasToolStripMenuItem,
+            this.TipoPagoToolStripMenuItem,
+            this.Transacciones,
             this.pruebaToolStripMenuItem});
             this.catálogosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
             this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
             this.catálogosToolStripMenuItem.Text = "Catálogos";
             // 
-            // empleadosToolStripMenuItem1
+            // BancosToolStripMenuItem1
             // 
-            this.empleadosToolStripMenuItem1.Name = "empleadosToolStripMenuItem1";
-            this.empleadosToolStripMenuItem1.Size = new System.Drawing.Size(326, 26);
-            this.empleadosToolStripMenuItem1.Text = "Bancos";
-            this.empleadosToolStripMenuItem1.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
+            this.BancosToolStripMenuItem1.Name = "BancosToolStripMenuItem1";
+            this.BancosToolStripMenuItem1.Size = new System.Drawing.Size(326, 26);
+            this.BancosToolStripMenuItem1.Text = "Bancos";
+            this.BancosToolStripMenuItem1.Click += new System.EventHandler(this.empleadosToolStripMenuItem1_Click);
             // 
-            // usuariosToolStripMenuItem
+            // MonedasToolStripMenuItem
             // 
-            this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
-            this.usuariosToolStripMenuItem.Text = "Monedas";
-            this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
+            this.MonedasToolStripMenuItem.Name = "MonedasToolStripMenuItem";
+            this.MonedasToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
+            this.MonedasToolStripMenuItem.Text = "Monedas";
+            this.MonedasToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
-            // perfilesToolStripMenuItem
+            // CuentasToolStripMenuItem
             // 
-            this.perfilesToolStripMenuItem.Name = "perfilesToolStripMenuItem";
-            this.perfilesToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
-            this.perfilesToolStripMenuItem.Text = "Cuentas Bancarias";
-            this.perfilesToolStripMenuItem.Click += new System.EventHandler(this.perfilesToolStripMenuItem_Click_1);
+            this.CuentasToolStripMenuItem.Name = "CuentasToolStripMenuItem";
+            this.CuentasToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
+            this.CuentasToolStripMenuItem.Text = "Cuentas Bancarias";
+            this.CuentasToolStripMenuItem.Click += new System.EventHandler(this.perfilesToolStripMenuItem_Click_1);
             // 
-            // modulosToolStripMenuItem
+            // TipoPagoToolStripMenuItem
             // 
-            this.modulosToolStripMenuItem.Name = "modulosToolStripMenuItem";
-            this.modulosToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
-            this.modulosToolStripMenuItem.Text = "Tipo de Pago";
-            this.modulosToolStripMenuItem.Click += new System.EventHandler(this.modulosToolStripMenuItem_Click);
+            this.TipoPagoToolStripMenuItem.Name = "TipoPagoToolStripMenuItem";
+            this.TipoPagoToolStripMenuItem.Size = new System.Drawing.Size(326, 26);
+            this.TipoPagoToolStripMenuItem.Text = "Tipo de Pago";
+            this.TipoPagoToolStripMenuItem.Click += new System.EventHandler(this.modulosToolStripMenuItem_Click);
             // 
-            // Btn_Aplicacion
+            // Transacciones
             // 
-            this.Btn_Aplicacion.Name = "Btn_Aplicacion";
-            this.Btn_Aplicacion.Size = new System.Drawing.Size(326, 26);
-            this.Btn_Aplicacion.Text = "Operaciones o Transacciones";
-            this.Btn_Aplicacion.Click += new System.EventHandler(this.Btn_Aplicacion_Click_1);
+            this.Transacciones.Name = "Transacciones";
+            this.Transacciones.Size = new System.Drawing.Size(326, 26);
+            this.Transacciones.Text = "Operaciones o Transacciones";
+            this.Transacciones.Click += new System.EventHandler(this.Btn_Aplicacion_Click_1);
             // 
             // pruebaToolStripMenuItem
             // 
@@ -399,13 +399,13 @@
         private System.Windows.Forms.ToolStripMenuItem asignacionesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignacionDeAplicacionAUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignacionPerfilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem perfilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem Btn_Aplicacion;
+        private System.Windows.Forms.ToolStripMenuItem CuentasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem Transacciones;
         private System.Windows.Forms.ToolStripMenuItem Btn_Bitacora;
-        private System.Windows.Forms.ToolStripMenuItem empleadosToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem usuariosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BancosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem MonedasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cambiarContraseñaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem modulosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem TipoPagoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem asignacionDeAplicacionAPerfilesToolStripMenuItem;
         private System.Windows.Forms.Panel Pnl_Superior;
         private System.Windows.Forms.PictureBox Pic_Cerrar;

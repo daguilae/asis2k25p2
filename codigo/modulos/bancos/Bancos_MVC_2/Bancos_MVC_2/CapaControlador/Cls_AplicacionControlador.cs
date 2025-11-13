@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 using System.Data;
 using System.Data.Odbc;
 

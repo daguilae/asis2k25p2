@@ -3,7 +3,7 @@
 using System.Linq;
 using System.Collections.Generic;
 
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 /* Brandon Alexander Hernandez Salguero
  * 0901-22-9663
  */

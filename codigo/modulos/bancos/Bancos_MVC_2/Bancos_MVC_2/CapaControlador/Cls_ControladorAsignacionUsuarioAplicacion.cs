@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 using System.Windows.Forms;
 using System;
 

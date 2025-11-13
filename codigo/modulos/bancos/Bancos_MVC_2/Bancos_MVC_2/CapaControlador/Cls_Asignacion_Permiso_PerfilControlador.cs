@@ -1,6 +1,6 @@
 ﻿//Brandon Alexander Hernandez Salguero - 0901-22-9663
 using System.Data;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 using System;
 
 

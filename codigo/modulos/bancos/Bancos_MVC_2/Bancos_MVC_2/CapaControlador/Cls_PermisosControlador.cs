@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using Capa_Modelo_Bancos;
+using Capa_Modelo_Seguridad;
 
 namespace Capa_Controlador_Bancos
 {
