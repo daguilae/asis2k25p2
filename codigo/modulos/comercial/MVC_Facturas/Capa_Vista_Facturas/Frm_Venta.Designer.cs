@@ -360,7 +360,7 @@ namespace Capa_Vista_Facturas
             this.listadoDeFacturaToolStripMenuItem.Name = "listadoDeFacturaToolStripMenuItem";
             this.listadoDeFacturaToolStripMenuItem.Size = new System.Drawing.Size(143, 24);
             this.listadoDeFacturaToolStripMenuItem.Text = "Listado de Factura";
-            this.listadoDeFacturaToolStripMenuItem.Click += new System.EventHandler(this.listadoDeFacturaToolStripMenuItem_Click_1);
+            this.listadoDeFacturaToolStripMenuItem.Click += new System.EventHandler(this.listadoDeFacturaToolStripMenuItem_Click);
             // 
             // Frm_Venta
             // 
