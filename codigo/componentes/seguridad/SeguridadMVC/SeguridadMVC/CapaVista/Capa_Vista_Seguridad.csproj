@@ -38,6 +38,9 @@
     <Reference Include="Capa_Controlador_Seguridad">
       <HintPath>..\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Hoteleria">
+      <HintPath>..\..\..\..\..\modulos\hoteleria\Modulos\Proyecto Principal\MDI_Hoteleria\Capa_Vista_Hoteleria\bin\Debug\Capa_Vista_Hoteleria.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Navegador">
       <HintPath>..\..\..\..\navegador\NavegadorMVC\CapaVistaNavegador\bin\Debug\Capa_Vista_Navegador.dll</HintPath>
     </Reference>

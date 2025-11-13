@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ayuda – Módulo de Movimientos Bancarios</title>
+  <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <img src="img/Risko2020.png" alt="Logo" />
+    </div>
+    <h1>Capacitación – Módulo de Movimientos Bancarios</h1>
+
+    <div class="card">
+      <h2>MDI y Acceso</h2>
+      <p>
+        Desde el MDI del sistema encontrarás el acceso al <strong>Módulo de Movimientos Bancarios</strong> dentro del menú <em>Procesos</em>.
+        Este módulo permite registrar, consultar y administrar movimientos como depósitos, cheques, transferencias y ajustes.
+      </p>
+      <img src="img/MDI.png" alt="Acceso desde el MDI al módulo de movimientos" />
+    </div>
+
+    <div class="card">
+      <h2>Pantalla principal</h2>
+      <p>
+        La pantalla se divide en <strong>Encabezado</strong> (datos del movimiento) y <strong>Detalle</strong> (visualización de asientos y totales <em>Debe/Haber</em>). Los controles clave son:
+      </p>
+      <ul>
+        <li><span class="kbd">Cuenta Origen</span>: cuenta bancaria que registra el movimiento.</li>
+        <li><span class="kbd">Tipo de Operación</span>: depósito, retiro, cheque, transferencia, etc.</li>
+        <li><span class="kbd">Conciliado</span>: marcar <em>Sí/No</em> para conciliación bancaria.</li>
+        <li><span class="kbd">Moneda</span> y <span class="kbd">Tipo de Pago</span>.</li>
+        <li><span class="kbd">Cuenta Recibe</span>: se habilita automáticamente para <em>Transferencias</em>.</li>
+      </ul>
+      <img src="img/Principal.png" alt="Pantalla principal del módulo" />
+    </div>
+
+    <div class="card">
+      <h2>Flujo para <em>Nuevo</em> movimiento</h2>
+      <ol>
+        <li>Selecciona <span class="kbd">Cuenta Origen</span> y <span class="kbd">Tipo de Operación</span>.</li>
+        <li>Ingresa <span class="kbd">Número de Documento</span>, <span class="kbd">Fecha</span>, <span class="kbd">Concepto</span> y <span class="kbd">Beneficiario</span>.</li>
+        <li>Define el <span class="kbd">Monto</span> y el estado de <span class="kbd">Conciliado</span>.</li>
+        <li>Si la operación es <strong>Transferencia</strong>, el sistema habilita <span class="kbd">Cuenta Recibe</span> y su nombre asociado.</li>
+        <li>Presiona <span class="kbd">Guardar</span>; se generará el asiento contable automático (detalle) y se actualizarán los saldos.</li>
+      </ol>
+      <div class="note">El signo contable (<em>+/-</em>) se determina por el tipo de operación. El detalle registra el <em>Debe/Haber</em> correspondiente.</div>
+      <img src="img/Flujo.png" alt="Registro de nuevo movimiento" />
+    </div>
+
+    <div class="card">
+      <h2>Edición de movimientos</h2>
+      <p>
+        Selecciona un registro del grid y pulsa <span class="kbd">Editar</span>. Podrás modificar datos como documento, concepto, beneficiario, monto, moneda, tipo de pago y conciliado. Si cambias la
+        <strong>Cuenta Origen</strong> o el <strong>Tipo de Operación</strong>, el sistema anula el movimiento original y crea uno nuevo con los datos actualizados (manteniendo la trazabilidad).
+      </p>
+      <img src="img/Edicion.png" alt="Edición de movimientos" />
+    </div>
+
+    <div class="card">
+      <h2>Anulación</h2>
+      <p>
+        Con <span class="kbd">Anular</span> el sistema revierte automáticamente los saldos, marca el movimiento como <strong>ANULADO</strong> y conserva el historial. Los asientos afectados se ajustan acorde al signo de la operación.
+      </p>
+      <img src="img/Edicion.png" alt="Anulación de movimientos" />
+    </div>
+
+    <div class="card">
+      <h2>Totales y validaciones</h2>
+      <ul>
+        <li>El grid muestra <strong>Débito</strong>, <strong>Crédito</strong> y la <strong>Diferencia</strong> calculada en tiempo real.</li>
+        <li>Se controlan estados (<em>ACTIVO</em>, <em>ANULADO</em>, <em>PENDIENTE</em>), montos positivos y campos obligatorios.</li>
+        <li>Los estilos del grid ayudan a identificar rápidamente el estado del movimiento.</li>
+      </ul>
+      <img src="img/Totales.png" alt="Totales y validaciones" />
+    </div>
+
+    <div class="card">
+      <h2>Reportes</h2>
+      <p>
+        Desde este módulo puedes exportar o visualizar listados de movimientos filtrando por fechas, estado, cuenta y tipo de operación. Útil para conciliaciones y cierres.
+      </p>
+      <img src="img/Edicion.png" alt="Reportes del módulo" />
+    </div>
+
+  </div>
+</body>
+</html>
