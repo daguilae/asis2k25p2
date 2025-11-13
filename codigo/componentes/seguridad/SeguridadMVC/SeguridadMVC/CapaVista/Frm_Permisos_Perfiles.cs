@@ -275,22 +275,6 @@ namespace Capa_Vista_Seguridad
 
             if (resultado == DialogResult.Yes)
             {
-                // Capturar datos antes de eliminar (opcional)
-                int idAplicacion = Convert.ToInt32(Dgv_Permisos.CurrentRow.Cells["IdAplicacion"].Value);
-                int idUsuario = Capa_Controlador_Seguridad.Cls_Usuario_Conectado.iIdUsuario;
-                string sPerfil = Dgv_Permisos.CurrentRow.Cells["Perfil"].Value.ToString();
-                string sAplicacion = Dgv_Permisos.CurrentRow.Cells["Aplicacion"].Value.ToString();
-
-                // Eliminar la fila del DataGridView
-                Dgv_Permisos.Rows.Remove(Dgv_Permisos.CurrentRow);
-
-                // Registrar acción en bitácora
-                ctrlBitacora.RegistrarAccion(
-                    idUsuario,
-                    idAplicacion,
-                    $"Se quitaron los permisos del perfil '{sPerfil}' en la aplicación '{sAplicacion}'.",
-                    true
-                );
 
                 // Mostrar confirmación
                 MessageBox.Show("Se ha quitado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
