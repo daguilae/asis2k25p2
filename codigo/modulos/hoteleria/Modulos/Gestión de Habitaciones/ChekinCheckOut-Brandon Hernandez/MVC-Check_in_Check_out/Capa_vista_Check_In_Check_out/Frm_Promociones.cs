@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Capa_Vista_Gestion_Habitacion
+namespace Capa_vista_Check_In_Check_out
 {
-    public partial class Frm_Servicios_Cuartos : Form
+    public partial class Frm_Promociones : Form
     {
-        public Frm_Servicios_Cuartos()
+        public Frm_Promociones()
         {
             InitializeComponent();
             //parametros para navegador
@@ -27,20 +27,28 @@ namespace Capa_Vista_Gestion_Habitacion
                 Nombre = "dgv_empleados"
             };
 
-                   string[] columnas = {
-                        "Tbl_Servicios_habitacion",
-                        "PK_ID_Servicio_habitacion",
-                        "Cmp_Nombre_Servicio"
-                    };
+            string[] columnas = {
+                    "Tbl_Promociones",
+                    "Pk_ID_Promociones",
+                    "Cmp_Nombre_Promocion",
+                    "Cmp_Descripcion",
+                    "Cmp_Porcentaje_Descuento",
+                    "Cmp_Fecha_Inicio",
+                     "Cmp_Fecha_Final"
+            };
 
-                                string[] sEtiquetas = {
-                        "Código Servicio",
-                        "Nombre del Servicio"
-                    };
+            string[] sEtiquetas = {
+                    "Código Promocion",
+                    "Nombre de la promocion",
+                    "Descripción",
+                    "Porcentaje de descuento",
+                    "Fecha de Inicio",
+                    "Fecha Final"
+                };
 
 
-            int id_aplicacion = 3408;
-            int id_Modulo = 8;
+            int id_aplicacion = 3412;
+           int id_Modulo = 8;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.configurarDataGridView(config);
