@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.36324.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ejecutable_Cheques", "Ejecutable_Cheques\Ejecutable_Cheques.csproj", "{95C7134B-AD36-4BC1-A29D-EE2A1BE6D65D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{95C7134B-AD36-4BC1-A29D-EE2A1BE6D65D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C7134B-AD36-4BC1-A29D-EE2A1BE6D65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C7134B-AD36-4BC1-A29D-EE2A1BE6D65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C7134B-AD36-4BC1-A29D-EE2A1BE6D65D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17B1192B-E392-42A4-BFB4-799EB33FC40B}
+	EndGlobalSection
+EndGlobal
