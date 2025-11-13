@@ -1,5 +1,4 @@
-﻿
-namespace Capa_Vista_Produccion
+﻿namespace Capa_Vista_Produccion
 {
     partial class Frm_Produccion_Alacarta
     {
@@ -30,7 +29,6 @@ namespace Capa_Vista_Produccion
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Produccion_Alacarta));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
             this.Lbl_Room_Service_Reporte = new System.Windows.Forms.Label();
@@ -53,30 +51,14 @@ namespace Capa_Vista_Produccion
             this.Btn_Guardar_Reserva = new System.Windows.Forms.Button();
             this.Btn_Reporte = new System.Windows.Forms.Button();
             this.Cbo_Salon = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reservas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1144, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
             this.Pnl_Superior.Controls.Add(this.Lbl_Titulo);
-            this.Pnl_Superior.Controls.Add(this.pictureBox1);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -140,6 +122,7 @@ namespace Capa_Vista_Produccion
             this.Txt_Id_Habitacion.Name = "Txt_Id_Habitacion";
             this.Txt_Id_Habitacion.Size = new System.Drawing.Size(139, 22);
             this.Txt_Id_Habitacion.TabIndex = 143;
+            this.Txt_Id_Habitacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Id_Habitacion_KeyPress);
             // 
             // Txt_Id_Huesped
             // 
@@ -149,11 +132,12 @@ namespace Capa_Vista_Produccion
             this.Txt_Id_Huesped.Name = "Txt_Id_Huesped";
             this.Txt_Id_Huesped.Size = new System.Drawing.Size(139, 22);
             this.Txt_Id_Huesped.TabIndex = 142;
+            this.Txt_Id_Huesped.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Id_Huesped_KeyPress);
             // 
             // Dgv_Reservas
             // 
-            this.Dgv_Reservas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Dgv_Reservas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Reservas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Reservas.Location = new System.Drawing.Point(20, 288);
@@ -188,9 +172,11 @@ namespace Capa_Vista_Produccion
             this.Txt_Cantidad.Name = "Txt_Cantidad";
             this.Txt_Cantidad.Size = new System.Drawing.Size(154, 22);
             this.Txt_Cantidad.TabIndex = 150;
+            this.Txt_Cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Cantidad_KeyPress);
             // 
             // Cbo_Estado
             // 
+            this.Cbo_Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbo_Estado.FormattingEnabled = true;
             this.Cbo_Estado.Location = new System.Drawing.Point(1007, 130);
             this.Cbo_Estado.Name = "Cbo_Estado";
@@ -268,7 +254,7 @@ namespace Capa_Vista_Produccion
             this.Btn_editar_reserva.Size = new System.Drawing.Size(53, 46);
             this.Btn_editar_reserva.TabIndex = 159;
             this.Btn_editar_reserva.UseVisualStyleBackColor = false;
-            this.Btn_editar_reserva.Click += new System.EventHandler(this.Btn_editar_reserva_Click);
+            this.Btn_editar_reserva.Click += new System.EventHandler(this.pro_Btn_editar_reserva_Click);
             // 
             // Btn_eliminar_Reserva
             // 
@@ -281,7 +267,7 @@ namespace Capa_Vista_Produccion
             this.Btn_eliminar_Reserva.Size = new System.Drawing.Size(53, 46);
             this.Btn_eliminar_Reserva.TabIndex = 158;
             this.Btn_eliminar_Reserva.UseVisualStyleBackColor = false;
-            this.Btn_eliminar_Reserva.Click += new System.EventHandler(this.Btn_eliminar_Reserva_Click);
+            this.Btn_eliminar_Reserva.Click += new System.EventHandler(this.pro_Btn_eliminar_Reserva_Click);
             // 
             // Btn_Guardar_Reserva
             // 
@@ -295,7 +281,7 @@ namespace Capa_Vista_Produccion
             this.Btn_Guardar_Reserva.Size = new System.Drawing.Size(53, 46);
             this.Btn_Guardar_Reserva.TabIndex = 157;
             this.Btn_Guardar_Reserva.UseVisualStyleBackColor = false;
-            this.Btn_Guardar_Reserva.Click += new System.EventHandler(this.Btn_Guardar_Reserva_Click);
+            this.Btn_Guardar_Reserva.Click += new System.EventHandler(this.pro_Btn_Guardar_Reserva_Click);
             // 
             // Btn_Reporte
             // 
@@ -310,10 +296,11 @@ namespace Capa_Vista_Produccion
             this.Btn_Reporte.TabIndex = 160;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
-            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
+            this.Btn_Reporte.Click += new System.EventHandler(this.pro_Btn_Reporte_Click);
             // 
             // Cbo_Salon
             // 
+            this.Cbo_Salon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbo_Salon.FormattingEnabled = true;
             this.Cbo_Salon.Location = new System.Drawing.Point(225, 219);
             this.Cbo_Salon.Name = "Cbo_Salon";
@@ -346,10 +333,8 @@ namespace Capa_Vista_Produccion
             this.Controls.Add(this.Txt_Id_Huesped);
             this.Controls.Add(this.Lbl_Room_Service_Reporte);
             this.Controls.Add(this.Pnl_Superior);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_Produccion_Alacarta";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Reservas)).EndInit();
@@ -359,8 +344,6 @@ namespace Capa_Vista_Produccion
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel Pnl_Superior;
         private System.Windows.Forms.Label Lbl_Titulo;
         private System.Windows.Forms.Label Lbl_Room_Service_Reporte;
