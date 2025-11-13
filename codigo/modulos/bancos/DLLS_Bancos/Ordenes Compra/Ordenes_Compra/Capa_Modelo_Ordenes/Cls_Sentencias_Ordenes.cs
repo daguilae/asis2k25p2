@@ -3,7 +3,8 @@ using System.Data;
 using System.Data.Odbc;
 
 
-// Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
+// Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025
+
 
 namespace Capa_Modelo_Ordenes
 {
@@ -12,35 +13,35 @@ namespace Capa_Modelo_Ordenes
         private readonly Cls_Conexion_Ordenes _cnx = new Cls_Conexion_Ordenes();
 
 
-        public DataTable ObtenerOrdenes()
+        public DataTable fun_obtener_ordenes()
         {
             const string sql = @"SELECT Pk_Id_Orden_Compra, Cmp_Descripcion_Orden_Compra
                                  FROM Tbl_Orden_Compra ORDER BY 1;";
             return FillTable(sql);
         }
 
-        public DataTable ObtenerBancos()
+        public DataTable fun_obtener_bancos()
         {
             const string sql = @"SELECT Pk_Id_Banco, Cmp_NombreBanco
                                  FROM Tbl_Bancos ORDER BY Cmp_NombreBanco;";
             return FillTable(sql);
         }
 
-        public DataTable ObtenerEmpleados()
+        public DataTable fun_obtener_empleados()
         {
             const string sql = @"SELECT Pk_Id_Empleado, Cmp_Nombre_Empleado
                                  FROM Tbl_Empleado_Autorizado ORDER BY Cmp_Nombre_Empleado;";
             return FillTable(sql);
         }
 
-        public DataTable ObtenerEstados()
+        public DataTable fun_obtener_estados()
         {
             const string sql = @"SELECT Pk_Id_Estado_Autorizacion, Cmp_Nombre_Estado
                                  FROM Tbl_Estado_Autorizacion;";
             return FillTable(sql);
         }
 
-        public DataTable ObtenerAutorizacionesDetalle()
+        public DataTable fun_obtener_autorizaciones_detalle()
         {
             const string sql = @"
                 SELECT
@@ -66,8 +67,8 @@ namespace Capa_Modelo_Ordenes
         }
 
 
-        public int InsertarAutorizacion(int idOrden, int idBanco, int? idEmpleado, DateTime fecha,
-                                        decimal monto, int idEstado, string observ)
+        public int proc_insertar_autorizacion(int iOrden, int iBanco, int? iEmpleado, DateTime dFecha,
+                                        decimal deMonto, int iEstado, string sObserv)
         {
             const string sql = @"
                 INSERT INTO Tbl_Orden_Compra_Autorizada
@@ -78,16 +79,16 @@ namespace Capa_Modelo_Ordenes
             using (var conn = _cnx.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
-                cmd.Parameters.Add("@p2", OdbcType.Int).Value = idBanco;
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = iOrden;
+                cmd.Parameters.Add("@p2", OdbcType.Int).Value = iBanco;
                 cmd.Parameters.Add("@p3", OdbcType.Int).Value =
-                idEmpleado.HasValue ? (object)idEmpleado.Value : (object)DBNull.Value;
+                iEmpleado.HasValue ? (object)iEmpleado.Value : (object)DBNull.Value;
 
-                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = fecha;
-                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = monto;
-                cmd.Parameters.Add("@p6", OdbcType.Int).Value = idEstado;
+                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = dFecha;
+                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = deMonto;
+                cmd.Parameters.Add("@p6", OdbcType.Int).Value = iEstado;
                 cmd.Parameters.Add("@p7", OdbcType.VarChar, 255).Value =
-                observ != null ? (object)observ : (object)DBNull.Value;
+                sObserv != null ? (object)sObserv : (object)DBNull.Value;
 
                 cmd.ExecuteNonQuery();
 
@@ -98,8 +99,8 @@ namespace Capa_Modelo_Ordenes
             }
         }
 
-        public int ActualizarAutorizacion(int idAut, int idOrden, int idBanco, int? idEmpleado, DateTime fecha,
-                                          decimal monto, int idEstado, string observ)
+        public int proc_actualizar_autorizacion(int idAut, int iOrden, int iBanco, int? iEmpleado, DateTime dFecha,
+                                          decimal deMonto, int iEstado, string sObserv)
         {
             const string sql = @"
                 UPDATE Tbl_Orden_Compra_Autorizada
@@ -111,22 +112,22 @@ namespace Capa_Modelo_Ordenes
             using (var conn = _cnx.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
-                cmd.Parameters.Add("@p2", OdbcType.Int).Value = idBanco;
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = iOrden;
+                cmd.Parameters.Add("@p2", OdbcType.Int).Value = iBanco;
                 cmd.Parameters.Add("@p3", OdbcType.Int).Value =
-                 idEmpleado.HasValue ? (object)idEmpleado.Value : (object)DBNull.Value;
-                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = fecha;
-                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = monto;
-                cmd.Parameters.Add("@p6", OdbcType.Int).Value = idEstado;
+                 iEmpleado.HasValue ? (object)iEmpleado.Value : (object)DBNull.Value;
+                cmd.Parameters.Add("@p4", OdbcType.DateTime).Value = dFecha;
+                cmd.Parameters.Add("@p5", OdbcType.Decimal).Value = deMonto;
+                cmd.Parameters.Add("@p6", OdbcType.Int).Value = iEstado;
                 cmd.Parameters.Add("@p7", OdbcType.VarChar, 255).Value =
-                observ != null ? (object)observ : (object)DBNull.Value;
+                sObserv != null ? (object)sObserv : (object)DBNull.Value;
                 cmd.Parameters.Add("@p8", OdbcType.Int).Value = idAut;
 
                 return cmd.ExecuteNonQuery();
             }
         }
 
-        public int EliminarAutorizacion(int idAut)
+        public int proc_eliminar_autorizacion(int idAut)
         {
             const string sql = @"DELETE FROM Tbl_Orden_Compra_Autorizada WHERE Pk_Id_Autorizacion = ?;";
             using (var conn = _cnx.conexion())
@@ -150,24 +151,24 @@ namespace Capa_Modelo_Ordenes
         }
 
 
-        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 09/11/2025
 
 
-        // Obtener el monto solicitado de una orden
-        public decimal ObtenerMontoOrden(int idOrden)
+        // Obtener el deMonto solicitado de una orden
+        public decimal fun_obtener_deMonto_orden(int iOrden)
         {
             const string sql = "SELECT Cmp_Monto_Solicitado FROM Tbl_Orden_Compra WHERE Pk_Id_Orden_Compra = ?;";
             using (var conn = _cnx.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idOrden;
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = iOrden;
                 var r = cmd.ExecuteScalar();
                 return r == null || r == DBNull.Value ? 0m : Convert.ToDecimal(r);
             }
         }
 
         // Suma de saldo disponible por banco (todas sus cuentas activas)
-        public decimal ObtenerSaldoDisponibleBanco(int idBanco)
+        public decimal fun_obtener_saldo_banco(int iBanco)
         {
             const string sql = @"
         SELECT COALESCE(SUM(Cmp_SaldoDisponible), 0)
@@ -176,17 +177,17 @@ namespace Capa_Modelo_Ordenes
             using (var conn = _cnx.conexion())
             using (var cmd = new OdbcCommand(sql, conn))
             {
-                cmd.Parameters.Add("@p1", OdbcType.Int).Value = idBanco;
+                cmd.Parameters.Add("@p1", OdbcType.Int).Value = iBanco;
                 var r = cmd.ExecuteScalar();
                 return r == null || r == DBNull.Value ? 0m : Convert.ToDecimal(r);
             }
         }
 
-        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 09/11/2025
 
 
     }
 }
 
-// Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
+// Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025
 
