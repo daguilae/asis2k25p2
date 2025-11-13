@@ -120,8 +120,8 @@ namespace Capa_Vista_Bancos
 
             Dictionary<int, ToolStripMenuItem> mapaProcesos = new Dictionary<int, ToolStripMenuItem>
             {
-                {309, procesosToolStripMenuItem },
-                {1402, movimientosBancariosToolStripMenuItem }
+                {309, procesosToolStripMenuItem }
+                
             };
 
             Dictionary<int, ToolStripMenuItem> mapaAsignaciones = new Dictionary<int, ToolStripMenuItem>
