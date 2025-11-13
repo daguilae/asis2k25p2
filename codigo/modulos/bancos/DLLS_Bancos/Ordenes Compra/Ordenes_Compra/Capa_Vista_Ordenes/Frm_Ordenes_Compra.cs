@@ -9,10 +9,38 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_Ordenes;
 
+using System.Data.Odbc;
+
+
+// Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
+
 namespace Capa_Vista_Ordenes
 {
     public partial class Frm_Ordenes_Compra : Form
     {
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+        private void AlertOk(string text)
+        {
+            MessageBox.Show(this, text, "Autorizaciones", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void AlertWarn(string text)
+        {
+            MessageBox.Show(this, text, "Autorizaciones", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        }
+        private void AlertErr(string text)
+        {
+            MessageBox.Show(this, text, "Autorizaciones", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        private bool ConfirmDlg(string text)
+        {
+            return MessageBox.Show(this, text, "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                   == DialogResult.Yes;
+        }
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+
+
+
 
         private readonly Cls_Controlador_Ordenes _ctrl = new Cls_Controlador_Ordenes();
         public Frm_Ordenes_Compra()
@@ -23,7 +51,15 @@ namespace Capa_Vista_Ordenes
            
             Btn_Actualizar_Autorizacion.Click += Btn_Actualizar_Autorizacion_Click;
             Btn_Eliminar_Autorizacion.Click += Btn_Eliminar_Autorizacion_Click;
+
         }
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+        // valdiaciones para el formulario 
+        private bool EsAprobada() => string.Equals(Cbo_Id_Estado.Text?.Trim(), "Aprobada", StringComparison.InvariantCultureIgnoreCase);
+        private bool EsRechazada() => string.Equals(Cbo_Id_Estado.Text?.Trim(), "Rechazada", StringComparison.InvariantCultureIgnoreCase);
+
 
 
         private void Frm_Ordenes_Compra_Load(object sender, EventArgs e)
@@ -31,8 +67,45 @@ namespace Capa_Vista_Ordenes
             ConfigurarControles();
             CargarCombos();
             CargarGrid();
+
+
+            // Rellenar el monto una vez con la selección actual
+            ActualizarMontoSegunOrden();
+
+            Cbo_Id_Orden.SelectionChangeCommitted += (s, ev) => ActualizarMontoSegunOrden();
+
+
         }
 
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+
+
+        // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+        private void ActualizarMontoSegunOrden()
+        {
+            try
+            {
+                if (Cbo_Id_Orden.SelectedValue == null || Cbo_Id_Orden.SelectedValue == DBNull.Value) return;
+                if (Cbo_Id_Orden.SelectedValue is DataRowView) return; // aún está bindeando
+
+                int idOrden;
+                if (!int.TryParse(Cbo_Id_Orden.SelectedValue.ToString(), out idOrden)) return;
+
+                var monto = _ctrl.ObtenerMontoOrden(idOrden);
+
+                // Encajar en el rango del NumericUpDown
+                if (monto < Nud_Monto_Autorizado.Minimum) monto = Nud_Monto_Autorizado.Minimum;
+                if (monto > Nud_Monto_Autorizado.Maximum) monto = Nud_Monto_Autorizado.Maximum;
+
+                Nud_Monto_Autorizado.Value = monto;
+            }
+            catch
+            {
+               
+            }
+        }
+
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
 
 
         private void ConfigurarControles()
@@ -86,6 +159,15 @@ namespace Capa_Vista_Ordenes
             Dgv_Auto_Ordenes.AutoGenerateColumns = true;
             Dgv_Auto_Ordenes.DataSource = _ctrl.ObtenerAutorizacionesDetalle();
             Dgv_Auto_Ordenes.ClearSelection();
+
+
+            // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
+            Dgv_Auto_Ordenes.AllowUserToAddRows = false;
+            Dgv_Auto_Ordenes.ReadOnly = true;
+            Dgv_Auto_Ordenes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            Dgv_Auto_Ordenes.MultiSelect = false;
+
+            // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 09/11/2025
         }
 
 
@@ -99,34 +181,84 @@ namespace Capa_Vista_Ordenes
 
         private void Btn_Agregar_Autorizacion_Click(object sender, EventArgs e)
         {
-            var idOrden = Convert.ToInt32(Cbo_Id_Orden.SelectedValue);
-            var idBanco = Convert.ToInt32(Cbo_Id_Banco.SelectedValue);
-            int? idEmpleado = ValorNullable(Cbo_Id_Empleado);
-            var fecha = Dtp_Fecha_Autorizacion.Value;
-            var monto = Nud_Monto_Autorizado.Value;
-            var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
-            var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
 
-            var nuevoId = _ctrl.Agregar(idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
-            Txt_Id_Autorizacion.Text = nuevoId.ToString();
-            CargarGrid();
+            try
+            {
+                var idOrden = Convert.ToInt32(Cbo_Id_Orden.SelectedValue);
+                var idBanco = Convert.ToInt32(Cbo_Id_Banco.SelectedValue);
+                int? idEmpleado = ValorNullable(Cbo_Id_Empleado);
+                var fecha = Dtp_Fecha_Autorizacion.Value;
+                var monto = Nud_Monto_Autorizado.Value;
+                var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
+                var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
+
+               
+
+                var saldo = _ctrl.ObtenerSaldoBanco(idBanco);
+                if (EsAprobada() && saldo < monto)
+                {
+                    AlertWarn($"El banco seleccionado no tiene fondos suficientes. Saldo: {saldo:N2}, Monto requerido: {monto:N2}.");
+                    return;
+                }
+
+
+
+
+                var nuevoId = _ctrl.Agregar(idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
+                Txt_Id_Autorizacion.Text = nuevoId.ToString();
+                CargarGrid();
+
+                // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+                AlertOk($"Autorización agregada correctamente (ID #{nuevoId}).");
+            }
+            catch (OdbcException ex) { AlertErr("Error de base de datos al agregar: " + ex.Message); }
+            catch (Exception ex) { AlertErr("Error al agregar: " + ex.Message); }
         }
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+
+
+
 
         private void Btn_Actualizar_Autorizacion_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(Txt_Id_Autorizacion.Text)) return;
 
-            var idAut = Convert.ToInt32(Txt_Id_Autorizacion.Text);
-            var idOrden = Convert.ToInt32(Cbo_Id_Orden.SelectedValue);
-            var idBanco = Convert.ToInt32(Cbo_Id_Banco.SelectedValue);
-            int? idEmpleado = ValorNullable(Cbo_Id_Empleado);
-            var fecha = Dtp_Fecha_Autorizacion.Value;
-            var monto = Nud_Monto_Autorizado.Value;
-            var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
-            var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
 
-            _ctrl.Actualizar(idAut, idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
-            CargarGrid();
+            try
+            {
+                var idAut = Convert.ToInt32(Txt_Id_Autorizacion.Text);
+                var idOrden = Convert.ToInt32(Cbo_Id_Orden.SelectedValue);
+                var idBanco = Convert.ToInt32(Cbo_Id_Banco.SelectedValue);
+                int? idEmpleado = ValorNullable(Cbo_Id_Empleado);
+                var fecha = Dtp_Fecha_Autorizacion.Value;
+                var monto = Nud_Monto_Autorizado.Value;
+                var idEstado = Convert.ToInt32(Cbo_Id_Estado.SelectedValue);
+                var obs = string.IsNullOrWhiteSpace(Txt_Observaciones.Text) ? null : Txt_Observaciones.Text.Trim();
+
+
+                var saldo = _ctrl.ObtenerSaldoBanco(idBanco);
+                if (EsAprobada() && saldo < monto)
+                {
+                    AlertWarn($"El banco seleccionado no tiene fondos suficientes. Saldo: {saldo:N2}, Monto requerido: {monto:N2}.");
+                    return;
+                }
+
+
+
+                var filas = _ctrl.Actualizar(idAut, idOrden, idBanco, idEmpleado, fecha, monto, idEstado, obs);
+                CargarGrid();
+
+                // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+                if (filas > 0)
+                {
+                    AlertOk("Autorización modificada correctamente.");
+                }
+                // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+
+            }
+            catch (OdbcException ex) { AlertErr("Error de base de datos al modificar: " + ex.Message); }
+            catch (Exception ex) { AlertErr("Error al modificar: " + ex.Message); }
+
         }
 
         private void Btn_Eliminar_Autorizacion_Click(object sender, EventArgs e)
@@ -134,10 +266,24 @@ namespace Capa_Vista_Ordenes
             if (string.IsNullOrWhiteSpace(Txt_Id_Autorizacion.Text)) return;
 
             var idAut = Convert.ToInt32(Txt_Id_Autorizacion.Text);
-            _ctrl.Eliminar(idAut);
-            Limpiar();
-            CargarGrid();
+
+            // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+            if (!ConfirmDlg($"¿Seguro que deseas eliminar la autorización #{idAut}?")) return;
+
+            try
+            {
+                var filas = _ctrl.Eliminar(idAut);
+                Limpiar();
+                CargarGrid();
+
+                if (filas > 0) AlertOk("Autorización eliminada correctamente.");
+                else AlertWarn($"No se encontró la autorización #{idAut}.");
+            }
+            catch (OdbcException ex) { AlertErr("Error de base de datos al eliminar: " + ex.Message); }
+            catch (Exception ex) { AlertErr("Error al eliminar: " + ex.Message); }
         }
+        // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 08/11/2025
+
 
         private void Dgv_Auto_Ordenes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -168,7 +314,27 @@ namespace Capa_Vista_Ordenes
         }
 
 
+        private void Frm_Ordenes_Compra_Load_1(object sender, EventArgs e)
+        {
 
+        }
 
+        private void Btn_Limpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        private void Btn_Imprimir_Autorizacion_Click(object sender, EventArgs e)
+        {
+            Frm_Reporte frm = new Frm_Reporte();
+            frm.Show();
+        }
+
+        private void Btn_Ayuda_Autorizacion_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "Ayudas_Ordenes/Ayuda_Autorizaciones/AyudaOrdenes.chm", "ayuda_auto.html");
+        }
     }
 }
+// Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la fecha de: 07/11/2025
+

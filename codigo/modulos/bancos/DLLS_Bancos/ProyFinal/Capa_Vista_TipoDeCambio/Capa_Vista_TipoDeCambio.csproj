@@ -46,11 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_IngresoTipoDeCambio.cs">
+
+    <Compile Include="Frm_DisponibilidadDiaria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_IngresoTipoDeCambio.Designer.cs">
-      <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
+    <Compile Include="Frm_DisponibilidadDiaria.Designer.cs">
+      <DependentUpon>Frm_DisponibilidadDiaria.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Frm_IngresoTipoDeCambio1.cs">
       <SubType>Form</SubType>
@@ -64,11 +66,19 @@
     <Compile Include="Frm_TipoDeCambio.Designer.cs">
       <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
     </Compile>
+
+    <Compile Include="Frm_TipoDeCambioDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_TipoDeCambioDia.Designer.cs">
+      <DependentUpon>Frm_TipoDeCambioDia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_IngresoTipoDeCambio.resx">
-      <DependentUpon>Frm_IngresoTipoDeCambio.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_DisponibilidadDiaria.resx">
+      <DependentUpon>Frm_DisponibilidadDiaria.cs</DependentUpon>
+
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_IngresoTipoDeCambio1.resx">
       <DependentUpon>Frm_IngresoTipoDeCambio1.cs</DependentUpon>
@@ -76,6 +86,11 @@
     <EmbeddedResource Include="Frm_TipoDeCambio.resx">
       <DependentUpon>Frm_TipoDeCambio.cs</DependentUpon>
     </EmbeddedResource>
+
+    <EmbeddedResource Include="Frm_TipoDeCambioDia.resx">
+      <DependentUpon>Frm_TipoDeCambioDia.cs</DependentUpon>
+    </EmbeddedResource>
+
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -54,6 +54,9 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Observaciones = new System.Windows.Forms.Label();
             this.Dgv_Auto_Ordenes = new System.Windows.Forms.DataGridView();
             this.Lbl_Detalle = new System.Windows.Forms.Label();
+
+            this.Btn_Limpiar = new System.Windows.Forms.Button();
+
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Monto_Autorizado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +64,9 @@ namespace Capa_Vista_Ordenes
             // Btn_Agregar_Autorizacion
             // 
             this.Btn_Agregar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Agregar_Autorizacion.Image")));
-            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(662, 18);
+
+            this.Btn_Agregar_Autorizacion.Location = new System.Drawing.Point(628, 19);
+
             this.Btn_Agregar_Autorizacion.Name = "Btn_Agregar_Autorizacion";
             this.Btn_Agregar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Agregar_Autorizacion.TabIndex = 36;
@@ -71,25 +76,35 @@ namespace Capa_Vista_Ordenes
             // Btn_Ayuda_Autorizacion
             // 
             this.Btn_Ayuda_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda_Autorizacion.Image")));
-            this.Btn_Ayuda_Autorizacion.Location = new System.Drawing.Point(886, 18);
+
+            this.Btn_Ayuda_Autorizacion.Location = new System.Drawing.Point(908, 18);
+
             this.Btn_Ayuda_Autorizacion.Name = "Btn_Ayuda_Autorizacion";
             this.Btn_Ayuda_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Ayuda_Autorizacion.TabIndex = 35;
             this.Btn_Ayuda_Autorizacion.UseVisualStyleBackColor = true;
+            this.Btn_Ayuda_Autorizacion.Click += new System.EventHandler(this.Btn_Ayuda_Autorizacion_Click);
             // 
             // Btn_Imprimir_Autorizacion
             // 
             this.Btn_Imprimir_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Imprimir_Autorizacion.Image")));
-            this.Btn_Imprimir_Autorizacion.Location = new System.Drawing.Point(830, 18);
+
+            this.Btn_Imprimir_Autorizacion.Location = new System.Drawing.Point(852, 18);
+
             this.Btn_Imprimir_Autorizacion.Name = "Btn_Imprimir_Autorizacion";
             this.Btn_Imprimir_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Imprimir_Autorizacion.TabIndex = 34;
             this.Btn_Imprimir_Autorizacion.UseVisualStyleBackColor = true;
+
+            this.Btn_Imprimir_Autorizacion.Click += new System.EventHandler(this.Btn_Imprimir_Autorizacion_Click);
+
             // 
             // Btn_Eliminar_Autorizacion
             // 
             this.Btn_Eliminar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Eliminar_Autorizacion.Image")));
-            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(774, 17);
+
+            this.Btn_Eliminar_Autorizacion.Location = new System.Drawing.Point(740, 18);
+
             this.Btn_Eliminar_Autorizacion.Name = "Btn_Eliminar_Autorizacion";
             this.Btn_Eliminar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Eliminar_Autorizacion.TabIndex = 33;
@@ -99,7 +114,9 @@ namespace Capa_Vista_Ordenes
             // Btn_Actualizar_Autorizacion
             // 
             this.Btn_Actualizar_Autorizacion.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Actualizar_Autorizacion.Image")));
-            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(718, 17);
+
+            this.Btn_Actualizar_Autorizacion.Location = new System.Drawing.Point(684, 18);
+
             this.Btn_Actualizar_Autorizacion.Name = "Btn_Actualizar_Autorizacion";
             this.Btn_Actualizar_Autorizacion.Size = new System.Drawing.Size(50, 45);
             this.Btn_Actualizar_Autorizacion.TabIndex = 32;
@@ -120,77 +137,95 @@ namespace Capa_Vista_Ordenes
             // 
             this.Cbo_Id_Orden.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cbo_Id_Orden.FormattingEnabled = true;
-            this.Cbo_Id_Orden.Location = new System.Drawing.Point(282, 166);
+
+            this.Cbo_Id_Orden.Location = new System.Drawing.Point(276, 176);
             this.Cbo_Id_Orden.Name = "Cbo_Id_Orden";
-            this.Cbo_Id_Orden.Size = new System.Drawing.Size(121, 28);
+            this.Cbo_Id_Orden.Size = new System.Drawing.Size(185, 28);
+
             this.Cbo_Id_Orden.TabIndex = 37;
             // 
             // Cbo_Id_Banco
             // 
             this.Cbo_Id_Banco.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cbo_Id_Banco.FormattingEnabled = true;
-            this.Cbo_Id_Banco.Location = new System.Drawing.Point(282, 235);
+
+            this.Cbo_Id_Banco.Location = new System.Drawing.Point(276, 245);
             this.Cbo_Id_Banco.Name = "Cbo_Id_Banco";
-            this.Cbo_Id_Banco.Size = new System.Drawing.Size(121, 28);
+            this.Cbo_Id_Banco.Size = new System.Drawing.Size(185, 28);
+
             this.Cbo_Id_Banco.TabIndex = 38;
             // 
             // Cbo_Id_Empleado
             // 
             this.Cbo_Id_Empleado.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cbo_Id_Empleado.FormattingEnabled = true;
-            this.Cbo_Id_Empleado.Location = new System.Drawing.Point(774, 98);
+
+            this.Cbo_Id_Empleado.Location = new System.Drawing.Point(774, 107);
             this.Cbo_Id_Empleado.Name = "Cbo_Id_Empleado";
-            this.Cbo_Id_Empleado.Size = new System.Drawing.Size(162, 28);
+            this.Cbo_Id_Empleado.Size = new System.Drawing.Size(185, 28);
+
             this.Cbo_Id_Empleado.TabIndex = 39;
             // 
             // Cbo_Id_Estado
             // 
             this.Cbo_Id_Estado.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cbo_Id_Estado.FormattingEnabled = true;
-            this.Cbo_Id_Estado.Location = new System.Drawing.Point(282, 298);
+
+            this.Cbo_Id_Estado.Location = new System.Drawing.Point(276, 308);
             this.Cbo_Id_Estado.Name = "Cbo_Id_Estado";
-            this.Cbo_Id_Estado.Size = new System.Drawing.Size(121, 28);
+            this.Cbo_Id_Estado.Size = new System.Drawing.Size(185, 28);
+
             this.Cbo_Id_Estado.TabIndex = 40;
             // 
             // Txt_Id_Autorizacion
             // 
             this.Txt_Id_Autorizacion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Txt_Id_Autorizacion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Id_Autorizacion.Location = new System.Drawing.Point(282, 98);
+
+            this.Txt_Id_Autorizacion.Location = new System.Drawing.Point(276, 108);
             this.Txt_Id_Autorizacion.Name = "Txt_Id_Autorizacion";
-            this.Txt_Id_Autorizacion.Size = new System.Drawing.Size(121, 29);
+            this.Txt_Id_Autorizacion.Size = new System.Drawing.Size(185, 29);
+
             this.Txt_Id_Autorizacion.TabIndex = 41;
             // 
             // Dtp_Fecha_Autorizacion
             // 
             this.Dtp_Fecha_Autorizacion.CalendarFont = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dtp_Fecha_Autorizacion.Location = new System.Drawing.Point(690, 167);
+
+            this.Dtp_Fecha_Autorizacion.Location = new System.Drawing.Point(774, 178);
             this.Dtp_Fecha_Autorizacion.Name = "Dtp_Fecha_Autorizacion";
-            this.Dtp_Fecha_Autorizacion.Size = new System.Drawing.Size(246, 22);
+            this.Dtp_Fecha_Autorizacion.Size = new System.Drawing.Size(185, 22);
+
             this.Dtp_Fecha_Autorizacion.TabIndex = 42;
             // 
             // Nud_Monto_Autorizado
             // 
             this.Nud_Monto_Autorizado.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Nud_Monto_Autorizado.Location = new System.Drawing.Point(774, 233);
+
+            this.Nud_Monto_Autorizado.Location = new System.Drawing.Point(774, 242);
             this.Nud_Monto_Autorizado.Name = "Nud_Monto_Autorizado";
-            this.Nud_Monto_Autorizado.Size = new System.Drawing.Size(162, 29);
+            this.Nud_Monto_Autorizado.Size = new System.Drawing.Size(185, 29);
+
             this.Nud_Monto_Autorizado.TabIndex = 43;
             // 
             // Txt_Observaciones
             // 
             this.Txt_Observaciones.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Txt_Observaciones.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_Observaciones.Location = new System.Drawing.Point(690, 297);
+
+            this.Txt_Observaciones.Location = new System.Drawing.Point(774, 309);
             this.Txt_Observaciones.Name = "Txt_Observaciones";
-            this.Txt_Observaciones.Size = new System.Drawing.Size(246, 29);
+            this.Txt_Observaciones.Size = new System.Drawing.Size(185, 29);
+
             this.Txt_Observaciones.TabIndex = 44;
             // 
             // Lbl_Id_Autorizacion
             // 
             this.Lbl_Id_Autorizacion.AutoSize = true;
             this.Lbl_Id_Autorizacion.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Id_Autorizacion.Location = new System.Drawing.Point(14, 101);
+
+            this.Lbl_Id_Autorizacion.Location = new System.Drawing.Point(14, 111);
+
             this.Lbl_Id_Autorizacion.Name = "Lbl_Id_Autorizacion";
             this.Lbl_Id_Autorizacion.Size = new System.Drawing.Size(185, 22);
             this.Lbl_Id_Autorizacion.TabIndex = 45;
@@ -200,7 +235,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Id_Orden.AutoSize = true;
             this.Lbl_Id_Orden.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Id_Orden.Location = new System.Drawing.Point(14, 168);
+
+            this.Lbl_Id_Orden.Location = new System.Drawing.Point(14, 178);
+
             this.Lbl_Id_Orden.Name = "Lbl_Id_Orden";
             this.Lbl_Id_Orden.Size = new System.Drawing.Size(239, 22);
             this.Lbl_Id_Orden.TabIndex = 46;
@@ -210,7 +247,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Banco.AutoSize = true;
             this.Lbl_Banco.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Banco.Location = new System.Drawing.Point(14, 233);
+
+            this.Lbl_Banco.Location = new System.Drawing.Point(14, 243);
+
             this.Lbl_Banco.Name = "Lbl_Banco";
             this.Lbl_Banco.Size = new System.Drawing.Size(179, 22);
             this.Lbl_Banco.TabIndex = 47;
@@ -220,7 +259,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Empleado.AutoSize = true;
             this.Lbl_Empleado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Empleado.Location = new System.Drawing.Point(455, 101);
+
+            this.Lbl_Empleado.Location = new System.Drawing.Point(504, 108);
+
             this.Lbl_Empleado.Name = "Lbl_Empleado";
             this.Lbl_Empleado.Size = new System.Drawing.Size(219, 22);
             this.Lbl_Empleado.TabIndex = 48;
@@ -230,7 +271,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Fecha.AutoSize = true;
             this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(456, 166);
+
+            this.Lbl_Fecha.Location = new System.Drawing.Point(505, 173);
+
             this.Lbl_Fecha.Name = "Lbl_Fecha";
             this.Lbl_Fecha.Size = new System.Drawing.Size(218, 22);
             this.Lbl_Fecha.TabIndex = 49;
@@ -240,7 +283,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Monto.AutoSize = true;
             this.Lbl_Monto.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.Location = new System.Drawing.Point(456, 236);
+
+            this.Lbl_Monto.Location = new System.Drawing.Point(505, 243);
+
             this.Lbl_Monto.Name = "Lbl_Monto";
             this.Lbl_Monto.Size = new System.Drawing.Size(178, 22);
             this.Lbl_Monto.TabIndex = 50;
@@ -250,7 +295,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Estado.AutoSize = true;
             this.Lbl_Estado.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Estado.Location = new System.Drawing.Point(14, 301);
+
+            this.Lbl_Estado.Location = new System.Drawing.Point(14, 311);
+
             this.Lbl_Estado.Name = "Lbl_Estado";
             this.Lbl_Estado.Size = new System.Drawing.Size(172, 22);
             this.Lbl_Estado.TabIndex = 51;
@@ -260,7 +307,9 @@ namespace Capa_Vista_Ordenes
             // 
             this.Lbl_Observaciones.AutoSize = true;
             this.Lbl_Observaciones.Font = new System.Drawing.Font("Rockwell", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Observaciones.Location = new System.Drawing.Point(456, 299);
+
+            this.Lbl_Observaciones.Location = new System.Drawing.Point(505, 306);
+
             this.Lbl_Observaciones.Name = "Lbl_Observaciones";
             this.Lbl_Observaciones.Size = new System.Drawing.Size(153, 22);
             this.Lbl_Observaciones.TabIndex = 52;
@@ -273,7 +322,9 @@ namespace Capa_Vista_Ordenes
             this.Dgv_Auto_Ordenes.Name = "Dgv_Auto_Ordenes";
             this.Dgv_Auto_Ordenes.RowHeadersWidth = 51;
             this.Dgv_Auto_Ordenes.RowTemplate.Height = 24;
-            this.Dgv_Auto_Ordenes.Size = new System.Drawing.Size(918, 180);
+
+            this.Dgv_Auto_Ordenes.Size = new System.Drawing.Size(941, 180);
+
             this.Dgv_Auto_Ordenes.TabIndex = 53;
             // 
             // Lbl_Detalle
@@ -286,11 +337,26 @@ namespace Capa_Vista_Ordenes
             this.Lbl_Detalle.TabIndex = 54;
             this.Lbl_Detalle.Text = "Detalle Autorizaciones:";
             // 
+
+            // Btn_Limpiar
+            // 
+            this.Btn_Limpiar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Limpiar.Image")));
+            this.Btn_Limpiar.Location = new System.Drawing.Point(796, 19);
+            this.Btn_Limpiar.Name = "Btn_Limpiar";
+            this.Btn_Limpiar.Size = new System.Drawing.Size(50, 45);
+            this.Btn_Limpiar.TabIndex = 55;
+            this.Btn_Limpiar.UseVisualStyleBackColor = true;
+            this.Btn_Limpiar.Click += new System.EventHandler(this.Btn_Limpiar_Click);
+            // 
+
             // Frm_Ordenes_Compra
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(957, 602);
+
+            this.ClientSize = new System.Drawing.Size(980, 602);
+            this.Controls.Add(this.Btn_Limpiar);
+
             this.Controls.Add(this.Lbl_Detalle);
             this.Controls.Add(this.Dgv_Auto_Ordenes);
             this.Controls.Add(this.Lbl_Observaciones);
@@ -317,6 +383,9 @@ namespace Capa_Vista_Ordenes
             this.Controls.Add(this.Lbl_Titulo_Ordenes);
             this.Name = "Frm_Ordenes_Compra";
             this.Text = "Frm_Ordenes_Compra";
+
+            this.Load += new System.EventHandler(this.Frm_Ordenes_Compra_Load_1);
+
             ((System.ComponentModel.ISupportInitialize)(this.Nud_Monto_Autorizado)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Auto_Ordenes)).EndInit();
             this.ResumeLayout(false);
@@ -350,5 +419,8 @@ namespace Capa_Vista_Ordenes
         private System.Windows.Forms.Label Lbl_Observaciones;
         private System.Windows.Forms.DataGridView Dgv_Auto_Ordenes;
         private System.Windows.Forms.Label Lbl_Detalle;
+
+        private System.Windows.Forms.Button Btn_Limpiar;
+
     }
 }

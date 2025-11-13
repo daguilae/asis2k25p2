@@ -11,7 +11,9 @@ namespace Capa_Modelo_TipoDeCambio
     {
         public OdbcConnection conexion()
         {
-            OdbcConnection conn = new OdbcConnection("Dsn=Bancos2");
+
+            OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
+
             try
             {
                 conn.Open();

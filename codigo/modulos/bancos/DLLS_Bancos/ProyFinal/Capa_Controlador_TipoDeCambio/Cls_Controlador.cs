@@ -31,5 +31,27 @@ namespace Capa_Controlador_TipoDeCambio
         {
             return modelo.BuscarTipoCambio(fecha);
         }
+
+        public DataTable MostrarTipoCambioHoy()
+        {
+            return modelo.MostrarTiposCambioHoy();
+        }
+
+        public DataTable CargarBancos()
+        {
+            return modelo.ObtenerBancos();
+        }
+
+        public DataTable CargarTiposCuenta()
+        {
+            return modelo.ObtenerTiposCuenta();
+        }
+
+        public DataTable BuscarDisponibilidad(string banco, string tipoCuenta, string numeroCuenta)
+        {
+            Modelo_TipoCambio modelo = new Modelo_TipoCambio();
+            return modelo.ObtenerDisponibilidad(banco, tipoCuenta, numeroCuenta);
+        }
+
     }
 }
