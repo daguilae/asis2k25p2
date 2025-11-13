@@ -325,5 +325,75 @@ namespace Capa_Modelo_GesHab
 
             return dtResultado;
         }
+        // ==========================================================================================
+        // Obtener una Reserva específica por ID
+        public DataTable fun_ObtenerIdsReserva()
+        {
+            DataTable dtResultado = new DataTable();
+            string sQuery = "SELECT Pk_Id_Reserva FROM Tbl_Reserva;";
+
+            try
+            {
+                using (OdbcConnection oConn = oConexion.conexion())
+                {
+                    oConn.Open();
+                    using (OdbcCommand oCmd = new OdbcCommand(sQuery, oConn))
+                    using (OdbcDataAdapter oDa = new OdbcDataAdapter(oCmd))
+                    {
+                        oDa.Fill(dtResultado);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener los IDs de estadía: " + ex.Message);
+            }
+
+            return dtResultado;
+        }
+        // ==========================================================================================
+        // Obtener num Huespedes específica por ID
+        public DataTable BuscarReservaPorId(int idReserva)
+        {
+            string query = @"
+                SELECT 
+                    Pk_Id_Reserva,
+                    Fk_Id_Huesped,
+                    Fk_Id_Habitacion,
+                    Fk_Id_Promociones,
+                    Fk_Id_Buffet,
+                    Cmp_Fecha_Reserva,
+                    Cmp_Fecha_Entrada,
+                    Cmp_Fecha_Salida,
+                    Cmp_Num_Huespedes,
+                    Cmp_Peticiones_Especiales,
+                    Cmp_Estado_Reserva,
+                    Cmp_Total_Reserva
+                FROM Tbl_Reserva
+                WHERE Pk_Id_Reserva = ?;";
+
+            DataTable tabla = new DataTable();
+            OdbcConnection conn = oConexion.conexion();
+
+            try
+            {
+                conn.Open();
+                OdbcCommand cmd = new OdbcCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", idReserva);
+                OdbcDataAdapter da = new OdbcDataAdapter(cmd);
+                da.Fill(tabla);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+                return null;
+            }
+            finally
+            {
+                oConexion.desconexion(conn);
+            }
+
+            return tabla;
+        }
     }
 }

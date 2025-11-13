@@ -57,13 +57,16 @@ namespace Capa_Vista_Gestion_Habitacion
             this.lbl_maxima_capacidad = new System.Windows.Forms.Label();
             this.btn_Cerrar = new System.Windows.Forms.Button();
             this.lbl_Titulo = new System.Windows.Forms.Label();
+            this.cbo_Reserva = new System.Windows.Forms.ComboBox();
+            this.lbl_Reserva = new System.Windows.Forms.Label();
+            this.btn_buscar_reserva = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_idestadia
             // 
             this.lbl_idestadia.AutoSize = true;
             this.lbl_idestadia.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_idestadia.Location = new System.Drawing.Point(72, 113);
+            this.lbl_idestadia.Location = new System.Drawing.Point(78, 182);
             this.lbl_idestadia.Name = "lbl_idestadia";
             this.lbl_idestadia.Size = new System.Drawing.Size(66, 16);
             this.lbl_idestadia.TabIndex = 2;
@@ -76,7 +79,7 @@ namespace Capa_Vista_Gestion_Habitacion
             this.btn_Buscar.Name = "btn_Buscar";
             this.btn_Buscar.Size = new System.Drawing.Size(87, 85);
             this.btn_Buscar.TabIndex = 3;
-            this.btn_Buscar.Text = "Buscar";
+            this.btn_Buscar.Text = "Buscar Por Estadia";
             this.btn_Buscar.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btn_Buscar.UseVisualStyleBackColor = true;
             this.btn_Buscar.Click += new System.EventHandler(this.btn_Buscar_Click);
@@ -85,7 +88,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_idHabitacion.AutoSize = true;
             this.lbl_idHabitacion.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_idHabitacion.Location = new System.Drawing.Point(352, 115);
+            this.lbl_idHabitacion.Location = new System.Drawing.Point(358, 184);
             this.lbl_idHabitacion.Name = "lbl_idHabitacion";
             this.lbl_idHabitacion.Size = new System.Drawing.Size(100, 16);
             this.lbl_idHabitacion.TabIndex = 6;
@@ -95,7 +98,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_idhuesped.AutoSize = true;
             this.lbl_idhuesped.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_idhuesped.Location = new System.Drawing.Point(635, 114);
+            this.lbl_idhuesped.Location = new System.Drawing.Point(641, 183);
             this.lbl_idhuesped.Name = "lbl_idhuesped";
             this.lbl_idhuesped.Size = new System.Drawing.Size(75, 16);
             this.lbl_idhuesped.TabIndex = 8;
@@ -103,7 +106,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             // txt_Num_Huespedes
             // 
-            this.txt_Num_Huespedes.Location = new System.Drawing.Point(219, 172);
+            this.txt_Num_Huespedes.Location = new System.Drawing.Point(225, 241);
             this.txt_Num_Huespedes.MaxLength = 2;
             this.txt_Num_Huespedes.Name = "txt_Num_Huespedes";
             this.txt_Num_Huespedes.Size = new System.Drawing.Size(170, 20);
@@ -113,7 +116,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_Num_Huespedes.AutoSize = true;
             this.lbl_Num_Huespedes.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Num_Huespedes.Location = new System.Drawing.Point(73, 173);
+            this.lbl_Num_Huespedes.Location = new System.Drawing.Point(79, 242);
             this.lbl_Num_Huespedes.Name = "lbl_Num_Huespedes";
             this.lbl_Num_Huespedes.Size = new System.Drawing.Size(140, 16);
             this.lbl_Num_Huespedes.TabIndex = 10;
@@ -123,7 +126,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_fecha_check_In.AutoSize = true;
             this.lbl_fecha_check_In.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_check_In.Location = new System.Drawing.Point(73, 255);
+            this.lbl_fecha_check_In.Location = new System.Drawing.Point(79, 324);
             this.lbl_fecha_check_In.Name = "lbl_fecha_check_In";
             this.lbl_fecha_check_In.Size = new System.Drawing.Size(119, 16);
             this.lbl_fecha_check_In.TabIndex = 12;
@@ -131,7 +134,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             // DTP_Check_in
             // 
-            this.DTP_Check_in.Location = new System.Drawing.Point(198, 255);
+            this.DTP_Check_in.Location = new System.Drawing.Point(204, 324);
             this.DTP_Check_in.Name = "DTP_Check_in";
             this.DTP_Check_in.Size = new System.Drawing.Size(200, 20);
             this.DTP_Check_in.TabIndex = 13;
@@ -140,7 +143,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_Fecha_actual.AutoSize = true;
             this.lbl_Fecha_actual.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Fecha_actual.Location = new System.Drawing.Point(479, 259);
+            this.lbl_Fecha_actual.Location = new System.Drawing.Point(485, 328);
             this.lbl_Fecha_actual.Name = "lbl_Fecha_actual";
             this.lbl_Fecha_actual.Size = new System.Drawing.Size(102, 16);
             this.lbl_Fecha_actual.TabIndex = 14;
@@ -148,7 +151,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             // DTP_CheckOut
             // 
-            this.DTP_CheckOut.Location = new System.Drawing.Point(587, 259);
+            this.DTP_CheckOut.Location = new System.Drawing.Point(593, 328);
             this.DTP_CheckOut.Name = "DTP_CheckOut";
             this.DTP_CheckOut.Size = new System.Drawing.Size(200, 20);
             this.DTP_CheckOut.TabIndex = 15;
@@ -157,7 +160,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_Reservacion.AutoSize = true;
             this.lbl_Reservacion.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Reservacion.Location = new System.Drawing.Point(485, 172);
+            this.lbl_Reservacion.Location = new System.Drawing.Point(491, 241);
             this.lbl_Reservacion.Name = "lbl_Reservacion";
             this.lbl_Reservacion.Size = new System.Drawing.Size(113, 16);
             this.lbl_Reservacion.TabIndex = 16;
@@ -166,7 +169,8 @@ namespace Capa_Vista_Gestion_Habitacion
             // Chk_TieneReservación
             // 
             this.Chk_TieneReservación.AutoSize = true;
-            this.Chk_TieneReservación.Location = new System.Drawing.Point(610, 173);
+            this.Chk_TieneReservación.Enabled = false;
+            this.Chk_TieneReservación.Location = new System.Drawing.Point(616, 242);
             this.Chk_TieneReservación.Name = "Chk_TieneReservación";
             this.Chk_TieneReservación.Size = new System.Drawing.Size(15, 14);
             this.Chk_TieneReservación.TabIndex = 17;
@@ -176,7 +180,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_Monto_Total.AutoSize = true;
             this.lbl_Monto_Total.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Monto_Total.Location = new System.Drawing.Point(72, 333);
+            this.lbl_Monto_Total.Location = new System.Drawing.Point(78, 402);
             this.lbl_Monto_Total.Name = "lbl_Monto_Total";
             this.lbl_Monto_Total.Size = new System.Drawing.Size(161, 16);
             this.lbl_Monto_Total.TabIndex = 18;
@@ -186,7 +190,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_montoTotal.AutoSize = true;
             this.lbl_montoTotal.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_montoTotal.Location = new System.Drawing.Point(258, 333);
+            this.lbl_montoTotal.Location = new System.Drawing.Point(264, 402);
             this.lbl_montoTotal.Name = "lbl_montoTotal";
             this.lbl_montoTotal.Size = new System.Drawing.Size(33, 16);
             this.lbl_montoTotal.TabIndex = 19;
@@ -244,7 +248,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.cbo_fk_id_Habitacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_fk_id_Habitacion.FormattingEnabled = true;
-            this.cbo_fk_id_Habitacion.Location = new System.Drawing.Point(455, 113);
+            this.cbo_fk_id_Habitacion.Location = new System.Drawing.Point(461, 182);
             this.cbo_fk_id_Habitacion.Name = "cbo_fk_id_Habitacion";
             this.cbo_fk_id_Habitacion.Size = new System.Drawing.Size(170, 21);
             this.cbo_fk_id_Habitacion.TabIndex = 26;
@@ -253,7 +257,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.cbo_Fk_Id_Huesped.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbo_Fk_Id_Huesped.FormattingEnabled = true;
-            this.cbo_Fk_Id_Huesped.Location = new System.Drawing.Point(716, 114);
+            this.cbo_Fk_Id_Huesped.Location = new System.Drawing.Point(722, 183);
             this.cbo_Fk_Id_Huesped.Name = "cbo_Fk_Id_Huesped";
             this.cbo_Fk_Id_Huesped.Size = new System.Drawing.Size(170, 21);
             this.cbo_Fk_Id_Huesped.TabIndex = 27;
@@ -274,7 +278,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_Precio_Unitario.AutoSize = true;
             this.lbl_Precio_Unitario.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Precio_Unitario.Location = new System.Drawing.Point(259, 308);
+            this.lbl_Precio_Unitario.Location = new System.Drawing.Point(265, 377);
             this.lbl_Precio_Unitario.Name = "lbl_Precio_Unitario";
             this.lbl_Precio_Unitario.Size = new System.Drawing.Size(33, 16);
             this.lbl_Precio_Unitario.TabIndex = 30;
@@ -284,7 +288,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_monto_noche.AutoSize = true;
             this.lbl_monto_noche.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_monto_noche.Location = new System.Drawing.Point(73, 308);
+            this.lbl_monto_noche.Location = new System.Drawing.Point(79, 377);
             this.lbl_monto_noche.Name = "lbl_monto_noche";
             this.lbl_monto_noche.Size = new System.Drawing.Size(136, 16);
             this.lbl_monto_noche.TabIndex = 29;
@@ -294,7 +298,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.Cbo_PK_Id_Estadia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbo_PK_Id_Estadia.FormattingEnabled = true;
-            this.Cbo_PK_Id_Estadia.Location = new System.Drawing.Point(145, 113);
+            this.Cbo_PK_Id_Estadia.Location = new System.Drawing.Point(151, 182);
             this.Cbo_PK_Id_Estadia.Name = "Cbo_PK_Id_Estadia";
             this.Cbo_PK_Id_Estadia.Size = new System.Drawing.Size(170, 21);
             this.Cbo_PK_Id_Estadia.TabIndex = 31;
@@ -303,7 +307,7 @@ namespace Capa_Vista_Gestion_Habitacion
             // 
             this.lbl_maxima_capacidad.AutoSize = true;
             this.lbl_maxima_capacidad.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_maxima_capacidad.Location = new System.Drawing.Point(142, 206);
+            this.lbl_maxima_capacidad.Location = new System.Drawing.Point(148, 275);
             this.lbl_maxima_capacidad.Name = "lbl_maxima_capacidad";
             this.lbl_maxima_capacidad.Size = new System.Drawing.Size(33, 16);
             this.lbl_maxima_capacidad.TabIndex = 33;
@@ -326,17 +330,51 @@ namespace Capa_Vista_Gestion_Habitacion
             this.lbl_Titulo.AutoSize = true;
             this.lbl_Titulo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Titulo.Location = new System.Drawing.Point(76, 48);
+            this.lbl_Titulo.Location = new System.Drawing.Point(12, 25);
             this.lbl_Titulo.Name = "lbl_Titulo";
             this.lbl_Titulo.Size = new System.Drawing.Size(277, 25);
             this.lbl_Titulo.TabIndex = 35;
             this.lbl_Titulo.Text = "ACTUALIZACIÓN ESTADÍA";
             // 
+            // cbo_Reserva
+            // 
+            this.cbo_Reserva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Reserva.FormattingEnabled = true;
+            this.cbo_Reserva.Location = new System.Drawing.Point(152, 124);
+            this.cbo_Reserva.Name = "cbo_Reserva";
+            this.cbo_Reserva.Size = new System.Drawing.Size(243, 21);
+            this.cbo_Reserva.TabIndex = 37;
+            // 
+            // lbl_Reserva
+            // 
+            this.lbl_Reserva.AutoSize = true;
+            this.lbl_Reserva.Font = new System.Drawing.Font("Rockwell", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Reserva.Location = new System.Drawing.Point(79, 124);
+            this.lbl_Reserva.Name = "lbl_Reserva";
+            this.lbl_Reserva.Size = new System.Drawing.Size(70, 16);
+            this.lbl_Reserva.TabIndex = 36;
+            this.lbl_Reserva.Text = "Id Reserva";
+            // 
+            // btn_buscar_reserva
+            // 
+            this.btn_buscar_reserva.Image = ((System.Drawing.Image)(resources.GetObject("btn_buscar_reserva.Image")));
+            this.btn_buscar_reserva.Location = new System.Drawing.Point(346, 12);
+            this.btn_buscar_reserva.Name = "btn_buscar_reserva";
+            this.btn_buscar_reserva.Size = new System.Drawing.Size(87, 85);
+            this.btn_buscar_reserva.TabIndex = 38;
+            this.btn_buscar_reserva.Text = "Buscar Por Reserva";
+            this.btn_buscar_reserva.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btn_buscar_reserva.UseVisualStyleBackColor = true;
+            this.btn_buscar_reserva.Click += new System.EventHandler(this.btn_buscar_reserva_Click);
+            // 
             // Frm_Estadia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1137, 376);
+            this.ClientSize = new System.Drawing.Size(1116, 484);
+            this.Controls.Add(this.btn_buscar_reserva);
+            this.Controls.Add(this.cbo_Reserva);
+            this.Controls.Add(this.lbl_Reserva);
             this.Controls.Add(this.lbl_Titulo);
             this.Controls.Add(this.btn_Cerrar);
             this.Controls.Add(this.lbl_maxima_capacidad);
@@ -399,5 +437,8 @@ namespace Capa_Vista_Gestion_Habitacion
         private System.Windows.Forms.Label lbl_maxima_capacidad;
         private System.Windows.Forms.Button btn_Cerrar;
         private System.Windows.Forms.Label lbl_Titulo;
+        private System.Windows.Forms.ComboBox cbo_Reserva;
+        private System.Windows.Forms.Label lbl_Reserva;
+        private System.Windows.Forms.Button btn_buscar_reserva;
     }
 }
