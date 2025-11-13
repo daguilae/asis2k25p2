@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Odbc;
 
-namespace CapaModeloProduccion
+namespace Capa_Modelo_Produccion
 {
     class Cls_Conexion_Produccion
     {
@@ -43,5 +43,4 @@ namespace CapaModeloProduccion
 
     }
 }
-
 

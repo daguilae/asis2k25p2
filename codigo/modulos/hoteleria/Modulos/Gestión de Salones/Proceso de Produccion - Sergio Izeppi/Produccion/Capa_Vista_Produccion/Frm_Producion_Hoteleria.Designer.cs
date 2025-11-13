@@ -1,5 +1,4 @@
-﻿
-namespace CapaVistaProduccion
+﻿namespace Capa_Vista_Produccion
 {
     partial class Frm_Produccion_Hoteleria
     {
@@ -30,14 +29,13 @@ namespace CapaVistaProduccion
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Produccion_Hoteleria));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Lbl_Room_Service = new System.Windows.Forms.Label();
             this.Cbo_Menu = new System.Windows.Forms.ComboBox();
             this.Cbo_Estado = new System.Windows.Forms.ComboBox();
             this.Dtp_Fecha = new System.Windows.Forms.DateTimePicker();
             this.Lbl_Estado = new System.Windows.Forms.Label();
             this.Lbl_Titulo = new System.Windows.Forms.Label();
-            this.Lbl_Monto = new System.Windows.Forms.Label();
+            this.Lbl_Habitacion = new System.Windows.Forms.Label();
             this.Lbl_Cantidad = new System.Windows.Forms.Label();
             this.Lbl_Fecha = new System.Windows.Forms.Label();
             this.Lbl_Id_Menu = new System.Windows.Forms.Label();
@@ -52,6 +50,7 @@ namespace CapaVistaProduccion
             this.Txt_Cantidad = new System.Windows.Forms.TextBox();
             this.Txt_Id_Huesped = new System.Windows.Forms.TextBox();
             this.Pnl_Superior = new System.Windows.Forms.Panel();
+            this.Btn_Cambio = new System.Windows.Forms.Button();
             this.Lbl_Precio = new System.Windows.Forms.Label();
             this.Txt_PrecioUni = new System.Windows.Forms.TextBox();
             this.Lbl_Subtotal = new System.Windows.Forms.Label();
@@ -60,27 +59,11 @@ namespace CapaVistaProduccion
             this.Btn_Guardar_Plato = new System.Windows.Forms.Button();
             this.Btn_eliminar_Plato = new System.Windows.Forms.Button();
             this.Btn_editar_plato = new System.Windows.Forms.Button();
-            this.Btn_Cambio = new System.Windows.Forms.Button();
             this.Btn_Reporte = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Room_Service)).BeginInit();
             this.Pnl_Superior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Platos)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1406, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(31, 64);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Lbl_Room_Service
             // 
@@ -96,15 +79,17 @@ namespace CapaVistaProduccion
             // 
             // Cbo_Menu
             // 
+            this.Cbo_Menu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbo_Menu.FormattingEnabled = true;
             this.Cbo_Menu.Location = new System.Drawing.Point(192, 296);
             this.Cbo_Menu.Name = "Cbo_Menu";
             this.Cbo_Menu.Size = new System.Drawing.Size(128, 24);
             this.Cbo_Menu.TabIndex = 139;
-            this.Cbo_Menu.SelectedIndexChanged += new System.EventHandler(this.Cbo_Menu_SelectedIndexChanged);
+            this.Cbo_Menu.SelectedIndexChanged += new System.EventHandler(this.pro_Cbo_Menu_SelectedIndexChanged);
             // 
             // Cbo_Estado
             // 
+            this.Cbo_Estado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cbo_Estado.FormattingEnabled = true;
             this.Cbo_Estado.Location = new System.Drawing.Point(805, 186);
             this.Cbo_Estado.Name = "Cbo_Estado";
@@ -142,17 +127,17 @@ namespace CapaVistaProduccion
             this.Lbl_Titulo.TabIndex = 2;
             this.Lbl_Titulo.Text = "MODULO HOTELERIA";
             // 
-            // Lbl_Monto
+            // Lbl_Habitacion
             // 
-            this.Lbl_Monto.AutoSize = true;
-            this.Lbl_Monto.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Monto.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.Lbl_Monto.Location = new System.Drawing.Point(13, 272);
-            this.Lbl_Monto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.Lbl_Monto.Name = "Lbl_Monto";
-            this.Lbl_Monto.Size = new System.Drawing.Size(104, 21);
-            this.Lbl_Monto.TabIndex = 135;
-            this.Lbl_Monto.Text = "ID Pedido:";
+            this.Lbl_Habitacion.AutoSize = true;
+            this.Lbl_Habitacion.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Habitacion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.Lbl_Habitacion.Location = new System.Drawing.Point(13, 272);
+            this.Lbl_Habitacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_Habitacion.Name = "Lbl_Habitacion";
+            this.Lbl_Habitacion.Size = new System.Drawing.Size(136, 21);
+            this.Lbl_Habitacion.TabIndex = 135;
+            this.Lbl_Habitacion.Text = "ID Habitacion:";
             // 
             // Lbl_Cantidad
             // 
@@ -225,7 +210,7 @@ namespace CapaVistaProduccion
             this.Btn_modificar.Size = new System.Drawing.Size(53, 46);
             this.Btn_modificar.TabIndex = 129;
             this.Btn_modificar.UseVisualStyleBackColor = false;
-            this.Btn_modificar.Click += new System.EventHandler(this.Btn_modificar_Click);
+            this.Btn_modificar.Click += new System.EventHandler(this.pro_Btn_modificar_Click);
             // 
             // Btn_eliminar
             // 
@@ -238,7 +223,7 @@ namespace CapaVistaProduccion
             this.Btn_eliminar.Size = new System.Drawing.Size(53, 46);
             this.Btn_eliminar.TabIndex = 128;
             this.Btn_eliminar.UseVisualStyleBackColor = false;
-            this.Btn_eliminar.Click += new System.EventHandler(this.Btn_eliminar_Click);
+            this.Btn_eliminar.Click += new System.EventHandler(this.pro_Btn_eliminar_Click);
             // 
             // Btn_guardar
             // 
@@ -252,12 +237,12 @@ namespace CapaVistaProduccion
             this.Btn_guardar.Size = new System.Drawing.Size(53, 46);
             this.Btn_guardar.TabIndex = 127;
             this.Btn_guardar.UseVisualStyleBackColor = false;
-            this.Btn_guardar.Click += new System.EventHandler(this.Btn_guardar_Click);
+            this.Btn_guardar.Click += new System.EventHandler(this.pro_Btn_guardar_Click);
             // 
             // Dgv_Room_Service
             // 
-            this.Dgv_Room_Service.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Dgv_Room_Service.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Room_Service.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Room_Service.Location = new System.Drawing.Point(20, 341);
@@ -267,7 +252,7 @@ namespace CapaVistaProduccion
             this.Dgv_Room_Service.RowTemplate.Height = 24;
             this.Dgv_Room_Service.Size = new System.Drawing.Size(687, 295);
             this.Dgv_Room_Service.TabIndex = 126;
-            this.Dgv_Room_Service.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Room_Service_CellContentClick);
+            this.Dgv_Room_Service.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.pro_Dgv_Room_Service_CellContentClick);
             // 
             // Txt_Id_Habitacion
             // 
@@ -277,6 +262,7 @@ namespace CapaVistaProduccion
             this.Txt_Id_Habitacion.Name = "Txt_Id_Habitacion";
             this.Txt_Id_Habitacion.Size = new System.Drawing.Size(233, 22);
             this.Txt_Id_Habitacion.TabIndex = 125;
+            this.Txt_Id_Habitacion.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Id_Habitacion_KeyPress);
             // 
             // Txt_ID_Pedido
             // 
@@ -286,7 +272,8 @@ namespace CapaVistaProduccion
             this.Txt_ID_Pedido.Name = "Txt_ID_Pedido";
             this.Txt_ID_Pedido.Size = new System.Drawing.Size(100, 22);
             this.Txt_ID_Pedido.TabIndex = 124;
-            this.Txt_ID_Pedido.TextChanged += new System.EventHandler(this.Txt_ID_Pedido_TextChanged);
+            this.Txt_ID_Pedido.TextChanged += new System.EventHandler(this.pro_Txt_ID_Pedido_TextChanged);
+            this.Txt_ID_Pedido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_ID_Pedido_KeyPress);
             // 
             // Txt_Cantidad
             // 
@@ -297,7 +284,8 @@ namespace CapaVistaProduccion
             this.Txt_Cantidad.Name = "Txt_Cantidad";
             this.Txt_Cantidad.Size = new System.Drawing.Size(123, 22);
             this.Txt_Cantidad.TabIndex = 123;
-            this.Txt_Cantidad.TextChanged += new System.EventHandler(this.Txt_Cantidad_TextChanged);
+            this.Txt_Cantidad.TextChanged += new System.EventHandler(this.pro_Txt_Cantidad_TextChanged);
+            this.Txt_Cantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Cantidad_KeyPress);
             // 
             // Txt_Id_Huesped
             // 
@@ -307,19 +295,29 @@ namespace CapaVistaProduccion
             this.Txt_Id_Huesped.Name = "Txt_Id_Huesped";
             this.Txt_Id_Huesped.Size = new System.Drawing.Size(233, 22);
             this.Txt_Id_Huesped.TabIndex = 122;
+            this.Txt_Id_Huesped.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Txt_Id_Huesped_KeyPress);
             // 
             // Pnl_Superior
             // 
             this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
             this.Pnl_Superior.Controls.Add(this.Lbl_Titulo);
             this.Pnl_Superior.Controls.Add(this.Btn_Cambio);
-            this.Pnl_Superior.Controls.Add(this.pictureBox1);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
             this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(1437, 64);
             this.Pnl_Superior.TabIndex = 121;
+            // 
+            // Btn_Cambio
+            // 
+            this.Btn_Cambio.Location = new System.Drawing.Point(1245, 10);
+            this.Btn_Cambio.Name = "Btn_Cambio";
+            this.Btn_Cambio.Size = new System.Drawing.Size(132, 44);
+            this.Btn_Cambio.TabIndex = 150;
+            this.Btn_Cambio.Text = "Reservas a la Carta";
+            this.Btn_Cambio.UseVisualStyleBackColor = true;
+            this.Btn_Cambio.Click += new System.EventHandler(this.pro_button1_Click);
             // 
             // Lbl_Precio
             // 
@@ -367,8 +365,8 @@ namespace CapaVistaProduccion
             // 
             // Dgv_Platos
             // 
-            this.Dgv_Platos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.Dgv_Platos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Dgv_Platos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Dgv_Platos.Location = new System.Drawing.Point(723, 341);
@@ -378,7 +376,7 @@ namespace CapaVistaProduccion
             this.Dgv_Platos.RowTemplate.Height = 24;
             this.Dgv_Platos.Size = new System.Drawing.Size(691, 295);
             this.Dgv_Platos.TabIndex = 146;
-            this.Dgv_Platos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Platos_CellContentClick);
+            this.Dgv_Platos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.pro_Dgv_Platos_CellContentClick);
             // 
             // Btn_Guardar_Plato
             // 
@@ -392,7 +390,7 @@ namespace CapaVistaProduccion
             this.Btn_Guardar_Plato.Size = new System.Drawing.Size(53, 46);
             this.Btn_Guardar_Plato.TabIndex = 147;
             this.Btn_Guardar_Plato.UseVisualStyleBackColor = false;
-            this.Btn_Guardar_Plato.Click += new System.EventHandler(this.Btn_Guardar_Plato_Click);
+            this.Btn_Guardar_Plato.Click += new System.EventHandler(this.pro_Btn_Guardar_Plato_Click);
             // 
             // Btn_eliminar_Plato
             // 
@@ -405,7 +403,7 @@ namespace CapaVistaProduccion
             this.Btn_eliminar_Plato.Size = new System.Drawing.Size(53, 46);
             this.Btn_eliminar_Plato.TabIndex = 148;
             this.Btn_eliminar_Plato.UseVisualStyleBackColor = false;
-            this.Btn_eliminar_Plato.Click += new System.EventHandler(this.Btn_eliminar_Plato_Click);
+            this.Btn_eliminar_Plato.Click += new System.EventHandler(this.pro_Btn_eliminar_Plato_Click);
             // 
             // Btn_editar_plato
             // 
@@ -418,17 +416,7 @@ namespace CapaVistaProduccion
             this.Btn_editar_plato.Size = new System.Drawing.Size(53, 46);
             this.Btn_editar_plato.TabIndex = 149;
             this.Btn_editar_plato.UseVisualStyleBackColor = false;
-            this.Btn_editar_plato.Click += new System.EventHandler(this.Btn_editar_plato_Click);
-            // 
-            // Btn_Cambio
-            // 
-            this.Btn_Cambio.Location = new System.Drawing.Point(1245, 10);
-            this.Btn_Cambio.Name = "Btn_Cambio";
-            this.Btn_Cambio.Size = new System.Drawing.Size(132, 44);
-            this.Btn_Cambio.TabIndex = 150;
-            this.Btn_Cambio.Text = "Reservas a la Carta";
-            this.Btn_Cambio.UseVisualStyleBackColor = true;
-            this.Btn_Cambio.Click += new System.EventHandler(this.button1_Click);
+            this.Btn_editar_plato.Click += new System.EventHandler(this.pro_Btn_editar_plato_Click);
             // 
             // Btn_Reporte
             // 
@@ -443,7 +431,7 @@ namespace CapaVistaProduccion
             this.Btn_Reporte.TabIndex = 151;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
-            this.Btn_Reporte.Click += new System.EventHandler(this.Btn_Reporte_Click);
+            this.Btn_Reporte.Click += new System.EventHandler(this.pro_Btn_Reporte_Click);
             // 
             // Frm_Produccion_Hoteleria
             // 
@@ -465,7 +453,7 @@ namespace CapaVistaProduccion
             this.Controls.Add(this.Cbo_Estado);
             this.Controls.Add(this.Dtp_Fecha);
             this.Controls.Add(this.Lbl_Estado);
-            this.Controls.Add(this.Lbl_Monto);
+            this.Controls.Add(this.Lbl_Habitacion);
             this.Controls.Add(this.Lbl_Cantidad);
             this.Controls.Add(this.Lbl_Fecha);
             this.Controls.Add(this.Lbl_Id_Menu);
@@ -480,10 +468,9 @@ namespace CapaVistaProduccion
             this.Controls.Add(this.Txt_Cantidad);
             this.Controls.Add(this.Txt_Id_Huesped);
             this.Controls.Add(this.Pnl_Superior);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Frm_Produccion_Hoteleria";
             this.Text = "Frm_Producion_Hoteleria2";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Room_Service)).EndInit();
             this.Pnl_Superior.ResumeLayout(false);
             this.Pnl_Superior.PerformLayout();
@@ -494,15 +481,13 @@ namespace CapaVistaProduccion
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label Lbl_Room_Service;
         private System.Windows.Forms.ComboBox Cbo_Menu;
         private System.Windows.Forms.ComboBox Cbo_Estado;
         private System.Windows.Forms.DateTimePicker Dtp_Fecha;
         private System.Windows.Forms.Label Lbl_Estado;
         private System.Windows.Forms.Label Lbl_Titulo;
-        private System.Windows.Forms.Label Lbl_Monto;
+        private System.Windows.Forms.Label Lbl_Habitacion;
         private System.Windows.Forms.Label Lbl_Cantidad;
         private System.Windows.Forms.Label Lbl_Fecha;
         private System.Windows.Forms.Label Lbl_Id_Menu;

@@ -17,7 +17,6 @@ using Capa_Vista_IE;
 using Capa_Vista_MH;
 using CapaVistaOP;
 using Capa_Vista_Receta;
-using CapaVistaProduccion;
 using Capa_Vista_Produccion;
 using Capa_Vista_Cierre;
 
