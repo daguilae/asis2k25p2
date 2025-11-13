@@ -59,10 +59,11 @@ namespace Capa_Vista_Hoteleria
             this.ordenesDeCompraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.foliosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cierreDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asignacionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cierreDiarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.promocionesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Pnl_Superior.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.statusStrip.SuspendLayout();
@@ -132,7 +133,8 @@ namespace Capa_Vista_Hoteleria
             this.mantenimientoHabitacionesToolStripMenuItem,
             this.tipoHabitacionesToolStripMenuItem,
             this.serviciosCuartosToolStripMenuItem,
-            this.huespedesToolStripMenuItem});
+            this.huespedesToolStripMenuItem,
+            this.promocionesToolStripMenuItem});
             this.catálogosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.catálogosToolStripMenuItem.Name = "catálogosToolStripMenuItem";
             this.catálogosToolStripMenuItem.Size = new System.Drawing.Size(102, 24);
@@ -323,9 +325,16 @@ namespace Capa_Vista_Hoteleria
             // foliosToolStripMenuItem
             // 
             this.foliosToolStripMenuItem.Name = "foliosToolStripMenuItem";
-            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.foliosToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
             this.foliosToolStripMenuItem.Text = "Folios";
             this.foliosToolStripMenuItem.Click += new System.EventHandler(this.foliosToolStripMenuItem_Click);
+            // 
+            // cierreDiarioToolStripMenuItem
+            // 
+            this.cierreDiarioToolStripMenuItem.Name = "cierreDiarioToolStripMenuItem";
+            this.cierreDiarioToolStripMenuItem.Size = new System.Drawing.Size(196, 26);
+            this.cierreDiarioToolStripMenuItem.Text = "Cierre Diario";
+            this.cierreDiarioToolStripMenuItem.Click += new System.EventHandler(this.cierreDiarioToolStripMenuItem_Click);
             // 
             // asignacionesToolStripMenuItem
             // 
@@ -352,12 +361,12 @@ namespace Capa_Vista_Hoteleria
             this.toolStripStatusLabel.Size = new System.Drawing.Size(54, 20);
             this.toolStripStatusLabel.Text = "Estado";
             // 
-            // cierreDiarioToolStripMenuItem
+            // promocionesToolStripMenuItem
             // 
-            this.cierreDiarioToolStripMenuItem.Name = "cierreDiarioToolStripMenuItem";
-            this.cierreDiarioToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.cierreDiarioToolStripMenuItem.Text = "Cierre Diario";
-            this.cierreDiarioToolStripMenuItem.Click += new System.EventHandler(this.cierreDiarioToolStripMenuItem_Click);
+            this.promocionesToolStripMenuItem.Name = "promocionesToolStripMenuItem";
+            this.promocionesToolStripMenuItem.Size = new System.Drawing.Size(317, 26);
+            this.promocionesToolStripMenuItem.Text = "Promociones";
+            this.promocionesToolStripMenuItem.Click += new System.EventHandler(this.promocionesToolStripMenuItem_Click);
             // 
             // Frm_MDI_Hoteleria
             // 
@@ -419,5 +428,6 @@ namespace Capa_Vista_Hoteleria
         private System.Windows.Forms.ToolStripMenuItem recetasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ordenesDeCompraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cierreDiarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem promocionesToolStripMenuItem;
     }
 }

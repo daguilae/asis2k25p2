@@ -29,31 +29,20 @@ namespace Capa_Vista_Gestion_Habitacion
         /// </summary>
         private void InitializeComponent()
         {
-            this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_titulo = new System.Windows.Forms.Label();
+            this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // navegador1
-            // 
-            this.navegador1.IPkId_Aplicacion = 0;
-            this.navegador1.IPkId_Modulo = 0;
-            this.navegador1.Location = new System.Drawing.Point(1, 44);
-            this.navegador1.Name = "navegador1";
-            this.navegador1.SAlias = null;
-            this.navegador1.SEtiquetas = null;
-            this.navegador1.Size = new System.Drawing.Size(1180, 485);
-            this.navegador1.SNombreTabla = null;
-            this.navegador1.TabIndex = 0;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(142)))), ((int)(((byte)(181)))));
             this.panel1.Controls.Add(this.lbl_titulo);
             this.panel1.Location = new System.Drawing.Point(1, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1177, 38);
+            this.panel1.Size = new System.Drawing.Size(1569, 47);
             this.panel1.TabIndex = 2;
             // 
             // lbl_titulo
@@ -61,19 +50,34 @@ namespace Capa_Vista_Gestion_Habitacion
             this.lbl_titulo.AutoSize = true;
             this.lbl_titulo.Font = new System.Drawing.Font("Rockwell", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_titulo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_titulo.Location = new System.Drawing.Point(17, 7);
+            this.lbl_titulo.Location = new System.Drawing.Point(23, 9);
+            this.lbl_titulo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbl_titulo.Name = "lbl_titulo";
-            this.lbl_titulo.Size = new System.Drawing.Size(537, 23);
+            this.lbl_titulo.Size = new System.Drawing.Size(693, 31);
             this.lbl_titulo.TabIndex = 5;
             this.lbl_titulo.Text = "MODULO HOTELERIA - Mantenimiento Servicio Cuarto";
             // 
+            // navegador1
+            // 
+            this.navegador1.IPkId_Aplicacion = 0;
+            this.navegador1.IPkId_Modulo = 0;
+            this.navegador1.Location = new System.Drawing.Point(6, 45);
+            this.navegador1.Margin = new System.Windows.Forms.Padding(5);
+            this.navegador1.Name = "navegador1";
+            this.navegador1.SAlias = null;
+            this.navegador1.SEtiquetas = null;
+            this.navegador1.Size = new System.Drawing.Size(1573, 597);
+            this.navegador1.SNombreTabla = null;
+            this.navegador1.TabIndex = 0;
+            // 
             // Frm_Servicios_Cuartos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1179, 528);
+            this.ClientSize = new System.Drawing.Size(1569, 640);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.navegador1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Frm_Servicios_Cuartos";
             this.Text = "Frm_Servicios_Cuartos";
             this.panel1.ResumeLayout(false);
