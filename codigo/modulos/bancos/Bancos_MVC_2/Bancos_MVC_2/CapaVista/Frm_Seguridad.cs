@@ -15,6 +15,7 @@ using Capa_Vista_MB;
 using Capa_Vista_Mantenimientos;
 using Capa_Vista_TipoDeCambio;
 using Capa_Vista;
+using Capa_Vista_ReportesBancarios;
 
 
 namespace Capa_Vista_Bancos
@@ -383,13 +384,31 @@ namespace Capa_Vista_Bancos
 
         private void ingresoTipoCambioToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Frm_IngresoTipoDeCambio F = new Frm_IngresoTipoDeCambio();
+            Frm_IngresoTipoDeCambio1 F = new Frm_IngresoTipoDeCambio1();
             F.ShowDialog();
         }
 
         private void pruebaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_PruebaNavegador M = new Frm_PruebaNavegador();
+            M.ShowDialog();
+        }
+
+        private void reportesBancariosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Forms_Reportes_Bancarios M = new Forms_Reportes_Bancarios();
+            M.ShowDialog();
+        }
+
+        private void disponibilidadDiariaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_DisponibilidadDiaria M = new Frm_DisponibilidadDiaria();
+            M.ShowDialog();
+        }
+
+        private void tipoCambioDelDiaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_TipoDeCambioDia M = new Frm_TipoDeCambioDia();
             M.ShowDialog();
         }
     }

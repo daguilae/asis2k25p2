@@ -56,10 +56,61 @@ namespace Capa_Vista_CB
             finally { bCargando = false; }
         }
 
-        private void Btn_Ayuda_Click(object sender, EventArgs e) {
-            Help.ShowHelp(this, @"AyudasConciliacionBancaria/AyudasConciliacionBancaria.chm", "ConciliacionBancaria_ayuda.html");
-        
+        private void Btn_Ayuda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                const string subRutaAyuda = @"ayuda\modulos\bancos\AyudasConciliacionBancaria\AyudasConciliacionBancaria.chm";
+
+                string rutaEncontrada = null;
+
+                System.IO.DirectoryInfo dir = new System.IO.DirectoryInfo(Application.StartupPath);
+
+                for (int i = 0; i < 10 && dir != null; i++, dir = dir.Parent)
+                {
+                    string candidata = System.IO.Path.Combine(dir.FullName, subRutaAyuda);
+                    if (System.IO.File.Exists(candidata))
+                    {
+                        rutaEncontrada = candidata;
+                        break;
+                    }
+                }
+
+                string rutaAbsolutaRespaldo =
+                    @"C:\Users\paula\source\repos\CuentaPrincipal\ModuloBancos-ConciliacionBancaria\asis2k25p2\ayuda\modulos\bancos\AyudasConciliacionBancaria\AyudasConciliacionBancaria.chm";
+
+                if (rutaEncontrada == null && System.IO.File.Exists(rutaAbsolutaRespaldo))
+                    rutaEncontrada = rutaAbsolutaRespaldo;
+
+                if (rutaEncontrada != null)
+                {
+
+                    Help.ShowHelp(this, rutaEncontrada, HelpNavigator.Topic, "ConciliacionBancaria_ayuda.html");
+                }
+                else
+                {
+                    string intento = System.IO.Path.Combine(Application.StartupPath, subRutaAyuda);
+                    MessageBox.Show(
+                        "No se encontró el archivo de ayuda.\n\nProbé desde:\n" + intento +
+                        "\n\nVerifica que exista esta ruta relativa dentro del proyecto:\n" + subRutaAyuda,
+                        "Archivo de ayuda no encontrado",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error al abrir la ayuda:\n" + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
         }
+
+
 
         private void Btn_Salir_Click(object sender, EventArgs e) => Close();
 
