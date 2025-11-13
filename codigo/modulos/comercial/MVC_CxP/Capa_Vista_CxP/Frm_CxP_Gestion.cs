@@ -187,8 +187,9 @@ namespace Capa_Vista_CxP
         // Evento temporal para evitar error de compilación
         private void Btn_Pagos_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Aquí irá la lógica para registrar pagos más adelante.",
-                            "En desarrollo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Frm_CxP_Pagos CxP_pagos = new Frm_CxP_Pagos();
+            CxP_pagos.Show();
+            this.Hide();
         }
 
     }
