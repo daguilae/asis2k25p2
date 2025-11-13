@@ -48,7 +48,7 @@ namespace Capa_vista_Check_In_Check_out
 
 
             int id_aplicacion = 3412;
-           int id_Modulo = 8;
+           int id_Modulo = 6;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.configurarDataGridView(config);

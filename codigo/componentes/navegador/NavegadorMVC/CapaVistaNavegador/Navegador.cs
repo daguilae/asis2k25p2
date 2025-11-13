@@ -125,10 +125,11 @@ namespace Capa_Vista_Navegador
             if (Dgv_Datos == null)
             {
                 //llama metodo de creacion DGV
-                DataGridView dgv = ctrl.CrearDataGridView();
+                Dgv_Datos = ctrl.CrearDataGridView();
+                ctrl.AsignarDataGridView(Dgv_Datos);
+
 
                 // ======================= Stevens Cambranes = 20/09/2025 =======================
-                ctrl.AsignarDataGridView(Dgv_Datos);
                 Dgv_Datos.SelectionChanged += Dgv_Datos_SelectionChanged;
             }
 

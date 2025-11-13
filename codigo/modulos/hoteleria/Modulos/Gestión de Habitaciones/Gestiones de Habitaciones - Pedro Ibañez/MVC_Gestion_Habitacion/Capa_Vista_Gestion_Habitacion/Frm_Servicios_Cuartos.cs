@@ -39,8 +39,8 @@ namespace Capa_Vista_Gestion_Habitacion
                     };
 
 
-            int id_aplicacion = 3408;
-            int id_Modulo = 8;
+            int id_aplicacion = 3044;
+            int id_Modulo = 6;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.configurarDataGridView(config);

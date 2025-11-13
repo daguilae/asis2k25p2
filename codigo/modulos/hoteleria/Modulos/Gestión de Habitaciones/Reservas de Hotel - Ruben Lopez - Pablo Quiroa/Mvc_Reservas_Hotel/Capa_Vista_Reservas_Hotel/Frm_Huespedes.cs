@@ -59,7 +59,7 @@ namespace Capa_Vista_Reservas_Hotel
             };
 
             navegador1.IPkId_Aplicacion = 3401;
-            navegador1.IPkId_Modulo = 8;
+            navegador1.IPkId_Modulo = 6;
             navegador1.configurarDataGridView(config);
             navegador1.SNombreTabla = columnas[0];
             navegador1.SAlias = columnas;
