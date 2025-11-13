@@ -99,6 +99,12 @@
     <Compile Include="Frm_Horas_Extra_Nomina.Designer.cs">
       <DependentUpon>Frm_Horas_Extra_Nomina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Frm_Mantenimiento_Conceptos_Nomina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_Mantenimiento_Conceptos_Nomina.Designer.cs">
+      <DependentUpon>Frm_Mantenimiento_Conceptos_Nomina.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Mantenimiento_Departamentos_Nomina.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Horas_Extra_Nomina.resx">
       <DependentUpon>Frm_Horas_Extra_Nomina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_Mantenimiento_Conceptos_Nomina.resx">
+      <DependentUpon>Frm_Mantenimiento_Conceptos_Nomina.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Mantenimiento_Departamentos_Nomina.resx">
       <DependentUpon>Frm_Mantenimiento_Departamentos_Nomina.cs</DependentUpon>

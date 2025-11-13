@@ -29,6 +29,7 @@ namespace Capa_Vista_Seguridad
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_Login));
             this.chkMostrarContrasena = new System.Windows.Forms.CheckBox();
             this.lblModuloSeguridad = new System.Windows.Forms.Label();
             this.lblContrasena = new System.Windows.Forms.Label();
@@ -50,7 +51,7 @@ namespace Capa_Vista_Seguridad
             this.chkMostrarContrasena.AutoSize = true;
             this.chkMostrarContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkMostrarContrasena.Location = new System.Drawing.Point(281, 202);
-            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkMostrarContrasena.Margin = new System.Windows.Forms.Padding(2);
             this.chkMostrarContrasena.Name = "chkMostrarContrasena";
             this.chkMostrarContrasena.Size = new System.Drawing.Size(98, 38);
             this.chkMostrarContrasena.TabIndex = 31;
@@ -95,15 +96,15 @@ namespace Capa_Vista_Seguridad
             // 
             // btnIniciarSesion
             // 
-            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
+            this.btnIniciarSesion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(47)))), ((int)(((byte)(149)))));
             this.btnIniciarSesion.FlatAppearance.BorderSize = 0;
             this.btnIniciarSesion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciarSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.btnIniciarSesion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
-            this.btnIniciarSesion.Location = new System.Drawing.Point(147, 294);
-            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnIniciarSesion.Location = new System.Drawing.Point(163, 312);
+            this.btnIniciarSesion.Margin = new System.Windows.Forms.Padding(2);
             this.btnIniciarSesion.Name = "btnIniciarSesion";
-            this.btnIniciarSesion.Size = new System.Drawing.Size(106, 39);
+            this.btnIniciarSesion.Size = new System.Drawing.Size(198, 39);
             this.btnIniciarSesion.TabIndex = 27;
             this.btnIniciarSesion.Text = "Iniciar Sesión";
             this.btnIniciarSesion.UseVisualStyleBackColor = false;
@@ -127,7 +128,7 @@ namespace Capa_Vista_Seguridad
             this.txtContrasena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
             this.txtContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtContrasena.Location = new System.Drawing.Point(110, 206);
-            this.txtContrasena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContrasena.Margin = new System.Windows.Forms.Padding(2);
             this.txtContrasena.Name = "txtContrasena";
             this.txtContrasena.Size = new System.Drawing.Size(161, 23);
             this.txtContrasena.TabIndex = 25;
@@ -138,18 +139,18 @@ namespace Capa_Vista_Seguridad
             this.txtUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(236)))), ((int)(((byte)(238)))));
             this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.txtUsuario.Location = new System.Drawing.Point(110, 162);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(161, 23);
             this.txtUsuario.TabIndex = 24;
             // 
             // Pnl_Superior
             // 
-            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(78)))), ((int)(((byte)(88)))));
+            this.Pnl_Superior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(119)))), ((int)(((byte)(47)))), ((int)(((byte)(149)))));
             this.Pnl_Superior.Controls.Add(this.Pic_Cerrar);
             this.Pnl_Superior.Dock = System.Windows.Forms.DockStyle.Top;
             this.Pnl_Superior.Location = new System.Drawing.Point(0, 0);
-            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Pnl_Superior.Margin = new System.Windows.Forms.Padding(2);
             this.Pnl_Superior.Name = "Pnl_Superior";
             this.Pnl_Superior.Size = new System.Drawing.Size(534, 36);
             this.Pnl_Superior.TabIndex = 33;
@@ -161,7 +162,7 @@ namespace Capa_Vista_Seguridad
             this.Pic_Cerrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.Pic_Cerrar.Image = global::Capa_Vista_Seguridad.Properties.Resources.Cancel_icon_icons_com_73703;
             this.Pic_Cerrar.Location = new System.Drawing.Point(506, 0);
-            this.Pic_Cerrar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Pic_Cerrar.Margin = new System.Windows.Forms.Padding(2);
             this.Pic_Cerrar.Name = "Pic_Cerrar";
             this.Pic_Cerrar.Size = new System.Drawing.Size(28, 36);
             this.Pic_Cerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -171,9 +172,9 @@ namespace Capa_Vista_Seguridad
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Capa_Vista_Seguridad.Properties.Resources.usuario;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(374, 146);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(151, 136);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -184,7 +185,7 @@ namespace Capa_Vista_Seguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(185)))), ((int)(((byte)(185)))), ((int)(((byte)(185)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(534, 392);
             this.Controls.Add(this.Pnl_Superior);
             this.Controls.Add(this.pictureBox1);

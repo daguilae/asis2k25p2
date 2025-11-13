@@ -52,5 +52,10 @@ namespace Capa_Vista_Seguridad
 
             }
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -43,7 +43,9 @@ namespace Capa_Vista_Seguridad
 
 
 
-            int id_aplicacion = 100;
+            int id_aplicacion = 401;
+            int id_Modulo = 5;
+            navegador1.IPkId_Modulo = id_Modulo;
             navegador1.IPkId_Aplicacion = id_aplicacion;
             navegador1.configurarDataGridView(config);
             navegador1.SNombreTabla = columnas[0];

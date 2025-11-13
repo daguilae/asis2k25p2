@@ -1,7 +1,7 @@
 ﻿
 namespace Capa_Vista_Seguridad
 {
-    partial class Frm_Percepciones_Nomina
+    partial class Frm_Mantenimiento_Conceptos_Nomina
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,35 @@ namespace Capa_Vista_Seguridad
         /// </summary>
         private void InitializeComponent()
         {
-            this.form_Percep1 = new Capa_Vista_Percepciones_Nomina.Form_Percep();
+            this.navegador1 = new Capa_Vista_Navegador.Navegador();
             this.SuspendLayout();
             // 
-            // form_Percep1
+            // navegador1
             // 
-            this.form_Percep1.BackColor = System.Drawing.Color.Transparent;
-            this.form_Percep1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.form_Percep1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.form_Percep1.Location = new System.Drawing.Point(-2, 1);
-            this.form_Percep1.Name = "form_Percep1";
-            this.form_Percep1.Size = new System.Drawing.Size(800, 450);
-            this.form_Percep1.TabIndex = 0;
+            this.navegador1.IPkId_Aplicacion = 0;
+            this.navegador1.IPkId_Modulo = 0;
+            this.navegador1.Location = new System.Drawing.Point(2, 12);
+            this.navegador1.Name = "navegador1";
+            this.navegador1.SAlias = null;
+            this.navegador1.SEtiquetas = null;
+            this.navegador1.Size = new System.Drawing.Size(1180, 488);
+            this.navegador1.SNombreTabla = null;
+            this.navegador1.TabIndex = 0;
             // 
-            // Frm_Percepciones_Nomina
+            // Frm_Mantenimiento_Conceptos_Nomina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.form_Percep1);
-            this.Name = "Frm_Percepciones_Nomina";
-            this.Text = "Frm_Percepciones_Nomina";
+            this.ClientSize = new System.Drawing.Size(1171, 616);
+            this.Controls.Add(this.navegador1);
+            this.Name = "Frm_Mantenimiento_Conceptos_Nomina";
+            this.Text = "Frm_Mantenimiento_Conceptos_Nomina";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Capa_Vista_Percepciones_Nomina.Form_Percep form_Percep1;
+        private Capa_Vista_Navegador.Navegador navegador1;
     }
 }

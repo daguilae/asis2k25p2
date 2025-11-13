@@ -398,5 +398,11 @@ namespace Capa_Vista_Seguridad
             Frm_Horas_Extra_Nomina frm_Horas_Extra_Nomina = new Frm_Horas_Extra_Nomina();
             frm_Horas_Extra_Nomina.ShowDialog();
         }
+
+        private void conceptosDeNominaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_Mantenimiento_Conceptos_Nomina frm_Mantenimiento_Conceptos_Nomina = new Frm_Mantenimiento_Conceptos_Nomina();
+            frm_Mantenimiento_Conceptos_Nomina.ShowDialog();
+        }
     }
 }

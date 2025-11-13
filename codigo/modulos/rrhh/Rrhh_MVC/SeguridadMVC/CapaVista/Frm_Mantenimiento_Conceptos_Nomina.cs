@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Capa_Vista_Seguridad
 {
-    public partial class Frm_Mantenimiento_Departamentos_Nomina : Form
+    public partial class Frm_Mantenimiento_Conceptos_Nomina : Form
     {
-        public Frm_Mantenimiento_Departamentos_Nomina()
+        public Frm_Mantenimiento_Conceptos_Nomina()
         {
             InitializeComponent();
 
@@ -28,21 +28,33 @@ namespace Capa_Vista_Seguridad
             };
 
             string[] columnas = {
-                "tbl_departamentos",
-                "Cmp_iId_Departamento",
-                "Cmp_sNombre_Departamento",
-                "Cmp_sDescripcion_Departamento"
+                "tbl_conceptosnomina",
+                "Cmp_iId_ConceptoNomina",
+                "Cmp_sNombre_ConceptoNomina",
+                "Cmp_sDescripcion_ConceptoNomina",
+                "Cmp_sTipo_ConceptoNomina",
+                "Cmp_sTipoCalculo_ConceptoNomina",
+                "Cmp_deValor_ConceptoNomina",
+                "Cmp_bAplicaAutomatico_ConceptoNomina",
+                "Fk_Codigo_Cuenta"
+
             };
 
             string[] sEtiquetas = {
-                "Código Departamento",
-                "Nombre ",
-                "Descripcion"
+                "Código ConceptoN",
+                "Nombre",
+                "Descripcion",
+                "Tipo",
+                "Tipo Calculo",
+                "Valor",
+                "Automatico",
+                "Codigo Cuenta"
+
             };
 
 
 
-            int id_aplicacion = 402;
+            int id_aplicacion = 403;
             int id_Modulo = 5;
             navegador1.IPkId_Modulo = id_Modulo;
             navegador1.IPkId_Aplicacion = id_aplicacion;
@@ -51,11 +63,6 @@ namespace Capa_Vista_Seguridad
             navegador1.SAlias = columnas;
             navegador1.SEtiquetas = sEtiquetas;
             navegador1.mostrarDatos();
-        }
-
-        private void Frm_Mantenimiento_Departamentos_Nomina_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
