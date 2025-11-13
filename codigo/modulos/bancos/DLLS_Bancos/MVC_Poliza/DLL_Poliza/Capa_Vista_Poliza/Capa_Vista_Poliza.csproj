@@ -47,17 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Poliza.cs">
+    <Compile Include="Frm_GenerarPoliza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Poliza.Designer.cs">
-      <DependentUpon>Frm_Poliza.cs</DependentUpon>
+    <Compile Include="Frm_GenerarPoliza.Designer.cs">
+      <DependentUpon>Frm_GenerarPoliza.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Poliza.resx">
-      <DependentUpon>Frm_Poliza.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_GenerarPoliza.resx">
+      <DependentUpon>Frm_GenerarPoliza.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
