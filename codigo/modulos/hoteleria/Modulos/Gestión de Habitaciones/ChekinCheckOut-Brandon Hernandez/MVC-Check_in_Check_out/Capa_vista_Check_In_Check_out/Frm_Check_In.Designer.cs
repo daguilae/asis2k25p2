@@ -63,9 +63,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Salir.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Salir.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Salir.Image")));
-            this.Btn_Salir.Location = new System.Drawing.Point(1271, 20);
+            this.Btn_Salir.Location = new System.Drawing.Point(953, 16);
+            this.Btn_Salir.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Salir.Name = "Btn_Salir";
-            this.Btn_Salir.Size = new System.Drawing.Size(53, 50);
+            this.Btn_Salir.Size = new System.Drawing.Size(40, 41);
             this.Btn_Salir.TabIndex = 4;
             this.Btn_Salir.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Salir.UseVisualStyleBackColor = false;
@@ -78,9 +79,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Nuevo.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Nuevo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Nuevo.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Nuevo.Image")));
-            this.Btn_Nuevo.Location = new System.Drawing.Point(868, 18);
+            this.Btn_Nuevo.Location = new System.Drawing.Point(668, 14);
+            this.Btn_Nuevo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Nuevo.Name = "Btn_Nuevo";
-            this.Btn_Nuevo.Size = new System.Drawing.Size(51, 54);
+            this.Btn_Nuevo.Size = new System.Drawing.Size(38, 44);
             this.Btn_Nuevo.TabIndex = 1;
             this.Btn_Nuevo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Nuevo.UseVisualStyleBackColor = false;
@@ -93,9 +95,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Cancelar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Cancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Cancelar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Cancelar.Image")));
-            this.Btn_Cancelar.Location = new System.Drawing.Point(1066, 12);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(800, 14);
+            this.Btn_Cancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
-            this.Btn_Cancelar.Size = new System.Drawing.Size(71, 54);
+            this.Btn_Cancelar.Size = new System.Drawing.Size(53, 44);
             this.Btn_Cancelar.TabIndex = 3;
             this.Btn_Cancelar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Cancelar.UseVisualStyleBackColor = false;
@@ -108,9 +111,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Modificar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Modificar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Modificar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Modificar.Image")));
-            this.Btn_Modificar.Location = new System.Drawing.Point(992, 18);
+            this.Btn_Modificar.Location = new System.Drawing.Point(752, 14);
+            this.Btn_Modificar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Modificar.Name = "Btn_Modificar";
-            this.Btn_Modificar.Size = new System.Drawing.Size(59, 54);
+            this.Btn_Modificar.Size = new System.Drawing.Size(44, 44);
             this.Btn_Modificar.TabIndex = 2;
             this.Btn_Modificar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Modificar.UseVisualStyleBackColor = false;
@@ -123,9 +127,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Guardar.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Guardar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Guardar.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Guardar.Image")));
-            this.Btn_Guardar.Location = new System.Drawing.Point(925, 18);
+            this.Btn_Guardar.Location = new System.Drawing.Point(710, 13);
+            this.Btn_Guardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Guardar.Name = "Btn_Guardar";
-            this.Btn_Guardar.Size = new System.Drawing.Size(50, 54);
+            this.Btn_Guardar.Size = new System.Drawing.Size(38, 44);
             this.Btn_Guardar.TabIndex = 0;
             this.Btn_Guardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Guardar.UseVisualStyleBackColor = false;
@@ -134,20 +139,23 @@ namespace Capa_vista_Check_In_Check_out
             // Dgv_Check_In
             // 
             this.Dgv_Check_In.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Dgv_Check_In.Location = new System.Drawing.Point(22, 286);
+            this.Dgv_Check_In.Location = new System.Drawing.Point(16, 232);
+            this.Dgv_Check_In.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Dgv_Check_In.Name = "Dgv_Check_In";
             this.Dgv_Check_In.RowHeadersWidth = 51;
             this.Dgv_Check_In.RowTemplate.Height = 24;
-            this.Dgv_Check_In.Size = new System.Drawing.Size(1350, 509);
+            this.Dgv_Check_In.Size = new System.Drawing.Size(1012, 414);
             this.Dgv_Check_In.TabIndex = 15;
             this.Dgv_Check_In.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dgv_Check_In_CellClick);
             // 
             // Gbp_Titulo
             // 
             this.Gbp_Titulo.Controls.Add(this.Lbl_Titulo);
-            this.Gbp_Titulo.Location = new System.Drawing.Point(22, 12);
+            this.Gbp_Titulo.Location = new System.Drawing.Point(16, 10);
+            this.Gbp_Titulo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Gbp_Titulo.Name = "Gbp_Titulo";
-            this.Gbp_Titulo.Size = new System.Drawing.Size(366, 80);
+            this.Gbp_Titulo.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Gbp_Titulo.Size = new System.Drawing.Size(274, 65);
             this.Gbp_Titulo.TabIndex = 14;
             this.Gbp_Titulo.TabStop = false;
             // 
@@ -156,9 +164,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Lbl_Titulo.AutoSize = true;
             this.Lbl_Titulo.BackColor = System.Drawing.SystemColors.Control;
             this.Lbl_Titulo.Font = new System.Drawing.Font("Rockwell", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Titulo.Location = new System.Drawing.Point(81, 33);
+            this.Lbl_Titulo.Location = new System.Drawing.Point(61, 27);
+            this.Lbl_Titulo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_Titulo.Name = "Lbl_Titulo";
-            this.Lbl_Titulo.Size = new System.Drawing.Size(94, 21);
+            this.Lbl_Titulo.Size = new System.Drawing.Size(76, 17);
             this.Lbl_Titulo.TabIndex = 0;
             this.Lbl_Titulo.Text = "Check In ";
             // 
@@ -174,52 +183,59 @@ namespace Capa_vista_Check_In_Check_out
             this.Gbp_Campos.Controls.Add(this.Lbl_idreserva);
             this.Gbp_Campos.Controls.Add(this.Lbl_Idcheckin);
             this.Gbp_Campos.Controls.Add(this.Lbl_Idhuesped);
-            this.Gbp_Campos.Location = new System.Drawing.Point(37, 98);
+            this.Gbp_Campos.Location = new System.Drawing.Point(28, 80);
+            this.Gbp_Campos.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Gbp_Campos.Name = "Gbp_Campos";
-            this.Gbp_Campos.Size = new System.Drawing.Size(1371, 170);
+            this.Gbp_Campos.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Gbp_Campos.Size = new System.Drawing.Size(1028, 138);
             this.Gbp_Campos.TabIndex = 13;
             this.Gbp_Campos.TabStop = false;
             // 
             // Cbo_Estado
             // 
             this.Cbo_Estado.FormattingEnabled = true;
-            this.Cbo_Estado.Location = new System.Drawing.Point(1042, 72);
+            this.Cbo_Estado.Location = new System.Drawing.Point(782, 58);
+            this.Cbo_Estado.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Cbo_Estado.Name = "Cbo_Estado";
-            this.Cbo_Estado.Size = new System.Drawing.Size(280, 24);
+            this.Cbo_Estado.Size = new System.Drawing.Size(211, 21);
             this.Cbo_Estado.TabIndex = 10;
             // 
             // Cbo_Reservas
             // 
             this.Cbo_Reservas.FormattingEnabled = true;
-            this.Cbo_Reservas.Location = new System.Drawing.Point(471, 74);
+            this.Cbo_Reservas.Location = new System.Drawing.Point(353, 60);
+            this.Cbo_Reservas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Cbo_Reservas.Name = "Cbo_Reservas";
-            this.Cbo_Reservas.Size = new System.Drawing.Size(280, 24);
+            this.Cbo_Reservas.Size = new System.Drawing.Size(211, 21);
             this.Cbo_Reservas.TabIndex = 9;
             this.Cbo_Reservas.SelectedIndexChanged += new System.EventHandler(this.Cbo_Reservas_SelectedIndexChanged);
             // 
             // Cbo_Huesped
             // 
             this.Cbo_Huesped.FormattingEnabled = true;
-            this.Cbo_Huesped.Location = new System.Drawing.Point(163, 76);
+            this.Cbo_Huesped.Location = new System.Drawing.Point(122, 62);
+            this.Cbo_Huesped.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Cbo_Huesped.Name = "Cbo_Huesped";
-            this.Cbo_Huesped.Size = new System.Drawing.Size(280, 24);
+            this.Cbo_Huesped.Size = new System.Drawing.Size(211, 21);
             this.Cbo_Huesped.TabIndex = 8;
             this.Cbo_Huesped.SelectedIndexChanged += new System.EventHandler(this.Cbo_Huesped_SelectedIndexChanged);
             // 
             // Txt_Id_Check_In
             // 
-            this.Txt_Id_Check_In.Location = new System.Drawing.Point(27, 78);
+            this.Txt_Id_Check_In.Location = new System.Drawing.Point(20, 63);
+            this.Txt_Id_Check_In.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Txt_Id_Check_In.Name = "Txt_Id_Check_In";
-            this.Txt_Id_Check_In.Size = new System.Drawing.Size(95, 22);
+            this.Txt_Id_Check_In.Size = new System.Drawing.Size(72, 20);
             this.Txt_Id_Check_In.TabIndex = 7;
             // 
             // Lbl_estado
             // 
             this.Lbl_estado.AutoSize = true;
             this.Lbl_estado.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_estado.Location = new System.Drawing.Point(1058, 29);
+            this.Lbl_estado.Location = new System.Drawing.Point(794, 24);
+            this.Lbl_estado.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_estado.Name = "Lbl_estado";
-            this.Lbl_estado.Size = new System.Drawing.Size(62, 20);
+            this.Lbl_estado.Size = new System.Drawing.Size(51, 17);
             this.Lbl_estado.TabIndex = 6;
             this.Lbl_estado.Text = "Estado";
             // 
@@ -227,26 +243,29 @@ namespace Capa_vista_Check_In_Check_out
             // 
             this.Lbl_Fecha.AutoSize = true;
             this.Lbl_Fecha.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Fecha.Location = new System.Drawing.Point(816, 34);
+            this.Lbl_Fecha.Location = new System.Drawing.Point(612, 28);
+            this.Lbl_Fecha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
-            this.Lbl_Fecha.Size = new System.Drawing.Size(56, 20);
+            this.Lbl_Fecha.Size = new System.Drawing.Size(46, 17);
             this.Lbl_Fecha.TabIndex = 5;
             this.Lbl_Fecha.Text = "Fecha";
             // 
             // Dtp_Fecha
             // 
-            this.Dtp_Fecha.Location = new System.Drawing.Point(757, 74);
+            this.Dtp_Fecha.Location = new System.Drawing.Point(568, 60);
+            this.Dtp_Fecha.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Dtp_Fecha.Name = "Dtp_Fecha";
-            this.Dtp_Fecha.Size = new System.Drawing.Size(257, 22);
+            this.Dtp_Fecha.Size = new System.Drawing.Size(194, 20);
             this.Dtp_Fecha.TabIndex = 4;
             // 
             // Lbl_idreserva
             // 
             this.Lbl_idreserva.AutoSize = true;
             this.Lbl_idreserva.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_idreserva.Location = new System.Drawing.Point(530, 29);
+            this.Lbl_idreserva.Location = new System.Drawing.Point(398, 24);
+            this.Lbl_idreserva.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_idreserva.Name = "Lbl_idreserva";
-            this.Lbl_idreserva.Size = new System.Drawing.Size(72, 20);
+            this.Lbl_idreserva.Size = new System.Drawing.Size(59, 17);
             this.Lbl_idreserva.TabIndex = 3;
             this.Lbl_idreserva.Text = "Reserva";
             // 
@@ -254,9 +273,10 @@ namespace Capa_vista_Check_In_Check_out
             // 
             this.Lbl_Idcheckin.AutoSize = true;
             this.Lbl_Idcheckin.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Idcheckin.Location = new System.Drawing.Point(23, 29);
+            this.Lbl_Idcheckin.Location = new System.Drawing.Point(17, 24);
+            this.Lbl_Idcheckin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_Idcheckin.Name = "Lbl_Idcheckin";
-            this.Lbl_Idcheckin.Size = new System.Drawing.Size(99, 20);
+            this.Lbl_Idcheckin.Size = new System.Drawing.Size(83, 17);
             this.Lbl_Idcheckin.TabIndex = 1;
             this.Lbl_Idcheckin.Text = "Id Check In";
             // 
@@ -264,9 +284,10 @@ namespace Capa_vista_Check_In_Check_out
             // 
             this.Lbl_Idhuesped.AutoSize = true;
             this.Lbl_Idhuesped.Font = new System.Drawing.Font("Rockwell", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lbl_Idhuesped.Location = new System.Drawing.Point(235, 29);
+            this.Lbl_Idhuesped.Location = new System.Drawing.Point(176, 24);
+            this.Lbl_Idhuesped.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Lbl_Idhuesped.Name = "Lbl_Idhuesped";
-            this.Lbl_Idhuesped.Size = new System.Drawing.Size(83, 20);
+            this.Lbl_Idhuesped.Size = new System.Drawing.Size(70, 17);
             this.Lbl_Idhuesped.TabIndex = 2;
             this.Lbl_Idhuesped.Text = " Huesped";
             // 
@@ -277,9 +298,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Ayuda.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Ayuda.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Ayuda.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Ayuda.Image")));
-            this.Btn_Ayuda.Location = new System.Drawing.Point(1210, 16);
+            this.Btn_Ayuda.Location = new System.Drawing.Point(908, 13);
+            this.Btn_Ayuda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Ayuda.Name = "Btn_Ayuda";
-            this.Btn_Ayuda.Size = new System.Drawing.Size(55, 54);
+            this.Btn_Ayuda.Size = new System.Drawing.Size(41, 44);
             this.Btn_Ayuda.TabIndex = 17;
             this.Btn_Ayuda.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Ayuda.UseVisualStyleBackColor = false;
@@ -291,9 +313,10 @@ namespace Capa_vista_Check_In_Check_out
             this.Btn_Reporte.Font = new System.Drawing.Font("Rockwell", 10F);
             this.Btn_Reporte.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(214)))), ((int)(((byte)(221)))));
             this.Btn_Reporte.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Reporte.Image")));
-            this.Btn_Reporte.Location = new System.Drawing.Point(1143, 16);
+            this.Btn_Reporte.Location = new System.Drawing.Point(857, 13);
+            this.Btn_Reporte.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Btn_Reporte.Name = "Btn_Reporte";
-            this.Btn_Reporte.Size = new System.Drawing.Size(61, 54);
+            this.Btn_Reporte.Size = new System.Drawing.Size(46, 44);
             this.Btn_Reporte.TabIndex = 18;
             this.Btn_Reporte.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Btn_Reporte.UseVisualStyleBackColor = false;
@@ -301,9 +324,9 @@ namespace Capa_vista_Check_In_Check_out
             // 
             // Frm_Check_In
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1421, 845);
+            this.ClientSize = new System.Drawing.Size(1066, 687);
             this.Controls.Add(this.Dgv_Check_In);
             this.Controls.Add(this.Btn_Salir);
             this.Controls.Add(this.Btn_Reporte);
@@ -314,6 +337,7 @@ namespace Capa_vista_Check_In_Check_out
             this.Controls.Add(this.Gbp_Titulo);
             this.Controls.Add(this.Btn_Guardar);
             this.Controls.Add(this.Gbp_Campos);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Frm_Check_In";
             this.Text = "Frm_Check_In";
             ((System.ComponentModel.ISupportInitialize)(this.Dgv_Check_In)).EndInit();

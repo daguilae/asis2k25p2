@@ -330,6 +330,69 @@ namespace Capa_Controlador_Check_In_Check_Out
                     return false;
                 }
             }
+
+
+        }
+
+        public int IObtenerIdHabitacionPorReserva(int idReserva)
+        {
+            string query = "SELECT Fk_Id_Habitacion FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?;";
+            OdbcConnection conn = prConexion.conexion();
+
+            try
+            {
+                conn.Open();
+                OdbcCommand cmd = new OdbcCommand(query, conn);
+                // En ODBC el orden de los parámetros importa
+                cmd.Parameters.AddWithValue("@id", idReserva);
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null && resultado != DBNull.Value)
+                    return Convert.ToInt32(resultado);
+                else
+                    return -1; // No encontrado
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener habitación por reserva: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                prConexion.desconexion(conn);
+            }
+        }
+
+        public int fun_ObtenerNumHuespedesPorReserva(int idReserva)
+        {
+            string query = "SELECT Cmp_Num_Huespedes FROM Tbl_Reserva WHERE Pk_Id_Reserva = ?;";
+            OdbcConnection conn = prConexion.conexion();
+
+            try
+            {
+                conn.Open();
+                OdbcCommand cmd = new OdbcCommand(query, conn);
+
+                // En ODBC el orden de los parámetros es lo que importa
+                cmd.Parameters.AddWithValue("@id", idReserva);
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null && resultado != DBNull.Value)
+                    return Convert.ToInt32(resultado);
+                else
+                    return -1; // No existe o no tiene valor
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al obtener número de huéspedes: " + ex.Message);
+                return -1;
+            }
+            finally
+            {
+                prConexion.desconexion(conn);
+            }
         }
 
     }

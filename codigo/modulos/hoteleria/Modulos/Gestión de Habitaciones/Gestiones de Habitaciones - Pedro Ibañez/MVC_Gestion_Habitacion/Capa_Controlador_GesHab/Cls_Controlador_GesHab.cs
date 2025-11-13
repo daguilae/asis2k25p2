@@ -203,6 +203,11 @@ namespace Capa_Controlador_GesHab
             return oDaoAuxiliar.fun_ObtenerIdsEstadia();
         }
 
+        public DataTable fun_CargarIdsReserva()
+        {
+            return oDaoAuxiliar.fun_ObtenerIdsReserva();
+        }
+
         public DataTable fun_CargarHabitaciones()
         {
             return oDaoAuxiliar.fun_ObtenerHabitaciones();
@@ -245,6 +250,27 @@ namespace Capa_Controlador_GesHab
 
             sMensaje = "Datos de estadía cargados correctamente.";
             return dtResultado;
+        }
+
+        public DataTable fun_BuscarReservaVerificada(int iIdReserva, out string sMensaje)
+        {
+            sMensaje = "";
+
+            if (iIdReserva <= 0)
+            {
+                sMensaje = "Debe seleccionar un ID de reserva válido.";
+                return null;
+            }
+
+            DataTable dt = oDaoAuxiliar.BuscarReservaPorId(iIdReserva);
+
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                sMensaje = "No se encontró la reserva solicitada.";
+                return null;
+            }
+
+            return dt;
         }
     }
 }

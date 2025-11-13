@@ -30,6 +30,12 @@ namespace Capa_Vista_Gestion_Habitacion
 
         private void fun_CargarCombos()
         {
+            // --- ComboBox de Reserva ---
+            DataTable dtReserva = oControlador.fun_CargarIdsReserva();
+            cbo_Reserva.DataSource = dtReserva;
+            cbo_Reserva.DisplayMember = "Pk_Id_Reserva";
+            cbo_Reserva.ValueMember = "Pk_Id_Reserva";
+            cbo_Reserva.SelectedIndex = -1;
             // --- ComboBox de Estadías ---
             DataTable dtEstadias = oControlador.fun_CargarIdsEstadia();
             Cbo_PK_Id_Estadia.DataSource = dtEstadias;
@@ -279,5 +285,35 @@ namespace Capa_Vista_Gestion_Habitacion
             Frm_Reportes_Estadia frmRpt = new Frm_Reportes_Estadia();
             frmRpt.Show();
         }
+
+        private void btn_buscar_reserva_Click(object sender, EventArgs e)
+        {
+            int idReserva = 0;
+            int.TryParse(cbo_Reserva.SelectedValue?.ToString(), out idReserva);
+
+            string mensaje;
+            DataTable dt = oControlador.fun_BuscarReservaVerificada(idReserva, out mensaje);
+
+            if (dt == null)
+            {
+                MessageBox.Show(mensaje, "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            CargarDatosDeReserva(dt.Rows[0]);
+        }
+
+        private void CargarDatosDeReserva(DataRow dr)
+        {
+            cbo_fk_id_Habitacion.SelectedValue = dr["Fk_Id_Habitacion"].ToString();
+            cbo_Fk_Id_Huesped.SelectedValue = dr["Fk_Id_Huesped"].ToString();
+
+            txt_Num_Huespedes.Text = dr["Cmp_Num_Huespedes"].ToString();
+
+            DTP_Check_in.Value = Convert.ToDateTime(dr["Cmp_Fecha_Entrada"]);
+            DTP_CheckOut.Value = DateTime.Now;
+
+        }
+
     }
 }

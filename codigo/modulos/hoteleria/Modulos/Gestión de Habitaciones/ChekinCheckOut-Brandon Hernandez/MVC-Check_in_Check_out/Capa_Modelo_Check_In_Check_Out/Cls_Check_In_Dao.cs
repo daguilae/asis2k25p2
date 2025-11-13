@@ -229,5 +229,7 @@ namespace Capa_Modelo_Check_In_Check_Out
 
             return dtResultado;
         }
+
+        
     }
 }
