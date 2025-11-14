@@ -31,6 +31,16 @@ namespace Capa_Vista_Navegador
         {
             InitializeComponent();
 
+          
+            //BotonesEstadoInicial();
+            // inicializa el evento Load
+            this.Load += new EventHandler(Navegador_Load);
+
+        }
+
+        // carga los alias y etiquetas al iniciar el navegador
+        private void Navegador_Load(object sender, EventArgs e)
+        {
             // Los botones se inicializan en su estado inicial, Reportes, ingresar e imprimir
             // Obtener permisos del usuario conectado
             Cls_Privilegios_Seguridad privilegios = new Cls_Privilegios_Seguridad();
@@ -46,14 +56,9 @@ namespace Capa_Vista_Navegador
                 false,
                 permisos.Cmp_Imprimir_Permiso_Aplicacion_Usuario
             );
-            //BotonesEstadoInicial();
-            // inicializa el evento Load
-            this.Load += new EventHandler(Navegador_Load);
-        }
 
-        // carga los alias y etiquetas al iniciar el navegador
-        private void Navegador_Load(object sender, EventArgs e)
-        {
+            mostrarDatos();
+
             if (SAlias != null && SEtiquetas != null && SAlias.Length > 1)
             {
                 try
@@ -62,7 +67,7 @@ namespace Capa_Vista_Navegador
                     Cls_ControladorNavegador controladorNavegador = new Cls_ControladorNavegador();
 
                     // Genera dinámicamente los labels y combos
-                    controladorNavegador.AsignarAlias(SAlias, this, 20, 80, 3, SEtiquetas);
+                    controladorNavegador.AsignarAlias(SAlias, this, 20, 100, 3, SEtiquetas);
                     ctrl.DesactivarTodosComboBoxes(this); // KEVIN NATARENO, 11/10/2025
                 }
                 catch (Exception ex)
@@ -120,10 +125,11 @@ namespace Capa_Vista_Navegador
             if (Dgv_Datos == null)
             {
                 //llama metodo de creacion DGV
-                DataGridView dgv = ctrl.CrearDataGridView();
+                Dgv_Datos = ctrl.CrearDataGridView();
+                ctrl.AsignarDataGridView(Dgv_Datos);
+
 
                 // ======================= Stevens Cambranes = 20/09/2025 =======================
-                ctrl.AsignarDataGridView(Dgv_Datos);
                 Dgv_Datos.SelectionChanged += Dgv_Datos_SelectionChanged;
             }
 
@@ -269,6 +275,8 @@ namespace Capa_Vista_Navegador
           );
             ctrl.LimpiarCombos(this, SAlias);
             ctrl.DesactivarTodosComboBoxes(this);
+            iContadorModificar = 0;
+
         }
 
         private void Btn_guardar_Click_1(object sender, EventArgs e)
@@ -334,14 +342,14 @@ namespace Capa_Vista_Navegador
             Cls_Permiso_Aplicacion_Usuario permisos = privilegios.VerificarPermisos(IPkId_Aplicacion, IPkId_Modulo);
 
 
-            BotonesEstadoCRUD(
+            /*BotonesEstadoCRUD(
                 permisos.Cmp_Ingresar_Permiso_Aplicacion_Usuario,
                 permisos.Cmp_Modificar_Permiso_Aplicacion_Usuario,
                 permisos.Cmp_Ingresar_Permiso_Aplicacion_Usuario,
                 permisos.Cmp_Eliminar_Permiso_Aplicacion_Usuario,
                 false,
                 permisos.Cmp_Imprimir_Permiso_Aplicacion_Usuario
-            );
+            );*/
             //BotonesEstadoEdicion(); // KEVIN NATARENO 11/10/2025
 
             // Bloquear (deshabilitar) todos los ComboBox del formulario

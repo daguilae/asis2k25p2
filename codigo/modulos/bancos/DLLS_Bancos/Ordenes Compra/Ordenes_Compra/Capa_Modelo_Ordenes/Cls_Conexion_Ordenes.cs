@@ -12,11 +12,17 @@ using System.Data;
 namespace Capa_Modelo_Ordenes
 {
     public class Cls_Conexion_Ordenes
+
+
     {
         public OdbcConnection conexion()
         {
             //creacion de la conexion via ODBC
+
+
             OdbcConnection conn = new OdbcConnection("Dsn=Bd_Hoteleria");
+
+
             try
             {
                 conn.Open();
