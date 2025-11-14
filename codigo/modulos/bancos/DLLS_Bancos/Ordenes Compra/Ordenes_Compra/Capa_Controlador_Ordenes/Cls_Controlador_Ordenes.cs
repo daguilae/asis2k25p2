@@ -5,7 +5,9 @@ using Capa_Modelo_Ordenes;
 namespace Capa_Controlador_Ordenes
 {
 
+
     // Inicio de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025
+
     public class Cls_Controlador_Ordenes
     {
         private readonly Cls_Sentencias_Ordenes _m = new Cls_Sentencias_Ordenes();
@@ -39,5 +41,6 @@ namespace Capa_Controlador_Ordenes
         public int Eliminar(int idAut) => _m.proc_eliminar_autorizacion(idAut);
     }
 }
+
 
 // Fin de código de María Alejandra Morales García con carné: 0901-22-1226 con la dFecha de: 07/11/2025

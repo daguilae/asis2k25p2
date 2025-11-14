@@ -1,22 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Odbc;
 using Capa_Modelo_Poliza;
-
 
 namespace Capa_Controlador_Poliza
 {
-    //========================== Kevin Natareno 0901-21-635 : Controlador Poliza, 26/10/2025 ===================================================
     public class Cls_Poliza_Controlador
     {
-        Cls_DAO_Poliza modelo = new Cls_DAO_Poliza();
+        private readonly Cls_DAO_Poliza dao = new Cls_DAO_Poliza();
 
-        public void InsertarPoliza(string banco, string tipo, string docto, DateTime fecha, string concepto)
+        public OdbcDataReader ObtenerBancos() => dao.ObtenerBancos();
+
+        public OdbcDataReader ObtenerCuentas(int idBanco) => dao.ObtenerCuentasPorBanco(idBanco);
+
+        public OdbcDataReader ObtenerDocumentos(int idCuenta) => dao.ObtenerDocumentosPorCuenta(idCuenta);
+
+        public int ObtenerSiguienteIdEncabezado(DateTime fecha) => dao.ObtenerSiguienteIdEncabezado(fecha);
+
+        public void InsertarPoliza(DateTime fecha, string concepto, List<(string sCodigoCuenta, bool bTipo, decimal dValor)> detalles)
         {
-            // Ejemplo simple de envío a modelo (se puede ampliar con lógica)
-            modelo.GuardarPoliza(banco, tipo, docto, fecha, concepto);
+            int nuevoId = dao.ObtenerSiguienteIdEncabezado(fecha);
+            decimal total = 0;
+            foreach (var det in detalles)
+                total += det.dValor;
+
+            dao.InsertarEncabezado(nuevoId, fecha, concepto, total);
+
+            foreach (var det in detalles)
+                dao.InsertarDetalle(nuevoId, fecha, det.sCodigoCuenta, det.bTipo, det.dValor);
         }
     }
 }

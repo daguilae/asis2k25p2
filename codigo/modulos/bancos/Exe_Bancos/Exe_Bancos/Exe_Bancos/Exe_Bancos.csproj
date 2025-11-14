@@ -33,13 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Capa_Controlador_Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaControlador\bin\Debug\Capa_Controlador_Bancos.dll</HintPath>
+      <HintPath>..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaControlador\bin\Debug\Capa_Controlador_Seguridad.dll</HintPath>
     </Reference>
-    <Reference Include="Capa_Vista_Bancos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Capa_Modelo_Seguridad, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Bancos_MVC\Bancos_MVC\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
+      <HintPath>..\..\..\..\..\componentes\seguridad\SeguridadMVC\SeguridadMVC\CapaModelo\bin\Debug\Capa_Modelo_Seguridad.dll</HintPath>
+    </Reference>
+    <Reference Include="Capa_Vista_Bancos">
+      <HintPath>..\..\..\Bancos_MVC_2\Bancos_MVC_2\CapaVista\bin\Debug\Capa_Vista_Bancos.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

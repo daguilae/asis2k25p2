@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Data;
 using System.Data.Odbc;
 using System.Collections.Generic;
@@ -49,7 +49,7 @@ namespace Capa_Modelo_MB
                         string signo = fun_obtener_signo_operacion(mov.iFk_Id_operacion, cn, tx);
                         decimal factor = (signo == "+") ? 1m : -1m;
 
-                        // 2Consecutivo por (cuenta/operación)
+                        // Consecutivo por (cuenta/operación)
                         int pkMov = fun_obtener_proximo_id_movimiento(mov.iFk_Id_cuenta_origen, mov.iFk_Id_operacion, cn, tx);
 
                         // Actualizar saldos de la cuenta bancaria (tabla Tbl_CuentasBancarias)
@@ -89,7 +89,6 @@ namespace Capa_Modelo_MB
 
                             mov.iPk_Id_movimiento = pkMov;
                         }
-
                         // Detalles (coincidir NOMBRES de propiedades con tu botón)
                         if (lst_Detalles.Count == 0)
                         {
@@ -654,11 +653,11 @@ namespace Capa_Modelo_MB
             int iNuevaOperacion,
             string sNumeroDocumento,
             DateTime dFecha,
-            string sConcepto,      
+            string sConcepto,
             decimal deMontoNuevo,
             int? iTipoPago,
             int? iCuentaDestinoNueva,
-            string sBeneficiario,    
+            string sBeneficiario,
             string sUsuario,
             int iCuentaOrigenOriginal,
             int iOperacionOriginal,
@@ -761,7 +760,7 @@ namespace Capa_Modelo_MB
                             cmdUpd.Parameters.AddWithValue("@CtaOriNueva", iNuevaCuentaOrigen);
                             cmdUpd.Parameters.AddWithValue("@OpNueva", iNuevaOperacion);
                             cmdUpd.Parameters.AddWithValue("@Estado", sEstado ?? "ACTIVO");
-                            cmdUpd.Parameters.AddWithValue("@Conciliado", iConciliado); 
+                            cmdUpd.Parameters.AddWithValue("@Conciliado", iConciliado);
                             cmdUpd.Parameters.AddWithValue("@Usuario", sUsuario);
                             cmdUpd.Parameters.AddWithValue("@Mov", iIdMovimiento);
                             cmdUpd.Parameters.AddWithValue("@CtaOriOld", iCuentaOrigenOriginal);

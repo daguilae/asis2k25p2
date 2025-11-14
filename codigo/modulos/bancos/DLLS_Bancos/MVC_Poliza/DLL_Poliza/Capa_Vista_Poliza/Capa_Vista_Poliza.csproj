@@ -31,7 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capa_Controlador_Poliza">
+    <Reference Include="Capa_Controlador_Poliza, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Capa_Controlador_Poliza\bin\Debug\Capa_Controlador_Poliza.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -46,17 +47,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Frm_Poliza.cs">
+    <Compile Include="Frm_GenerarPoliza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Frm_Poliza.Designer.cs">
-      <DependentUpon>Frm_Poliza.cs</DependentUpon>
+    <Compile Include="Frm_GenerarPoliza.Designer.cs">
+      <DependentUpon>Frm_GenerarPoliza.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Frm_Poliza.resx">
-      <DependentUpon>Frm_Poliza.cs</DependentUpon>
+    <EmbeddedResource Include="Frm_GenerarPoliza.resx">
+      <DependentUpon>Frm_GenerarPoliza.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
