@@ -57,21 +57,25 @@ namespace Capa_Modelo_TipoDeCambio
         public DataTable BuscarTipoCambio(string fecha)
         {
             string sql = @"
-                SELECT 
-                    M.Cmp_NombreMoneda AS Moneda,
-                    T.Cmp_Fecha AS Fecha,
-                    T.Cmp_ValorCompra AS Compra,
-                    T.Cmp_ValorVenta AS Venta
-                FROM Tbl_TiposCambio T
-                INNER JOIN Tbl_Monedas M ON T.Fk_Id_Moneda = M.Pk_Id_Moneda
-                WHERE T.Cmp_Fecha = '" + fecha + "';";
+        SELECT 
+            M.Cmp_NombreMoneda AS Cmp_NombreMoneda,
+            T.Cmp_Fecha AS Cmp_Fecha,
+            T.Cmp_ValorCompra AS Cmp_ValorCompra,
+            T.Cmp_ValorVenta AS Cmp_ValorVenta
+        FROM Tbl_TiposCambio T
+        INNER JOIN Tbl_Monedas M 
+            ON T.Fk_Id_Moneda = M.Pk_Id_Moneda
+        WHERE DATE(T.Cmp_Fecha) = '" + fecha + "'";
 
-            OdbcDataAdapter da = new OdbcDataAdapter(sql, cn.conexion());
+            OdbcConnection conn = cn.conexion();
+            OdbcDataAdapter da = new OdbcDataAdapter(sql, conn);
+
             DataTable dt = new DataTable();
             da.Fill(dt);
-            cn.desconexion(cn.conexion());
+            cn.desconexion(conn);
             return dt;
         }
+
 
         // Mostrar tipo de cambio del día
         public DataTable MostrarTiposCambioHoy()
