@@ -6,51 +6,52 @@ using System.Threading.Tasks;
 using System.Data;
 using Capa_Modelo_TipoDeCambio;
 
+
 namespace Capa_Controlador_TipoDeCambio
 {
-    public class Controlador_TipoCambio
+    public class Capa_Controlador_TipoCambio
     {
-        Modelo_TipoCambio modelo = new Modelo_TipoCambio();
+        private Modelo_TipoCambio gModelo = new Modelo_TipoCambio();
 
         public DataTable CargarMonedas()
         {
-            return modelo.CargarMonedas();
+            return gModelo.CargarMonedas();
         }
 
-        public void GuardarTipoCambio(string fecha, decimal compra, decimal venta, int idMoneda)
+        public void GuardarTipoCambio(string sFecha, decimal deCompra, decimal deVenta, int iIdMoneda)
         {
-            modelo.InsertarTipoCambio(fecha, compra, venta, idMoneda);
+            gModelo.InsertarTipoCambio(sFecha, deCompra, deVenta, iIdMoneda);
         }
 
         public DataTable MostrarTodo()
         {
-            return modelo.MostrarTiposCambio();
+            return gModelo.MostrarTiposCambio();
         }
 
-        public DataTable BuscarPorFecha(string fecha)
+        public DataTable BuscarPorFecha(string sFecha)
         {
-            return modelo.BuscarTipoCambio(fecha);
+            return gModelo.BuscarTipoCambio(sFecha);
         }
+
         public DataTable MostrarTipoCambioHoy()
         {
-            return modelo.MostrarTiposCambioHoy();
+            return gModelo.MostrarTiposCambioHoy();
         }
 
         public DataTable CargarBancos()
         {
-            return modelo.ObtenerBancos();
+            return gModelo.ObtenerBancos();
         }
 
         public DataTable CargarTiposCuenta()
         {
-            return modelo.ObtenerTiposCuenta();
+            return gModelo.ObtenerTiposCuenta();
         }
 
-        public DataTable BuscarDisponibilidad(string banco, string tipoCuenta, string numeroCuenta)
+        public DataTable BuscarDisponibilidad(string sBanco, string sTipoCuenta, string sNumeroCuenta)
         {
-            Modelo_TipoCambio modelo = new Modelo_TipoCambio();
-            return modelo.ObtenerDisponibilidad(banco, tipoCuenta, numeroCuenta);
+            return gModelo.ObtenerDisponibilidad(sBanco, sTipoCuenta, sNumeroCuenta);
         }
-
     }
 }
+

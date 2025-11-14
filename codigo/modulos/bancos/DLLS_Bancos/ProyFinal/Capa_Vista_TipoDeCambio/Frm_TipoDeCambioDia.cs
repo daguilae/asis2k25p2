@@ -13,7 +13,8 @@ namespace Capa_Vista_TipoDeCambio
 {
     public partial class Frm_TipoDeCambioDia : Form
     {
-        Controlador_TipoCambio ctrl = new Controlador_TipoCambio();
+        Capa_Controlador_TipoCambio ctrl = new Capa_Controlador_TipoCambio();
+
 
         public Frm_TipoDeCambioDia()
         {
