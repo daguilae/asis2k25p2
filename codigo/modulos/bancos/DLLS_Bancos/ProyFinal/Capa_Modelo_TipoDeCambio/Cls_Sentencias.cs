@@ -10,32 +10,35 @@ namespace Capa_Modelo_TipoDeCambio
 {
     public class Modelo_TipoCambio
     {
-        Cls_Conexion cn = new Cls_Conexion();
+        private Cls_Conexion gCn = new Cls_Conexion();
 
         public DataTable CargarMonedas()
         {
-            string sql = "SELECT Pk_Id_Moneda, Cmp_NombreMoneda FROM Tbl_Monedas WHERE Cmp_Estado = 1;";
-            OdbcDataAdapter da = new OdbcDataAdapter(sql, cn.conexion());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(cn.conexion());
-            return dt;
+            string sQuery = "SELECT Pk_Id_Moneda, Cmp_NombreMoneda FROM Tbl_Monedas WHERE Cmp_Estado = 1;";
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            return dtsResultado;
         }
 
-        public void InsertarTipoCambio(string fecha, decimal compra, decimal venta, int idMoneda)
+        public void InsertarTipoCambio(string sFecha, decimal deCompra, decimal deVenta, int iIdMoneda)
         {
-            string sql = "INSERT INTO Tbl_TiposCambio (Fk_Id_Moneda, Cmp_Fecha, Cmp_ValorCompra, Cmp_ValorVenta) " +
-                         $"VALUES ({idMoneda}, '{fecha}', {compra}, {venta});";
+            string sQuery =
+                "INSERT INTO Tbl_TiposCambio (Fk_Id_Moneda, Cmp_Fecha, Cmp_ValorCompra, Cmp_ValorVenta) " +
+                $"VALUES ({iIdMoneda}, '{sFecha}', {deCompra}, {deVenta});";
 
-            OdbcConnection conn = cn.conexion();
-            OdbcCommand cmd = new OdbcCommand(sql, conn);
-            cmd.ExecuteNonQuery();
-            cn.desconexion(conn);
+            OdbcConnection odConn = gCn.Conexion();
+            OdbcCommand odCmd = new OdbcCommand(sQuery, odConn);
+
+            odCmd.ExecuteNonQuery();
+            gCn.Desconexion(odConn);
         }
 
         public DataTable MostrarTiposCambio()
         {
-            string sql = @"
+            string sQuery = @"
                 SELECT 
                     T.Pk_Id_TipoCambio,
                     M.Cmp_NombreMoneda,
@@ -45,42 +48,39 @@ namespace Capa_Modelo_TipoDeCambio
                 FROM Tbl_TiposCambio T
                 INNER JOIN Tbl_Monedas M ON T.Fk_Id_Moneda = M.Pk_Id_Moneda;";
 
-            OdbcDataAdapter da = new OdbcDataAdapter(sql, cn.conexion());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(cn.conexion());
-            return dt;
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            return dtsResultado;
         }
 
-
-        // Buscar tipo de cambio por fecha
-        public DataTable BuscarTipoCambio(string fecha)
+        public DataTable BuscarTipoCambio(string sFecha)
         {
-            string sql = @"
-        SELECT 
-            M.Cmp_NombreMoneda AS Cmp_NombreMoneda,
-            T.Cmp_Fecha AS Cmp_Fecha,
-            T.Cmp_ValorCompra AS Cmp_ValorCompra,
-            T.Cmp_ValorVenta AS Cmp_ValorVenta
-        FROM Tbl_TiposCambio T
-        INNER JOIN Tbl_Monedas M 
-            ON T.Fk_Id_Moneda = M.Pk_Id_Moneda
-        WHERE DATE(T.Cmp_Fecha) = '" + fecha + "'";
+            string sQuery = @"
+                SELECT 
+                    M.Cmp_NombreMoneda AS Cmp_NombreMoneda,
+                    T.Cmp_Fecha AS Cmp_Fecha,
+                    T.Cmp_ValorCompra AS Cmp_ValorCompra,
+                    T.Cmp_ValorVenta AS Cmp_ValorVenta
+                FROM Tbl_TiposCambio T
+                INNER JOIN Tbl_Monedas M 
+                    ON T.Fk_Id_Moneda = M.Pk_Id_Moneda
+                WHERE DATE(T.Cmp_Fecha) = '" + sFecha + "'";
 
-            OdbcConnection conn = cn.conexion();
-            OdbcDataAdapter da = new OdbcDataAdapter(sql, conn);
+            OdbcConnection odConn = gCn.Conexion();
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, odConn);
 
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(conn);
-            return dt;
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            gCn.Desconexion(odConn);
+            return dtsResultado;
         }
 
-
-        // Mostrar tipo de cambio del día
         public DataTable MostrarTiposCambioHoy()
         {
-            string sql = @"
+            string sQuery = @"
                 SELECT 
                     M.Cmp_NombreMoneda AS Moneda,
                     T.Cmp_ValorCompra AS Compra,
@@ -89,69 +89,63 @@ namespace Capa_Modelo_TipoDeCambio
                 INNER JOIN Tbl_Monedas M ON T.Fk_Id_Moneda = M.Pk_Id_Moneda
                 WHERE T.Cmp_Fecha = CURDATE() AND T.Cmp_Estado = 1;";
 
-            OdbcDataAdapter da = new OdbcDataAdapter(sql, cn.conexion());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(cn.conexion());
-            return dt;
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            return dtsResultado;
         }
 
-        // Obtener bancos activos
         public DataTable ObtenerBancos()
         {
-            string query = "SELECT Pk_Id_Banco, Cmp_NombreBanco FROM Tbl_Bancos WHERE Cmp_Estado = 1;";
-            OdbcDataAdapter da = new OdbcDataAdapter(query, cn.conexion());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(cn.conexion());
-            return dt;
+            string sQuery = "SELECT Pk_Id_Banco, Cmp_NombreBanco FROM Tbl_Bancos WHERE Cmp_Estado = 1;";
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            return dtsResultado;
         }
 
-
-
-        // Cargar tipos de cuenta en ComboBox
         public DataTable ObtenerTiposCuenta()
         {
-            string query = "SELECT DISTINCT Cmp_TipoCuenta FROM Tbl_CuentasBancarias WHERE Cmp_TipoCuenta IS NOT NULL;";
-            OdbcDataAdapter da = new OdbcDataAdapter(query, cn.conexion());
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            cn.desconexion(cn.conexion());
-            return dt;
+            string sQuery = "SELECT DISTINCT Cmp_TipoCuenta FROM Tbl_CuentasBancarias WHERE Cmp_TipoCuenta IS NOT NULL;";
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+
+            DataTable dtsResultado = new DataTable();
+            odAdapter.Fill(dtsResultado);
+
+            return dtsResultado;
         }
 
-
-        // Consultar disponibilidad diaria por filtros
-        public DataTable ObtenerDisponibilidad(string banco, string tipoCuenta, string numeroCuenta)
+        public DataTable ObtenerDisponibilidad(string sBanco, string sTipoCuenta, string sNumeroCuenta)
         {
-            string query = @"
-        SELECT 
-            B.Cmp_NombreBanco AS Banco,
-            C.Cmp_TipoCuenta AS TipoCuenta,
-            C.Cmp_NumeroCuenta AS NumeroCuenta,
-            D.Cmp_Saldo_Final_Disponibilidad AS Disponibilidad,
-            D.Cmp_Fecha_Disponibilidad AS Fecha
-        FROM Tbl_Disponibilidad_Diaria D
-        INNER JOIN Tbl_CuentasBancarias C ON D.Fk_Id_CuentaBancaria = C.Pk_Id_CuentaBancaria
-        INNER JOIN Tbl_Bancos B ON C.Fk_Id_Banco = B.Pk_Id_Banco
-        WHERE D.Cmp_Fecha_Disponibilidad = CURDATE()";
+            string sQuery = @"
+                SELECT 
+                    B.Cmp_NombreBanco AS Banco,
+                    C.Cmp_TipoCuenta AS TipoCuenta,
+                    C.Cmp_NumeroCuenta AS NumeroCuenta,
+                    D.Cmp_Saldo_Final_Disponibilidad AS Disponibilidad,
+                    D.Cmp_Fecha_Disponibilidad AS Fecha
+                FROM Tbl_Disponibilidad_Diaria D
+                INNER JOIN Tbl_CuentasBancarias C ON D.Fk_Id_CuentaBancaria = C.Pk_Id_CuentaBancaria
+                INNER JOIN Tbl_Bancos B ON C.Fk_Id_Banco = B.Pk_Id_Banco
+                WHERE D.Cmp_Fecha_Disponibilidad = CURDATE()";
 
-            if (!string.IsNullOrEmpty(banco))
-                query += $" AND B.Pk_Id_Banco = {banco}";
+            if (!string.IsNullOrEmpty(sBanco))
+                sQuery += $" AND B.Pk_Id_Banco = {sBanco}";
 
-            if (!string.IsNullOrEmpty(tipoCuenta))
-                query += $" AND C.Cmp_TipoCuenta = '{tipoCuenta}'";
+            if (!string.IsNullOrEmpty(sTipoCuenta))
+                sQuery += $" AND C.Cmp_TipoCuenta = '{sTipoCuenta}'";
 
-            if (!string.IsNullOrEmpty(numeroCuenta))
-                query += $" AND C.Cmp_NumeroCuenta = '{numeroCuenta}'";
+            if (!string.IsNullOrEmpty(sNumeroCuenta))
+                sQuery += $" AND C.Cmp_NumeroCuenta = '{sNumeroCuenta}'";
 
-            OdbcDataAdapter da = new OdbcDataAdapter(query, cn.conexion());
-            DataTable dt = new DataTable();
+            OdbcDataAdapter odAdapter = new OdbcDataAdapter(sQuery, gCn.Conexion());
+            DataTable dtsResultado = new DataTable();
 
-            da.Fill(dt);
-
-            return dt;
+            odAdapter.Fill(dtsResultado);
+            return dtsResultado;
         }
-
     }
 }

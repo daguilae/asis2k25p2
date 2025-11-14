@@ -7,34 +7,33 @@ using System.Data.Odbc;
 
 namespace Capa_Modelo_TipoDeCambio
 {
-    class Cls_Conexion
+    public class Cls_Conexion
     {
-        public OdbcConnection conexion()
+        public OdbcConnection Conexion()
         {
-            OdbcConnection conn = new OdbcConnection("Dsn=bd_hoteleria");
+            OdbcConnection odConn = new OdbcConnection("Dsn=bd_hoteleria");
             try
             {
-                conn.Open();
+                odConn.Open();
             }
             catch (OdbcException)
             {
-                Console.WriteLine("No Conectó");
+                Console.WriteLine("No conectó a la base de datos.");
             }
-            return conn;
+            return odConn;
         }
 
-        //Método para cerrar la conexion
-        public void desconexion(OdbcConnection conn)
+        public void Desconexion(OdbcConnection odConn)
         {
             try
             {
-                conn.Close();
+                if (odConn != null)
+                    odConn.Close();
             }
             catch (OdbcException)
             {
-                Console.WriteLine("No Conectó");
+                Console.WriteLine("No se pudo cerrar la conexión.");
             }
         }
-
     }
 }

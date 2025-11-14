@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Capa_Controlador_TipoDeCambio;
 
+
 namespace Capa_Vista_TipoDeCambio
 {
     public partial class Frm_DisponibilidadDiaria : Form
@@ -19,7 +20,8 @@ namespace Capa_Vista_TipoDeCambio
         }
 
 
-        Controlador_TipoCambio controlador = new Controlador_TipoCambio();
+        Capa_Controlador_TipoCambio controlador = new Capa_Controlador_TipoCambio();
+
 
         private void Frm_DisponibilidadDiaria_Load(object sender, EventArgs e)
         {

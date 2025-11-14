@@ -20,7 +20,8 @@ namespace Capa_Vista_TipoDeCambio
 
         }
 
-        Controlador_TipoCambio ctrl = new Controlador_TipoCambio();
+        Capa_Controlador_TipoCambio ctrl = new Capa_Controlador_TipoCambio();
+
 
         private void Frm_IngresoTipoDeCambio_Load(object sender, EventArgs e)
         {
