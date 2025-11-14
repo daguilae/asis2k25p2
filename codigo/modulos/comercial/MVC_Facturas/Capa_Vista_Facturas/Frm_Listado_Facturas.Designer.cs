@@ -58,7 +58,7 @@
             // Btn_VerDetalle
             // 
             this.Btn_VerDetalle.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Btn_VerDetalle.Location = new System.Drawing.Point(1027, 12);
+            this.Btn_VerDetalle.Location = new System.Drawing.Point(1041, 14);
             this.Btn_VerDetalle.Name = "Btn_VerDetalle";
             this.Btn_VerDetalle.Size = new System.Drawing.Size(140, 30);
             this.Btn_VerDetalle.TabIndex = 3;
@@ -68,7 +68,7 @@
             // Btn_Buscar
             // 
             this.Btn_Buscar.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Btn_Buscar.Location = new System.Drawing.Point(891, 12);
+            this.Btn_Buscar.Location = new System.Drawing.Point(905, 14);
             this.Btn_Buscar.Name = "Btn_Buscar";
             this.Btn_Buscar.Size = new System.Drawing.Size(130, 30);
             this.Btn_Buscar.TabIndex = 2;
@@ -79,7 +79,7 @@
             // 
             this.Txt_Buscar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Txt_Buscar.Location = new System.Drawing.Point(79, 16);
+            this.Txt_Buscar.Location = new System.Drawing.Point(95, 14);
             this.Txt_Buscar.Name = "Txt_Buscar";
             this.Txt_Buscar.Size = new System.Drawing.Size(800, 27);
             this.Txt_Buscar.TabIndex = 1;

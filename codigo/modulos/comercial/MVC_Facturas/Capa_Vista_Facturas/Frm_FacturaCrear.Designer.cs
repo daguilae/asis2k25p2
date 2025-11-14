@@ -100,7 +100,7 @@ namespace Capa_Vista_Facturas
             // 
             // Txt_Nombre
             // 
-            this.Txt_Nombre.Location = new System.Drawing.Point(100, 28);
+            this.Txt_Nombre.Location = new System.Drawing.Point(108, 29);
             this.Txt_Nombre.Name = "Txt_Nombre";
             this.Txt_Nombre.Size = new System.Drawing.Size(240, 27);
             this.Txt_Nombre.TabIndex = 0;
@@ -108,7 +108,7 @@ namespace Capa_Vista_Facturas
             // Lbl_Apellido
             // 
             this.Lbl_Apellido.AutoSize = true;
-            this.Lbl_Apellido.Location = new System.Drawing.Point(360, 32);
+            this.Lbl_Apellido.Location = new System.Drawing.Point(385, 31);
             this.Lbl_Apellido.Name = "Lbl_Apellido";
             this.Lbl_Apellido.Size = new System.Drawing.Size(81, 20);
             this.Lbl_Apellido.TabIndex = 1;
@@ -116,7 +116,7 @@ namespace Capa_Vista_Facturas
             // 
             // Txt_Apellido
             // 
-            this.Txt_Apellido.Location = new System.Drawing.Point(430, 28);
+            this.Txt_Apellido.Location = new System.Drawing.Point(472, 29);
             this.Txt_Apellido.Name = "Txt_Apellido";
             this.Txt_Apellido.Size = new System.Drawing.Size(240, 27);
             this.Txt_Apellido.TabIndex = 1;
@@ -124,7 +124,7 @@ namespace Capa_Vista_Facturas
             // Lbl_TipoDoc
             // 
             this.Lbl_TipoDoc.AutoSize = true;
-            this.Lbl_TipoDoc.Location = new System.Drawing.Point(24, 72);
+            this.Lbl_TipoDoc.Location = new System.Drawing.Point(24, 81);
             this.Lbl_TipoDoc.Name = "Lbl_TipoDoc";
             this.Lbl_TipoDoc.Size = new System.Drawing.Size(105, 20);
             this.Lbl_TipoDoc.TabIndex = 2;
@@ -136,7 +136,7 @@ namespace Capa_Vista_Facturas
             this.Cbo_TipoDoc.Items.AddRange(new object[] {
             "NIT",
             "CF"});
-            this.Cbo_TipoDoc.Location = new System.Drawing.Point(100, 68);
+            this.Cbo_TipoDoc.Location = new System.Drawing.Point(145, 77);
             this.Cbo_TipoDoc.Name = "Cbo_TipoDoc";
             this.Cbo_TipoDoc.Size = new System.Drawing.Size(80, 28);
             this.Cbo_TipoDoc.TabIndex = 2;
@@ -145,7 +145,7 @@ namespace Capa_Vista_Facturas
             // Lbl_Documento
             // 
             this.Lbl_Documento.AutoSize = true;
-            this.Lbl_Documento.Location = new System.Drawing.Point(200, 72);
+            this.Lbl_Documento.Location = new System.Drawing.Point(231, 79);
             this.Lbl_Documento.Name = "Lbl_Documento";
             this.Lbl_Documento.Size = new System.Drawing.Size(78, 20);
             this.Lbl_Documento.TabIndex = 3;
@@ -153,7 +153,7 @@ namespace Capa_Vista_Facturas
             // 
             // Txt_Documento
             // 
-            this.Txt_Documento.Location = new System.Drawing.Point(260, 68);
+            this.Txt_Documento.Location = new System.Drawing.Point(324, 73);
             this.Txt_Documento.Name = "Txt_Documento";
             this.Txt_Documento.Size = new System.Drawing.Size(220, 27);
             this.Txt_Documento.TabIndex = 3;
@@ -161,7 +161,7 @@ namespace Capa_Vista_Facturas
             // Lbl_Fecha
             // 
             this.Lbl_Fecha.AutoSize = true;
-            this.Lbl_Fecha.Location = new System.Drawing.Point(500, 72);
+            this.Lbl_Fecha.Location = new System.Drawing.Point(550, 77);
             this.Lbl_Fecha.Name = "Lbl_Fecha";
             this.Lbl_Fecha.Size = new System.Drawing.Size(61, 20);
             this.Lbl_Fecha.TabIndex = 4;
@@ -171,7 +171,7 @@ namespace Capa_Vista_Facturas
             // 
             this.Dtp_Fecha.CustomFormat = "dd/MM/yyyy HH:mm";
             this.Dtp_Fecha.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Dtp_Fecha.Location = new System.Drawing.Point(550, 68);
+            this.Dtp_Fecha.Location = new System.Drawing.Point(617, 74);
             this.Dtp_Fecha.Name = "Dtp_Fecha";
             this.Dtp_Fecha.Size = new System.Drawing.Size(180, 27);
             this.Dtp_Fecha.TabIndex = 4;
