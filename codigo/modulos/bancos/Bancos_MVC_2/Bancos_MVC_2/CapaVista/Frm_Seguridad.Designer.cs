@@ -42,6 +42,7 @@
             this.reportesBancariosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiposDeCambioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ingresoTipoCambioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tipoCambioDelDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.herramientasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cambiarContraseñaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +53,7 @@
             this.Pnl_Superior = new System.Windows.Forms.Panel();
             this.Lbl_Bancos = new System.Windows.Forms.Label();
             this.Pic_Cerrar = new System.Windows.Forms.PictureBox();
-
-            this.tipoCambioDelDiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.Pnl_Superior.SuspendLayout();
@@ -188,7 +187,8 @@
             this.reportesBancariosToolStripMenuItem,
             this.tiposDeCambioToolStripMenuItem,
             this.ingresoTipoCambioToolStripMenuItem,
-            this.tipoCambioDelDiaToolStripMenuItem});
+            this.tipoCambioDelDiaToolStripMenuItem,
+            this.toolStripMenuItem2});
             this.procesosToolStripMenuItem.Font = new System.Drawing.Font("Rockwell", 10F);
             this.procesosToolStripMenuItem.Name = "procesosToolStripMenuItem";
             this.procesosToolStripMenuItem.Size = new System.Drawing.Size(95, 24);
@@ -263,6 +263,13 @@
             this.ingresoTipoCambioToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
             this.ingresoTipoCambioToolStripMenuItem.Text = "Ingreso Tipo Cambio";
             this.ingresoTipoCambioToolStripMenuItem.Click += new System.EventHandler(this.ingresoTipoCambioToolStripMenuItem_Click);
+            // 
+            // tipoCambioDelDiaToolStripMenuItem
+            // 
+            this.tipoCambioDelDiaToolStripMenuItem.Name = "tipoCambioDelDiaToolStripMenuItem";
+            this.tipoCambioDelDiaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
+            this.tipoCambioDelDiaToolStripMenuItem.Text = "Tipo Cambio del Dia";
+            this.tipoCambioDelDiaToolStripMenuItem.Click += new System.EventHandler(this.tipoCambioDelDiaToolStripMenuItem_Click);
             // 
             // herramientasToolStripMenuItem
             // 
@@ -356,15 +363,13 @@
             this.Pic_Cerrar.TabStop = false;
             this.Pic_Cerrar.Click += new System.EventHandler(this.Pic_Cerrar_Click);
             // 
-
-            // tipoCambioDelDiaToolStripMenuItem
+            // toolStripMenuItem2
             // 
-            this.tipoCambioDelDiaToolStripMenuItem.Name = "tipoCambioDelDiaToolStripMenuItem";
-            this.tipoCambioDelDiaToolStripMenuItem.Size = new System.Drawing.Size(365, 26);
-            this.tipoCambioDelDiaToolStripMenuItem.Text = "Tipo Cambio del Dia";
-            this.tipoCambioDelDiaToolStripMenuItem.Click += new System.EventHandler(this.tipoCambioDelDiaToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(365, 26);
+            this.toolStripMenuItem2.Text = "Cierre Bancario";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-
             // Frm_Seguridad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -431,5 +436,6 @@
         private System.Windows.Forms.ToolStripMenuItem ingresoTipoCambioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pruebaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tipoCambioDelDiaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
     }
 }

@@ -16,6 +16,7 @@ using Capa_Vista_Mantenimientos;
 using Capa_Vista_TipoDeCambio;
 using Capa_Vista;
 using Capa_Vista_ReportesBancarios;
+using Capa_Vista_Cierre;
 
 
 namespace Capa_Vista_Bancos
@@ -409,6 +410,12 @@ namespace Capa_Vista_Bancos
         private void tipoCambioDelDiaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Frm_TipoDeCambioDia M = new Frm_TipoDeCambioDia();
+            M.ShowDialog();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            Frm_Cierre_Bancario M = new Frm_Cierre_Bancario();
             M.ShowDialog();
         }
     }

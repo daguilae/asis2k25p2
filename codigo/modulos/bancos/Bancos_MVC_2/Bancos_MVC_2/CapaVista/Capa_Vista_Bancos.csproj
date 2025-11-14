@@ -55,6 +55,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\DLLS_Bancos\MCV_Cheques_Planillas\Cheques\Capa_Vista_Cheques\bin\Debug\Capa_Vista_Cheques.dll</HintPath>
     </Reference>
+    <Reference Include="Capa_Vista_Cierre">
+      <HintPath>..\..\..\DLLS_Bancos\MVC_Cierre_Bancario\MVC_CierreB\Capa_Vista_Cierre\bin\Debug\Capa_Vista_Cierre.dll</HintPath>
+    </Reference>
     <Reference Include="Capa_Vista_Mantenimientos">
       <HintPath>..\..\..\DLLS_Bancos\MVC_Mantenimientos\Capa_Vista_Mantenimientos\bin\Debug\Capa_Vista_Mantenimientos.dll</HintPath>
     </Reference>
