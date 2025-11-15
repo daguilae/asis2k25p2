@@ -86,5 +86,14 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Capa_Modelo_CxP\Capa_Modelo_CxP.csproj">
+      <Project>{3c78a6a9-da1e-4f02-802c-b2083118dd50}</Project>
+      <Name>Capa_Modelo_CxP</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

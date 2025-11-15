@@ -17,7 +17,7 @@ namespace Capa_Vista_CxP
         {
             this.gbpFiltros = new System.Windows.Forms.GroupBox();
             this.lblOrden = new System.Windows.Forms.Label();
-            this.cboOrden = new System.Windows.Forms.ComboBox();
+            this.cboOrdenar = new System.Windows.Forms.ComboBox();
             this.lblMontoHasta = new System.Windows.Forms.Label();
             this.lblMontoDesde = new System.Windows.Forms.Label();
             this.nudMontoHasta = new System.Windows.Forms.NumericUpDown();
@@ -31,7 +31,7 @@ namespace Capa_Vista_CxP
             this.btnBuscar = new System.Windows.Forms.Button();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.dgvHistorial = new System.Windows.Forms.DataGridView();
+            this.dgvPagos = new System.Windows.Forms.DataGridView();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblRegistros = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTotalPagado = new System.Windows.Forms.ToolStripStatusLabel();
@@ -39,7 +39,7 @@ namespace Capa_Vista_CxP
             this.gbpFiltros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMontoHasta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMontoDesde)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -48,7 +48,7 @@ namespace Capa_Vista_CxP
             this.gbpFiltros.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gbpFiltros.Controls.Add(this.lblOrden);
-            this.gbpFiltros.Controls.Add(this.cboOrden);
+            this.gbpFiltros.Controls.Add(this.cboOrdenar);
             this.gbpFiltros.Controls.Add(this.lblMontoHasta);
             this.gbpFiltros.Controls.Add(this.lblMontoDesde);
             this.gbpFiltros.Controls.Add(this.nudMontoHasta);
@@ -80,20 +80,20 @@ namespace Capa_Vista_CxP
             this.lblOrden.TabIndex = 10;
             this.lblOrden.Text = "Ordenar por:";
             // 
-            // cboOrden
+            // cboOrdenar
             // 
-            this.cboOrden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboOrden.FormattingEnabled = true;
-            this.cboOrden.Items.AddRange(new object[] {
+            this.cboOrdenar.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOrdenar.FormattingEnabled = true;
+            this.cboOrdenar.Items.AddRange(new object[] {
             "Fecha (recientes primero)",
             "Fecha (antiguas primero)",
             "Monto (mayor a menor)",
             "Monto (menor a mayor)"});
-            this.cboOrden.Location = new System.Drawing.Point(646, 80);
-            this.cboOrden.MaximumSize = new System.Drawing.Size(980, 0);
-            this.cboOrden.Name = "cboOrden";
-            this.cboOrden.Size = new System.Drawing.Size(252, 28);
-            this.cboOrden.TabIndex = 11;
+            this.cboOrdenar.Location = new System.Drawing.Point(646, 80);
+            this.cboOrdenar.MaximumSize = new System.Drawing.Size(980, 0);
+            this.cboOrdenar.Name = "cboOrdenar";
+            this.cboOrdenar.Size = new System.Drawing.Size(252, 28);
+            this.cboOrdenar.TabIndex = 11;
             // 
             // lblMontoHasta
             // 
@@ -225,25 +225,25 @@ namespace Capa_Vista_CxP
             this.btnExportar.Text = "Exportar…";
             this.btnExportar.UseVisualStyleBackColor = true;
             // 
-            // dgvHistorial
+            // dgvPagos
             // 
-            this.dgvHistorial.AllowUserToAddRows = false;
-            this.dgvHistorial.AllowUserToDeleteRows = false;
-            this.dgvHistorial.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvPagos.AllowUserToAddRows = false;
+            this.dgvPagos.AllowUserToDeleteRows = false;
+            this.dgvPagos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvHistorial.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvHistorial.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dgvHistorial.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHistorial.Location = new System.Drawing.Point(12, 136);
-            this.dgvHistorial.MultiSelect = false;
-            this.dgvHistorial.Name = "dgvHistorial";
-            this.dgvHistorial.ReadOnly = true;
-            this.dgvHistorial.RowHeadersVisible = false;
-            this.dgvHistorial.RowHeadersWidth = 51;
-            this.dgvHistorial.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistorial.Size = new System.Drawing.Size(1038, 417);
-            this.dgvHistorial.TabIndex = 1;
+            this.dgvPagos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPagos.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvPagos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPagos.Location = new System.Drawing.Point(12, 136);
+            this.dgvPagos.MultiSelect = false;
+            this.dgvPagos.Name = "dgvPagos";
+            this.dgvPagos.ReadOnly = true;
+            this.dgvPagos.RowHeadersVisible = false;
+            this.dgvPagos.RowHeadersWidth = 51;
+            this.dgvPagos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvPagos.Size = new System.Drawing.Size(1038, 417);
+            this.dgvPagos.TabIndex = 1;
             // 
             // statusStrip1
             // 
@@ -285,7 +285,7 @@ namespace Capa_Vista_CxP
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 633);
             this.Controls.Add(this.btnCerrar);
-            this.Controls.Add(this.dgvHistorial);
+            this.Controls.Add(this.dgvPagos);
             this.Controls.Add(this.gbpFiltros);
             this.Controls.Add(this.statusStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -300,7 +300,7 @@ namespace Capa_Vista_CxP
             this.gbpFiltros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMontoHasta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudMontoDesde)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHistorial)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPagos)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -324,13 +324,13 @@ namespace Capa_Vista_CxP
         public System.Windows.Forms.NumericUpDown nudMontoHasta;
 
         private System.Windows.Forms.Label lblOrden;
-        public System.Windows.Forms.ComboBox cboOrden;
+        public System.Windows.Forms.ComboBox cboOrdenar;
 
         public System.Windows.Forms.Button btnBuscar;
         public System.Windows.Forms.Button btnLimpiar;
         public System.Windows.Forms.Button btnExportar;
 
-        public System.Windows.Forms.DataGridView dgvHistorial;
+        public System.Windows.Forms.DataGridView dgvPagos;
 
         private System.Windows.Forms.StatusStrip statusStrip1;
         public System.Windows.Forms.ToolStripStatusLabel lblRegistros;

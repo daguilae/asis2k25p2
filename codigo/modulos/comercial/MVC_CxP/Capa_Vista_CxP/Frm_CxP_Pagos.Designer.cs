@@ -221,7 +221,7 @@ namespace Capa_Vista_CxP
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(125, 28);
             this.btnPagar.TabIndex = 1;
-            this.btnPagar.Text = "Registrar";
+            this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;
             this.btnPagar.Click += new System.EventHandler(this.btnPagar_Click);
             // 
